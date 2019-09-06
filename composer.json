@@ -1,0 +1,25 @@
+{
+    "name": "jtl/channel-lib",
+    "type": "library",
+    "description": "SCX Channel Library",
+    "require": {
+        "jtl/nachricht": "^0.0.1",
+        "symfony/console": "^4.3",
+        "symfony/config": "^4.3",
+        "symfony/yaml": "^4.3",
+        "symfony/dependency-injection": "^4.3",
+        "php-amqplib/php-amqplib": "^2.10",
+        "symfony/proxy-manager-bridge": "^4.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.3",
+        "friendsofphp/php-cs-fixer": "^2.15",
+        "mockery/mockery": "^1.2",
+        "phpstan/phpstan": "^0.11.15"
+    },
+    "autoload": {
+        "psr-4": {
+            "JTL\\SCX\\Channel\\": "src/"
+        }
+    }
+}
