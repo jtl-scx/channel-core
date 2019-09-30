@@ -1,0 +1,50 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  _instanceof:
+    JTL\SCX\Lib\Channel\Core\Command\AbstractCommand:
+      tags: ['console.command']
+    JTL\Nachricht\Contract\Listener\Listener:
+      public: true
+
+  JTL\SCX\Client\Channel\:
+    resource: '../vendor/jtl/channel-api-client/src/*'
+
+  JTL\SCX\Lib\Channel\:
+    resource: '../src/*'
+    exclude: '../src/{Core/AbstractApplicationContext.php}'
+
+  JTL\Nachricht\:
+    resource: '../vendor/jtl/nachricht/src/*'
+
+  JTL\SCX\Client\Api\Configuration:
+    arguments:
+      $host: '%env(SCX_CHANNEL_API_HOST)%'
+      $refreshToken: '%env(SCX_CHANNEL_API_REFRESH_TOKEN)%'
+
+  Monolog\Logger:
+    factory: 'JTL\SCX\Lib\Channel\Core\Log\MonologFactory:create'
+    arguments:
+      $globalLogLevel: '%env(LOG_LEVEL)%'
+      $logFile: '%env(LOG_FILE)%'
+      $channel: '%env(LOG_CHANNEL)%'
+
+  JTL\Nachricht\Transport\Amqp\AmqpTransport:
+    public: true
+    factory: 'JTL\Nachricht\Transport\Amqp\AmqpTransportFactory:createTransport'
+    arguments:
+      - host: '%env(RABBITMQ_HOST)%'
+        port: '%env(RABBITMQ_PORT)%'
+        user: '%env(RABBITMQ_USER)%'
+        password: '%env(RABBITMQ_PASS)%'
+        vhost: '%env(RABBITMQ_VHOST)%'
+      - '@JTL\Nachricht\Contract\Serializer\EventSerializer'
+
+  JTL\SCX\Lib\Channel\RabbitMq\ManagementApi\Configuration:
+    arguments:
+      $host: '%env(RABBITMQ_MANAGEMENT_HOST)%'
+      $username: '%env(RABBITMQ_USER)%'
+      $password: '%env(RABBITMQ_PASS)%'

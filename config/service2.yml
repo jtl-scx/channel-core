@@ -1,5 +1,0 @@
-services:
-  JTL\SCX\Channel\Test2:
-    public: true
-  JTL\SCX\Channel\Test3:
-    public: true
