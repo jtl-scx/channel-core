@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ddc13a215cba1cdc43abb7078149273",
+    "content-hash": "c5eed6c83d29b5509339d80e1401b3b5",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -236,16 +236,16 @@
         },
         {
             "name": "jtl/nachricht",
-            "version": "0.0.2",
+            "version": "dev-amqp_queue_discovery",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-software/nachricht.git",
-                "reference": "eceb2c26e6dfd0696b1bc6617463c046b87caf18"
+                "reference": "ed5e338dad7a8bb8480a67812fd714d465d987d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/eceb2c26e6dfd0696b1bc6617463c046b87caf18",
-                "reference": "eceb2c26e6dfd0696b1bc6617463c046b87caf18",
+                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/ed5e338dad7a8bb8480a67812fd714d465d987d9",
+                "reference": "ed5e338dad7a8bb8480a67812fd714d465d987d9",
                 "shasum": ""
             },
             "require": {
@@ -279,7 +279,7 @@
                 "MIT"
             ],
             "description": "Nachricht is a distributed event queue system",
-            "time": "2019-09-24T12:24:30+00:00"
+            "time": "2019-10-01T15:42:09+00:00"
         },
         {
             "name": "jtl/php-generic-collection",
@@ -4772,7 +4772,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "jtl/nachricht": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

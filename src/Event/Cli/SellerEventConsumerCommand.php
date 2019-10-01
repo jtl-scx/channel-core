@@ -9,11 +9,10 @@
 namespace JTL\SCX\Lib\Channel\Event\Cli;
 
 use JTL\Nachricht\Collection\StringCollection;
+use JTL\Nachricht\Event\Cache\EventCache;
 use JTL\Nachricht\Transport\Amqp\AmqpConsumer;
 use JTL\Nachricht\Transport\SubscriptionSettings;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
-use JTL\SCX\Lib\Channel\RabbitMq\ManagementApi\Queues\Model\Queue;
-use JTL\SCX\Lib\Channel\RabbitMq\MessageQueueDiscoverer;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -27,20 +26,20 @@ class SellerEventConsumerCommand extends AbstractCommand
     private $amqpConsumer;
 
     /**
-     * @var MessageQueueDiscoverer
+     * @var EventCache
      */
-    private $queueDiscoverer;
+    private $eventCache;
 
     /**
      * SellerEventConsumerCommand constructor.
      * @param AmqpConsumer $amqpConsumer
-     * @param MessageQueueDiscoverer $queueDiscoverer
+     * @param EventCache $eventCache
      */
-    public function __construct(AmqpConsumer $amqpConsumer, MessageQueueDiscoverer $queueDiscoverer)
+    public function __construct(AmqpConsumer $amqpConsumer, EventCache $eventCache)
     {
         parent::__construct();
         $this->amqpConsumer = $amqpConsumer;
-        $this->queueDiscoverer = $queueDiscoverer;
+        $this->eventCache = $eventCache;
     }
 
     protected function configure()
@@ -56,13 +55,13 @@ class SellerEventConsumerCommand extends AbstractCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $queueList = $this->queueDiscoverer->discover();
+        $eventRoutingKeyList = [];
 
-        $subscriptionSettings = new SubscriptionSettings(StringCollection::from(
-            ...array_map(function (Queue $queue) {
-                return $queue->getName();
-            }, $queueList)
-        ));
+        foreach ($this->eventCache->getEventClassList() as $eventClass){
+            $eventRoutingKeyList[] = $this->eventCache->getRoutingKeyForEvent($eventClass);
+        }
+
+        $subscriptionSettings = new SubscriptionSettings(StringCollection::from(...$eventRoutingKeyList));
 
         $this->amqpConsumer->consume($subscriptionSettings);
     }
