@@ -10,8 +10,11 @@ namespace JTL\SCX\Lib\Channel\Event\Cli;
 
 use JTL\Nachricht\Emitter\AmqpEmitter;
 use JTL\Nachricht\Transport\Amqp\AmqpConsumer;
+use JTL\SCX\Client\Channel\Model\SellerEventOfferEnd;
+use JTL\SCX\Client\Channel\Model\SystemEventNotification;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
-use JTL\SCX\Lib\Channel\Event\Seller\SystemEventNotification;
+use JTL\SCX\Lib\Channel\Event\Seller\OfferEndEvent;
+use JTL\SCX\Lib\Channel\Event\Seller\SystemNotificationEvent;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -54,6 +57,16 @@ class EmitEventCommand extends AbstractCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->emitter->emit(new SystemEventNotification('foo', 'bar'));
+        $this->emitter->emit(
+            new OfferEndEvent(
+                uniqid('iamevent', true),
+                new \DateTimeImmutable(),
+                'System:Notification',
+                new SellerEventOfferEnd([
+                    'sellerId' => 'seller007',
+                    'offerId' => '12345678',
+                ])
+            )
+        );
     }
 }
