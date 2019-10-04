@@ -22,10 +22,10 @@ class SellerEventEnqueuerCommand extends AbstractCommand
      */
     private $eventEnqueuer;
 
-    public function __construct(SellerEventEmitter $eventEnqueuer)
+    public function __construct(SellerEventEmitter $eventEmitter)
     {
         parent::__construct();
-        $this->eventEnqueuer = $eventEnqueuer;
+        $this->eventEnqueuer = $eventEmitter;
     }
 
     protected function configure()
@@ -35,6 +35,6 @@ class SellerEventEnqueuerCommand extends AbstractCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->eventEnqueuer->enqueue();
+        $this->eventEnqueuer->emit();
     }
 }

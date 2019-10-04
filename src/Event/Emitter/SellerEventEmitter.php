@@ -61,7 +61,7 @@ class SellerEventEmitter
      * @throws GuzzleException
      * @throws RequestFailedException
      */
-    public function enqueue(): void
+    public function emit(): void
     {
         $response = $this->getSellerEventListApi->getEventList();
 
