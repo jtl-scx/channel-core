@@ -33,13 +33,6 @@ abstract class AbstractSignUpController
     abstract public function index(?string $session): void;
 
     /**
-     * @param string|null $username
-     * @param string|null $password
-     * @param string|null $session
-     */
-    abstract public function signUp(?string $username, ?string $password, ?string $session): void;
-
-    /**
      * @param array $params
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
