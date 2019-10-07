@@ -26,4 +26,12 @@ class Environment
 
         return $result;
     }
+
+    /**
+     * @return bool
+     */
+    public function isDevelopment(): bool
+    {
+        return getenv('IS_DEVELOPMENT') === 'true';
+    }
 }

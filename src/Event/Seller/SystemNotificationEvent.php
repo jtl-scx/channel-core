@@ -13,6 +13,7 @@ use JTL\SCX\Lib\Channel\Event\AbstractEvent;
 
 class SystemNotificationEvent extends AbstractEvent
 {
+
     /**
      * @var SystemEventNotification
      */

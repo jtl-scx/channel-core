@@ -57,7 +57,7 @@ class SellerEventConsumerCommand extends AbstractCommand
     {
         $eventRoutingKeyList = [];
 
-        foreach ($this->eventCache->getEventClassList() as $eventClass){
+        foreach ($this->eventCache->getEventClassList() as $eventClass) {
             $eventRoutingKeyList[] = $this->eventCache->getRoutingKeyForEvent($eventClass);
         }
 

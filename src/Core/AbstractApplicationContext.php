@@ -72,6 +72,7 @@ abstract class AbstractApplicationContext
      */
     public function bootstrap(): void
     {
+        putenv('ROOT_DIRECTORY='.$this->rootDirectory);
         $this->initializeContainer();
     }
 

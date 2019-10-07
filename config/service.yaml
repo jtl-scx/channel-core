@@ -42,3 +42,6 @@ services:
         password: '%env(RABBITMQ_PASS)%'
         vhost: '%env(RABBITMQ_VHOST)%'
       - '@JTL\Nachricht\Contract\Serializer\EventSerializer'
+
+  JTL\SCX\Lib\Channel\Template\TwigTemplateRenderer:
+    public: true
