@@ -29,8 +29,9 @@ abstract class AbstractSignUpController
 
     /**
      * @param string|null $session
+     * @param string|null $expiresAt
      */
-    abstract public function index(?string $session): void;
+    abstract public function index(?string $session, ?string $expiresAt): void;
 
     /**
      * @param array $params
