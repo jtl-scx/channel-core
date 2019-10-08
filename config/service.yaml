@@ -11,14 +11,14 @@ services:
       public: true
 
   JTL\SCX\Client\Channel\:
-    resource: '../vendor/jtl/channel-api-client/src/*'
+    resource: './vendor/jtl/channel-api-client/src/*'
 
   JTL\SCX\Lib\Channel\:
     resource: '../src/*'
     exclude: '../src/{Core/AbstractApplicationContext.php}'
 
   JTL\Nachricht\:
-    resource: '../vendor/jtl/nachricht/src/*'
+    resource: './vendor/jtl/nachricht/src/*'
 
   JTL\SCX\Client\Api\Configuration:
     arguments:
