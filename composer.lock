@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc2749473f519624fea91f66a7cf23cf",
+    "content-hash": "790c5bd717edda76ffd07561d0929fbe",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -195,11 +195,11 @@
         },
         {
             "name": "jtl/channel-api-client",
-            "version": "0.0.2",
+            "version": "0.0.3",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.jtl-software.com:ea/scx/channel-api-client.git",
-                "reference": "634c4a73c032d6813e70dd8e3fd0a520628d43e4"
+                "reference": "7e2b395aa7a6723f59bedd4008da679defe6b9ce"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.15",
@@ -232,7 +232,7 @@
                 ]
             },
             "description": "API Client for SCX Channel API",
-            "time": "2019-09-30T08:44:38+00:00"
+            "time": "2019-10-30T09:13:14+00:00"
         },
         {
             "name": "jtl/nachricht",
