@@ -45,3 +45,6 @@ services:
 
   JTL\SCX\Lib\Channel\Template\TwigTemplateRenderer:
     public: true
+
+  JTL\SCX\Lib\Channel\Contract\MetaData\MetaCategoryLoader:
+    class: JTL\SCX\Lib\Channel\MetaData\DefaultMetaCategoryLoader
