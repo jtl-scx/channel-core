@@ -25,6 +25,11 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class ImportCategoryAttributesCommandTest extends TestCase
 {
+    public function tearDown(): void
+    {
+        Mockery::close();
+    }
+
     private function createInputInterfaceMock(): InputInterface
     {
         $inputMock = Mockery::mock(InputInterface::class);

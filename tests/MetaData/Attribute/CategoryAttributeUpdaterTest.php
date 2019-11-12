@@ -26,6 +26,11 @@ use PHPUnit\Framework\TestCase;
  */
 class CategoryAttributeUpdaterTest extends TestCase
 {
+    public function tearDown(): void
+    {
+        Mockery::close();
+    }
+
     public function testCanUpdate(): void
     {
         $categoryId = uniqid('categoryId', true);
@@ -74,7 +79,7 @@ class CategoryAttributeUpdaterTest extends TestCase
             ->andReturn($response);
 
         $response->shouldReceive('getStatusCode')
-            ->once()
+            ->twice()
             ->andReturn(500);
 
         $updater = new CategoryAttributeUpdater($client, $mapper);
