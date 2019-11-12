@@ -8,7 +8,6 @@
 
 namespace JTL\SCX\Lib\Channel\Controller;
 
-
 use JTL\SCX\Lib\Channel\Template\TwigTemplateRenderer;
 
 abstract class AbstractSignUpController

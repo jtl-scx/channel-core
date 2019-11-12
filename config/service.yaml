@@ -48,3 +48,6 @@ services:
 
   JTL\SCX\Lib\Channel\Contract\MetaData\MetaCategoryLoader:
     class: JTL\SCX\Lib\Channel\MetaData\DefaultMetaCategoryLoader
+
+  JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataAttributeLoader:
+    class: JTL\SCX\Lib\Channel\MetaData\Attribute\DefaultMetaDataAttributeLoader

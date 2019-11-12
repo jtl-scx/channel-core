@@ -26,8 +26,10 @@ class CategoryTreeUpdaterTest extends TestCase
         $mapper = new CategoryMapper();
         $resultVersion = uniqid('version', true);
 
-        $response = new UpdateCategoryTreeResponse(201,
-            new CategoryTreeVersion(['categoryTreeVersion' => $resultVersion]));
+        $response = new UpdateCategoryTreeResponse(
+            201,
+            new CategoryTreeVersion(['categoryTreeVersion' => $resultVersion])
+        );
 
         $clientMock = \Mockery::mock(UpdateCategoryTreeApi::class);
         $clientMock->expects('update')->once()->andReturn($response);
@@ -55,7 +57,9 @@ class CategoryTreeUpdaterTest extends TestCase
     {
         $categoryList = new CategoryList();
         $categoryList[] = new Category(
-            '1', '2', '3'
+            '1',
+            '2',
+            '3'
         );
         return $categoryList;
     }
