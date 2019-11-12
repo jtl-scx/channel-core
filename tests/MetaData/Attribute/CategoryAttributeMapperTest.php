@@ -9,6 +9,7 @@
 namespace MetaData\Attribute;
 
 use JTL\SCX\Client\Channel\Model\Attribute;
+use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeType;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttribute;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeMapper;
@@ -36,7 +37,8 @@ class CategoryAttributeMapperTest extends TestCase
             $name,
             $title,
             $required,
-            null
+            null,
+            AttributeType::TEXT()
         );
 
         $attributeList = CategoryAttributeList::from($attribute);

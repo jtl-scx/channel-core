@@ -8,6 +8,7 @@
 
 namespace MetaData\Attribute;
 
+use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeType;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttribute;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\ConditionalCategoryAttribute;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\ConditionalCategoryAttributeCollection;
@@ -33,7 +34,7 @@ class CategoryAttributeTest extends TestCase
         $enumValues = [uniqid('enumValues', true)];
         $description = uniqid('description', true);
         $required = (bool)random_int(0, 1);
-        $type = uniqid('type', true);
+        $type = AttributeType::DECIMAL();
         $isMultipleAllowed = (bool)random_int(0, 1);
         $attributeValueValidation = uniqid('attributeValueValidation', true);
         $conditionalMandatoryBy = ConditionalCategoryAttributeCollection::from($conditional);
