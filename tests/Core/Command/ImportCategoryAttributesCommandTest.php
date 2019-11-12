@@ -57,7 +57,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
         /** @var Mockery\MockInterface $input */
         $input = $this->createInputInterfaceMock();
         $output = Mockery::mock(OutputInterface::class);
-        $attributeList = Mockery::mock(CategoryAttributeList::class);
+        $attributeList = new CategoryAttributeList();
 
         $input->shouldReceive('getArgument')
             ->once()

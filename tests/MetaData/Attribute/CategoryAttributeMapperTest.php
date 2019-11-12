@@ -12,7 +12,6 @@ use JTL\SCX\Client\Channel\Model\Attribute;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttribute;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeMapper;
-use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeTypeMapper;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -25,23 +24,19 @@ class CategoryAttributeMapperTest extends TestCase
 {
     public function testCanMap(): void
     {
-        $typeMapper = new CategoryAttributeTypeMapper();
-        $mapper = new CategoryAttributeMapper($typeMapper);
+        $mapper = new CategoryAttributeMapper();
 
-        $attributeId = random_int(1, 100000);
+        $attributeId = uniqid('attributeId', true);
         $name = uniqid('name', true);
         $title = uniqid('title', true);
-        $multiple = (bool)random_int(0, 1);
-        $type = uniqid('type', true);
         $required = (bool)random_int(0, 1);
 
         $attribute = new CategoryAttribute(
             $attributeId,
             $name,
             $title,
-            $multiple,
-            $type,
-            $required
+            $required,
+            null
         );
 
         $attributeList = CategoryAttributeList::from($attribute);

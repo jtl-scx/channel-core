@@ -13,30 +13,30 @@ use JTL\SCX\Client\Channel\Model\Attribute;
 class CategoryAttributeMapper
 {
     /**
-     * @var CategoryAttributeTypeMapper
+     * @param CategoryAttributeList $categoryAttributeList
+     * @return array
      */
-    private $typeMapper;
-
-    /**
-     * CategoryAttributeMapper constructor.
-     * @param CategoryAttributeTypeMapper $typeMapper
-     */
-    public function __construct(CategoryAttributeTypeMapper $typeMapper)
-    {
-        $this->typeMapper = $typeMapper;
-    }
-
     public function map(CategoryAttributeList $categoryAttributeList): array
     {
         $list = [];
 
         foreach ($categoryAttributeList as $attribute) {
             $list[] = new Attribute([
-                'attributeId' => $attribute->getName(),
-                'displayName' => $attribute->getTitle(),
+                'attributeId' => $attribute->getAttributeId(),
+                'displayName' => $attribute->getDisplayName(),
                 'isMultipleAllowed' => $attribute->isMultipleAllowed(),
                 'required' => $attribute->isRequired(),
-                'type' => $this->typeMapper->map($attribute->getType())
+                'type' => $attribute->getType(),
+                'enumValues' => $attribute->getEnumValues(),
+                'attributeValueValidation' => $attribute->getAttributeValueValidation(),
+                // TODO: Fix this when EA-2546 is done
+                'conditionalMandantoryBy' => null, //$attribute->getConditionalMandatoryBy(),
+                'conditionalOptionalBy' => null, //$attribute->getConditionalOptionalBy(),
+                'section' => $attribute->getSection(),
+                'sectionPosition' => $attribute->getSectionPosition(),
+                'subSection' => $attribute->getSubSection(),
+                'subSectionPosition' => $attribute->getSubSectionPosition(),
+                'description' => $attribute->getDescription(),
             ]);
         }
 

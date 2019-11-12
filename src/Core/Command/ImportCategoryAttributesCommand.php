@@ -68,7 +68,7 @@ class ImportCategoryAttributesCommand extends AbstractCommand
             if ($process === true) {
                 $this->attributeUpdater->update($categoryId, $attributeList);
             } else {
-                var_dump($attributeList);
+                var_export($attributeList);
             }
         }
     }

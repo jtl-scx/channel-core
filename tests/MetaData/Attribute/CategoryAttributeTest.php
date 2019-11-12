@@ -9,6 +9,8 @@
 namespace MetaData\Attribute;
 
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttribute;
+use JTL\SCX\Lib\Channel\MetaData\Attribute\ConditionalCategoryAttribute;
+use JTL\SCX\Lib\Channel\MetaData\Attribute\ConditionalCategoryAttributeCollection;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -21,27 +23,61 @@ class CategoryAttributeTest extends TestCase
 {
     public function testCanGetValues(): void
     {
-        $attributeId = random_int(1, 100000);
-        $name = uniqid('name', true);
-        $title = uniqid('title', true);
-        $multiple = (bool)random_int(0, 1);
-        $type = uniqid('type', true);
+        $conditionalAttributeId = uniqid('caid', true);
+        $conditionalAttributeValues = [uniqid('enumValues', true)];
+
+        $conditional = new ConditionalCategoryAttribute($conditionalAttributeId, $conditionalAttributeValues);
+        $id = uniqid('id', true);
+        $attributeId = uniqid('attributeId', true);
+        $displayName = uniqid('displayName', true);
+        $enumValues = [uniqid('enumValues', true)];
+        $description = uniqid('description', true);
         $required = (bool)random_int(0, 1);
+        $type = uniqid('type', true);
+        $isMultipleAllowed = (bool)random_int(0, 1);
+        $attributeValueValidation = uniqid('attributeValueValidation', true);
+        $conditionalMandatoryBy = ConditionalCategoryAttributeCollection::from($conditional);
+        $conditionalOptionalBy = ConditionalCategoryAttributeCollection::from($conditional);
+        $section = uniqid('section', true);
+        $sectionPosition = random_int(1, 10000);
+        $subSection = random_int(1, 10000);
+        $subSectionPosition = random_int(1, 10000);
+        $isVariationDimension = (bool)random_int(0, 1);
 
         $attribute = new CategoryAttribute(
             $attributeId,
-            $name,
-            $title,
-            $multiple,
+            $displayName,
+            $description,
+            $required,
+            $enumValues,
             $type,
-            $required
+            $isMultipleAllowed,
+            $attributeValueValidation,
+            $conditionalMandatoryBy,
+            $conditionalOptionalBy,
+            $section,
+            $sectionPosition,
+            $subSection,
+            $subSectionPosition,
+            $isVariationDimension
         );
 
+        $attribute->setId($id);
+
         $this->assertEquals($attributeId, $attribute->getAttributeId());
-        $this->assertEquals($name, $attribute->getName());
-        $this->assertEquals($title, $attribute->getTitle());
-        $this->assertEquals($multiple, $attribute->isMultipleAllowed());
+        $this->assertEquals($displayName, $attribute->getDisplayName());
         $this->assertEquals($type, $attribute->getType());
+        $this->assertEquals($enumValues, $attribute->getEnumValues());
+        $this->assertEquals($attributeValueValidation, $attribute->getAttributeValueValidation());
+        $this->assertEquals($conditionalMandatoryBy, $attribute->getConditionalMandatoryBy());
+        $this->assertEquals($conditionalOptionalBy, $attribute->getConditionalOptionalBy());
+        $this->assertEquals($section, $attribute->getSection());
+        $this->assertEquals($sectionPosition, $attribute->getSectionPosition());
+        $this->assertEquals($subSection, $attribute->getSubSection());
+        $this->assertEquals($subSectionPosition, $attribute->getSubSectionPosition());
+        $this->assertEquals($description, $attribute->getDescription());
         $this->assertEquals($required, $attribute->isRequired());
+        $this->assertEquals($isMultipleAllowed, $attribute->isMultipleAllowed());
+        $this->assertEquals($isVariationDimension, $attribute->isVariationDimension());
     }
 }
