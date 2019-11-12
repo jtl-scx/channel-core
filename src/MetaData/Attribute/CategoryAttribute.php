@@ -26,7 +26,7 @@ class CategoryAttribute
     private $isMultipleAllowed;
 
     /**
-     * @var string
+     * @var AttributeType
      */
     private $type;
 
@@ -92,7 +92,7 @@ class CategoryAttribute
      * @param string|null $description
      * @param bool $required
      * @param array|null $enumValues
-     * @param string $type
+     * @param AttributeType $type
      * @param bool $isMultipleAllowed
      * @param string|null $attributeValueValidation
      * @param ConditionalCategoryAttributeCollection|null $conditionalMandatoryBy
@@ -109,7 +109,7 @@ class CategoryAttribute
         ?string $description,
         bool $required,
         ?array $enumValues,
-        string $type = 'smalltext',
+        AttributeType $type,
         bool $isMultipleAllowed = false,
         string $attributeValueValidation = null,
         ConditionalCategoryAttributeCollection $conditionalMandatoryBy = null,
@@ -162,9 +162,9 @@ class CategoryAttribute
     }
 
     /**
-     * @return string
+     * @return AttributeType
      */
-    public function getType(): string
+    public function getType(): AttributeType
     {
         return $this->type;
     }

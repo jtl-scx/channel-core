@@ -26,7 +26,7 @@ class CategoryAttributeMapper
                 'displayName' => $attribute->getDisplayName(),
                 'isMultipleAllowed' => $attribute->isMultipleAllowed(),
                 'required' => $attribute->isRequired(),
-                'type' => $attribute->getType(),
+                'type' => (string)$attribute->getType(),
                 'enumValues' => $attribute->getEnumValues(),
                 'attributeValueValidation' => $attribute->getAttributeValueValidation(),
                 // TODO: Fix this when EA-2546 is done
