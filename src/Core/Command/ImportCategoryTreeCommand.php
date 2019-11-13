@@ -11,6 +11,7 @@ namespace JTL\SCX\Lib\Channel\Core\Command;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaCategoryLoader;
 use JTL\SCX\Lib\Channel\MetaData\CategoryTreeUpdater;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class ImportCategoryTreeCommand extends AbstractCommand
@@ -29,7 +30,8 @@ class ImportCategoryTreeCommand extends AbstractCommand
 
     protected function configure()
     {
-        $this->setDescription('Import Meta Category-Tree from marketplace and push to SCX');
+        $this->setDescription('Import Meta Category-Tree from marketplace and push to SCX')
+            ->addOption('dump-category-ids', 'd', InputOption::VALUE_NONE, 'Dump all category IDs');
     }
 
     /**
@@ -56,9 +58,20 @@ class ImportCategoryTreeCommand extends AbstractCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
+        $dump = $input->getOption('dump-category-ids');
+
         $output->writeln('Start requesting categories');
         $categoryList = $this->categoryLoader->fetchAll();
         $output->writeln("Got {$categoryList->count()} Categories");
+
+        if ($dump === true) {
+            $categoryIdList = [];
+            foreach ($categoryList as $category) {
+                $categoryIdList[] = $category->getCategoryId();
+            }
+
+            file_put_contents('import_category_tree_ids', implode(',', $categoryIdList));
+        }
 
         $categoryTreeVersion = $this->categoryTreeUpdater->update($categoryList);
         $output->writeln("Updated CategoryTree. New Version: {$categoryTreeVersion}");
