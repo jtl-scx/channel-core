@@ -66,7 +66,7 @@ class CategoryAttribute
     private $sectionPosition;
 
     /**
-     * @var int|null
+     * @var string|null
      */
     private $subSection;
 
@@ -99,7 +99,7 @@ class CategoryAttribute
      * @param ConditionalCategoryAttributeCollection|null $conditionalOptionalBy
      * @param string|null $section
      * @param int|null $sectionPosition
-     * @param int|null $subSection
+     * @param string|null $subSection
      * @param int|null $subSectionPosition
      * @param bool|null $isVariationDimension
      */
@@ -116,7 +116,7 @@ class CategoryAttribute
         ConditionalCategoryAttributeCollection $conditionalOptionalBy = null,
         string $section = null,
         int $sectionPosition = null,
-        int $subSection = null,
+        string $subSection = null,
         int $subSectionPosition = null,
         bool $isVariationDimension = null
     ) {
@@ -218,9 +218,9 @@ class CategoryAttribute
     }
 
     /**
-     * @return int|null
+     * @return string|null
      */
-    public function getSubSection(): ?int
+    public function getSubSection(): ?string
     {
         return $this->subSection;
     }
