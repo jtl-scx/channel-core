@@ -38,7 +38,8 @@ class ImportCategoryAttributesCommand extends AbstractCommand
         $this->setDescription('Import category attributes from marketplace and push to SCX')
             ->addArgument('categoryId', InputArgument::OPTIONAL, 'The category ID for which attributes will be imported')
             ->addOption('process', 'p', InputOption::VALUE_NONE, 'Send data to SCX')
-            ->addOption('import-list', 'i', InputOption::VALUE_REQUIRED, 'Import attributes from a file containing a list of category ids (comma separated)');
+            ->addOption('import-list', 'i', InputOption::VALUE_REQUIRED, 'Import attributes from a file containing a list of category ids')
+            ->addOption('import-separator', 's', InputOption::VALUE_REQUIRED, 'Import file with selected separator', ',');
     }
 
     /**
@@ -68,10 +69,11 @@ class ImportCategoryAttributesCommand extends AbstractCommand
         $categoryId = $input->getArgument('categoryId');
         $process = $input->getOption('process');
         $importFile = $input->getOption('import-list');
+        $sep = $input->getOption('import-separator');
 
         if ($importFile !== null && file_exists($importFile)) {
             $output->writeln("Importing file {$importFile}. This may take a few minutes.");
-            $categoryIdList = explode(',', file_get_contents($importFile));
+            $categoryIdList = explode($sep, trim(file_get_contents($importFile)));
 
             foreach ($categoryIdList as $categoryId) {
                 $this->import($categoryId, true);
