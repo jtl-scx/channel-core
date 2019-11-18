@@ -19,7 +19,6 @@ use PHPUnit\Framework\TestCase;
  */
 class CategoryListTest extends TestCase
 {
-
     public function testIsGenericCollection(): void
     {
         $this->assertInstanceOf(GenericCollection::class, new CategoryList());

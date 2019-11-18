@@ -18,7 +18,6 @@ use PHPUnit\Framework\TestCase;
  */
 class CategoryMapperTest extends TestCase
 {
-
     public function testMap(): void
     {
         $categoryList = new CategoryList();
