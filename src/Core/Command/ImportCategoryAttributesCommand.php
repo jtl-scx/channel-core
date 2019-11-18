@@ -8,7 +8,11 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
+use GuzzleHttp\Exception\GuzzleException;
+use JTL\SCX\Client\Exception\RequestFailedException;
+use JTL\SCX\Client\Exception\RequestValidationFailedException;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataAttributeLoader;
+use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusExceprion;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeUpdater;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -32,8 +36,10 @@ class ImportCategoryAttributesCommand extends AbstractCommand
     protected function configure()
     {
         $this->setDescription('Import category attributes from marketplace and push to SCX')
-            ->addArgument('categoryId', InputArgument::REQUIRED, 'The category ID for which attributes will be imported')
-            ->addOption('process', 'p', InputOption::VALUE_NONE, 'Send data to SCX');
+            ->addArgument('categoryId', InputArgument::OPTIONAL, 'The category ID for which attributes will be imported')
+            ->addOption('process', 'p', InputOption::VALUE_NONE, 'Send data to SCX')
+            ->addOption('import-list', 'i', InputOption::VALUE_REQUIRED, 'Import attributes from a file containing a list of category ids')
+            ->addOption('import-separator', 's', InputOption::VALUE_REQUIRED, 'Import file with selected separator', ',');
     }
 
     /**
@@ -53,15 +59,42 @@ class ImportCategoryAttributesCommand extends AbstractCommand
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \JTL\SCX\Client\Exception\RequestFailedException
-     * @throws \JTL\SCX\Client\Exception\RequestValidationFailedException
-     * @throws \JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusExceprion
+     * @throws GuzzleException
+     * @throws RequestFailedException
+     * @throws RequestValidationFailedException
+     * @throws UnexpectedStatusExceprion
      */
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $categoryId = $input->getArgument('categoryId');
         $process = $input->getOption('process');
+        $importFile = $input->getOption('import-list');
+        $sep = $input->getOption('import-separator');
+
+        if ($importFile !== null && file_exists($importFile)) {
+            $output->writeln("Importing file {$importFile}. This may take a few minutes.");
+            $categoryIdList = explode($sep, trim(file_get_contents($importFile)));
+
+            foreach ($categoryIdList as $categoryId) {
+                $this->import($categoryId, true);
+            }
+        } elseif ($categoryId !== null) {
+            $this->import($categoryId, $process);
+        } else {
+            die("Not enough arguments (missing: 'categoryId')\n");
+        }
+    }
+
+    /**
+     * @param string $categoryId
+     * @param bool $process
+     * @throws GuzzleException
+     * @throws RequestFailedException
+     * @throws RequestValidationFailedException
+     * @throws UnexpectedStatusExceprion
+     */
+    private function import(string $categoryId, bool $process): void
+    {
         $attributeList = $this->categoryAttributeLoader->fetch((int)$categoryId);
 
         if ($attributeList !== null) {
