@@ -8,6 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\Event;
 
+use DateTimeImmutable;
 use JTL\Nachricht\Event\AbstractAmqpEvent;
 
 abstract class AbstractEvent extends AbstractAmqpEvent
@@ -18,25 +19,27 @@ abstract class AbstractEvent extends AbstractAmqpEvent
     protected $id;
 
     /**
-     * @var \DateTimeImmutable
+     * @var DateTimeImmutable
      */
     protected $createdAt;
 
     /**
-     * @var string
+     * @var EventType
      */
     protected $type;
 
     /**
      * AbstractEvent constructor.
      * @param string $id
-     * @param \DateTimeImmutable $createdAt
-     * @param string $type
+     * @param DateTimeImmutable $createdAt
+     * @param EventType $type
      */
-    public function __construct(string $id, \DateTimeImmutable $createdAt, string $type)
+    public function __construct(string $id, DateTimeImmutable $createdAt, EventType $type)
     {
         $this->id = $id;
         $this->createdAt = $createdAt;
         $this->type = $type;
     }
+
+
 }

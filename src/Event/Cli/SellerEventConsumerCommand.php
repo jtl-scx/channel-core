@@ -8,6 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\Event\Cli;
 
+use GuzzleHttp\Exception\GuzzleException;
 use JTL\Nachricht\Collection\StringCollection;
 use JTL\Nachricht\Event\Cache\EventCache;
 use JTL\Nachricht\Transport\Amqp\AmqpConsumer;
@@ -15,6 +16,7 @@ use JTL\Nachricht\Transport\SubscriptionSettings;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 class SellerEventConsumerCommand extends AbstractCommand
 {
@@ -51,15 +53,20 @@ class SellerEventConsumerCommand extends AbstractCommand
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return int|void|null
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $io = new SymfonyStyle($input, $output);
+
         $eventRoutingKeyList = [];
 
         foreach ($this->eventCache->getEventClassList() as $eventClass) {
             $eventRoutingKeyList[] = $this->eventCache->getRoutingKeyForEvent($eventClass);
         }
+
+        $io->writeln("start message consumer on RoutingKeys ...");
+        $io->block(implode("\n", $eventRoutingKeyList));
 
         $subscriptionSettings = new SubscriptionSettings(StringCollection::from(...$eventRoutingKeyList));
 
