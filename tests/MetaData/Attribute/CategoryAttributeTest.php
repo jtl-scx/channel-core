@@ -41,7 +41,7 @@ class CategoryAttributeTest extends TestCase
         $conditionalOptionalBy = ConditionalCategoryAttributeCollection::from($conditional);
         $section = uniqid('section', true);
         $sectionPosition = random_int(1, 10000);
-        $subSection = random_int(1, 10000);
+        $subSection =  uniqid('subsection', true);;
         $subSectionPosition = random_int(1, 10000);
         $isVariationDimension = (bool)random_int(0, 1);
 

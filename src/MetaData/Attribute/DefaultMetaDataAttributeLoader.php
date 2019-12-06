@@ -12,7 +12,7 @@ use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataAttributeLoader;
 
 class DefaultMetaDataAttributeLoader implements MetaDataAttributeLoader
 {
-    public function fetch(int $categoryId): ?CategoryAttributeList
+    public function fetch(string $categoryId): ?CategoryAttributeList
     {
         die('Please implement JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataAttributeLoader and register your implementation via service.yaml');
     }

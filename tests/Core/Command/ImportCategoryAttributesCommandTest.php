@@ -12,10 +12,8 @@ use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataAttributeLoader;
 use JTL\SCX\Lib\Channel\Core\Command\ImportCategoryAttributesCommand;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeUpdater;
-use Mockery;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Tester\CommandTester;
 
 /**
  * Class ImportCategoryAttributesCommandTest
@@ -25,98 +23,115 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class ImportCategoryAttributesCommandTest extends TestCase
 {
-    public function tearDown(): void
+    public function testCanFetchAttributeForCategoryWithResults()
     {
-        Mockery::close();
+        $testCategoryId = uniqid('testCategoryId');
+        $testAttributeList = $this->createMock(CategoryAttributeList::class);
+
+        $loaderMock = $this->createMock(MetaDataAttributeLoader::class);
+        $loaderMock->expects($this->once())->method('fetch')
+            ->with($testCategoryId)
+            ->willReturn($testAttributeList);
+
+        $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
+
+        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock);
+        $cmdTester = new CommandTester($cmd);
+        $cmdTester->execute([
+            'categoryId' => $testCategoryId
+        ]);
+
+        $this->assertEquals(0, $cmdTester->getStatusCode());
+
+        $output = $cmdTester->getDisplay();
+        $this->assertStringContainsString('CategoryAttributeList', $output);
     }
 
-    private function createInputInterfaceMock(): InputInterface
+    public function testCanProcessAttributeForCategoryWithResults()
     {
-        $inputMock = Mockery::mock(InputInterface::class);
-        $inputMock->shouldReceive('bind');
-        $inputMock->shouldReceive('isInteractive')
-            ->andReturn(false);
+        $testCategoryId = uniqid('testCategoryId');
+        $testAttributeList = $this->createMock(CategoryAttributeList::class);
+        $testAttributeList->expects($this->once())->method('count')->willReturn(1);
 
-        $inputMock->shouldReceive('hasArgument')
-            ->with('command')
-            ->once()
-            ->andReturn(false);
+        $loaderMock = $this->createMock(MetaDataAttributeLoader::class);
+        $loaderMock->expects($this->once())->method('fetch')
+            ->with($testCategoryId)
+            ->willReturn($testAttributeList);
 
-        $inputMock->shouldReceive('validate');
+        $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
 
-        return $inputMock;
+        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock);
+        $cmdTester = new CommandTester($cmd);
+        $cmdTester->execute([
+            'categoryId' => $testCategoryId,
+            '--process' => true
+        ]);
+
+        $this->assertEquals(0, $cmdTester->getStatusCode());
+
+        $output = $cmdTester->getDisplay();
+        $this->assertStringContainsString('Fetch CategoryAttributes', $output);
+        $this->assertStringContainsString('Update 1 CategoryAttributes ... done', $output);
     }
 
-    public function testCanExecuteCommand(): void
+    public function testCanFetchAttributeForCategoryWithNoResults()
     {
-        $categoryId = random_int(1, 10000);
-        $process = false;
+        $testCategoryId = uniqid('testCategoryId');
+        $testAttributeList = null;
 
-        $loader = Mockery::mock(MetaDataAttributeLoader::class);
-        $updater = Mockery::mock(CategoryAttributeUpdater::class);
-        /** @var Mockery\MockInterface $input */
-        $input = $this->createInputInterfaceMock();
-        $output = Mockery::mock(OutputInterface::class);
-        $attributeList = new CategoryAttributeList();
+        $loaderMock = $this->createMock(MetaDataAttributeLoader::class);
+        $loaderMock->expects($this->once())->method('fetch')
+            ->with($testCategoryId)
+            ->willReturn($testAttributeList);
 
-        $input->shouldReceive('getArgument')
-            ->once()
-            ->with('categoryId')
-            ->andReturn($categoryId);
+        $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
 
-        $input->shouldReceive('getOption')
-            ->once()
-            ->with('process')
-            ->andReturn($process);
+        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock);
+        $cmdTester = new CommandTester($cmd);
+        $cmdTester->execute([
+            'categoryId' => $testCategoryId
+        ]);
 
-        $loader->shouldReceive('fetch')
-            ->once()
-            ->with($categoryId)
-            ->andReturn($attributeList);
+        $this->assertEquals(0, $cmdTester->getStatusCode());
 
-        $updater->shouldNotReceive('update');
-
-        $this->expectOutputRegex('/.*/');
-        $command = new ImportCategoryAttributesCommand($loader, $updater);
-        $command->run($input, $output);
-
-        $this->assertTrue(true);
+        $output = $cmdTester->getDisplay();
+        $this->assertStringContainsString('No Attributes available for categoryId', $output);
     }
 
-    public function testCanExecuteCommandAndProcessData(): void
+    public function testCanProcessAttributeForCSVListWithResults()
     {
-        $categoryId = (string)random_int(1, 10000);
-        $process = true;
+        $testCategoryId1 = uniqid('testCategoryId');
+        $testCategoryId2 = uniqid('testCategoryId');
 
-        $loader = Mockery::mock(MetaDataAttributeLoader::class);
-        $updater = Mockery::mock(CategoryAttributeUpdater::class);
-        /** @var Mockery\MockInterface $input */
-        $input = $this->createInputInterfaceMock();
-        $output = Mockery::mock(OutputInterface::class);
-        $attributeList = Mockery::mock(CategoryAttributeList::class);
+        $testFilePath = sys_get_temp_dir() . '/' . __CLASS__ . '_' . __METHOD__;
+        $fp = fopen($testFilePath, "w+");
+        fputcsv($fp, [$testCategoryId1]);
+        fputcsv($fp, [$testCategoryId2]);
 
-        $input->shouldReceive('getArgument')
-            ->once()
-            ->with('categoryId')
-            ->andReturn($categoryId);
+        $testAttributeList = $this->createMock(CategoryAttributeList::class);
+        $testAttributeList->expects($this->any())->method('count')->willReturn(1);
 
-        $input->shouldReceive('getOption')
-            ->once()
-            ->with('process')
-            ->andReturn($process);
+        $loaderMock = $this->createMock(MetaDataAttributeLoader::class);
+        $loaderMock->expects($this->exactly(2))->method('fetch')
+            ->withConsecutive([$testCategoryId1], [$testCategoryId2])
+            ->willReturnOnConsecutiveCalls($testAttributeList, null);
 
-        $loader->shouldReceive('fetch')
-            ->once()
-            ->with((int)$categoryId)
-            ->andReturn($attributeList);
+        $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
 
-        $updater->shouldReceive('update')
-            ->once()
-            ->with($categoryId, $attributeList);
+        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock);
+        $cmdTester = new CommandTester($cmd);
+        $cmdTester->execute([
+            '--import-csv-list' => $testFilePath,
+            '--process' => true
+        ]);
 
-        $command = new ImportCategoryAttributesCommand($loader, $updater);
-        $command->run($input, $output);
+        $this->assertEquals(0, $cmdTester->getStatusCode());
 
-        $this->assertTrue(true);
+        $output = $cmdTester->getDisplay();
+
+        $this->assertStringContainsString("Fetch CategoryAttributes for \"$testCategoryId1\"", $output);
+        $this->assertStringContainsString("Fetch CategoryAttributes for \"$testCategoryId2\"", $output);
+        $this->assertStringContainsString('Update 1 CategoryAttributes ... done', $output);
+        $this->assertStringContainsString("No Attributes available for categoryId \"$testCategoryId2\"", $output);
     }
 }

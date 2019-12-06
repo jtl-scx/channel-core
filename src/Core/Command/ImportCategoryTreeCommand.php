@@ -8,11 +8,16 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
+use GuzzleHttp\Exception\GuzzleException;
+use JTL\SCX\Client\Exception\RequestFailedException;
+use JTL\SCX\Client\Exception\RequestValidationFailedException;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaCategoryLoader;
+use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusExceprion;
 use JTL\SCX\Lib\Channel\MetaData\CategoryTreeUpdater;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 class ImportCategoryTreeCommand extends AbstractCommand
 {
@@ -30,9 +35,26 @@ class ImportCategoryTreeCommand extends AbstractCommand
 
     protected function configure()
     {
-        $this->setDescription('Import Meta Category-Tree from marketplace and push to SCX')
-            ->addOption('dump-category-ids', 'd', InputOption::VALUE_REQUIRED, 'Dump all category IDs to file')
-            ->addOption('dump-separator', 's', InputOption::VALUE_REQUIRED, 'Separator used for the dump', ',');
+        $this->setDescription('Import Category-Tree from marketplace and push to SCX')
+            ->addOption(
+                'dump-categories-to-file',
+                'd',
+                InputOption::VALUE_REQUIRED,
+                'Dump all category IDs to CSV file')
+            ->addOption(
+                'dump-csv-delimiter',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Delimiter used when dump category IDs to CSV file',
+                ',')
+            ->addOption(
+                'dump-csv-enclosure',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Enclosure used when dump category IDs to CSV file',
+                '"'
+            )
+        ;
     }
 
     /**
@@ -52,36 +74,38 @@ class ImportCategoryTreeCommand extends AbstractCommand
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \JTL\SCX\Client\Exception\RequestFailedException
-     * @throws \JTL\SCX\Client\Exception\RequestValidationFailedException
-     * @throws \JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusExceprion
+     * @throws GuzzleException
+     * @throws RequestFailedException
+     * @throws RequestValidationFailedException
+     * @throws UnexpectedStatusExceprion
      */
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
-        $dump = $input->getOption('dump-category-ids');
-        $sep = $input->getOption('dump-separator');
+        $io = new SymfonyStyle($input, $output);
 
-        $output->writeln('Start requesting categories');
+        $io->write('Start requesting categories');
         $categoryList = $this->categoryLoader->fetchAll();
-        $output->writeln("Got {$categoryList->count()} Categories");
+        $io->writeln(" ... done. {$categoryList->count()} Categories received");
 
+        $dump = $input->getOption('dump-categories-to-file');
         if ($dump !== null) {
-            $categoryIdList = [];
+            $delimiter = $input->getOption('dump-csv-delimiter');
+            $enclosure = $input->getOption('dump-csv-enclosure');
+
+            $fp = fopen($dump, 'w');
+            if($fp === false){
+                throw new \RuntimeException("Categories could not be dumped. Check if the path exists and is writable!");
+            }
+
+            $io->write("Dump category tree to file");
             foreach ($categoryList as $category) {
-                $categoryIdList[] = $category->getCategoryId();
+                fputcsv($fp, [$category->getCategoryId()], $delimiter, $enclosure);
             }
-
-            $success = @file_put_contents($dump, implode($sep, $categoryIdList));
-
-            if ($success === false) {
-                $output->writeln('Categories could not be dumped. Check if the path exists and is writable!');
-            } else {
-                $output->writeln('Categories were dumped successfully');
-            }
+            $io->writeln(' ... done');
         }
 
+        $io->write("Update CategoryTree.");
         $categoryTreeVersion = $this->categoryTreeUpdater->update($categoryList);
-        $output->writeln("Updated CategoryTree. New Version: {$categoryTreeVersion}");
+        $io->writeln(" ... done. New Version is \"{$categoryTreeVersion}\"");
     }
 }
