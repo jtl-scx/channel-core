@@ -75,7 +75,24 @@ class EmitEventCommand extends AbstractCommand
             new OfferNewEvent(
                 uniqid('test'),
                 new DateTimeImmutable('now'),
-                new SellerEventOfferNew(['channelId' => 'foo', 'sellerId' => "111"])
+                new SellerEventOfferNew(
+                    [
+                        'channelId' => 'foo',
+                        'sellerId' => "111",
+                        'quantity' => 5,
+                        'priceList' => [
+                            [
+                                'id' => 'B2C',
+                                'quantityPriceList' => [
+                                    ['amount' => "80.12", "currency" => "EUR", "quantity" => 0]
+                                ]
+                            ],
+                        ],
+                        "title" => "Schöner Kratzbaum",
+                        "sku" => "MySku_Kratzi1",
+                        "ean" => "4011905437873"
+                    ]
+                )
             )
         );
     }
