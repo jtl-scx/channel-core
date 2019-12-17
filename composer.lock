@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1f9782cf6aad37a1e77de41c6ad2e45",
+    "content-hash": "0fd62530796f519962e66f9f816d103a",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.4.1",
+            "version": "6.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "0895c932405407fd3a7368b6910c09a24d26db11"
+                "reference": "dbc2bc3a293ed6b1ae08a3651e2bfd213d19b6a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/0895c932405407fd3a7368b6910c09a24d26db11",
-                "reference": "0895c932405407fd3a7368b6910c09a24d26db11",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/dbc2bc3a293ed6b1ae08a3651e2bfd213d19b6a5",
+                "reference": "dbc2bc3a293ed6b1ae08a3651e2bfd213d19b6a5",
                 "shasum": ""
             },
             "require": {
@@ -32,12 +32,13 @@
                 "psr/log": "^1.1"
             },
             "suggest": {
+                "ext-intl": "Required for Internationalized Domain Name (IDN) support",
                 "psr/log": "Required for using the Log middleware"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.3-dev"
+                    "dev-master": "6.5-dev"
                 }
             },
             "autoload": {
@@ -70,7 +71,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2019-10-23T15:58:00+00:00"
+            "time": "2019-12-07T18:20:45+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -196,22 +197,24 @@
         },
         {
             "name": "jtl/channel-api-client",
-            "version": "0.0.5",
+            "version": "0.0.6",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.jtl-software.com:ea/scx/channel-api-client.git",
-                "reference": "b8ad1ec9774430799457fedab4d59f3b9ad7331e"
+                "reference": "f435ce8ba6cb42a701d404d22c66e5beb120a438"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.15",
                 "guzzlehttp/guzzle": "^6.3",
                 "jtl/scx-api-client": "^0.0.1",
                 "mockery/mockery": "^1.2",
+                "myclabs/php-enum": "^1.7",
                 "phpunit/phpunit": "^8.3"
             },
             "suggest": {
                 "guzzlehttp/guzzle": "Require this for making HTTP calls",
-                "jtl/scx-api-client": "Require this for working with SCX API"
+                "jtl/scx-api-client": "Require this for working with SCX API",
+                "myclabs/php-enum": "Require this for working with Helper Code"
             },
             "type": "library",
             "autoload": {
@@ -233,7 +236,7 @@
                 ]
             },
             "description": "API Client for SCX Channel API",
-            "time": "2019-11-29T10:36:36+00:00"
+            "time": "2019-12-17T15:10:51+00:00"
         },
         {
             "name": "jtl/nachricht",
@@ -284,16 +287,16 @@
         },
         {
             "name": "jtl/php-generic-collection",
-            "version": "0.2.4",
+            "version": "0.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-software/php-generic-collection.git",
-                "reference": "d3bc379796d663fa15bf198df6f90257453a6804"
+                "reference": "c5ed5d17fc12371fd487a575db33a6e45421985a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-software/php-generic-collection/zipball/d3bc379796d663fa15bf198df6f90257453a6804",
-                "reference": "d3bc379796d663fa15bf198df6f90257453a6804",
+                "url": "https://api.github.com/repos/jtl-software/php-generic-collection/zipball/c5ed5d17fc12371fd487a575db33a6e45421985a",
+                "reference": "c5ed5d17fc12371fd487a575db33a6e45421985a",
                 "shasum": ""
             },
             "require-dev": {
@@ -312,7 +315,7 @@
                 "MIT"
             ],
             "description": "An implementation of a generic collection for PHP",
-            "time": "2019-05-21T09:51:28+00:00"
+            "time": "2019-12-12T16:09:08+00:00"
         },
         {
             "name": "jtl/scx-api-client",
@@ -587,16 +590,16 @@
         },
         {
             "name": "ocramius/proxy-manager",
-            "version": "2.5.0",
+            "version": "2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ocramius/ProxyManager.git",
-                "reference": "8eb0084cef8e4982c937b8dd1bdfd488a80cc64f"
+                "reference": "b7bac968eef945322d1e28d7e833b6a549a6da27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ocramius/ProxyManager/zipball/8eb0084cef8e4982c937b8dd1bdfd488a80cc64f",
-                "reference": "8eb0084cef8e4982c937b8dd1bdfd488a80cc64f",
+                "url": "https://api.github.com/repos/Ocramius/ProxyManager/zipball/b7bac968eef945322d1e28d7e833b6a549a6da27",
+                "reference": "b7bac968eef945322d1e28d7e833b6a549a6da27",
                 "shasum": ""
             },
             "require": {
@@ -658,7 +661,7 @@
                 "proxy pattern",
                 "service proxies"
             ],
-            "time": "2019-08-10T10:43:36+00:00"
+            "time": "2019-12-17T09:22:43+00:00"
         },
         {
             "name": "php-amqplib/php-amqplib",
@@ -1672,24 +1675,27 @@
         },
         {
             "name": "zendframework/zend-code",
-            "version": "3.4.0",
+            "version": "3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-code.git",
-                "reference": "46feaeecea14161734b56c1ace74f28cb329f194"
+                "reference": "268040548f92c2bfcba164421c1add2ba43abaaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-code/zipball/46feaeecea14161734b56c1ace74f28cb329f194",
-                "reference": "46feaeecea14161734b56c1ace74f28cb329f194",
+                "url": "https://api.github.com/repos/zendframework/zend-code/zipball/268040548f92c2bfcba164421c1add2ba43abaaa",
+                "reference": "268040548f92c2bfcba164421c1add2ba43abaaa",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1",
                 "zendframework/zend-eventmanager": "^2.6 || ^3.0"
             },
+            "conflict": {
+                "phpspec/prophecy": "<1.9.0"
+            },
             "require-dev": {
-                "doctrine/annotations": "^1.0",
+                "doctrine/annotations": "^1.7",
                 "ext-phar": "*",
                 "phpunit/phpunit": "^7.5.16 || ^8.4",
                 "zendframework/zend-coding-standard": "^1.0",
@@ -1703,7 +1709,8 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "3.4.x-dev",
-                    "dev-develop": "3.5.x-dev"
+                    "dev-develop": "3.5.x-dev",
+                    "dev-dev-4.0": "4.0.x-dev"
                 }
             },
             "autoload": {
@@ -1721,7 +1728,7 @@
                 "code",
                 "zf"
             ],
-            "time": "2019-10-05T23:18:22+00:00"
+            "time": "2019-12-10T19:21:15+00:00"
         },
         {
             "name": "zendframework/zend-eventmanager",
@@ -2213,16 +2220,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.9.3",
+            "version": "1.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "007c053ae6f31bba39dfa19a7726f56e9763bbea"
+                "reference": "579bb7356d91f9456ccd505f24ca8b667966a0a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/007c053ae6f31bba39dfa19a7726f56e9763bbea",
-                "reference": "007c053ae6f31bba39dfa19a7726f56e9763bbea",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/579bb7356d91f9456ccd505f24ca8b667966a0a7",
+                "reference": "579bb7356d91f9456ccd505f24ca8b667966a0a7",
                 "shasum": ""
             },
             "require": {
@@ -2257,7 +2264,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2019-08-09T12:45:53+00:00"
+            "time": "2019-12-15T19:12:40+00:00"
         },
         {
             "name": "nette/bootstrap",

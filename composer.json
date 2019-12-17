@@ -4,7 +4,7 @@
     "description": "SCX Channel Library",
     "require": {
         "jtl/scx-api-client": "^0.0.1",
-        "jtl/channel-api-client": "0.0.5",
+        "jtl/channel-api-client": "0.0.6",
         "jtl/nachricht": "dev-amqp_queue_discovery",
         "symfony/console": "^4.3",
         "symfony/config": "^4.3",
