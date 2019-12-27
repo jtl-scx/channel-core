@@ -9,7 +9,7 @@
 namespace JTL\SCX\Lib\Channel\MetaData\Price;
 
 use JTL\SCX\Client\Channel\Model\PriceType;
-use JTL\SCX\Lib\Channel\Helper\File\FileHandler;
+use JTL\SCX\Lib\Channel\Helper\FileHandler;
 
 class PriceTypeLoader
 {
@@ -23,7 +23,10 @@ class PriceTypeLoader
         $this->fileHandler = $fileHandler;
     }
 
-
+    /**
+     * @param string $filename
+     * @return PriceTypeList
+     */
     public function load(string $filename): PriceTypeList
     {
         if (!$this->fileHandler->isFile($filename)) {
@@ -55,17 +58,16 @@ class PriceTypeLoader
 
     private function validateDataList($priceDataList): bool
     {
-        $isValid = true;
-        if (!is_array($priceDataList)) {
-            $isValid = false;
-        } else {
-            foreach ($priceDataList as $priceData) {
-                if (!isset($priceData['priceId']) || !isset($priceData['displayName'])) {
-                    return false;
-                }
+        if (!is_array($priceDataList) || empty($priceDataList)) {
+            return false;
+        }
+        foreach ($priceDataList as $priceData) {
+            if (!isset($priceData['priceId']) || !isset($priceData['displayName'])) {
+                return false;
             }
         }
 
-        return $isValid;
+
+        return true;
     }
 }

@@ -12,6 +12,8 @@ use DateTimeImmutable;
 use Exception;
 use JTL\Nachricht\Emitter\AmqpEmitter;
 use JTL\Nachricht\Transport\Amqp\AmqpConsumer;
+use JTL\SCX\Client\Channel\Model\PriceContainer;
+use JTL\SCX\Client\Channel\Model\QuantityPrice;
 use JTL\SCX\Client\Channel\Model\SellerEventOfferEnd;
 use JTL\SCX\Client\Channel\Model\SellerEventOfferNew;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
@@ -71,6 +73,13 @@ class EmitEventCommand extends AbstractCommand
             )
         );
 
+        $b2cPrice = new PriceContainer([
+            'id' => 'B2C',
+            'quantityPriceList' => [
+                new QuantityPrice(['amount' => "80.12", "currency" => "EUR", "quantity" => 0]),
+            ]
+        ]);
+
         $this->emitter->emit(
             new OfferNewEvent(
                 uniqid('test'),
@@ -78,15 +87,10 @@ class EmitEventCommand extends AbstractCommand
                 new SellerEventOfferNew(
                     [
                         'channelId' => 'foo',
-                        'sellerId' => "111",
+                        'sellerId' => "5e008509dddb555d3c7fe362",
                         'quantity' => 5,
                         'priceList' => [
-                            [
-                                'id' => 'B2C',
-                                'quantityPriceList' => [
-                                    ['amount' => "80.12", "currency" => "EUR", "quantity" => 0]
-                                ]
-                            ],
+                            $b2cPrice,
                         ],
                         "title" => "Schöner Kratzbaum",
                         "sku" => "MySku_Kratzi1",

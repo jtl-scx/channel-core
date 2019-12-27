@@ -5,7 +5,6 @@
  * User: avermeulen
  * Date: 2019-12-27
  */
-
 namespace JTL\SCX\Lib\Channel\MetaData\Price;
 
 use JTL\Generic\GenericCollection;
@@ -17,5 +16,4 @@ class PriceTypeList extends GenericCollection
     {
         parent::__construct(PriceType::class);
     }
-
 }

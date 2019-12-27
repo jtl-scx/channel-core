@@ -6,7 +6,7 @@
  * Date: 16/01/19
  */
 
-namespace JTL\SCX\Lib\Channel\Helper\File;
+namespace JTL\SCX\Lib\Channel\Helper;
 
 class FileHandler
 {
