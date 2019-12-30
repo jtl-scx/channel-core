@@ -10,13 +10,13 @@ namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
 use JTL\SCX\Client\Channel\Model\Attribute;
 
-class CategoryAttributeMapper
+class AttributeMapper
 {
     /**
-     * @param CategoryAttributeList $categoryAttributeList
+     * @param AttributeList $categoryAttributeList
      * @return array
      */
-    public function map(CategoryAttributeList $categoryAttributeList): array
+    public function map(AttributeList $categoryAttributeList): array
     {
         $list = [];
 
@@ -29,17 +29,32 @@ class CategoryAttributeMapper
                 'type' => (string)$attribute->getType(),
                 'enumValues' => $attribute->getEnumValues(),
                 'attributeValueValidation' => $attribute->getAttributeValueValidation(),
-                // TODO: Fix this when EA-2546 is done
-                'conditionalMandantoryBy' => null, //$attribute->getConditionalMandatoryBy(),
-                'conditionalOptionalBy' => null, //$attribute->getConditionalOptionalBy(),
+                'conditionalMandantoryBy' => $this->mapConditional($attribute->getConditionalMandatoryBy()),
+                'conditionalOptionalBy' => $this->mapConditional($attribute->getConditionalOptionalBy()),
                 'section' => $attribute->getSection(),
                 'sectionPosition' => $attribute->getSectionPosition(),
                 'subSection' => $attribute->getSubSection(),
                 'subSectionPosition' => $attribute->getSubSectionPosition(),
                 'description' => $attribute->getDescription(),
+                'isVariationDimension' => $attribute->isVariationDimension(),
             ]);
         }
 
         return $list;
+    }
+
+    private function mapConditional(?ConditionalAttributeCollection $conditionalAttributeCollection): ?array
+    {
+        if ($conditionalAttributeCollection === null) {
+            return null;
+        }
+        $conditionalAttributeList = [];
+        foreach ($conditionalAttributeCollection as $conditioanlAttribute) {
+            $conditionalAttributeList[] = [
+                'attributeId' => $conditioanlAttribute->getAttributeId(),
+                'attributeValues' => $conditioanlAttribute->getAttributeValues(),
+            ];
+        }
+        return $conditionalAttributeList;
     }
 }

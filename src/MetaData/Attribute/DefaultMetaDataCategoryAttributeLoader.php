@@ -8,11 +8,11 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
-use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataAttributeLoader;
+use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataCategoryAttributeLoader;
 
-class DefaultMetaDataAttributeLoader implements MetaDataAttributeLoader
+class DefaultMetaDataCategoryAttributeLoader implements MetaDataCategoryAttributeLoader
 {
-    public function fetch(string $categoryId): ?CategoryAttributeList
+    public function fetch(string $categoryId): ?AttributeList
     {
         die('Please implement JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataAttributeLoader and register your implementation via service.yaml');
     }

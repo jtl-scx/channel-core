@@ -11,9 +11,9 @@ namespace JTL\SCX\Lib\Channel\Core\Command;
 use GuzzleHttp\Exception\GuzzleException;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
-use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataAttributeLoader;
+use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataCategoryAttributeLoader;
 use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusExceprion;
-use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList;
+use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeUpdater;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -26,7 +26,7 @@ class ImportCategoryAttributesCommand extends AbstractCommand
     protected static $defaultName = 'import:category-attributes';
 
     /**
-     * @var MetaDataAttributeLoader
+     * @var MetaDataCategoryAttributeLoader
      */
     private $categoryAttributeLoader;
 
@@ -37,12 +37,11 @@ class ImportCategoryAttributesCommand extends AbstractCommand
 
     /**
      * ImportCategoryAttributesCommand constructor.
-     * @param MetaDataAttributeLoader $categoryAttributeLoader
+     * @param MetaDataCategoryAttributeLoader $categoryAttributeLoader
      * @param CategoryAttributeUpdater $attributeUpdater
      */
     public function __construct(
-
-        MetaDataAttributeLoader $categoryAttributeLoader,
+        MetaDataCategoryAttributeLoader $categoryAttributeLoader,
         CategoryAttributeUpdater $attributeUpdater
     )
     {
@@ -141,7 +140,7 @@ class ImportCategoryAttributesCommand extends AbstractCommand
         $attributeList = $this->categoryAttributeLoader->fetch($categoryId);
         $io->writeln(" ... done");
 
-        if ($attributeList instanceof CategoryAttributeList) {
+        if ($attributeList instanceof AttributeList) {
 
             if ($process === true) {
                 $io->write("Update {$attributeList->count()} CategoryAttributes");

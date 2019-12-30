@@ -8,9 +8,9 @@
 
 namespace Core\Command;
 
-use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataAttributeLoader;
+use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataCategoryAttributeLoader;
 use JTL\SCX\Lib\Channel\Core\Command\ImportCategoryAttributesCommand;
-use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList;
+use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeUpdater;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -26,9 +26,9 @@ class ImportCategoryAttributesCommandTest extends TestCase
     public function testCanFetchAttributeForCategoryWithResults()
     {
         $testCategoryId = uniqid('testCategoryId');
-        $testAttributeList = $this->createMock(CategoryAttributeList::class);
+        $testAttributeList = $this->createMock(AttributeList::class);
 
-        $loaderMock = $this->createMock(MetaDataAttributeLoader::class);
+        $loaderMock = $this->createMock(MetaDataCategoryAttributeLoader::class);
         $loaderMock->expects($this->once())->method('fetch')
             ->with($testCategoryId)
             ->willReturn($testAttributeList);
@@ -44,16 +44,16 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $this->assertEquals(0, $cmdTester->getStatusCode());
 
         $output = $cmdTester->getDisplay();
-        $this->assertStringContainsString('CategoryAttributeList', $output);
+        $this->assertStringContainsString('AttributeList', $output);
     }
 
     public function testCanProcessAttributeForCategoryWithResults()
     {
         $testCategoryId = uniqid('testCategoryId');
-        $testAttributeList = $this->createMock(CategoryAttributeList::class);
+        $testAttributeList = $this->createMock(AttributeList::class);
         $testAttributeList->expects($this->once())->method('count')->willReturn(1);
 
-        $loaderMock = $this->createMock(MetaDataAttributeLoader::class);
+        $loaderMock = $this->createMock(MetaDataCategoryAttributeLoader::class);
         $loaderMock->expects($this->once())->method('fetch')
             ->with($testCategoryId)
             ->willReturn($testAttributeList);
@@ -79,7 +79,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $testCategoryId = uniqid('testCategoryId');
         $testAttributeList = null;
 
-        $loaderMock = $this->createMock(MetaDataAttributeLoader::class);
+        $loaderMock = $this->createMock(MetaDataCategoryAttributeLoader::class);
         $loaderMock->expects($this->once())->method('fetch')
             ->with($testCategoryId)
             ->willReturn($testAttributeList);
@@ -108,10 +108,10 @@ class ImportCategoryAttributesCommandTest extends TestCase
         fputcsv($fp, [$testCategoryId1]);
         fputcsv($fp, [$testCategoryId2]);
 
-        $testAttributeList = $this->createMock(CategoryAttributeList::class);
+        $testAttributeList = $this->createMock(AttributeList::class);
         $testAttributeList->expects($this->any())->method('count')->willReturn(1);
 
-        $loaderMock = $this->createMock(MetaDataAttributeLoader::class);
+        $loaderMock = $this->createMock(MetaDataCategoryAttributeLoader::class);
         $loaderMock->expects($this->exactly(2))->method('fetch')
             ->withConsecutive([$testCategoryId1], [$testCategoryId2])
             ->willReturnOnConsecutiveCalls($testAttributeList, null);
