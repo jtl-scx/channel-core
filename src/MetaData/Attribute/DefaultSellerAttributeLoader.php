@@ -12,7 +12,7 @@ use JTL\SCX\Lib\Channel\Contract\MetaData\SellerAttributeLoader;
 
 class DefaultSellerAttributeLoader implements SellerAttributeLoader
 {
-    public function fetchAll(): AttributeList
+    public function fetchAll(string $sellerId): AttributeList
     {
         die('Please implement JTL\SCX\Lib\Channel\Contract\MetaData\SellerAttributeLoader and register your implementation via service.yaml');
     }
