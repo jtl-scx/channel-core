@@ -12,5 +12,5 @@ use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
 
 interface SellerAttributeLoader
 {
-    public function fetchAll(): AttributeList;
+    public function fetchAll(string $sellerId): AttributeList;
 }

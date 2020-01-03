@@ -49,8 +49,9 @@ class ImportSellerAttributesCommand extends AbstractCommand
     {
         $sellerId = $input->getArgument('sellerId');
         $output->write("Fetch SellerAttributes for '{$sellerId}'");
-        $attributeList = $this->attributeLoader->fetchAll();
+        $attributeList = $this->attributeLoader->fetchAll($sellerId);
         $output->writeln(" ... done");
+
         $output->write("Update {$attributeList->count()} SellerAttributes");
         $this->attributeUpdater->update($sellerId, $attributeList);
         $output->writeln(" ... done");
