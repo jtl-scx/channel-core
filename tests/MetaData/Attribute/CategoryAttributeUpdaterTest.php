@@ -11,7 +11,7 @@ namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 use JTL\SCX\Client\Channel\Api\Attribute\CreateCategoryAttributesApi;
 use JTL\SCX\Client\Channel\Api\Attribute\Request\CreateCategoryAttributesRequest;
 use JTL\SCX\Client\Channel\Api\Attribute\Response\CreateCategoryAttributesResponse;
-use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusExceprion;
+use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -62,7 +62,7 @@ class CategoryAttributeUpdaterTest extends TestCase
 
         $updater = new CategoryAttributeUpdater($clientMock, $mapperMock);
 
-        $this->expectException(UnexpectedStatusExceprion::class);
+        $this->expectException(UnexpectedStatusException::class);
         $updater->update($categoryId, $attributeList);
     }
 }

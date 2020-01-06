@@ -14,7 +14,7 @@ use JTL\SCX\Client\Channel\Api\Attribute\Request\CreateCategoryAttributesRequest
 use JTL\SCX\Client\Channel\Model\AttributeList as ClientAttributeList;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
-use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusExceprion;
+use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 
 class CategoryAttributeUpdater
 {
@@ -42,7 +42,7 @@ class CategoryAttributeUpdater
     /**
      * @param string $categoryId
      * @param AttributeList $categoryAttributeList
-     * @throws UnexpectedStatusExceprion
+     * @throws UnexpectedStatusException
      * @throws GuzzleException
      * @throws RequestFailedException
      * @throws RequestValidationFailedException
@@ -55,7 +55,7 @@ class CategoryAttributeUpdater
         $response = $this->client->createCategoryAttributes($request);
 
         if ($response->getStatusCode() !== 201) {
-            throw new UnexpectedStatusExceprion("Could not update category attributes. Request returned status code {$response->getStatusCode()}");
+            throw new UnexpectedStatusException("Could not update category attributes. Request returned status code {$response->getStatusCode()}");
         }
     }
 }

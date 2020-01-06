@@ -12,7 +12,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataCategoryAttributeLoader;
-use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusExceprion;
+use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeUpdater;
 use Symfony\Component\Console\Input\InputArgument;
@@ -43,8 +43,7 @@ class ImportCategoryAttributesCommand extends AbstractCommand
     public function __construct(
         MetaDataCategoryAttributeLoader $categoryAttributeLoader,
         CategoryAttributeUpdater $attributeUpdater
-    )
-    {
+    ) {
         parent::__construct();
         $this->categoryAttributeLoader = $categoryAttributeLoader;
         $this->attributeUpdater = $attributeUpdater;
@@ -56,34 +55,41 @@ class ImportCategoryAttributesCommand extends AbstractCommand
             ->addArgument(
                 'categoryId',
                 InputArgument::OPTIONAL,
-                'The category ID for which attributes will be imported')
+                'The category ID for which attributes will be imported'
+            )
             ->addOption(
                 'process',
                 'p',
-                InputOption::VALUE_NONE, 'Send data to SCX Channel API')
+                InputOption::VALUE_NONE,
+                'Send data to SCX Channel API'
+            )
             ->addOption(
                 'import-csv-list',
                 'i',
                 InputOption::VALUE_REQUIRED,
-                'Import attributes from a csv file containing a list of category ids')
+                'Import attributes from a csv file containing a list of category ids'
+            )
             ->addOption(
                 'import-csv-delimiter',
                 null,
                 InputOption::VALUE_REQUIRED,
                 'Import csv file with selected delimiter',
-                ',')
+                ','
+            )
             ->addOption(
                 'import-csv-enclosure',
                 null,
                 InputOption::VALUE_REQUIRED,
                 'Import file with selected separator',
-                '"')
+                '"'
+            )
             ->addOption(
                 'import-csv-categoryid-column',
                 null,
                 InputOption::VALUE_REQUIRED,
                 'Read category Id from specific column',
-                0)
+                0
+            )
         ;
     }
 
@@ -93,7 +99,7 @@ class ImportCategoryAttributesCommand extends AbstractCommand
      * @throws GuzzleException
      * @throws RequestFailedException
      * @throws RequestValidationFailedException
-     * @throws UnexpectedStatusExceprion
+     * @throws UnexpectedStatusException
      */
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
@@ -132,7 +138,7 @@ class ImportCategoryAttributesCommand extends AbstractCommand
      * @throws GuzzleException
      * @throws RequestFailedException
      * @throws RequestValidationFailedException
-     * @throws UnexpectedStatusExceprion
+     * @throws UnexpectedStatusException
      */
     private function import(string $categoryId, bool $process, SymfonyStyle $io): void
     {
@@ -141,7 +147,6 @@ class ImportCategoryAttributesCommand extends AbstractCommand
         $io->writeln(" ... done");
 
         if ($attributeList instanceof AttributeList) {
-
             if ($process === true) {
                 $io->write("Update {$attributeList->count()} CategoryAttributes");
                 $this->attributeUpdater->update($categoryId, $attributeList);

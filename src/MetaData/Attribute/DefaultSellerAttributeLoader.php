@@ -9,11 +9,12 @@
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
 use JTL\SCX\Lib\Channel\Contract\MetaData\SellerAttributeLoader;
+use RuntimeException;
 
 class DefaultSellerAttributeLoader implements SellerAttributeLoader
 {
     public function fetchAll(string $sellerId): AttributeList
     {
-        die('Please implement JTL\SCX\Lib\Channel\Contract\MetaData\SellerAttributeLoader and register your implementation via service.yaml');
+        throw new RuntimeException('Please implement JTL\SCX\Lib\Channel\Contract\MetaData\SellerAttributeLoader and register your implementation via service.yaml');
     }
 }

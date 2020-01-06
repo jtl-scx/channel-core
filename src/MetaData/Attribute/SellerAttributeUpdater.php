@@ -8,10 +8,13 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
+use GuzzleHttp\Exception\GuzzleException;
 use JTL\SCX\Client\Channel\Api\Attribute\CreateSellerAttributesApi;
 use JTL\SCX\Client\Channel\Api\Attribute\Request\CreateSellerAttributesRequest;
 use JTL\SCX\Client\Channel\Model\AttributeList as ClientAttributeList;
-use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusExceprion;
+use JTL\SCX\Client\Exception\RequestFailedException;
+use JTL\SCX\Client\Exception\RequestValidationFailedException;
+use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 
 class SellerAttributeUpdater
 {
@@ -34,9 +37,10 @@ class SellerAttributeUpdater
     /**
      * @param string $sellerId
      * @param AttributeList $attributeList
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \JTL\SCX\Client\Exception\RequestFailedException
-     * @throws \JTL\SCX\Client\Exception\RequestValidationFailedException
+     * @throws UnexpectedStatusException
+     * @throws GuzzleException
+     * @throws RequestFailedException
+     * @throws RequestValidationFailedException
      */
     public function update(string $sellerId, AttributeList $attributeList): void
     {
@@ -46,7 +50,7 @@ class SellerAttributeUpdater
         $response = $this->client->createSellerAttributes($request);
 
         if ($response->getStatusCode() !== 201) {
-            throw new UnexpectedStatusExceprion("Could not update seller attributes. Request returned status code {$response->getStatusCode()}");
+            throw new UnexpectedStatusException("Could not update seller attributes. Request returned status code {$response->getStatusCode()}");
         }
     }
 }
