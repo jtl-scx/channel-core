@@ -8,6 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
+use Exception;
 use JTL\SCX\Client\Channel\Api\Price\CreatePriceTypeApi;
 use JTL\SCX\Client\Channel\Api\Price\Request\CreatePriceTypeRequest;
 use JTL\SCX\Client\Channel\Model\PriceType;
@@ -58,7 +59,7 @@ class PushPriceTypesCommand extends AbstractCommand
             $this->pushPrice($output, $priceType);
         }
 
-        $output->writeln("Finished, pushed Price Types to SCX");
+        $output->writeln("Finished, pushed PriceTypes to SCX");
     }
 
     private function pushPrice(
@@ -69,7 +70,7 @@ class PushPriceTypesCommand extends AbstractCommand
 
         try {
             $response = $this->client->create($request);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $type = get_class($e);
             $output->writeln(
                 "Error: POST /channel/price throwed a Exception ({$type}) with message:  '{$e->getMessage()}'."
@@ -78,9 +79,9 @@ class PushPriceTypesCommand extends AbstractCommand
         }
 
         if ($response->getStatusCode() === 201) {
-            $output->writeln("Pushed {$priceType->getPriceTypeId()} Pricetype successful to SCX.");
+            $output->writeln("Pushed '{$priceType->getPriceTypeId()}' PriceType successful to SCX.");
         } else {
-            $output->writeln("Error: POST /channel/price retuned StatusCode '{$response->getStatusCode()}'.");
+            $output->writeln("Error: POST /channel/price returned StatusCode '{$response->getStatusCode()}'.");
         }
     }
 }

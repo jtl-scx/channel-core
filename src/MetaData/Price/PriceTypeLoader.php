@@ -8,6 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData\Price;
 
+use InvalidArgumentException;
 use JTL\SCX\Client\Channel\Model\PriceType;
 use JTL\SCX\Lib\Channel\Helper\FileHandler;
 
@@ -30,14 +31,14 @@ class PriceTypeLoader
     public function load(string $filename): PriceTypeList
     {
         if (!$this->fileHandler->isFile($filename)) {
-            throw new \InvalidArgumentException("{$filename} is not a valid file");
+            throw new InvalidArgumentException("'{$filename}' is not a valid file");
         }
 
         $priceJson = $this->fileHandler->readContent($filename);
         $priceDataList = json_decode($priceJson, true);
 
         if (!$this->validateDataList($priceDataList)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 "Could not decode json or json does not contain valid price-data. Minimum is 'priceId' and 'displayName'"
             );
         }
@@ -66,7 +67,6 @@ class PriceTypeLoader
                 return false;
             }
         }
-
 
         return true;
     }
