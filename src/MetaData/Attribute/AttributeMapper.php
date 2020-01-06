@@ -43,7 +43,7 @@ class AttributeMapper
         return $list;
     }
 
-    private function mapConditional(?ConditionalAttributeCollection $conditionalAttributeCollection): ?array
+    private function mapConditional(?ConditionalAttributeList $conditionalAttributeCollection): ?array
     {
         if ($conditionalAttributeCollection === null) {
             return null;

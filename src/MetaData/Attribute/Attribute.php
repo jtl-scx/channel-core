@@ -41,12 +41,12 @@ class Attribute
     private $attributeValueValidation;
 
     /**
-     * @var ConditionalAttributeCollection|null
+     * @var ConditionalAttributeList|null
      */
     private $conditionalMandatoryBy;
 
     /**
-     * @var ConditionalAttributeCollection|null
+     * @var ConditionalAttributeList|null
      */
     private $conditionalOptionalBy;
 
@@ -95,8 +95,8 @@ class Attribute
      * @param AttributeType $type
      * @param bool $isMultipleAllowed
      * @param string|null $attributeValueValidation
-     * @param ConditionalAttributeCollection|null $conditionalMandatoryBy
-     * @param ConditionalAttributeCollection|null $conditionalOptionalBy
+     * @param ConditionalAttributeList|null $conditionalMandatoryBy
+     * @param ConditionalAttributeList|null $conditionalOptionalBy
      * @param string|null $section
      * @param int|null $sectionPosition
      * @param string|null $subSection
@@ -112,8 +112,8 @@ class Attribute
         AttributeType $type,
         bool $isMultipleAllowed = false,
         string $attributeValueValidation = null,
-        ConditionalAttributeCollection $conditionalMandatoryBy = null,
-        ConditionalAttributeCollection $conditionalOptionalBy = null,
+        ConditionalAttributeList $conditionalMandatoryBy = null,
+        ConditionalAttributeList $conditionalOptionalBy = null,
         string $section = null,
         int $sectionPosition = null,
         string $subSection = null,
@@ -186,17 +186,17 @@ class Attribute
     }
 
     /**
-     * @return ConditionalAttributeCollection|null
+     * @return ConditionalAttributeList|null
      */
-    public function getConditionalMandatoryBy(): ?ConditionalAttributeCollection
+    public function getConditionalMandatoryBy(): ?ConditionalAttributeList
     {
         return $this->conditionalMandatoryBy;
     }
 
     /**
-     * @return ConditionalAttributeCollection|null
+     * @return ConditionalAttributeList|null
      */
-    public function getConditionalOptionalBy(): ?ConditionalAttributeCollection
+    public function getConditionalOptionalBy(): ?ConditionalAttributeList
     {
         return $this->conditionalOptionalBy;
     }

@@ -14,12 +14,12 @@ use PHPUnit\Framework\TestCase;
  * Class ConditionalAttributeCollectionTest
  * @package MetaData\Attribute
  *
- * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\ConditionalAttributeCollection
+ * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\ConditionalAttributeList
  */
-class ConditionalAttributeCollectionTest extends TestCase
+class ConditionalAttributeListTest extends TestCase
 {
     public function testCanCreateCollection(): void
     {
-        $this->assertInstanceOf(ConditionalAttributeCollection::class, new ConditionalAttributeCollection());
+        $this->assertInstanceOf(ConditionalAttributeList::class, new ConditionalAttributeList());
     }
 }

@@ -8,14 +8,11 @@ use JTL\SCX\Client\Channel\Api\Attribute\Request\CreateGlobalAttributesRequest;
 use JTL\SCX\Client\Channel\Model\AttributeList as ClientAttributList;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
-use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusExceprion;
-use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeMapper;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\GlobalAttributeLoader;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 class ImportGlobalAttributesCommand extends AbstractCommand
 {
@@ -39,7 +36,8 @@ class ImportGlobalAttributesCommand extends AbstractCommand
     /**
      * ImportGlobalAttributesCommand constructor.
      * @param CreateGlobalAttributesApi $client
-     * @param AttributeMapper $globalAttributeLoader
+     * @param GlobalAttributeLoader $globalAttributeLoader
+     * @param AttributeMapper $attributeMapper
      */
     public function __construct(
         CreateGlobalAttributesApi $client,
@@ -60,7 +58,7 @@ class ImportGlobalAttributesCommand extends AbstractCommand
                 InputArgument::OPTIONAL,
                 "Location of the JSON-File witch contains global attributes for this Marketplace",
                 "./config/globalAttributes.json"
-            );;
+            );
     }
 
     /**
@@ -69,7 +67,6 @@ class ImportGlobalAttributesCommand extends AbstractCommand
      * @throws GuzzleException
      * @throws RequestFailedException
      * @throws RequestValidationFailedException
-     * @throws UnexpectedStatusExceprion
      */
     protected function execute(InputInterface $input, OutputInterface $output): void
     {

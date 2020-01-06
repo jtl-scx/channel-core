@@ -8,6 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
+use InvalidArgumentException;
 use JTL\SCX\Lib\Channel\Helper\FileHandler;
 
 class GlobalAttributeLoader
@@ -29,14 +30,14 @@ class GlobalAttributeLoader
     public function load(string $filename): AttributeList
     {
         if (!$this->fileHandler->isFile($filename)) {
-            throw new \InvalidArgumentException("{$filename} is not a valid file");
+            throw new InvalidArgumentException("{$filename} is not a valid file");
         }
 
         $attributJson = $this->fileHandler->readContent($filename);
         $attributeDataList = json_decode($attributJson, true);
 
         if (!$this->validateDataList($attributeDataList)) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 "Could not decode json or json does not contain valid attribute-data."
             );
         }
@@ -87,20 +88,20 @@ class GlobalAttributeLoader
         return true;
     }
 
-    private function createConditionalAttributeCollection(?array $conditionalByList): ?ConditionalAttributeCollection
+    private function createConditionalAttributeCollection(?array $conditionalByList): ?ConditionalAttributeList
     {
         if ($conditionalByList === null) {
             return null;
         }
-        $conditionalAttributeCollection = new ConditionalAttributeCollection();
+        $conditionalAttributeCollection = new ConditionalAttributeList();
 
         foreach ($conditionalByList as $conditionalBy) {
             if (!isset($conditionalBy['attributeId']) || empty($conditionalBy['attributeId'])) {
-                throw new \InvalidArgumentException("For conditional attributes a 'attributeId' is required");
+                throw new InvalidArgumentException("For conditional attributes a 'attributeId' is required");
             }
 
             if (!isset($conditionalBy['attributeValues']) || !is_array($conditionalBy['attributeValues'])) {
-                throw new \InvalidArgumentException(
+                throw new InvalidArgumentException(
                     "For conditional attributes 'attributeValues' has to be an array"
                 );
             }

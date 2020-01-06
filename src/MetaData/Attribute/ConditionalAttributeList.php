@@ -11,11 +11,11 @@ namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 use JTL\Generic\GenericCollection;
 
 /**
- * Class ConditionalAttributeCollection
+ * Class ConditionalAttributeList
  * @package JTL\SCX\Lib\Channel\MetaData\Attribute
  * @method ConditionalAttribute offsetGet($offset)
  */
-class ConditionalAttributeCollection extends GenericCollection
+class ConditionalAttributeList extends GenericCollection
 {
     public function __construct()
     {
