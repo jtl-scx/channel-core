@@ -8,6 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData\Price;
 
+use InvalidArgumentException;
 use JTL\SCX\Client\Channel\Model\PriceType;
 use JTL\SCX\Lib\Channel\Helper\FileHandler;
 use PHPUnit\Framework\TestCase;
@@ -21,7 +22,10 @@ class PriceTypeLoaderTest extends TestCase
         $displayName = uniqid('displayName', true);
         $description = uniqid('description', true);
         $json = sprintf(
-            '[{"priceId": "%s", "displayName": "%s", "description": "%s"}]', $priceId, $displayName, $description
+            '[{"priceId": "%s", "displayName": "%s", "description": "%s"}]',
+            $priceId,
+            $displayName,
+            $description
         );
 
         $fileHandlerMock = $this->createMock(FileHandler::class);
@@ -49,7 +53,7 @@ class PriceTypeLoaderTest extends TestCase
         $fileHandlerMock->expects($this->atLeastOnce())->method('isFile')->with($fileName)->willReturn(false);
 
         $loader = new PriceTypeLoader($fileHandlerMock);
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $loader->load($fileName);
     }
 
@@ -65,7 +69,7 @@ class PriceTypeLoaderTest extends TestCase
         $fileHandlerMock->expects($this->atLeastOnce())->method('readContent')->with($fileName)->willReturn($json);
 
         $loader = new PriceTypeLoader($fileHandlerMock);
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $loader->load($fileName);
     }
 
