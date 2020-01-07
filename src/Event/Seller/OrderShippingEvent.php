@@ -8,8 +8,10 @@
 
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
+use DateTimeImmutable;
 use JTL\SCX\Client\Channel\Model\SellerEventOrderShipping;
 use JTL\SCX\Lib\Channel\Event\AbstractEvent;
+use JTL\SCX\Lib\Channel\Event\EventType;
 
 class OrderShippingEvent extends AbstractEvent
 {
@@ -21,17 +23,12 @@ class OrderShippingEvent extends AbstractEvent
     /**
      * SellerEventOrderShippingEvent constructor.
      * @param string $id
-     * @param \DateTimeImmutable $createdAt
-     * @param string $type
+     * @param DateTimeImmutable $createdAt
      * @param SellerEventOrderShipping $event
      */
-    public function __construct(
-        string $id,
-        \DateTimeImmutable $createdAt,
-        string $type,
-        SellerEventOrderShipping $event
-    ) {
-        parent::__construct($id, $createdAt, $type);
+    public function __construct(string $id, DateTimeImmutable $createdAt, SellerEventOrderShipping $event)
+    {
+        parent::__construct($id, $createdAt, EventType::SELLER__ORDER_SHIPPING());
         $this->event = $event;
     }
 

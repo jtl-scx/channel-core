@@ -8,8 +8,10 @@
 
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
+use DateTimeImmutable;
 use JTL\SCX\Client\Channel\Model\SystemEventNotification;
 use JTL\SCX\Lib\Channel\Event\AbstractEvent;
+use JTL\SCX\Lib\Channel\Event\EventType;
 
 class SystemNotificationEvent extends AbstractEvent
 {
@@ -22,17 +24,12 @@ class SystemNotificationEvent extends AbstractEvent
     /**
      * SystemNotificationEvent constructor.
      * @param string $id
-     * @param \DateTimeImmutable $createdAt
-     * @param string $type
+     * @param DateTimeImmutable $createdAt
      * @param SystemEventNotification $event
      */
-    public function __construct(
-        string $id,
-        \DateTimeImmutable $createdAt,
-        string $type,
-        SystemEventNotification $event
-    ) {
-        parent::__construct($id, $createdAt, $type);
+    public function __construct(string $id, DateTimeImmutable $createdAt, SystemEventNotification $event)
+    {
+        parent::__construct($id, $createdAt, EventType::SYSTEM__NOTIFICATION());
         $this->event = $event;
     }
 

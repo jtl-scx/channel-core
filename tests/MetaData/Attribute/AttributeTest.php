@@ -6,28 +6,24 @@
  * Date: 11/12/19
  */
 
-namespace MetaData\Attribute;
+namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
-use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeType;
-use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttribute;
-use JTL\SCX\Lib\Channel\MetaData\Attribute\ConditionalCategoryAttribute;
-use JTL\SCX\Lib\Channel\MetaData\Attribute\ConditionalCategoryAttributeCollection;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class CategoryAttributeTest
+ * Class AttributeTest
  * @package MetaData\Attribute
  *
- * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttribute
+ * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\Attribute
  */
-class CategoryAttributeTest extends TestCase
+class AttributeTest extends TestCase
 {
     public function testCanGetValues(): void
     {
         $conditionalAttributeId = uniqid('caid', true);
         $conditionalAttributeValues = [uniqid('enumValues', true)];
 
-        $conditional = new ConditionalCategoryAttribute($conditionalAttributeId, $conditionalAttributeValues);
+        $conditional = new ConditionalAttribute($conditionalAttributeId, $conditionalAttributeValues);
         $id = uniqid('id', true);
         $attributeId = uniqid('attributeId', true);
         $displayName = uniqid('displayName', true);
@@ -37,15 +33,15 @@ class CategoryAttributeTest extends TestCase
         $type = AttributeType::DECIMAL();
         $isMultipleAllowed = (bool)random_int(0, 1);
         $attributeValueValidation = uniqid('attributeValueValidation', true);
-        $conditionalMandatoryBy = ConditionalCategoryAttributeCollection::from($conditional);
-        $conditionalOptionalBy = ConditionalCategoryAttributeCollection::from($conditional);
+        $conditionalMandatoryBy = ConditionalAttributeList::from($conditional);
+        $conditionalOptionalBy = ConditionalAttributeList::from($conditional);
         $section = uniqid('section', true);
         $sectionPosition = random_int(1, 10000);
-        $subSection = random_int(1, 10000);
+        $subSection = uniqid('subsection', true);
         $subSectionPosition = random_int(1, 10000);
         $isVariationDimension = (bool)random_int(0, 1);
 
-        $attribute = new CategoryAttribute(
+        $attribute = new Attribute(
             $attributeId,
             $displayName,
             $description,

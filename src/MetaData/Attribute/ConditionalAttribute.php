@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
-class ConditionalCategoryAttribute
+class ConditionalAttribute
 {
     /**
      * @var string

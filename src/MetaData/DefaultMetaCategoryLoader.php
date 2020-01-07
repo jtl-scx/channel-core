@@ -3,6 +3,7 @@
 namespace JTL\SCX\Lib\Channel\MetaData;
 
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaCategoryLoader;
+use RuntimeException;
 
 /**
  * This File is part of JTL-Software
@@ -14,6 +15,8 @@ class DefaultMetaCategoryLoader implements MetaCategoryLoader
 {
     public function fetchAll(): CategoryList
     {
-        die('Please implement JTL\SCX\Lib\Channel\Contract\MetaData\MetaCategoryLoader and register your implementation via service.yaml');
+        throw new RuntimeException(
+            'Please implement JTL\SCX\Lib\Channel\Contract\MetaData\MetaCategoryLoader and register your implementation via service.yaml'
+        );
     }
 }

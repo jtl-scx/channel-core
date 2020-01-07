@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
-class CategoryAttribute
+class Attribute
 {
     /**
      * @var string
@@ -41,12 +41,12 @@ class CategoryAttribute
     private $attributeValueValidation;
 
     /**
-     * @var ConditionalCategoryAttributeCollection|null
+     * @var ConditionalAttributeList|null
      */
     private $conditionalMandatoryBy;
 
     /**
-     * @var ConditionalCategoryAttributeCollection|null
+     * @var ConditionalAttributeList|null
      */
     private $conditionalOptionalBy;
 
@@ -95,8 +95,8 @@ class CategoryAttribute
      * @param AttributeType $type
      * @param bool $isMultipleAllowed
      * @param string|null $attributeValueValidation
-     * @param ConditionalCategoryAttributeCollection|null $conditionalMandatoryBy
-     * @param ConditionalCategoryAttributeCollection|null $conditionalOptionalBy
+     * @param ConditionalAttributeList|null $conditionalMandatoryBy
+     * @param ConditionalAttributeList|null $conditionalOptionalBy
      * @param string|null $section
      * @param int|null $sectionPosition
      * @param string|null $subSection
@@ -112,8 +112,8 @@ class CategoryAttribute
         AttributeType $type,
         bool $isMultipleAllowed = false,
         string $attributeValueValidation = null,
-        ConditionalCategoryAttributeCollection $conditionalMandatoryBy = null,
-        ConditionalCategoryAttributeCollection $conditionalOptionalBy = null,
+        ConditionalAttributeList $conditionalMandatoryBy = null,
+        ConditionalAttributeList $conditionalOptionalBy = null,
         string $section = null,
         int $sectionPosition = null,
         string $subSection = null,
@@ -186,17 +186,17 @@ class CategoryAttribute
     }
 
     /**
-     * @return ConditionalCategoryAttributeCollection|null
+     * @return ConditionalAttributeList|null
      */
-    public function getConditionalMandatoryBy(): ?ConditionalCategoryAttributeCollection
+    public function getConditionalMandatoryBy(): ?ConditionalAttributeList
     {
         return $this->conditionalMandatoryBy;
     }
 
     /**
-     * @return ConditionalCategoryAttributeCollection|null
+     * @return ConditionalAttributeList|null
      */
-    public function getConditionalOptionalBy(): ?ConditionalCategoryAttributeCollection
+    public function getConditionalOptionalBy(): ?ConditionalAttributeList
     {
         return $this->conditionalOptionalBy;
     }
@@ -243,9 +243,9 @@ class CategoryAttribute
 
     /**
      * @param string $id
-     * @return CategoryAttribute
+     * @return Attribute
      */
-    public function setId(string $id): CategoryAttribute
+    public function setId(string $id): Attribute
     {
         $this->id = $id;
         return $this;

@@ -8,10 +8,13 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData;
 
+use GuzzleHttp\Exception\GuzzleException;
 use JTL\SCX\Client\Channel\Api\Category\Request\UpdateCategoryTreeRequest;
 use JTL\SCX\Client\Channel\Api\Category\UpdateCategoryTreeApi;
 use JTL\SCX\Client\Channel\Model\ChannelCategoryTree;
-use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusExceprion;
+use JTL\SCX\Client\Exception\RequestFailedException;
+use JTL\SCX\Client\Exception\RequestValidationFailedException;
+use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 
 class CategoryTreeUpdater
 {
@@ -39,10 +42,10 @@ class CategoryTreeUpdater
     /**
      * @param CategoryList $categoryList
      * @return string
-     * @throws UnexpectedStatusExceprion
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \JTL\SCX\Client\Exception\RequestFailedException
-     * @throws \JTL\SCX\Client\Exception\RequestValidationFailedException
+     * @throws UnexpectedStatusException
+     * @throws GuzzleException
+     * @throws RequestFailedException
+     * @throws RequestValidationFailedException
      */
     public function update(CategoryList $categoryList): string
     {
@@ -53,7 +56,7 @@ class CategoryTreeUpdater
         $response = $this->client->update($request);
 
         if ($response->getStatusCode() !== 201) {
-            throw new UnexpectedStatusExceprion("Could not update categoryTree. Request returned statuscode {$response->getStatusCode()}");
+            throw new UnexpectedStatusException("Could not update categoryTree. Request returned statuscode {$response->getStatusCode()}");
         }
         return $response->getCategoryTreeVersion()->getCategoryTreeVersion();
     }

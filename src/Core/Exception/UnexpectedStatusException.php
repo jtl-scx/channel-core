@@ -8,6 +8,8 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Exception;
 
-class UnexpectedStatusExceprion extends \Exception
+use Exception;
+
+class UnexpectedStatusException extends Exception
 {
 }

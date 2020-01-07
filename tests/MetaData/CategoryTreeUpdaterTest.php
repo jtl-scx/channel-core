@@ -31,8 +31,8 @@ class CategoryTreeUpdaterTest extends TestCase
             new CategoryTreeVersion(['categoryTreeVersion' => $resultVersion])
         );
 
-        $clientMock = \Mockery::mock(UpdateCategoryTreeApi::class);
-        $clientMock->expects('update')->once()->andReturn($response);
+        $clientMock = $this->createMock(UpdateCategoryTreeApi::class);
+        $clientMock->expects($this->once())->method('update')->willReturn($response);
 
         $updater = new CategoryTreeUpdater($clientMock, $mapper);
 
@@ -45,8 +45,9 @@ class CategoryTreeUpdaterTest extends TestCase
 
         $response = new UpdateCategoryTreeResponse(400, new CategoryTreeVersion());
 
-        $clientMock = \Mockery::mock(UpdateCategoryTreeApi::class);
-        $clientMock->expects('update')->once()->andReturn($response);
+        $clientMock = $this->createMock(UpdateCategoryTreeApi::class);
+        $clientMock->expects($this->once())->method('update')->willReturn($response);
+
         $updater = new CategoryTreeUpdater($clientMock, $mapper);
 
         $this->expectException(\Exception::class);

@@ -6,18 +6,17 @@
  * Date: 11/12/19
  */
 
-namespace MetaData\Attribute;
+namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
-use JTL\SCX\Lib\Channel\MetaData\Attribute\ConditionalCategoryAttribute;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class ConditionalCategoryAttributeTest
+ * Class ConditionalAttributeTest
  * @package MetaData\Attribute
  *
- * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\ConditionalCategoryAttribute
+ * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\ConditionalAttribute
  */
-class ConditionalCategoryAttributeTest extends TestCase
+class ConditionalAttributeTest extends TestCase
 {
     public function testCanGetValues(): void
     {
@@ -25,7 +24,7 @@ class ConditionalCategoryAttributeTest extends TestCase
         $attributeValue = uniqid('attributeValue', true);
         $attributeValues = [$attributeValue];
 
-        $conditional = new ConditionalCategoryAttribute($attributeId, $attributeValues);
+        $conditional = new ConditionalAttribute($attributeId, $attributeValues);
 
         $this->assertEquals($attributeId, $conditional->getAttributeId());
         $this->assertCount(1, $conditional->getAttributeValues());

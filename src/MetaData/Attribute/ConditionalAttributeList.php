@@ -3,7 +3,7 @@
  * This File is part of JTL-Software
  *
  * User: mbrandt
- * Date: 11/11/19
+ * Date: 11/12/19
  */
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
@@ -11,15 +11,14 @@ namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 use JTL\Generic\GenericCollection;
 
 /**
- * Class CategoryAttributeList
+ * Class ConditionalAttributeList
  * @package JTL\SCX\Lib\Channel\MetaData\Attribute
- *
- * @method CategoryAttribute offsetGet()
+ * @method ConditionalAttribute offsetGet($offset)
  */
-class CategoryAttributeList extends GenericCollection
+class ConditionalAttributeList extends GenericCollection
 {
     public function __construct()
     {
-        parent::__construct(CategoryAttribute::class);
+        parent::__construct(ConditionalAttribute::class);
     }
 }

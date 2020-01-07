@@ -11,10 +11,10 @@ namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 use GuzzleHttp\Exception\GuzzleException;
 use JTL\SCX\Client\Channel\Api\Attribute\CreateCategoryAttributesApi;
 use JTL\SCX\Client\Channel\Api\Attribute\Request\CreateCategoryAttributesRequest;
-use JTL\SCX\Client\Channel\Model\AttributeList;
+use JTL\SCX\Client\Channel\Model\AttributeList as ClientAttributeList;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
-use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusExceprion;
+use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 
 class CategoryAttributeUpdater
 {
@@ -24,16 +24,16 @@ class CategoryAttributeUpdater
     private $client;
 
     /**
-     * @var CategoryAttributeMapper
+     * @var AttributeMapper
      */
     private $mapper;
 
     /**
      * CategoryAttributeUpdater constructor.
      * @param CreateCategoryAttributesApi $client
-     * @param CategoryAttributeMapper $mapper
+     * @param AttributeMapper $mapper
      */
-    public function __construct(CreateCategoryAttributesApi $client, CategoryAttributeMapper $mapper)
+    public function __construct(CreateCategoryAttributesApi $client, AttributeMapper $mapper)
     {
         $this->client = $client;
         $this->mapper = $mapper;
@@ -41,21 +41,21 @@ class CategoryAttributeUpdater
 
     /**
      * @param string $categoryId
-     * @param CategoryAttributeList $categoryAttributeList
-     * @throws UnexpectedStatusExceprion
+     * @param AttributeList $categoryAttributeList
+     * @throws UnexpectedStatusException
      * @throws GuzzleException
      * @throws RequestFailedException
      * @throws RequestValidationFailedException
      */
-    public function update(string $categoryId, CategoryAttributeList $categoryAttributeList): void
+    public function update(string $categoryId, AttributeList $categoryAttributeList): void
     {
-        $attributeList = new AttributeList();
+        $attributeList = new ClientAttributeList();
         $attributeList->setAttributeList($this->mapper->map($categoryAttributeList));
         $request = new CreateCategoryAttributesRequest($categoryId, $attributeList);
         $response = $this->client->createCategoryAttributes($request);
 
         if ($response->getStatusCode() !== 201) {
-            throw new UnexpectedStatusExceprion("Could not update category attributes. Request returned status code {$response->getStatusCode()}");
+            throw new UnexpectedStatusException("Could not update category attributes. Request returned status code {$response->getStatusCode()}");
         }
     }
 }

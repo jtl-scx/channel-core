@@ -8,13 +8,17 @@
 
 namespace JTL\SCX\Lib\Channel\Event\Cli;
 
+use DateTimeImmutable;
+use Exception;
 use JTL\Nachricht\Emitter\AmqpEmitter;
 use JTL\Nachricht\Transport\Amqp\AmqpConsumer;
+use JTL\SCX\Client\Channel\Model\PriceContainer;
+use JTL\SCX\Client\Channel\Model\QuantityPrice;
 use JTL\SCX\Client\Channel\Model\SellerEventOfferEnd;
-use JTL\SCX\Client\Channel\Model\SystemEventNotification;
+use JTL\SCX\Client\Channel\Model\SellerEventOfferNew;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferEndEvent;
-use JTL\SCX\Lib\Channel\Event\Seller\SystemNotificationEvent;
+use JTL\SCX\Lib\Channel\Event\Seller\OfferNewEvent;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -53,19 +57,46 @@ class EmitEventCommand extends AbstractCommand
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return int|void|null
+     * @return int|void
+     * @throws Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->emitter->emit(
             new OfferEndEvent(
                 uniqid('iamevent', true),
-                new \DateTimeImmutable(),
-                'System:Notification',
+                new DateTimeImmutable(),
                 new SellerEventOfferEnd([
                     'sellerId' => 'seller007',
                     'offerId' => '12345678',
                 ])
+            )
+        );
+
+        $b2cPrice = new PriceContainer([
+            'id' => 'B2C',
+            'quantityPriceList' => [
+                new QuantityPrice(['amount' => "80.12", "currency" => "EUR", "quantity" => 0]),
+            ]
+        ]);
+
+        $this->emitter->emit(
+            new OfferNewEvent(
+                uniqid('test'),
+                new DateTimeImmutable('now'),
+                new SellerEventOfferNew(
+                    [
+                        'channelId' => 'foo',
+                        'sellerId' => "5e008509dddb555d3c7fe362",
+                        'quantity' => 5,
+                        'priceList' => [
+                            $b2cPrice,
+                        ],
+                        "title" => "Schöner Kratzbaum",
+                        "sku" => "MySku_Kratzi1",
+                        "ean" => "4011905437873"
+                    ]
+                )
             )
         );
     }
