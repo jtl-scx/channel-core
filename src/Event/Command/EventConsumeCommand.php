@@ -6,7 +6,7 @@
  * Date: 2019/09/17
  */
 
-namespace JTL\SCX\Lib\Channel\Event\Cli;
+namespace JTL\SCX\Lib\Channel\Event\Command;
 
 use GuzzleHttp\Exception\GuzzleException;
 use JTL\Nachricht\Collection\StringCollection;
@@ -18,9 +18,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class SellerEventConsumerCommand extends AbstractCommand
+class EventConsumeCommand extends AbstractCommand
 {
-    protected static $defaultName = 'scx:event:consume:seller';
+    protected static $defaultName = 'scx-channel:event.consume';
 
     /**
      * @var AmqpConsumer
@@ -46,7 +46,7 @@ class SellerEventConsumerCommand extends AbstractCommand
 
     protected function configure()
     {
-        $this->setDescription('Consume seller events created from polling the SCX Channel API');
+        $this->setDescription('Consume events from RabbitMQ');
     }
 
     /**

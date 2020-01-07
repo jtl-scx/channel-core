@@ -6,16 +6,16 @@
  * Date: 2019/09/27
  */
 
-namespace JTL\SCX\Lib\Channel\Event\Cli;
+namespace JTL\SCX\Lib\Channel\Event\Command;
 
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
 use JTL\SCX\Lib\Channel\Event\Emitter\SellerEventEmitter;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class SellerEventEnqueuerCommand extends AbstractCommand
+class ScxApiEventConsumeCommand extends AbstractCommand
 {
-    protected static $defaultName = 'scx:event:enqueue';
+    protected static $defaultName = 'scx-api:event.consume';
 
     /**
      * @var SellerEventEmitter

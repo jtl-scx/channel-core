@@ -60,6 +60,7 @@ class SellerEventEmitter
 
     /**
      * TODO: Improve logging
+     * ToDo: /ack messages after emit()
      * @throws GuzzleException
      * @throws RequestFailedException
      */

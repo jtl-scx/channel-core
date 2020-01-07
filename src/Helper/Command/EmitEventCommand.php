@@ -6,7 +6,7 @@
  * Date: 2019/09/09
  */
 
-namespace JTL\SCX\Lib\Channel\Event\Cli;
+namespace JTL\SCX\Lib\Channel\Helper\Command;
 
 use DateTimeImmutable;
 use Exception;
@@ -24,7 +24,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class EmitEventCommand extends AbstractCommand
 {
-    protected static $defaultName = 'scx:event:emit';
+    protected static $defaultName = 'helper:scx-event.emit';
 
     /**
      * @var AmqpEmitter
