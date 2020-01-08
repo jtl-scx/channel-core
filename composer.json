@@ -5,8 +5,8 @@
     "require": {
         "ext-json": "*",
         "guzzlehttp/guzzle": "^6.3",
-        "jtl/channel-api-client": "0.0.6",
-        "jtl/nachricht": "^0.2.0",
+        "jtl/channel-api-client": "dev-EA-2568",
+        "jtl/nachricht": "~0.2",
         "jtl/scx-api-client": "^0.0.1",
         "monolog/monolog": "^2.0",
         "myclabs/php-enum": "^1.7",

@@ -8,10 +8,9 @@
 
 namespace JTL\SCX\Lib\Channel\Event\Emitter;
 
-use GuzzleHttp\Exception\GuzzleException;
+use JTL\Nachricht\Collection\StringCollection;
 use JTL\Nachricht\Contract\Emitter\Emitter;
-use JTL\SCX\Client\Channel\Api\Event\GetSellerEventListApi;
-use JTL\SCX\Client\Exception\RequestFailedException;
+use JTL\SCX\Client\Channel\Api\Event\Model\EventContainerList;
 use JTL\SCX\Lib\Channel\Event\EventFactory;
 use JTL\SCX\Lib\Channel\Event\Seller\SystemEventEnum;
 use Psr\Log\LoggerInterface;
@@ -24,9 +23,9 @@ class SellerEventEmitter
     private $emitter;
 
     /**
-     * @var GetSellerEventListApi
+     * @var EventFactory
      */
-    private $getSellerEventListApi;
+    private $eventFactory;
 
     /**
      * @var LoggerInterface
@@ -34,41 +33,29 @@ class SellerEventEmitter
     private $logger;
 
     /**
-     * @var EventFactory
-     */
-    private $eventFactory;
-
-    /**
      * SellerEventEmitter constructor.
      * @param Emitter $emitter
      * @param EventFactory $eventFactory
-     * @param GetSellerEventListApi $getSellerEventListApi
      * @param LoggerInterface $logger
      */
     public function __construct(
         Emitter $emitter,
         EventFactory $eventFactory,
-        GetSellerEventListApi $getSellerEventListApi,
         LoggerInterface $logger
-    )
-    {
+    ) {
         $this->emitter = $emitter;
         $this->eventFactory = $eventFactory;
-        $this->getSellerEventListApi = $getSellerEventListApi;
         $this->logger = $logger;
     }
 
     /**
-     * TODO: Improve logging
-     * ToDo: /ack messages after emit()
-     * @throws GuzzleException
-     * @throws RequestFailedException
+     * @param EventContainerList $eventContainerList
+     * @return array
      */
-    public function emit(): void
+    public function emit(EventContainerList $eventContainerList): array
     {
-        $response = $this->getSellerEventListApi->getEventList();
-
-        foreach ($response->getEventList() as $eventContainer) {
+        $emittedEventIdList = [];
+        foreach ($eventContainerList as $eventContainer) {
             $event = $this->eventFactory->createFromEventContainer($eventContainer);
             if ($event === null) {
                 $this->logger->warning("Event type '{$eventContainer->getType()}' could not be mapped");
@@ -76,6 +63,9 @@ class SellerEventEmitter
             }
             $this->emitter->emit($event);
             $this->logger->info("Emitted event '{$eventContainer->getId()}' of type '{$eventContainer->getType()}'");
+            $emittedEventIdList[] = $eventContainer->getId();
         }
+
+        return $emittedEventIdList;
     }
 }

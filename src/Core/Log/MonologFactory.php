@@ -8,6 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Log;
 
+use Exception;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\LogFactory;
 use Monolog\Formatter\JsonFormatter;
 use Monolog\Handler\StreamHandler;
@@ -21,8 +22,8 @@ class MonologFactory implements LogFactory
      * @param int $globalLogLevel
      * @param string $logFile
      * @param string $channel
-     * @return LoggerInterface
-     * @throws \Exception
+     * @return LoggerInterface|Logger
+     * @throws Exception
      */
     public function create(int $globalLogLevel, string $logFile, string $channel): LoggerInterface
     {
@@ -33,6 +34,14 @@ class MonologFactory implements LogFactory
 
         $monolog->pushHandler($streamHandler);
         $monolog->pushProcessor(new IntrospectionProcessor());
+
+        return $monolog;
+    }
+
+    public function createConsoleLogger(int $globalLogLevel, string $logFile, string $channel): LoggerInterface
+    {
+        $monolog = $this->create($globalLogLevel, $logFile, $channel);
+        $monolog->pushHandler(new StreamHandler("php://stdout"));
 
         return $monolog;
     }

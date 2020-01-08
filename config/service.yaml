@@ -32,6 +32,13 @@ services:
       $logFile: '%env(LOG_FILE)%'
       $channel: '%env(LOG_CHANNEL)%'
 
+  JTL\SCX\Lib\Channel\Contract\Core\Log\ConsoleLogger:
+    factory: 'JTL\SCX\Lib\Channel\Core\Log\MonologFactory:createConsoleLogger'
+    arguments:
+      $globalLogLevel: '%env(LOG_LEVEL)%'
+      $logFile: '%env(LOG_FILE)%'
+      $channel: '%env(LOG_CHANNEL)%'
+
   JTL\Nachricht\Transport\Amqp\AmqpTransport:
     public: true
     factory: 'JTL\Nachricht\Transport\Amqp\AmqpTransportFactory:createTransport'
