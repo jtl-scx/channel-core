@@ -9,7 +9,7 @@
 namespace JTL\SCX\Lib\Channel\Event\Command;
 
 use GuzzleHttp\Exception\GuzzleException;
-use JTL\Nachricht\Collection\StringCollection;
+use JTL\Generic\StringCollection;
 use JTL\Nachricht\Event\Cache\EventCache;
 use JTL\Nachricht\Transport\Amqp\AmqpConsumer;
 use JTL\Nachricht\Transport\SubscriptionSettings;

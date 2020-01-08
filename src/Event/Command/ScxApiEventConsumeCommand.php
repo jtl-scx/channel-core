@@ -14,8 +14,8 @@ use JTL\SCX\Client\Channel\Api\Event\GetSellerEventListApi;
 use JTL\SCX\Client\Channel\Api\Event\Request\AcknowledgeEventIdListRequest;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
-use JTL\SCX\Lib\Channel\Contract\Core\Log\ConsoleLogger;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
+use JTL\SCX\Lib\Channel\Core\Log\ConsoleLogger;
 use JTL\SCX\Lib\Channel\Event\Emitter\SellerEventEmitter;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Input\InputInterface;
@@ -48,7 +48,7 @@ class ScxApiEventConsumeCommand extends AbstractCommand
      * @param GetSellerEventListApi $getSellerEventListApi
      * @param SellerEventEmitter $eventEmitter
      * @param AcknowledgeEventListApi $ackEventApi
-     * @param LoggerInterface $logger
+     * @param ConsoleLogger $logger
      */
     public function __construct(
         GetSellerEventListApi $getSellerEventListApi,
@@ -78,7 +78,6 @@ class ScxApiEventConsumeCommand extends AbstractCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->logger->info("Hallo!!");
         while (($response = $this->getSellerEventListApi->getEventList())->getEventList()->count() !== 0) {
             $emittedEventIdList = $this->eventEnqueuer->emit($response->getEventList());
             $this->ackEventApi->ack(new AcknowledgeEventIdListRequest($emittedEventIdList));
