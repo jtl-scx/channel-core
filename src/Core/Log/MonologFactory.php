@@ -18,6 +18,18 @@ use Psr\Log\LoggerInterface;
 
 class MonologFactory implements LogFactory
 {
+    public function createConsoleLogger(Logger $monolog): ConsoleLogger
+    {
+        $monolog->pushHandler(new StreamHandler("php://stdout"));
+
+        return new ConsoleLogger(
+            $monolog->getName(),
+            $monolog->getHandlers(),
+            $monolog->getProcessors(),
+            $monolog->getTimezone()
+        );
+    }
+
     /**
      * @param int $globalLogLevel
      * @param string $logFile
@@ -38,11 +50,4 @@ class MonologFactory implements LogFactory
         return $monolog;
     }
 
-    public function createConsoleLogger(int $globalLogLevel, string $logFile, string $channel): LoggerInterface
-    {
-        $monolog = $this->create($globalLogLevel, $logFile, $channel);
-        $monolog->pushHandler(new StreamHandler("php://stdout"));
-
-        return $monolog;
-    }
 }
