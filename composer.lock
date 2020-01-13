@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dff45448d8e3203b6297aa47f6f6c42c",
+    "content-hash": "64ec0865dda5c60ee62aaa032dd55c2d",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -205,7 +205,7 @@
             },
             "require": {
                 "jtl/php-generic-collection": "^0.3",
-                "jtl/scx-api-client": "^0.3",
+                "jtl/scx-api-client": "dev-master",
                 "myclabs/php-enum": "^1.7",
                 "php": "^7.4"
             },
