@@ -9,7 +9,7 @@
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
 use GuzzleHttp\Exception\GuzzleException;
-use JTL\SCX\Client\Channel\Api\Attribute\CreateCategoryAttributesApi;
+use JTL\SCX\Client\Channel\Api\Attribute\AttributesApi;
 use JTL\SCX\Client\Channel\Api\Attribute\Request\CreateCategoryAttributesRequest;
 use JTL\SCX\Client\Channel\Model\AttributeList as ClientAttributeList;
 use JTL\SCX\Client\Exception\RequestFailedException;
@@ -18,22 +18,10 @@ use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 
 class CategoryAttributeUpdater
 {
-    /**
-     * @var CreateCategoryAttributesApi
-     */
-    private $client;
+    private AttributesApi $client;
+    private AttributeMapper $mapper;
 
-    /**
-     * @var AttributeMapper
-     */
-    private $mapper;
-
-    /**
-     * CategoryAttributeUpdater constructor.
-     * @param CreateCategoryAttributesApi $client
-     * @param AttributeMapper $mapper
-     */
-    public function __construct(CreateCategoryAttributesApi $client, AttributeMapper $mapper)
+    public function __construct(AttributesApi $client, AttributeMapper $mapper)
     {
         $this->client = $client;
         $this->mapper = $mapper;

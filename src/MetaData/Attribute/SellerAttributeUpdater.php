@@ -9,7 +9,7 @@
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
 use GuzzleHttp\Exception\GuzzleException;
-use JTL\SCX\Client\Channel\Api\Attribute\CreateSellerAttributesApi;
+use JTL\SCX\Client\Channel\Api\Attribute\AttributesApi;
 use JTL\SCX\Client\Channel\Api\Attribute\Request\CreateSellerAttributesRequest;
 use JTL\SCX\Client\Channel\Model\AttributeList as ClientAttributeList;
 use JTL\SCX\Client\Exception\RequestFailedException;
@@ -18,17 +18,10 @@ use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 
 class SellerAttributeUpdater
 {
-    /**
-     * @var CreateSellerAttributesApi
-     */
-    private $client;
+    private AttributesApi $client;
+    private AttributeMapper $attributeMapper;
 
-    /**
-     * @var AttributeMapper
-     */
-    private $attributeMapper;
-
-    public function __construct(CreateSellerAttributesApi $client, AttributeMapper $attributeMapper)
+    public function __construct(AttributesApi $client, AttributeMapper $attributeMapper)
     {
         $this->client = $client;
         $this->attributeMapper = $attributeMapper;

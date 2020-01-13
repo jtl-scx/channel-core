@@ -9,10 +9,9 @@
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
 
-use JTL\SCX\Client\Channel\Api\Attribute\CreateSellerAttributesApi;
+use JTL\SCX\Client\Channel\Api\Attribute\AttributesApi;
 use JTL\SCX\Client\Channel\Api\Attribute\Request\CreateSellerAttributesRequest;
-use JTL\SCX\Client\Channel\Api\Attribute\Response\CreateSellerAttributesResponse;
-use JTL\SCX\Client\Channel\Model\AttributeList as ClientAttributeList;
+use JTL\SCX\Client\Channel\Api\Attribute\Response\AttributesCreatedResponse;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -27,24 +26,16 @@ class SellerAttributeUpdaterTest extends TestCase
     {
         $sellerId = uniqid('sellerId', true);
 
-        $numAttr = random_int(5, 100);
         $attrListMock = $this->createMock(AttributeList::class);
-        $attrListMock->method('count')->willReturn($numAttr);
         $clientAttrList = [];
 
-        $createSellerResponse= $this->createMock(CreateSellerAttributesResponse::class);
+        $createSellerResponse= $this->createMock(AttributesCreatedResponse::class);
         $createSellerResponse->method('getStatusCode')->willReturn(201);
-        $apiClientMock = $this->createMock(CreateSellerAttributesApi::class);
-        $apiClientMock->expects($this->once())->method('createSellerAttributes')->with($this->callback(
-            function ($request) use ($clientAttrList) {
-                if ($request instanceof CreateSellerAttributesRequest && $request->getAttributeList() instanceof ClientAttributeList) {
-                    if ($request->getAttributeList()->getAttributeList() === $clientAttrList) {
-                        return true;
-                    }
-                }
-                return false;
-            }
-        ))->willReturn($createSellerResponse);
+        $apiClientMock = $this->createMock(AttributesApi::class);
+        $apiClientMock->expects($this->once())
+            ->method('createSellerAttributes')
+            ->with($this->isInstanceOf(CreateSellerAttributesRequest::class))
+            ->willReturn($createSellerResponse);
 
         $attrMapperMock = $this->createMock(AttributeMapper::class);
         $attrMapperMock->expects($this->atLeastOnce())->method('map')->with($attrListMock)->willReturn($clientAttrList);

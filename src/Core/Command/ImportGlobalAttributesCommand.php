@@ -3,9 +3,9 @@
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
 use GuzzleHttp\Exception\GuzzleException;
-use JTL\SCX\Client\Channel\Api\Attribute\CreateGlobalAttributesApi;
+use JTL\SCX\Client\Channel\Api\Attribute\AttributesApi;
 use JTL\SCX\Client\Channel\Api\Attribute\Request\CreateGlobalAttributesRequest;
-use JTL\SCX\Client\Channel\Model\AttributeList as ClientAttributList;
+use JTL\SCX\Client\Channel\Model\AttributeList as ClientAttributeList;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeMapper;
@@ -18,29 +18,12 @@ class ImportGlobalAttributesCommand extends AbstractCommand
 {
     protected static $defaultName = 'import:global-attributes';
 
-    /**
-     * @var GlobalAttributeLoader
-     */
-    private $globalAttributeLoader;
+    private GlobalAttributeLoader $globalAttributeLoader;
+    private AttributesApi $client;
+    private AttributeMapper $attributeMapper;
 
-    /**
-     * @var CreateGlobalAttributesApi
-     */
-    private $client;
-
-    /**
-     * @var AttributeMapper
-     */
-    private $attributeMapper;
-
-    /**
-     * ImportGlobalAttributesCommand constructor.
-     * @param CreateGlobalAttributesApi $client
-     * @param GlobalAttributeLoader $globalAttributeLoader
-     * @param AttributeMapper $attributeMapper
-     */
     public function __construct(
-        CreateGlobalAttributesApi $client,
+        AttributesApi $client,
         GlobalAttributeLoader $globalAttributeLoader,
         AttributeMapper $attributeMapper
     ) {
@@ -74,7 +57,7 @@ class ImportGlobalAttributesCommand extends AbstractCommand
         $globalAttributeList = $this->globalAttributeLoader->load($filename);
         $output->writeln("Loaded {$globalAttributeList->count()} global Attributes");
 
-        $attributeList = new ClientAttributList();
+        $attributeList = new ClientAttributeList();
         $attributeList->setAttributeList($this->attributeMapper->map($globalAttributeList));
         $request = new CreateGlobalAttributesRequest($attributeList);
         $output->writeln("CreateGlobalAttributesRequest created");

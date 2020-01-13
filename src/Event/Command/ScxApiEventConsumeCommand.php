@@ -9,9 +9,9 @@
 namespace JTL\SCX\Lib\Channel\Event\Command;
 
 use GuzzleHttp\Exception\GuzzleException;
-use JTL\SCX\Client\Channel\Api\Event\AcknowledgeEventListApi;
-use JTL\SCX\Client\Channel\Api\Event\GetSellerEventListApi;
+use JTL\SCX\Client\Channel\Api\Event\EventApi;
 use JTL\SCX\Client\Channel\Api\Event\Request\AcknowledgeEventIdListRequest;
+use JTL\SCX\Client\Channel\Api\Event\Request\GetEventListRequest;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
@@ -25,41 +25,18 @@ class ScxApiEventConsumeCommand extends AbstractCommand
 {
     protected static $defaultName = 'scx-api:event.consume';
 
-    /**
-     * @var SellerEventEmitter
-     */
-    private $eventEnqueuer;
+    private SellerEventEmitter $eventEnqueuer;
+    private EventApi $eventApi;
+    private LoggerInterface $logger;
 
-    /**
-     * @var GetSellerEventListApi
-     */
-    private $getSellerEventListApi;
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-    /**
-     * @var AcknowledgeEventListApi
-     */
-    private $ackEventApi;
-
-    /**
-     * ScxApiEventConsumeCommand constructor.
-     * @param GetSellerEventListApi $getSellerEventListApi
-     * @param SellerEventEmitter $eventEmitter
-     * @param AcknowledgeEventListApi $ackEventApi
-     * @param ConsoleLogger $logger
-     */
     public function __construct(
-        GetSellerEventListApi $getSellerEventListApi,
+        EventApi $eventApi,
         SellerEventEmitter $eventEmitter,
-        AcknowledgeEventListApi $ackEventApi,
         ConsoleLogger $logger
     ) {
         parent::__construct();
-        $this->getSellerEventListApi = $getSellerEventListApi;
+        $this->eventApi = $eventApi;
         $this->eventEnqueuer = $eventEmitter;
-        $this->ackEventApi = $ackEventApi;
         $this->logger = $logger;
     }
 
@@ -78,9 +55,9 @@ class ScxApiEventConsumeCommand extends AbstractCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        while (($response = $this->getSellerEventListApi->getEventList())->getEventList()->count() !== 0) {
+        while (($response = $this->eventApi->getEventList(new GetEventListRequest()))->getEventList()->count() !== 0) {
             $emittedEventIdList = $this->eventEnqueuer->emit($response->getEventList());
-            $this->ackEventApi->ack(new AcknowledgeEventIdListRequest($emittedEventIdList));
+            $this->eventApi->ack(new AcknowledgeEventIdListRequest($emittedEventIdList));
         }
     }
 }

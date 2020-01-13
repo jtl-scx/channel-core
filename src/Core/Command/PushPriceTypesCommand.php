@@ -9,7 +9,7 @@
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
 use Exception;
-use JTL\SCX\Client\Channel\Api\Price\CreatePriceTypeApi;
+use JTL\SCX\Client\Channel\Api\Price\PriceApi;
 use JTL\SCX\Client\Channel\Api\Price\Request\CreatePriceTypeRequest;
 use JTL\SCX\Client\Channel\Model\PriceType;
 use JTL\SCX\Lib\Channel\MetaData\Price\PriceTypeLoader;
@@ -21,17 +21,10 @@ class PushPriceTypesCommand extends AbstractCommand
 {
     protected static $defaultName = 'push:price-types';
 
-    /**
-     * @var CreatePriceTypeApi
-     */
-    private $client;
+    private PriceApi $client;
+    private PriceTypeLoader $priceTypeLoader;
 
-    /**
-     * @var PriceTypeLoader
-     */
-    private $priceTypeLoader;
-
-    public function __construct(CreatePriceTypeApi $client, PriceTypeLoader $priceTypeLoader)
+    public function __construct(PriceApi $client, PriceTypeLoader $priceTypeLoader)
     {
         $this->client = $client;
 

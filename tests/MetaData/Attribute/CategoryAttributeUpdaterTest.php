@@ -8,9 +8,9 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
-use JTL\SCX\Client\Channel\Api\Attribute\CreateCategoryAttributesApi;
+use JTL\SCX\Client\Channel\Api\Attribute\AttributesApi;
 use JTL\SCX\Client\Channel\Api\Attribute\Request\CreateCategoryAttributesRequest;
-use JTL\SCX\Client\Channel\Api\Attribute\Response\CreateCategoryAttributesResponse;
+use JTL\SCX\Client\Channel\Api\Attribute\Response\AttributesCreatedResponse;
 use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 use PHPUnit\Framework\TestCase;
 
@@ -26,10 +26,10 @@ class CategoryAttributeUpdaterTest extends TestCase
     {
         $categoryId = uniqid('categoryId', true);
 
-        $clientMock = $this->createMock(CreateCategoryAttributesApi::class);
+        $clientMock = $this->createMock(AttributesApi::class);
         $mapperMock = $this->createMock(AttributeMapper::class);
         $attributeList = $this->createMock(AttributeList::class);
-        $responseMock = $this->createMock(CreateCategoryAttributesResponse::class);
+        $responseMock = $this->createMock(AttributesCreatedResponse::class);
 
         $mapperMock->expects($this->once())->method('map')->with($attributeList)->willReturn([]);
 
@@ -47,10 +47,10 @@ class CategoryAttributeUpdaterTest extends TestCase
     {
         $categoryId = uniqid('categoryId', true);
 
-        $clientMock = $this->createMock(CreateCategoryAttributesApi::class);
+        $clientMock = $this->createMock(AttributesApi::class);
         $mapperMock = $this->createMock(AttributeMapper::class);
         $attributeList = $this->createMock(AttributeList::class);
-        $responseMock = $this->createMock(CreateCategoryAttributesResponse::class);
+        $responseMock = $this->createMock(AttributesCreatedResponse::class);
 
         $mapperMock->expects($this->once())->method('map')->with($attributeList)->willReturn([]);
 

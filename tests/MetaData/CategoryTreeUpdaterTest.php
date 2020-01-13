@@ -8,8 +8,8 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData;
 
+use JTL\SCX\Client\Channel\Api\Category\CategoryApi;
 use JTL\SCX\Client\Channel\Api\Category\Response\UpdateCategoryTreeResponse;
-use JTL\SCX\Client\Channel\Api\Category\UpdateCategoryTreeApi;
 use JTL\SCX\Client\Channel\Model\CategoryTreeVersion;
 use PHPUnit\Framework\TestCase;
 
@@ -31,8 +31,8 @@ class CategoryTreeUpdaterTest extends TestCase
             new CategoryTreeVersion(['categoryTreeVersion' => $resultVersion])
         );
 
-        $clientMock = $this->createMock(UpdateCategoryTreeApi::class);
-        $clientMock->expects($this->once())->method('update')->willReturn($response);
+        $clientMock = $this->createMock(CategoryApi::class);
+        $clientMock->expects($this->once())->method('updateCategoryTree')->willReturn($response);
 
         $updater = new CategoryTreeUpdater($clientMock, $mapper);
 
@@ -45,8 +45,8 @@ class CategoryTreeUpdaterTest extends TestCase
 
         $response = new UpdateCategoryTreeResponse(400, new CategoryTreeVersion());
 
-        $clientMock = $this->createMock(UpdateCategoryTreeApi::class);
-        $clientMock->expects($this->once())->method('update')->willReturn($response);
+        $clientMock = $this->createMock(CategoryApi::class);
+        $clientMock->expects($this->once())->method('updateCategoryTree')->willReturn($response);
 
         $updater = new CategoryTreeUpdater($clientMock, $mapper);
 

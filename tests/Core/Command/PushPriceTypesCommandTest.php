@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
-use JTL\SCX\Client\Channel\Api\Price\CreatePriceTypeApi;
+use JTL\SCX\Client\Channel\Api\Price\PriceApi;
 use JTL\SCX\Client\Channel\Api\Price\Response\CreatePriceTypeResponse;
 use JTL\SCX\Client\Channel\Model\PriceType;
 use JTL\SCX\Lib\Channel\MetaData\Price\PriceTypeList;
@@ -34,7 +34,7 @@ class PushPriceTypesCommandTest extends TestCase
         $returnMock = $this->createMock(CreatePriceTypeResponse::class);
         $returnMock->expects($this->atLeastOnce())->method('getStatusCode')->willReturn(201);
 
-        $clientMock = $this->createMock(CreatePriceTypeApi::class);
+        $clientMock = $this->createMock(PriceApi::class);
         $clientMock->expects($this->atLeastOnce())->method('create')->willReturn($returnMock);
 
         $priceLoaderMock = $this->createMock(PriceTypeLoader::class);
@@ -53,7 +53,7 @@ class PushPriceTypesCommandTest extends TestCase
         $returnMock = $this->createMock(CreatePriceTypeResponse::class);
         $returnMock->expects($this->atLeastOnce())->method('getStatusCode')->willReturn(400);
 
-        $clientMock = $this->createMock(CreatePriceTypeApi::class);
+        $clientMock = $this->createMock(PriceApi::class);
         $clientMock->expects($this->atLeastOnce())->method('create')->willReturn($returnMock);
 
         $priceLoaderMock = $this->createMock(PriceTypeLoader::class);
@@ -75,7 +75,7 @@ class PushPriceTypesCommandTest extends TestCase
     {
         $exception = new \Exception('ErrorMsg');
 
-        $clientMock = $this->createMock(CreatePriceTypeApi::class);
+        $clientMock = $this->createMock(PriceApi::class);
         $clientMock->expects($this->atLeastOnce())->method('create')->willThrowException($exception);
 
         $priceLoaderMock = $this->createMock(PriceTypeLoader::class);
