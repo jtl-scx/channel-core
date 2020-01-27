@@ -23,7 +23,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class ImportCategoryAttributesCommand extends AbstractCommand
 {
-    protected static $defaultName = 'import:category-attributes';
+    protected static $defaultName = 'scx-api:put.attributes-category';
 
     /**
      * @var MetaDataCategoryAttributeLoader

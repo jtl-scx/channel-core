@@ -16,7 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ImportSellerAttributesCommand extends AbstractCommand
 {
-    protected static $defaultName = 'import:seller-attributes';
+    protected static $defaultName = 'scx-api:put.attributes-seller';
 
     /**
      * @var SellerAttributeLoader

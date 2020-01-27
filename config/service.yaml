@@ -10,6 +10,9 @@ services:
     JTL\Nachricht\Contract\Listener\Listener:
       public: true
 
+  JTL\SCX\Client\:
+    resource: '../vendor/jtl/scx-api-client/src/*'
+
   JTL\SCX\Client\Channel\:
     resource: './vendor/jtl/channel-api-client/src/*'
 
@@ -19,6 +22,10 @@ services:
 
   JTL\Nachricht\:
     resource: './vendor/jtl/nachricht/src/*'
+
+  JTL\Nachricht\Contract\Emitter\Emitter: '@JTL\Nachricht\Emitter\AmqpEmitter'
+
+  Psr\Log\LoggerInterface: '@Monolog\Logger'
 
   JTL\SCX\Client\Api\Configuration:
     arguments:
@@ -54,3 +61,5 @@ services:
 
   JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataAttributeLoader:
     class: JTL\SCX\Lib\Channel\MetaData\Attribute\DefaultMetaDataAttributeLoader
+
+

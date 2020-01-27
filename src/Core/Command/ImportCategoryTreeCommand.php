@@ -22,7 +22,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class ImportCategoryTreeCommand extends AbstractCommand
 {
-    protected static $defaultName = 'import:category-tree';
+    protected static $defaultName = 'scx-api:put.category-tree';
 
     /**
      * @var MetaCategoryLoader

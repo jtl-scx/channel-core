@@ -3,3 +3,5 @@ vendor/
 .php_cs.cache
 build/
 .phpunit.result.cache
+.env
+.env.local
