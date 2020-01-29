@@ -1,0 +1,12 @@
+# This configuration file is used to define dependencies and services used for development in channel-core project
+# this file is loaded after the default core-service.yaml is loaded.
+#
+# Use this configuration file to add additional services which are only required for development purpose.
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+

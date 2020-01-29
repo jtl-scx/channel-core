@@ -19,7 +19,7 @@ $dotenv = new Dotenv();
 $dotenv->loadEnv(__DIR__ . '/../.env');
 
 $isDevelopment = true;
-$rootDir = __DIR__ . '/../';
+$rootDir = __DIR__ . '/..';
 $containerCachePath = __DIR__ . '/../var/cache/container';
 $listenerCachePath = __DIR__ . '/../var/cache/listener';
 

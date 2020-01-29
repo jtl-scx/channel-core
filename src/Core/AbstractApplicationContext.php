@@ -72,7 +72,7 @@ abstract class AbstractApplicationContext
      */
     public function bootstrap(): void
     {
-        putenv('ROOT_DIRECTORY='.$this->rootDirectory);
+        putenv('ROOT_DIRECTORY=' . $this->rootDirectory);
         $this->initializeContainer();
     }
 
@@ -85,6 +85,23 @@ abstract class AbstractApplicationContext
     }
 
     /**
+     * @param ContainerBuilder $containerBuilder
+     * @param LoaderInterface $loader
+     * @throws \Exception
+     */
+    protected function configureContainer(ContainerBuilder $containerBuilder, LoaderInterface $loader): void
+    {
+        $containerBuilder->addCompilerPass(new AddConsoleCommandPass());
+        $loader->load(__DIR__ . '/../../config/core-service.yaml');
+
+        if (isset($_ENV['CORE_DEV_CONTAINER_SERVICE_YAML'])) {
+            $serviceConfigFile = $this->rootDirectory . '/' . $_ENV['CORE_DEV_CONTAINER_SERVICE_YAML'];
+            $loader->load($serviceConfigFile);
+        }
+
+    }
+
+    /**
      * @throws \Exception
      */
     private function initializeContainer(): void
@@ -94,7 +111,7 @@ abstract class AbstractApplicationContext
             $this->isDevelopment
         );
 
-        if (!$configCache->isFresh()) {
+        if (true || !$configCache->isFresh()) {
             $containerBuilder = new ContainerBuilder();
             $loader = new YamlFileLoader($containerBuilder, new FileLocator($this->rootDirectory));
             $this->configureContainer($containerBuilder, $loader);
@@ -124,17 +141,6 @@ abstract class AbstractApplicationContext
             $dumper->dump(['class' => 'CachedContainer']),
             $containerBuilder->getResources()
         );
-    }
-
-    /**
-     * @param ContainerBuilder $containerBuilder
-     * @param LoaderInterface $loader
-     * @throws \Exception
-     */
-    protected function configureContainer(ContainerBuilder $containerBuilder, LoaderInterface $loader): void
-    {
-        $containerBuilder->addCompilerPass(new AddConsoleCommandPass());
-        $loader->load(__DIR__ . '/../../config/service.yaml');
     }
 
     /**

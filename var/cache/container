@@ -328,7 +328,7 @@ class CachedContainer extends Container
      */
     protected function getEventCacheService()
     {
-        return $this->privates['JTL\\Nachricht\\Event\\Cache\\EventCache'] = (new \JTL\Nachricht\Event\Cache\EventCacheCreator())->create('/home/rherrgesell/development/scx/channel/channel-lib/bin/../var/cache/listener', [0 => '/home/rherrgesell/development/scx/channel/channel-lib/bin/..//src', 1 => '/home/rherrgesell/development/scx/channel/channel-lib/src/Core/../'], true);
+        return $this->privates['JTL\\Nachricht\\Event\\Cache\\EventCache'] = (new \JTL\Nachricht\Event\Cache\EventCacheCreator())->create('/home/rherrgesell/development/scx/channel/channel-lib/bin/../var/cache/listener', [0 => '/home/rherrgesell/development/scx/channel/channel-lib/bin/../src', 1 => '/home/rherrgesell/development/scx/channel/channel-lib/src/Core/../'], true);
     }
 
     /**
