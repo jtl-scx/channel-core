@@ -1,0 +1,547 @@
+<?php
+
+use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
+use Symfony\Component\DependencyInjection\Exception\LogicException;
+use Symfony\Component\DependencyInjection\Exception\RuntimeException;
+use Symfony\Component\DependencyInjection\ParameterBag\FrozenParameterBag;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+
+/**
+ * This class has been auto-generated
+ * by the Symfony Dependency Injection Component.
+ *
+ * @final
+ */
+class CachedContainer extends Container
+{
+    private $parameters = [];
+    private $getService;
+
+    public function __construct()
+    {
+        $this->getService = \Closure::fromCallable([$this, 'getService']);
+        $this->parameters = $this->getDefaultParameters();
+
+        $this->services = $this->privates = [];
+        $this->methodMap = [
+            'JTL\\Nachricht\\Transport\\Amqp\\AmqpTransport' => 'getAmqpTransportService',
+            'JTL\\SCX\\Lib\\Channel\\Template\\TwigTemplateRenderer' => 'getTwigTemplateRendererService',
+            'console.command_loader' => 'getConsole_CommandLoaderService',
+        ];
+
+        $this->aliases = [];
+    }
+
+    public function compile(): void
+    {
+        throw new LogicException('You cannot compile a dumped container that was already compiled.');
+    }
+
+    public function isCompiled(): bool
+    {
+        return true;
+    }
+
+    public function getRemovedIds(): array
+    {
+        return [
+            '.abstract.instanceof.JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryAttributesCommand' => true,
+            '.abstract.instanceof.JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryTreeCommand' => true,
+            '.abstract.instanceof.JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportGlobalAttributesCommand' => true,
+            '.abstract.instanceof.JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportSellerAttributesCommand' => true,
+            '.abstract.instanceof.JTL\\SCX\\Lib\\Channel\\Core\\Command\\PushPriceTypesCommand' => true,
+            '.abstract.instanceof.JTL\\SCX\\Lib\\Channel\\Event\\Command\\EventConsumeCommand' => true,
+            '.abstract.instanceof.JTL\\SCX\\Lib\\Channel\\Event\\Command\\ScxApiEventConsumeCommand' => true,
+            '.abstract.instanceof.JTL\\SCX\\Lib\\Channel\\Helper\\Command\\EmitOfferNewEventCommand' => true,
+            '.instanceof.JTL\\SCX\\Lib\\Channel\\Core\\Command\\AbstractCommand.0.JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryAttributesCommand' => true,
+            '.instanceof.JTL\\SCX\\Lib\\Channel\\Core\\Command\\AbstractCommand.0.JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryTreeCommand' => true,
+            '.instanceof.JTL\\SCX\\Lib\\Channel\\Core\\Command\\AbstractCommand.0.JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportGlobalAttributesCommand' => true,
+            '.instanceof.JTL\\SCX\\Lib\\Channel\\Core\\Command\\AbstractCommand.0.JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportSellerAttributesCommand' => true,
+            '.instanceof.JTL\\SCX\\Lib\\Channel\\Core\\Command\\AbstractCommand.0.JTL\\SCX\\Lib\\Channel\\Core\\Command\\PushPriceTypesCommand' => true,
+            '.instanceof.JTL\\SCX\\Lib\\Channel\\Core\\Command\\AbstractCommand.0.JTL\\SCX\\Lib\\Channel\\Event\\Command\\EventConsumeCommand' => true,
+            '.instanceof.JTL\\SCX\\Lib\\Channel\\Core\\Command\\AbstractCommand.0.JTL\\SCX\\Lib\\Channel\\Event\\Command\\ScxApiEventConsumeCommand' => true,
+            '.instanceof.JTL\\SCX\\Lib\\Channel\\Core\\Command\\AbstractCommand.0.JTL\\SCX\\Lib\\Channel\\Helper\\Command\\EmitOfferNewEventCommand' => true,
+            '.service_locator.acd4.qd' => true,
+            'JTL\\Nachricht\\Contract\\Emitter\\Emitter' => true,
+            'JTL\\Nachricht\\Contract\\Serializer\\EventSerializer' => true,
+            'JTL\\Nachricht\\Contract\\Transport\\Consumer' => true,
+            'JTL\\Nachricht\\Dispatcher\\AmqpDispatcher' => true,
+            'JTL\\Nachricht\\Emitter\\AmqpEmitter' => true,
+            'JTL\\Nachricht\\Emitter\\DirectEmitter' => true,
+            'JTL\\Nachricht\\Event\\Cache\\AmqpEventRoutingKeyExtractor' => true,
+            'JTL\\Nachricht\\Event\\Cache\\EventCache' => true,
+            'JTL\\Nachricht\\Event\\Cache\\EventCacheCreator' => true,
+            'JTL\\Nachricht\\Event\\Cache\\EventCacheFileLoader' => true,
+            'JTL\\Nachricht\\Event\\Cache\\ListenerDetector' => true,
+            'JTL\\Nachricht\\Listener\\ListenerProvider' => true,
+            'JTL\\Nachricht\\Serializer\\Exception\\DeserializationFailedException' => true,
+            'JTL\\Nachricht\\Serializer\\PhpEventSerializer' => true,
+            'JTL\\Nachricht\\Transport\\Amqp\\AmqpConnectionSettings' => true,
+            'JTL\\Nachricht\\Transport\\Amqp\\AmqpConsumer' => true,
+            'JTL\\Nachricht\\Transport\\Amqp\\AmqpTransportFactory' => true,
+            'JTL\\Nachricht\\Transport\\SubscriptionSettings' => true,
+            'JTL\\SCX\\Client\\ApiResponseDeserializer' => true,
+            'JTL\\SCX\\Client\\Api\\ApiClient' => true,
+            'JTL\\SCX\\Client\\Api\\AuthAwareApiClient' => true,
+            'JTL\\SCX\\Client\\Api\\Auth\\AuthApi' => true,
+            'JTL\\SCX\\Client\\Api\\Auth\\Request\\AuthRequest' => true,
+            'JTL\\SCX\\Client\\Api\\Auth\\Response\\AuthResponse' => true,
+            'JTL\\SCX\\Client\\Api\\Configuration' => true,
+            'JTL\\SCX\\Client\\Auth\\InMemorySessionTokenStorage' => true,
+            'JTL\\SCX\\Client\\Auth\\Model\\SessionToken' => true,
+            'JTL\\SCX\\Client\\Auth\\SessionTokenStorage' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Attribute\\AttributesApi' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Attribute\\Request\\CreateCategoryAttributesRequest' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Attribute\\Request\\CreateGlobalAttributesRequest' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Attribute\\Request\\CreateSellerAttributesRequest' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Attribute\\Request\\DeleteGlobalAttributeRequest' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Attribute\\Response\\AttributesCreatedResponse' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Attribute\\Response\\AttributesDeletedResponse' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Category\\CategoryApi' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Category\\Request\\UpdateCategoryTreeRequest' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Category\\Response\\UpdateCategoryTreeResponse' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Channel\\ChannelApi' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Channel\\Request\\GetChannelStatusRequest' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Channel\\Request\\UpdateChannelRequest' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Channel\\Response\\GetChannelStatusResponse' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Channel\\Response\\UpdateChannelResponse' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Event\\EventApi' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Event\\Model\\EventContainer' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Event\\Model\\EventContainerList' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Event\\Request\\AcknowledgeEventIdListRequest' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Event\\Request\\GetEventListRequest' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Event\\Response\\GetSellerEventListResponse' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Offer\\OfferApi' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Offer\\Request\\MarkListingAsFailedRequest' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Offer\\Request\\MarkListingInProgressRequest' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Offer\\Request\\MarkListingSuccessfulRequest' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Order\\OrdersApi' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Order\\Request\\CreateOrdersRequest' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Order\\Response\\CreateOrdersResponse' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Price\\PriceApi' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Price\\Request\\CreatePriceTypeRequest' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Price\\Response\\CreatePriceTypeResponse' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Seller\\Request\\CreateSellerRequest' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Seller\\Response\\CreateSellerResponse' => true,
+            'JTL\\SCX\\Client\\Channel\\Api\\Seller\\SellerApi' => true,
+            'JTL\\SCX\\Client\\Channel\\Helper\\Price\\PriceSelector' => true,
+            'JTL\\SCX\\Client\\Channel\\Helper\\Price\\PriceType' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\Address' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\Attribute' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\AttributeConditionalMandatoryBy' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\AttributeConditionalOptionalBy' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\AttributeList' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\Category' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\CategoryTreeVersion' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\ChannelBasedData' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\ChannelCategoryTree' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\ChannelEventOrderAddressUpdate' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\ChannelEventOrderAddressUpdateRequestBody' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\ChannelEventOrderStatusUpdate' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\ChannelEventOrderStatusUpdateRequest' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\ChannelRelatedEvent' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\ChannelStatus' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\ChannelUpdate' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\CreateSeller' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\ErrorList' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\ErrorResponse' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\EventIdList' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\EventSellerRelated' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OfferListingFailed' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OfferListingFailedError' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OfferListingFailedList' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OfferListingInProgress' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OfferListingInProgressList' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OfferListingSuccessful' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OfferListingSuccessfulList' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OrderAddressUpdateList' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OrderBase' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OrderItem' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OrderItemBase' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OrderItemTypeDiscount' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OrderItemTypeItem' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OrderItemTypePayment' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OrderItemTypeShipping' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OrderList' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OrderPayment' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OrderShipping' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OrderShippingOfferIdList' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OrderShippingShippingItems' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OrderStatus' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OrderStatusList' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\OrderWithSeller' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\PaymentStatus' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\Price' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\PriceContainer' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\PriceType' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\Product' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\QuantityPrice' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\SalesChannelAttributeList' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\SalesChannelBase' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\SalesChannelData' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\SalesChannelOffer' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\SellerEventList' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\SellerEventListEventList' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\SellerEventOfferEnd' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\SellerEventOfferNew' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\SellerEventOfferUpdate' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\SellerEventOrderCancelled' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\SellerEventOrderConfirmed' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\SellerEventOrderPayment' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\SellerEventOrderShipping' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\SellerEventTest' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\SellerEventTypeList' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\SystemEventNotification' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\WaitingOffer' => true,
+            'JTL\\SCX\\Client\\Channel\\Model\\WaitingOfferList' => true,
+            'JTL\\SCX\\Client\\Channel\\ObjectSerializer' => true,
+            'JTL\\SCX\\Client\\Exception\\RequestFailedException' => true,
+            'JTL\\SCX\\Client\\Exception\\RequestValidationFailedException' => true,
+            'JTL\\SCX\\Client\\JsonSerializer' => true,
+            'JTL\\SCX\\Client\\Model\\AuthToken' => true,
+            'JTL\\SCX\\Client\\Model\\ErrorList' => true,
+            'JTL\\SCX\\Client\\Model\\ErrorResponse' => true,
+            'JTL\\SCX\\Client\\ObjectSerializer' => true,
+            'JTL\\SCX\\Client\\Request\\RequestFactory' => true,
+            'JTL\\SCX\\Client\\Request\\UrlFactory' => true,
+            'JTL\\SCX\\Client\\ResponseDeserializer' => true,
+            'JTL\\SCX\\Lib\\Channel\\Contract\\Core\\Log\\LogFactory' => true,
+            'JTL\\SCX\\Lib\\Channel\\Contract\\MetaData\\MetaCategoryLoader' => true,
+            'JTL\\SCX\\Lib\\Channel\\Contract\\MetaData\\MetaDataAttributeLoader' => true,
+            'JTL\\SCX\\Lib\\Channel\\Contract\\MetaData\\MetaDataCategoryAttributeLoader' => true,
+            'JTL\\SCX\\Lib\\Channel\\Contract\\MetaData\\SellerAttributeLoader' => true,
+            'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryAttributesCommand' => true,
+            'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryTreeCommand' => true,
+            'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportGlobalAttributesCommand' => true,
+            'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportSellerAttributesCommand' => true,
+            'JTL\\SCX\\Lib\\Channel\\Core\\Command\\PushPriceTypesCommand' => true,
+            'JTL\\SCX\\Lib\\Channel\\Core\\Environment\\Environment' => true,
+            'JTL\\SCX\\Lib\\Channel\\Core\\Exception\\UnexpectedStatusException' => true,
+            'JTL\\SCX\\Lib\\Channel\\Core\\Log\\ConsoleLogger' => true,
+            'JTL\\SCX\\Lib\\Channel\\Core\\Log\\MonologFactory' => true,
+            'JTL\\SCX\\Lib\\Channel\\Event\\Command\\EventConsumeCommand' => true,
+            'JTL\\SCX\\Lib\\Channel\\Event\\Command\\ScxApiEventConsumeCommand' => true,
+            'JTL\\SCX\\Lib\\Channel\\Event\\Emitter\\SellerEventEmitter' => true,
+            'JTL\\SCX\\Lib\\Channel\\Event\\EventFactory' => true,
+            'JTL\\SCX\\Lib\\Channel\\Event\\EventType' => true,
+            'JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OfferEndEvent' => true,
+            'JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OfferNewEvent' => true,
+            'JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderCancelledEvent' => true,
+            'JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderConfirmedEvent' => true,
+            'JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderPaymentEvent' => true,
+            'JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderShippingEvent' => true,
+            'JTL\\SCX\\Lib\\Channel\\Event\\Seller\\SystemNotificationEvent' => true,
+            'JTL\\SCX\\Lib\\Channel\\Event\\Seller\\SystemTestEvent' => true,
+            'JTL\\SCX\\Lib\\Channel\\Helper\\Command\\EmitOfferNewEventCommand' => true,
+            'JTL\\SCX\\Lib\\Channel\\Helper\\FileHandler' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\Attribute' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeList' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeMapper' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeType' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\CategoryAttributeUpdater' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\ConditionalAttribute' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\ConditionalAttributeCollection' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\ConditionalAttributeList' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\DefaultMetaDataCategoryAttributeLoader' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\DefaultSellerAttributeLoader' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\GlobalAttributeLoader' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\SellerAttributeUpdater' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\Category' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\CategoryList' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\CategoryMapper' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\CategoryTreeUpdater' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\DefaultMetaCategoryLoader' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\Price\\PriceTypeList' => true,
+            'JTL\\SCX\\Lib\\Channel\\MetaData\\Price\\PriceTypeLoader' => true,
+            'Monolog\\Logger' => true,
+            'Psr\\Container\\ContainerInterface' => true,
+            'Psr\\Log\\LoggerInterface' => true,
+            'Symfony\\Component\\DependencyInjection\\ContainerInterface' => true,
+        ];
+    }
+
+    /**
+     * Gets the public 'JTL\Nachricht\Transport\Amqp\AmqpTransport' shared autowired service.
+     *
+     * @return \JTL\Nachricht\Transport\Amqp\AmqpTransport
+     */
+    protected function getAmqpTransportService()
+    {
+        return $this->services['JTL\\Nachricht\\Transport\\Amqp\\AmqpTransport'] = (new \JTL\Nachricht\Transport\Amqp\AmqpTransportFactory())->createTransport(['host' => $this->getEnv('RABBITMQ_HOST'), 'port' => $this->getEnv('RABBITMQ_PORT'), 'user' => $this->getEnv('RABBITMQ_USER'), 'password' => $this->getEnv('RABBITMQ_PASS'), 'vhost' => $this->getEnv('RABBITMQ_VHOST')], new \JTL\Nachricht\Serializer\PhpEventSerializer(), ($this->privates['JTL\\Nachricht\\Listener\\ListenerProvider'] ?? $this->getListenerProviderService()), ($this->privates['Monolog\\Logger'] ?? $this->getLoggerService()));
+    }
+
+    /**
+     * Gets the public 'JTL\SCX\Lib\Channel\Template\TwigTemplateRenderer' shared autowired service.
+     *
+     * @return \JTL\SCX\Lib\Channel\Template\TwigTemplateRenderer
+     */
+    protected function getTwigTemplateRendererService()
+    {
+        return $this->services['JTL\\SCX\\Lib\\Channel\\Template\\TwigTemplateRenderer'] = new \JTL\SCX\Lib\Channel\Template\TwigTemplateRenderer(new \JTL\SCX\Lib\Channel\Core\Environment\Environment());
+    }
+
+    /**
+     * Gets the public 'console.command_loader' shared service.
+     *
+     * @return \Symfony\Component\Console\CommandLoader\ContainerCommandLoader
+     */
+    protected function getConsole_CommandLoaderService()
+    {
+        return $this->services['console.command_loader'] = new \Symfony\Component\Console\CommandLoader\ContainerCommandLoader(new \Symfony\Component\DependencyInjection\Argument\ServiceLocator($this->getService, [
+            'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryAttributesCommand' => ['privates', 'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryAttributesCommand', 'getImportCategoryAttributesCommandService', false],
+            'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryTreeCommand' => ['privates', 'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryTreeCommand', 'getImportCategoryTreeCommandService', false],
+            'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportGlobalAttributesCommand' => ['privates', 'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportGlobalAttributesCommand', 'getImportGlobalAttributesCommandService', false],
+            'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportSellerAttributesCommand' => ['privates', 'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportSellerAttributesCommand', 'getImportSellerAttributesCommandService', false],
+            'JTL\\SCX\\Lib\\Channel\\Core\\Command\\PushPriceTypesCommand' => ['privates', 'JTL\\SCX\\Lib\\Channel\\Core\\Command\\PushPriceTypesCommand', 'getPushPriceTypesCommandService', false],
+            'JTL\\SCX\\Lib\\Channel\\Event\\Command\\EventConsumeCommand' => ['privates', 'JTL\\SCX\\Lib\\Channel\\Event\\Command\\EventConsumeCommand', 'getEventConsumeCommandService', false],
+            'JTL\\SCX\\Lib\\Channel\\Event\\Command\\ScxApiEventConsumeCommand' => ['privates', 'JTL\\SCX\\Lib\\Channel\\Event\\Command\\ScxApiEventConsumeCommand', 'getScxApiEventConsumeCommandService', false],
+            'JTL\\SCX\\Lib\\Channel\\Helper\\Command\\EmitOfferNewEventCommand' => ['privates', 'JTL\\SCX\\Lib\\Channel\\Helper\\Command\\EmitOfferNewEventCommand', 'getEmitOfferNewEventCommandService', false],
+        ], [
+            'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryAttributesCommand' => 'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryAttributesCommand',
+            'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryTreeCommand' => 'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryTreeCommand',
+            'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportGlobalAttributesCommand' => 'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportGlobalAttributesCommand',
+            'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportSellerAttributesCommand' => 'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportSellerAttributesCommand',
+            'JTL\\SCX\\Lib\\Channel\\Core\\Command\\PushPriceTypesCommand' => 'JTL\\SCX\\Lib\\Channel\\Core\\Command\\PushPriceTypesCommand',
+            'JTL\\SCX\\Lib\\Channel\\Event\\Command\\EventConsumeCommand' => 'JTL\\SCX\\Lib\\Channel\\Event\\Command\\EventConsumeCommand',
+            'JTL\\SCX\\Lib\\Channel\\Event\\Command\\ScxApiEventConsumeCommand' => 'JTL\\SCX\\Lib\\Channel\\Event\\Command\\ScxApiEventConsumeCommand',
+            'JTL\\SCX\\Lib\\Channel\\Helper\\Command\\EmitOfferNewEventCommand' => 'JTL\\SCX\\Lib\\Channel\\Helper\\Command\\EmitOfferNewEventCommand',
+        ]), ['scx-api:put.attributes-category' => 'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryAttributesCommand', 'scx-api:put.category-tree' => 'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryTreeCommand', 'scx-api:put.attributes-global' => 'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportGlobalAttributesCommand', 'scx-api:put.attributes-seller' => 'JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportSellerAttributesCommand', 'scx-api:put:price-types' => 'JTL\\SCX\\Lib\\Channel\\Core\\Command\\PushPriceTypesCommand', 'scx-channel:event.consume' => 'JTL\\SCX\\Lib\\Channel\\Event\\Command\\EventConsumeCommand', 'scx-api:get.events' => 'JTL\\SCX\\Lib\\Channel\\Event\\Command\\ScxApiEventConsumeCommand', 'helper:emit.OfferNewEvent' => 'JTL\\SCX\\Lib\\Channel\\Helper\\Command\\EmitOfferNewEventCommand']);
+    }
+
+    /**
+     * Gets the private 'JTL\Nachricht\Emitter\AmqpEmitter' shared autowired service.
+     *
+     * @return \JTL\Nachricht\Emitter\AmqpEmitter
+     */
+    protected function getAmqpEmitterService()
+    {
+        return $this->privates['JTL\\Nachricht\\Emitter\\AmqpEmitter'] = new \JTL\Nachricht\Emitter\AmqpEmitter(($this->services['JTL\\Nachricht\\Transport\\Amqp\\AmqpTransport'] ?? $this->getAmqpTransportService()));
+    }
+
+    /**
+     * Gets the private 'JTL\Nachricht\Event\Cache\EventCache' shared service.
+     *
+     * @return \JTL\Nachricht\Event\Cache\EventCache
+     */
+    protected function getEventCacheService()
+    {
+        return $this->privates['JTL\\Nachricht\\Event\\Cache\\EventCache'] = (new \JTL\Nachricht\Event\Cache\EventCacheCreator())->create('/home/rherrgesell/development/scx/channel/channel-lib/bin/../var/cache/listener', [0 => '/home/rherrgesell/development/scx/channel/channel-lib/bin/..//src', 1 => '/home/rherrgesell/development/scx/channel/channel-lib/src/Core/../'], true);
+    }
+
+    /**
+     * Gets the private 'JTL\Nachricht\Listener\ListenerProvider' shared autowired service.
+     *
+     * @return \JTL\Nachricht\Listener\ListenerProvider
+     */
+    protected function getListenerProviderService()
+    {
+        return $this->privates['JTL\\Nachricht\\Listener\\ListenerProvider'] = new \JTL\Nachricht\Listener\ListenerProvider($this, ($this->privates['JTL\\Nachricht\\Event\\Cache\\EventCache'] ?? $this->getEventCacheService()));
+    }
+
+    /**
+     * Gets the private 'JTL\SCX\Client\Api\AuthAwareApiClient' shared autowired service.
+     *
+     * @return \JTL\SCX\Client\Api\AuthAwareApiClient
+     */
+    protected function getAuthAwareApiClientService()
+    {
+        $a = new \JTL\SCX\Client\Api\Configuration($this->getEnv('SCX_CHANNEL_API_HOST'), $this->getEnv('SCX_CHANNEL_API_REFRESH_TOKEN'));
+        $b = new \JTL\SCX\Client\Request\RequestFactory();
+        $c = new \JTL\SCX\Client\Request\UrlFactory();
+
+        return $this->privates['JTL\\SCX\\Client\\Api\\AuthAwareApiClient'] = new \JTL\SCX\Client\Api\AuthAwareApiClient($a, new \JTL\SCX\Client\Auth\InMemorySessionTokenStorage(), NULL, new \JTL\SCX\Client\Api\Auth\AuthApi(new \JTL\SCX\Client\Api\ApiClient($a, NULL, $b, $c), ($this->privates['JTL\\SCX\\Client\\ApiResponseDeserializer'] ?? ($this->privates['JTL\\SCX\\Client\\ApiResponseDeserializer'] = new \JTL\SCX\Client\ApiResponseDeserializer()))), $b, $c);
+    }
+
+    /**
+     * Gets the private 'JTL\SCX\Client\Channel\Api\Attribute\AttributesApi' shared autowired service.
+     *
+     * @return \JTL\SCX\Client\Channel\Api\Attribute\AttributesApi
+     */
+    protected function getAttributesApiService()
+    {
+        return $this->privates['JTL\\SCX\\Client\\Channel\\Api\\Attribute\\AttributesApi'] = new \JTL\SCX\Client\Channel\Api\Attribute\AttributesApi(($this->privates['JTL\\SCX\\Client\\Api\\AuthAwareApiClient'] ?? $this->getAuthAwareApiClientService()));
+    }
+
+    /**
+     * Gets the private 'JTL\SCX\Lib\Channel\Core\Command\ImportCategoryAttributesCommand' shared autowired service.
+     *
+     * @return \JTL\SCX\Lib\Channel\Core\Command\ImportCategoryAttributesCommand
+     */
+    protected function getImportCategoryAttributesCommandService()
+    {
+        $this->privates['JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryAttributesCommand'] = $instance = new \JTL\SCX\Lib\Channel\Core\Command\ImportCategoryAttributesCommand(new \JTL\SCX\Lib\Channel\MetaData\Attribute\DefaultMetaDataCategoryAttributeLoader(), new \JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeUpdater(($this->privates['JTL\\SCX\\Client\\Channel\\Api\\Attribute\\AttributesApi'] ?? $this->getAttributesApiService()), ($this->privates['JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeMapper'] ?? ($this->privates['JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeMapper'] = new \JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeMapper()))));
+
+        $instance->setName('scx-api:put.attributes-category');
+
+        return $instance;
+    }
+
+    /**
+     * Gets the private 'JTL\SCX\Lib\Channel\Core\Command\ImportCategoryTreeCommand' shared autowired service.
+     *
+     * @return \JTL\SCX\Lib\Channel\Core\Command\ImportCategoryTreeCommand
+     */
+    protected function getImportCategoryTreeCommandService()
+    {
+        $this->privates['JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryTreeCommand'] = $instance = new \JTL\SCX\Lib\Channel\Core\Command\ImportCategoryTreeCommand(new \JTL\SCX\Lib\Channel\MetaData\DefaultMetaCategoryLoader(), new \JTL\SCX\Lib\Channel\MetaData\CategoryTreeUpdater(new \JTL\SCX\Client\Channel\Api\Category\CategoryApi(($this->privates['JTL\\SCX\\Client\\Api\\AuthAwareApiClient'] ?? $this->getAuthAwareApiClientService()), ($this->privates['JTL\\SCX\\Client\\ApiResponseDeserializer'] ?? ($this->privates['JTL\\SCX\\Client\\ApiResponseDeserializer'] = new \JTL\SCX\Client\ApiResponseDeserializer()))), new \JTL\SCX\Lib\Channel\MetaData\CategoryMapper()));
+
+        $instance->setName('scx-api:put.category-tree');
+
+        return $instance;
+    }
+
+    /**
+     * Gets the private 'JTL\SCX\Lib\Channel\Core\Command\ImportGlobalAttributesCommand' shared autowired service.
+     *
+     * @return \JTL\SCX\Lib\Channel\Core\Command\ImportGlobalAttributesCommand
+     */
+    protected function getImportGlobalAttributesCommandService()
+    {
+        $this->privates['JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportGlobalAttributesCommand'] = $instance = new \JTL\SCX\Lib\Channel\Core\Command\ImportGlobalAttributesCommand(($this->privates['JTL\\SCX\\Client\\Channel\\Api\\Attribute\\AttributesApi'] ?? $this->getAttributesApiService()), new \JTL\SCX\Lib\Channel\MetaData\Attribute\GlobalAttributeLoader(($this->privates['JTL\\SCX\\Lib\\Channel\\Helper\\FileHandler'] ?? ($this->privates['JTL\\SCX\\Lib\\Channel\\Helper\\FileHandler'] = new \JTL\SCX\Lib\Channel\Helper\FileHandler()))), ($this->privates['JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeMapper'] ?? ($this->privates['JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeMapper'] = new \JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeMapper())));
+
+        $instance->setName('scx-api:put.attributes-global');
+
+        return $instance;
+    }
+
+    /**
+     * Gets the private 'JTL\SCX\Lib\Channel\Core\Command\ImportSellerAttributesCommand' shared autowired service.
+     *
+     * @return \JTL\SCX\Lib\Channel\Core\Command\ImportSellerAttributesCommand
+     */
+    protected function getImportSellerAttributesCommandService()
+    {
+        $this->privates['JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportSellerAttributesCommand'] = $instance = new \JTL\SCX\Lib\Channel\Core\Command\ImportSellerAttributesCommand(new \JTL\SCX\Lib\Channel\MetaData\Attribute\DefaultSellerAttributeLoader(), new \JTL\SCX\Lib\Channel\MetaData\Attribute\SellerAttributeUpdater(($this->privates['JTL\\SCX\\Client\\Channel\\Api\\Attribute\\AttributesApi'] ?? $this->getAttributesApiService()), ($this->privates['JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeMapper'] ?? ($this->privates['JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeMapper'] = new \JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeMapper()))));
+
+        $instance->setName('scx-api:put.attributes-seller');
+
+        return $instance;
+    }
+
+    /**
+     * Gets the private 'JTL\SCX\Lib\Channel\Core\Command\PushPriceTypesCommand' shared autowired service.
+     *
+     * @return \JTL\SCX\Lib\Channel\Core\Command\PushPriceTypesCommand
+     */
+    protected function getPushPriceTypesCommandService()
+    {
+        $this->privates['JTL\\SCX\\Lib\\Channel\\Core\\Command\\PushPriceTypesCommand'] = $instance = new \JTL\SCX\Lib\Channel\Core\Command\PushPriceTypesCommand(new \JTL\SCX\Client\Channel\Api\Price\PriceApi(($this->privates['JTL\\SCX\\Client\\Api\\AuthAwareApiClient'] ?? $this->getAuthAwareApiClientService())), new \JTL\SCX\Lib\Channel\MetaData\Price\PriceTypeLoader(($this->privates['JTL\\SCX\\Lib\\Channel\\Helper\\FileHandler'] ?? ($this->privates['JTL\\SCX\\Lib\\Channel\\Helper\\FileHandler'] = new \JTL\SCX\Lib\Channel\Helper\FileHandler()))));
+
+        $instance->setName('scx-api:put:price-types');
+
+        return $instance;
+    }
+
+    /**
+     * Gets the private 'JTL\SCX\Lib\Channel\Event\Command\EventConsumeCommand' shared autowired service.
+     *
+     * @return \JTL\SCX\Lib\Channel\Event\Command\EventConsumeCommand
+     */
+    protected function getEventConsumeCommandService()
+    {
+        $this->privates['JTL\\SCX\\Lib\\Channel\\Event\\Command\\EventConsumeCommand'] = $instance = new \JTL\SCX\Lib\Channel\Event\Command\EventConsumeCommand(new \JTL\Nachricht\Transport\Amqp\AmqpConsumer(($this->services['JTL\\Nachricht\\Transport\\Amqp\\AmqpTransport'] ?? $this->getAmqpTransportService()), new \JTL\Nachricht\Dispatcher\AmqpDispatcher(($this->privates['JTL\\Nachricht\\Listener\\ListenerProvider'] ?? $this->getListenerProviderService()))), ($this->privates['JTL\\Nachricht\\Event\\Cache\\EventCache'] ?? $this->getEventCacheService()));
+
+        $instance->setName('scx-channel:event.consume');
+
+        return $instance;
+    }
+
+    /**
+     * Gets the private 'JTL\SCX\Lib\Channel\Event\Command\ScxApiEventConsumeCommand' shared autowired service.
+     *
+     * @return \JTL\SCX\Lib\Channel\Event\Command\ScxApiEventConsumeCommand
+     */
+    protected function getScxApiEventConsumeCommandService()
+    {
+        $a = ($this->privates['Monolog\\Logger'] ?? $this->getLoggerService());
+
+        $this->privates['JTL\\SCX\\Lib\\Channel\\Event\\Command\\ScxApiEventConsumeCommand'] = $instance = new \JTL\SCX\Lib\Channel\Event\Command\ScxApiEventConsumeCommand(new \JTL\SCX\Client\Channel\Api\Event\EventApi(($this->privates['JTL\\SCX\\Client\\Api\\AuthAwareApiClient'] ?? $this->getAuthAwareApiClientService()), new \JTL\SCX\Client\JsonSerializer(), ($this->privates['JTL\\SCX\\Client\\ApiResponseDeserializer'] ?? ($this->privates['JTL\\SCX\\Client\\ApiResponseDeserializer'] = new \JTL\SCX\Client\ApiResponseDeserializer()))), new \JTL\SCX\Lib\Channel\Event\Emitter\SellerEventEmitter(($this->privates['JTL\\Nachricht\\Emitter\\AmqpEmitter'] ?? $this->getAmqpEmitterService()), new \JTL\SCX\Lib\Channel\Event\EventFactory(), $a), ($this->privates['JTL\\SCX\\Lib\\Channel\\Core\\Log\\MonologFactory'] ?? ($this->privates['JTL\\SCX\\Lib\\Channel\\Core\\Log\\MonologFactory'] = new \JTL\SCX\Lib\Channel\Core\Log\MonologFactory()))->createConsoleLogger($a));
+
+        $instance->setName('scx-api:get.events');
+
+        return $instance;
+    }
+
+    /**
+     * Gets the private 'JTL\SCX\Lib\Channel\Helper\Command\EmitOfferNewEventCommand' shared autowired service.
+     *
+     * @return \JTL\SCX\Lib\Channel\Helper\Command\EmitOfferNewEventCommand
+     */
+    protected function getEmitOfferNewEventCommandService()
+    {
+        $this->privates['JTL\\SCX\\Lib\\Channel\\Helper\\Command\\EmitOfferNewEventCommand'] = $instance = new \JTL\SCX\Lib\Channel\Helper\Command\EmitOfferNewEventCommand(($this->privates['JTL\\Nachricht\\Emitter\\AmqpEmitter'] ?? $this->getAmqpEmitterService()));
+
+        $instance->setName('helper:emit.OfferNewEvent');
+
+        return $instance;
+    }
+
+    /**
+     * Gets the private 'Monolog\Logger' shared autowired service.
+     *
+     * @return \Monolog\Logger
+     */
+    protected function getLoggerService()
+    {
+        return $this->privates['Monolog\\Logger'] = ($this->privates['JTL\\SCX\\Lib\\Channel\\Core\\Log\\MonologFactory'] ?? ($this->privates['JTL\\SCX\\Lib\\Channel\\Core\\Log\\MonologFactory'] = new \JTL\SCX\Lib\Channel\Core\Log\MonologFactory()))->create($this->getEnv('LOG_LEVEL'), $this->getEnv('LOG_FILE'), $this->getEnv('LOG_CHANNEL'));
+    }
+
+    public function getParameter($name)
+    {
+        $name = (string) $name;
+
+        if (!(isset($this->parameters[$name]) || isset($this->loadedDynamicParameters[$name]) || array_key_exists($name, $this->parameters))) {
+            throw new InvalidArgumentException(sprintf('The parameter "%s" must be defined.', $name));
+        }
+        if (isset($this->loadedDynamicParameters[$name])) {
+            return $this->loadedDynamicParameters[$name] ? $this->dynamicParameters[$name] : $this->getDynamicParameter($name);
+        }
+
+        return $this->parameters[$name];
+    }
+
+    public function hasParameter($name): bool
+    {
+        $name = (string) $name;
+
+        return isset($this->parameters[$name]) || isset($this->loadedDynamicParameters[$name]) || array_key_exists($name, $this->parameters);
+    }
+
+    public function setParameter($name, $value): void
+    {
+        throw new LogicException('Impossible to call set() on a frozen ParameterBag.');
+    }
+
+    public function getParameterBag(): ParameterBagInterface
+    {
+        if (null === $this->parameterBag) {
+            $parameters = $this->parameters;
+            foreach ($this->loadedDynamicParameters as $name => $loaded) {
+                $parameters[$name] = $loaded ? $this->dynamicParameters[$name] : $this->getDynamicParameter($name);
+            }
+            $this->parameterBag = new FrozenParameterBag($parameters);
+        }
+
+        return $this->parameterBag;
+    }
+
+    private $loadedDynamicParameters = [];
+    private $dynamicParameters = [];
+
+    private function getDynamicParameter(string $name)
+    {
+        throw new InvalidArgumentException(sprintf('The dynamic parameter "%s" must be defined.', $name));
+    }
+
+    protected function getDefaultParameters(): array
+    {
+        return [
+            'console.command.ids' => [
+
+            ],
+        ];
+    }
+}
