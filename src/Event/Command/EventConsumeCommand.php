@@ -59,17 +59,19 @@ class EventConsumeCommand extends AbstractCommand
     {
         $io = new SymfonyStyle($input, $output);
 
-        $eventRoutingKeyList = [];
-
+        $io->writeln("Collect message queue(s) ...");
+        $eventRoutingKeyList = new StringCollection();
         foreach ($this->eventCache->getEventClassList() as $eventClass) {
-            $eventRoutingKeyList[] = $this->eventCache->getRoutingKeyForEvent($eventClass);
+            $routingKey = $this->eventCache->getRoutingKeyForEvent($eventClass);
+            if (!empty($routingKey)) {
+                $io->writeln(' - ' . $routingKey);
+                $eventRoutingKeyList->add($routingKey);
+            }
         }
+        $subscriptionSettings = new SubscriptionSettings($eventRoutingKeyList);
 
-        $io->writeln("start message consumer on RoutingKeys ...");
-        $io->block(implode("\n", $eventRoutingKeyList));
-
-        $subscriptionSettings = new SubscriptionSettings(StringCollection::from(...$eventRoutingKeyList));
-
+        $io->writeln("");
+        $io->writeln("Consume Messages");
         $this->amqpConsumer->consume($subscriptionSettings);
     }
 }
