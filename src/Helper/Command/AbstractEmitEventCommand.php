@@ -12,6 +12,8 @@ namespace JTL\SCX\Lib\Channel\Helper\Command;
 use JTL\Nachricht\Contract\Event\Event;
 use JTL\Nachricht\Emitter\AmqpEmitter;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
+use JTL\SCX\Lib\Channel\Core\Environment\Environment;
+use RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -20,12 +22,13 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
 {
 
     protected AmqpEmitter $emitter;
+    private Environment $environment;
 
-    public function __construct(AmqpEmitter $emitter)
+    public function __construct(Environment $environment, AmqpEmitter $emitter)
     {
         parent::__construct();
         $this->emitter = $emitter;
-
+        $this->environment = $environment;
     }
 
     protected function configure()
@@ -36,20 +39,32 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
 
     protected function prepareEvent(InputInterface $input, OutputInterface $output): array
     {
-        $jsonFile = $input->getArgument('jsonFile');
-
-        $jsonFile = realpath($jsonFile);
-        if (!file_exists($jsonFile)) {
-            throw new \RuntimeException("Json File '{$input->getArgument('jsonFile')}' not found");
-        }
-
-        $event = json_decode((string)file_get_contents($jsonFile), true);
+        $absoluteJsonFilePath = $this->getAbsoluteJsonFilePath($input);
+        $event = json_decode((string)file_get_contents($absoluteJsonFilePath), true);
         $event['sellerId'] = $input->getArgument('sellerId');
 
         $event = $this->replaceWithArguments($event, $input->getArguments());
         $this->printEventData($output, $event);
 
         return $event;
+    }
+
+    /**
+     * @param InputInterface $input
+     * @return string
+     */
+    private function getAbsoluteJsonFilePath(InputInterface $input): string
+    {
+        $jsonFile = $input->getArgument('jsonFile');
+        if (substr($jsonFile, 0, 1) !== '/') {
+            $jsonFile = '/' . $jsonFile;
+        }
+
+        $absoluteJsonFilePath = $this->environment->get('ROOT_DIRECTORY') . $jsonFile;
+        if (!file_exists($absoluteJsonFilePath)) {
+            throw new RuntimeException("Json File '{$absoluteJsonFilePath}' not found ");
+        }
+        return $absoluteJsonFilePath;
     }
 
     private function replaceWithArguments(array $event, array $arguments): array

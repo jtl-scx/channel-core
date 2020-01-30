@@ -19,9 +19,9 @@ $dotenv = new Dotenv();
 $dotenv->loadEnv(__DIR__ . '/../.env');
 
 $isDevelopment = true;
-$rootDir = __DIR__ . '/..';
-$containerCachePath = __DIR__ . '/../var/cache/container';
-$listenerCachePath = __DIR__ . '/../var/cache/listener';
+$rootDir = realpath(__DIR__ . '/..');
+$containerCachePath = realpath(__DIR__ . '/../var/cache') . '/container';
+$listenerCachePath = realpath(__DIR__ . '/../var/cache') . '/listener';
 
 $core = new class($isDevelopment, $rootDir, $containerCachePath, $listenerCachePath) extends AbstractApplicationContext {
     public function __construct($isDevelopment, $rootDir, $containerCachePath, $listenerCachePath)

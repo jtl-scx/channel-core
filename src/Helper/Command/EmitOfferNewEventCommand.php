@@ -10,7 +10,6 @@ namespace JTL\SCX\Lib\Channel\Helper\Command;
 
 use DateTimeImmutable;
 use Exception;
-use JTL\Nachricht\Emitter\AmqpEmitter;
 use JTL\SCX\Client\Channel\Model\SellerEventOfferNew;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferNewEvent;
 use Symfony\Component\Console\Input\InputArgument;
@@ -20,11 +19,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 class EmitOfferNewEventCommand extends AbstractEmitEventCommand
 {
     protected static $defaultName = 'helper:emit.OfferNewEvent';
-
-    public function __construct(AmqpEmitter $emitter)
-    {
-        parent::__construct($emitter);
-    }
 
     protected function configure()
     {
