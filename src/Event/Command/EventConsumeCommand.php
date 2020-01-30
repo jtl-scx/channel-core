@@ -14,6 +14,7 @@ use JTL\Nachricht\Event\Cache\EventCache;
 use JTL\Nachricht\Transport\Amqp\AmqpConsumer;
 use JTL\Nachricht\Transport\SubscriptionSettings;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -46,7 +47,7 @@ class EventConsumeCommand extends AbstractCommand
 
     protected function configure()
     {
-        $this->setDescription('Consume events from RabbitMQ');
+        $this->setDescription('Subscribe to all existing Event Queues and consume Messages from RabbitMQ');
     }
 
     /**
@@ -59,13 +60,15 @@ class EventConsumeCommand extends AbstractCommand
     {
         $io = new SymfonyStyle($input, $output);
 
-        $io->writeln("Collect message queue(s) ...");
+        $io->writeln("Collect message queue(s) ...\n");
         $eventRoutingKeyList = new StringCollection();
         foreach ($this->eventCache->getEventClassList() as $eventClass) {
             $routingKey = $this->eventCache->getRoutingKeyForEvent($eventClass);
             if (!empty($routingKey)) {
                 $io->writeln(' - ' . $routingKey);
                 $eventRoutingKeyList->add($routingKey);
+            } else {
+                $io->writeln(" - <error>RoutingKey is empty </> \"$eventClass\" skip");
             }
         }
         $subscriptionSettings = new SubscriptionSettings($eventRoutingKeyList);
