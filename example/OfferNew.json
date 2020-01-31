@@ -6,8 +6,13 @@
     "quantity": 1,
     "priceList": [
         {
-            "id": "b2c",
-            "price": 5.32
+            "id": "B2C",
+            "price": [
+                {
+                    "amount": "5.23",
+                    "currency": "EUR"
+                }
+            ]
         }
     ],
     "title": "Offer Title",

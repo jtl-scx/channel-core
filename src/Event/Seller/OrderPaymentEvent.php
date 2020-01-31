@@ -9,32 +9,24 @@
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
 use DateTimeImmutable;
+use JTL\SCX\Client\Channel\Helper\Event\EventType;
 use JTL\SCX\Client\Channel\Model\SellerEventOrderPayment;
 use JTL\SCX\Lib\Channel\Event\AbstractEvent;
-use JTL\SCX\Lib\Channel\Event\EventType;
 
 class OrderPaymentEvent extends AbstractEvent
 {
-    /**
-     * @var SellerEventOrderPayment
-     */
-    private $event;
+    private SellerEventOrderPayment $event;
 
-    /**
-     * OrderPaymentEvent constructor.
-     * @param string $id
-     * @param DateTimeImmutable $createdAt
-     * @param SellerEventOrderPayment $event
-     */
-    public function __construct(string $id, DateTimeImmutable $createdAt, SellerEventOrderPayment $event)
-    {
-        parent::__construct($id, $createdAt, EventType::SELLER__ORDER_PAYMENT());
+    public function __construct(
+        string $id,
+        DateTimeImmutable $createdAt,
+        SellerEventOrderPayment $event,
+        string $internalEventId = null
+    ) {
+        parent::__construct($id, $createdAt, EventType::SellerOrderPayment(), $internalEventId);
         $this->event = $event;
     }
 
-    /**
-     * @return SellerEventOrderPayment
-     */
     public function getEvent(): SellerEventOrderPayment
     {
         return $this->event;

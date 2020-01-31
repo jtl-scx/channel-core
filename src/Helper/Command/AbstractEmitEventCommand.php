@@ -9,10 +9,15 @@
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
 
+use DateTimeImmutable;
 use JTL\Nachricht\Contract\Event\Event;
 use JTL\Nachricht\Emitter\AmqpEmitter;
+use JTL\SCX\Client\Channel\Api\Event\Model\EventContainer;
+use JTL\SCX\Client\Channel\Helper\Event\EventType;
+use JTL\SCX\Client\ObjectSerializer;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
+use JTL\SCX\Lib\Channel\Event\EventFactory;
 use RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -22,13 +27,15 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
 {
 
     protected AmqpEmitter $emitter;
+    protected EventFactory $eventFactory;
     private Environment $environment;
 
-    public function __construct(Environment $environment, AmqpEmitter $emitter)
+    public function __construct(Environment $environment, EventFactory $eventFactory, AmqpEmitter $emitter)
     {
         parent::__construct();
         $this->emitter = $emitter;
         $this->environment = $environment;
+        $this->eventFactory = $eventFactory;
     }
 
     protected function configure()
@@ -37,7 +44,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
             ->addArgument('sellerId', InputArgument::OPTIONAL, 'Associated SellerId', null);
     }
 
-    protected function prepareEvent(InputInterface $input, OutputInterface $output): array
+    protected function prepareEventData(InputInterface $input, OutputInterface $output): array
     {
         $absoluteJsonFilePath = $this->getAbsoluteJsonFilePath($input);
         $event = json_decode((string)file_get_contents($absoluteJsonFilePath), true);
@@ -47,6 +54,22 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
         $this->printEventData($output, $event);
 
         return $event;
+    }
+
+    protected function buildEventContainer(EventType $eventType, array $event)
+    {
+        return $this->eventFactory->createFromEventContainer(new EventContainer(
+            uniqid(static::getName()),
+            new DateTimeImmutable('now'),
+            $eventType->getValue(),
+            ObjectSerializer::deserialize(json_encode($event), $eventType->getEventModelClass())
+        ));
+    }
+
+    protected function emit(Event $event, InputInterface $input, OutputInterface $output)
+    {
+        $this->emitter->emit($event);
+        $output->writeln("Event \"" . get_class($event) . "\" emitted");
     }
 
     /**
@@ -81,12 +104,6 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
     {
         $output->writeln(json_encode($event, JSON_PRETTY_PRINT));
         $output->writeln("");
-    }
-
-    protected function emit(Event $event, InputInterface $input, OutputInterface $output)
-    {
-        $this->emitter->emit($event);
-        $output->writeln("Event \"" . get_class($event) . "\" emitted");
     }
 
 }

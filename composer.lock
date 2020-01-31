@@ -201,7 +201,7 @@
             "source": {
                 "type": "git",
                 "url": "git@gitlab.jtl-software.com:ea/scx/channel-api-client.git",
-                "reference": "e9ea4cb4b381e6e7d7d5010c5f15c28ea101531e"
+                "reference": "236664b1374379c1bf793be23c17d445d4c5ff7b"
             },
             "require": {
                 "jtl/php-generic-collection": "^0.3",
@@ -238,7 +238,7 @@
                 ]
             },
             "description": "API Client for SCX Channel API",
-            "time": "2020-01-24T06:06:30+00:00"
+            "time": "2020-01-31T14:15:56+00:00"
         },
         {
             "name": "jtl/nachricht",

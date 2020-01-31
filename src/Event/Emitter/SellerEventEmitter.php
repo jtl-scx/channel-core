@@ -17,32 +17,12 @@ use Psr\Log\LoggerInterface;
 
 class SellerEventEmitter
 {
-    /**
-     * @var Emitter
-     */
-    private $emitter;
+    private Emitter $emitter;
+    private EventFactory $eventFactory;
+    private LoggerInterface $logger;
 
-    /**
-     * @var EventFactory
-     */
-    private $eventFactory;
-
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    /**
-     * SellerEventEmitter constructor.
-     * @param Emitter $emitter
-     * @param EventFactory $eventFactory
-     * @param LoggerInterface $logger
-     */
-    public function __construct(
-        Emitter $emitter,
-        EventFactory $eventFactory,
-        LoggerInterface $logger
-    ) {
+    public function __construct(Emitter $emitter, EventFactory $eventFactory, LoggerInterface $logger)
+    {
         $this->emitter = $emitter;
         $this->eventFactory = $eventFactory;
         $this->logger = $logger;

@@ -10,6 +10,7 @@ namespace JTL\SCX\Lib\Channel\Event;
 
 
 use JTL\SCX\Client\Channel\Api\Event\Model\EventContainer;
+use JTL\SCX\Client\Channel\Helper\Event\EventType;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferEndEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferNewEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderCancelledEvent;
@@ -24,28 +25,28 @@ class EventFactory
     public function createFromEventContainer(EventContainer $eventContainer): ?AbstractEvent
     {
         switch ($eventContainer->getType()) {
-            case EventType::SYSTEM__NOTIFICATION():
+            case EventType::SystemNotification():
                 $eventName = SystemNotificationEvent::class;
                 break;
-            case EventType::SYSTEM__TEST():
+            case EventType::SellerEventTest():
                 $eventName = SystemTestEvent::class;
                 break;
-            case EventType::SELLER__ORDER_CONFIRMED():
+            case EventType::SellerOrderConfirmed():
                 $eventName = OrderConfirmedEvent::class;
                 break;
-            case EventType::SELLER__ORDER_SHIPPING():
+            case EventType::SellerOrderShipping():
                 $eventName = OrderShippingEvent::class;
                 break;
-            case EventType::SELLER__ORDER_PAYMENT():
+            case EventType::SellerOrderPayment():
                 $eventName = OrderPaymentEvent::class;
                 break;
-            case EventType::SELLER__ORDER_CANCELLED():
+            case EventType::SellerOrderCancelled():
                 $eventName = OrderCancelledEvent::class;
                 break;
-            case EventType::SELLER__OFFER_END():
+            case EventType::SellerOfferEnd():
                 $eventName = OfferEndEvent::class;
                 break;
-            case EventType::SELLER__OFFER_NEW():
+            case EventType::SellerOfferNew():
                 $eventName = OfferNewEvent::class;
                 break;
             default:

@@ -29,11 +29,8 @@ class ScxApiEventConsumeCommand extends AbstractCommand
     private EventApi $eventApi;
     private LoggerInterface $logger;
 
-    public function __construct(
-        EventApi $eventApi,
-        SellerEventEmitter $eventEmitter,
-        ConsoleLogger $logger
-    ) {
+    public function __construct(EventApi $eventApi, SellerEventEmitter $eventEmitter, ConsoleLogger $logger)
+    {
         parent::__construct();
         $this->eventApi = $eventApi;
         $this->eventEnqueuer = $eventEmitter;

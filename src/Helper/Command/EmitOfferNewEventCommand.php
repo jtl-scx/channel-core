@@ -8,10 +8,8 @@
 
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
-use DateTimeImmutable;
 use Exception;
-use JTL\SCX\Client\Channel\Model\SellerEventOfferNew;
-use JTL\SCX\Lib\Channel\Event\Seller\OfferNewEvent;
+use JTL\SCX\Client\Channel\Helper\Event\EventType;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -28,8 +26,7 @@ class EmitOfferNewEventCommand extends AbstractEmitEventCommand
             ->addArgument('sku', InputArgument::OPTIONAL, 'Offer Sku', null)
             ->addArgument('title', InputArgument::OPTIONAL, 'Offer Title', null)
             ->addArgument('price', InputArgument::OPTIONAL, 'Offer Price', null)
-            ->addArgument('quantity', InputArgument::OPTIONAL, 'Offer Quantity', 5)
-        ;
+            ->addArgument('quantity', InputArgument::OPTIONAL, 'Offer Quantity', 5);
     }
 
     /**
@@ -40,12 +37,10 @@ class EmitOfferNewEventCommand extends AbstractEmitEventCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $event = $this->prepareEvent($input, $output);
-        $event = new OfferNewEvent(
-            uniqid('test'),
-            new DateTimeImmutable('now'),
-            new SellerEventOfferNew($event)
-        );
-        $this->emit($event, $input, $output);
+        $event = $this->prepareEventData($input, $output);
+        $container = $this->buildEventContainer(EventType::SellerOfferNew(), $event);
+        $this->emit($container, $input, $output);
     }
+
+
 }

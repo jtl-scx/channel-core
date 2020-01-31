@@ -9,32 +9,24 @@
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
 use DateTimeImmutable;
+use JTL\SCX\Client\Channel\Helper\Event\EventType;
 use JTL\SCX\Client\Channel\Model\SellerEventTest;
 use JTL\SCX\Lib\Channel\Event\AbstractEvent;
-use JTL\SCX\Lib\Channel\Event\EventType;
 
 class SystemTestEvent extends AbstractEvent
 {
-    /**
-     * @var SellerEventTest
-     */
-    private $event;
+    private SellerEventTest $event;
 
-    /**
-     * SystemTestEvent constructor.
-     * @param string $id
-     * @param DateTimeImmutable $createdAt
-     * @param SellerEventTest $event
-     */
-    public function __construct(string $id, DateTimeImmutable $createdAt, SellerEventTest $event)
-    {
-        parent::__construct($id, $createdAt, EventType::SYSTEM__TEST());
+    public function __construct(
+        string $id,
+        DateTimeImmutable $createdAt,
+        SellerEventTest $event,
+        string $internalEventId = null
+    ) {
+        parent::__construct($id, $createdAt, EventType::SellerEventTest(), $internalEventId);
         $this->event = $event;
     }
 
-    /**
-     * @return SellerEventTest
-     */
     public function getEvent(): SellerEventTest
     {
         return $this->event;
