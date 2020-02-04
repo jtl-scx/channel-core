@@ -7,6 +7,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "jtl/channel-api-client": "dev-EA-2568",
         "jtl/nachricht": "~0.4",
+        "jtl/scx-api-client": "^0.3",
         "monolog/monolog": "^2.0",
         "myclabs/php-enum": "^1.7",
         "php-amqplib/php-amqplib": "^2.10",
