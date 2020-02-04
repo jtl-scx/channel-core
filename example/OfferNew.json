@@ -7,7 +7,7 @@
     "priceList": [
         {
             "id": "B2C",
-            "price": [
+            "quantityPriceList": [
                 {
                     "amount": "5.23",
                     "currency": "EUR"

@@ -93,7 +93,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
     private function replaceWithArguments(array $event, array $arguments): array
     {
         foreach ($arguments as $key => $value) {
-            if ($key !== null && isset($event[$key])) {
+            if ($value !== null && isset($event[$key])) {
                 $event[$key] = $value;
             }
         }

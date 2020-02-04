@@ -8,7 +8,6 @@
 
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
-use Exception;
 use JTL\SCX\Client\Channel\Helper\Event\EventType;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -33,7 +32,7 @@ class EmitOfferNewEventCommand extends AbstractEmitEventCommand
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return int|void
-     * @throws Exception
+     * @throws \Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
