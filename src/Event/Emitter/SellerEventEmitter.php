@@ -14,6 +14,7 @@ use JTL\SCX\Client\Channel\Api\Event\Model\EventContainerList;
 use JTL\SCX\Lib\Channel\Event\EventFactory;
 use JTL\SCX\Lib\Channel\Event\Seller\SystemEventEnum;
 use Psr\Log\LoggerInterface;
+use Throwable;
 
 class SellerEventEmitter
 {
@@ -36,9 +37,15 @@ class SellerEventEmitter
     {
         $emittedEventIdList = [];
         foreach ($eventContainerList as $eventContainer) {
-            $event = $this->eventFactory->createFromEventContainer($eventContainer);
+            $event = null;
+            try {
+                $event = $this->eventFactory->createFromEventContainer($eventContainer);
+            } catch (Throwable $e) {
+                $this->logger->error($e->getMessage());
+            }
+
             if ($event === null) {
-                $this->logger->warning("Event type '{$eventContainer->getType()}' could not be mapped");
+                $this->logger->warning("Event {$eventContainer->getId()} of type '{$eventContainer->getType()}' could not be mapped");
                 continue;
             }
             $this->emitter->emit($event);
