@@ -325,11 +325,11 @@
         },
         {
             "name": "jtl/scx-api-client",
-            "version": "0.3.6",
+            "version": "0.3.7",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.jtl-software.com:ea/scx/scx-api-client.git",
-                "reference": "f5ac3cfad1028d37c89acec352aaabbe66d0a39f"
+                "reference": "aa3e5b6e3b464dae7af18bbfcb2232e51fd34498"
             },
             "require": {
                 "ext-json": "*",
@@ -364,7 +364,7 @@
                 ]
             },
             "description": "SCX-Client Base",
-            "time": "2020-02-04T07:53:41+00:00"
+            "time": "2020-02-04T08:24:27+00:00"
         },
         {
             "name": "laminas/laminas-code",

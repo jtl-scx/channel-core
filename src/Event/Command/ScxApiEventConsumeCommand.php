@@ -53,8 +53,12 @@ class ScxApiEventConsumeCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         while (($response = $this->eventApi->getEventList(new GetEventListRequest()))->getEventList()->count() !== 0) {
+            $this->logger->info("Receive {$response->getEventList()->count()} events from scx-channel api");
             $emittedEventIdList = $this->eventEnqueuer->emit($response->getEventList());
+
+            $this->logger->info(count($emittedEventIdList) . " events emitted.");
             $this->eventApi->ack(new AcknowledgeEventIdListRequest($emittedEventIdList));
+            $this->logger->info("Events successful acknowledged");
         }
     }
 }

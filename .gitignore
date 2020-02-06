@@ -1,6 +1,7 @@
 vendor/
 .idea/
 .php_cs.cache
+var/
 build/
 .phpunit.result.cache
 .env
