@@ -30,5 +30,18 @@ abstract class AbstractEvent extends AbstractAmqpEvent
         $this->type = $type;
     }
 
+    public function getId(): string
+    {
+        return $this->id;
+    }
 
+    public function getCreatedAt(): DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function getType(): EventType
+    {
+        return $this->type;
+    }
 }

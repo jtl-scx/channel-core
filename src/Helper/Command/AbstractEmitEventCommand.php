@@ -8,7 +8,6 @@
 
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
-
 use DateTimeImmutable;
 use JTL\Nachricht\Contract\Event\Event;
 use JTL\Nachricht\Emitter\AmqpEmitter;
@@ -25,7 +24,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class AbstractEmitEventCommand extends AbstractCommand
 {
-
     protected AmqpEmitter $emitter;
     protected EventFactory $eventFactory;
     private Environment $environment;
@@ -105,5 +103,4 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
         $output->writeln(json_encode($event, JSON_PRETTY_PRINT));
         $output->writeln("");
     }
-
 }

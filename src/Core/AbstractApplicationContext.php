@@ -98,7 +98,6 @@ abstract class AbstractApplicationContext
             $serviceConfigFile = $this->rootDirectory . '/' . $_ENV['CORE_DEV_CONTAINER_SERVICE_YAML'];
             $loader->load($serviceConfigFile);
         }
-
     }
 
     /**

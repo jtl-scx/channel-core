@@ -31,6 +31,4 @@ class OfferNewEvent extends AbstractEvent
     {
         return $this->eventOfferNew;
     }
-
-
 }

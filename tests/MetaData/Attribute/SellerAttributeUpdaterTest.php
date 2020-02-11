@@ -8,7 +8,6 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
-
 use JTL\SCX\Client\Channel\Api\Attribute\AttributesApi;
 use JTL\SCX\Client\Channel\Api\Attribute\Request\CreateSellerAttributesRequest;
 use JTL\SCX\Client\Channel\Api\Attribute\Response\AttributesCreatedResponse;

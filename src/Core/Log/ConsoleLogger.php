@@ -12,5 +12,4 @@ use Monolog\Logger;
 
 class ConsoleLogger extends Logger
 {
-
 }

@@ -42,8 +42,7 @@ class ImportCategoryTreeCommand extends AbstractCommand
     public function __construct(
         MetaCategoryLoader $categoryLoader,
         CategoryTreeUpdater $categoryTreeUpdater
-    )
-    {
+    ) {
         parent::__construct();
         $this->categoryLoader = $categoryLoader;
         $this->categoryTreeUpdater = $categoryTreeUpdater;

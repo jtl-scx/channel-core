@@ -13,6 +13,7 @@ use Exception;
 use JTL\SCX\Client\Channel\Api\Event\Model\EventContainer;
 use JTL\SCX\Client\Channel\Model\SellerEventOfferEnd;
 use JTL\SCX\Client\Channel\Model\SellerEventOfferNew;
+use JTL\SCX\Client\Channel\Model\SellerEventOfferUpdate;
 use JTL\SCX\Client\Channel\Model\SellerEventOrderCancelled;
 use JTL\SCX\Client\Channel\Model\SellerEventOrderConfirmed;
 use JTL\SCX\Client\Channel\Model\SellerEventOrderPayment;
@@ -22,6 +23,7 @@ use JTL\SCX\Client\Channel\Model\SystemEventNotification;
 use JTL\SCX\Lib\Channel\Event\EventFactory;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferEndEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferNewEvent;
+use JTL\SCX\Lib\Channel\Event\Seller\OfferUpdateEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderCancelledEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderConfirmedEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderPaymentEvent;
@@ -36,7 +38,6 @@ use PHPUnit\Framework\TestCase;
  */
 class EventFactoryTest extends TestCase
 {
-
     public function eventTestCasesProvider(): array
     {
         return [
@@ -47,6 +48,7 @@ class EventFactoryTest extends TestCase
             [OrderConfirmedEvent::class, SellerEventOrderConfirmed::class, "Seller:Order.Confirmed"],
             [OrderCancelledEvent::class, SellerEventOrderCancelled::class, "Seller:Order.Cancelled"],
             [OfferNewEvent::class, SellerEventOfferNew::class, "Seller:Offer.New"],
+            [OfferUpdateEvent::class, SellerEventOfferUpdate::class, "Seller:Offer.Update"],
             [OfferEndEvent::class, SellerEventOfferEnd::class, "Seller:Offer.End"]
         ];
     }

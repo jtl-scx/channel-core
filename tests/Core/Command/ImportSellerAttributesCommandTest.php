@@ -8,7 +8,6 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
-
 use JTL\SCX\Lib\Channel\Contract\MetaData\SellerAttributeLoader;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\SellerAttributeUpdater;
@@ -23,7 +22,6 @@ use Symfony\Component\Console\Tester\CommandTester;
  */
 class ImportSellerAttributesCommandTest extends TestCase
 {
-
     public function testCanImportSellerAttributes(): void
     {
         $sellerId = uniqid('sellerId', true);

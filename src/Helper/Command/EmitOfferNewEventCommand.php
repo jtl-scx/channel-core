@@ -9,8 +9,8 @@
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
 use JTL\SCX\Client\Channel\Helper\Event\EventType;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class EmitOfferNewEventCommand extends AbstractEmitEventCommand
@@ -21,11 +21,11 @@ class EmitOfferNewEventCommand extends AbstractEmitEventCommand
     {
         parent::configure();
         $this->setDescription('Helper command to emit OfferNewEvent for Testing')
-            ->addArgument('ean', InputArgument::OPTIONAL, 'Offer EAN', null)
-            ->addArgument('sku', InputArgument::OPTIONAL, 'Offer Sku', null)
-            ->addArgument('title', InputArgument::OPTIONAL, 'Offer Title', null)
-            ->addArgument('price', InputArgument::OPTIONAL, 'Offer Price', null)
-            ->addArgument('quantity', InputArgument::OPTIONAL, 'Offer Quantity', 5);
+            ->addOption('ean', null, InputOption::VALUE_OPTIONAL, 'Offer EAN', null)
+            ->addOption('sku', null, InputOption::VALUE_OPTIONAL, 'Offer Sku', null)
+            ->addOption('title', null, InputOption::VALUE_OPTIONAL, 'Offer Title', null)
+            ->addOption('price', null, InputOption::VALUE_OPTIONAL, 'Offer Price', null)
+            ->addOption('quantity', null, InputOption::VALUE_OPTIONAL, 'Offer Quantity', 5);
     }
 
     /**
@@ -40,6 +40,4 @@ class EmitOfferNewEventCommand extends AbstractEmitEventCommand
         $container = $this->buildEventContainer(EventType::SellerOfferNew(), $event);
         $this->emit($container, $input, $output);
     }
-
-
 }

@@ -113,5 +113,4 @@ class GlobalAttributeLoader
 
         return $conditionalAttributeCollection;
     }
-
 }
