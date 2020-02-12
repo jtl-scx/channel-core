@@ -9,6 +9,7 @@
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
 use JTL\SCX\Lib\Channel\Contract\MetaData\SellerAttributeLoader;
+use JTL\SCX\Lib\Channel\Core\Log\ContextLogger;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\SellerAttributeUpdater;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -18,19 +19,15 @@ class ImportSellerAttributesCommand extends AbstractCommand
 {
     protected static $defaultName = 'scx-api:put.attributes-seller';
 
-    /**
-     * @var SellerAttributeLoader
-     */
-    private $attributeLoader;
+    private SellerAttributeLoader $attributeLoader;
+    private SellerAttributeUpdater $attributeUpdater;
 
-    /**
-     * @var SellerAttributeUpdater
-     */
-    private $attributeUpdater;
-
-    public function __construct(SellerAttributeLoader $attributeLoader, SellerAttributeUpdater $attributeUpdater)
-    {
-        parent::__construct();
+    public function __construct(
+        SellerAttributeLoader $attributeLoader,
+        SellerAttributeUpdater $attributeUpdater,
+        ContextLogger $logger
+    ) {
+        parent::__construct($logger);
         $this->attributeLoader = $attributeLoader;
         $this->attributeUpdater = $attributeUpdater;
     }

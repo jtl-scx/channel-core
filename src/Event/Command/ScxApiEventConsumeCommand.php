@@ -16,8 +16,8 @@ use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
 use JTL\SCX\Lib\Channel\Core\Log\ConsoleLogger;
+use JTL\SCX\Lib\Channel\Core\Log\ContextLogger;
 use JTL\SCX\Lib\Channel\Event\Emitter\SellerEventEmitter;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -27,14 +27,12 @@ class ScxApiEventConsumeCommand extends AbstractCommand
 
     private SellerEventEmitter $eventEnqueuer;
     private EventApi $eventApi;
-    private LoggerInterface $logger;
 
-    public function __construct(EventApi $eventApi, SellerEventEmitter $eventEmitter, ConsoleLogger $logger)
+    public function __construct(EventApi $eventApi, SellerEventEmitter $eventEmitter, ContextLogger $logger)
     {
-        parent::__construct();
+        parent::__construct($logger);
         $this->eventApi = $eventApi;
         $this->eventEnqueuer = $eventEmitter;
-        $this->logger = $logger;
     }
 
     protected function configure()

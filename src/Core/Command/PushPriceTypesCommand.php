@@ -12,6 +12,7 @@ use Exception;
 use JTL\SCX\Client\Channel\Api\Price\PriceApi;
 use JTL\SCX\Client\Channel\Api\Price\Request\CreatePriceTypeRequest;
 use JTL\SCX\Client\Channel\Model\PriceType;
+use JTL\SCX\Lib\Channel\Core\Log\ContextLogger;
 use JTL\SCX\Lib\Channel\MetaData\Price\PriceTypeLoader;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -24,11 +25,10 @@ class PushPriceTypesCommand extends AbstractCommand
     private PriceApi $client;
     private PriceTypeLoader $priceTypeLoader;
 
-    public function __construct(PriceApi $client, PriceTypeLoader $priceTypeLoader)
+    public function __construct(PriceApi $client, PriceTypeLoader $priceTypeLoader, ContextLogger $logger)
     {
+        parent::__construct($logger);
         $this->client = $client;
-
-        parent::__construct();
         $this->priceTypeLoader = $priceTypeLoader;
     }
 

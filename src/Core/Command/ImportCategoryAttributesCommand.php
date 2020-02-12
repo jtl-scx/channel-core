@@ -13,6 +13,7 @@ use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataCategoryAttributeLoader;
 use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
+use JTL\SCX\Lib\Channel\Core\Log\ContextLogger;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeUpdater;
 use Symfony\Component\Console\Input\InputArgument;
@@ -25,26 +26,15 @@ class ImportCategoryAttributesCommand extends AbstractCommand
 {
     protected static $defaultName = 'scx-api:put.attributes-category';
 
-    /**
-     * @var MetaDataCategoryAttributeLoader
-     */
-    private $categoryAttributeLoader;
+    private MetaDataCategoryAttributeLoader $categoryAttributeLoader;
+    private CategoryAttributeUpdater $attributeUpdater;
 
-    /**
-     * @var CategoryAttributeUpdater
-     */
-    private $attributeUpdater;
-
-    /**
-     * ImportCategoryAttributesCommand constructor.
-     * @param MetaDataCategoryAttributeLoader $categoryAttributeLoader
-     * @param CategoryAttributeUpdater $attributeUpdater
-     */
     public function __construct(
         MetaDataCategoryAttributeLoader $categoryAttributeLoader,
-        CategoryAttributeUpdater $attributeUpdater
+        CategoryAttributeUpdater $attributeUpdater,
+        ContextLogger $logger
     ) {
-        parent::__construct();
+        parent::__construct($logger);
         $this->categoryAttributeLoader = $categoryAttributeLoader;
         $this->attributeUpdater = $attributeUpdater;
     }
@@ -89,8 +79,7 @@ class ImportCategoryAttributesCommand extends AbstractCommand
                 InputOption::VALUE_REQUIRED,
                 'Read category Id from specific column',
                 0
-            )
-        ;
+            );
     }
 
     /**

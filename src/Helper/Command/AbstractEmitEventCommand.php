@@ -16,6 +16,7 @@ use JTL\SCX\Client\Channel\Helper\Event\EventType;
 use JTL\SCX\Client\ObjectSerializer;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
+use JTL\SCX\Lib\Channel\Core\Log\ContextLogger;
 use JTL\SCX\Lib\Channel\Event\EventFactory;
 use RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
@@ -28,9 +29,13 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
     protected EventFactory $eventFactory;
     private Environment $environment;
 
-    public function __construct(Environment $environment, EventFactory $eventFactory, AmqpEmitter $emitter)
-    {
-        parent::__construct();
+    public function __construct(
+        Environment $environment,
+        EventFactory $eventFactory,
+        AmqpEmitter $emitter,
+        ContextLogger $logger
+    ) {
+        parent::__construct($logger);
         $this->emitter = $emitter;
         $this->environment = $environment;
         $this->eventFactory = $eventFactory;
