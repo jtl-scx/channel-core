@@ -8,6 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Log;
 
+use JTL\SCX\Lib\Channel\Contract\Core\Log\ContextualInstance;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -80,8 +81,10 @@ class ContextLogger implements ScxLogger
         }
     }
 
-    public function replaceContext(callable $contextProcessor): void
+    public function replaceContext(ContextualInstance $contextualInstance): void
     {
+        $contextProcessor = $contextualInstance->createContextInstance();
+
         $existingProcessorList = $this->logger->getProcessors();
         $this->removeProcessorsFromLogger();
 

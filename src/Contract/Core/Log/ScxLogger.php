@@ -16,5 +16,5 @@ interface ScxLogger extends LoggerInterface
 
     public function enableStdoutSteam(): void;
 
-    public function replaceContext(callable $contextProcessor): void;
+    public function replaceContext(ContextualInstance $contextProcessor): void;
 }
