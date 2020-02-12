@@ -80,28 +80,32 @@ class ContextLogger implements ScxLogger
         }
     }
 
+    public function replaceContext(callable $contextProcessor)
+    {
+        $existingProcessorList = $this->logger->getProcessors();
+        $this->removeProcessorsFromLogger();
+
+        foreach ($existingProcessorList as $existingProcessor) {
+            if (!$contextProcessor instanceof $existingProcessor) {
+                $this->logger->pushProcessor($existingProcessor);
+            }
+        }
+        $this->logger->pushProcessor($contextProcessor);
+    }
+
     public function reset(): void
     {
         $this->removeProcessorsFromLogger();
         $this->setup();
     }
 
-    protected function replaceProcessor(object $newProcessor)
-    {
-        $existingProcessorList = $this->logger->getProcessors();
-        $this->removeProcessorsFromLogger();
-
-        foreach ($existingProcessorList as $existingProcessor) {
-            if (!$newProcessor instanceof $existingProcessor) {
-                $this->logger->pushProcessor($existingProcessor);
-            }
-        }
-        $this->logger->pushProcessor($newProcessor);
-    }
-
     private function setup()
     {
-        $this->logger->pushProcessor(new IntrospectionProcessor());
+        $introspectionProcessor = new IntrospectionProcessor(
+            Logger::DEBUG,
+            ["JTL\\SCX\\Lib\\Channel\\Core\\Log"]
+        );
+        $this->logger->pushProcessor($introspectionProcessor);
         $this->logger->pushProcessor(new MemoryUsageProcessor());
         $this->logger->pushProcessor(new ProcessIdProcessor());
         $this->logger->pushProcessor(new UidProcessor());
