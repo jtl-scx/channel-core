@@ -12,7 +12,7 @@ use Exception;
 use JTL\SCX\Client\Channel\Api\Price\PriceApi;
 use JTL\SCX\Client\Channel\Api\Price\Response\CreatePriceTypeResponse;
 use JTL\SCX\Client\Channel\Model\PriceType;
-use JTL\SCX\Lib\Channel\Core\Log\ContextLogger;
+use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\MetaData\Price\PriceTypeList;
 use JTL\SCX\Lib\Channel\MetaData\Price\PriceTypeLoader;
 use PHPUnit\Framework\TestCase;
@@ -42,7 +42,7 @@ class PushPriceTypesCommandTest extends TestCase
         $priceLoaderMock = $this->createMock(PriceTypeLoader::class);
         $priceLoaderMock->expects($this->once())->method('load')->with($defaultFilename)->willReturn($priceList);
 
-        $command = new PushPriceTypesCommand($clientMock, $priceLoaderMock, $this->createStub(ContextLogger::class));
+        $command = new PushPriceTypesCommand($clientMock, $priceLoaderMock, $this->createStub(ScxLogger::class));
         $commandTester = new CommandTester($command);
         $commandTester->execute([]);
 
@@ -64,7 +64,7 @@ class PushPriceTypesCommandTest extends TestCase
             ->willReturn($this->createPriceList(uniqid('priceList', true)));
 
 
-        $command = new PushPriceTypesCommand($clientMock, $priceLoaderMock, $this->createStub(ContextLogger::class));
+        $command = new PushPriceTypesCommand($clientMock, $priceLoaderMock, $this->createStub(ScxLogger::class));
         $commandTester = new CommandTester($command);
         $commandTester->execute([]);
 
@@ -85,7 +85,7 @@ class PushPriceTypesCommandTest extends TestCase
             ->method('load')
             ->willReturn($this->createPriceList(uniqid('priceList', true)));
 
-        $command = new PushPriceTypesCommand($clientMock, $priceLoaderMock, $this->createStub(ContextLogger::class));
+        $command = new PushPriceTypesCommand($clientMock, $priceLoaderMock, $this->createStub(ScxLogger::class));
         $commandTester = new CommandTester($command);
         $commandTester->execute([]);
 

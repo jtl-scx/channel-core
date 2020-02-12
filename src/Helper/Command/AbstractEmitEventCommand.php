@@ -14,9 +14,9 @@ use JTL\Nachricht\Emitter\AmqpEmitter;
 use JTL\SCX\Client\Channel\Api\Event\Model\EventContainer;
 use JTL\SCX\Client\Channel\Helper\Event\EventType;
 use JTL\SCX\Client\ObjectSerializer;
+use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
-use JTL\SCX\Lib\Channel\Core\Log\ContextLogger;
 use JTL\SCX\Lib\Channel\Event\EventFactory;
 use RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
@@ -33,7 +33,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
         Environment $environment,
         EventFactory $eventFactory,
         AmqpEmitter $emitter,
-        ContextLogger $logger
+        ScxLogger $logger
     ) {
         parent::__construct($logger);
         $this->emitter = $emitter;

@@ -8,16 +8,16 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
-use JTL\SCX\Lib\Channel\Core\Log\ContextLogger;
+use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class AbstractCommand extends Command
 {
-    protected ContextLogger $logger;
+    protected ScxLogger $logger;
 
-    public function __construct(ContextLogger $logger)
+    public function __construct(ScxLogger $logger)
     {
         parent::__construct(null);
         $this->logger = $logger;

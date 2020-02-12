@@ -8,9 +8,9 @@
 
 namespace Core\Command;
 
+use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataCategoryAttributeLoader;
 use JTL\SCX\Lib\Channel\Core\Command\ImportCategoryAttributesCommand;
-use JTL\SCX\Lib\Channel\Core\Log\ContextLogger;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeUpdater;
 use PHPUnit\Framework\TestCase;
@@ -36,7 +36,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
 
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
 
-        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $this->createStub(ContextLogger::class));
+        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $this->createStub(ScxLogger::class));
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
             'categoryId' => $testCategoryId
@@ -61,7 +61,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
 
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
 
-        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $this->createStub(ContextLogger::class));
+        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $this->createStub(ScxLogger::class));
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
             'categoryId' => $testCategoryId,
@@ -87,7 +87,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
 
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
 
-        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $this->createStub(ContextLogger::class));
+        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $this->createStub(ScxLogger::class));
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
             'categoryId' => $testCategoryId
@@ -119,7 +119,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
 
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
 
-        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $this->createStub(ContextLogger::class));
+        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $this->createStub(ScxLogger::class));
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
             '--import-csv-list' => $testFilePath,

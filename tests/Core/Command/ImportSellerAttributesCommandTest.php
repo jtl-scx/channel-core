@@ -8,8 +8,8 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
+use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\SellerAttributeLoader;
-use JTL\SCX\Lib\Channel\Core\Log\ContextLogger;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\SellerAttributeUpdater;
 use PHPUnit\Framework\TestCase;
@@ -40,7 +40,7 @@ class ImportSellerAttributesCommandTest extends TestCase
         $command = new ImportSellerAttributesCommand(
             $attrLoaderMock,
             $attrUpdaterMock,
-            $this->createStub(ContextLogger::class)
+            $this->createStub(Scxlogger::class)
         );
         $cmdTester = new CommandTester($command);
         $cmdTester->execute(['sellerId' => $sellerId]);

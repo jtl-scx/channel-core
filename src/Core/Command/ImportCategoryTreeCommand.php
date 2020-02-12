@@ -11,9 +11,9 @@ namespace JTL\SCX\Lib\Channel\Core\Command;
 use GuzzleHttp\Exception\GuzzleException;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
+use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaCategoryLoader;
 use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
-use JTL\SCX\Lib\Channel\Core\Log\ContextLogger;
 use JTL\SCX\Lib\Channel\MetaData\CategoryTreeUpdater;
 use RuntimeException;
 use Symfony\Component\Console\Input\InputInterface;
@@ -31,7 +31,7 @@ class ImportCategoryTreeCommand extends AbstractCommand
     public function __construct(
         MetaCategoryLoader $categoryLoader,
         CategoryTreeUpdater $categoryTreeUpdater,
-        ContextLogger $logger
+        ScxLogger $logger
     ) {
         parent::__construct($logger);
         $this->categoryLoader = $categoryLoader;

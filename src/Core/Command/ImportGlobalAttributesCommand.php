@@ -8,7 +8,7 @@ use JTL\SCX\Client\Channel\Api\Attribute\Request\CreateGlobalAttributesRequest;
 use JTL\SCX\Client\Channel\Model\AttributeList as ClientAttributeList;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
-use JTL\SCX\Lib\Channel\Core\Log\ContextLogger;
+use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeMapper;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\GlobalAttributeLoader;
 use Symfony\Component\Console\Input\InputArgument;
@@ -27,7 +27,7 @@ class ImportGlobalAttributesCommand extends AbstractCommand
         AttributesApi $client,
         GlobalAttributeLoader $globalAttributeLoader,
         AttributeMapper $attributeMapper,
-        ContextLogger $logger
+        ScxLogger $logger
     ) {
         parent::__construct($logger);
         $this->globalAttributeLoader = $globalAttributeLoader;

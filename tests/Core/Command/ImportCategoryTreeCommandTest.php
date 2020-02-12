@@ -8,8 +8,8 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
+use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaCategoryLoader;
-use JTL\SCX\Lib\Channel\Core\Log\ContextLogger;
 use JTL\SCX\Lib\Channel\MetaData\Category;
 use JTL\SCX\Lib\Channel\MetaData\CategoryList;
 use JTL\SCX\Lib\Channel\MetaData\CategoryTreeUpdater;
@@ -35,7 +35,7 @@ class ImportCategoryTreeCommandTest extends TestCase
         $updaterMock = $this->createMock(CategoryTreeUpdater::class);
         $updaterMock->expects($this->once())->method('update')->willReturn($version);
 
-        $command = new ImportCategoryTreeCommand($loaderMock, $updaterMock, $this->createStub(ContextLogger::class));
+        $command = new ImportCategoryTreeCommand($loaderMock, $updaterMock, $this->createStub(ScxLogger::class));
         $commandTester = new CommandTester($command);
         $commandTester->execute([]);
         $this->assertStringContainsString($version, $commandTester->getDisplay());
@@ -53,7 +53,7 @@ class ImportCategoryTreeCommandTest extends TestCase
         $updaterMock = $this->createStub(CategoryTreeUpdater::class);
 
         $testFilePath = sys_get_temp_dir() . '/' . __CLASS__ . '_' . __METHOD__;
-        $command = new ImportCategoryTreeCommand($loaderMock, $updaterMock, $this->createStub(ContextLogger::class));
+        $command = new ImportCategoryTreeCommand($loaderMock, $updaterMock, $this->createStub(ScxLogger::class));
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             '--dump-categories-to-file' => $testFilePath

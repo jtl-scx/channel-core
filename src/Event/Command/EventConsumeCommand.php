@@ -13,8 +13,8 @@ use JTL\Generic\StringCollection;
 use JTL\Nachricht\Event\Cache\EventCache;
 use JTL\Nachricht\Transport\Amqp\AmqpConsumer;
 use JTL\Nachricht\Transport\SubscriptionSettings;
+use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
-use JTL\SCX\Lib\Channel\Core\Log\ContextLogger;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -25,7 +25,7 @@ class EventConsumeCommand extends AbstractCommand
     private AmqpConsumer $amqpConsumer;
     private EventCache $eventCache;
 
-    public function __construct(AmqpConsumer $amqpConsumer, EventCache $eventCache, ContextLogger $logger)
+    public function __construct(AmqpConsumer $amqpConsumer, EventCache $eventCache, ScxLogger $logger)
     {
         parent::__construct($logger);
         $this->amqpConsumer = $amqpConsumer;

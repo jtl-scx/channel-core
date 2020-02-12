@@ -8,6 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Log;
 
+use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Monolog\Processor\IntrospectionProcessor;
@@ -15,19 +16,7 @@ use Monolog\Processor\MemoryUsageProcessor;
 use Monolog\Processor\ProcessIdProcessor;
 use Monolog\Processor\UidProcessor;
 
-/**
- * Class ContextLogger
- * @method void log($message, array $context = array())
- * @method void debug($message, array $context = array())
- * @method void info($message, array $context = array())
- * @method void notice($message, array $context = array())
- * @method void warning($message, array $context = array())
- * @method void error($message, array $context = array())
- * @method void critical($message, array $context = array())
- * @method void alert($message, array $context = array())
- * @method void emergency($message, array $context = array())
- */
-class ContextLogger
+class ContextLogger implements ScxLogger
 {
     private Logger $logger;
     private bool $stdoutEnabled = false;
@@ -38,9 +27,49 @@ class ContextLogger
         $this->setup();
     }
 
-    public function __call($name, $arguments)
+    public function emergency($message, array $context = [])
     {
-        $this->logger->{$name}(...$arguments);
+        $this->log(Logger::EMERGENCY, $message, $context);
+    }
+
+    public function alert($message, array $context = [])
+    {
+        $this->log(Logger::ALERT, $message, $context);
+    }
+
+    public function critical($message, array $context = [])
+    {
+        $this->log(Logger::CRITICAL, $message, $context);
+    }
+
+    public function error($message, array $context = [])
+    {
+        $this->log(Logger::ERROR, $message, $context);
+    }
+
+    public function warning($message, array $context = [])
+    {
+        $this->log(Logger::WARNING, $message, $context);
+    }
+
+    public function notice($message, array $context = [])
+    {
+        $this->log(Logger::NOTICE, $message, $context);
+    }
+
+    public function info($message, array $context = [])
+    {
+        $this->log(Logger::INFO, $message, $context);
+    }
+
+    public function debug($message, array $context = [])
+    {
+        $this->log(Logger::DEBUG, $message, $context);
+    }
+
+    public function log($level, $message, array $context = [])
+    {
+        $this->logger->log($level, $message, $context);
     }
 
     public function enableStdoutSteam()
@@ -51,7 +80,7 @@ class ContextLogger
         }
     }
 
-    public function reset()
+    public function reset(): void
     {
         $this->removeProcessorsFromLogger();
         $this->setup();
