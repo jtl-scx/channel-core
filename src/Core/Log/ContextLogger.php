@@ -72,7 +72,7 @@ class ContextLogger implements ScxLogger
         $this->logger->log($level, $message, $context);
     }
 
-    public function enableStdoutSteam()
+    public function enableStdoutSteam(): void
     {
         if ($this->stdoutEnabled === false) {
             $this->logger->pushHandler(new StreamHandler("php://stdout"));
@@ -80,7 +80,7 @@ class ContextLogger implements ScxLogger
         }
     }
 
-    public function replaceContext(callable $contextProcessor)
+    public function replaceContext(callable $contextProcessor): void
     {
         $existingProcessorList = $this->logger->getProcessors();
         $this->removeProcessorsFromLogger();

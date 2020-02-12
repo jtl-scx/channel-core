@@ -13,4 +13,8 @@ use Psr\Log\LoggerInterface;
 interface ScxLogger extends LoggerInterface
 {
     public function reset(): void;
+
+    public function enableStdoutSteam(): void;
+
+    public function replaceContext(callable $contextProcessor): void;
 }
