@@ -10,11 +10,12 @@ namespace JTL\SCX\Lib\Channel\Helper\Command;
 
 use DateTimeImmutable;
 use Exception;
+use InvalidArgumentException;
 use JTL\Nachricht\Contract\Event\Event;
 use JTL\Nachricht\Emitter\AmqpEmitter;
 use JTL\SCX\Client\Channel\Api\Event\Model\EventContainer;
 use JTL\SCX\Client\Channel\Helper\Event\EventType;
-use JTL\SCX\Client\ObjectSerializer;
+use JTL\SCX\Client\ResponseDeserializer;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
@@ -29,17 +30,20 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
     protected AmqpEmitter $emitter;
     protected EventFactory $eventFactory;
     private Environment $environment;
+    private ResponseDeserializer $responseDeserializer;
 
     public function __construct(
         Environment $environment,
         EventFactory $eventFactory,
         AmqpEmitter $emitter,
+        ResponseDeserializer $responseDeserializer,
         ScxLogger $logger
     ) {
         parent::__construct($logger);
         $this->emitter = $emitter;
         $this->environment = $environment;
         $this->eventFactory = $eventFactory;
+        $this->responseDeserializer = $responseDeserializer;
     }
 
     protected function configure()
@@ -78,11 +82,16 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
 
     protected function buildEventContainer(EventType $eventType, array $event)
     {
+        $model = $this->responseDeserializer->deserializeObject(json_encode($event), $eventType->getEventModelClass());
+        if (method_exists($model, 'valid') && !$model->valid()) {
+            throw new InvalidArgumentException(print_r($model->listInvalidProperties(), true));
+        }
+
         return $this->eventFactory->createFromEventContainer(new EventContainer(
             uniqid(static::getName()),
             new DateTimeImmutable('now'),
             $eventType->getValue(),
-            ObjectSerializer::deserialize(json_encode($event), $eventType->getEventModelClass())
+            $model
         ));
     }
 

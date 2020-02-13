@@ -8,7 +8,6 @@
 
 namespace JTL\SCX\Lib\Channel\Contract\Core\Log;
 
-
 interface ContextualInstance
 {
     public function createContextInstance(): callable;
