@@ -106,17 +106,17 @@ class ContextLogger implements ScxLogger
     {
         $introspectionProcessor = new IntrospectionProcessor(
             Logger::DEBUG,
-            ["JTL\\SCX\\Lib\\Channel\\Core\\Log"]
+            ["JTL\\SCX\\Lib\\Channel\\Core\\Log\\"]
         );
         $this->logger->pushProcessor($introspectionProcessor);
         $this->logger->pushProcessor(new MemoryUsageProcessor());
         $this->logger->pushProcessor(new ProcessIdProcessor());
-        $this->logger->pushProcessor(new UidProcessor());
+        $this->logger->pushProcessor(new UidProcessor(10));
     }
 
     private function removeProcessorsFromLogger(): void
     {
-        foreach ($this->logger->getProcessors() as $processor) {
+        foreach ($this->logger->getProcessors() as $_) {
             $this->logger->popProcessor();
         }
     }

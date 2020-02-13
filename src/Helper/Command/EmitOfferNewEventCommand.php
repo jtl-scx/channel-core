@@ -9,9 +9,7 @@
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
 use JTL\SCX\Client\Channel\Helper\Event\EventType;
-use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Output\OutputInterface;
 
 class EmitOfferNewEventCommand extends AbstractEmitEventCommand
 {
@@ -28,16 +26,8 @@ class EmitOfferNewEventCommand extends AbstractEmitEventCommand
             ->addOption('quantity', null, InputOption::VALUE_OPTIONAL, 'Offer Quantity', 5);
     }
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     * @return int|void
-     * @throws \Exception
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function getEventType(): EventType
     {
-        $event = $this->prepareEventData($input, $output);
-        $container = $this->buildEventContainer(EventType::SellerOfferNew(), $event);
-        $this->emit($container, $input, $output);
+        return EventType::SellerOfferNew();
     }
 }

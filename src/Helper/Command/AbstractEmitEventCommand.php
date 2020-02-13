@@ -9,6 +9,7 @@
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
 use DateTimeImmutable;
+use Exception;
 use JTL\Nachricht\Contract\Event\Event;
 use JTL\Nachricht\Emitter\AmqpEmitter;
 use JTL\SCX\Client\Channel\Api\Event\Model\EventContainer;
@@ -43,8 +44,24 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
 
     protected function configure()
     {
+        $this->setDescription("Helper command to emit " . $this->getEventType() . " for Testing");
         $this->addArgument('jsonFile', InputArgument::REQUIRED, 'JSON File contain a OfferNew Event')
             ->addArgument('sellerId', InputArgument::OPTIONAL, 'Associated SellerId', null);
+    }
+
+    abstract protected function getEventType(): EventType;
+
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|void
+     * @throws Exception
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $event = $this->prepareEventData($input, $output);
+        $container = $this->buildEventContainer($this->getEventType(), $event);
+        $this->emit($container, $input, $output);
     }
 
     protected function prepareEventData(InputInterface $input, OutputInterface $output): array
@@ -53,7 +70,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
         $event = json_decode((string)file_get_contents($absoluteJsonFilePath), true);
         $event['sellerId'] = $input->getArgument('sellerId');
 
-        $event = $this->replaceWithArguments($event, $input->getArguments());
+        $event = $this->replaceWithArguments($event, $input->getOptions() + $input->getArguments());
         $this->printEventData($output, $event);
 
         return $event;

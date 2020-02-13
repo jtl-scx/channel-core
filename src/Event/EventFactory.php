@@ -12,6 +12,8 @@ use JTL\SCX\Client\Channel\Api\Event\Model\EventContainer;
 use JTL\SCX\Client\Channel\Helper\Event\EventType;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferEndEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferNewEvent;
+use JTL\SCX\Lib\Channel\Event\Seller\OfferPriceUpdateEvent;
+use JTL\SCX\Lib\Channel\Event\Seller\OfferStockUpdateEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferUpdateEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderCancelledEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderConfirmedEvent;
@@ -51,6 +53,12 @@ class EventFactory
                 break;
             case EventType::SellerOfferUpdate():
                 $eventName = OfferUpdateEvent::class;
+                break;
+            case EventType::SellerOfferStockUpdate():
+                $eventName = OfferStockUpdateEvent::class;
+                break;
+            case EventType::SellerOfferPriceUpdate():
+                $eventName = OfferPriceUpdateEvent::class;
                 break;
             default:
                 return null;
