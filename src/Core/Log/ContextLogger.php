@@ -112,6 +112,7 @@ class ContextLogger implements ScxLogger
         $this->logger->pushProcessor(new MemoryUsageProcessor());
         $this->logger->pushProcessor(new ProcessIdProcessor());
         $this->logger->pushProcessor(new UidProcessor(10));
+        $this->logger->pushProcessor(new RuntimeProcessor());
     }
 
     private function removeProcessorsFromLogger(): void

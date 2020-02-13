@@ -13,7 +13,6 @@ use JTL\SCX\Lib\Channel\Contract\Core\Log\LogFactory;
 use Monolog\Formatter\JsonFormatter;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use Monolog\Processor\IntrospectionProcessor;
 use Psr\Log\LoggerInterface;
 
 class MonologFactory implements LogFactory
@@ -33,8 +32,6 @@ class MonologFactory implements LogFactory
         $streamHandler->setFormatter(new JsonFormatter());
 
         $monolog->pushHandler($streamHandler);
-        $monolog->pushProcessor(new IntrospectionProcessor());
-
         return $monolog;
     }
 }
