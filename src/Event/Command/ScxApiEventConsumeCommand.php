@@ -16,7 +16,6 @@ use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
-use JTL\SCX\Lib\Channel\Core\Log\ConsoleLogger;
 use JTL\SCX\Lib\Channel\Event\Emitter\SellerEventEmitter;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

@@ -110,7 +110,7 @@ abstract class AbstractApplicationContext
             $this->isDevelopment
         );
 
-        if (true || !$configCache->isFresh()) {
+        if (!$configCache->isFresh()) {
             $containerBuilder = new ContainerBuilder();
             $loader = new YamlFileLoader($containerBuilder, new FileLocator($this->rootDirectory));
             $this->configureContainer($containerBuilder, $loader);

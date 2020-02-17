@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Log;
 
-use JTL\SCX\Lib\Channel\Contract\Core\Log\ContextualInstance;
+use JTL\SCX\Lib\Channel\Contract\Core\Log\ContextAware;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -73,7 +73,7 @@ class ContextLogger implements ScxLogger
         $this->logger->log($level, $message, $context);
     }
 
-    public function enableStdoutSteam(): void
+    public function enableStdoutStream(): void
     {
         if ($this->stdoutEnabled === false) {
             $this->logger->pushHandler(new StreamHandler("php://stdout"));
@@ -81,7 +81,7 @@ class ContextLogger implements ScxLogger
         }
     }
 
-    public function replaceContext(ContextualInstance $contextualInstance): void
+    public function replaceContext(ContextAware $contextualInstance): void
     {
         $contextProcessor = $contextualInstance->createContextInstance();
 

@@ -38,7 +38,7 @@ TXT;
 
         $output->writeln($prolog);
         if ($output->isVerbose()) {
-            $this->logger->enableStdoutSteam();
+            $this->logger->enableStdoutStream();
         }
     }
 }
