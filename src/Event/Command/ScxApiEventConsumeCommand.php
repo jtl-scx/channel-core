@@ -34,7 +34,7 @@ class ScxApiEventConsumeCommand extends AbstractCommand
         $this->eventEnqueuer = $eventEmitter;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->setDescription('Consume seller events created from polling the SCX Channel API');
     }
@@ -47,15 +47,21 @@ class ScxApiEventConsumeCommand extends AbstractCommand
      * @throws RequestFailedException
      * @throws RequestValidationFailedException
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): void
     {
-        while (($response = $this->eventApi->getEventList(new GetEventListRequest()))->getEventList()->count() !== 0) {
-            $this->logger->info("Receive {$response->getEventList()->count()} events from scx-channel api");
-            $emittedEventIdList = $this->eventEnqueuer->emit($response->getEventList());
+        do {
+            $response = $this->eventApi->getEventList(new GetEventListRequest());
 
+            $this->logger->info("Receive {$response->getEventList()->count()} events from scx-channel api");
+            if ($response->getEventList()->count() <= 0) {
+                return;
+            }
+
+            $emittedEventIdList = $this->eventEnqueuer->emit($response->getEventList());
             $this->logger->info(count($emittedEventIdList) . " events emitted.");
+
             $this->eventApi->ack(new AcknowledgeEventIdListRequest($emittedEventIdList));
             $this->logger->info("Events successful acknowledged");
-        }
+        } while (true);
     }
 }

@@ -15,7 +15,7 @@ class EmitOfferNewEventCommand extends AbstractEmitEventCommand
 {
     protected static $defaultName = 'helper:emit.OfferNewEvent';
 
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
         $this->setDescription('Helper command to emit OfferNewEvent for Testing')

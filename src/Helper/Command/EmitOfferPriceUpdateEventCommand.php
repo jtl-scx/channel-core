@@ -15,7 +15,7 @@ class EmitOfferPriceUpdateEventCommand extends AbstractEmitEventCommand
 {
     protected static $defaultName = 'helper:emit.OfferPriceUpdateEvent';
 
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

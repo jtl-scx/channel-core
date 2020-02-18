@@ -8,11 +8,9 @@
 
 namespace JTL\SCX\Lib\Channel\Event\Emitter;
 
-use JTL\Nachricht\Collection\StringCollection;
 use JTL\Nachricht\Contract\Emitter\Emitter;
 use JTL\SCX\Client\Channel\Api\Event\Model\EventContainerList;
 use JTL\SCX\Lib\Channel\Event\EventFactory;
-use JTL\SCX\Lib\Channel\Event\Seller\SystemEventEnum;
 use Psr\Log\LoggerInterface;
 use Throwable;
 

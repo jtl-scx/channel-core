@@ -13,6 +13,7 @@ use Exception;
 use InvalidArgumentException;
 use JTL\Nachricht\Contract\Event\Event;
 use JTL\Nachricht\Emitter\AmqpEmitter;
+use JTL\Nachricht\Event\AbstractAmqpEvent;
 use JTL\SCX\Client\Channel\Api\Event\Model\EventContainer;
 use JTL\SCX\Client\Channel\Helper\Event\EventType;
 use JTL\SCX\Client\ResponseDeserializer;
@@ -46,9 +47,9 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
         $this->responseDeserializer = $responseDeserializer;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
-        $this->setDescription("Helper command to emit " . $this->getEventType() . " for Testing");
+        $this->setDescription("Helper command to emit {$this->getEventType()} for Testing");
         $this->addArgument('jsonFile', InputArgument::REQUIRED, 'JSON File contain a OfferNew Event')
             ->addArgument('sellerId', InputArgument::OPTIONAL, 'Associated SellerId', null);
     }
@@ -65,13 +66,13 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
     {
         $event = $this->prepareEventData($input, $output);
         $container = $this->buildEventContainer($this->getEventType(), $event);
-        $this->emit($container, $input, $output);
+        $this->emit($container, $output);
     }
 
     protected function prepareEventData(InputInterface $input, OutputInterface $output): array
     {
         $absoluteJsonFilePath = $this->getAbsoluteJsonFilePath($input);
-        $event = json_decode((string)file_get_contents($absoluteJsonFilePath), true);
+        $event = json_decode((string)file_get_contents($absoluteJsonFilePath), true, 512, JSON_THROW_ON_ERROR);
         $event['sellerId'] = $input->getArgument('sellerId');
 
         $event = $this->replaceWithArguments($event, $input->getOptions() + $input->getArguments());
@@ -80,9 +81,13 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
         return $event;
     }
 
-    protected function buildEventContainer(EventType $eventType, array $event)
+    protected function buildEventContainer(EventType $eventType, array $event): ?AbstractAmqpEvent
     {
-        $model = $this->responseDeserializer->deserializeObject(json_encode($event), $eventType->getEventModelClass());
+        $model = $this->responseDeserializer->deserializeObject(
+            json_encode($event, JSON_THROW_ON_ERROR),
+            $eventType->getEventModelClass()
+        );
+
         if (method_exists($model, 'valid') && !$model->valid()) {
             throw new InvalidArgumentException(print_r($model->listInvalidProperties(), true));
         }
@@ -95,10 +100,10 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
         ));
     }
 
-    protected function emit(Event $event, InputInterface $input, OutputInterface $output)
+    protected function emit(Event $event, OutputInterface $output): void
     {
         $this->emitter->emit($event);
-        $output->writeln("Event \"" . get_class($event) . "\" emitted");
+        $output->writeln("Event '" . get_class($event) . "' emitted");
     }
 
     /**
@@ -108,7 +113,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
     private function getAbsoluteJsonFilePath(InputInterface $input): string
     {
         $jsonFile = $input->getArgument('jsonFile');
-        if (substr($jsonFile, 0, 1) !== '/') {
+        if (strpos($jsonFile, '/') !== 0) {
             $jsonFile = '/' . $jsonFile;
         }
 
@@ -129,9 +134,9 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
         return $event;
     }
 
-    private function printEventData(OutputInterface $output, array $event)
+    private function printEventData(OutputInterface $output, array $event): void
     {
-        $output->writeln(json_encode($event, JSON_PRETTY_PRINT));
-        $output->writeln("");
+        $output->writeln(json_encode($event, JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR));
+        $output->writeln('');
     }
 }

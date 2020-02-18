@@ -15,7 +15,7 @@ class EmitOfferStockUpdateEventCommand extends AbstractEmitEventCommand
 {
     protected static $defaultName = 'helper:emit.OfferStockUpdateEvent';
 
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
         $this->addOption('offerId', null, InputOption::VALUE_OPTIONAL, 'Seller OfferId', null)

@@ -8,7 +8,6 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Log;
 
-
 use Monolog\Processor\ProcessorInterface;
 
 class RuntimeProcessor implements ProcessorInterface
