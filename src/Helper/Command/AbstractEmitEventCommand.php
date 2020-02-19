@@ -29,8 +29,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 abstract class AbstractEmitEventCommand extends AbstractCommand
 {
     protected AmqpEmitter $emitter;
+
     protected EventFactory $eventFactory;
+
     private Environment $environment;
+
     private ResponseDeserializer $responseDeserializer;
 
     public function __construct(
@@ -66,6 +69,9 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
     {
         $event = $this->prepareEventData($input, $output);
         $container = $this->buildEventContainer($this->getEventType(), $event);
+        if (!$container instanceof Event) {
+            throw new RuntimeException("Can not emit event because AmqpEvent could not be builded");
+        }
         $this->emit($container, $output);
     }
 
@@ -93,7 +99,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
         }
 
         return $this->eventFactory->createFromEventContainer(new EventContainer(
-            uniqid(static::getName()),
+            uniqid($this->getName()),
             new DateTimeImmutable('now'),
             $eventType->getValue(),
             $model
