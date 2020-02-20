@@ -10,7 +10,7 @@ namespace JTL\SCX\Lib\Channel\Event\Command;
 
 use GuzzleHttp\Exception\GuzzleException;
 use JTL\Generic\StringCollection;
-use JTL\Nachricht\Event\Cache\EventCache;
+use JTL\Nachricht\Message\Cache\MessageCache;
 use JTL\Nachricht\Transport\Amqp\AmqpConsumer;
 use JTL\Nachricht\Transport\SubscriptionSettings;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
@@ -23,13 +23,13 @@ class EventConsumeCommand extends AbstractCommand
 {
     protected static $defaultName = 'scx-channel:event.consume';
     private AmqpConsumer $amqpConsumer;
-    private EventCache $eventCache;
+    private MessageCache $messageCache;
 
-    public function __construct(AmqpConsumer $amqpConsumer, EventCache $eventCache, ScxLogger $logger)
+    public function __construct(AmqpConsumer $amqpConsumer, MessageCache $messageCache, ScxLogger $logger)
     {
         parent::__construct($logger);
         $this->amqpConsumer = $amqpConsumer;
-        $this->eventCache = $eventCache;
+        $this->messageCache = $messageCache;
     }
 
     protected function configure()
@@ -49,8 +49,8 @@ class EventConsumeCommand extends AbstractCommand
 
         $io->writeln("Collect message queue(s) ...\n");
         $eventRoutingKeyList = new StringCollection();
-        foreach ($this->eventCache->getEventClassList() as $eventClass) {
-            $routingKey = $this->eventCache->getRoutingKeyForEvent($eventClass);
+        foreach ($this->messageCache->getMessageClassList() as $eventClass) {
+            $routingKey = $this->messageCache->getRoutingKeyForMessage($eventClass);
             if (!empty($routingKey)) {
                 $io->writeln(' - ' . $routingKey);
                 $eventRoutingKeyList->add($routingKey);

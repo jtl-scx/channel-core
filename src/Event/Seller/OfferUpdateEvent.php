@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
-use JTL\SCX\Client\Channel\Helper\Event\EventType;
+use JTL\SCX\Client\Channel\Event\EventType;
 use JTL\SCX\Client\Channel\Model\SellerEventOfferUpdate;
 use JTL\SCX\Lib\Channel\Event\AbstractEvent;
 

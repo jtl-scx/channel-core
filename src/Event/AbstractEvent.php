@@ -9,10 +9,10 @@
 namespace JTL\SCX\Lib\Channel\Event;
 
 use DateTimeImmutable;
-use JTL\Nachricht\Event\AbstractAmqpEvent;
-use JTL\SCX\Client\Channel\Helper\Event\EventType;
+use JTL\Nachricht\Message\AbstractAmqpTransportableMessage;
+use JTL\SCX\Client\Channel\Event\EventType;
 
-abstract class AbstractEvent extends AbstractAmqpEvent
+abstract class AbstractEvent extends AbstractAmqpTransportableMessage
 {
     protected string $id;
     protected DateTimeImmutable $createdAt;

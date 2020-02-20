@@ -9,7 +9,7 @@
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
 use DateTimeImmutable;
-use JTL\SCX\Client\Channel\Helper\Event\EventType;
+use JTL\SCX\Client\Channel\Event\EventType;
 use JTL\SCX\Client\Channel\Model\SellerEventOrderConfirmed;
 use JTL\SCX\Lib\Channel\Event\AbstractEvent;
 

@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
-use JTL\SCX\Client\Channel\Helper\Event\EventType;
+use JTL\SCX\Client\Channel\Event\EventType;
 use Symfony\Component\Console\Input\InputOption;
 
 class EmitOfferNewEventCommand extends AbstractEmitEventCommand

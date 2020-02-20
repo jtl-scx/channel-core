@@ -9,7 +9,7 @@
 namespace JTL\SCX\Lib\Channel\Event;
 
 use JTL\SCX\Client\Channel\Api\Event\Model\EventContainer;
-use JTL\SCX\Client\Channel\Helper\Event\EventType;
+use JTL\SCX\Client\Channel\Event\EventType;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferEndEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferNewEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferPriceUpdateEvent;

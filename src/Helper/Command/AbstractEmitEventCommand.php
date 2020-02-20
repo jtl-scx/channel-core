@@ -11,11 +11,11 @@ namespace JTL\SCX\Lib\Channel\Helper\Command;
 use DateTimeImmutable;
 use Exception;
 use InvalidArgumentException;
-use JTL\Nachricht\Contract\Event\Event;
+use JTL\Nachricht\Contract\Message\Message;
 use JTL\Nachricht\Emitter\AmqpEmitter;
-use JTL\Nachricht\Event\AbstractAmqpEvent;
+use JTL\Nachricht\Message\AbstractAmqpTransportableMessage;
 use JTL\SCX\Client\Channel\Api\Event\Model\EventContainer;
-use JTL\SCX\Client\Channel\Helper\Event\EventType;
+use JTL\SCX\Client\Channel\Event\EventType;
 use JTL\SCX\Client\ResponseDeserializer;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
@@ -38,7 +38,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
 
     public function __construct(
         Environment $environment,
-        EventFactory $eventFactory,
+        EventFactory $messageFactory,
         AmqpEmitter $emitter,
         ResponseDeserializer $responseDeserializer,
         ScxLogger $logger
@@ -46,7 +46,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
         parent::__construct($logger);
         $this->emitter = $emitter;
         $this->environment = $environment;
-        $this->eventFactory = $eventFactory;
+        $this->eventFactory = $messageFactory;
         $this->responseDeserializer = $responseDeserializer;
     }
 
@@ -69,7 +69,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
     {
         $event = $this->prepareEventData($input, $output);
         $container = $this->buildEventContainer($this->getEventType(), $event);
-        if (!$container instanceof Event) {
+        if (!$container instanceof Message) {
             throw new RuntimeException("Can not emit event because AmqpEvent could not be builded");
         }
         $this->emit($container, $output);
@@ -87,7 +87,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
         return $event;
     }
 
-    protected function buildEventContainer(EventType $eventType, array $event): ?AbstractAmqpEvent
+    protected function buildEventContainer(EventType $eventType, array $event): ?AbstractAmqpTransportableMessage
     {
         $model = $this->responseDeserializer->deserializeObject(
             json_encode($event, JSON_THROW_ON_ERROR),
@@ -106,7 +106,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
         ));
     }
 
-    protected function emit(Event $event, OutputInterface $output): void
+    protected function emit(Message $event, OutputInterface $output): void
     {
         $this->emitter->emit($event);
         $output->writeln("Event '" . get_class($event) . "' emitted");

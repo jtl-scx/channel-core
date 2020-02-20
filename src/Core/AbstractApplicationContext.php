@@ -8,8 +8,8 @@
 
 namespace JTL\SCX\Lib\Channel\Core;
 
-use JTL\Nachricht\Event\Cache\EventCache;
-use JTL\Nachricht\Event\Cache\EventCacheCreator;
+use JTL\Nachricht\Message\Cache\MessageCache;
+use JTL\Nachricht\Message\Cache\MessageCacheCreator;
 use Psr\Container\ContainerInterface;
 use Symfony\Bridge\ProxyManager\LazyProxy\PhpDumper\ProxyDumper;
 use Symfony\Component\Config\ConfigCache;
@@ -147,8 +147,8 @@ abstract class AbstractApplicationContext
      */
     private function registerListenerCacheInContainer(ContainerBuilder $containerBuilder): void
     {
-        $containerBuilder->register(EventCache::class)
-            ->setFactory([new Reference(EventCacheCreator::class), 'create'])
+        $containerBuilder->register(MessageCache::class)
+            ->setFactory([new Reference(MessageCacheCreator::class), 'create'])
             ->setArgument('$cacheFile', $this->listenerCacheFile)
             ->setArgument('$lookupPathList', [$this->rootDirectory . '/src', __DIR__ . '/../'])
             ->setArgument('$isDevelopment', $this->isDevelopment);
