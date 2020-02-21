@@ -65,7 +65,7 @@ services:
         user: '%env(RABBITMQ_USER)%'
         password: '%env(RABBITMQ_PASS)%'
         vhost: '%env(RABBITMQ_VHOST)%'
-      - '@JTL\Nachricht\Contract\Serializer\EventSerializer'
+      - '@JTL\Nachricht\Contract\Serializer\MessageSerializer'
 
   # ###########################################################################
   # Template service
