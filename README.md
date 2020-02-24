@@ -4,6 +4,8 @@
 
 # SCX-Channel-Core
 
+[![Build Status](https://travis-ci.org/jtl-scx/channel-core.svg?branch=master)](https://travis-ci.org/jtl-scx/channel-core)
+
 The core Framework for SCX Channel Application provide abstraction for
 
 * SCX-Channel API communication
