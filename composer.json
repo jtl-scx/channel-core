@@ -1,13 +1,14 @@
 {
-    "name": "jtl/channel-lib",
+    "name": "jtl-scx/channel-core",
     "type": "library",
     "description": "SCX Channel Library",
+    "license": "MIT",
     "require": {
         "ext-json": "*",
         "guzzlehttp/guzzle": "^6.3",
-        "jtl/channel-api-client": "dev-EA-2568",
+        "jtl-scx/api-base-client": "^1.0",
+        "jtl-scx/channel-api-client": "^0.9",
         "jtl/nachricht": "~0.5",
-        "jtl/scx-api-client": "^0.3",
         "monolog/monolog": "^2.0",
         "myclabs/php-enum": "^1.7",
         "php-amqplib/php-amqplib": "^2.10",
@@ -30,16 +31,6 @@
             "JTL\\SCX\\Lib\\Channel\\": "src/"
         }
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@gitlab.jtl-software.com:ea/scx/channel-api-client.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@gitlab.jtl-software.com:ea/scx/scx-api-client.git"
-        }
-    ],
     "scripts": {
         "phpcs": [
             "vendor/bin/php-cs-fixer fix --config=./.php_cs.dist"

@@ -11,6 +11,7 @@ namespace Event;
 use DateTimeImmutable;
 use Exception;
 use JTL\SCX\Client\Channel\Api\Event\Model\EventContainer;
+use JTL\SCX\Client\Channel\Event\EventType;
 use JTL\SCX\Client\Channel\Model\SellerEventOfferEnd;
 use JTL\SCX\Client\Channel\Model\SellerEventOfferNew;
 use JTL\SCX\Client\Channel\Model\SellerEventOfferUpdate;
@@ -41,15 +42,15 @@ class EventFactoryTest extends TestCase
     public function eventTestCasesProvider(): array
     {
         return [
-            [SystemNotificationEvent::class, SystemEventNotification::class, "System:Notification"],
-            [SystemTestEvent::class, SellerEventTest::class, "System:Test"],
-            [OrderShippingEvent::class, SellerEventOrderShipping::class, "Seller:Order.Shipping"],
-            [OrderPaymentEvent::class, SellerEventOrderPayment::class, "Seller:Order.Payment"],
-            [OrderConfirmedEvent::class, SellerEventOrderConfirmed::class, "Seller:Order.Confirmed"],
-            [OrderCancelledEvent::class, SellerEventOrderCancelled::class, "Seller:Order.Cancelled"],
-            [OfferNewEvent::class, SellerEventOfferNew::class, "Seller:Offer.New"],
-            [OfferUpdateEvent::class, SellerEventOfferUpdate::class, "Seller:Offer.Update"],
-            [OfferEndEvent::class, SellerEventOfferEnd::class, "Seller:Offer.End"]
+            [SystemNotificationEvent::class, SystemEventNotification::class, EventType::SystemNotification()],
+            [SystemTestEvent::class, SellerEventTest::class, EventType::SellerEventTest()],
+            [OrderShippingEvent::class, SellerEventOrderShipping::class, EventType::SellerOrderShipping()],
+            [OrderPaymentEvent::class, SellerEventOrderPayment::class, EventType::SellerOrderPayment()],
+            [OrderConfirmedEvent::class, SellerEventOrderConfirmed::class, EventType::SellerOrderConfirmed()],
+            [OrderCancelledEvent::class, SellerEventOrderCancelled::class, EventType::SellerOrderCancelled()],
+            [OfferNewEvent::class, SellerEventOfferNew::class, EventType::SellerOfferNew()],
+            [OfferUpdateEvent::class, SellerEventOfferUpdate::class, EventType::SellerOfferUpdate()],
+            [OfferEndEvent::class, SellerEventOfferEnd::class, EventType::SellerOfferEnd()]
         ];
     }
 
@@ -79,7 +80,7 @@ class EventFactoryTest extends TestCase
     {
         $containerMock = $this->createMock(EventContainer::class);
         $containerMock->expects($this->atLeastOnce())->method('getType')
-            ->willReturn('Foo.Mag.Bar');
+            ->willReturn(new EventType('Foo.Mag.Bar'));
         $containerMock->expects($this->never())->method('getEvent');
 
         $factory = new EventFactory();

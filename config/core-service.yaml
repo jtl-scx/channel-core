@@ -32,10 +32,10 @@ services:
   # SCX Channel-API service
   # ###########################################################################
   JTL\SCX\Client\:
-    resource: './vendor/jtl/scx-api-client/src/*'
+    resource: './vendor/jtl-scx/api-base-client/src/*'
 
   JTL\SCX\Client\Channel\:
-    resource: './vendor/jtl/channel-api-client/src/*'
+    resource: './vendor/jtl-scx/channel-api-client/src/*'
 
   JTL\SCX\Client\Api\Configuration:
     arguments:

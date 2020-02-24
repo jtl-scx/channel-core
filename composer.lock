@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1d322146c38d435db9638b4e79e3d42b",
+    "content-hash": "dbac3772f4f47e53d56bc75b41f5412a",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -196,12 +196,58 @@
             "time": "2019-07-01T23:21:34+00:00"
         },
         {
-            "name": "jtl/channel-api-client",
-            "version": "dev-EA-2568",
+            "name": "jtl-scx/api-base-client",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "git@gitlab.jtl-software.com:ea/scx/channel-api-client.git",
-                "reference": "bc5850b502112233bd06cf9e00ab6469bd0007bd"
+                "url": "https://github.com/jtl-scx/api-base-client.git",
+                "reference": "3252bfbf8bf2a648ee5e0b389e3c0c4f07c285f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jtl-scx/api-base-client/zipball/3252bfbf8bf2a648ee5e0b389e3c0c4f07c285f0",
+                "reference": "3252bfbf8bf2a648ee5e0b389e3c0c4f07c285f0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.15",
+                "guzzlehttp/guzzle": "^6.3",
+                "mockery/mockery": "^1.2",
+                "phpunit/phpunit": "^8.3"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Require this for making HTTP calls"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JTL\\SCX\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "SCX-API Base Client",
+            "time": "2020-02-21T15:00:31+00:00"
+        },
+        {
+            "name": "jtl-scx/channel-api-client",
+            "version": "0.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jtl-scx/channel-api-client.git",
+                "reference": "0fc80903ebfaad031c6054f50e0319e1b294365e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/0fc80903ebfaad031c6054f50e0319e1b294365e",
+                "reference": "0fc80903ebfaad031c6054f50e0319e1b294365e",
+                "shasum": ""
             },
             "require": {
                 "jtl/php-generic-collection": "^0.3",
@@ -211,7 +257,7 @@
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.15",
                 "guzzlehttp/guzzle": "^6.3",
-                "jtl/scx-api-client": "^0.3",
+                "jtl-scx/api-base-client": "^1.0",
                 "mockery/mockery": "^1.2",
                 "phpunit/phpunit": "^8.3"
             },
@@ -225,21 +271,12 @@
                     "JTL\\SCX\\Client\\Channel\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "JTL\\SCX\\Client\\Channel\\": "tests/"
-                }
-            },
-            "scripts": {
-                "phpcs": [
-                    "vendor/bin/php-cs-fixer fix --config=./.php_cs.dist"
-                ],
-                "phpcs-dry": [
-                    "vendor/bin/php-cs-fixer fix --config=./.php_cs.dist --dry-run"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
             "description": "API Client for SCX Channel API",
-            "time": "2020-02-18T12:10:21+00:00"
+            "time": "2020-02-24T09:29:08+00:00"
         },
         {
             "name": "jtl/nachricht",
@@ -323,49 +360,6 @@
             ],
             "description": "An implementation of a generic collection for PHP",
             "time": "2020-01-07T14:23:54+00:00"
-        },
-        {
-            "name": "jtl/scx-api-client",
-            "version": "0.3.7",
-            "source": {
-                "type": "git",
-                "url": "git@gitlab.jtl-software.com:ea/scx/scx-api-client.git",
-                "reference": "aa3e5b6e3b464dae7af18bbfcb2232e51fd34498"
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^7.4"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.15",
-                "guzzlehttp/guzzle": "^6.3",
-                "mockery/mockery": "^1.2",
-                "phpunit/phpunit": "^8.3"
-            },
-            "suggest": {
-                "guzzlehttp/guzzle": "Require this for making HTTP calls"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "JTL\\SCX\\Client\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "JTL\\SCX\\Client\\": "tests/"
-                }
-            },
-            "scripts": {
-                "phpcs": [
-                    "vendor/bin/php-cs-fixer fix --config=./.php_cs.dist"
-                ],
-                "phpcs-dry": [
-                    "vendor/bin/php-cs-fixer fix --config=./.php_cs.dist --dry-run"
-                ]
-            },
-            "description": "SCX-Client Base",
-            "time": "2020-02-04T08:24:27+00:00"
         },
         {
             "name": "laminas/laminas-code",
@@ -964,16 +958,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.23",
+            "version": "2.0.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "c78eb5058d5bb1a183133c36d4ba5b6675dfa099"
+                "reference": "40998159a0907cc523e1f2d1904d45765613a617"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/c78eb5058d5bb1a183133c36d4ba5b6675dfa099",
-                "reference": "c78eb5058d5bb1a183133c36d4ba5b6675dfa099",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/40998159a0907cc523e1f2d1904d45765613a617",
+                "reference": "40998159a0907cc523e1f2d1904d45765613a617",
                 "shasum": ""
             },
             "require": {
@@ -1052,7 +1046,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2019-09-17T03:41:22+00:00"
+            "time": "2020-02-04T12:15:04+00:00"
         },
         {
             "name": "psr/container",
@@ -1288,16 +1282,16 @@
         },
         {
             "name": "ramsey/uuid",
-            "version": "3.9.2",
+            "version": "3.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "7779489a47d443f845271badbdcedfe4df8e06fb"
+                "reference": "7e1633a6964b48589b142d60542f9ed31bd37a92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/7779489a47d443f845271badbdcedfe4df8e06fb",
-                "reference": "7779489a47d443f845271badbdcedfe4df8e06fb",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/7e1633a6964b48589b142d60542f9ed31bd37a92",
+                "reference": "7e1633a6964b48589b142d60542f9ed31bd37a92",
                 "shasum": ""
             },
             "require": {
@@ -1371,7 +1365,7 @@
                 "identifier",
                 "uuid"
             ],
-            "time": "2019-12-17T08:18:51+00:00"
+            "time": "2020-02-21T04:36:14+00:00"
         },
         {
             "name": "symfony/config",
@@ -2848,16 +2842,16 @@
         },
         {
             "name": "nette/robot-loader",
-            "version": "v3.2.1",
+            "version": "v3.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/robot-loader.git",
-                "reference": "d2a100e1f5cab390c78bc88709abbc91249c3993"
+                "reference": "38e8a270567a4ad9fe716b40fcda5a6580afa3c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/robot-loader/zipball/d2a100e1f5cab390c78bc88709abbc91249c3993",
-                "reference": "d2a100e1f5cab390c78bc88709abbc91249c3993",
+                "url": "https://api.github.com/repos/nette/robot-loader/zipball/38e8a270567a4ad9fe716b40fcda5a6580afa3c0",
+                "reference": "38e8a270567a4ad9fe716b40fcda5a6580afa3c0",
                 "shasum": ""
             },
             "require": {
@@ -2885,8 +2879,8 @@
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
+                "GPL-2.0-only",
+                "GPL-3.0-only"
             ],
             "authors": [
                 {
@@ -2907,7 +2901,7 @@
                 "nette",
                 "trait"
             ],
-            "time": "2019-12-26T22:32:02+00:00"
+            "time": "2020-02-20T22:17:50+00:00"
         },
         {
             "name": "nette/schema",
@@ -3081,18 +3075,18 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "role": "Developer",
-                    "email": "arne@blankerts.de"
+                    "email": "arne@blankerts.de",
+                    "role": "Developer"
                 },
                 {
                     "name": "Sebastian Heuer",
-                    "role": "Developer",
-                    "email": "sebastian@phpeople.de"
+                    "email": "sebastian@phpeople.de",
+                    "role": "Developer"
                 },
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "Developer",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "Developer"
                 }
             ],
             "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
@@ -5017,8 +5011,8 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "role": "Developer",
-                    "email": "arne@blankerts.de"
+                    "email": "arne@blankerts.de",
+                    "role": "Developer"
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
@@ -5140,9 +5134,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "jtl/channel-api-client": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
