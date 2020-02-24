@@ -101,8 +101,8 @@ class ImportCategoryAttributesCommandTest extends TestCase
 
     public function testCanProcessAttributeForCSVListWithResults()
     {
-        $testCategoryId1 = uniqid('testCategoryId');
-        $testCategoryId2 = uniqid('testCategoryId');
+        $testCategoryId1 = uniqid('testCat');
+        $testCategoryId2 = uniqid('testCat');
 
         $testFilePath = sys_get_temp_dir() . '/' . __CLASS__ . '_' . __METHOD__;
         $fp = fopen($testFilePath, "w+");
