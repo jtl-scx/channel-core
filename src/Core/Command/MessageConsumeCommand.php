@@ -6,7 +6,7 @@
  * Date: 2019/09/17
  */
 
-namespace JTL\SCX\Lib\Channel\Event\Command;
+namespace JTL\SCX\Lib\Channel\Core\Command;
 
 use GuzzleHttp\Exception\GuzzleException;
 use JTL\Generic\StringCollection;
@@ -14,14 +14,14 @@ use JTL\Nachricht\Message\Cache\MessageCache;
 use JTL\Nachricht\Transport\Amqp\AmqpConsumer;
 use JTL\Nachricht\Transport\SubscriptionSettings;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
-use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-class EventConsumeCommand extends AbstractCommand
+class MessageConsumeCommand extends AbstractCommand
 {
-    protected static $defaultName = 'scx-channel:event.consume';
+    protected static $defaultName = 'chn:message.consume';
+
     private AmqpConsumer $amqpConsumer;
     private MessageCache $messageCache;
 

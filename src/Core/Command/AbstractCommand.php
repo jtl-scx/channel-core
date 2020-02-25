@@ -26,13 +26,7 @@ abstract class AbstractCommand extends Command
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
         $prolog = <<< TXT
-  _____  _______   __      _____ _                            _ 
- / ____|/ ____\ \O/ /     / ____| |                          | |
-| (___ | |     \ V /_____| |    | |__   __ _ _ __  _ __   ___| |
- \___ \| |      > <______| |    | '_ \ / _` | '_ \| '_ \ / _ \ |
- ____) | |____ / . \     | |____| | | | (_| | | | | | | |  __/ |
-|_____/ \_____/_/ \_\     \_____|_| |_|\__,_|_| |_|_| |_|\___|_|
-powered by JTL-Software-GmbH
+SCX-Channel-Core {$this->getName()}  by JTL-Software-GmbH. 
 
 TXT;
 

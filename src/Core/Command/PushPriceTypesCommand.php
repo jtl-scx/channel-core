@@ -20,7 +20,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class PushPriceTypesCommand extends AbstractCommand
 {
-    protected static $defaultName = 'scx-api:put:price-types';
+    protected static $defaultName = 'scx-api:put.price-types';
 
     private PriceApi $client;
     private PriceTypeLoader $priceTypeLoader;
