@@ -2,7 +2,7 @@
   <img src="https://cdn.eazyauction.de/eastatic/scx_logo.png">
 </div>
 
-# SCX-Channel-Core
+# JTL-SCX Channel-Core
 
 [![Build Status](https://travis-ci.org/jtl-scx/channel-core.svg?branch=master)](https://travis-ci.org/jtl-scx/channel-core)
 
@@ -18,38 +18,7 @@ This Framework for SCX-Channel-Integrations provide abstraction for
 * Event Handing using RabbitMQ as queue and [jtl/nachricht](https://github.com/jtl-software/nachricht) as message broker.
 * Toolbox for Data handing such as managing category tree, attributes, prices.
 
-## CLI Commands
-
-Under `bin/Core.php` you will find a executable CLI tool (based on symfony/console) which will give you a wide range 
-on tool which might help by setting up your own SCX-Channel integration.
-
-### Command `scx-api:get.events`
-
-Read events available through `GET /channel/events` dispatch them in messages queues, using jtl/nachricht and 
-acknowledge then by calling `DELETE /channel/events`. To consume such events use `scx-channel:event.consume`
-
-### Command `scx-channel:event.consume`
-
-Consume all messages available through RabbitMQ
-
-### Namespace `scx-api`
-
-Contain command to send our receive data from SCX-Channel-Api
-
-### Namespace `scx-channel`
-
-Contain command which may be helpful when setting up your own Channel Integration.
-
-### Namespace `helper`
-
-The namespace helper provide tool to create Seller-Events for testing propose. 
-
-For example:
-````
-php bin/Core helper:emit.OfferNewEvent example/OfferNew.json $TESTSELLER
-````
-
-## Contribution
+## Development
 
 Need to run CLI Commands?
 ````
