@@ -237,16 +237,16 @@
         },
         {
             "name": "jtl-scx/channel-api-client",
-            "version": "0.9.0",
+            "version": "0.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-scx/channel-api-client.git",
-                "reference": "0fc80903ebfaad031c6054f50e0319e1b294365e"
+                "reference": "ed5aa1bfd49124ff0717e619edda64fd3a9483a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/0fc80903ebfaad031c6054f50e0319e1b294365e",
-                "reference": "0fc80903ebfaad031c6054f50e0319e1b294365e",
+                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/ed5aa1bfd49124ff0717e619edda64fd3a9483a4",
+                "reference": "ed5aa1bfd49124ff0717e619edda64fd3a9483a4",
                 "shasum": ""
             },
             "require": {
@@ -276,7 +276,7 @@
                 "MIT"
             ],
             "description": "API Client for SCX Channel API",
-            "time": "2020-02-24T09:29:08+00:00"
+            "time": "2020-02-27T16:37:38+00:00"
         },
         {
             "name": "jtl/nachricht",
@@ -884,16 +884,16 @@
         },
         {
             "name": "php-amqplib/php-amqplib",
-            "version": "v2.11.0",
+            "version": "v2.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-amqplib/php-amqplib.git",
-                "reference": "9ee212baced63442ca1ab029acde38e1144a00b8"
+                "reference": "cfbfaf6262cd8d017f29862164f75e265d832434"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/9ee212baced63442ca1ab029acde38e1144a00b8",
-                "reference": "9ee212baced63442ca1ab029acde38e1144a00b8",
+                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/cfbfaf6262cd8d017f29862164f75e265d832434",
+                "reference": "cfbfaf6262cd8d017f29862164f75e265d832434",
                 "shasum": ""
             },
             "require": {
@@ -901,6 +901,9 @@
                 "ext-sockets": "*",
                 "php": ">=5.6.3",
                 "phpseclib/phpseclib": "^2.0.0"
+            },
+            "conflict": {
+                "php": "7.4.0 - 7.4.1"
             },
             "replace": {
                 "videlalvaro/php-amqplib": "self.version"
@@ -954,20 +957,20 @@
                 "queue",
                 "rabbitmq"
             ],
-            "time": "2019-11-19T15:15:19+00:00"
+            "time": "2020-02-24T17:37:52+00:00"
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.24",
+            "version": "2.0.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "40998159a0907cc523e1f2d1904d45765613a617"
+                "reference": "c18159618ed7cd7ff721ac1a8fec7860a475d2f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/40998159a0907cc523e1f2d1904d45765613a617",
-                "reference": "40998159a0907cc523e1f2d1904d45765613a617",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/c18159618ed7cd7ff721ac1a8fec7860a475d2f0",
+                "reference": "c18159618ed7cd7ff721ac1a8fec7860a475d2f0",
                 "shasum": ""
             },
             "require": {
@@ -1046,7 +1049,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2020-02-04T12:15:04+00:00"
+            "time": "2020-02-25T04:16:50+00:00"
         },
         {
             "name": "psr/container",
@@ -3244,16 +3247,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "5.0.0",
+            "version": "5.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "a48807183a4b819072f26e347bbd0b5199a9d15f"
+                "reference": "cd72d394ca794d3466a3b2fc09d5a6c1dc86b47e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/a48807183a4b819072f26e347bbd0b5199a9d15f",
-                "reference": "a48807183a4b819072f26e347bbd0b5199a9d15f",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/cd72d394ca794d3466a3b2fc09d5a6c1dc86b47e",
+                "reference": "cd72d394ca794d3466a3b2fc09d5a6c1dc86b47e",
                 "shasum": ""
             },
             "require": {
@@ -3293,7 +3296,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2020-02-09T09:16:15+00:00"
+            "time": "2020-02-22T12:28:44+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
