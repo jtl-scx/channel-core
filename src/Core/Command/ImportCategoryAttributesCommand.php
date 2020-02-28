@@ -9,6 +9,7 @@
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
 use GuzzleHttp\Exception\GuzzleException;
+use InvalidArgumentException;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
@@ -98,6 +99,14 @@ class ImportCategoryAttributesCommand extends AbstractCommand
         $process = $input->getOption('process');
 
         $importFile = $input->getOption('import-csv-list');
+
+        if ($categoryId === null && $importFile === null) {
+            throw new InvalidArgumentException("Missing categoryId or import-csv-list parameter");
+        }
+
+        if ($process === false) {
+            $this->io->warning("There is no --process option given - attributes are NOT send to SCX-Channel-Api");
+        }
 
         if ($categoryId !== null) {
             $this->import($categoryId, $process, $io);
