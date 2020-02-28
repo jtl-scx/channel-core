@@ -10,80 +10,21 @@ namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
 class Attribute
 {
-    /**
-     * @var string
-     */
-    private $attributeId;
-
-    /**
-     * @var string
-     */
-    private $displayName;
-
-    /**
-     * @var bool
-     */
-    private $isMultipleAllowed;
-
-    /**
-     * @var AttributeType
-     */
-    private $type;
-
-    /**
-     * @var array|null
-     */
-    private $enumValues;
-
-    /**
-     * @var string|null
-     */
-    private $attributeValueValidation;
-
-    /**
-     * @var ConditionalAttributeList|null
-     */
-    private $conditionalMandatoryBy;
-
-    /**
-     * @var ConditionalAttributeList|null
-     */
-    private $conditionalOptionalBy;
-
-    /**
-     * @var bool
-     */
-    private $required;
-
-    /**
-     * @var string|null
-     */
-    private $section;
-
-    /**
-     * @var int|null
-     */
-    private $sectionPosition;
-
-    /**
-     * @var string|null
-     */
-    private $subSection;
-
-    /**
-     * @var int|null
-     */
-    private $subSectionPosition;
-
-    /**
-     * @var string|null
-     */
-    private $description;
-
-    /**
-     * @var bool|null
-     */
-    private $isVariationDimension;
+    private string $attributeId;
+    private string $displayName;
+    private bool $isMultipleAllowed;
+    private AttributeType $type;
+    private ?array $enumValues;
+    private ?string $attributeValueValidation;
+    private ?ConditionalAttributeList $conditionalMandatoryBy;
+    private ?ConditionalAttributeList $conditionalOptionalBy;
+    private bool $required;
+    private ?string $section;
+    private ?int $sectionPosition;
+    private ?string $subSection;
+    private ?int $subSectionPosition;
+    private ?string $description;
+    private ?bool $isVariationDimension;
 
     /**
      * Attribute constructor.
@@ -92,7 +33,7 @@ class Attribute
      * @param string|null $description
      * @param bool $required
      * @param array|null $enumValues
-     * @param AttributeType $type
+     * @param AttributeType|null $type
      * @param bool $isMultipleAllowed
      * @param string|null $attributeValueValidation
      * @param ConditionalAttributeList|null $conditionalMandatoryBy
@@ -106,10 +47,10 @@ class Attribute
     public function __construct(
         string $attributeId,
         string $displayName,
-        ?string $description,
-        bool $required,
-        ?array $enumValues,
-        AttributeType $type,
+        string $description = null,
+        bool $required = false,
+        array $enumValues = null,
+        AttributeType $type = null,
         bool $isMultipleAllowed = false,
         string $attributeValueValidation = null,
         ConditionalAttributeList $conditionalMandatoryBy = null,
@@ -122,18 +63,21 @@ class Attribute
     ) {
         $this->attributeId = $attributeId;
         $this->displayName = $displayName;
-        $this->isMultipleAllowed = $isMultipleAllowed;
-        $this->type = $type;
+        $this->description = $description;
+        $this->required = $required;
         $this->enumValues = $enumValues;
+
+        $type = $type ?? AttributeType::SMALLTEXT();
+        $this->type = $type;
+
+        $this->isMultipleAllowed = $isMultipleAllowed;
         $this->attributeValueValidation = $attributeValueValidation;
         $this->conditionalMandatoryBy = $conditionalMandatoryBy;
         $this->conditionalOptionalBy = $conditionalOptionalBy;
-        $this->required = $required;
         $this->section = $section;
+        $this->sectionPosition = $sectionPosition;
         $this->subSection = $subSection;
         $this->subSectionPosition = $subSectionPosition;
-        $this->description = $description;
-        $this->sectionPosition = $sectionPosition;
         $this->isVariationDimension = $isVariationDimension;
     }
 
