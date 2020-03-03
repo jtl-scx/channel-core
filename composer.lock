@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c2cd915f1d9f0b66f1ccd0a0adb40813",
+    "content-hash": "5af004824cfe2dbd1590b21a93f3e28e",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -237,16 +237,16 @@
         },
         {
             "name": "jtl-scx/channel-api-client",
-            "version": "0.9.1",
+            "version": "0.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-scx/channel-api-client.git",
-                "reference": "ed5aa1bfd49124ff0717e619edda64fd3a9483a4"
+                "reference": "28fa2f594b6ca375e344881b8bdc1df622259ea8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/ed5aa1bfd49124ff0717e619edda64fd3a9483a4",
-                "reference": "ed5aa1bfd49124ff0717e619edda64fd3a9483a4",
+                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/28fa2f594b6ca375e344881b8bdc1df622259ea8",
+                "reference": "28fa2f594b6ca375e344881b8bdc1df622259ea8",
                 "shasum": ""
             },
             "require": {
@@ -276,7 +276,7 @@
                 "MIT"
             ],
             "description": "API Client for SCX Channel API",
-            "time": "2020-02-27T16:37:38+00:00"
+            "time": "2020-03-03T15:02:36+00:00"
         },
         {
             "name": "jtl/nachricht",
