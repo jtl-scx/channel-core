@@ -58,7 +58,12 @@ class ScxApiEventConsumeCommand extends AbstractCommand
             }
 
             $emittedEventIdList = $this->eventEnqueuer->emit($response->getEventList());
-            $this->logger->info(count($emittedEventIdList) . " events emitted.");
+            $emittedEventCount = count($emittedEventIdList);
+            $this->logger->info($emittedEventCount . " events emitted.");
+
+            if ($emittedEventCount === 0) {
+                return;
+            }
 
             $this->eventApi->ack(new AcknowledgeEventIdListRequest($emittedEventIdList));
             $this->logger->info("Events successful acknowledged");
