@@ -30,7 +30,7 @@ abstract class AbstractCommand extends Command
         $this->io = new SymfonyStyle($input, $output);
 
         $prolog = <<< TXT
-SCX-Channel-Core {$this->getName()}  by JTL-Software-GmbH. 
+SCX-Channel-Core command {$this->getName()} by JTL-Software-GmbH. 
 
 TXT;
 
