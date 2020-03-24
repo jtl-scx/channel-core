@@ -1,0 +1,18 @@
+{
+  "sellerId": "5e008509dddb555d3c7fe362",
+  "orderId": "12345",
+  "shippingComplete": true,
+  "shippedAt": "now",
+  "shippingItems": [
+    {
+      "orderItemIdList": [
+        {
+          "orderItemId": 123,
+          "quantity": 1
+        }
+      ],
+      "trackingNumber": "qweasd",
+      "carrier": "DPD"
+    }
+  ]
+}
