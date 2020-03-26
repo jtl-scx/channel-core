@@ -13,15 +13,15 @@ use Symfony\Component\Console\Input\InputOption;
 
 class EmitOrderShippedEventCommand extends AbstractEmitEventCommand
 {
-    protected static $defaultName = 'helper:emit.OrderShippedEvent';
+    protected static $defaultName = 'helper:emit.OrderShippingEvent';
 
     protected function configure(): void
     {
         parent::configure();
         $this->setDescription('Helper command to emit OrderShippedEvent for Testing')
-            ->addOption('orderId', null, InputOption::VALUE_OPTIONAL, 'orderId', null)
-            ->addOption('shippingComplete', null, InputOption::VALUE_OPTIONAL, 'Is ShippingComplete?', null)
-            ->addOption('shippedAt', null, InputOption::VALUE_OPTIONAL, 'Shipping Date', null);
+            ->addOption('orderId', null, InputOption::VALUE_REQUIRED, 'orderId', null)
+            ->addOption('shippingComplete', null, InputOption::VALUE_NONE, 'Is Shipping complete?', null)
+            ->addOption('shippedAt', null, InputOption::VALUE_REQUIRED, 'Shipping Date', null);
     }
 
     protected function getEventType(): EventType
