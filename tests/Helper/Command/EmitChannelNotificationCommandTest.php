@@ -22,7 +22,6 @@ use Symfony\Component\Console\Tester\CommandTester;
  */
 class EmitChannelNotificationCommandTest extends TestCase
 {
-
     public function testCanEmitChannelNotification()
     {
         $args = [
