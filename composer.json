@@ -22,7 +22,7 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",
         "phpstan/phpstan": "^0.11.15",
-        "phpunit/phpunit": "^8.3",
+        "phpunit/phpunit": "^9.0",
         "symfony/dotenv": "^5.0",
         "twig/twig": "^2.0"
     },
