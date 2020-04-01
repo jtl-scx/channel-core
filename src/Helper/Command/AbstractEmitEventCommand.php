@@ -38,15 +38,15 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
 
     public function __construct(
         Environment $environment,
-        EventFactory $messageFactory,
+        EventFactory $eventFactory,
         AmqpEmitter $emitter,
         ResponseDeserializer $responseDeserializer,
         ScxLogger $logger
     ) {
         parent::__construct($logger);
-        $this->emitter = $emitter;
         $this->environment = $environment;
-        $this->eventFactory = $messageFactory;
+        $this->eventFactory = $eventFactory;
+        $this->emitter = $emitter;
         $this->responseDeserializer = $responseDeserializer;
     }
 
@@ -70,7 +70,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
         $event = $this->prepareEventData($input, $output);
         $container = $this->buildEventContainer($this->getEventType(), $event);
         if (!$container instanceof Message) {
-            throw new RuntimeException("Can not emit event because AmqpEvent could not be builded");
+            throw new RuntimeException("Fail to build AmqpEvent. Nothing to emit.");
         }
         $this->emit($container, $output);
     }
@@ -79,7 +79,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
     {
         $absoluteJsonFilePath = $this->getAbsoluteJsonFilePath($input);
         $event = json_decode((string)file_get_contents($absoluteJsonFilePath), true, 512, JSON_THROW_ON_ERROR);
-        $event['sellerId'] = $input->getArgument('sellerId');
+        $event['sellerId'] = $input->getArgument('sellerId') ?? $event['sellerId'];
 
         $event = $this->replaceWithArguments($event, $input->getOptions() + $input->getArguments());
         $this->printEventData($output, $event);
@@ -95,7 +95,9 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
         );
 
         if (method_exists($model, 'valid') && !$model->valid()) {
-            throw new InvalidArgumentException(print_r($model->listInvalidProperties(), true));
+            throw new InvalidArgumentException(
+                "Invalid event schema \n" . print_r($model->listInvalidProperties(), true)
+            );
         }
 
         return $this->eventFactory->createFromEventContainer(new EventContainer(

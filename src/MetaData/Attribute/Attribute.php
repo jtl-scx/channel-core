@@ -186,16 +186,6 @@ class Attribute
     }
 
     /**
-     * @param string $id
-     * @return Attribute
-     */
-    public function setId(string $id): Attribute
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
      * @return int|null
      */
     public function getSectionPosition(): ?int

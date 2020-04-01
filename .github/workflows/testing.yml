@@ -13,5 +13,8 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
+    - name: Check Code Style
+      run:  composer phpcs-dry
+
     - name: Run test suite
       run: vendor/bin/phpunit

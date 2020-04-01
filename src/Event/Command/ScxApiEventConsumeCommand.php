@@ -11,7 +11,6 @@ namespace JTL\SCX\Lib\Channel\Event\Command;
 use GuzzleHttp\Exception\GuzzleException;
 use JTL\SCX\Client\Channel\Api\Event\EventApi;
 use JTL\SCX\Client\Channel\Api\Event\Request\AcknowledgeEventIdListRequest;
-use JTL\SCX\Client\Channel\Api\Event\Request\GetEventListRequest;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
@@ -50,7 +49,7 @@ class ScxApiEventConsumeCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
         do {
-            $response = $this->eventApi->getEventList(new GetEventListRequest());
+            $response = $this->eventApi->get();
 
             $this->logger->info("Receive {$response->getEventList()->count()} events from scx-channel api");
             if ($response->getEventList()->count() <= 0) {
