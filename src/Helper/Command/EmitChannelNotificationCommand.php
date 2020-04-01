@@ -55,11 +55,10 @@ class EmitChannelNotificationCommand extends AbstractCommand
         );
         $this->emitter->emit($message);
 
-        $log = "SendNotificationMessage with severity {$severity} emitted";
+        $this->io->success("SendNotificationMessage with severity {$severity} emitted");
         if ($reference instanceof NotificationReference) {
-            $log .= " using reference {$reference->getType()} = {$reference->getId()}";
+            $this->io->writeln("Using reference {$reference->getType()} = {$reference->getId()}");
         }
-        $this->io->success($log);
     }
 
     /**
