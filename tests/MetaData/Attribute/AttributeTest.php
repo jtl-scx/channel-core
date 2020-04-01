@@ -59,8 +59,6 @@ class AttributeTest extends TestCase
             $isVariationDimension
         );
 
-        $attribute->setId($id);
-
         $this->assertEquals($attributeId, $attribute->getAttributeId());
         $this->assertEquals($displayName, $attribute->getDisplayName());
         $this->assertEquals($type, $attribute->getType());
