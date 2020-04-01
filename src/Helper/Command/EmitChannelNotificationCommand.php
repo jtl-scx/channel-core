@@ -8,6 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
+use InvalidArgumentException;
 use JTL\Nachricht\Contract\Emitter\Emitter;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
@@ -44,15 +45,21 @@ class EmitChannelNotificationCommand extends AbstractCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $severity =  $this->createSeverityFromInput($input);
+        $severity = $this->createSeverityFromInput($input);
+        $reference = $this->createReferenceFromInput($input);
         $message = new SendNotificationMessage(
             $input->getArgument('sellerId'),
             $input->getArgument('message'),
             $severity,
-            $this->createReferenceFromInput($input)
+            $reference
         );
         $this->emitter->emit($message);
-        $output->writeln("SendNotificationMessage with severity {$severity} emitted");
+
+        $log = "SendNotificationMessage with severity {$severity} emitted";
+        if ($reference instanceof NotificationReference) {
+            $log .= " using reference {$reference->getType()} = {$reference->getId()}";
+        }
+        $this->io->success($log);
     }
 
     /**
@@ -79,7 +86,7 @@ class EmitChannelNotificationCommand extends AbstractCommand
         $orderItemId = $input->getOption('orderItemId');
 
         if ($offerId !== null && $orderItemId !== null) {
-            throw new \InvalidArgumentException('When using a reference only one at a time is allowed.');
+            throw new InvalidArgumentException('When using a reference only one at a time is allowed.');
         }
 
         if ($offerId != null) {

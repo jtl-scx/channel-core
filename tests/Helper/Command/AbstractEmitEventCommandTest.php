@@ -8,6 +8,7 @@
 
 namespace Helper\Command;
 
+use InvalidArgumentException;
 use JTL\Nachricht\Emitter\AmqpEmitter;
 use JTL\SCX\Client\ApiResponseDeserializer;
 use JTL\SCX\Client\Channel\Event\EventType;
@@ -17,6 +18,7 @@ use JTL\SCX\Lib\Channel\Event\EventFactory;
 use JTL\SCX\Lib\Channel\Event\Seller\SystemNotificationEvent;
 use JTL\SCX\Lib\Channel\Helper\Command\AbstractEmitEventCommand;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
@@ -84,7 +86,7 @@ class AbstractEmitEventCommandTest extends TestCase
     {
         file_put_contents($this->testJsonFile, json_encode([
             'sellerId' => '123',
-            // 'channel' => 'dingens', this is required so we removed
+            // 'channel' => 'dingens', this is required, so we remove it
             'message' => 'a message',
             'severity' => 'INFO',
         ]));
@@ -96,7 +98,7 @@ class AbstractEmitEventCommandTest extends TestCase
         $concreteCmd = $this->createConcreteCmdInstance($emitterMock);
 
         $commandTester = new CommandTester($concreteCmd);
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage("Invalid event schema");
         $this->expectExceptionMessage("'channel' can't be null");
         $commandTester->execute([
@@ -110,7 +112,7 @@ class AbstractEmitEventCommandTest extends TestCase
         $concreteCmd = $this->createConcreteCmdInstance($this->createStub(AmqpEmitter::class));
 
         $commandTester = new CommandTester($concreteCmd);
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(RuntimeException::class);
         $commandTester->execute([
             'jsonFile' => '/any/unknown.json'
         ]);
