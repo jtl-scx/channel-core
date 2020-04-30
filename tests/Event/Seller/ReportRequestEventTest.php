@@ -10,6 +10,7 @@ namespace JTL\SCX\Lib\Channel\Event\Seller;
 
 use JTL\SCX\Client\Channel\Model\SellerEventReportRequest;
 use PHPUnit\Framework\TestCase;
+
 /**
  * Class ReportRequestEventTest
  * @covers \JTL\SCX\Lib\Channel\Event\Seller\ReportRequestEvent
