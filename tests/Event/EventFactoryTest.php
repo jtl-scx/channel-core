@@ -19,6 +19,7 @@ use JTL\SCX\Client\Channel\Model\SellerEventOrderCancelled;
 use JTL\SCX\Client\Channel\Model\SellerEventOrderConfirmed;
 use JTL\SCX\Client\Channel\Model\SellerEventOrderPayment;
 use JTL\SCX\Client\Channel\Model\SellerEventOrderShipping;
+use JTL\SCX\Client\Channel\Model\SellerEventReportRequest;
 use JTL\SCX\Client\Channel\Model\SellerEventTest;
 use JTL\SCX\Client\Channel\Model\SystemEventNotification;
 use JTL\SCX\Lib\Channel\Event\EventFactory;
@@ -29,6 +30,7 @@ use JTL\SCX\Lib\Channel\Event\Seller\OrderCancelledEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderConfirmedEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderPaymentEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderShippingEvent;
+use JTL\SCX\Lib\Channel\Event\Seller\ReportRequestEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\SystemNotificationEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\SystemTestEvent;
 use PHPUnit\Framework\TestCase;
@@ -50,7 +52,8 @@ class EventFactoryTest extends TestCase
             [OrderCancelledEvent::class, SellerEventOrderCancelled::class, EventType::SellerOrderCancelled()],
             [OfferNewEvent::class, SellerEventOfferNew::class, EventType::SellerOfferNew()],
             [OfferUpdateEvent::class, SellerEventOfferUpdate::class, EventType::SellerOfferUpdate()],
-            [OfferEndEvent::class, SellerEventOfferEnd::class, EventType::SellerOfferEnd()]
+            [OfferEndEvent::class, SellerEventOfferEnd::class, EventType::SellerOfferEnd()],
+            [ReportRequestEvent::class, SellerEventReportRequest::class, EventType::SellerReportRequest()],
         ];
     }
 
