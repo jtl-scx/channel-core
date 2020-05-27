@@ -10,20 +10,20 @@ namespace JTL\SCX\Lib\Channel\Report\SellerInventory\Model;
 
 class QuantityPrice
 {
-    private string $price;
+    private string $amount;
     private string $currency;
     private string $quantity;
 
-    public function __construct(string $price, string $currency, string $quantity = '1.0')
+    public function __construct(string $amount, string $currency, string $quantity = '1.0')
     {
-        $this->price = $price;
+        $this->amount = $amount;
         $this->currency = $currency;
         $this->quantity = $quantity;
     }
 
-    public function getPrice(): string
+    public function getAmount(): string
     {
-        return $this->price;
+        return $this->amount;
     }
 
     public function getCurrency(): string

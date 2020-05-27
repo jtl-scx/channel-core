@@ -23,6 +23,24 @@ class PriceList extends GenericCollection
         parent::__construct(Price::class);
     }
 
+    public static function fromArray(array $data): PriceList
+    {
+        $priceList = new self();
+        foreach ($data as $price) {
+            $quantityPriceList = new QuantityPriceList();
+            foreach ($price['quantityPriceList'] ?? [] as $quantityPriceData) {
+                $quantityPriceList->add(new QuantityPrice(
+                    (string)$quantityPriceData['amount'],
+                    (string)$quantityPriceData['currency'],
+                    (string)$quantityPriceData['quantity']
+                ));
+            }
+            $priceList->add(new Price($price['id'], $quantityPriceList));
+        }
+
+        return $priceList;
+    }
+
     public function toArray(): array
     {
         return array_map(function (Price $item) {

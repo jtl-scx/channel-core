@@ -12,16 +12,16 @@ use JTL\SCX\Client\Channel\Price\PriceType;
 
 class Price
 {
-    private PriceType $id;
+    private string $id;
     private QuantityPriceList $quantityPriceList;
 
-    public function __construct(PriceType $id, QuantityPriceList $quantityPriceList)
+    public function __construct(string $id, QuantityPriceList $quantityPriceList)
     {
         $this->id = $id;
         $this->quantityPriceList = $quantityPriceList;
     }
 
-    public function getId(): PriceType
+    public function getId(): string
     {
         return $this->id;
     }
@@ -34,7 +34,7 @@ class Price
     public function toArray(): array
     {
         return [
-            'id' => (string)$this->getId(),
+            'id' => $this->getId(),
             'quantityPriceList' => $this->getQuantityPriceList()->toArray(),
         ];
     }
