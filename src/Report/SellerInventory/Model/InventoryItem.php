@@ -14,7 +14,7 @@ class InventoryItem
     private ?string $sku;
     private ?string $ean;
     private ?string $quantity;
-    private ?array $priceList;
+    private ?PriceList $priceList;
     private ?string $title;
     private ?string $channelCategoryId;
     private ?array $channelAttributeList;
@@ -25,7 +25,7 @@ class InventoryItem
         ?string $sku,
         ?string $ean,
         ?string $quantity,
-        ?array $priceList,
+        ?PriceList $priceList,
         ?string $title,
         ?string $channelCategoryId,
         ?array $channelAttributeList,
@@ -39,7 +39,7 @@ class InventoryItem
         $this->title = $title;
         $this->channelCategoryId = $channelCategoryId;
         $this->channelAttributeList = $channelAttributeList;
-        $this->createdAt = $createdAt;
+        $this->createdAt = $createdAt ?? new \DateTimeImmutable();
     }
 
     public function getSellerOfferId(): ?int
@@ -62,7 +62,7 @@ class InventoryItem
         return $this->quantity;
     }
 
-    public function getPriceList(): ?array
+    public function getPriceList(): ?PriceList
     {
         return $this->priceList;
     }
