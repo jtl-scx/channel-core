@@ -26,6 +26,21 @@ class ItemAttributeList extends GenericCollection
         parent::__construct(ItemAttribute::class);
     }
 
+    public static function fromArray(array $itemDataList)
+    {
+        $return = new self();
+
+        foreach ($itemDataList as $index => $itemData) {
+            if (isset($itemData['attributeId'], $itemData['value'])) {
+                $return->add(new ItemAttribute($itemData['attributeId'], $itemData['value']));
+            } else {
+                throw new \InvalidArgumentException("Missing 'attributeId' and/or 'value' for element '{$index}'");
+            }
+        }
+
+        return $return;
+    }
+
     public function toArray(): array
     {
         return $this->createArray($this->itemList);
