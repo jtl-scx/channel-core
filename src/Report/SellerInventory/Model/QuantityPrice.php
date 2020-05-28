@@ -8,8 +8,12 @@
 
 namespace JTL\SCX\Lib\Channel\Report\SellerInventory\Model;
 
+use JTL\SCX\Lib\Channel\Core\ToArrayTrait;
+
 class QuantityPrice
 {
+    use ToArrayTrait;
+
     private string $amount;
     private string $currency;
     private string $quantity;
@@ -34,10 +38,5 @@ class QuantityPrice
     public function getQuantity(): string
     {
         return $this->quantity;
-    }
-
-    public function toArray(): array
-    {
-        return get_object_vars($this);
     }
 }

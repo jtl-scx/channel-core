@@ -8,10 +8,12 @@
 
 namespace JTL\SCX\Lib\Channel\Report\SellerInventory\Model;
 
-use JTL\SCX\Client\Channel\Price\PriceType;
+use JTL\SCX\Lib\Channel\Core\ToArrayTrait;
 
 class Price
 {
+    use ToArrayTrait;
+
     private string $id;
     private QuantityPriceList $quantityPriceList;
 
@@ -29,13 +31,5 @@ class Price
     public function getQuantityPriceList(): QuantityPriceList
     {
         return $this->quantityPriceList;
-    }
-
-    public function toArray(): array
-    {
-        return [
-            'id' => $this->getId(),
-            'quantityPriceList' => $this->getQuantityPriceList()->toArray(),
-        ];
     }
 }

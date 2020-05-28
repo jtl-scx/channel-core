@@ -9,6 +9,7 @@
 namespace  JTL\SCX\Lib\Channel\Report\SellerInventory\Model;
 
 use JTL\Generic\GenericCollection;
+use JTL\SCX\Lib\Channel\Core\ToArrayTrait;
 
 /**
  * Class InventoryItemList
@@ -18,6 +19,8 @@ use JTL\Generic\GenericCollection;
  */
 class InventoryItemList extends GenericCollection
 {
+    use ToArrayTrait;
+
     public function __construct()
     {
         parent::__construct(InventoryItem::class);
@@ -25,8 +28,6 @@ class InventoryItemList extends GenericCollection
 
     public function toArray(): array
     {
-        return array_map(function (InventoryItem $item) {
-            return $item->toArray();
-        }, $this->itemList);
+        return $this->createArray($this->itemList);
     }
 }

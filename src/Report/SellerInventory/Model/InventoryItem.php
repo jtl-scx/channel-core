@@ -8,8 +8,12 @@
 
 namespace JTL\SCX\Lib\Channel\Report\SellerInventory\Model;
 
+use JTL\SCX\Lib\Channel\Core\ToArrayTrait;
+
 class InventoryItem
 {
+    use ToArrayTrait;
+
     private ?int $sellerOfferId;
     private ?string $sku;
     private ?string $ean;
@@ -17,7 +21,7 @@ class InventoryItem
     private ?PriceList $priceList;
     private ?string $title;
     private ?string $channelCategoryId;
-    private ?array $channelAttributeList;
+    private ?ItemAttributeList $channelAttributeList;
     private ?\DateTimeImmutable $createdAt;
 
     public function __construct(
@@ -28,7 +32,7 @@ class InventoryItem
         ?PriceList $priceList,
         ?string $title,
         ?string $channelCategoryId,
-        ?array $channelAttributeList,
+        ?ItemAttributeList $channelAttributeList,
         \DateTimeImmutable $createdAt = null
     ) {
         $this->sellerOfferId = $sellerOfferId;
@@ -77,7 +81,7 @@ class InventoryItem
         return $this->channelCategoryId;
     }
 
-    public function getChannelAttributeList(): ?array
+    public function getChannelAttributeList(): ?ItemAttributeList
     {
         return $this->channelAttributeList;
     }
@@ -85,24 +89,5 @@ class InventoryItem
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
-    }
-
-    public function toArray(): array
-    {
-        $data = [];
-        foreach (get_object_vars($this) as $key => $attr) {
-            if (\is_object($attr)) {
-                if ($attr instanceof \DateTimeImmutable) {
-                    $data[$key] = $attr->format('c');
-                } elseif (method_exists($attr, 'toArray')) {
-                    $data[$key] = $attr->toArray();
-                } else {
-                    $data[$key] = get_object_vars($attr);
-                }
-            } else {
-                $data[$key] = $attr;
-            }
-        }
-        return $data;
     }
 }
