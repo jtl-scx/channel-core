@@ -8,20 +8,20 @@
         "guzzlehttp/guzzle": "^6.3",
         "jtl-scx/api-base-client": "^1.0",
         "jtl-scx/channel-api-client": "^0.19",
-        "jtl/nachricht": "^0.8",
+        "jtl/nachricht": "dev-EA-3010",
         "monolog/monolog": "^2.0",
         "myclabs/php-enum": "^1.7",
         "php-amqplib/php-amqplib": "^2.10",
         "psr/log": "^1.1",
-        "symfony/config": "^4.3",
-        "symfony/console": "^4.3",
-        "symfony/dependency-injection": "^4.3",
-        "symfony/proxy-manager-bridge": "^4.3",
-        "symfony/yaml": "^4.3"
+        "symfony/config": "^5.1",
+        "symfony/console": "^5.1",
+        "symfony/dependency-injection": "^5.1",
+        "symfony/proxy-manager-bridge": "^5.1",
+        "symfony/yaml": "^5.1"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",
-        "phpstan/phpstan": "^0.11.15",
+        "phpstan/phpstan": "^0.12",
         "phpunit/phpunit": "^9.0",
         "symfony/dotenv": "^5.0",
         "twig/twig": "^2.0"

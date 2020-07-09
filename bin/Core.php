@@ -8,6 +8,7 @@
  */
 
 use JTL\SCX\Lib\Channel\Core\AbstractApplicationContext;
+use JTL\SCX\Lib\Channel\Core\Log\MonologFactory;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Dotenv\Dotenv;
 
@@ -32,6 +33,10 @@ if (empty($listenerCache)) {
     $listenerCache = $rootDir . '/var/cache/listenerCache.php';
 }
 
+
+$a = MonologFactory::class;
+var_dump($a, function_exists('\\' . $a . '::create'));
+exit;
 $core = new class($isDevelopment, $rootDir, $containerCache, $listenerCache) extends AbstractApplicationContext {
     public function __construct($isDevelopment, $rootDir, $containerCachePath, $listenerCachePath)
     {
