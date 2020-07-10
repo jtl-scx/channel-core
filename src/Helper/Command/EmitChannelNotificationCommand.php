@@ -43,7 +43,7 @@ class EmitChannelNotificationCommand extends AbstractCommand
             ->addOption('orderItemId', null, InputOption::VALUE_REQUIRED, 'Reference a OrderItemId');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $severity = $this->createSeverityFromInput($input);
         $reference = $this->createReferenceFromInput($input);
@@ -59,6 +59,8 @@ class EmitChannelNotificationCommand extends AbstractCommand
         if ($reference instanceof NotificationReference) {
             $this->io->writeln("Using reference {$reference->getType()} = {$reference->getId()}");
         }
+
+        return 0;
     }
 
     /**

@@ -13,6 +13,9 @@ use JTL\SCX\Client\Channel\Model\PriceType;
 use JTL\SCX\Lib\Channel\Helper\FileHandler;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \JTL\SCX\Lib\Channel\MetaData\Price\PriceTypeLoader
+ */
 class PriceTypeLoaderTest extends TestCase
 {
     public function testCanLoad(): void

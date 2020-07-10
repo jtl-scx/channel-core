@@ -43,7 +43,7 @@ class PushPriceTypesCommand extends AbstractCommand
         $this->setDescription("Call to push all PriceTypes to SCX");
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $filename = $input->getArgument('filename');
         $priceTypes = $this->priceTypeLoader->load($filename);
@@ -53,6 +53,8 @@ class PushPriceTypesCommand extends AbstractCommand
         }
 
         $output->writeln("Finished, pushed PriceTypes to SCX");
+
+        return 0;
     }
 
     private function pushPrice(

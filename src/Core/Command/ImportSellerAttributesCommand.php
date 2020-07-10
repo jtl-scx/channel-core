@@ -42,7 +42,7 @@ class ImportSellerAttributesCommand extends AbstractCommand
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $sellerId = $input->getArgument('sellerId');
         $output->write("Fetch SellerAttributes for '{$sellerId}'");
@@ -52,5 +52,7 @@ class ImportSellerAttributesCommand extends AbstractCommand
         $output->write("Update {$attributeList->count()} SellerAttributes");
         $this->attributeUpdater->update($sellerId, $attributeList);
         $output->writeln(" ... done");
+
+        return 0;
     }
 }
