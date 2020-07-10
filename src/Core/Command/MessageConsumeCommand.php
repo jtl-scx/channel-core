@@ -43,7 +43,7 @@ class MessageConsumeCommand extends AbstractCommand
      * @return int|void|null
      * @throws GuzzleException
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
 
@@ -63,5 +63,7 @@ class MessageConsumeCommand extends AbstractCommand
         $io->writeln("");
         $io->writeln("Consume Messages");
         $this->amqpConsumer->consume($subscriptionSettings);
+
+        return 0;
     }
 }
