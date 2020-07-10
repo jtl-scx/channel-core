@@ -65,7 +65,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
      * @return int|void
      * @throws Exception
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $event = $this->prepareEventData($input, $output);
         $container = $this->buildEventContainer($this->getEventType(), $event);
@@ -73,6 +73,8 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
             throw new RuntimeException("Fail to build AmqpEvent. Nothing to emit.");
         }
         $this->emit($container, $output);
+
+        return 0;
     }
 
     protected function prepareEventData(InputInterface $input, OutputInterface $output): array

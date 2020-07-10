@@ -71,7 +71,7 @@ class ImportCategoryTreeCommand extends AbstractCommand
      * @throws RequestValidationFailedException
      * @throws UnexpectedStatusException
      */
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
 
@@ -99,5 +99,7 @@ class ImportCategoryTreeCommand extends AbstractCommand
         $io->write("Update CategoryTree.");
         $categoryTreeVersion = $this->categoryTreeUpdater->update($categoryList);
         $io->writeln(" ... done. New Version is \"{$categoryTreeVersion}\"");
+
+        return 0;
     }
 }

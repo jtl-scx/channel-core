@@ -53,7 +53,7 @@ class ImportGlobalAttributesCommand extends AbstractCommand
      * @throws RequestFailedException
      * @throws RequestValidationFailedException
      */
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $filename = $input->getArgument('filename');
         $globalAttributeList = $this->globalAttributeLoader->load($filename);
@@ -66,5 +66,7 @@ class ImportGlobalAttributesCommand extends AbstractCommand
 
         $this->client->createGlobalAttributes($request);
         $output->writeln("Successfully send global Attributes to SCX");
+
+        return 0;
     }
 }
