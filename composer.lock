@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8d56c97b59787417b81696dc850aa89c",
+    "content-hash": "5d1d292b3ec2652e4dab6db246513040",
     "packages": [
         {
             "name": "brick/math",
@@ -289,16 +289,16 @@
         },
         {
             "name": "jtl-scx/channel-api-client",
-            "version": "0.19.0",
+            "version": "0.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-scx/channel-api-client.git",
-                "reference": "1bf5db088912784399fe85ea54121d0b9c328df9"
+                "reference": "da3704590ddbdc3018382ad9e7b992947d1216ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/1bf5db088912784399fe85ea54121d0b9c328df9",
-                "reference": "1bf5db088912784399fe85ea54121d0b9c328df9",
+                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/da3704590ddbdc3018382ad9e7b992947d1216ca",
+                "reference": "da3704590ddbdc3018382ad9e7b992947d1216ca",
                 "shasum": ""
             },
             "require": {
@@ -328,20 +328,20 @@
                 "MIT"
             ],
             "description": "API Client for SCX Channel API",
-            "time": "2020-05-15T09:12:41+00:00"
+            "time": "2020-07-10T12:06:49+00:00"
         },
         {
             "name": "jtl/nachricht",
-            "version": "dev-EA-3010",
+            "version": "0.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-software/nachricht.git",
-                "reference": "e8d76b4bd6b9ad0a12af5f9a9228bb142490f14c"
+                "reference": "a724b2e61bfde772583b27af9e1713b7dc1ecf56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/e8d76b4bd6b9ad0a12af5f9a9228bb142490f14c",
-                "reference": "e8d76b4bd6b9ad0a12af5f9a9228bb142490f14c",
+                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/a724b2e61bfde772583b27af9e1713b7dc1ecf56",
+                "reference": "a724b2e61bfde772583b27af9e1713b7dc1ecf56",
                 "shasum": ""
             },
             "require": {
@@ -380,7 +380,7 @@
                 "MIT"
             ],
             "description": "Nachricht is a distributed event queue system",
-            "time": "2020-07-10T10:03:43+00:00"
+            "time": "2020-07-10T11:52:46+00:00"
         },
         {
             "name": "jtl/php-generic-collection",
@@ -5739,9 +5739,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "jtl/nachricht": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
