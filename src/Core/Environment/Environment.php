@@ -8,30 +8,46 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Environment;
 
-use RuntimeException;
-
 class Environment
 {
-    /**
-     * @param string $key
-     * @return string
-     */
-    public function get(string $key): string
+    private array $env;
+
+    public function __construct(array $env = null)
     {
-        $result = getenv($key);
-
-        if ($result === false) {
-            throw new RuntimeException('Could not get environment variable ' . $key);
-        }
-
-        return $result;
+        $this->env = $env ?? $_ENV;
     }
 
-    /**
-     * @return bool
-     */
+    public function get(string $name)
+    {
+        $value = $this->env[$name] ?? null;
+        if ($value === null && ($fromGetEnv = getenv($name)) !== false) {
+            return $fromGetEnv;
+        }
+        return $value;
+    }
+
     public function isDevelopment(): bool
     {
-        return getenv('IS_DEVELOPMENT') === 'true';
+        return $this->get('IS_DEVELOPMENT') === 'true';
+    }
+
+    public function getInt(string $name): ?int
+    {
+        return $this->get($name) !== null ? (int)$this->get($name) : null;
+    }
+
+    public function getString(string $name): ?string
+    {
+        return $this->get($name) !== null ? (string)$this->get($name) : null;
+    }
+
+    public function getBool(string $name): ?bool
+    {
+        return $this->get($name) !== null ? (bool)$this->get($name) : null;
+    }
+
+    public function exists(string $name): bool
+    {
+        return isset($this->env[$name]) || getenv($name) !== false;
     }
 }

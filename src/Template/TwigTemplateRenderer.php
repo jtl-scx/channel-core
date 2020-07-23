@@ -9,19 +9,15 @@
 namespace JTL\SCX\Lib\Channel\Template;
 
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 use Twig\Loader\FilesystemLoader;
 
 class TwigTemplateRenderer
 {
-    /**
-     * @var \Twig\Environment
-     */
-    private $twig;
+    private \Twig\Environment $twig;
 
-    /**
-     * TwigTemplateRenderer constructor.
-     * @param Environment $environment
-     */
     public function __construct(Environment $environment)
     {
         $loader = new FilesystemLoader($environment->get('ROOT_DIRECTORY') . '/' . $environment->get('TEMPLATE_DIR'));
@@ -35,9 +31,9 @@ class TwigTemplateRenderer
      * @param string $template
      * @param array $variables
      * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function render(string $template, array $variables = []): string
     {
