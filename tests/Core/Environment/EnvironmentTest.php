@@ -55,16 +55,6 @@ class EnvironmentTest extends TestCase
     /**
      * @test
      */
-    public function it_can_read_from_getenv_function()
-    {
-        putenv("foo=bar");
-        $env = new Environment();
-        $this->assertEquals('bar', $env->get('foo'));
-    }
-
-    /**
-     * @test
-     */
     public function it_can_read_existing_key()
     {
         $_ENV['foo'] = 'bar';
@@ -97,10 +87,8 @@ class EnvironmentTest extends TestCase
     public function it_can_check_a_environment_variable_exists()
     {
         $_ENV['should-exist'] = 'yeah!';
-        putenv('should-also-exists=Jo');
         $env = new Environment();
         $this->assertTrue($env->exists('should-exist'));
-        $this->assertTrue($env->exists('should-also-exists'));
     }
 
     /**

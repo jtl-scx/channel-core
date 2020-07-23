@@ -19,11 +19,7 @@ class Environment
 
     public function get(string $name)
     {
-        $value = $this->env[$name] ?? null;
-        if ($value === null && ($fromGetEnv = getenv($name)) !== false) {
-            return $fromGetEnv;
-        }
-        return $value;
+        return $this->env[$name] ?? null;
     }
 
     public function isDevelopment(): bool
@@ -48,6 +44,6 @@ class Environment
 
     public function exists(string $name): bool
     {
-        return isset($this->env[$name]) || getenv($name) !== false;
+        return isset($this->env[$name]);
     }
 }
