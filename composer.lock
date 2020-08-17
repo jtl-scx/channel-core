@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d1d292b3ec2652e4dab6db246513040",
+    "content-hash": "f10b0f41eecf7d6a650830cb572f1e93",
     "packages": [
         {
             "name": "brick/math",
@@ -289,16 +289,16 @@
         },
         {
             "name": "jtl-scx/channel-api-client",
-            "version": "0.20.0",
+            "version": "0.21.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-scx/channel-api-client.git",
-                "reference": "da3704590ddbdc3018382ad9e7b992947d1216ca"
+                "reference": "a58c430969b1a77fdbcfcf14792a2faaf69f669b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/da3704590ddbdc3018382ad9e7b992947d1216ca",
-                "reference": "da3704590ddbdc3018382ad9e7b992947d1216ca",
+                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/a58c430969b1a77fdbcfcf14792a2faaf69f669b",
+                "reference": "a58c430969b1a77fdbcfcf14792a2faaf69f669b",
                 "shasum": ""
             },
             "require": {
@@ -328,7 +328,7 @@
                 "MIT"
             ],
             "description": "API Client for SCX Channel API",
-            "time": "2020-07-10T12:06:49+00:00"
+            "time": "2020-08-17T09:30:01+00:00"
         },
         {
             "name": "jtl/nachricht",
@@ -2851,6 +2851,12 @@
                 "safe writer",
                 "webimpress"
             ],
+            "funding": [
+                {
+                    "url": "https://github.com/michalbundyra",
+                    "type": "github"
+                }
+            ],
             "time": "2020-03-21T15:49:08+00:00"
         }
     ],
@@ -4152,6 +4158,7 @@
                     "type": "github"
                 }
             ],
+            "abandoned": true,
             "time": "2020-06-27T06:36:25+00:00"
         },
         {
