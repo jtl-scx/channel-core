@@ -1,0 +1,13 @@
+{
+  "supportedCarrierList":
+  [
+    {
+      "carrierId": "1",
+      "displayName": "one-two"
+    },
+    {
+      "carrierId": "2",
+      "displayName": "two-two"
+    }
+  ]
+}

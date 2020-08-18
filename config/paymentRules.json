@@ -1,0 +1,13 @@
+{
+  "supportedPaymentMethodList":
+  [
+    {
+      "paymentMethodId": "1",
+      "displayName": "one-two"
+    },
+    {
+      "paymentMethodId": "2",
+      "displayName": "two-two"
+    }
+  ]
+}
