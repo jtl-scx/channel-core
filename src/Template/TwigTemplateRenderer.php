@@ -12,6 +12,7 @@ use JTL\SCX\Lib\Channel\Core\Environment\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
+use Twig\Extension\ExtensionInterface;
 use Twig\Loader\FilesystemLoader;
 
 class TwigTemplateRenderer
@@ -39,5 +40,10 @@ class TwigTemplateRenderer
     {
         $twigTemplate = $this->twig->load($template);
         return $twigTemplate->render($variables);
+    }
+
+    public function addExtension(ExtensionInterface $extension): void
+    {
+        $this->twig->addExtension($extension);
     }
 }
