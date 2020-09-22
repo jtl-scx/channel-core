@@ -12,7 +12,7 @@ use Exception;
 use JTL\SCX\Client\Channel\Api\Meta\Request\CreateShippingRulesRequest;
 use JTL\SCX\Client\Channel\Api\Meta\ShippingRulesApi;
 use JTL\SCX\Client\Channel\Model\ShippingRules;
-use JTL\SCX\Client\Channel\Model\SupportedCarrierList;
+use JTL\SCX\Client\Channel\Model\SupportedCarrier;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Helper\FileHandler;
 use Symfony\Component\Console\Input\InputArgument;
@@ -64,7 +64,7 @@ class PushShippingRulesCommand extends AbstractCommand
         $supportedCarrierList = [];
         foreach ($supportedCarrierListData as $supportedCarrierData) {
             if (isset($supportedCarrierData['carrierId'], $supportedCarrierData['displayName'])) {
-                $supportedCarrierList[] = new SupportedCarrierList([
+                $supportedCarrierList[] = new SupportedCarrier([
                     'carrierId' => $supportedCarrierData['carrierId'],
                     'displayName' => $supportedCarrierData['displayName']
                 ]);

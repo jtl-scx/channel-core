@@ -11,12 +11,8 @@ namespace JTL\SCX\Lib\Channel\Core\Command;
 use Exception;
 use JTL\SCX\Client\Channel\Api\Meta\PaymentRulesApi;
 use JTL\SCX\Client\Channel\Api\Meta\Request\CreatePaymentRulesRequest;
-use JTL\SCX\Client\Channel\Api\Meta\Request\CreateShippingRulesRequest;
-use JTL\SCX\Client\Channel\Api\Meta\ShippingRulesApi;
 use JTL\SCX\Client\Channel\Model\PaymentRules;
-use JTL\SCX\Client\Channel\Model\ShippingRules;
-use JTL\SCX\Client\Channel\Model\SupportedCarrierList;
-use JTL\SCX\Client\Channel\Model\SupportedPaymentMethodList;
+use JTL\SCX\Client\Channel\Model\SupportedPaymentMethod;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Helper\FileHandler;
 use Symfony\Component\Console\Input\InputArgument;
@@ -68,7 +64,7 @@ class PushPaymentRulesCommand extends AbstractCommand
         $supportedPaymentMethodList = [];
         foreach ($supportedPaymentListData as $supportedPaymentData) {
             if (isset($supportedPaymentData['paymentMethodId'], $supportedPaymentData['displayName'])) {
-                $supportedPaymentMethodList[] = new SupportedPaymentMethodList([
+                $supportedPaymentMethodList[] = new SupportedPaymentMethod([
                     'paymentMethodId' => $supportedPaymentData['paymentMethodId'],
                     'displayName' => $supportedPaymentData['displayName']
                 ]);
