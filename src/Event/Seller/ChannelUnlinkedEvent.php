@@ -10,24 +10,24 @@ namespace JTL\SCX\Lib\Channel\Event\Seller;
 
 use DateTimeImmutable;
 use JTL\SCX\Client\Channel\Event\EventType;
-use JTL\SCX\Client\Channel\Model\SellerEventReportRequest;
+use JTL\SCX\Client\Channel\Model\SellerEventChannelUnlinked;
 use JTL\SCX\Lib\Channel\Event\AbstractEvent;
 
-class ReportRequestEvent extends AbstractEvent
+class ChannelUnlinkedEvent extends AbstractEvent
 {
-    private SellerEventReportRequest $event;
+    private SellerEventChannelUnlinked $event;
 
     public function __construct(
         string $id,
         DateTimeImmutable $createdAt,
-        SellerEventReportRequest $event,
+        SellerEventChannelUnlinked $event,
         string $internalEventId = null
     ) {
-        parent::__construct($id, $createdAt, EventType::SellerReportRequest(), $internalEventId);
+        parent::__construct($id, $createdAt, EventType::SellerChannelUnlinked(), $internalEventId);
         $this->event = $event;
     }
 
-    public function getEvent(): SellerEventReportRequest
+    public function getEvent(): SellerEventChannelUnlinked
     {
         return $this->event;
     }
