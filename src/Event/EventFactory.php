@@ -10,6 +10,7 @@ namespace JTL\SCX\Lib\Channel\Event;
 
 use JTL\SCX\Client\Channel\Api\Event\Model\EventContainer;
 use JTL\SCX\Client\Channel\Event\EventType;
+use JTL\SCX\Lib\Channel\Event\Seller\ChannelUnlinkedEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferEndEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferNewEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferPriceUpdateEvent;
@@ -63,6 +64,9 @@ class EventFactory
                 break;
             case EventType::SellerReportRequest():
                 $eventName = ReportRequestEvent::class;
+                break;
+            case EventType::SellerChannelUnlinked():
+                $eventName = ChannelUnlinkedEvent::class;
                 break;
             default:
                 return null;
