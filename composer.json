@@ -17,6 +17,7 @@
         "symfony/console": "^5.1",
         "symfony/dependency-injection": "^5.1",
         "symfony/proxy-manager-bridge": "^5.1",
+        "symfony/translation": "^5.1",
         "symfony/yaml": "^5.1"
     },
     "require-dev": {
