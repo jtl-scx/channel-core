@@ -72,3 +72,12 @@ services:
   # ###########################################################################
   JTL\SCX\Lib\Channel\Template\TwigTemplateRenderer:
     public: true
+
+  # ###########################################################################
+  # Translation Service
+  # ###########################################################################
+  JTL\SCX\Lib\Channel\Core\I18n\Translator:
+    factory: [ 'JTL\SCX\Lib\Channel\Core\I18n\TranslatorFactory', 'createTranslator' ]
+    arguments:
+      - '%env(TRANSLATIONS_DIR)%'
+      - '%env(DEFAULT_LOCALE)%'
