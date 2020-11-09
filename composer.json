@@ -27,6 +27,9 @@
         "symfony/dotenv": "^5.0",
         "twig/twig": "^2.0"
     },
+    "suggest": {
+        "ext-mongodb": "Needed if MongoDbConnection is used"
+    },
     "autoload": {
         "psr-4": {
             "JTL\\SCX\\Lib\\Channel\\": "src/"
