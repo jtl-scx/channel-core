@@ -54,7 +54,7 @@ class UpdateMongoDbSchemaCommand extends AbstractCommand
     {
         $io = new SymfonyStyle($input, $output);
 
-        if (!extension_loaded("mongo")) {
+        if (!extension_loaded("mongodb")) {
             $io->error('Missing "ext-mongo" PHP-Extension');
             return 1;
         }
