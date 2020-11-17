@@ -15,6 +15,7 @@ class InventoryItem
     use ToArrayTrait;
 
     private ?int $sellerOfferId;
+    private ?string $channelOfferId;
     private ?string $sku;
     private ?string $ean;
     private ?string $quantity;
@@ -26,6 +27,7 @@ class InventoryItem
 
     public function __construct(
         ?int $sellerOfferId,
+        ?string $channelOfferId,
         ?string $sku,
         ?string $ean,
         ?string $quantity,
@@ -36,6 +38,7 @@ class InventoryItem
         \DateTimeImmutable $createdAt = null
     ) {
         $this->sellerOfferId = $sellerOfferId;
+        $this->channelOfferId = $channelOfferId;
         $this->sku = $sku;
         $this->ean = $ean;
         $this->quantity = $quantity;
@@ -49,6 +52,11 @@ class InventoryItem
     public function getSellerOfferId(): ?int
     {
         return $this->sellerOfferId;
+    }
+
+    public function getChannelOfferId(): ?string
+    {
+        return $this->channelOfferId;
     }
 
     public function getSku(): ?string
