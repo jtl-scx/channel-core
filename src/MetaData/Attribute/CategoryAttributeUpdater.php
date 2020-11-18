@@ -13,7 +13,6 @@ use JTL\SCX\Client\Channel\Api\Attribute\AttributesApi;
 use JTL\SCX\Client\Channel\Api\Attribute\Request\CreateCategoryAttributesRequest;
 use JTL\SCX\Client\Channel\Model\AttributeList as ClientAttributeList;
 use JTL\SCX\Client\Exception\RequestFailedException;
-use JTL\SCX\Client\Exception\RequestValidationFailedException;
 use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 
 class CategoryAttributeUpdater
@@ -28,18 +27,16 @@ class CategoryAttributeUpdater
     }
 
     /**
-     * @param string $categoryId
-     * @param AttributeList $categoryAttributeList
-     * @throws UnexpectedStatusException
+     * @param CategoryAttribute $categoryAttribute
      * @throws GuzzleException
      * @throws RequestFailedException
-     * @throws RequestValidationFailedException
+     * @throws UnexpectedStatusException
      */
-    public function update(string $categoryId, AttributeList $categoryAttributeList): void
+    public function update(CategoryAttribute $categoryAttribute): void
     {
         $attributeList = new ClientAttributeList();
-        $attributeList->setAttributeList($this->mapper->map($categoryAttributeList));
-        $request = new CreateCategoryAttributesRequest($categoryId, $attributeList);
+        $attributeList->setAttributeList($this->mapper->map($categoryAttribute->getAttributeList()));
+        $request = new CreateCategoryAttributesRequest($categoryAttribute->getCategoryId(), $attributeList);
         $response = $this->client->createCategoryAttributes($request);
 
         if ($response->getStatusCode() !== 201) {

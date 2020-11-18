@@ -12,6 +12,7 @@ use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataCategoryAttributeLoader;
 use JTL\SCX\Lib\Channel\Core\Command\ImportCategoryAttributesCommand;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
+use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeUpdater;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -27,11 +28,12 @@ class ImportCategoryAttributesCommandTest extends TestCase
     public function testCanFetchAttributeForCategoryWithResults()
     {
         $testCategoryId = uniqid('testCategoryId');
-        $testAttributeList = $this->createMock(AttributeList::class);
+        $testAttributeList = new CategoryAttributeList();
+        $testAttributeList->addAttributeList($testCategoryId, $this->createStub(AttributeList::class));
 
         $loaderMock = $this->createMock(MetaDataCategoryAttributeLoader::class);
         $loaderMock->expects($this->once())->method('fetch')
-            ->with($testCategoryId)
+            ->with([$testCategoryId])
             ->willReturn($testAttributeList);
 
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
@@ -51,12 +53,14 @@ class ImportCategoryAttributesCommandTest extends TestCase
     public function testCanProcessAttributeForCategoryWithResults()
     {
         $testCategoryId = uniqid('testCategoryId');
-        $testAttributeList = $this->createMock(AttributeList::class);
-        $testAttributeList->expects($this->once())->method('count')->willReturn(1);
+        $attrList = $this->createMock(AttributeList::class);
+        $attrList->expects($this->once())->method('count')->willReturn(1);
+        $testAttributeList = new CategoryAttributeList();
+        $testAttributeList->addAttributeList($testCategoryId, $attrList);
 
         $loaderMock = $this->createMock(MetaDataCategoryAttributeLoader::class);
         $loaderMock->expects($this->once())->method('fetch')
-            ->with($testCategoryId)
+            ->with([$testCategoryId])
             ->willReturn($testAttributeList);
 
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
@@ -72,7 +76,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
 
         $output = $cmdTester->getDisplay();
         $this->assertStringContainsString('Fetch CategoryAttributes', $output);
-        $this->assertStringContainsString('Update 1 CategoryAttributes ... done', $output);
+        $this->assertStringContainsString("Update 1 CategoryAttributes for category {$testCategoryId} ... done", $output);
     }
 
     public function testCanFetchAttributeForCategoryWithNoResults()
@@ -82,7 +86,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
 
         $loaderMock = $this->createMock(MetaDataCategoryAttributeLoader::class);
         $loaderMock->expects($this->once())->method('fetch')
-            ->with($testCategoryId)
+            ->with([$testCategoryId])
             ->willReturn($testAttributeList);
 
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
@@ -96,7 +100,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $this->assertEquals(0, $cmdTester->getStatusCode());
 
         $output = $cmdTester->getDisplay();
-        $this->assertStringContainsString('No Attributes available for categoryId', $output);
+        $this->assertStringContainsString('No category-attributes available', $output);
     }
 
     public function testCanProcessAttributeForCSVListWithResults()
@@ -109,12 +113,14 @@ class ImportCategoryAttributesCommandTest extends TestCase
         fputcsv($fp, [$testCategoryId1]);
         fputcsv($fp, [$testCategoryId2]);
 
-        $testAttributeList = $this->createMock(AttributeList::class);
-        $testAttributeList->expects($this->any())->method('count')->willReturn(1);
+        $attrList = $this->createMock(AttributeList::class);
+        $attrList->expects($this->atLeastOnce())->method('count')->willReturn(1);
+        $testAttributeList = new CategoryAttributeList();
+        $testAttributeList->addAttributeList($testCategoryId1, $attrList);
 
         $loaderMock = $this->createMock(MetaDataCategoryAttributeLoader::class);
         $loaderMock->expects($this->exactly(2))->method('fetch')
-            ->withConsecutive([$testCategoryId1], [$testCategoryId2])
+            ->withConsecutive([[$testCategoryId1]], [[$testCategoryId2]])
             ->willReturnOnConsecutiveCalls($testAttributeList, null);
 
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
@@ -130,9 +136,9 @@ class ImportCategoryAttributesCommandTest extends TestCase
 
         $output = $cmdTester->getDisplay();
 
-        $this->assertStringContainsString("Fetch CategoryAttributes for \"$testCategoryId1\"", $output);
-        $this->assertStringContainsString("Fetch CategoryAttributes for \"$testCategoryId2\"", $output);
-        $this->assertStringContainsString('Update 1 CategoryAttributes ... done', $output);
-        $this->assertStringContainsString("No Attributes available for categoryId \"$testCategoryId2\"", $output);
+        $this->assertStringContainsString("Fetch CategoryAttributes for '{$testCategoryId1}'", $output);
+        $this->assertStringContainsString("Fetch CategoryAttributes for '{$testCategoryId2}'", $output);
+        $this->assertStringContainsString("Update 1 CategoryAttributes for category {$testCategoryId1} ... done", $output);
+        $this->assertStringContainsString("No category-attributes available", $output);
     }
 }
