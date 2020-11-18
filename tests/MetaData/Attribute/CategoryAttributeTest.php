@@ -17,7 +17,6 @@ use PHPUnit\Framework\TestCase;
  */
 class CategoryAttributeTest extends TestCase
 {
-
     public function testCanBeUsed(): void
     {
         $catId = uniqid('catId', true);

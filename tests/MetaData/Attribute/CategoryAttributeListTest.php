@@ -18,7 +18,6 @@ use PHPUnit\Framework\TestCase;
  */
 class CategoryAttributeListTest extends TestCase
 {
-
     public function testCanBeUsed(): void
     {
         $list = new CategoryAttributeList();
