@@ -76,7 +76,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
 
         $output = $cmdTester->getDisplay();
         $this->assertStringContainsString('Fetch CategoryAttributes', $output);
-        $this->assertStringContainsString("Update 1 CategoryAttributes for category {$testCategoryId} ... done", $output);
+        $this->assertStringContainsString("Update Category {$testCategoryId} with 1 Attributes ... done", $output);
     }
 
     public function testCanFetchAttributeForCategoryWithNoResults()
@@ -138,7 +138,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
 
         $this->assertStringContainsString("Fetch CategoryAttributes for '{$testCategoryId1}'", $output);
         $this->assertStringContainsString("Fetch CategoryAttributes for '{$testCategoryId2}'", $output);
-        $this->assertStringContainsString("Update 1 CategoryAttributes for category {$testCategoryId1} ... done", $output);
+        $this->assertStringContainsString("Update Category {$testCategoryId1} with 1 Attributes ... done", $output);
         $this->assertStringContainsString("No category-attributes available", $output);
     }
 }
