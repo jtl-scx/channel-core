@@ -150,7 +150,7 @@ class ImportCategoryAttributesCommand extends AbstractCommand
             /** @var CategoryAttribute $categoryAttribute */
             foreach ($categoryAttributeList as $categoryAttribute) {
                 if ($process === true) {
-                    $io->write("Update {$categoryAttribute->getAttributeList()->count()} CategoryAttributes for category {$categoryAttribute->getCategoryId()}");
+                    $io->write("Update Category {$categoryAttribute->getCategoryId()} with {$categoryAttribute->getAttributeList()->count()} Attributes");
                     $this->attributeUpdater->update($categoryAttribute);
                     $io->writeln(" ... done");
                 } else {
