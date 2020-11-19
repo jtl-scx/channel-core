@@ -16,6 +16,8 @@ use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataCategoryAttributeLoader;
 use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
+use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttribute;
+use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeUpdater;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -100,16 +102,8 @@ class ImportCategoryAttributesCommand extends AbstractCommand
 
         $importFile = $input->getOption('import-csv-list');
 
-        if ($categoryId === null && $importFile === null) {
-            throw new InvalidArgumentException("Missing categoryId or import-csv-list parameter");
-        }
-
         if ($process === false) {
             $this->io->warning("There is no --process option given - attributes are NOT send to SCX-Channel-Api");
-        }
-
-        if ($categoryId !== null) {
-            $this->import($categoryId, $process, $io);
         }
 
         if ($importFile !== null && file_exists($importFile)) {
@@ -123,6 +117,8 @@ class ImportCategoryAttributesCommand extends AbstractCommand
             while (($row = fgetcsv($file, 0, $delimiter, $enclosure)) !== false) {
                 $this->import(trim($row[$column]), $process, $io);
             }
+        } else {
+            $this->import($categoryId, $process, $io);
         }
 
         return 0;
@@ -138,24 +134,33 @@ class ImportCategoryAttributesCommand extends AbstractCommand
      * @throws RequestValidationFailedException
      * @throws UnexpectedStatusException
      */
-    private function import(string $categoryId, bool $process, SymfonyStyle $io): void
+    private function import(?string $categoryId, bool $process, SymfonyStyle $io): void
     {
-        $io->write("Fetch CategoryAttributes for \"{$categoryId}\"");
-        $attributeList = $this->categoryAttributeLoader->fetch($categoryId);
+        $io->write("Fetch CategoryAttributes for");
+        if ($categoryId === null) {
+            $io->write(" all Categories");
+        } else {
+            $io->write(" '{$categoryId}'");
+        }
+        $categoryIdList = is_null($categoryId)?null: [$categoryId];
+        $categoryAttributeList = $this->categoryAttributeLoader->fetch($categoryIdList);
         $io->writeln(" ... done");
 
-        if ($attributeList instanceof AttributeList) {
-            if ($process === true) {
-                $io->write("Update {$attributeList->count()} CategoryAttributes");
-                $this->attributeUpdater->update($categoryId, $attributeList);
-                $io->writeln(" ... done");
-            } else {
-                $io->writeln("");
-                $io->writeln(var_export($attributeList, true));
+        if ($categoryAttributeList instanceof CategoryAttributeList) {
+            /** @var CategoryAttribute $categoryAttribute */
+            foreach ($categoryAttributeList as $categoryAttribute) {
+                if ($process === true) {
+                    $io->write("Update Category {$categoryAttribute->getCategoryId()} with {$categoryAttribute->getAttributeList()->count()} Attributes");
+                    $this->attributeUpdater->update($categoryAttribute);
+                    $io->writeln(" ... done");
+                } else {
+                    $io->writeln("");
+                    $io->writeln(var_export($categoryAttribute, true));
+                }
             }
             return;
         }
 
-        $io->caution("No Attributes available for categoryId \"$categoryId\"");
+        $io->caution("No category-attributes available");
     }
 }
