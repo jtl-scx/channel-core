@@ -5,9 +5,9 @@
     "license": "MIT",
     "require": {
         "ext-json": "*",
-        "guzzlehttp/guzzle": "^6.3",
-        "jtl-scx/api-base-client": "^1.0",
-        "jtl-scx/channel-api-client": "^0.25.0",
+        "guzzlehttp/guzzle": "^7.2",
+        "jtl-scx/api-base-client": "^1.1",
+        "jtl-scx/channel-api-client": "^0.28.0",
         "jtl/nachricht": "^0.10",
         "monolog/monolog": "^2.0",
         "myclabs/php-enum": "^1.7",
