@@ -15,16 +15,16 @@ use MongoDB\Database;
 
 class SchemaUpdater
 {
-    private Client $mongoDbClient;
+    private MongoDbConnection $dbConn;
 
     public function __construct(MongoDbConnection $mongoDbClient)
     {
-        $this->mongoDbClient = $mongoDbClient->getClient();
+        $this->dbConn = $mongoDbClient;
     }
 
     public function runMigration(CollectionSchema $collectionSchema, string $dbName): array
     {
-        $database = $this->mongoDbClient->selectDatabase($dbName);
+        $database = $this->dbConn->selectCollection($dbName);
 
         $collection = $this->selectOrCreateCollection($collectionSchema, $database);
         $collectionSchema->ensureSchema($collection);
