@@ -40,7 +40,8 @@ class CategoryAttributeUpdaterTest extends TestCase
         $responseMock->expects($this->once())->method('getStatusCode')->willReturn(201);
 
         $updater = new CategoryAttributeUpdater($clientMock, $mapperMock);
-        $updater->update($categoryId, $attributeList);
+        $catAttr = new CategoryAttribute($categoryId, $attributeList);
+        $updater->update($catAttr);
     }
 
     public function testFailUpdate(): void
@@ -63,6 +64,7 @@ class CategoryAttributeUpdaterTest extends TestCase
         $updater = new CategoryAttributeUpdater($clientMock, $mapperMock);
 
         $this->expectException(UnexpectedStatusException::class);
-        $updater->update($categoryId, $attributeList);
+        $catAttr = new CategoryAttribute($categoryId, $attributeList);
+        $updater->update($catAttr);
     }
 }

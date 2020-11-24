@@ -13,7 +13,7 @@ use RuntimeException;
 
 class DefaultMetaDataCategoryAttributeLoader implements MetaDataCategoryAttributeLoader
 {
-    public function fetch(string $categoryId): ?AttributeList
+    public function fetch(array $categoryIdList = null): ?CategoryAttributeList
     {
         throw new RuntimeException(
             'Please implement JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataAttributeLoader and register your implementation via service.yaml'

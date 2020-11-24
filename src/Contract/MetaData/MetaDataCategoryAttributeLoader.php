@@ -8,9 +8,9 @@
 
 namespace JTL\SCX\Lib\Channel\Contract\MetaData;
 
-use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
+use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList;
 
 interface MetaDataCategoryAttributeLoader
 {
-    public function fetch(string $categoryId): ?AttributeList;
+    public function fetch(array $categoryIdList = null): ?CategoryAttributeList;
 }
