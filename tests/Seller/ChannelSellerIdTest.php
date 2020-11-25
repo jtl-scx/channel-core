@@ -17,7 +17,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ChannelSellerIdTest extends TestCase
 {
-
     public function testCanGetId(): void
     {
         $sellerId = uniqid('sellerId', true);

@@ -29,7 +29,6 @@ use PHPUnit\Framework\TestCase;
  */
 class AbstractListenerTest extends TestCase
 {
-
     public function testCanSetup(): void
     {
         $message = $this->createMock(TestMessage::class);
@@ -59,7 +58,8 @@ class AbstractListenerTest extends TestCase
                 }
 
                 return false;
-            }));
+            }
+        ));
         $listener = new TestListener($logger);
 
         $this->expectException(get_class($error));
@@ -69,7 +69,6 @@ class AbstractListenerTest extends TestCase
 
 class TestListener extends AbstractListener
 {
-
 }
 
 class TestMessage extends AbstractAmqpTransportableMessage implements SellerIdRelatedMessage, ChannelOfferIdRelatedMessage, SellerOfferIdRelatedMessage, SellerReportIdRelatedMessage

@@ -16,7 +16,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ListingFailedErrorTest extends TestCase
 {
-
     public function testCanBeUsed(): void
     {
         $code = uniqid('code', true);

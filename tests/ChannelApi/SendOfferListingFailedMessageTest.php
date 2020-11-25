@@ -18,7 +18,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SendOfferListingFailedMessageTest extends TestCase
 {
-
     public function testCanBeUsed(): void
     {
         $sellerId = $this->createStub(ChannelSellerId::class);

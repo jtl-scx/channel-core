@@ -31,7 +31,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SendOfferListingResultListenerTest extends TestCase
 {
-
     public function testCanSendInFailed(): void
     {
         $sellerIdStr = uniqid('sellerId');
@@ -64,8 +63,8 @@ class SendOfferListingResultListenerTest extends TestCase
                                 ]
                             ]
                         ]
-                    ]
-                    , json_decode($json, true)
+                    ],
+                    json_decode($json, true)
                 );
                 return true;
             }
@@ -98,8 +97,13 @@ class SendOfferListingResultListenerTest extends TestCase
         $channelOfferId = uniqid('channelOfferId', true);
         $listingUrl = uniqid('listingUrl', true);
         $listedAt = new \DateTime();
-        $event = new SendOfferListingSuccessfulMessage($sellerId, $sellerOfferId, $channelOfferId, $listingUrl,
-            $listedAt);
+        $event = new SendOfferListingSuccessfulMessage(
+            $sellerId,
+            $sellerOfferId,
+            $channelOfferId,
+            $listingUrl,
+            $listedAt
+        );
 
         $offerApi = $this->createMock(OfferApi::class);
         $offerApi->expects(self::once())->method('markListed')->with(self::callback(
@@ -122,8 +126,8 @@ class SendOfferListingResultListenerTest extends TestCase
                                 'listingUrl' => $listingUrl
                             ]
                         ]
-                    ]
-                    , json_decode($json, true)
+                    ],
+                    json_decode($json, true)
                 );
                 return true;
             }
@@ -153,8 +157,8 @@ class SendOfferListingResultListenerTest extends TestCase
                                 'startedAt' => $startedAt->format('c')
                             ]
                         ]
-                    ]
-                    , json_decode($json, true)
+                    ],
+                    json_decode($json, true)
                 );
                 return true;
             }

@@ -18,7 +18,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SellerIdContextTest extends TestCase
 {
-
     public function testCanBeUsed(): void
     {
         $sellerIdStr = uniqid('sellerIdStr', true);
