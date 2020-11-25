@@ -11,6 +11,7 @@ namespace JTL\SCX\Lib\Channel\Core\Command;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Database\Migration\CollectionSchemaLoader;
 use JTL\SCX\Lib\Channel\Database\Migration\SchemaUpdater;
+use ReflectionException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -48,14 +49,14 @@ class UpdateMongoDbSchemaCommand extends AbstractCommand
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
 
-        if (!extension_loaded("mongodb")) {
-            $io->error('Missing "ext-mongo" PHP-Extension');
+        if (!class_exists('MongoDB\Client')) {
+            $io->error('Missing "ext-mongodb" PHP-Extension.');
             return 1;
         }
 

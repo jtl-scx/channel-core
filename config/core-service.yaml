@@ -81,3 +81,9 @@ services:
     arguments:
       - '%env(TRANSLATIONS_DIR)%'
       - '%env(DEFAULT_LOCALE)%'
+
+  # ###########################################################################
+  # Mongo Database Service
+  # ###########################################################################
+  JTL\SCX\Lib\Channel\Database\DatabaseConnectionCredentials:
+    arguments: [ '%env(MONGODB_DSN)%', '%env(MONGODB_USERNAME)%', '%env(MONGODB_PASSWORD)%', '%env(MONGODB_DB)%' ]

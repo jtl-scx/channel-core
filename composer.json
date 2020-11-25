@@ -28,7 +28,8 @@
         "twig/twig": "^2.0"
     },
     "suggest": {
-        "ext-mongodb": "Needed if MongoDbConnection is used"
+        "ext-mongodb": "Needed if MongoDbConnection is used",
+        "mongodb/mongodb": "Needed if MongoDbConnection is used"
     },
     "autoload": {
         "psr-4": {
