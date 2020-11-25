@@ -84,7 +84,8 @@ class SendOfferListingResultListenerTest extends TestCase
         $event = new SendOfferListingFailedMessage($sellerId, $sellerOfferId, $errorCode, $errorMsg, $failedAt);
 
         $offerApi = $this->createMock(OfferApi::class);
-        $offerApi->expects(self::once())->method('markListingFailed')->willThrowException(RequestFailedException::class);
+        $offerApi->expects(self::once())->method('markListingFailed')
+            ->willThrowException($this->createStub(RequestFailedException::class));
         $listener = new SendOfferListingResultListener($offerApi, $this->createStub(ScxLogger::class));
         $listener->sendInFailed($event);
     }
@@ -136,7 +137,30 @@ class SendOfferListingResultListenerTest extends TestCase
         $listener->sendSuccessful($event);
     }
 
-    public function testCanSendInProgress(): void
+    public function testCanSendSuccessfulWillFail(): void
+    {
+        $sellerIdStr = uniqid('sellerId');
+        $sellerId = new ChannelSellerId($sellerIdStr);
+        $sellerOfferId = (string)random_int(1, 9999);
+        $channelOfferId = uniqid('channelOfferId', true);
+        $listingUrl = uniqid('listingUrl', true);
+        $listedAt = new \DateTime();
+        $event = new SendOfferListingSuccessfulMessage(
+            $sellerId,
+            $sellerOfferId,
+            $channelOfferId,
+            $listingUrl,
+            $listedAt
+        );
+
+        $offerApi = $this->createMock(OfferApi::class);
+        $offerApi->expects(self::once())->method('markListed')
+            ->willThrowException($this->createStub(RequestFailedException::class));
+        $listener = new SendOfferListingResultListener($offerApi, $this->createStub(ScxLogger::class));
+        $listener->sendSuccessful($event);
+    }
+
+    public function testCanSendInProgressWillFail(): void
     {
         $sellerIdStr = uniqid('sellerId');
         $sellerId = new ChannelSellerId($sellerIdStr);
@@ -145,24 +169,8 @@ class SendOfferListingResultListenerTest extends TestCase
         $event = new SendOfferListingInProgressMessage($sellerId, $sellerOfferId, $startedAt);
 
         $offerApi = $this->createMock(OfferApi::class);
-        $offerApi->expects(self::once())->method('markInProgress')->with(self::callback(
-            function (MarkListingInProgressRequest $request) use ($sellerIdStr, $sellerOfferId, $startedAt) {
-                $json = $request->getBody();
-                self::assertEquals(
-                    [
-                        'offerList' => [
-                            [
-                                'sellerId' => $sellerIdStr,
-                                'offerId' => $sellerOfferId,
-                                'startedAt' => $startedAt->format('c')
-                            ]
-                        ]
-                    ],
-                    json_decode($json, true)
-                );
-                return true;
-            }
-        ));
+        $offerApi->expects(self::once())->method('markInProgress')
+            ->willThrowException($this->createStub(RequestFailedException::class));
         $listener = new SendOfferListingResultListener($offerApi, $this->createStub(ScxLogger::class));
         $listener->sendInProgress($event);
     }

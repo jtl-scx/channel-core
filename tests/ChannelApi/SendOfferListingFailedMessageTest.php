@@ -9,6 +9,7 @@
 namespace ChannelApi;
 
 use JTL\SCX\Client\Channel\Model\ErrorResponseList;
+use JTL\SCX\Lib\Channel\ChannelApi\ListingFailedErrorList;
 use JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingFailedMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
@@ -32,7 +33,7 @@ class SendOfferListingFailedMessageTest extends TestCase
         self::assertSame($sellerOfferId, $msg->getSellerOfferId());
         self::assertSame($failedAt, $msg->getFailedAt());
         self::assertSame($msgId, $msg->getMessageId());
-        self::assertInstanceOf(ErrorResponseList::class, $msg->getErrorList());
+        self::assertInstanceOf(ListingFailedErrorList::class, $msg->getErrorList());
         self::assertSame($errorCode, $msg->getErrorList()->offsetGet(0)->getCode());
         self::assertSame($errorMsg, $msg->getErrorList()->offsetGet(0)->getMessage());
     }
