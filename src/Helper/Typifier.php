@@ -8,29 +8,36 @@
 
 namespace JTL\SCX\Lib\Channel\Helper;
 
+/**
+ * Class Typifier
+ * @package JTL\SCX\Lib\Channel\Helper
+ *
+ * @method ?int toIntOrNull($value)
+ * @method ?string toStringOrNull($value)
+ */
 class Typifier
 {
-    public function toIntOrNull($value): ?int
+    public static function toIntOrNull($value): ?int
     {
         return isset($value) ? (int)$value : null;
     }
 
-    public function toStringOrNull($value): ?string
+    public static function toStringOrNull($value): ?string
     {
         return isset($value) ? (string)$value : null;
     }
 
-    public function toBoolOrNull($value): ?bool
+    public static function toBoolOrNull($value): ?bool
     {
         return isset($value) ? (bool)$value : null;
     }
 
-    public function toArrayOrNull($value): ?array
+    public static function toArrayOrNull($value): ?array
     {
         return isset($value) ? (array)$value : null;
     }
 
-    public function toDateTimeOrNull(?string $value): ?\DateTime
+    public static function toDateTimeOrNull(?string $value): ?\DateTime
     {
         try {
             return new \DateTime($value);
@@ -39,7 +46,7 @@ class Typifier
         }
     }
 
-    public function toDateTimeImmutableOrNull(?string $value): ?\DateTimeImmutable
+    public static function toDateTimeImmutableOrNull(?string $value): ?\DateTimeImmutable
     {
         try {
             return new \DateTimeImmutable($value);
