@@ -27,7 +27,7 @@ class MongoDbConnection
             ->selectCollection($this->databaseConnectionCredentials->getDatabase(), $collection);
     }
 
-    public function getClient(): ?Client
+    public function getClient(): Client
     {
         return $this->getDatabaseConnection();
     }

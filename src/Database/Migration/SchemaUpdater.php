@@ -24,7 +24,7 @@ class SchemaUpdater
 
     public function runMigration(CollectionSchema $collectionSchema, string $dbName): array
     {
-        $database = $this->dbConn->selectCollection($dbName);
+        $database = $this->dbConn->getClient()->selectDatabase($dbName);
 
         $collection = $this->selectOrCreateCollection($collectionSchema, $database);
         $collectionSchema->ensureSchema($collection);
