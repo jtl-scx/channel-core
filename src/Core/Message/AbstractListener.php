@@ -15,10 +15,12 @@ use JTL\Nachricht\Contract\Message\AmqpTransportableMessage;
 use JTL\Nachricht\Contract\Message\Message;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\ChannelOfferIdRelatedMessage;
+use JTL\SCX\Lib\Channel\Contract\Core\Message\ChannelOrderIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerOfferIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerReportIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Core\Log\Context\ChannelOfferIdContext;
+use JTL\SCX\Lib\Channel\Core\Log\Context\ChannelOrderIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\SellerOfferIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\SellerReportIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\MessageIdContext;
@@ -51,6 +53,9 @@ abstract class AbstractListener implements Listener, BeforeMessageHook, AfterMes
         }
         if ($message instanceof SellerReportIdRelatedMessage) {
             $this->logger->replaceContext(new SellerReportIdContext($message->getSellerReportId()));
+        }
+        if ($message instanceof ChannelOrderIdRelatedMessage) {
+            $this->logger->replaceContext(new ChannelOrderIdContext($message->getChannelOrderId()));
         }
     }
 
