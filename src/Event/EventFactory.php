@@ -17,6 +17,8 @@ use JTL\SCX\Lib\Channel\Event\Seller\OfferNewEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferPriceUpdateEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferStockUpdateEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferUpdateEvent;
+use JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationAcceptedEvent;
+use JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationDeniedEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderCancelledEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderConfirmedEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderPaymentEvent;
@@ -71,6 +73,12 @@ class EventFactory
                 break;
             case EventType::SellerMetaSellerAttributesUpdateRequest():
                 $eventName = AttributesUpdateRequestEvent::class;
+                break;
+            case EventType::SellerOrderCancellationAccept():
+                $eventName = OrderCancellationAcceptedEvent::class;
+                break;
+            case EventType::SellerOrderCancellationDenied():
+                $eventName = OrderCancellationDeniedEvent::class;
                 break;
             default:
                 return null;
