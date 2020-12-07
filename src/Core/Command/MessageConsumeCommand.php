@@ -15,6 +15,7 @@ use JTL\Nachricht\Transport\Amqp\AmqpConsumer;
 use JTL\Nachricht\Transport\SubscriptionSettings;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
@@ -34,7 +35,14 @@ class MessageConsumeCommand extends AbstractCommand
 
     protected function configure()
     {
-        $this->setDescription('Subscribe to all existing Event Queues and consume Messages from RabbitMQ');
+        $this->setDescription('Subscribe to all existing Event Queues and consume Messages from RabbitMQ')
+            ->addOption(
+                'entity',
+                'e',
+                InputOption::VALUE_OPTIONAL,
+                'A EntityId to identify the current running process',
+                0
+            );
     }
 
     /**
