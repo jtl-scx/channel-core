@@ -14,6 +14,7 @@ use JTL\Nachricht\Message\Cache\MessageCache;
 use JTL\Nachricht\Transport\Amqp\AmqpConsumer;
 use JTL\Nachricht\Transport\SubscriptionSettings;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
+use JTL\SCX\Lib\Channel\Core\Log\EntityIdContext;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -54,6 +55,9 @@ class MessageConsumeCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
+
+        $entityId = (string)$input->getOption('entity');
+        $this->logger->replaceContext(new EntityIdContext($entityId));
 
         $io->writeln("Collect message queue(s) ...\n");
         $eventRoutingKeyList = new StringCollection();
