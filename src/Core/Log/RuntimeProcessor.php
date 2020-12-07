@@ -28,7 +28,7 @@ class RuntimeProcessor implements ProcessorInterface
     {
         $time = microtime(true);
         $record['runtime'] = $time - $this->startTime;
-        $record['runtime_since_last_log'] = $time - $this->lastLogTime;
+        $record['runtimeSinceLastLog'] = $time - $this->lastLogTime;
         $this->lastLogTime = $time;
 
         return $record;
