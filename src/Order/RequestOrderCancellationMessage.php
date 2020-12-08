@@ -19,11 +19,7 @@ class RequestOrderCancellationMessage extends AbstractAmqpTransportableMessage i
     private string $orderCancellationRequestId;
     private ChannelSellerId $sellerId;
     private string $orderId;
-
-    /**
-     * @var OrderCancellationItem[]
-     */
-    private array $orderItem;
+    private OrderCancellationItemList $orderCancellationItemList;
     private ?string $cancelReason;
     private ?string $message;
 
@@ -31,7 +27,7 @@ class RequestOrderCancellationMessage extends AbstractAmqpTransportableMessage i
         string $orderCancellationRequestId,
         ChannelSellerId $sellerId,
         string $orderId,
-        array $orderItem,
+        OrderCancellationItemList $orderCancellationItemList,
         ?string $cancelReason = null,
         ?string $message = null,
         ?string $messageId = null
@@ -40,7 +36,7 @@ class RequestOrderCancellationMessage extends AbstractAmqpTransportableMessage i
         $this->orderCancellationRequestId = $orderCancellationRequestId;
         $this->sellerId = $sellerId;
         $this->orderId = $orderId;
-        $this->orderItem = $orderItem;
+        $this->orderCancellationItemList = $orderCancellationItemList;
         $this->cancelReason = $cancelReason;
         $this->message = $message;
     }
@@ -60,9 +56,9 @@ class RequestOrderCancellationMessage extends AbstractAmqpTransportableMessage i
         return $this->orderId;
     }
 
-    public function getOrderItem(): array
+    public function getOrderCancellationItemList(): OrderCancellationItemList
     {
-        return $this->orderItem;
+        return $this->orderCancellationItemList;
     }
 
     public function getCancelReason(): ?string
