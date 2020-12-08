@@ -9,16 +9,19 @@
 namespace JTL\SCX\Lib\Channel\Order;
 
 use JTL\Nachricht\Message\AbstractAmqpTransportableMessage;
-use JTL\SCX\Client\Channel\Model\OrderItem1;
+use JTL\SCX\Client\Channel\Model\OrderCancellationItem;
+use JTL\SCX\Lib\Channel\Contract\Core\Message\ChannelOrderIdRelatedMessage;
+use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerIdRelatedMessage;
+use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 
-class RequestOrderCancellationMessage extends AbstractAmqpTransportableMessage
+class RequestOrderCancellationMessage extends AbstractAmqpTransportableMessage implements SellerIdRelatedMessage, ChannelOrderIdRelatedMessage
 {
     private string $orderCancellationRequestId;
-    private string $sellerId;
+    private ChannelSellerId $sellerId;
     private string $orderId;
 
     /**
-     * @var OrderItem1[]
+     * @var OrderCancellationItem[]
      */
     private array $orderItem;
     private ?string $cancelReason;
@@ -26,7 +29,7 @@ class RequestOrderCancellationMessage extends AbstractAmqpTransportableMessage
 
     public function __construct(
         string $orderCancellationRequestId,
-        string $sellerId,
+        ChannelSellerId $sellerId,
         string $orderId,
         array $orderItem,
         ?string $cancelReason = null,
@@ -47,7 +50,7 @@ class RequestOrderCancellationMessage extends AbstractAmqpTransportableMessage
         return $this->orderCancellationRequestId;
     }
 
-    public function getSellerId(): string
+    public function getSellerId(): ChannelSellerId
     {
         return $this->sellerId;
     }
@@ -70,5 +73,10 @@ class RequestOrderCancellationMessage extends AbstractAmqpTransportableMessage
     public function getMessage(): ?string
     {
         return $this->message;
+    }
+
+    public function getChannelOrderId(): string
+    {
+        return $this->getOrderId();
     }
 }
