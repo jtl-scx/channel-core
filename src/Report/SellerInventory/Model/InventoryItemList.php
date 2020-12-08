@@ -12,9 +12,6 @@ use JTL\Generic\GenericCollection;
 use JTL\SCX\Lib\Channel\Core\ToArrayTrait;
 
 /**
- * Class InventoryItemList
- * @package JTL\SCX\Channel\Real\Report\SellerInventory\Model
- *
  * @method InventoryItem offsetGet($offset)
  */
 class InventoryItemList extends GenericCollection
