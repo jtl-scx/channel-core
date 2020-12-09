@@ -13,6 +13,7 @@ use JTL\SCX\Client\Channel\Api\Order\Request\CancelOrderRequest;
 use JTL\SCX\Client\Channel\Model\OrderCancellationItem as ScxOrderCancellationItem;
 use JTL\SCX\Client\Channel\Model\OrderCancellationRequest;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
+use JTL\SCX\Lib\Channel\Core\Log\Context\ChannelOrderItemIdListContext;
 use JTL\SCX\Lib\Channel\Core\Message\AbstractListener;
 
 class RequestOrderCancellationListener extends AbstractListener
@@ -27,13 +28,15 @@ class RequestOrderCancellationListener extends AbstractListener
 
     public function requestCancellation(RequestOrderCancellationMessage $message): void
     {
-        $orderItemList = [];
+        $orderItemList = $orderItemIdList = [];
         /** @var OrderCancellationItem $item */
         foreach ($message->getOrderCancellationItemList() as $item) {
+            $orderItemIdList[] = $item->getOrderItemId();
             $orderItemList[] = new ScxOrderCancellationItem(
                 ['orderItemId' => $item->getOrderItemId(), 'quantity' => $item->getQuantity()]
             );
         }
+        $this->logger->replaceContext(new ChannelOrderItemIdListContext($orderItemIdList));
 
         $request = new OrderCancellationRequest();
         $request->setOrderCancellationRequestId($message->getOrderCancellationRequestId());
@@ -44,5 +47,7 @@ class RequestOrderCancellationListener extends AbstractListener
         $request->setMessage($message->getMessage());
         $cancelOrderRequest = new CancelOrderRequest($request);
         $this->orderApi->cancel($cancelOrderRequest);
+
+        $this->logger->info("Send CancelOrderRequest to SCX with OrderCancellationRequestId '{$message->getOrderCancellationRequestId()}'");
     }
 }
