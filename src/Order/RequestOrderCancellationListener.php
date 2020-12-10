@@ -9,7 +9,7 @@
 namespace JTL\SCX\Lib\Channel\Order;
 
 use JTL\SCX\Client\Channel\Api\Order\OrderApi;
-use JTL\SCX\Client\Channel\Api\Order\Request\CancelOrderRequest;
+use JTL\SCX\Client\Channel\Api\Order\Request\RequestOrderCancellationRequest;
 use JTL\SCX\Client\Channel\Model\OrderCancellationItem as ScxOrderCancellationItem;
 use JTL\SCX\Client\Channel\Model\OrderCancellationRequest;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
@@ -38,16 +38,25 @@ class RequestOrderCancellationListener extends AbstractListener
         }
         $this->logger->replaceContext(new ChannelOrderItemIdListContext($orderItemIdList));
 
-        $request = new OrderCancellationRequest();
-        $request->setOrderCancellationRequestId($message->getOrderCancellationRequestId());
-        $request->setSellerId($message->getSellerId());
-        $request->setOrderId($message->getOrderId());
-        $request->setOrderItem($orderItemList);
-        $request->setCancelReason($message->getCancelReason());
-        $request->setMessage($message->getMessage());
-        $cancelOrderRequest = new CancelOrderRequest($request);
-        $this->orderApi->cancel($cancelOrderRequest);
+        $cancellationRequest = $this->buildOrderCancellationRequest($message, $orderItemList);
+        $apiRequest = new RequestOrderCancellationRequest($cancellationRequest);
+
+        $this->orderApi->requestOrderCancellation($apiRequest);
 
         $this->logger->info("Send CancelOrderRequest to SCX with OrderCancellationRequestId '{$message->getOrderCancellationRequestId()}'");
+    }
+
+    private function buildOrderCancellationRequest(
+        RequestOrderCancellationMessage $message,
+        array $orderItemList
+    ): OrderCancellationRequest {
+        return new OrderCancellationRequest([
+            'orderCancellationRequestId' => $message->getOrderCancellationRequestId(),
+            'sellerId' => (string)$message->getSellerId(),
+            'orderId' => $message->getChannelOrderId(),
+            'orderItem' => $orderItemList,
+            'cancelReason' => $message->getCancelReason(),
+            'message' => $message->getMessage()
+        ]);
     }
 }

@@ -13,7 +13,7 @@ class OrderCancellationItem
     private string $orderItemId;
     private string $quantity;
 
-    public function __construct(string $orderItemId, string $quantity)
+    public function __construct(string $orderItemId, string $quantity = '1.0')
     {
         $this->orderItemId = $orderItemId;
         $this->quantity = $quantity;
