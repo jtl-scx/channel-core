@@ -51,11 +51,6 @@ class RequestOrderCancellationMessage extends AbstractAmqpTransportableMessage i
         return $this->sellerId;
     }
 
-    public function getOrderId(): string
-    {
-        return $this->orderId;
-    }
-
     public function getOrderCancellationItemList(): OrderCancellationItemList
     {
         return $this->orderCancellationItemList;
@@ -73,6 +68,6 @@ class RequestOrderCancellationMessage extends AbstractAmqpTransportableMessage i
 
     public function getChannelOrderId(): string
     {
-        return $this->getOrderId();
+        return $this->orderId;
     }
 }
