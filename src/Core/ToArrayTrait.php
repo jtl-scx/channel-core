@@ -29,7 +29,7 @@ trait ToArrayTrait
                     $return[$key] = $this->createArray((array)$attr);
                 }
             } elseif (\is_array($attr)) {
-                $data[$key] = $this->createArray($attr);
+                $return[$key] = $this->createArray($attr);
             } else {
                 $return[$key] = $attr;
             }
