@@ -5,16 +5,21 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
+      - uses: actions/checkout@v2
 
-    - name: Check Code Style
-      run:  composer phpcs-dry
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
 
-    - name: Run test suite
-      run: vendor/bin/phpunit
+      - name: Check Code Style
+        run: composer phpcs-dry
+
+      - name: Run test suite
+        run: vendor/bin/phpunit
