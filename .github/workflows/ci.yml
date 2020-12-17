@@ -3,6 +3,26 @@ name: UnitTesting
 on: [push]
 
 jobs:
+
+  check-code-style:
+
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Check Code Style
+        run: composer phpcs-dry
+
   testing-php74:
 
     runs-on: ubuntu-20.04
@@ -17,9 +37,6 @@ jobs:
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
-
-      - name: Check Code Style
-        run: composer phpcs-dry
 
       - name: Run test suite
         run: vendor/bin/phpunit
@@ -38,9 +55,6 @@ jobs:
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
-
-      - name: Check Code Style
-        run: composer phpcs-dry
 
       - name: Run test suite
         run: vendor/bin/phpunit
