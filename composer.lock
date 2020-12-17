@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b560d17120aed4fbc1b3ebb743c44bf5",
+    "content-hash": "46af946bbb2ecc239b71a16e0c30bea2",
     "packages": [
         {
             "name": "brick/math",
@@ -436,23 +436,23 @@
         },
         {
             "name": "jtl-scx/api-base-client",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-scx/api-base-client.git",
-                "reference": "a5e986d6969e20c0ffa75cb31c52017f21f222f4"
+                "reference": "e476601c3a0e7138895951c8b16cb69644c865ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-scx/api-base-client/zipball/a5e986d6969e20c0ffa75cb31c52017f21f222f4",
-                "reference": "a5e986d6969e20c0ffa75cb31c52017f21f222f4",
+                "url": "https://api.github.com/repos/jtl-scx/api-base-client/zipball/e476601c3a0e7138895951c8b16cb69644c865ba",
+                "reference": "e476601c3a0e7138895951c8b16cb69644c865ba",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "guzzlehttp/guzzle": "^7.2",
                 "guzzlehttp/uri-template": "^0.2.0",
-                "php": "^7.4"
+                "php": "^7.4|8.0.*"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.15",
@@ -472,29 +472,29 @@
             "description": "SCX-API Base Client",
             "support": {
                 "issues": "https://github.com/jtl-scx/api-base-client/issues",
-                "source": "https://github.com/jtl-scx/api-base-client/tree/1.1.0"
+                "source": "https://github.com/jtl-scx/api-base-client/tree/1.2.0"
             },
-            "time": "2020-11-19T09:30:30+00:00"
+            "time": "2020-12-16T13:31:06+00:00"
         },
         {
             "name": "jtl-scx/channel-api-client",
-            "version": "0.32.0",
+            "version": "0.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-scx/channel-api-client.git",
-                "reference": "d9c8feeaab82e5140fa3f953e286a1e1d93db2ab"
+                "reference": "c01f0ff30972bc9b8256e38ce704fe696118ae0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/d9c8feeaab82e5140fa3f953e286a1e1d93db2ab",
-                "reference": "d9c8feeaab82e5140fa3f953e286a1e1d93db2ab",
+                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/c01f0ff30972bc9b8256e38ce704fe696118ae0d",
+                "reference": "c01f0ff30972bc9b8256e38ce704fe696118ae0d",
                 "shasum": ""
             },
             "require": {
-                "jtl-scx/api-base-client": "^1.1",
+                "jtl-scx/api-base-client": "^1.2",
                 "jtl/php-generic-collection": "^0.3",
                 "myclabs/php-enum": "^1.7",
-                "php": "^7.4"
+                "php": "^7.4|8.0.*"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.15",
@@ -517,9 +517,9 @@
             "description": "API Client for SCX Channel API",
             "support": {
                 "issues": "https://github.com/jtl-scx/channel-api-client/issues",
-                "source": "https://github.com/jtl-scx/channel-api-client/tree/0.32.0"
+                "source": "https://github.com/jtl-scx/channel-api-client/tree/0.33.0"
             },
-            "time": "2020-12-10T08:37:48+00:00"
+            "time": "2020-12-17T06:00:38+00:00"
         },
         {
             "name": "jtl/nachricht",
@@ -6373,6 +6373,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
+        "php": "^7.4|8.0.*",
         "ext-json": "*"
     },
     "platform-dev": [],

@@ -4,10 +4,10 @@
     "description": "SCX Channel Library",
     "license": "MIT",
     "require": {
+        "php": "^7.4|8.0.*",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.2",
-        "jtl-scx/api-base-client": "^1.1",
-        "jtl-scx/channel-api-client": "^0.32",
+        "jtl-scx/channel-api-client": "^0.33.0",
         "jtl/nachricht": "^0.12",
         "monolog/monolog": "^2.0",
         "myclabs/php-enum": "^1.7",
