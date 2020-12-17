@@ -21,7 +21,7 @@ class FileHandler
     }
 
     /**
-     * @param $fileResource
+     * @param resource $fileResource
      * @param string $content
      * @return bool|int
      */

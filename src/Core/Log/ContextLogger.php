@@ -89,6 +89,7 @@ class ContextLogger implements ScxLogger
         $this->removeProcessorsFromLogger();
 
         foreach ($existingProcessorList as $existingProcessor) {
+            /** @phpstan-ignore-next-line */
             if (!$contextProcessor instanceof $existingProcessor) {
                 $this->logger->pushProcessor($existingProcessor);
             }

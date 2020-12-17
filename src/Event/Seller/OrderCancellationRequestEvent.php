@@ -10,24 +10,27 @@ namespace JTL\SCX\Lib\Channel\Event\Seller;
 
 use DateTimeImmutable;
 use JTL\SCX\Client\Channel\Event\EventType;
-use JTL\SCX\Client\Channel\Model\SellerEventOrderConfirmed;
+use JTL\SCX\Client\Channel\Model\SellerEventOrderCancellationRequest;
 use JTL\SCX\Lib\Channel\Event\AbstractEvent;
 
-class OrderConfirmedEvent extends AbstractEvent
+class OrderCancellationRequestEvent extends AbstractEvent
 {
-    private SellerEventOrderConfirmed $event;
+    private SellerEventOrderCancellationRequest $event;
 
     public function __construct(
         string $id,
         DateTimeImmutable $createdAt,
-        SellerEventOrderConfirmed $event,
+        SellerEventOrderCancellationRequest $event,
         string $internalEventId = null
     ) {
-        parent::__construct($id, $createdAt, EventType::SellerOrderConfirmed(), $internalEventId);
+        parent::__construct($id, $createdAt, EventType::SellerOrderCancellationRequest(), $internalEventId);
         $this->event = $event;
     }
 
-    public function getEvent(): SellerEventOrderConfirmed
+    /**
+     * @return SellerEventOrderCancellationRequest
+     */
+    public function getEvent(): SellerEventOrderCancellationRequest
     {
         return $this->event;
     }

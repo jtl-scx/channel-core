@@ -19,8 +19,7 @@ use JTL\SCX\Lib\Channel\Event\Seller\OfferStockUpdateEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferUpdateEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationAcceptedEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationDeniedEvent;
-use JTL\SCX\Lib\Channel\Event\Seller\OrderCancelledEvent;
-use JTL\SCX\Lib\Channel\Event\Seller\OrderConfirmedEvent;
+use JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationRequestEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderPaymentEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderShippingEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\ReportRequestEvent;
@@ -38,17 +37,14 @@ class EventFactory
             case EventType::SellerEventTest():
                 $eventName = SystemTestEvent::class;
                 break;
-            case EventType::SellerOrderConfirmed():
-                $eventName = OrderConfirmedEvent::class;
-                break;
             case EventType::SellerOrderShipping():
                 $eventName = OrderShippingEvent::class;
                 break;
             case EventType::SellerOrderPayment():
                 $eventName = OrderPaymentEvent::class;
                 break;
-            case EventType::SellerOrderCancelled():
-                $eventName = OrderCancelledEvent::class;
+            case EventType::SellerOrderCancellationRequest():
+                $eventName = OrderCancellationRequestEvent::class;
                 break;
             case EventType::SellerOfferEnd():
                 $eventName = OfferEndEvent::class;

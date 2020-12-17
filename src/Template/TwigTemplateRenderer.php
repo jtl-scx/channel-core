@@ -30,7 +30,7 @@ class TwigTemplateRenderer
 
     /**
      * @param string $template
-     * @param array $variables
+     * @param array<mixed> $variables
      * @return string
      * @throws LoaderError
      * @throws RuntimeError

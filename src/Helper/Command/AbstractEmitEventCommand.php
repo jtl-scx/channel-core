@@ -11,11 +11,11 @@ namespace JTL\SCX\Lib\Channel\Helper\Command;
 use DateTimeImmutable;
 use Exception;
 use InvalidArgumentException;
-use JTL\Nachricht\Contract\Message\Message;
 use JTL\Nachricht\Emitter\AmqpEmitter;
 use JTL\Nachricht\Message\AbstractAmqpTransportableMessage;
 use JTL\SCX\Client\Channel\Api\Event\Model\EventContainer;
 use JTL\SCX\Client\Channel\Event\EventType;
+use JTL\SCX\Client\Channel\Model\ModelInterface;
 use JTL\SCX\Client\ResponseDeserializer;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
@@ -62,14 +62,14 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return int|void
+     * @return int
      * @throws Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $event = $this->prepareEventData($input, $output);
         $container = $this->buildEventContainer($this->getEventType(), $event);
-        if (!$container instanceof Message) {
+        if (!$container instanceof AbstractAmqpTransportableMessage) {
             throw new RuntimeException("Fail to build AmqpEvent. Nothing to emit.");
         }
         $this->emit($container, $output);
@@ -96,7 +96,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
             $eventType->getEventModelClass()
         );
 
-        if (method_exists($model, 'valid') && !$model->valid()) {
+        if ($model instanceof ModelInterface && method_exists($model, 'valid') && !$model->valid()) {
             throw new InvalidArgumentException(
                 "Invalid event schema \n" . print_r($model->listInvalidProperties(), true)
             );
@@ -110,7 +110,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
         ));
     }
 
-    protected function emit(Message $event, OutputInterface $output): void
+    protected function emit(AbstractAmqpTransportableMessage $event, OutputInterface $output): void
     {
         $this->emitter->emit($event);
         $output->writeln("Event '" . get_class($event) . "' emitted");

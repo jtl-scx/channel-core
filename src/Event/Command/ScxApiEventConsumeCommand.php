@@ -41,7 +41,7 @@ class ScxApiEventConsumeCommand extends AbstractCommand
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return int|void
+     * @return int
      * @throws GuzzleException
      * @throws RequestFailedException
      * @throws RequestValidationFailedException
@@ -53,7 +53,7 @@ class ScxApiEventConsumeCommand extends AbstractCommand
 
             $this->logger->info("Receive {$response->getEventList()->count()} events from scx-channel api");
             if ($response->getEventList()->count() <= 0) {
-                return 0;
+                break;
             }
 
             $emittedEventIdList = $this->eventEnqueuer->emit($response->getEventList());
@@ -61,7 +61,7 @@ class ScxApiEventConsumeCommand extends AbstractCommand
             $this->logger->info($emittedEventCount . " events emitted.");
 
             if ($emittedEventCount === 0) {
-                return 0;
+                break;
             }
 
             $this->eventApi->ack(new AcknowledgeEventIdListRequest($emittedEventIdList));
