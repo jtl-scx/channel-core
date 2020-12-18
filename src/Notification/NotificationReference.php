@@ -26,6 +26,11 @@ class NotificationReference
         return new self(Ref::TYPE_OFFER, $id);
     }
 
+    public static function channelOffer(string $id): NotificationReference
+    {
+        return new self(Ref::TYPE_CHANNELOFFER, $id);
+    }
+
     public static function orderItemId(string $orderItemId): NotificationReference
     {
         return new self(Ref::TYPE_ORDERITEMID, $orderItemId);

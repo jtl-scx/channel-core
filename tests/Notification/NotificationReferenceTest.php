@@ -28,6 +28,12 @@ class NotificationReferenceTest extends TestCase
         $this->assertEquals(ChannelNotificationReference::TYPE_ORDERITEMID, $ref->getType());
     }
 
+    public function testCanCreateChannelOfferIdReference()
+    {
+        $ref = NotificationReference::channelOffer('123');
+        $this->assertEquals(ChannelNotificationReference::TYPE_CHANNELOFFER, $ref->getType());
+    }
+
     public function testCanGetType()
     {
         $type = uniqid('ref');
