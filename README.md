@@ -4,7 +4,9 @@
 
 # JTL-SCX Channel-Core
 
+![Releases](https://img.shields.io/github/v/tag/jtl-scx/channel-core)
 ![Testing](https://github.com/jtl-scx/channel-core/workflows/Testing/badge.svg)
+[![codecov](https://codecov.io/gh/jtl-scx/channel-core/branch/master/graph/badge.svg?token=1MK3FX8RCU)](https://codecov.io/gh/jtl-scx/channel-core)
 
 JTL Sales Channel Extension is a product to connect various different eCommerce Marketplace with JTL-Wawi or any other
 ERP solution. This Repository provide a PHP-Framework for creating a new SCX-Channel-Integrations to connect any
