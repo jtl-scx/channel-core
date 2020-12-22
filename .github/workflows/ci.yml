@@ -51,7 +51,7 @@ jobs:
       matrix:
         php-version:
           - "7.4"
-          - "8.0"
+          # - "8.0" - allow php8 once dependencies are ready
 
     steps:
       - name: "Install PHP"
@@ -73,3 +73,22 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+
+  testing-php80-not-yet-ready:
+
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: composer install --no-progress --ignore-platform-req=php
+
+      - name: Run test suite
+        run: vendor/bin/phpunit
+
