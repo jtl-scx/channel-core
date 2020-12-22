@@ -15,7 +15,7 @@ trait ToArrayTrait
     {
         if ($this instanceof \Traversable) {
             $itemList = [];
-            foreach($this as $item) {
+            foreach ($this as $item) {
                 $itemList[] = $this->createArray($item);
             }
             return $itemList;
