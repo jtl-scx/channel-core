@@ -13,6 +13,13 @@ trait ToArrayTrait
 {
     public function toArray(): array
     {
+        if ($this instanceof \Traversable) {
+            $itemList = [];
+            foreach($this as $item) {
+                $itemList[] = $this->createArray($item);
+            }
+            return $itemList;
+        }
         return $this->createArray(get_object_vars($this));
     }
 
