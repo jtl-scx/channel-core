@@ -20,6 +20,7 @@ use JTL\SCX\Lib\Channel\Event\Seller\OfferUpdateEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationAcceptedEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationDeniedEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationRequestEvent;
+use JTL\SCX\Lib\Channel\Event\Seller\OrderInvoiceEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderPaymentEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderShippingEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\ReportRequestEvent;
@@ -32,55 +33,58 @@ class EventFactory
     {
         switch ($eventContainer->getType()) {
             case EventType::SystemNotification():
-                $eventName = SystemNotificationEvent::class;
+                $eventClass = SystemNotificationEvent::class;
                 break;
             case EventType::SellerEventTest():
-                $eventName = SystemTestEvent::class;
+                $eventClass = SystemTestEvent::class;
                 break;
             case EventType::SellerOrderShipping():
-                $eventName = OrderShippingEvent::class;
+                $eventClass = OrderShippingEvent::class;
                 break;
             case EventType::SellerOrderPayment():
-                $eventName = OrderPaymentEvent::class;
+                $eventClass = OrderPaymentEvent::class;
                 break;
             case EventType::SellerOrderCancellationRequest():
-                $eventName = OrderCancellationRequestEvent::class;
+                $eventClass = OrderCancellationRequestEvent::class;
                 break;
             case EventType::SellerOfferEnd():
-                $eventName = OfferEndEvent::class;
+                $eventClass = OfferEndEvent::class;
                 break;
             case EventType::SellerOfferNew():
-                $eventName = OfferNewEvent::class;
+                $eventClass = OfferNewEvent::class;
                 break;
             case EventType::SellerOfferUpdate():
-                $eventName = OfferUpdateEvent::class;
+                $eventClass = OfferUpdateEvent::class;
                 break;
             case EventType::SellerOfferStockUpdate():
-                $eventName = OfferStockUpdateEvent::class;
+                $eventClass = OfferStockUpdateEvent::class;
                 break;
             case EventType::SellerOfferPriceUpdate():
-                $eventName = OfferPriceUpdateEvent::class;
+                $eventClass = OfferPriceUpdateEvent::class;
                 break;
             case EventType::SellerReportRequest():
-                $eventName = ReportRequestEvent::class;
+                $eventClass = ReportRequestEvent::class;
                 break;
             case EventType::SellerChannelUnlinked():
-                $eventName = ChannelUnlinkedEvent::class;
+                $eventClass = ChannelUnlinkedEvent::class;
                 break;
             case EventType::SellerMetaSellerAttributesUpdateRequest():
-                $eventName = AttributesUpdateRequestEvent::class;
+                $eventClass = AttributesUpdateRequestEvent::class;
                 break;
             case EventType::SellerOrderCancellationAccept():
-                $eventName = OrderCancellationAcceptedEvent::class;
+                $eventClass = OrderCancellationAcceptedEvent::class;
                 break;
             case EventType::SellerOrderCancellationDenied():
-                $eventName = OrderCancellationDeniedEvent::class;
+                $eventClass = OrderCancellationDeniedEvent::class;
+                break;
+            case EventType::SellerEventOrderInvoice():
+                $eventClass = OrderInvoiceEvent::class;
                 break;
             default:
                 return null;
         }
 
-        return new $eventName(
+        return new $eventClass(
             $eventContainer->getId(),
             $eventContainer->getCreatedAt(),
             $eventContainer->getEvent()

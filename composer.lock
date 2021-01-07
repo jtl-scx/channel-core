@@ -478,16 +478,16 @@
         },
         {
             "name": "jtl-scx/channel-api-client",
-            "version": "0.36.0",
+            "version": "0.36.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-scx/channel-api-client.git",
-                "reference": "caa4b809074d86b0ba33dd4f220eb2e47478c2d4"
+                "reference": "401c32211c24e8423a126b198d08db8cd7a8d2dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/caa4b809074d86b0ba33dd4f220eb2e47478c2d4",
-                "reference": "caa4b809074d86b0ba33dd4f220eb2e47478c2d4",
+                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/401c32211c24e8423a126b198d08db8cd7a8d2dc",
+                "reference": "401c32211c24e8423a126b198d08db8cd7a8d2dc",
                 "shasum": ""
             },
             "require": {
@@ -520,9 +520,9 @@
             "description": "API Client for SCX Channel API",
             "support": {
                 "issues": "https://github.com/jtl-scx/channel-api-client/issues",
-                "source": "https://github.com/jtl-scx/channel-api-client/tree/0.36.0"
+                "source": "https://github.com/jtl-scx/channel-api-client/tree/0.36.1"
             },
-            "time": "2021-01-07T08:34:32+00:00"
+            "time": "2021-01-07T10:17:06+00:00"
         },
         {
             "name": "jtl/nachricht",
