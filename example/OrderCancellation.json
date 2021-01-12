@@ -1,0 +1,13 @@
+{
+    "sellerId": "334334343",
+    "orderCancellationRequestId": "123",
+    "orderId": "4711",
+    "cancelReason": "OUT_OF_STOCK",
+    "message": "",
+    "orderItem": [
+        {
+            "orderItemId": "1",
+            "quantity": "1.0"
+        }
+    ]
+}
