@@ -12,6 +12,7 @@ use DateTimeImmutable;
 use Exception;
 use JTL\SCX\Client\Channel\Api\Event\Model\EventContainer;
 use JTL\SCX\Client\Channel\Event\EventType;
+use JTL\SCX\Client\Channel\Model\OrderAccept;
 use JTL\SCX\Client\Channel\Model\SellerEventChannelUnlinked;
 use JTL\SCX\Client\Channel\Model\SellerEventOfferEnd;
 use JTL\SCX\Client\Channel\Model\SellerEventOfferNew;
@@ -36,6 +37,7 @@ use JTL\SCX\Lib\Channel\Event\Seller\OfferNewEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferPriceUpdateEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferStockUpdateEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferUpdateEvent;
+use JTL\SCX\Lib\Channel\Event\Seller\OrderAcceptEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationAcceptedEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationDeniedEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationRequestEvent;
@@ -58,6 +60,7 @@ class EventFactoryTest extends TestCase
         return [
             [SystemNotificationEvent::class, SystemEventNotification::class, EventType::SystemNotification()],
             [SystemTestEvent::class, SellerEventTest::class, EventType::SellerEventTest()],
+            [OrderAcceptEvent::class, OrderAccept::class, EventType::SellerOrderAccept()],
             [OrderShippingEvent::class, SellerEventOrderShipping::class, EventType::SellerOrderShipping()],
             [OrderPaymentEvent::class, SellerEventOrderPayment::class, EventType::SellerOrderPayment()],
             [

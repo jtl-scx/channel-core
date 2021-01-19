@@ -17,6 +17,7 @@ use JTL\SCX\Lib\Channel\Order\RequestOrderCancellationListener;
 use JTL\SCX\Lib\Channel\Order\RequestOrderCancellationMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 /**
  * @covers \JTL\SCX\Lib\Channel\Order\RequestOrderCancellationListener
@@ -38,7 +39,7 @@ class RequestOrderCancellationListenerTest extends TestCase
         $message->method('getOrderCancellationRequestId')->willReturn('A_ID');
         $message->method('getSellerId')->willReturn(new ChannelSellerId('A_SELLER_ID'));
         $message->method('getChannelOrderId')->willReturn('A_ORDER_ID');
-        $message->method('getCancelReason')->willReturn('A_REASON');
+        $message->method('getCancelReason')->willReturn('OTHER');
         $message->method('getMessage')->willReturn('A_MESSAGE');
         $message->method('getOrderCancellationItemList')->willReturn(
             OrderCancellationItemList::from(
@@ -54,7 +55,7 @@ class RequestOrderCancellationListenerTest extends TestCase
                 $this->assertCorrectProperty($request, 'orderCancellationRequestId', 'A_ID');
                 $this->assertCorrectProperty($request, 'sellerId', 'A_SELLER_ID');
                 $this->assertCorrectProperty($request, 'orderId', 'A_ORDER_ID');
-                $this->assertCorrectProperty($request, 'cancelReason', 'A_REASON');
+                $this->assertCorrectProperty($request, 'cancelReason', 'OTHER');
                 $this->assertCorrectProperty($request, 'message', 'A_MESSAGE');
                 $this->assertCorrectProperty($request, 'orderItem', [
                     (object)['orderItemId' => '1', 'quantity' => "1.0"],
@@ -62,11 +63,10 @@ class RequestOrderCancellationListenerTest extends TestCase
                 ]);
                 return true;
             }));
-        ;
         $sut->requestCancellation($message);
     }
 
-    public function assertCorrectProperty(\stdClass $given, string $property, $value)
+    public function assertCorrectProperty(stdClass $given, string $property, $value)
     {
         $this->assertObjectHasAttribute($property, $given);
         $this->assertEquals(
