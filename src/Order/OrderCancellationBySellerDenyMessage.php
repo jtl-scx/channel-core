@@ -22,7 +22,6 @@ class OrderCancellationBySellerDenyMessage extends OrderCancellationBySellerAcce
         string $orderCancellationRequestId,
         string $orderId,
         string $reason,
-        array $failedOrderItemIdList,
         string $messageId = null
     ) {
         parent::__construct($sellerId, $orderCancellationRequestId, $orderId, $messageId);

@@ -24,7 +24,7 @@ class OrderCancellationBySellerResultListener extends AbstractListener
         $this->orderApi = $orderApi;
     }
 
-    public function handleAccept(OrderCancellationBySellerDenyMessage $message): void
+    public function handleAccept(OrderCancellationBySellerAcceptMessage $message): void
     {
         $request = new AcceptCancellationRequest(
             (string)$message->getSellerId(),
