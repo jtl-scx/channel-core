@@ -33,7 +33,6 @@ class OrderCancellationBySellerResultListener extends AbstractListener
         $this->orderApi->acceptOrderCancellation($request);
 
         $this->logger->info("Order cancellation accepted was send back to Channel-API");
-
     }
 
     public function handleDeny(OrderCancellationBySellerDenyMessage $message): void
@@ -47,5 +46,4 @@ class OrderCancellationBySellerResultListener extends AbstractListener
 
         $this->logger->info("Order cancellation denied was send back to Channel-API. Reason: {$message->getReason()}");
     }
-
 }

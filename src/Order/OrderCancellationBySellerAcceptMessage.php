@@ -48,5 +48,4 @@ class OrderCancellationBySellerAcceptMessage extends AbstractAmqpTransportableMe
     {
         return $this->orderCancellationRequestId;
     }
-
 }

@@ -32,5 +32,4 @@ class OrderCancellationBySellerDenyMessage extends OrderCancellationBySellerAcce
     {
         return $this->reason;
     }
-
 }

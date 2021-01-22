@@ -16,7 +16,6 @@ use PHPUnit\Framework\TestCase;
  */
 class CancellationRequestIdContextTest extends TestCase
 {
-
     public function testCanBeUsed(): void
     {
         $id = uniqid('id', true);
