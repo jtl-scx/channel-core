@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
-use JTL\SCX\Client\Channel\Model\Attribute as ClientAttribute;
+use JTL\SCX\Client\Channel\Model\Attribute as ScxAttribute;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,30 +19,65 @@ use PHPUnit\Framework\TestCase;
  */
 class AttributeMapperTest extends TestCase
 {
-    public function testCanMap(): void
+    /**
+     * @test
+     */
+    public function it_can_map_to_SCX_Attribute_Model(): void
     {
         $mapper = new AttributeMapper();
 
-        $attributeId = uniqid('attributeId', true);
-        $name = uniqid('name', true);
-        $title = uniqid('title', true);
-        $required = (bool)random_int(0, 1);
+        $attribute1 = $this->createFakeAttribute();
+        $attribute2 = $this->createFakeAttribute();
 
-        $attribute = new Attribute(
-            $attributeId,
-            $name,
-            $title,
-            $required,
-            null,
-            AttributeType::TEXT()
-        );
-
-        $attributeList = AttributeList::from($attribute);
-
+        $attributeList = AttributeList::from($attribute1, $attribute2);
         $result = $mapper->map($attributeList);
 
         $this->assertIsArray($result);
-        $this->assertCount(1, $result);
-        $this->assertInstanceOf(ClientAttribute::class, $result[0]);
+        $this->assertCount(2, $result);
+        $this->assertInstanceOf(ScxAttribute::class, $result[0]);
+        $this->assertInstanceOf(ScxAttribute::class, $result[1]);
+    }
+
+    private function createFakeAttribute(): Attribute
+    {
+        $conditionalAttributeId = uniqid('caid', true);
+        $conditionalAttributeValues = [uniqid('enumValues', true)];
+
+        $conditional = new ConditionalAttribute($conditionalAttributeId, $conditionalAttributeValues);
+        $attributeId = uniqid('attributeId', true);
+        $displayName = uniqid('displayName', true);
+        $enumValues = [uniqid('enumValues', true)];
+        $description = uniqid('description', true);
+        $required = (bool)random_int(0, 1);
+        $type = AttributeType::DECIMAL();
+        $isMultipleAllowed = (bool)random_int(0, 1);
+        $attributeValueValidation = uniqid('attributeValueValidation', true);
+        $conditionalMandatoryBy = ConditionalAttributeList::from($conditional);
+        $conditionalOptionalBy = ConditionalAttributeList::from($conditional);
+        $section = uniqid('section', true);
+        $sectionPosition = random_int(1, 10000);
+        $subSection = uniqid('subsection', true);
+        $subSectionPosition = random_int(1, 10000);
+        $isVariationDimension = (bool)random_int(0, 1);
+        $isRecommended = (bool)random_int(0, 1);
+
+        return new Attribute(
+            $attributeId,
+            $displayName,
+            $description,
+            $required,
+            $enumValues,
+            $type,
+            $isMultipleAllowed,
+            $attributeValueValidation,
+            $conditionalMandatoryBy,
+            $conditionalOptionalBy,
+            $section,
+            $sectionPosition,
+            $subSection,
+            $subSectionPosition,
+            $isVariationDimension,
+            $isRecommended
+        );
     }
 }

@@ -25,6 +25,7 @@ class Attribute
     private ?int $subSectionPosition;
     private ?string $description;
     private ?bool $isVariationDimension;
+    private bool $recommended;
 
     /**
      * Attribute constructor.
@@ -43,6 +44,7 @@ class Attribute
      * @param string|null $subSection
      * @param int|null $subSectionPosition
      * @param bool|null $isVariationDimension
+     * @param bool $recommended
      */
     public function __construct(
         string $attributeId,
@@ -59,7 +61,8 @@ class Attribute
         int $sectionPosition = null,
         string $subSection = null,
         int $subSectionPosition = null,
-        bool $isVariationDimension = null
+        bool $isVariationDimension = null,
+        bool $recommended = false
     ) {
         $this->attributeId = $attributeId;
         $this->displayName = $displayName;
@@ -79,6 +82,7 @@ class Attribute
         $this->subSection = $subSection;
         $this->subSectionPosition = $subSectionPosition;
         $this->isVariationDimension = $isVariationDimension;
+        $this->recommended = $recommended;
     }
 
     /**
@@ -151,6 +155,14 @@ class Attribute
     public function isRequired(): bool
     {
         return $this->required;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRecommended(): bool
+    {
+        return $this->recommended;
     }
 
     /**

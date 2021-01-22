@@ -8,28 +8,30 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
-use JTL\SCX\Client\Channel\Model\Attribute;
+use JTL\SCX\Client\Channel\Model\Attribute as ScxAttribute;
 
 class AttributeMapper
 {
     /**
      * @param AttributeList $categoryAttributeList
-     * @return array
+     * @return array<ScxAttribute>
      */
     public function map(AttributeList $categoryAttributeList): array
     {
         $list = [];
 
+        /** @var Attribute $attribute */
         foreach ($categoryAttributeList as $attribute) {
-            $list[] = new Attribute([
+            $list[] = new ScxAttribute([
                 'attributeId' => $attribute->getAttributeId(),
                 'displayName' => $attribute->getDisplayName(),
                 'isMultipleAllowed' => $attribute->isMultipleAllowed(),
                 'required' => $attribute->isRequired(),
+                'recommended' => $attribute->isRecommended(),
                 'type' => (string)$attribute->getType(),
                 'enumValues' => $attribute->getEnumValues(),
                 'attributeValueValidation' => $attribute->getAttributeValueValidation(),
-                'conditionalMandantoryBy' => $this->mapConditional($attribute->getConditionalMandatoryBy()),
+                'conditionalMandatoryBy' => $this->mapConditional($attribute->getConditionalMandatoryBy()),
                 'conditionalOptionalBy' => $this->mapConditional($attribute->getConditionalOptionalBy()),
                 'section' => $attribute->getSection(),
                 'sectionPosition' => $attribute->getSectionPosition(),
@@ -49,10 +51,10 @@ class AttributeMapper
             return null;
         }
         $conditionalAttributeList = [];
-        foreach ($conditionalAttributeCollection as $conditioanlAttribute) {
+        foreach ($conditionalAttributeCollection as $conditionalAttribute) {
             $conditionalAttributeList[] = [
-                'attributeId' => $conditioanlAttribute->getAttributeId(),
-                'attributeValues' => $conditioanlAttribute->getAttributeValues(),
+                'attributeId' => $conditionalAttribute->getAttributeId(),
+                'attributeValues' => $conditionalAttribute->getAttributeValues(),
             ];
         }
         return $conditionalAttributeList;
