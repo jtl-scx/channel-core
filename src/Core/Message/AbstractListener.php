@@ -14,12 +14,14 @@ use JTL\Nachricht\Contract\Listener\Listener;
 use JTL\Nachricht\Contract\Message\AmqpTransportableMessage;
 use JTL\Nachricht\Contract\Message\Message;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
+use JTL\SCX\Lib\Channel\Contract\Core\Message\CancellationRequestIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\ChannelOfferIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\ChannelOrderIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\ChannelOrderItemIdListRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerOfferIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerReportIdRelatedMessage;
+use JTL\SCX\Lib\Channel\Core\Log\Context\CancellationRequestIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\ChannelOfferIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\ChannelOrderIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\ChannelOrderItemIdListContext;
@@ -61,6 +63,9 @@ abstract class AbstractListener implements Listener, BeforeMessageHook, AfterMes
         }
         if ($message instanceof ChannelOrderItemIdListRelatedMessage) {
             $this->logger->replaceContext(new ChannelOrderItemIdListContext($message->getChannelOrderItemIdList()));
+        }
+        if ($message instanceof CancellationRequestIdRelatedMessage) {
+            $this->logger->replaceContext(new CancellationRequestIdContext($message->getCancellationRequestId()));
         }
     }
 
