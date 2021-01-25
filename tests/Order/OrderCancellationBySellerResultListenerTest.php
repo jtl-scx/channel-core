@@ -34,18 +34,18 @@ class OrderCancellationBySellerResultListenerTest extends TestCase
         $orderApi = $this->createMock(OrderApi::class);
         $orderApi->expects(self::once())->method('denyOrderCancellation')->with(
             self::callback(
-            function (DenyCancellationRequest $request) use ($sellerIdStr, $requestId, $reason) {
-                $dataJson = json_encode(
-                    [
-                        "sellerId" => $sellerIdStr,
-                        "orderCancellationRequestId" => $requestId,
-                        "reason" => $reason
-                    ],
-                    JSON_PRETTY_PRINT
-                );
-                return $dataJson === $request->getBody();
-            }
-        )
+                function (DenyCancellationRequest $request) use ($sellerIdStr, $requestId, $reason) {
+                    $dataJson = json_encode(
+                        [
+                            "sellerId" => $sellerIdStr,
+                            "orderCancellationRequestId" => $requestId,
+                            "reason" => $reason
+                        ],
+                        JSON_PRETTY_PRINT
+                    );
+                    return $dataJson === $request->getBody();
+                }
+            )
         );
         $listener = new OrderCancellationBySellerResultListener($orderApi, $this->createStub(ScxLogger::class));
         $listener->handleDeny($message);
@@ -61,17 +61,17 @@ class OrderCancellationBySellerResultListenerTest extends TestCase
         $orderApi = $this->createMock(OrderApi::class);
         $orderApi->expects(self::once())->method('acceptOrderCancellation')->with(
             self::callback(
-            function (AcceptCancellationRequest $request) use ($sellerIdStr, $requestId) {
-                $dataJson = json_encode(
-                    [
-                        "sellerId" => $sellerIdStr,
-                        "orderCancellationRequestId" => $requestId,
-                    ],
-                    JSON_PRETTY_PRINT
-                );
-                return $dataJson === $request->getBody();
-            }
-        )
+                function (AcceptCancellationRequest $request) use ($sellerIdStr, $requestId) {
+                    $dataJson = json_encode(
+                        [
+                            "sellerId" => $sellerIdStr,
+                            "orderCancellationRequestId" => $requestId,
+                        ],
+                        JSON_PRETTY_PRINT
+                    );
+                    return $dataJson === $request->getBody();
+                }
+            )
         );
         $listener = new OrderCancellationBySellerResultListener($orderApi, $this->createStub(ScxLogger::class));
         $listener->handleAccept($message);
