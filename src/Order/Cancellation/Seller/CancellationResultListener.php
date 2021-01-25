@@ -6,7 +6,7 @@
  * Date: 2021-01-22
  */
 
-namespace JTL\SCX\Lib\Channel\Order;
+namespace JTL\SCX\Lib\Channel\Order\Cancellation\Seller;
 
 use JTL\SCX\Client\Channel\Api\Order\OrderApi;
 use JTL\SCX\Client\Channel\Api\Order\Request\AcceptCancellationRequest;
@@ -14,7 +14,7 @@ use JTL\SCX\Client\Channel\Api\Order\Request\DenyCancellationRequest;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Message\AbstractListener;
 
-class OrderCancellationBySellerResultListener extends AbstractListener
+class CancellationResultListener extends AbstractListener
 {
     private OrderApi $orderApi;
 
@@ -24,7 +24,7 @@ class OrderCancellationBySellerResultListener extends AbstractListener
         $this->orderApi = $orderApi;
     }
 
-    public function handleAccept(OrderCancellationBySellerAcceptMessage $message): void
+    public function handleAccept(CancellationAcceptMessage $message): void
     {
         $request = new AcceptCancellationRequest(
             (string)$message->getSellerId(),
@@ -35,7 +35,7 @@ class OrderCancellationBySellerResultListener extends AbstractListener
         $this->logger->info("Order cancellation accepted was send back to Channel-API");
     }
 
-    public function handleDeny(OrderCancellationBySellerDenyMessage $message): void
+    public function handleDeny(CancellationDenyMessage $message): void
     {
         $request = new DenyCancellationRequest(
             (string)$message->getSellerId(),
