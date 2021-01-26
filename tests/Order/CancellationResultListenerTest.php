@@ -12,16 +12,16 @@ use JTL\SCX\Client\Channel\Api\Order\OrderApi;
 use JTL\SCX\Client\Channel\Api\Order\Request\AcceptCancellationRequest;
 use JTL\SCX\Client\Channel\Api\Order\Request\DenyCancellationRequest;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
-use JTL\SCX\Lib\Channel\Order\OrderCancellationBySellerAcceptMessage;
-use JTL\SCX\Lib\Channel\Order\OrderCancellationBySellerDenyMessage;
-use JTL\SCX\Lib\Channel\Order\OrderCancellationBySellerResultListener;
+use JTL\SCX\Lib\Channel\Order\Cancellation\Seller\CancellationAcceptMessage;
+use JTL\SCX\Lib\Channel\Order\Cancellation\Seller\CancellationDenyMessage;
+use JTL\SCX\Lib\Channel\Order\Cancellation\Seller\CancellationResultListener;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \JTL\SCX\Lib\Channel\Order\OrderCancellationBySellerResultListener
+ * @covers \JTL\SCX\Lib\Channel\Order\Cancellation\Seller\CancellationResultListener
  */
-class OrderCancellationBySellerResultListenerTest extends TestCase
+class CancellationResultListenerTest extends TestCase
 {
     public function testHandleDeny()
     {
@@ -29,7 +29,7 @@ class OrderCancellationBySellerResultListenerTest extends TestCase
         $sellerId = new ChannelSellerId($sellerIdStr);
         $requestId = uniqid('requestId', true);
         $reason = uniqid('reason', true);
-        $message = new OrderCancellationBySellerDenyMessage($sellerId, $requestId, uniqid('orderId', true), $reason);
+        $message = new CancellationDenyMessage($sellerId, $requestId, uniqid('orderId', true), $reason);
 
         $orderApi = $this->createMock(OrderApi::class);
         $orderApi->expects(self::once())->method('denyOrderCancellation')->with(
@@ -47,7 +47,7 @@ class OrderCancellationBySellerResultListenerTest extends TestCase
                 }
             )
         );
-        $listener = new OrderCancellationBySellerResultListener($orderApi, $this->createStub(ScxLogger::class));
+        $listener = new CancellationResultListener($orderApi, $this->createStub(ScxLogger::class));
         $listener->handleDeny($message);
     }
 
@@ -56,7 +56,7 @@ class OrderCancellationBySellerResultListenerTest extends TestCase
         $sellerIdStr = uniqid();
         $sellerId = new ChannelSellerId($sellerIdStr);
         $requestId = uniqid('requestId', true);
-        $message = new OrderCancellationBySellerAcceptMessage($sellerId, $requestId, uniqid('orderId', true));
+        $message = new CancellationAcceptMessage($sellerId, $requestId, uniqid('orderId', true));
 
         $orderApi = $this->createMock(OrderApi::class);
         $orderApi->expects(self::once())->method('acceptOrderCancellation')->with(
@@ -73,7 +73,7 @@ class OrderCancellationBySellerResultListenerTest extends TestCase
                 }
             )
         );
-        $listener = new OrderCancellationBySellerResultListener($orderApi, $this->createStub(ScxLogger::class));
+        $listener = new CancellationResultListener($orderApi, $this->createStub(ScxLogger::class));
         $listener->handleAccept($message);
     }
 }

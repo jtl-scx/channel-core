@@ -8,11 +8,11 @@
 
 namespace Order;
 
-use JTL\SCX\Lib\Channel\Order\OrderCancellationItem;
+use JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\OrderCancellationItem;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \JTL\SCX\Lib\Channel\Order\OrderCancellationItem
+ * @covers \JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\OrderCancellationItem
  */
 class OrderCancellationItemTest extends TestCase
 {

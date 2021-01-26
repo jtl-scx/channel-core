@@ -8,27 +8,26 @@
 
 namespace Order;
 
-use JTL\SCX\Lib\Channel\Order\OrderCancellationBySellerAcceptMessage;
-use JTL\SCX\Lib\Channel\Order\OrderCancellationBySellerDenyMessage;
+use JTL\SCX\Lib\Channel\Order\Cancellation\Seller\CancellationDenyMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \JTL\SCX\Lib\Channel\Order\OrderCancellationBySellerDenyMessage
+ * @covers \JTL\SCX\Lib\Channel\Order\Cancellation\Seller\CancellationDenyMessage
  */
 class OrderCancellationBySellerDenyMessageTest extends TestCase
 {
     public function testGetReason()
     {
         $reason = uniqid('reason', true);
-        $message = new OrderCancellationBySellerDenyMessage(
+        $message = new CancellationDenyMessage(
             $this->createStub(ChannelSellerId::class),
             uniqid('orderCancellationRequestId', true),
             uniqid('orderId', true),
             $reason
         );
 
-        self::assertInstanceOf(OrderCancellationBySellerAcceptMessage::class, $message);
+        self::assertInstanceOf(CancellationDenyMessage::class, $message);
         self::assertSame($reason, $message->getReason());
     }
 }

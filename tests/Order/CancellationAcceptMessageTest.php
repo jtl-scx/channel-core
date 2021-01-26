@@ -8,16 +8,16 @@
 
 namespace Order;
 
-use JTL\SCX\Lib\Channel\Order\OrderCancellationBySellerAcceptMessage;
+use JTL\SCX\Lib\Channel\Order\Cancellation\Seller\CancellationAcceptMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \JTL\SCX\Lib\Channel\Order\OrderCancellationBySellerAcceptMessage
+ * @covers \JTL\SCX\Lib\Channel\Order\Cancellation\Seller\CancellationAcceptMessage
  */
-class OrderCancellationBySellerAcceptMessageTest extends TestCase
+class CancellationAcceptMessageTest extends TestCase
 {
-    private OrderCancellationBySellerAcceptMessage $message;
+    private CancellationAcceptMessage $message;
     private $channelSellerId;
     private string $orderCancellationRequestId;
     private string $orderId;
@@ -27,7 +27,7 @@ class OrderCancellationBySellerAcceptMessageTest extends TestCase
         $this->channelSellerId = $this->createStub(ChannelSellerId::class);
         $this->orderCancellationRequestId = uniqid('orderCancellationRequestId', true);
         $this->orderId = uniqid('orderId', true);
-        $this->message = new OrderCancellationBySellerAcceptMessage(
+        $this->message = new CancellationAcceptMessage(
             $this->channelSellerId,
             $this->orderCancellationRequestId,
             $this->orderId
