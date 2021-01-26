@@ -18,7 +18,6 @@ use PHPUnit\Framework\TestCase;
  */
 class LockTest extends TestCase
 {
-
     public function testCanObtain(): void
     {
         $now = new \DateTimeImmutable();

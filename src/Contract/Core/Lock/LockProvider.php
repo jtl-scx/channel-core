@@ -9,7 +9,6 @@
 
 namespace JTL\SCX\Lib\Channel\Contract\Core\Lock;
 
-
 interface LockProvider
 {
     public function delete(string $key): bool;

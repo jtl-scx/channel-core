@@ -25,7 +25,6 @@ use function MongoDB\select_server;
  */
 class MongoDbLockProviderTest extends TestCase
 {
-
     public function testCanDelete(): void
     {
         $key = uniqid('key', true);

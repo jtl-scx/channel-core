@@ -16,6 +16,7 @@ class Lock
     private string $key;
     private int $ttl;
     private bool $unlockOnDestruct;
+    private bool $isLocked;
 
     public function __construct(LockProvider $lockProvider, string $key, int $ttl = 0, bool $unlockOnDestruct = true)
     {
@@ -64,6 +65,5 @@ class Lock
     public function isLocked(): bool
     {
         return $this->lockProvider->isset($this->key);
-
     }
 }
