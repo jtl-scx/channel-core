@@ -6,7 +6,7 @@
  * Date: 2021-01-22
  */
 
-namespace JTL\SCX\Lib\Channel\Order;
+namespace JTL\SCX\Lib\Channel\Order\Cancellation\Seller;
 
 use JTL\Nachricht\Message\AbstractAmqpTransportableMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\CancellationRequestIdRelatedMessage;
@@ -14,7 +14,7 @@ use JTL\SCX\Lib\Channel\Contract\Core\Message\ChannelOrderIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 
-class OrderCancellationBySellerAcceptMessage extends AbstractAmqpTransportableMessage implements SellerIdRelatedMessage, ChannelOrderIdRelatedMessage, CancellationRequestIdRelatedMessage
+class CancellationAcceptMessage extends AbstractAmqpTransportableMessage implements SellerIdRelatedMessage, ChannelOrderIdRelatedMessage, CancellationRequestIdRelatedMessage
 {
     private ChannelSellerId $sellerId;
     private string $orderCancellationRequestId;
