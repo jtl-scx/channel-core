@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
  */
 class CancellationRequestIdContextTest extends TestCase
 {
-    public function testCanBeUsed(): void
+    public function testItWillAddOrderCancellationRequestIdToRecord(): void
     {
         $id = uniqid('id', true);
         $context = new CancellationRequestIdContext($id);
