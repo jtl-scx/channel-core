@@ -20,7 +20,7 @@ services:
   Psr\Log\LoggerInterface: '@Monolog\Logger'
 
   Monolog\Logger:
-    factory: ['JTL\SCX\Lib\Channel\Core\Log\MonologFactory', 'create']
+    factory: ['@JTL\SCX\Lib\Channel\Core\Log\MonologFactory', 'create']
     arguments:
       $globalLogLevel: '%env(LOG_LEVEL)%'
       $logFile: '%env(LOG_FILE)%'
@@ -58,7 +58,7 @@ services:
 
   JTL\Nachricht\Transport\Amqp\AmqpTransport:
     public: true
-    factory: ['JTL\Nachricht\Transport\Amqp\AmqpTransportFactory', 'createTransport']
+    factory: ['@JTL\Nachricht\Transport\Amqp\AmqpTransportFactory', 'createTransport']
     arguments:
       - host: '%env(RABBITMQ_HOST)%'
         port: '%env(RABBITMQ_PORT)%'
@@ -77,7 +77,7 @@ services:
   # Translation Service
   # ###########################################################################
   JTL\SCX\Lib\Channel\Core\I18n\Translator:
-    factory: [ 'JTL\SCX\Lib\Channel\Core\I18n\TranslatorFactory', 'createTranslator' ]
+    factory: [ '@JTL\SCX\Lib\Channel\Core\I18n\TranslatorFactory', 'createTranslator' ]
     arguments:
       - '%env(TRANSLATIONS_DIR)%'
       - '%env(DEFAULT_LOCALE)%'
