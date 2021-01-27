@@ -16,7 +16,6 @@ use PHPUnit\Framework\TestCase;
  */
 class LockTest extends TestCase
 {
-
     public function testGetExpiresAt()
     {
         $expiresAt = new \DateTimeImmutable();

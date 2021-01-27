@@ -18,7 +18,8 @@ use PHPUnit\Framework\TestCase;
  */
 class LockCreatorTest extends TestCase
 {
-    public function testCanCreateLock(): void {
+    public function testCanCreateLock(): void
+    {
         $lockKey = uniqid('lockKey', true);
         $lockProvider = $this->createStub(LockProvider::class);
         $lockFactory = new LockFactory($lockProvider);
