@@ -18,7 +18,6 @@ use MongoDB\Exception\RuntimeException;
 use MongoDB\InsertOneResult;
 use MongoDB\UpdateResult;
 use PHPUnit\Framework\TestCase;
-use function MongoDB\select_server;
 
 /**
  * @covers \JTL\SCX\Lib\Channel\Core\Lock\MongoDbLockProvider
