@@ -6,7 +6,7 @@
  * Date: 2020-12-08
  */
 
-namespace JTL\SCX\Lib\Channel\Order;
+namespace JTL\SCX\Lib\Channel\Order\Cancellation\Buyer;
 
 use JTL\Generic\GenericCollection;
 

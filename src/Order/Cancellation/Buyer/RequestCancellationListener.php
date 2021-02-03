@@ -6,7 +6,7 @@
  * Date: 12/2/20
  */
 
-namespace JTL\SCX\Lib\Channel\Order;
+namespace JTL\SCX\Lib\Channel\Order\Cancellation\Buyer;
 
 use JTL\SCX\Client\Channel\Api\Order\OrderApi;
 use JTL\SCX\Client\Channel\Api\Order\Request\RequestOrderCancellationRequest;
@@ -16,7 +16,7 @@ use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Log\Context\ChannelOrderItemIdListContext;
 use JTL\SCX\Lib\Channel\Core\Message\AbstractListener;
 
-class RequestOrderCancellationListener extends AbstractListener
+class RequestCancellationListener extends AbstractListener
 {
     private OrderApi $orderApi;
 
@@ -26,7 +26,7 @@ class RequestOrderCancellationListener extends AbstractListener
         $this->orderApi = $orderApi;
     }
 
-    public function requestCancellation(RequestOrderCancellationMessage $message): void
+    public function requestCancellation(RequestCancellationMessage $message): void
     {
         $orderItemList = $orderItemIdList = [];
         /** @var OrderCancellationItem $item */
@@ -47,7 +47,7 @@ class RequestOrderCancellationListener extends AbstractListener
     }
 
     private function buildOrderCancellationRequest(
-        RequestOrderCancellationMessage $message,
+        RequestCancellationMessage $message,
         array $orderItemList
     ): OrderCancellationRequest {
         return new OrderCancellationRequest([

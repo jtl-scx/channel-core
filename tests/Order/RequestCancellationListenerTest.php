@@ -11,18 +11,18 @@ namespace Order;
 use JTL\SCX\Client\Channel\Api\Order\OrderApi;
 use JTL\SCX\Client\Channel\Api\Order\Request\RequestOrderCancellationRequest;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
-use JTL\SCX\Lib\Channel\Order\OrderCancellationItem;
-use JTL\SCX\Lib\Channel\Order\OrderCancellationItemList;
-use JTL\SCX\Lib\Channel\Order\RequestOrderCancellationListener;
-use JTL\SCX\Lib\Channel\Order\RequestOrderCancellationMessage;
+use JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\OrderCancellationItem;
+use JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\OrderCancellationItemList;
+use JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\RequestCancellationListener;
+use JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\RequestCancellationMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
 /**
- * @covers \JTL\SCX\Lib\Channel\Order\RequestOrderCancellationListener
+ * @covers \JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\RequestCancellationListener
  */
-class RequestOrderCancellationListenerTest extends TestCase
+class RequestCancellationListenerTest extends TestCase
 {
 
     /**
@@ -33,9 +33,9 @@ class RequestOrderCancellationListenerTest extends TestCase
         $apiMock = $this->createMock(OrderApi::class);
         $loggerStub = $this->createStub(ScxLogger::class);
 
-        $sut = new RequestOrderCancellationListener($apiMock, $loggerStub);
+        $sut = new RequestCancellationListener($apiMock, $loggerStub);
 
-        $message = $this->createMock(RequestOrderCancellationMessage::class);
+        $message = $this->createMock(RequestCancellationMessage::class);
         $message->method('getOrderCancellationRequestId')->willReturn('A_ID');
         $message->method('getSellerId')->willReturn(new ChannelSellerId('A_SELLER_ID'));
         $message->method('getChannelOrderId')->willReturn('A_ORDER_ID');

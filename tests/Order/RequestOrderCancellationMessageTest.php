@@ -10,13 +10,13 @@ namespace Order;
 
 use JTL\SCX\Lib\Channel\Contract\Core\Message\ChannelOrderIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerIdRelatedMessage;
-use JTL\SCX\Lib\Channel\Order\OrderCancellationItemList;
-use JTL\SCX\Lib\Channel\Order\RequestOrderCancellationMessage;
+use JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\OrderCancellationItemList;
+use JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\RequestCancellationMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \JTL\SCX\Lib\Channel\Order\RequestOrderCancellationMessage
+ * @covers \JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\RequestCancellationMessage
  */
 class RequestOrderCancellationMessageTest extends TestCase
 {
@@ -81,7 +81,7 @@ class RequestOrderCancellationMessageTest extends TestCase
     public function it_may_has_a_cancelReason(): void
     {
         $reason = 'a_reason';
-        $sut = new RequestOrderCancellationMessage(
+        $sut = new RequestCancellationMessage(
             'A_ID',
             new ChannelSellerId('A_SELLER_ID'),
             'A_ORDER_ID',
@@ -106,7 +106,7 @@ class RequestOrderCancellationMessageTest extends TestCase
     public function it_may_has_a_massage(): void
     {
         $message = 'a_message';
-        $sut = new RequestOrderCancellationMessage(
+        $sut = new RequestCancellationMessage(
             'A_ID',
             new ChannelSellerId('A_SELLER_ID'),
             'A_ORDER_ID',
@@ -126,9 +126,9 @@ class RequestOrderCancellationMessageTest extends TestCase
         $this->assertNull($sut->getMessage());
     }
 
-    private function buildMessage(): RequestOrderCancellationMessage
+    private function buildMessage(): RequestCancellationMessage
     {
-        return new RequestOrderCancellationMessage(
+        return new RequestCancellationMessage(
             'A_ID',
             new ChannelSellerId('A_SELLER_ID'),
             'A_ORDER_ID',
