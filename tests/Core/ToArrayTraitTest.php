@@ -17,7 +17,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ToArrayTraitTest extends TestCase
 {
-
     public function testCanConvertCollectionToArray(): void
     {
         $a = uniqid();
