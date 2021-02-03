@@ -23,7 +23,11 @@ trait ToArrayTrait
             /** @var Traversable $traversableObject */
             $traversableObject = $this;
             foreach ($traversableObject as $item) {
-                $itemList[] = $this->createArray($item);
+                if (is_array($item)) {
+                    $itemList[] = $this->createArray($item);
+                } elseif (method_exists($item, 'toArray')) {
+                    $itemList[] = $this->createArray($item->toArray());
+                }
             }
             return $itemList;
         }
