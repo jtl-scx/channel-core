@@ -40,6 +40,7 @@ class AttributeTest extends TestCase
         $subSection = uniqid('subsection', true);
         $subSectionPosition = random_int(1, 10000);
         $isVariationDimension = (bool)random_int(0, 1);
+        $isRecommended = (bool)random_int(0, 1);
 
         $attribute = new Attribute(
             $attributeId,
@@ -56,7 +57,8 @@ class AttributeTest extends TestCase
             $sectionPosition,
             $subSection,
             $subSectionPosition,
-            $isVariationDimension
+            $isVariationDimension,
+            $isRecommended
         );
 
         $this->assertEquals($attributeId, $attribute->getAttributeId());
@@ -74,5 +76,6 @@ class AttributeTest extends TestCase
         $this->assertEquals($required, $attribute->isRequired());
         $this->assertEquals($isMultipleAllowed, $attribute->isMultipleAllowed());
         $this->assertEquals($isVariationDimension, $attribute->isVariationDimension());
+        $this->assertEquals($isRecommended, $attribute->isRecommended());
     }
 }

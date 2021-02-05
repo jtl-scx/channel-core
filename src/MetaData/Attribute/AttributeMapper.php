@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
-use JTL\SCX\Client\Channel\Model\Attribute;
+use JTL\SCX\Client\Channel\Model\Attribute as ScxAttribute;
 
 class AttributeMapper
 {
@@ -20,12 +20,14 @@ class AttributeMapper
     {
         $list = [];
 
+        /** @var Attribute $attribute */
         foreach ($categoryAttributeList as $attribute) {
-            $list[] = new Attribute([
+            $list[] = new ScxAttribute([
                 'attributeId' => $attribute->getAttributeId(),
                 'displayName' => $attribute->getDisplayName(),
                 'isMultipleAllowed' => $attribute->isMultipleAllowed(),
                 'required' => $attribute->isRequired(),
+                'recommended' => $attribute->isRecommended(),
                 'type' => (string)$attribute->getType(),
                 'enumValues' => $attribute->getEnumValues(),
                 'attributeValueValidation' => $attribute->getAttributeValueValidation(),
