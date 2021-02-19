@@ -50,6 +50,9 @@ class GlobalAttributeLoader
             $conditionalOptional = $this->createConditionalAttributeCollection(
                 $attributeData['conditionalOptionalBy'] ?? null
             );
+            $valueList = $this->createValueList(
+                $attributeData['values'] ?? null
+            );
 
             $attribute = new Attribute(
                 $attributeData['attributeId'],
@@ -57,6 +60,7 @@ class GlobalAttributeLoader
                 $attributeData['description'] ?? null,
                 $attributeData['required'] ?? false,
                 $attributeData['enumValues'] ?? null,
+                $valueList,
                 $attributeData['type'] ? new AttributeType($attributeData['type']) : AttributeType::SMALLTEXT(),
                 $attributeData['isMultipleAllowed'] ?? false,
                 $attributeData['attributeValueValidation'] ?? null,
@@ -112,5 +116,26 @@ class GlobalAttributeLoader
         }
 
         return $conditionalAttributeCollection;
+    }
+
+    private function createValueList(?array $valueList): ?AllowedValueCollection
+    {
+        if ($valueList === null) {
+            return null;
+        }
+
+        $valueCollection = new AllowedValueCollection();
+
+        foreach ($valueList as $value) {
+            if (!isset($value['value']) || empty($value['value'])) {
+                throw new InvalidArgumentException("Attribute values field 'value' is required");
+            }
+
+            $valueCollection->add(
+                new AttributeAllowedValue($value['value'], $value['display'] ?? null)
+            );
+        }
+
+        return $valueCollection;
     }
 }

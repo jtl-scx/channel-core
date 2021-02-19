@@ -15,6 +15,7 @@ class Attribute
     private bool $isMultipleAllowed;
     private AttributeType $type;
     private ?array $enumValues;
+    private ?AllowedValueCollection $values;
     private ?string $attributeValueValidation;
     private ?ConditionalAttributeList $conditionalMandatoryBy;
     private ?ConditionalAttributeList $conditionalOptionalBy;
@@ -34,6 +35,7 @@ class Attribute
      * @param string|null $description
      * @param bool $required
      * @param array|null $enumValues
+     * @param AllowedValueCollection|null $values
      * @param AttributeType|null $type
      * @param bool $isMultipleAllowed
      * @param string|null $attributeValueValidation
@@ -52,6 +54,7 @@ class Attribute
         string $description = null,
         bool $required = false,
         array $enumValues = null,
+        AllowedValueCollection $values = null,
         AttributeType $type = null,
         bool $isMultipleAllowed = false,
         string $attributeValueValidation = null,
@@ -83,6 +86,7 @@ class Attribute
         $this->subSectionPosition = $subSectionPosition;
         $this->isVariationDimension = $isVariationDimension;
         $this->recommended = $recommended;
+        $this->values = $values;
     }
 
     /**
@@ -123,6 +127,11 @@ class Attribute
     public function getEnumValues(): ?array
     {
         return $this->enumValues;
+    }
+
+    public function getValues(): ?AllowedValueCollection
+    {
+        return $this->values;
     }
 
     /**

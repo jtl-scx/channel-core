@@ -34,6 +34,7 @@ class AttributeMapperTest extends TestCase
             $title,
             $required,
             null,
+            null,
             AttributeType::TEXT()
         );
 

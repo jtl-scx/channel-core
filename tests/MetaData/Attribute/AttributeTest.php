@@ -24,7 +24,7 @@ class AttributeTest extends TestCase
         $conditionalAttributeValues = [uniqid('enumValues', true)];
 
         $conditional = new ConditionalAttribute($conditionalAttributeId, $conditionalAttributeValues);
-        $id = uniqid('id', true);
+        $value = new AttributeAllowedValue('value', 'display');
         $attributeId = uniqid('attributeId', true);
         $displayName = uniqid('displayName', true);
         $enumValues = [uniqid('enumValues', true)];
@@ -35,6 +35,7 @@ class AttributeTest extends TestCase
         $attributeValueValidation = uniqid('attributeValueValidation', true);
         $conditionalMandatoryBy = ConditionalAttributeList::from($conditional);
         $conditionalOptionalBy = ConditionalAttributeList::from($conditional);
+        $values = AllowedValueCollection::from($value);
         $section = uniqid('section', true);
         $sectionPosition = random_int(1, 10000);
         $subSection = uniqid('subsection', true);
@@ -48,6 +49,7 @@ class AttributeTest extends TestCase
             $description,
             $required,
             $enumValues,
+            $values,
             $type,
             $isMultipleAllowed,
             $attributeValueValidation,
@@ -65,6 +67,7 @@ class AttributeTest extends TestCase
         $this->assertEquals($displayName, $attribute->getDisplayName());
         $this->assertEquals($type, $attribute->getType());
         $this->assertEquals($enumValues, $attribute->getEnumValues());
+        $this->assertEquals($values, $attribute->getValues());
         $this->assertEquals($attributeValueValidation, $attribute->getAttributeValueValidation());
         $this->assertEquals($conditionalMandatoryBy, $attribute->getConditionalMandatoryBy());
         $this->assertEquals($conditionalOptionalBy, $attribute->getConditionalOptionalBy());

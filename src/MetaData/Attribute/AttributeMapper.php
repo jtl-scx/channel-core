@@ -30,6 +30,7 @@ class AttributeMapper
                 'recommended' => $attribute->isRecommended(),
                 'type' => (string)$attribute->getType(),
                 'enumValues' => $attribute->getEnumValues(),
+                'values' => $this->mapValues($attribute->getValues()),
                 'attributeValueValidation' => $attribute->getAttributeValueValidation(),
                 'conditionalMandantoryBy' => $this->mapConditional($attribute->getConditionalMandatoryBy()),
                 'conditionalOptionalBy' => $this->mapConditional($attribute->getConditionalOptionalBy()),
@@ -58,5 +59,20 @@ class AttributeMapper
             ];
         }
         return $conditionalAttributeList;
+    }
+
+    private function mapValues(?AllowedValueCollection $valueList): ?array
+    {
+        if ($valueList === null) {
+            return null;
+        }
+        $values = [];
+        foreach ($valueList as $value) {
+            $values[] = [
+                'value' => $value->getValue(),
+                'display' => $value->getDisplay(),
+            ];
+        }
+        return $values;
     }
 }
