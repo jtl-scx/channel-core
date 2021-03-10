@@ -22,6 +22,7 @@ class AttributeMapper
 
         /** @var Attribute $attribute */
         foreach ($categoryAttributeList as $attribute) {
+            $values = $attribute->getValues();
             $list[] = new ScxAttribute([
                 'attributeId' => $attribute->getAttributeId(),
                 'displayName' => $attribute->getDisplayName(),
@@ -30,6 +31,7 @@ class AttributeMapper
                 'recommended' => $attribute->isRecommended(),
                 'type' => (string)$attribute->getType(),
                 'enumValues' => $attribute->getEnumValues(),
+                'values' => $values !== null ? $values->toArray() : null,
                 'attributeValueValidation' => $attribute->getAttributeValueValidation(),
                 'conditionalMandantoryBy' => $this->mapConditional($attribute->getConditionalMandatoryBy()),
                 'conditionalOptionalBy' => $this->mapConditional($attribute->getConditionalOptionalBy()),
