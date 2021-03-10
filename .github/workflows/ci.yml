@@ -90,7 +90,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: composer install --no-progress
+        run: composer install --no-progress || true
 
       - name: Run test suite (experimental)
         run: vendor/bin/phpunitv || true
