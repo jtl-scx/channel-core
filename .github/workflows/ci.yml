@@ -13,13 +13,12 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
-          extensions: mongodb-mongodb/mongo-php-driver@v1.9
 
       - name: Checkout Code
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: composer install --no-progress
+        run: composer install --no-progress --ignore-platform-req=ext-*
 
       - name: Run static code analysis
         run: composer phpstan
@@ -33,13 +32,12 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
-          extensions: mongodb-mongodb/mongo-php-driver@v1.9
 
       - name: Checkout Code
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: composer install --no-progress
+        run: composer install --no-progress --ignore-platform-req=ext-*
 
       - name: Check Code Style
         run: composer phpcs-dry
@@ -61,13 +59,12 @@ jobs:
         with:
           php-version: "${{ matrix.php-version }}"
           coverage: xdebug3
-          extensions: mongodb-mongodb/mongo-php-driver@v1.9
 
       - name: "Checkout"
         uses: actions/checkout@v2
 
       - name: "Install dependencies"
-        run: composer install --no-progress
+        run: composer install --no-progress --ignore-platform-req=ext-*
 
       - name: "Run test suite"
         run: vendor/bin/phpunit --coverage-clover=coverage.xml
@@ -86,12 +83,11 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.0'
-          extensions: mongodb-mongodb/mongo-php-driver@v1.9
-
+          
       - uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: composer install --no-progress --ignore-platform-req=php
+        run: composer install --no-progress --ignore-platform-reqs
 
       - name: Run test suite
         run: vendor/bin/phpunit
