@@ -76,7 +76,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
-  testing-php80 (experimental):
+  testing-php80-experimental:
 
     runs-on: ubuntu-20.04
 
