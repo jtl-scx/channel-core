@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: composer install --no-progress --ignore-platform-req=ext-*
+        run: composer install --no-progress --ignore-platform-req=ext-mongodb
 
       - name: Run static code analysis
         run: composer phpstan
@@ -37,7 +37,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: composer install --no-progress --ignore-platform-req=ext-*
+        run: composer install --no-progress --ignore-platform-req=ext-mongodb
 
       - name: Check Code Style
         run: composer phpcs-dry
@@ -64,7 +64,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: "Install dependencies"
-        run: composer install --no-progress --ignore-platform-req=ext-*
+        run: composer install --no-progress --ignore-platform-req=ext-mongodb
 
       - name: "Run test suite"
         run: vendor/bin/phpunit --coverage-clover=coverage.xml
