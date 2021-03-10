@@ -15,7 +15,6 @@ use PHPUnit\Framework\TestCase;
  */
 class AttributeEnumValueListTest extends TestCase
 {
-
     public function testCanCreateFromValueArray(): void
     {
         $data = [
@@ -34,13 +33,11 @@ class AttributeEnumValueListTest extends TestCase
         self::assertInstanceOf(AttributeEnumValue::class, $value);
         self::assertSame('value2', $value->getValue());
         self::assertNull($value->getDisplay());
-
     }
 
     public function testCanCreateFromValueArrayReturnNull(): void
     {
         $list = AttributeEnumValueList::fromValueArray(null);
         self::assertNull($list);
-
     }
 }

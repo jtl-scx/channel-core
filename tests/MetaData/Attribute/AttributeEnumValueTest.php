@@ -15,7 +15,6 @@ use PHPUnit\Framework\TestCase;
  */
 class AttributeEnumValueTest extends TestCase
 {
-
     public function testCanBeCreated(): void
     {
         $enumValue = new AttributeEnumValue(uniqid('value', true), uniqid('display', true));
