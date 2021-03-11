@@ -26,26 +26,8 @@ class Attribute
     private ?string $description;
     private ?bool $isVariationDimension;
     private ?bool $recommended;
+    private ?AttributeEnumValueList $values;
 
-    /**
-     * Attribute constructor.
-     * @param string $attributeId
-     * @param string $displayName
-     * @param string|null $description
-     * @param bool $required
-     * @param array|null $enumValues
-     * @param AttributeType|null $type
-     * @param bool $isMultipleAllowed
-     * @param string|null $attributeValueValidation
-     * @param ConditionalAttributeList|null $conditionalMandatoryBy
-     * @param ConditionalAttributeList|null $conditionalOptionalBy
-     * @param string|null $section
-     * @param int|null $sectionPosition
-     * @param string|null $subSection
-     * @param int|null $subSectionPosition
-     * @param bool|null $isVariationDimension
-     * @param bool|null $recommended
-     */
     public function __construct(
         string $attributeId,
         string $displayName,
@@ -62,7 +44,8 @@ class Attribute
         string $subSection = null,
         int $subSectionPosition = null,
         bool $isVariationDimension = null,
-        bool $recommended = null
+        bool $recommended = null,
+        AttributeEnumValueList $values = null
     ) {
         $this->attributeId = $attributeId;
         $this->displayName = $displayName;
@@ -83,133 +66,91 @@ class Attribute
         $this->subSectionPosition = $subSectionPosition;
         $this->isVariationDimension = $isVariationDimension;
         $this->recommended = $recommended;
+        $this->values = $values;
     }
 
-    /**
-     * @return string
-     */
     public function getAttributeId(): string
     {
         return $this->attributeId;
     }
 
-    /**
-     * @return string
-     */
     public function getDisplayName(): string
     {
         return $this->displayName;
     }
 
-    /**
-     * @return bool
-     */
     public function isMultipleAllowed(): bool
     {
         return $this->isMultipleAllowed;
     }
 
-    /**
-     * @return AttributeType
-     */
     public function getType(): AttributeType
     {
         return $this->type;
     }
 
-    /**
-     * @return array|null
-     */
     public function getEnumValues(): ?array
     {
         return $this->enumValues;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAttributeValueValidation(): ?string
     {
         return $this->attributeValueValidation;
     }
 
-    /**
-     * @return ConditionalAttributeList|null
-     */
     public function getConditionalMandatoryBy(): ?ConditionalAttributeList
     {
         return $this->conditionalMandatoryBy;
     }
 
-    /**
-     * @return ConditionalAttributeList|null
-     */
     public function getConditionalOptionalBy(): ?ConditionalAttributeList
     {
         return $this->conditionalOptionalBy;
     }
 
-    /**
-     * @return bool
-     */
     public function isRequired(): bool
     {
         return $this->required;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSection(): ?string
     {
         return $this->section;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSubSection(): ?string
     {
         return $this->subSection;
     }
 
-    /**
-     * @return int|null
-     */
     public function getSubSectionPosition(): ?int
     {
         return $this->subSectionPosition;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @return int|null
-     */
     public function getSectionPosition(): ?int
     {
         return $this->sectionPosition;
     }
 
-    /**
-     * @return bool|null
-     */
     public function isVariationDimension(): ?bool
     {
         return $this->isVariationDimension;
     }
 
-    /**
-     * @return bool|null
-     */
     public function isRecommended(): ?bool
     {
         return $this->recommended;
+    }
+
+    public function getValues(): ?AttributeEnumValueList
+    {
+        return $this->values;
     }
 }
