@@ -13,13 +13,14 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
+          extensions: mongodb-mongodb/mongo-php-driver@v1.9
 
       - name: Checkout Code
         uses: actions/checkout@v2
 
       - name: Install dependencies
         run: composer install --no-progress
-
+        
       - name: Run static code analysis
         run: composer phpstan
 
@@ -37,7 +38,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: composer install --no-progress
+        run: composer install --no-progress --ignore-platform-req=ext-mongodb
 
       - name: Check Code Style
         run: composer phpcs-dry
@@ -59,6 +60,7 @@ jobs:
         with:
           php-version: "${{ matrix.php-version }}"
           coverage: xdebug3
+          extensions: mongodb-mongodb/mongo-php-driver@v1.9
 
       - name: "Checkout"
         uses: actions/checkout@v2
@@ -74,7 +76,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
-  testing-php80-not-yet-ready:
+  testing-php80-experimental:
 
     runs-on: ubuntu-20.04
 
@@ -83,12 +85,13 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.0'
-
+          extensions: mongodb-mongodb/mongo-php-driver@v1.9
+          
       - uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: composer install --no-progress --ignore-platform-req=php
+        run: composer install --no-progress || true
 
-      - name: Run test suite
-        run: vendor/bin/phpunit
+      - name: Run test suite (experimental)
+        run: vendor/bin/phpunitv || true
 
