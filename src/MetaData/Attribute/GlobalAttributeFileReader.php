@@ -11,7 +11,7 @@ namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 use InvalidArgumentException;
 use JTL\SCX\Lib\Channel\Helper\FileHandler;
 
-class GlobalAttributeLoader
+class GlobalAttributeFileReader
 {
     /**
      * @var FileHandler
@@ -27,7 +27,7 @@ class GlobalAttributeLoader
      * @param string $filename
      * @return AttributeList
      */
-    public function load(string $filename): AttributeList
+    public function read(string $filename): AttributeList
     {
         if (!$this->fileHandler->isFile($filename)) {
             throw new InvalidArgumentException("{$filename} is not a valid file");
