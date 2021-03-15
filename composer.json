@@ -7,7 +7,7 @@
         "php": "^7.4",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.2",
-        "jtl-scx/channel-api-client": "^0.39",
+        "jtl-scx/channel-api-client": "^0.40",
         "jtl/nachricht": "^0.13.0",
         "monolog/monolog": "^2.0",
         "myclabs/php-enum": "^1.7",
@@ -16,7 +16,7 @@
         "symfony/config": "^5.1",
         "symfony/console": "^5.1",
         "symfony/dependency-injection": "^5.1",
-        "symfony/proxy-manager-bridge": "^5.1",
+        "symfony/proxy-manager-bridge": "^5.2",
         "symfony/translation": "^5.1",
         "symfony/yaml": "^5.1"
     },

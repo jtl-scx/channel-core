@@ -66,7 +66,9 @@ class GlobalAttributeFileReader
                 $attributeData['sectionPosition'] ?? null,
                 $attributeData['subSection'] ?? null,
                 $attributeData['subSectionPosition'] ?? null,
-                $attributeData['isVariationDimension'] ?? null
+                $attributeData['isVariationDimension'] ?? null,
+                $attributeData['recommended'] ?? null,
+                AttributeEnumValueList::fromValueArray($attributeData['enumValues'])
             );
             $attributeList[] = $attribute;
         }
