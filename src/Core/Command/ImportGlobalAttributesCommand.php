@@ -11,6 +11,7 @@ namespace JTL\SCX\Lib\Channel\Core\Command;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\GlobalAttributeLoader;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\GlobalAttributeSender;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -29,6 +30,11 @@ class ImportGlobalAttributesCommand extends AbstractCommand
         parent::__construct($logger);
         $this->globalAttributeLoader = $globalAttributeLoader;
         $this->globalAttributeSender = $globalAttributeSender;
+    }
+
+    protected function configure()
+    {
+        $this->setDescription('Import global attributes and push them to SCX');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

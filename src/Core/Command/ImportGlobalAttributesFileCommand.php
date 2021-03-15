@@ -31,7 +31,7 @@ class ImportGlobalAttributesFileCommand extends AbstractCommand
 
     protected function configure()
     {
-        $this->setDescription('Import global attributes from marketplace and push to SCX')
+        $this->setDescription('Import global attributes from static JSON File and push them to SCX')
             ->addArgument(
                 'filename',
                 InputArgument::OPTIONAL,
