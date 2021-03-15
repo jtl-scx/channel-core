@@ -51,12 +51,14 @@ class GlobalAttributeFileReader
                 $attributeData['conditionalOptionalBy'] ?? null
             );
 
+            $enumValues = $attributeData['enumValues'] ?? null;
+
             $attribute = new Attribute(
                 $attributeData['attributeId'],
                 $attributeData['displayName'],
                 $attributeData['description'] ?? null,
                 $attributeData['required'] ?? false,
-                $attributeData['enumValues'] ?? null,
+                $enumValues,
                 $attributeData['type'] ? new AttributeType($attributeData['type']) : AttributeType::SMALLTEXT(),
                 $attributeData['isMultipleAllowed'] ?? false,
                 $attributeData['attributeValueValidation'] ?? null,
@@ -68,7 +70,7 @@ class GlobalAttributeFileReader
                 $attributeData['subSectionPosition'] ?? null,
                 $attributeData['isVariationDimension'] ?? null,
                 $attributeData['recommended'] ?? null,
-                AttributeEnumValueList::fromValueArray($attributeData['enumValues'])
+                AttributeEnumValueList::fromValueArray($enumValues)
             );
             $attributeList[] = $attribute;
         }
