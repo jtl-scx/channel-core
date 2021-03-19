@@ -19,6 +19,8 @@ services:
   # ###########################################################################
   Psr\Log\LoggerInterface: '@Monolog\Logger'
 
+  JTL\SCX\Lib\Channel\Core\Log\MonologFactory: ~
+
   Monolog\Logger:
     factory: ['@JTL\SCX\Lib\Channel\Core\Log\MonologFactory', 'create']
     arguments:
@@ -58,6 +60,8 @@ services:
     resource: './vendor/jtl/nachricht/src/*'
 
   JTL\Nachricht\Contract\Emitter\Emitter: '@JTL\Nachricht\Emitter\AmqpEmitter'
+
+  JTL\Nachricht\Transport\Amqp\AmqpTransportFactory: ~
 
   JTL\Nachricht\Transport\Amqp\AmqpTransport:
     public: true
