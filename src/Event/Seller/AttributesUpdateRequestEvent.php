@@ -27,6 +27,15 @@ class AttributesUpdateRequestEvent extends AbstractEvent
         $this->event = $event;
     }
 
+    public static function seller(string $sellerId)
+    {
+        return new self(
+            uniqid(),
+            new DateTimeImmutable(),
+            new SellerEventSellerAttributesUpdateRequest(['sellerId' => $sellerId])
+        );
+    }
+
     public function getEvent(): SellerEventSellerAttributesUpdateRequest
     {
         return $this->event;
