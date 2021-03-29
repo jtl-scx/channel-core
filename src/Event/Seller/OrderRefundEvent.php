@@ -11,9 +11,13 @@ namespace JTL\SCX\Lib\Channel\Event\Seller;
 use DateTimeImmutable;
 use JTL\SCX\Client\Channel\Event\EventType;
 use JTL\SCX\Client\Channel\Model\SellerEventOrderRefund;
+use JTL\SCX\Lib\Channel\Contract\Core\Message\ChannelOrderIdRelatedMessage;
+use JTL\SCX\Lib\Channel\Contract\Core\Message\RefundIdRelatedMessage;
+use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Event\AbstractEvent;
+use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 
-class OrderRefundEvent extends AbstractEvent
+class OrderRefundEvent extends AbstractEvent implements SellerIdRelatedMessage, ChannelOrderIdRelatedMessage, RefundIdRelatedMessage
 {
     private SellerEventOrderRefund $event;
 
@@ -30,5 +34,20 @@ class OrderRefundEvent extends AbstractEvent
     public function getEvent(): SellerEventOrderRefund
     {
         return $this->event;
+    }
+
+    public function getChannelOrderId(): string
+    {
+        return $this->getEvent()->getOrderId();
+    }
+
+    public function getRefundId(): string
+    {
+        return $this->getEvent()->getRefundId();
+    }
+
+    public function getSellerId(): ChannelSellerId
+    {
+        return new ChannelSellerId($this->getEvent()->getSellerId());
     }
 }
