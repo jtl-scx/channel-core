@@ -69,7 +69,7 @@ abstract class AbstractListener implements Listener, BeforeMessageHook, AfterMes
         if ($message instanceof CancellationRequestIdRelatedMessage) {
             $this->logger->replaceContext(new CancellationRequestIdContext($message->getCancellationRequestId()));
         }
-        if($message instanceof RefundIdRelatedMessage) {
+        if ($message instanceof RefundIdRelatedMessage) {
             $this->logger->replaceContext(new RefundIdContext($message->getRefundId()));
         }
     }

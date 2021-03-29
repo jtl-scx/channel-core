@@ -16,7 +16,6 @@ use PHPUnit\Framework\TestCase;
  */
 class RefundIdContextTest extends TestCase
 {
-
     public function testCanBeUsed(): void
     {
         $refundId = uniqid('refundId', true);
