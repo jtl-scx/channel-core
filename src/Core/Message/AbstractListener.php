@@ -18,6 +18,7 @@ use JTL\SCX\Lib\Channel\Contract\Core\Message\CancellationRequestIdRelatedMessag
 use JTL\SCX\Lib\Channel\Contract\Core\Message\ChannelOfferIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\ChannelOrderIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\ChannelOrderItemIdListRelatedMessage;
+use JTL\SCX\Lib\Channel\Contract\Core\Message\RefundIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerOfferIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerReportIdRelatedMessage;
@@ -25,6 +26,7 @@ use JTL\SCX\Lib\Channel\Core\Log\Context\CancellationRequestIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\ChannelOfferIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\ChannelOrderIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\ChannelOrderItemIdListContext;
+use JTL\SCX\Lib\Channel\Core\Log\Context\RefundIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\SellerOfferIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\SellerReportIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\MessageIdContext;
@@ -66,6 +68,9 @@ abstract class AbstractListener implements Listener, BeforeMessageHook, AfterMes
         }
         if ($message instanceof CancellationRequestIdRelatedMessage) {
             $this->logger->replaceContext(new CancellationRequestIdContext($message->getCancellationRequestId()));
+        }
+        if ($message instanceof RefundIdRelatedMessage) {
+            $this->logger->replaceContext(new RefundIdContext($message->getRefundId()));
         }
     }
 

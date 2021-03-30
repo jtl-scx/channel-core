@@ -24,6 +24,7 @@ use JTL\SCX\Client\Channel\Model\SellerEventOrderCancellationDenied;
 use JTL\SCX\Client\Channel\Model\SellerEventOrderCancellationRequest;
 use JTL\SCX\Client\Channel\Model\SellerEventOrderInvoice;
 use JTL\SCX\Client\Channel\Model\SellerEventOrderPayment;
+use JTL\SCX\Client\Channel\Model\SellerEventOrderRefund;
 use JTL\SCX\Client\Channel\Model\SellerEventOrderShipping;
 use JTL\SCX\Client\Channel\Model\SellerEventReportRequest;
 use JTL\SCX\Client\Channel\Model\SellerEventSellerAttributesUpdateRequest;
@@ -43,6 +44,7 @@ use JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationDeniedEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationRequestEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderInvoiceEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderPaymentEvent;
+use JTL\SCX\Lib\Channel\Event\Seller\OrderRefundEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderShippingEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\ReportRequestEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\SystemNotificationEvent;
@@ -91,6 +93,7 @@ class EventFactoryTest extends TestCase
                 EventType::SellerOrderCancellationDenied()
             ],
             [OrderInvoiceEvent::class, SellerEventOrderInvoice::class, EventType::SellerEventOrderInvoice()],
+            [OrderRefundEvent::class, SellerEventOrderRefund::class, EventType::SellerEventOrderRefund()],
         ];
     }
 
