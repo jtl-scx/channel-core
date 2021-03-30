@@ -27,7 +27,13 @@ class OrderRefundEventTest extends TestCase
     {
         $id = uniqid('id', true);
         $createdAt = new \DateTimeImmutable();
+        $sellerId = uniqid('sellerId', true);
+        $refundId = uniqid('refundId', true);
+        $orderId = uniqid('orderId', true);
         $event = $this->createMock(SellerEventOrderRefund::class);
+        $event->expects(self::once())->method('getSellerId')->willReturn($sellerId);
+        $event->expects(self::once())->method('getRefundId')->willReturn($refundId);
+        $event->expects(self::once())->method('getOrderId')->willReturn($orderId);
 
         $orderRefundEvent = new OrderRefundEvent(
             $id,
@@ -35,8 +41,11 @@ class OrderRefundEventTest extends TestCase
             $event
         );
 
-        $this->assertEquals($id, $orderRefundEvent->getId());
-        $this->assertEquals($createdAt, $orderRefundEvent->getCreatedAt());
-        $this->assertEquals($event, $orderRefundEvent->getEvent());
+        self::assertEquals($id, $orderRefundEvent->getId());
+        self::assertEquals($createdAt, $orderRefundEvent->getCreatedAt());
+        self::assertEquals($event, $orderRefundEvent->getEvent());
+        self::assertEquals($sellerId, (string)$orderRefundEvent->getSellerId());
+        self::assertEquals($refundId, $orderRefundEvent->getRefundId());
+        self::assertEquals($orderId, $orderRefundEvent->getChannelOrderId());
     }
 }
