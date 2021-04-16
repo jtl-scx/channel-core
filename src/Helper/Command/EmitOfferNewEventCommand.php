@@ -23,7 +23,7 @@ class EmitOfferNewEventCommand extends AbstractEmitEventCommand
             ->addOption('sku', null, InputOption::VALUE_OPTIONAL, 'Offer Sku', null)
             ->addOption('title', null, InputOption::VALUE_OPTIONAL, 'Offer Title', null)
             ->addOption('price', null, InputOption::VALUE_OPTIONAL, 'Offer Price', null)
-            ->addOption('quantity', null, InputOption::VALUE_OPTIONAL, 'Offer Quantity', 5);
+            ->addOption('quantity', null, InputOption::VALUE_OPTIONAL, 'Offer Quantity', '5');
     }
 
     protected function getEventType(): EventType

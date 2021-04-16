@@ -42,7 +42,7 @@ class MessageConsumeCommand extends AbstractCommand
                 'e',
                 InputOption::VALUE_OPTIONAL,
                 'A EntityId to identify the current running process',
-                0
+                '0'
             );
     }
 
