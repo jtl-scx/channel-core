@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\Notification;
 
-use JTL\SCX\Client\Channel\Model\Notification;
+use JTL\SCX\Client\Channel\Model\ChannelNotificationSeverity;
 use MyCLabs\Enum\Enum;
 
 /**
@@ -19,7 +19,7 @@ use MyCLabs\Enum\Enum;
  */
 class Severity extends Enum
 {
-    public const INFO = Notification::SEVERITY_INFO;
-    public const WARNING = Notification::SEVERITY_WARNING;
-    public const ERROR = Notification::SEVERITY_ERROR;
+    public const INFO = ChannelNotificationSeverity::INFO;
+    public const WARNING = ChannelNotificationSeverity::WARNING;
+    public const ERROR = ChannelNotificationSeverity::ERROR;
 }

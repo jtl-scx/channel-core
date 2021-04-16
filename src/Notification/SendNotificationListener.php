@@ -12,6 +12,8 @@ use GuzzleHttp\Exception\GuzzleException;
 use JTL\SCX\Client\Channel\Api\Notification\NotificationApi;
 use JTL\SCX\Client\Channel\Api\Notification\Request\NotificationRequest;
 use JTL\SCX\Client\Channel\Model\ChannelNotificationReference;
+use JTL\SCX\Client\Channel\Model\ChannelNotificationReferenceType;
+use JTL\SCX\Client\Channel\Model\ChannelNotificationSeverity;
 use JTL\SCX\Client\Channel\Model\Notification;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
@@ -34,20 +36,23 @@ class SendNotificationListener extends AbstractListener
      */
     public function sendNotification(SendNotificationMessage $message)
     {
-        $model = new Notification();
-        $model->setSellerId($message->getSellerId());
-        $model->setMessage($message->getMessage());
-        $model->setSeverity((string)$message->getSeverity());
-
+        $reference = null;
         if ($message->getReference() instanceof NotificationReference) {
-            $reference = new ChannelNotificationReference();
-            $reference->setId($message->getReference()->getId());
-            $reference->setType($message->getReference()->getType());
-            $model->setReference($reference);
+            $reference = new ChannelNotificationReference([
+                'id' => $message->getReference()->getId(),
+                'type' => new ChannelNotificationReferenceType($message->getReference()->getType())
+            ]);
         }
 
-        $this->logger->debug("RequestBody: '" . (string)$model . "'");
-        $this->notificationApi->send(new NotificationRequest($model));
+        $notification = new Notification([
+            'sellerId' => $message->getSellerId(),
+            'message' => $message->getMessage(),
+            'severity' => new ChannelNotificationSeverity($message->getSeverity()->getValue()),
+            'reference' => $reference,
+        ]);
+
+        $this->logger->debug("RequestBody: '" . $notification . "'");
+        $this->notificationApi->send(new NotificationRequest($notification));
         $this->logger->info("ChannelNotification successful send");
     }
 }
