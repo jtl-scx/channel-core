@@ -7,7 +7,7 @@
  */
 namespace JTL\SCX\Lib\Channel\Notification;
 
-use JTL\SCX\Client\Channel\Model\ChannelNotificationReference;
+use JTL\SCX\Client\Channel\Model\ChannelNotificationReferenceType;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,19 +19,19 @@ class NotificationReferenceTest extends TestCase
     public function testCanCreateOfferReference()
     {
         $ref = NotificationReference::offer('123');
-        $this->assertEquals(ChannelNotificationReference::TYPE_OFFER, $ref->getType());
+        $this->assertEquals(ChannelNotificationReferenceType::OFFER, $ref->getType());
     }
 
     public function testCanCreateOrderItemIdReference()
     {
         $ref = NotificationReference::orderItemId('123');
-        $this->assertEquals(ChannelNotificationReference::TYPE_ORDERITEMID, $ref->getType());
+        $this->assertEquals(ChannelNotificationReferenceType::ORDERITEMID, $ref->getType());
     }
 
     public function testCanCreateChannelOfferIdReference()
     {
         $ref = NotificationReference::channelOffer('123');
-        $this->assertEquals(ChannelNotificationReference::TYPE_CHANNELOFFER, $ref->getType());
+        $this->assertEquals(ChannelNotificationReferenceType::CHANNELOFFER, $ref->getType());
     }
 
     public function testCanGetType()

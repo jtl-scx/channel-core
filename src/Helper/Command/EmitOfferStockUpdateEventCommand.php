@@ -19,7 +19,7 @@ class EmitOfferStockUpdateEventCommand extends AbstractEmitEventCommand
     {
         parent::configure();
         $this->addOption('offerId', null, InputOption::VALUE_OPTIONAL, 'Seller OfferId', null)
-            ->addOption('quantity', null, InputOption::VALUE_OPTIONAL, 'Offer Quantity', 5);
+            ->addOption('quantity', null, InputOption::VALUE_OPTIONAL, 'Offer Quantity', '5');
     }
 
     protected function getEventType(): EventType

@@ -10,6 +10,7 @@ namespace JTL\SCX\Lib\Channel\Order\Cancellation\Buyer;
 
 use JTL\SCX\Client\Channel\Api\Order\OrderApi;
 use JTL\SCX\Client\Channel\Api\Order\Request\RequestOrderCancellationRequest;
+use JTL\SCX\Client\Channel\Model\CancelReason;
 use JTL\SCX\Client\Channel\Model\OrderCancellationItem as ScxOrderCancellationItem;
 use JTL\SCX\Client\Channel\Model\OrderCancellationRequest;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
@@ -55,7 +56,7 @@ class RequestCancellationListener extends AbstractListener
             'sellerId' => (string)$message->getSellerId(),
             'orderId' => $message->getChannelOrderId(),
             'orderItem' => $orderItemList,
-            'cancelReason' => $message->getCancelReason(),
+            'cancelReason' => new CancelReason($message->getCancelReason()),
             'message' => $message->getMessage()
         ]);
     }

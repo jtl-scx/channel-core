@@ -8,9 +8,9 @@
 
 namespace ChannelApi;
 
+use DateTime;
 use JTL\SCX\Client\Channel\Api\Offer\OfferApi;
 use JTL\SCX\Client\Channel\Api\Offer\Request\MarkListingAsFailedRequest;
-use JTL\SCX\Client\Channel\Api\Offer\Request\MarkListingInProgressRequest;
 use JTL\SCX\Client\Channel\Api\Offer\Request\MarkListingSuccessfulRequest;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingFailedMessage;
@@ -38,7 +38,7 @@ class SendOfferListingResultListenerTest extends TestCase
         $sellerOfferId = (string)random_int(1, 9999);
         $errorCode = uniqid('errorCode', true);
         $errorMsg = uniqid('errorMsg', true);
-        $failedAt = new \DateTime();
+        $failedAt = $this->createStub(DateTime::class);
         $event = new SendOfferListingFailedMessage($sellerId, $sellerOfferId, $errorCode, $errorMsg, $failedAt);
 
         $offerApi = $this->createMock(OfferApi::class);
@@ -80,7 +80,7 @@ class SendOfferListingResultListenerTest extends TestCase
         $sellerOfferId = (string)random_int(1, 9999);
         $errorCode = uniqid('errorCode', true);
         $errorMsg = uniqid('errorMsg', true);
-        $failedAt = new \DateTime();
+        $failedAt = new DateTime();
         $event = new SendOfferListingFailedMessage($sellerId, $sellerOfferId, $errorCode, $errorMsg, $failedAt);
 
         $offerApi = $this->createMock(OfferApi::class);
@@ -97,7 +97,7 @@ class SendOfferListingResultListenerTest extends TestCase
         $sellerOfferId = (string)random_int(1, 9999);
         $channelOfferId = uniqid('channelOfferId', true);
         $listingUrl = uniqid('listingUrl', true);
-        $listedAt = new \DateTime();
+        $listedAt = $this->createStub(DateTime::class);
         $event = new SendOfferListingSuccessfulMessage(
             $sellerId,
             $sellerOfferId,
@@ -144,7 +144,7 @@ class SendOfferListingResultListenerTest extends TestCase
         $sellerOfferId = (string)random_int(1, 9999);
         $channelOfferId = uniqid('channelOfferId', true);
         $listingUrl = uniqid('listingUrl', true);
-        $listedAt = new \DateTime();
+        $listedAt = new DateTime();
         $event = new SendOfferListingSuccessfulMessage(
             $sellerId,
             $sellerOfferId,
@@ -165,7 +165,7 @@ class SendOfferListingResultListenerTest extends TestCase
         $sellerIdStr = uniqid('sellerId');
         $sellerId = new ChannelSellerId($sellerIdStr);
         $sellerOfferId = (string)random_int(1, 9999);
-        $startedAt = new \DateTime();
+        $startedAt = new DateTime();
         $event = new SendOfferListingInProgressMessage($sellerId, $sellerOfferId, $startedAt);
 
         $offerApi = $this->createMock(OfferApi::class);

@@ -9,13 +9,11 @@
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
 use GuzzleHttp\Exception\GuzzleException;
-use InvalidArgumentException;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataCategoryAttributeLoader;
 use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
-use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttribute;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeUpdater;
@@ -81,7 +79,7 @@ class ImportCategoryAttributesCommand extends AbstractCommand
                 null,
                 InputOption::VALUE_REQUIRED,
                 'Read category Id from specific column',
-                0
+                '0'
             );
     }
 

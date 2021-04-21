@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\Notification;
 
-use JTL\SCX\Client\Channel\Model\ChannelNotificationReference as Ref;
+use JTL\SCX\Client\Channel\Model\ChannelNotificationReferenceType as Ref;
 
 class NotificationReference
 {
@@ -23,17 +23,17 @@ class NotificationReference
 
     public static function offer(string $id): NotificationReference
     {
-        return new self(Ref::TYPE_OFFER, $id);
+        return new self(Ref::OFFER, $id);
     }
 
     public static function channelOffer(string $id): NotificationReference
     {
-        return new self(Ref::TYPE_CHANNELOFFER, $id);
+        return new self(Ref::CHANNELOFFER, $id);
     }
 
     public static function orderItemId(string $orderItemId): NotificationReference
     {
-        return new self(Ref::TYPE_ORDERITEMID, $orderItemId);
+        return new self(Ref::ORDERITEMID, $orderItemId);
     }
 
     public function getType(): string
