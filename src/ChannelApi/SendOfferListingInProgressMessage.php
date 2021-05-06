@@ -17,13 +17,13 @@ class SendOfferListingInProgressMessage extends AbstractAmqpTransportableMessage
 {
     private ChannelSellerId $sellerId;
 
-    private string $sellerOfferId;
+    private int $sellerOfferId;
 
     private \DateTime $startedAt;
 
     public function __construct(
         ChannelSellerId $sellerId,
-        string $sellerOfferId,
+        int $sellerOfferId,
         \DateTime $startedAt = null,
         string $messageId = null
     ) {
@@ -39,7 +39,7 @@ class SendOfferListingInProgressMessage extends AbstractAmqpTransportableMessage
         return $this->sellerId;
     }
 
-    public function getSellerOfferId(): string
+    public function getSellerOfferId(): int
     {
         return $this->sellerOfferId;
     }

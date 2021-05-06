@@ -18,7 +18,7 @@ class SellerOfferIdContextTest extends TestCase
 {
     public function testCanBeUsed(): void
     {
-        $sellerOfferId = uniqid('sellerOfferId', true);
+        $sellerOfferId = random_int(1, 10000);
         $context = new SellerOfferIdContext($sellerOfferId);
 
         $record = ['foo' => 'bar'];

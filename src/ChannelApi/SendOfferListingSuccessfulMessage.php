@@ -17,14 +17,14 @@ use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 class SendOfferListingSuccessfulMessage extends AbstractAmqpTransportableMessage implements SellerIdRelatedMessage, SellerOfferIdRelatedMessage, ChannelOfferIdRelatedMessage
 {
     private ChannelSellerId $sellerId;
-    private string $sellerOfferId;
+    private int $sellerOfferId;
     private string $channelOfferId;
     private ?string $listingUrl;
     private \DateTime $listedAt;
 
     public function __construct(
         ChannelSellerId $sellerId,
-        string $sellerOfferId,
+        int $sellerOfferId,
         string $channelOfferId,
         string $listingUrl = null,
         \DateTime $listedAt = null,
@@ -44,7 +44,7 @@ class SendOfferListingSuccessfulMessage extends AbstractAmqpTransportableMessage
         return $this->sellerId;
     }
 
-    public function getSellerOfferId(): string
+    public function getSellerOfferId(): int
     {
         return $this->sellerOfferId;
     }

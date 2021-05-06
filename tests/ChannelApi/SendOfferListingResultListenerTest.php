@@ -35,7 +35,7 @@ class SendOfferListingResultListenerTest extends TestCase
     {
         $sellerIdStr = uniqid('sellerId');
         $sellerId = new ChannelSellerId($sellerIdStr);
-        $sellerOfferId = (string)random_int(1, 9999);
+        $sellerOfferId = random_int(1, 9999);
         $errorCode = uniqid('errorCode', true);
         $errorMsg = uniqid('errorMsg', true);
         $failedAt = $this->createStub(DateTime::class);
@@ -77,7 +77,7 @@ class SendOfferListingResultListenerTest extends TestCase
     {
         $sellerIdStr = uniqid('sellerId');
         $sellerId = new ChannelSellerId($sellerIdStr);
-        $sellerOfferId = (string)random_int(1, 9999);
+        $sellerOfferId = random_int(1, 9999);
         $errorCode = uniqid('errorCode', true);
         $errorMsg = uniqid('errorMsg', true);
         $failedAt = new DateTime();
@@ -94,7 +94,7 @@ class SendOfferListingResultListenerTest extends TestCase
     {
         $sellerIdStr = uniqid('sellerId');
         $sellerId = new ChannelSellerId($sellerIdStr);
-        $sellerOfferId = (string)random_int(1, 9999);
+        $sellerOfferId = random_int(1, 9999);
         $channelOfferId = uniqid('channelOfferId', true);
         $listingUrl = uniqid('listingUrl', true);
         $listedAt = $this->createStub(DateTime::class);
@@ -141,7 +141,7 @@ class SendOfferListingResultListenerTest extends TestCase
     {
         $sellerIdStr = uniqid('sellerId');
         $sellerId = new ChannelSellerId($sellerIdStr);
-        $sellerOfferId = (string)random_int(1, 9999);
+        $sellerOfferId = random_int(1, 9999);
         $channelOfferId = uniqid('channelOfferId', true);
         $listingUrl = uniqid('listingUrl', true);
         $listedAt = new DateTime();
@@ -164,7 +164,7 @@ class SendOfferListingResultListenerTest extends TestCase
     {
         $sellerIdStr = uniqid('sellerId');
         $sellerId = new ChannelSellerId($sellerIdStr);
-        $sellerOfferId = (string)random_int(1, 9999);
+        $sellerOfferId = random_int(1, 9999);
         $startedAt = new DateTime();
         $event = new SendOfferListingInProgressMessage($sellerId, $sellerOfferId, $startedAt);
 

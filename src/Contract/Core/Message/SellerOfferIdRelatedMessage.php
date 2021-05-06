@@ -11,5 +11,5 @@ namespace JTL\SCX\Lib\Channel\Contract\Core\Message;
 
 interface SellerOfferIdRelatedMessage
 {
-    public function getSellerOfferId(): string;
+    public function getSellerOfferId(): int;
 }

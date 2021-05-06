@@ -83,9 +83,9 @@ class TestMessage extends AbstractAmqpTransportableMessage implements SellerIdRe
         return new ChannelSellerId(uniqid('SellerId', true));
     }
 
-    public function getSellerOfferId(): string
+    public function getSellerOfferId(): int
     {
-        return uniqid('SellerOfferId', true);
+        return random_int(1, 10000);
     }
 
     public function getSellerReportId(): string
