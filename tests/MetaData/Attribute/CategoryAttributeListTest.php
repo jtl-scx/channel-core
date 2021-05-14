@@ -6,12 +6,11 @@
  * Date: 2020-11-18
  */
 
-namespace MetaData\Attribute;
+namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
-use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
-use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttribute;
-use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 /**
  * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList
@@ -43,7 +42,7 @@ class CategoryAttributeListTest extends TestCase
     public function testFailsOnWrongType(): void
     {
         $list = new CategoryAttributeList();
-        $this->expectException(\InvalidArgumentException::class);
-        $list->add(new \stdClass());
+        $this->expectException(InvalidArgumentException::class);
+        $list->add(new stdClass());
     }
 }

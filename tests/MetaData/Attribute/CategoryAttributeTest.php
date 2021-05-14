@@ -6,10 +6,8 @@
  * Date: 2020-11-18
  */
 
-namespace MetaData\Attribute;
+namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
-use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
-use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttribute;
 use PHPUnit\Framework\TestCase;
 
 /**

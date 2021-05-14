@@ -9,14 +9,12 @@
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
 use InvalidArgumentException;
+use JsonException;
 use JTL\SCX\Lib\Channel\Helper\FileHandler;
 
 class GlobalAttributeFileReader
 {
-    /**
-     * @var FileHandler
-     */
-    private $fileHandler;
+    private FileHandler $fileHandler;
 
     public function __construct(FileHandler $fileHandler)
     {
@@ -26,6 +24,7 @@ class GlobalAttributeFileReader
     /**
      * @param string $filename
      * @return AttributeList
+     * @throws JsonException
      */
     public function read(string $filename): AttributeList
     {
@@ -33,8 +32,8 @@ class GlobalAttributeFileReader
             throw new InvalidArgumentException("{$filename} is not a valid file");
         }
 
-        $attributJson = $this->fileHandler->readContent($filename);
-        $attributeDataList = json_decode($attributJson, true);
+        $attributeJson = $this->fileHandler->readContent($filename);
+        $attributeDataList = json_decode($attributeJson, true, 512, JSON_THROW_ON_ERROR);
 
         if (!$this->validateDataList($attributeDataList)) {
             throw new InvalidArgumentException(
@@ -51,15 +50,19 @@ class GlobalAttributeFileReader
                 $attributeData['conditionalOptionalBy'] ?? null
             );
 
-            $enumValues = $attributeData['enumValues'] ?? null;
+            $enumValues = $attributeData['values'] ?? [];
+            $type = AttributeType::SMALLTEXT();
+            if (isset($attributeData['type'])) {
+                $type = new AttributeType($attributeData['type']);
+            }
 
             $attribute = new Attribute(
                 $attributeData['attributeId'],
                 $attributeData['displayName'],
                 $attributeData['description'] ?? null,
                 $attributeData['required'] ?? false,
-                $enumValues,
-                $attributeData['type'] ? new AttributeType($attributeData['type']) : AttributeType::SMALLTEXT(),
+                [],
+                $type,
                 $attributeData['isMultipleAllowed'] ?? false,
                 $attributeData['attributeValueValidation'] ?? null,
                 $conditionalMandatory,
@@ -70,7 +73,7 @@ class GlobalAttributeFileReader
                 $attributeData['subSectionPosition'] ?? null,
                 $attributeData['isVariationDimension'] ?? null,
                 $attributeData['recommended'] ?? null,
-                AttributeEnumValueList::fromValueArray($enumValues)
+                AttributeEnumValueList::fromArray($enumValues)
             );
             $attributeList[] = $attribute;
         }
@@ -78,12 +81,12 @@ class GlobalAttributeFileReader
         return $attributeList;
     }
 
-    private function validateDataList($priceDataList): bool
+    private function validateDataList($attribute): bool
     {
-        if (!is_array($priceDataList) || empty($priceDataList)) {
+        if (!is_array($attribute) || empty($attribute)) {
             return false;
         }
-        foreach ($priceDataList as $priceData) {
+        foreach ($attribute as $priceData) {
             if (!isset($priceData['attributeId']) || !isset($priceData['displayName'])) {
                 return false;
             }
