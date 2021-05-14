@@ -63,7 +63,7 @@ JSON
         self::assertEquals(456, $attribute->getSubSectionPosition());
         self::assertEquals($isVariationDimension === 'true', $attribute->isVariationDimension());
         self::assertEquals($isRecommended === 'true', $attribute->isRecommended());
-        self::assertCount(1, $attribute->getValues());
+        self::assertNull($attribute->getValues());
 
         self::assertArrayHasKey(1, $result);
         $attribute = $result[1];
@@ -79,8 +79,42 @@ JSON
         self::assertNull($attribute->getSubSectionPosition());
         self::assertNull($attribute->isVariationDimension());
         self::assertNull($attribute->isRecommended());
-        self::assertCount(0, $attribute->getValues());
     }
+
+    /**
+     * @test
+     */
+    public function it_has_enumValues_when_type_is_ENUM(): void
+    {
+        $sut = $this->setupGlobalAttributeFileReader(
+            <<<JSON
+[
+    {
+        "attributeId": "testId",
+        "displayName": "testDisplayName",
+        "type": "enum"
+    },
+    {
+        "attributeId": "testId2",
+        "displayName": "testDisplayName2",
+        "type": "boolean"
+    }
+]
+JSON
+        );
+
+        $result = $sut->read('foo.json');
+
+        self::assertArrayHasKey(0, $result);
+        $attribute = $result[0];
+        self::assertInstanceOf(AttributeEnumValueList::class, $attribute->getValues());
+
+        self::assertArrayHasKey(1, $result);
+        $attribute = $result[1];
+        self::assertNull($attribute->getValues());
+
+    }
+
 
     /**
      * @test
