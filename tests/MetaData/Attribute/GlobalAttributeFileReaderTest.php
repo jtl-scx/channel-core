@@ -17,7 +17,6 @@ class GlobalAttributeFileReaderTest extends TestCase
      */
     public function it_can_load_attributes_from_file(): void
     {
-
         $isRequired = random_int(0, 1) === 0 ? 'false' : 'true';
         $isMultipleAllowed = random_int(0, 1) === 0 ? 'false' : 'true';
         $isVariationDimension = random_int(0, 1) === 0 ? 'false' : 'true';
@@ -113,7 +112,6 @@ JSON
         self::assertArrayHasKey(1, $result);
         $attribute = $result[1];
         self::assertEquals(AttributeType::BOOLEAN(), $attribute->getType());
-
     }
 
     /**
@@ -162,7 +160,6 @@ JSON
 
         self::expectException(InvalidArgumentException::class);
         $sut->read('foo.json');
-
     }
 
 
