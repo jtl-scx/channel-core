@@ -50,10 +50,14 @@ class GlobalAttributeFileReader
                 $attributeData['conditionalOptionalBy'] ?? null
             );
 
-            $enumValues = $attributeData['values'] ?? [];
             $type = AttributeType::SMALLTEXT();
             if (isset($attributeData['type'])) {
                 $type = new AttributeType($attributeData['type']);
+            }
+
+            $enumValues = null;
+            if ($type->equals(AttributeType::ENUM())) {
+                $enumValues = AttributeEnumValueList::fromArray($attributeData['values'] ?? []);
             }
 
             $attribute = new Attribute(
@@ -73,7 +77,7 @@ class GlobalAttributeFileReader
                 $attributeData['subSectionPosition'] ?? null,
                 $attributeData['isVariationDimension'] ?? null,
                 $attributeData['recommended'] ?? null,
-                AttributeEnumValueList::fromArray($enumValues)
+                $enumValues
             );
             $attributeList[] = $attribute;
         }
