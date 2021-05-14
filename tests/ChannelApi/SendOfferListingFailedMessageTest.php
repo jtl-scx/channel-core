@@ -22,7 +22,7 @@ class SendOfferListingFailedMessageTest extends TestCase
     public function testCanBeUsed(): void
     {
         $sellerId = $this->createStub(ChannelSellerId::class);
-        $sellerOfferId = uniqid('sellerOfferId', true);
+        $sellerOfferId = random_int(1, 10000);
         $errorCode = uniqid('errorCode', true);
         $errorMsg = uniqid('errorMsg', true);
         $failedAt = $this->createStub(\DateTime::class);
@@ -41,7 +41,7 @@ class SendOfferListingFailedMessageTest extends TestCase
     public function testCanAddError(): void
     {
         $sellerId = $this->createStub(ChannelSellerId::class);
-        $sellerOfferId = uniqid('sellerOfferId', true);
+        $sellerOfferId = random_int(1, 10000);
         $errorCode = uniqid('errorCode', true);
         $errorMsg = uniqid('errorMsg', true);
         $failedAt = $this->createStub(\DateTime::class);

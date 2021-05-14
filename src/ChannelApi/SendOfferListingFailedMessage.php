@@ -16,13 +16,13 @@ use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 class SendOfferListingFailedMessage extends AbstractAmqpTransportableMessage implements SellerIdRelatedMessage, SellerOfferIdRelatedMessage
 {
     private ChannelSellerId $sellerId;
-    private string $sellerOfferId;
+    private int $sellerOfferId;
     private \DateTime $failedAt;
     private ListingFailedErrorList $errorList;
 
     public function __construct(
         ChannelSellerId $sellerId,
-        string $sellerOfferId,
+        int $sellerOfferId,
         string $errorCode,
         string $errorMessage,
         \DateTime $failedAt = null,
@@ -42,7 +42,7 @@ class SendOfferListingFailedMessage extends AbstractAmqpTransportableMessage imp
         return $this->sellerId;
     }
 
-    public function getSellerOfferId(): string
+    public function getSellerOfferId(): int
     {
         return $this->sellerOfferId;
     }

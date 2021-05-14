@@ -20,7 +20,7 @@ class SendOfferListingSuccessfulMessageTest extends TestCase
     public function testCanBeUsed(): void
     {
         $sellerId = $this->createStub(ChannelSellerId::class);
-        $sellerOfferId = uniqid('sellerOfferId', true);
+        $sellerOfferId = random_int(1, 10000);
         $channelOfferId = uniqid('channelOfferId', true);
         $listingUrl = uniqid('listingUrl', true);
         $listedAt = $this->createStub(\DateTime::class);

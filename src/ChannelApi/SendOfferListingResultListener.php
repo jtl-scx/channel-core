@@ -40,7 +40,7 @@ class SendOfferListingResultListener extends AbstractListener
         try {
             $offer = new OfferListingInProgress();
             $offer->setSellerId((string)$event->getSellerId());
-            $offer->setOfferId((int)$event->getSellerOfferId());
+            $offer->setOfferId($event->getSellerOfferId());
             $offer->setStartedAt($event->getStartedAt());
 
             $request = new MarkListingInProgressRequest();
@@ -62,7 +62,7 @@ class SendOfferListingResultListener extends AbstractListener
         try {
             $offer = new OfferListingFailed();
             $offer->setSellerId((string)$event->getSellerId());
-            $offer->setOfferId((int)$event->getSellerOfferId());
+            $offer->setOfferId($event->getSellerOfferId());
             $offer->setFailedAt($event->getFailedAt());
 
             $errorList = [];
@@ -102,7 +102,7 @@ class SendOfferListingResultListener extends AbstractListener
         try {
             $offer = new OfferListingSuccessful();
             $offer->setSellerId((string)$event->getSellerId());
-            $offer->setOfferId((int)$event->getSellerOfferId());
+            $offer->setOfferId($event->getSellerOfferId());
             $offer->setListedAt($event->getListedAt());
             $offer->setListingUrl($event->getListingUrl());
             $offer->setChannelOfferId($event->getChannelOfferId());

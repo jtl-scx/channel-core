@@ -20,7 +20,7 @@ class SendOfferListingInProgressMessageTest extends TestCase
     public function testCanBeUsed(): void
     {
         $sellerId = $this->createStub(ChannelSellerId::class);
-        $sellerOfferId = uniqid('sellerOfferId', true);
+        $sellerOfferId = random_int(1, 10000);
         $startedAt = $this->createStub(\DateTime::class);
         $msgId = uniqid('msgId', true);
         $msg = new SendOfferListingInProgressMessage($sellerId, $sellerOfferId, $startedAt, $msgId);

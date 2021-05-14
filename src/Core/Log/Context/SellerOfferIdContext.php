@@ -12,9 +12,9 @@ use JTL\SCX\Lib\Channel\Contract\Core\Log\ContextAware;
 
 class SellerOfferIdContext implements ContextAware
 {
-    private string $sellerOfferId;
+    private int $sellerOfferId;
 
-    public function __construct(string $sellerOfferId)
+    public function __construct(int $sellerOfferId)
     {
         $this->sellerOfferId = $sellerOfferId;
     }
