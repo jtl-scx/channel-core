@@ -112,7 +112,6 @@ JSON
         self::assertArrayHasKey(1, $result);
         $attribute = $result[1];
         self::assertNull($attribute->getValues());
-
     }
 
 
