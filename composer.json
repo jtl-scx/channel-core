@@ -37,6 +37,11 @@
             "JTL\\SCX\\Lib\\Channel\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "JTL\\SCX\\Lib\\Channel\\": "tests/"
+        }
+    },
     "scripts": {
         "phpcs": [
             "vendor/bin/php-cs-fixer fix --config=./.php_cs.dist"
