@@ -11,7 +11,7 @@ namespace JTL\SCX\Lib\Channel\Core\Log;
 use Exception;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\LogFactory;
 use Monolog\Formatter\JsonFormatter;
-use Monolog\Handler\StreamHandler;
+use Monolog\Handler\RotatingFileHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 
@@ -28,7 +28,7 @@ class MonologFactory implements LogFactory
     {
         $monolog = new Logger($channel);
 
-        $streamHandler = new StreamHandler($logFile, $globalLogLevel);
+        $streamHandler = new RotatingFileHandler($channel, 7, $globalLogLevel);
         $streamHandler->setFormatter(new JsonFormatter());
 
         $monolog->pushHandler($streamHandler);
