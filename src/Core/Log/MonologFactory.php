@@ -28,7 +28,7 @@ class MonologFactory implements LogFactory
     {
         $monolog = new Logger($channel);
 
-        $streamHandler = new RotatingFileHandler($channel, 7, $globalLogLevel);
+        $streamHandler = new RotatingFileHandler($logFile, 7, $globalLogLevel);
         $streamHandler->setFormatter(new JsonFormatter());
 
         $monolog->pushHandler($streamHandler);
