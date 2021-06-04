@@ -19,6 +19,7 @@ use JTL\SCX\Client\Channel\Model\SellerEventOfferNew;
 use JTL\SCX\Client\Channel\Model\SellerEventOfferPriceUpdate;
 use JTL\SCX\Client\Channel\Model\SellerEventOfferStockUpdate;
 use JTL\SCX\Client\Channel\Model\SellerEventOfferUpdate;
+use JTL\SCX\Client\Channel\Model\SellerEventOrderAccept;
 use JTL\SCX\Client\Channel\Model\SellerEventOrderCancellationAccepted;
 use JTL\SCX\Client\Channel\Model\SellerEventOrderCancellationDenied;
 use JTL\SCX\Client\Channel\Model\SellerEventOrderCancellationRequest;
@@ -62,7 +63,7 @@ class EventFactoryTest extends TestCase
         return [
             [SystemNotificationEvent::class, SystemEventNotification::class, EventType::SystemNotification()],
             [SystemTestEvent::class, SellerEventTest::class, EventType::SellerEventTest()],
-            [OrderAcceptEvent::class, OrderAccept::class, EventType::SellerOrderAccept()],
+            [OrderAcceptEvent::class, SellerEventOrderAccept::class, EventType::SellerOrderAccept()],
             [OrderShippingEvent::class, SellerEventOrderShipping::class, EventType::SellerOrderShipping()],
             [OrderPaymentEvent::class, SellerEventOrderPayment::class, EventType::SellerOrderPayment()],
             [
