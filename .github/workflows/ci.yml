@@ -93,5 +93,5 @@ jobs:
         run: composer install --no-progress || true
 
       - name: Run test suite (experimental)
-        run: vendor/bin/phpunitv || true
+        run: vendor/bin/phpunit || true
 

@@ -10,7 +10,7 @@ namespace Helper\Command;
 
 use InvalidArgumentException;
 use JTL\Nachricht\Emitter\AmqpEmitter;
-use JTL\SCX\Client\ApiResponseDeserializer;
+use JTL\SCX\Client\Channel\Api\ChannelApiResponseDeserializer;
 use JTL\SCX\Client\Channel\Event\EventType;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
@@ -123,7 +123,7 @@ class AbstractEmitEventCommandTest extends TestCase
         $environmentStub = $this->createStub(Environment::class);
         $loggerStub = $this->createStub(ScxLogger::class);
 
-        return new class($environmentStub, new EventFactory(), $emitterMock, new ApiResponseDeserializer(), $loggerStub) extends AbstractEmitEventCommand {
+        return new class($environmentStub, new EventFactory(), $emitterMock, new ChannelApiResponseDeserializer(), $loggerStub) extends AbstractEmitEventCommand {
             public function getName()
             {
                 return 'Dummy';
