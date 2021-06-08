@@ -13,10 +13,10 @@ use Exception;
 use InvalidArgumentException;
 use JTL\Nachricht\Emitter\AmqpEmitter;
 use JTL\Nachricht\Message\AbstractAmqpTransportableMessage;
+use JTL\SCX\Client\Channel\Api\ChannelApiResponseDeserializer;
 use JTL\SCX\Client\Channel\Api\Event\Model\EventContainer;
 use JTL\SCX\Client\Channel\Event\EventType;
 use JTL\SCX\Client\Channel\Model\ModelInterface;
-use JTL\SCX\Client\ResponseDeserializer;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
@@ -34,13 +34,13 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
 
     private Environment $environment;
 
-    private ResponseDeserializer $responseDeserializer;
+    private ChannelApiResponseDeserializer $responseDeserializer;
 
     public function __construct(
         Environment $environment,
         EventFactory $eventFactory,
         AmqpEmitter $emitter,
-        ResponseDeserializer $responseDeserializer,
+        ChannelApiResponseDeserializer $responseDeserializer,
         ScxLogger $logger
     ) {
         parent::__construct($logger);

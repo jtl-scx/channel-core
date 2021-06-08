@@ -8,10 +8,8 @@
 
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
-use JTL\Nachricht\Contract\Emitter\Emitter;
 use JTL\Nachricht\Emitter\AmqpEmitter;
-use JTL\SCX\Client\ApiResponseDeserializer;
-use JTL\SCX\Client\ResponseDeserializer;
+use JTL\SCX\Client\Channel\Api\ChannelApiResponseDeserializer;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
 use JTL\SCX\Lib\Channel\Event\EventFactory;
@@ -47,7 +45,7 @@ JSON;
 
         $environmentMock = $this->createMock(Environment::class);
         $emitterMock = $this->createMock(AmqpEmitter::class);
-        $responseDeserializer = new ApiResponseDeserializer();
+        $responseDeserializer = new ChannelApiResponseDeserializer();
         $logger = $this->createMock(ScxLogger::class);
 
         $emitterMock->expects($this->exactly(1))
