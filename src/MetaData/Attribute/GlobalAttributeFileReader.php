@@ -35,14 +35,14 @@ class GlobalAttributeFileReader
         $attributeJson = $this->fileHandler->readContent($filename);
         $attributeDataList = json_decode($attributeJson, true, 512, JSON_THROW_ON_ERROR);
 
-        if (!$this->validateDataList($attributeDataList)) {
-            throw new InvalidArgumentException(
-                "Could not decode json or json does not contain valid attribute-data."
-            );
-        }
-
         $attributeList = new AttributeList();
-        foreach ($attributeDataList as $attributeData) {
+        foreach ($attributeDataList ?? [] as $attributeData) {
+            $attributeId = $attributeData['attributeId'] ?? null;
+            $displayName = $attributeData['displayName'] ?? null;
+            if ($attributeId === null || $displayName === null) {
+                throw new InvalidArgumentException("Invalid attribute schema. There has to be a attributeId and displayName");
+            }
+
             $conditionalMandatory = $this->createConditionalAttributeCollection(
                 $attributeData['conditionalMandatoryBy'] ?? null
             );
@@ -57,7 +57,13 @@ class GlobalAttributeFileReader
 
             $enumValues = null;
             if ($type->equals(AttributeType::ENUM())) {
-                $enumValues = AttributeEnumValueList::fromArray($attributeData['values'] ?? []);
+                if (isset($attributeData['values'])) {
+                    $enumValues = AttributeEnumValueList::fromArray($attributeData['values'] ?? []);
+                } elseif (isset($attributeData['enumValues'])) {
+                    $enumValues = AttributeEnumValueList::fromScalarArray($attributeData['enumValues'] ?? []);
+                } else {
+                    $enumValues = new AttributeEnumValueList();
+                }
             }
 
             $attribute = new Attribute(
@@ -83,20 +89,6 @@ class GlobalAttributeFileReader
         }
 
         return $attributeList;
-    }
-
-    private function validateDataList($attribute): bool
-    {
-        if (!is_array($attribute) || empty($attribute)) {
-            return false;
-        }
-        foreach ($attribute as $priceData) {
-            if (!isset($priceData['attributeId']) || !isset($priceData['displayName'])) {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     private function createConditionalAttributeCollection(?array $conditionalByList): ?ConditionalAttributeList
