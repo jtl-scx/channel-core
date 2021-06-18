@@ -87,17 +87,37 @@ JSON
     public function it_has_enumValues_when_type_is_ENUM(): void
     {
         $sut = $this->setupGlobalAttributeFileReader(
+        /** @lang JSON */
             <<<JSON
 [
     {
+        "-comment": "ENUM type - with values property",
         "attributeId": "testId",
         "displayName": "testDisplayName",
-        "type": "enum"
+        "type": "enum",
+        "values": [
+            {"value": "1"},
+            {"value": "3", "display": "dinges"}
+        ]
     },
     {
+        "-comment": "Not a  ENUM type - should not have a AttributeEnumValueList",
         "attributeId": "testId2",
         "displayName": "testDisplayName2",
         "type": "boolean"
+    },
+    {
+        "-comment": "Just for backwards compatibility we also support enumValues",
+        "attributeId": "testId3",
+        "displayName": "testDisplayName3",
+        "type": "enum",
+        "enumValues": ["1", "2"]
+    },
+    {
+        "-comment": "enum values must not have a AttributeEnumValueList",
+        "attributeId": "testId3",
+        "displayName": "testDisplayName3",
+        "type": "enum"
     }
 ]
 JSON
@@ -107,11 +127,25 @@ JSON
 
         self::assertArrayHasKey(0, $result);
         $attribute = $result[0];
-        self::assertInstanceOf(AttributeEnumValueList::class, $attribute->getValues());
+        $values = $attribute->getValues();
+        self::assertInstanceOf(AttributeEnumValueList::class, $values);
+        self::assertCount(2, $values);
 
         self::assertArrayHasKey(1, $result);
         $attribute = $result[1];
         self::assertNull($attribute->getValues());
+
+        self::assertArrayHasKey(2, $result);
+        $attribute = $result[2];
+        $values = $attribute->getValues();
+        self::assertInstanceOf(AttributeEnumValueList::class, $values);
+        self::assertCount(2, $values);
+
+        self::assertArrayHasKey(3, $result);
+        $attribute = $result[3];
+        $values = $attribute->getValues();
+        self::assertInstanceOf(AttributeEnumValueList::class, $values);
+        self::assertCount(0, $values);
     }
 
 
@@ -194,7 +228,6 @@ JSON
         self::expectException(InvalidArgumentException::class);
         $sut->read('foo.json');
     }
-
 
     /**
      * @test

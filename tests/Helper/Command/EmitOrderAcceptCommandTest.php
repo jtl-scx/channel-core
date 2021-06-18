@@ -18,7 +18,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
- * Class EmitOrderAcceptCommandTest
+ * Class EmitOrderAcceptCommandTestenumValues
  * @package JTL\SCX\Lib\Channel\Helper\Command
  *
  * @covers \JTL\SCX\Lib\Channel\Helper\Command\EmitOrderAcceptCommand
