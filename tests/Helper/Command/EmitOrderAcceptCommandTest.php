@@ -13,7 +13,7 @@ use JTL\SCX\Lib\Channel\Event\Seller\OrderAcceptEvent;
 /**
  * @covers \JTL\SCX\Lib\Channel\Helper\Command\EmitOrderAcceptCommand
  */
-class EmitOrderAcceptCommandTestCaseHelper extends AbstractEmitterCommandTestCaseHelper
+class EmitOrderAcceptCommandTest extends AbstractEmitterCommandTestCaseHelper
 {
     public function testCanEmitOrderAcceptEvent(): void
     {

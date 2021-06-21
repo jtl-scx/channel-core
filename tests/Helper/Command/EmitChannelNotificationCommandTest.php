@@ -18,7 +18,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 /**
  * @covers \JTL\SCX\Lib\Channel\Helper\Command\EmitChannelNotificationCommand
  */
-class EmitChannelNotificationCommandTestCaseHelper extends AbstractEmitterCommandTestCaseHelper
+class EmitChannelNotificationCommandTest extends AbstractEmitterCommandTestCaseHelper
 {
     public function testCanEmitChannelNotification()
     {
