@@ -6,21 +6,19 @@
  * Date: 4/1/20
  */
 
-namespace Helper\Command;
+namespace JTL\SCX\Lib\Channel\Helper\Command;
 
 use InvalidArgumentException;
 use JTL\Nachricht\Contract\Emitter\Emitter;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
-use JTL\SCX\Lib\Channel\Helper\Command\EmitChannelNotificationCommand;
 use JTL\SCX\Lib\Channel\Notification\SendNotificationMessage;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
  * @covers \JTL\SCX\Lib\Channel\Helper\Command\EmitChannelNotificationCommand
  */
-class EmitChannelNotificationCommandTest extends TestCase
+class EmitChannelNotificationCommandTestCaseHelper extends AbstractEmitterCommandTestCaseHelper
 {
     public function testCanEmitChannelNotification()
     {

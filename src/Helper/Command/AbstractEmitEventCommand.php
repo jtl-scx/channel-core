@@ -79,7 +79,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
 
     protected function prepareEventData(InputInterface $input, OutputInterface $output): array
     {
-        $absoluteJsonFilePath = $this->getAbsoluteJsonFilePath($input);
+        $absoluteJsonFilePath = $this->getAbsoluteJsonFilePath($input, $output);
         $event = json_decode((string)file_get_contents($absoluteJsonFilePath), true, 512, JSON_THROW_ON_ERROR);
         $event['sellerId'] = $input->getArgument('sellerId') ?? $event['sellerId'];
 
@@ -120,7 +120,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
      * @param InputInterface $input
      * @return string
      */
-    private function getAbsoluteJsonFilePath(InputInterface $input): string
+    private function getAbsoluteJsonFilePath(InputInterface $input, OutputInterface $output): string
     {
         $jsonFile = $input->getArgument('jsonFile');
         if (strpos($jsonFile, '/') !== 0) {
@@ -129,7 +129,14 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
 
         $absoluteJsonFilePath = $this->environment->get('ROOT_DIRECTORY') . $jsonFile;
         if (!file_exists($absoluteJsonFilePath)) {
-            throw new RuntimeException("Json File '{$absoluteJsonFilePath}' not found ");
+            $output->writeln(
+                "File not found in {$absoluteJsonFilePath}. Maybe we are running inside a container? " .
+                "I'm adding /source to file path and will try again."
+            );
+            $absoluteJsonFilePath = $this->environment->get('ROOT_DIRECTORY') . '/source' . $jsonFile;
+            if (!file_exists($absoluteJsonFilePath)) {
+                throw new RuntimeException("Json File '{$absoluteJsonFilePath}' not found ");
+            }
         }
         return $absoluteJsonFilePath;
     }

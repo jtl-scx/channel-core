@@ -6,7 +6,7 @@
  * Date: 3/25/20
  */
 
-namespace Helper\Command;
+namespace JTL\SCX\Lib\Channel\Helper\Command;
 
 use InvalidArgumentException;
 use JTL\Nachricht\Emitter\AmqpEmitter;
@@ -16,7 +16,6 @@ use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
 use JTL\SCX\Lib\Channel\Event\EventFactory;
 use JTL\SCX\Lib\Channel\Event\Seller\SystemNotificationEvent;
-use JTL\SCX\Lib\Channel\Helper\Command\AbstractEmitEventCommand;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 use Symfony\Component\Console\Tester\CommandTester;
