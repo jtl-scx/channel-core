@@ -7,7 +7,7 @@ use JTL\SCX\Lib\Channel\Event\Seller\OrderReturnReceived;
 /**
  * @covers \JTL\SCX\Lib\Channel\Helper\Command\EmitOrderReturnReceivedCommand
  */
-class EmitOrderReturnReceivedCommandTestCaseHelper extends AbstractEmitterCommandTestCaseHelper
+class EmitOrderReturnReceivedCommandTest extends AbstractEmitterCommandTestCaseHelper
 {
 
     /**
