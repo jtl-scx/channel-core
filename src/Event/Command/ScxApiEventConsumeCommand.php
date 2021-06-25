@@ -11,6 +11,7 @@ namespace JTL\SCX\Lib\Channel\Event\Command;
 use GuzzleHttp\Exception\GuzzleException;
 use JTL\SCX\Client\Channel\Api\Event\EventApi;
 use JTL\SCX\Client\Channel\Api\Event\Request\AcknowledgeEventIdListRequest;
+use JTL\SCX\Client\Channel\Api\Event\Response\GetSellerEventListResponse;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
@@ -51,7 +52,15 @@ class ScxApiEventConsumeCommand extends AbstractCommand
         do {
             $response = $this->eventApi->get();
 
-            $this->logger->info("Receive {$response->getEventList()->count()} events from scx-channel api");
+            $withError = count($response->getErroneousEvents());
+            $this->logger->info(
+                "Receive {$response->getEventList()->count()} events from scx-channel Api (erroneous: {$withError})"
+            );
+
+            if ($withError > 0) {
+                $this->logErroneousEvents($response);
+            }
+
             if ($response->getEventList()->count() <= 0) {
                 break;
             }
@@ -61,7 +70,7 @@ class ScxApiEventConsumeCommand extends AbstractCommand
             $this->logger->info($emittedEventCount . " events emitted.");
 
             if ($emittedEventCount === 0) {
-                break;
+                continue;
             }
 
             $this->eventApi->ack(new AcknowledgeEventIdListRequest($emittedEventIdList));
@@ -69,5 +78,21 @@ class ScxApiEventConsumeCommand extends AbstractCommand
         } while (true);
 
         return 0;
+    }
+
+    /**
+     * @param GetSellerEventListResponse $response
+     */
+    protected function logErroneousEvents(GetSellerEventListResponse $response): void
+    {
+        foreach ($response->getErroneousEvents() as $err) {
+            $exceptionClass = "";
+            if ($err->getException() !== null) {
+                $exceptionClass = "[" . get_class($err->getException()) . "] ";
+            }
+            $this->logger->warning(
+                "Erroneous Event ignored - {$exceptionClass}{$err->getErrorMessage()} - {$err->getEventJson()}"
+            );
+        }
     }
 }
