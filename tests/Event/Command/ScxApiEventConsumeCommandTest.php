@@ -67,7 +67,6 @@ class ScxApiEventConsumeCommandTest extends TestCase
 
         $tester = new CommandTester($sut);
         $tester->execute([]);
-
     }
 
     /**
@@ -133,7 +132,6 @@ class ScxApiEventConsumeCommandTest extends TestCase
 
         $tester = new CommandTester($sut);
         $tester->execute([]);
-
     }
 
 
@@ -162,6 +160,4 @@ class ScxApiEventConsumeCommandTest extends TestCase
         $response->method('getEventList')->willReturn($testEvents);
         return $response;
     }
-
-
 }
