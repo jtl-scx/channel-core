@@ -24,6 +24,7 @@ use JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationRequestEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderInvoiceEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderPaymentEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderRefundEvent;
+use JTL\SCX\Lib\Channel\Event\Seller\OrderReturnReceived;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderShippingEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\ReportRequestEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\SystemNotificationEvent;
@@ -87,6 +88,9 @@ class EventFactory
                 break;
             case EventType::SellerEventOrderRefund():
                 $eventClass = OrderRefundEvent::class;
+                break;
+            case EventType::SellerOrderReturnReceived():
+                $eventClass = OrderReturnReceived::class;
                 break;
             default:
                 return null;
