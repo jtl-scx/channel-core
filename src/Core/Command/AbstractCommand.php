@@ -21,11 +21,11 @@ abstract class AbstractCommand extends Command
 
     public function __construct(ScxLogger $logger)
     {
-        parent::__construct(null);
+        parent::__construct();
         $this->logger = $logger;
     }
 
-    protected function initialize(InputInterface $input, OutputInterface $output)
+    protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         $this->io = new SymfonyStyle($input, $output);
 
