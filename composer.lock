@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f07aee8b74d5419a3ecf9652d0296f95",
+    "content-hash": "720a9fe9f6f96910b16073ad60265c11",
     "packages": [
         {
             "name": "brick/math",
@@ -582,16 +582,16 @@
         },
         {
             "name": "jtl/nachricht",
-            "version": "0.13.0",
+            "version": "dev-EA-3496",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-software/nachricht.git",
-                "reference": "150d0dbed1cfe624c3418c4b4b3e9ca46d9ae657"
+                "reference": "4e70ce87757f9347e26dcdc1d6aed91becd5c260"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/150d0dbed1cfe624c3418c4b4b3e9ca46d9ae657",
-                "reference": "150d0dbed1cfe624c3418c4b4b3e9ca46d9ae657",
+                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/4e70ce87757f9347e26dcdc1d6aed91becd5c260",
+                "reference": "4e70ce87757f9347e26dcdc1d6aed91becd5c260",
                 "shasum": ""
             },
             "require": {
@@ -632,9 +632,9 @@
             "description": "Nachricht is a distributed event queue system",
             "support": {
                 "issues": "https://github.com/jtl-software/nachricht/issues",
-                "source": "https://github.com/jtl-software/nachricht/tree/0.13.0"
+                "source": "https://github.com/jtl-software/nachricht/tree/EA-3496"
             },
-            "time": "2020-12-17T16:49:05+00:00"
+            "time": "2021-07-30T13:48:38+00:00"
         },
         {
             "name": "jtl/php-generic-collection",
@@ -6086,13 +6086,16 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "jtl/nachricht": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.4",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-curl": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
