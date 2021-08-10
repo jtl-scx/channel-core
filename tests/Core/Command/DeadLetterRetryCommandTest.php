@@ -9,7 +9,6 @@
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
 use DateTimeImmutable;
-use Exception;
 use JTL\Nachricht\Contract\Serializer\MessageSerializer;
 use JTL\Nachricht\Contract\Transport\Amqp\AmqpQueueLister;
 use JTL\Nachricht\Transport\Amqp\AmqpTransport;

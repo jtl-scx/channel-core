@@ -75,6 +75,12 @@ services:
         vhost: '%env(RABBITMQ_VHOST)%'
       - '@JTL\Nachricht\Contract\Serializer\MessageSerializer'
 
+  JTL\Nachricht\Contract\Transport\Amqp\AmqpQueueLister:
+    class: JTL\SCX\Lib\Channel\Core\RabbitMqManagementApi\RabbitMqQueueLister
+
+  GuzzleHttp\Client:
+    public: true
+
   # ###########################################################################
   # Template service
   # ###########################################################################

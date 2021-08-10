@@ -9,6 +9,7 @@
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
 use DateTimeImmutable;
+use Exception;
 use JTL\Nachricht\Contract\Serializer\MessageSerializer;
 use JTL\Nachricht\Contract\Transport\Amqp\AmqpQueueLister;
 use JTL\Nachricht\Serializer\Exception\DeserializationFailedException;
@@ -25,15 +26,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class DeadLetterRetryCommand extends AbstractCommand
 {
-    protected static $defaultName = 'chn:dead-letter:retry';
+    protected static $defaultName = 'queue:dead-letter.retry';
 
     private AmqpTransport $transport;
     private AmqpQueueLister $queueLister;
     private MessageSerializer $messageSerializer;
-    private $olderThan;
-    private $filterByLastError;
-    private $resetReceives;
-    private string $defaultAction;
 
     public function __construct(
         AmqpTransport $transport,
@@ -66,13 +63,13 @@ class DeadLetterRetryCommand extends AbstractCommand
             )
             ->addOption(
                 'filter-by-lasterror',
-                null,
+                'f',
                 InputOption::VALUE_REQUIRED,
                 'Filter jobs by last error'
             )
             ->addOption(
                 'reset-receives',
-                null,
+                'r',
                 InputOption::VALUE_NONE,
                 'Reset the number of receives'
             );
@@ -89,11 +86,23 @@ class DeadLetterRetryCommand extends AbstractCommand
     {
         $messageType = $input->getArgument('type');
         $defaultAction = $input->getOption('default-action');
-        $this->olderThan = $input->getOption('older-than');
-        $this->filterByLastError = $input->getOption('filter-by-lasterror');
-        $this->resetReceives = $input->getOption('reset-receives');
+        $olderThan = $input->getOption('older-than');
+        $filterByLastError = $input->getOption('filter-by-lasterror');
+        $resetReceives = $input->getOption('reset-receives');
         $interactive = $defaultAction === false;
-        $this->defaultAction = (string)$defaultAction;
+        $defaultAction = (string)$defaultAction;
+
+        if (!is_string($olderThan)) {
+            $olderThan = null;
+        }
+
+        if (!is_string($filterByLastError)) {
+            $filterByLastError = null;
+        }
+
+        if (!is_bool($resetReceives)) {
+            $resetReceives = false;
+        }
 
         $this->transport->connect();
         $queueList = $this->queueLister->listQueues(AmqpTransport::DEAD_LETTER_QUEUE_PREFIX);
@@ -115,12 +124,24 @@ class DeadLetterRetryCommand extends AbstractCommand
                 $selectedQueue = reset($filteredQueueList);
             }
 
-            $this->processQueue($selectedQueue, $interactive);
+            $this->processQueue(
+                $selectedQueue,
+                $interactive,
+                $defaultAction,
+                $resetReceives,
+                $olderThan,
+                $filterByLastError
+            );
+            return Command::SUCCESS;
+        }
+
+        if (count($queueList) === 0) {
+            $output->writeln('No dead letter queues found');
             return Command::SUCCESS;
         }
 
         foreach ($queueList as $queue) {
-            $this->processQueue($queue, $interactive);
+            $this->processQueue($queue, $interactive, $defaultAction, $resetReceives, $olderThan, $filterByLastError);
         }
 
         return Command::SUCCESS;
@@ -129,10 +150,21 @@ class DeadLetterRetryCommand extends AbstractCommand
     /**
      * @param string $queue
      * @param bool $interactive
+     * @param string $defaultAction
+     * @param bool $resetReceives
+     * @param string|null $olderThan
+     * @param string|null $filterByLastError
      * @throws DeserializationFailedException
+     * @throws Exception
      */
-    private function processQueue(string $queue, bool $interactive): void
-    {
+    private function processQueue(
+        string $queue,
+        bool $interactive,
+        string $defaultAction,
+        bool $resetReceives,
+        ?string $olderThan,
+        ?string $filterByLastError
+    ): void {
         $messageCount = $this->transport->countMessagesInQueue($queue);
         $processedMessages = $skippedMessages = 0;
         $this->io->writeln("Found {$messageCount} messages in queue '{$queue}'");
@@ -147,17 +179,17 @@ class DeadLetterRetryCommand extends AbstractCommand
             /** @var AbstractEvent $event */
             $event = $this->messageSerializer->deserialize($message->getBody());
 
-            if ($this->olderThan !== null) {
-                $olderThan = new DateTimeImmutable((string)$this->olderThan);
+            if ($olderThan !== null) {
+                $olderThanDate = new DateTimeImmutable($olderThan);
 
-                if ($event->getCreatedAt() > $olderThan) {
+                if ($event->getCreatedAt() > $olderThanDate) {
                     $skippedMessages++;
                     continue;
                 }
             }
 
-            if ($this->filterByLastError !== null) {
-                $lastErrorFilter = (string)$this->filterByLastError;
+            if ($filterByLastError !== null) {
+                $lastErrorFilter = $filterByLastError;
                 $lastErrorMessage = (string)$event->getLastErrorMessage();
 
                 $distance = levenshtein($lastErrorFilter, $lastErrorMessage);
@@ -170,9 +202,9 @@ class DeadLetterRetryCommand extends AbstractCommand
             }
 
             if ($interactive) {
-                $this->interaction($message, $event);
+                $this->interaction($message, $event, $resetReceives);
             } else {
-                $this->actUponMessage($message, $this->defaultAction);
+                $this->actUponMessage($message, $defaultAction, $resetReceives);
             }
 
             $processedMessages++;
@@ -186,9 +218,10 @@ class DeadLetterRetryCommand extends AbstractCommand
     /**
      * @param AMQPMessage $message
      * @param AbstractEvent $event
+     * @param bool $resetReceives
      * @throws DeserializationFailedException
      */
-    private function interaction(AMQPMessage $message, AbstractEvent $event): void
+    private function interaction(AMQPMessage $message, AbstractEvent $event, bool $resetReceives): void
     {
         $this->io->writeln(print_r($event, true));
 
@@ -198,17 +231,20 @@ class DeadLetterRetryCommand extends AbstractCommand
             'yes'
         );
 
-        $this->actUponMessage($message, $action);
+        $this->actUponMessage($message, $action, $resetReceives);
     }
 
     /**
+     * @param AMQPMessage $message
+     * @param string $action
+     * @param bool $resetReceives
      * @throws DeserializationFailedException
      */
-    private function actUponMessage(AMQPMessage $message, string $action): void
+    private function actUponMessage(AMQPMessage $message, string $action, bool $resetReceives): void
     {
         switch ($action) {
             case 'yes':
-                $this->requeue($message);
+                $this->requeue($message, $resetReceives);
                 return;
             case 'delete':
                 $this->transport->ack($message);
@@ -218,9 +254,10 @@ class DeadLetterRetryCommand extends AbstractCommand
 
     /**
      * @param AMQPMessage $message
+     * @param bool $resetReceives
      * @throws DeserializationFailedException
      */
-    private function requeue(AMQPMessage $message): void
+    private function requeue(AMQPMessage $message, bool $resetReceives): void
     {
         $newRoutingKey = substr($message->getRoutingKey(), 4);
         $message->setDeliveryInfo(
@@ -230,7 +267,7 @@ class DeadLetterRetryCommand extends AbstractCommand
             $newRoutingKey
         );
 
-        if ($this->resetReceives === true) {
+        if ($resetReceives === true) {
             /** @var AbstractEvent $event */
             $event = $this->messageSerializer->deserialize($message->getBody());
             $event->setReceiveCount(0);
