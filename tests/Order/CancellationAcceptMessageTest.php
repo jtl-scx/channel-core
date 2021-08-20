@@ -6,7 +6,7 @@
  * Date: 2021-01-22
  */
 
-namespace Order;
+namespace JTL\SCX\Lib\Channel\Order;
 
 use JTL\SCX\Lib\Channel\Order\Cancellation\Seller\CancellationAcceptMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;

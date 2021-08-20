@@ -6,7 +6,7 @@
  * Date: 2020-11-25
  */
 
-namespace ChannelApi;
+namespace JTL\SCX\Lib\Channel\ChannelApi;
 
 use JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingInProgressMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;

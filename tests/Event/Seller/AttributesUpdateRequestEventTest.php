@@ -6,7 +6,7 @@
  * Date: 2021-03-26
  */
 
-namespace Event\Seller;
+namespace JTL\SCX\Lib\Channel\Event\Seller;
 
 use JTL\SCX\Client\Channel\Model\SellerEventSellerAttributesUpdateRequest;
 use JTL\SCX\Lib\Channel\Event\Seller\AttributesUpdateRequestEvent;

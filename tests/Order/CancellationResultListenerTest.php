@@ -6,7 +6,7 @@
  * Date: 2021-01-22
  */
 
-namespace Order;
+namespace JTL\SCX\Lib\Channel\Order;
 
 use JTL\SCX\Client\Channel\Api\Order\OrderApi;
 use JTL\SCX\Client\Channel\Api\Order\Request\AcceptCancellationRequest;

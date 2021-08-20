@@ -6,7 +6,7 @@
  * Date: 11/12/19
  */
 
-namespace Core\Command;
+namespace JTL\SCX\Lib\Channel\Core\Command;
 
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataCategoryAttributeLoader;

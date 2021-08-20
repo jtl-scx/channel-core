@@ -6,7 +6,7 @@
  * Date: 2020-11-25
  */
 
-namespace Seller;
+namespace JTL\SCX\Lib\Channel\Seller;
 
 use JTL\SCX\Lib\Channel\Core\Log\Context\SellerIdContext;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;

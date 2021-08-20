@@ -6,7 +6,7 @@
  * Date: 2020-11-25
  */
 
-namespace ChannelApi;
+namespace JTL\SCX\Lib\Channel\ChannelApi;
 
 use DateTime;
 use JTL\SCX\Client\Channel\Api\Offer\OfferApi;

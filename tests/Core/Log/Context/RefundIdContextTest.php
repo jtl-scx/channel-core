@@ -6,7 +6,7 @@
  * Date: 2021-03-29
  */
 
-namespace Core\Log\Context;
+namespace JTL\SCX\Lib\Channel\Core\Log\Context;
 
 use JTL\SCX\Lib\Channel\Core\Log\Context\RefundIdContext;
 use PHPUnit\Framework\TestCase;

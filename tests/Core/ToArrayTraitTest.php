@@ -6,7 +6,7 @@
  * Date: 2021-02-03
  */
 
-namespace Core;
+namespace JTL\SCX\Lib\Channel\Core;
 
 use JTL\Generic\GenericCollection;
 use JTL\SCX\Lib\Channel\Core\ToArrayTrait;

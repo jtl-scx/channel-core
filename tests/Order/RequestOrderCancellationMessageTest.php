@@ -6,7 +6,7 @@
  * Date: 12/10/20
  */
 
-namespace Order;
+namespace JTL\SCX\Lib\Channel\Order;
 
 use JTL\SCX\Lib\Channel\Contract\Core\Message\ChannelOrderIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerIdRelatedMessage;

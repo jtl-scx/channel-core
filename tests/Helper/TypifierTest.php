@@ -6,7 +6,7 @@
  * Date: 2020-11-27
  */
 
-namespace Helper;
+namespace JTL\SCX\Lib\Channel\Helper;
 
 use JTL\SCX\Lib\Channel\Helper\Typifier;
 use PHPUnit\Framework\TestCase;

@@ -6,7 +6,7 @@
  * Date: 3/25/20
  */
 
-namespace Core\Log;
+namespace JTL\SCX\Lib\Channel\Core\Log;
 
 use JTL\SCX\Lib\Channel\Core\Log\MessageIdContext;
 use PHPUnit\Framework\TestCase;
