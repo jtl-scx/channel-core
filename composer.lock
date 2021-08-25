@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d8c36c697ea39308e00d2428fa015d6",
+    "content-hash": "2fc896b557ca1359516284ea8db10a49",
     "packages": [
         {
             "name": "brick/math",
@@ -582,16 +582,16 @@
         },
         {
             "name": "jtl/nachricht",
-            "version": "0.13.0",
+            "version": "0.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-software/nachricht.git",
-                "reference": "150d0dbed1cfe624c3418c4b4b3e9ca46d9ae657"
+                "reference": "03ed6fafb421fd2f997b6198ea443539b864b687"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/150d0dbed1cfe624c3418c4b4b3e9ca46d9ae657",
-                "reference": "150d0dbed1cfe624c3418c4b4b3e9ca46d9ae657",
+                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/03ed6fafb421fd2f997b6198ea443539b864b687",
+                "reference": "03ed6fafb421fd2f997b6198ea443539b864b687",
                 "shasum": ""
             },
             "require": {
@@ -609,7 +609,7 @@
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.15",
                 "mockery/mockery": "^1.2",
-                "php-amqplib/php-amqplib": "^2.9",
+                "php-amqplib/php-amqplib": "^3.0",
                 "phpstan/phpstan": "^0.12.63",
                 "phpunit/phpunit": "^9.0"
             },
@@ -632,9 +632,9 @@
             "description": "Nachricht is a distributed event queue system",
             "support": {
                 "issues": "https://github.com/jtl-software/nachricht/issues",
-                "source": "https://github.com/jtl-software/nachricht/tree/0.13.0"
+                "source": "https://github.com/jtl-software/nachricht/tree/0.13.1"
             },
-            "time": "2020-12-17T16:49:05+00:00"
+            "time": "2021-08-25T09:29:05+00:00"
         },
         {
             "name": "jtl/php-generic-collection",
@@ -6091,8 +6091,9 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^7.4",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-curl": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

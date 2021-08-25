@@ -69,10 +69,17 @@ services:
     arguments:
       - host: '%env(RABBITMQ_HOST)%'
         port: '%env(RABBITMQ_PORT)%'
+        httpPort: '%env(RABBITMQ_HTTP_PORT)%'
         user: '%env(RABBITMQ_USER)%'
         password: '%env(RABBITMQ_PASS)%'
         vhost: '%env(RABBITMQ_VHOST)%'
       - '@JTL\Nachricht\Contract\Serializer\MessageSerializer'
+
+  JTL\Nachricht\Contract\Transport\Amqp\AmqpQueueLister:
+    class: JTL\SCX\Lib\Channel\Core\RabbitMqManagementApi\RabbitMqQueueLister
+
+  GuzzleHttp\Client:
+    public: true
 
   # ###########################################################################
   # Template service
