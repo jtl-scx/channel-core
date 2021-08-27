@@ -6,7 +6,7 @@
  * Date: 7/23/20
  */
 
-namespace Core\Environment;
+namespace JTL\SCX\Lib\Channel\Core\Environment;
 
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
 use PHPUnit\Framework\TestCase;

@@ -6,7 +6,7 @@
  * Date: 2021-01-26
  */
 
-namespace Core\Lock;
+namespace JTL\SCX\Lib\Channel\Core\Lock;
 
 use JTL\SCX\Lib\Channel\Contract\Core\Lock\LockProvider;
 use JTL\SCX\Lib\Channel\Core\Lock\Lock;

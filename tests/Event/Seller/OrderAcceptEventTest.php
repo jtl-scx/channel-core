@@ -6,7 +6,7 @@
  * Date: 1/15/21
  */
 
-namespace Event\Seller;
+namespace JTL\SCX\Lib\Channel\Event\Seller;
 
 use DateTimeImmutable;
 use JTL\SCX\Client\Channel\Model\OrderAccept;

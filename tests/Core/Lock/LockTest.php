@@ -6,7 +6,7 @@
  * Date: 2021-01-27
  */
 
-namespace Core\Lock;
+namespace JTL\SCX\Lib\Channel\Core\Lock;
 
 use JTL\SCX\Lib\Channel\Core\Lock\Lock;
 use PHPUnit\Framework\TestCase;

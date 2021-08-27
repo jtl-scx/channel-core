@@ -6,7 +6,7 @@
  * Date: 12/9/20
  */
 
-namespace Order;
+namespace JTL\SCX\Lib\Channel\Order;
 
 use JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\OrderCancellationItem;
 use PHPUnit\Framework\TestCase;

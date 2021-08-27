@@ -6,7 +6,7 @@
  * Date: 2020-11-25
  */
 
-namespace Core\Log\Context;
+namespace JTL\SCX\Lib\Channel\Core\Log\Context;
 
 use JTL\SCX\Lib\Channel\Core\Log\Context\ChannelOrderIdContext;
 use PHPUnit\Framework\TestCase;

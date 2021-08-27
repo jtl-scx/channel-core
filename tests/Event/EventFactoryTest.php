@@ -6,7 +6,7 @@
  * Date: 12/6/19
  */
 
-namespace Event;
+namespace JTL\SCX\Lib\Channel\Event;
 
 use DateTimeImmutable;
 use Exception;

@@ -6,7 +6,7 @@
  * Date: 2020-11-25
  */
 
-namespace Core\Message;
+namespace JTL\SCX\Lib\Channel\Core\Message;
 
 use JTL\Nachricht\Contract\Message\AmqpTransportableMessage;
 use JTL\Nachricht\Contract\Message\Message;

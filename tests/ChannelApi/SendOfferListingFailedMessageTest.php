@@ -6,7 +6,7 @@
  * Date: 2020-11-25
  */
 
-namespace ChannelApi;
+namespace JTL\SCX\Lib\Channel\ChannelApi;
 
 use JTL\SCX\Client\Channel\Model\ErrorResponseList;
 use JTL\SCX\Lib\Channel\ChannelApi\ListingFailedErrorList;
