@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2fc896b557ca1359516284ea8db10a49",
+    "content-hash": "7088f894c28e7079ed6962c75faa203f",
     "packages": [
         {
             "name": "brick/math",
@@ -533,16 +533,16 @@
         },
         {
             "name": "jtl-scx/channel-api-client",
-            "version": "0.46.0",
+            "version": "dev-EA-3531",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-scx/channel-api-client.git",
-                "reference": "5cedca0bba117ae2449c1ff6a631047ad8d2ac2f"
+                "reference": "68b4a7b4ed1cbac22d7a96d908808da8a2ec8573"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/5cedca0bba117ae2449c1ff6a631047ad8d2ac2f",
-                "reference": "5cedca0bba117ae2449c1ff6a631047ad8d2ac2f",
+                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/68b4a7b4ed1cbac22d7a96d908808da8a2ec8573",
+                "reference": "68b4a7b4ed1cbac22d7a96d908808da8a2ec8573",
                 "shasum": ""
             },
             "require": {
@@ -576,9 +576,9 @@
             "description": "API Client for SCX Channel API",
             "support": {
                 "issues": "https://github.com/jtl-scx/channel-api-client/issues",
-                "source": "https://github.com/jtl-scx/channel-api-client/tree/0.46.0"
+                "source": "https://github.com/jtl-scx/channel-api-client/tree/EA-3531"
             },
-            "time": "2021-07-29T09:13:06+00:00"
+            "time": "2021-08-31T13:09:50+00:00"
         },
         {
             "name": "jtl/nachricht",
@@ -6086,7 +6086,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "jtl-scx/channel-api-client": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
