@@ -27,4 +27,9 @@ class UTCDateTimeConverter
         }
         return null;
     }
+
+    public function now(): UTCDateTime
+    {
+        return new UTCDateTime();
+    }
 }
