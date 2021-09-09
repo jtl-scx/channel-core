@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1c3c6bb9dcfe4bac109bbb538cc402e",
+    "content-hash": "dc3323809a944ed72fbfd7f5a1bcea0c",
     "packages": [
         {
             "name": "brick/math",
@@ -533,16 +533,16 @@
         },
         {
             "name": "jtl-scx/channel-api-client",
-            "version": "dev-EA-3910",
+            "version": "0.48.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-scx/channel-api-client.git",
-                "reference": "da8ad0b3998f9e6da4a94bee67f36a390ed398f7"
+                "reference": "67be4a4f5cc8ff488fdb3f876f9e05802737146b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/da8ad0b3998f9e6da4a94bee67f36a390ed398f7",
-                "reference": "da8ad0b3998f9e6da4a94bee67f36a390ed398f7",
+                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/67be4a4f5cc8ff488fdb3f876f9e05802737146b",
+                "reference": "67be4a4f5cc8ff488fdb3f876f9e05802737146b",
                 "shasum": ""
             },
             "require": {
@@ -576,9 +576,9 @@
             "description": "API Client for SCX Channel API",
             "support": {
                 "issues": "https://github.com/jtl-scx/channel-api-client/issues",
-                "source": "https://github.com/jtl-scx/channel-api-client/tree/EA-3910"
+                "source": "https://github.com/jtl-scx/channel-api-client/tree/0.48.0"
             },
-            "time": "2021-08-30T06:17:49+00:00"
+            "time": "2021-09-09T09:32:53+00:00"
         },
         {
             "name": "jtl/nachricht",
@@ -6086,9 +6086,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "jtl-scx/channel-api-client": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
@@ -6097,5 +6095,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

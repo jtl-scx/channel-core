@@ -8,7 +8,7 @@
         "ext-curl": "*",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.2",
-        "jtl-scx/channel-api-client": "dev-EA-3910",
+        "jtl-scx/channel-api-client": "^0.48.0",
         "jtl/nachricht": "^0.13",
         "monolog/monolog": "^2.0",
         "myclabs/php-enum": "^1.7",
