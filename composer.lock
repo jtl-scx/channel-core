@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f7da93fa8f6fb0122258fee4a0cc034c",
+    "content-hash": "e5d2a030ab9b8b63cc3d7fc2460ffc40",
     "packages": [
         {
             "name": "brick/math",
@@ -533,16 +533,16 @@
         },
         {
             "name": "jtl-scx/channel-api-client",
-            "version": "0.48.0",
+            "version": "0.49.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-scx/channel-api-client.git",
-                "reference": "67be4a4f5cc8ff488fdb3f876f9e05802737146b"
+                "reference": "ee2c3524005973b4a9297a33e27d64d428bf5f94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/67be4a4f5cc8ff488fdb3f876f9e05802737146b",
-                "reference": "67be4a4f5cc8ff488fdb3f876f9e05802737146b",
+                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/ee2c3524005973b4a9297a33e27d64d428bf5f94",
+                "reference": "ee2c3524005973b4a9297a33e27d64d428bf5f94",
                 "shasum": ""
             },
             "require": {
@@ -576,9 +576,9 @@
             "description": "API Client for SCX Channel API",
             "support": {
                 "issues": "https://github.com/jtl-scx/channel-api-client/issues",
-                "source": "https://github.com/jtl-scx/channel-api-client/tree/0.48.0"
+                "source": "https://github.com/jtl-scx/channel-api-client/tree/0.49.0"
             },
-            "time": "2021-09-09T09:32:53+00:00"
+            "time": "2021-09-13T12:16:34+00:00"
         },
         {
             "name": "jtl/nachricht",
