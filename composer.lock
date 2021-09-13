@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "45c874dffbb40c886a3af37d2b49ec01",
+    "content-hash": "e5d2a030ab9b8b63cc3d7fc2460ffc40",
     "packages": [
         {
             "name": "brick/math",
@@ -533,16 +533,16 @@
         },
         {
             "name": "jtl-scx/channel-api-client",
-            "version": "0.48.1",
+            "version": "0.49.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-scx/channel-api-client.git",
-                "reference": "be3a9ce4c63939c92a13ada07ae6e6e2097df9fa"
+                "reference": "ee2c3524005973b4a9297a33e27d64d428bf5f94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/be3a9ce4c63939c92a13ada07ae6e6e2097df9fa",
-                "reference": "be3a9ce4c63939c92a13ada07ae6e6e2097df9fa",
+                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/ee2c3524005973b4a9297a33e27d64d428bf5f94",
+                "reference": "ee2c3524005973b4a9297a33e27d64d428bf5f94",
                 "shasum": ""
             },
             "require": {
@@ -576,9 +576,9 @@
             "description": "API Client for SCX Channel API",
             "support": {
                 "issues": "https://github.com/jtl-scx/channel-api-client/issues",
-                "source": "https://github.com/jtl-scx/channel-api-client/tree/0.48.1"
+                "source": "https://github.com/jtl-scx/channel-api-client/tree/0.49.0"
             },
-            "time": "2021-09-13T05:49:01+00:00"
+            "time": "2021-09-13T12:16:34+00:00"
         },
         {
             "name": "jtl/nachricht",
@@ -1056,6 +1056,123 @@
             "time": "2020-12-20T10:01:03+00:00"
         },
         {
+            "name": "paragonie/constant_time_encoding",
+            "version": "v2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paragonie/constant_time_encoding.git",
+                "reference": "f34c2b11eb9d2c9318e13540a1dbc2a3afbd939c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paragonie/constant_time_encoding/zipball/f34c2b11eb9d2c9318e13540a1dbc2a3afbd939c",
+                "reference": "f34c2b11eb9d2c9318e13540a1dbc2a3afbd939c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7|^8"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6|^7|^8|^9",
+                "vimeo/psalm": "^1|^2|^3|^4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ParagonIE\\ConstantTime\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paragon Initiative Enterprises",
+                    "email": "security@paragonie.com",
+                    "homepage": "https://paragonie.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Steve 'Sc00bz' Thomas",
+                    "email": "steve@tobtu.com",
+                    "homepage": "https://www.tobtu.com",
+                    "role": "Original Developer"
+                }
+            ],
+            "description": "Constant-time Implementations of RFC 4648 Encoding (Base-64, Base-32, Base-16)",
+            "keywords": [
+                "base16",
+                "base32",
+                "base32_decode",
+                "base32_encode",
+                "base64",
+                "base64_decode",
+                "base64_encode",
+                "bin2hex",
+                "encoding",
+                "hex",
+                "hex2bin",
+                "rfc4648"
+            ],
+            "support": {
+                "email": "info@paragonie.com",
+                "issues": "https://github.com/paragonie/constant_time_encoding/issues",
+                "source": "https://github.com/paragonie/constant_time_encoding"
+            },
+            "time": "2020-12-06T15:14:20+00:00"
+        },
+        {
+            "name": "paragonie/random_compat",
+            "version": "v9.99.100",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paragonie/random_compat.git",
+                "reference": "996434e5492cb4c3edcb9168db6fbb1359ef965a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/996434e5492cb4c3edcb9168db6fbb1359ef965a",
+                "reference": "996434e5492cb4c3edcb9168db6fbb1359ef965a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 7"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*|5.*",
+                "vimeo/psalm": "^1"
+            },
+            "suggest": {
+                "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paragon Initiative Enterprises",
+                    "email": "security@paragonie.com",
+                    "homepage": "https://paragonie.com"
+                }
+            ],
+            "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
+            "keywords": [
+                "csprng",
+                "polyfill",
+                "pseudorandom",
+                "random"
+            ],
+            "support": {
+                "email": "info@paragonie.com",
+                "issues": "https://github.com/paragonie/random_compat/issues",
+                "source": "https://github.com/paragonie/random_compat"
+            },
+            "time": "2020-10-15T08:29:30+00:00"
+        },
+        {
             "name": "php-amqplib/php-amqplib",
             "version": "v2.12.3",
             "source": {
@@ -1138,24 +1255,26 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.30",
+            "version": "3.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "136b9ca7eebef78be14abf90d65c5e57b6bc5d36"
+                "reference": "62fcc5a94ac83b1506f52d7558d828617fac9187"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/136b9ca7eebef78be14abf90d65c5e57b6bc5d36",
-                "reference": "136b9ca7eebef78be14abf90d65c5e57b6bc5d36",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/62fcc5a94ac83b1506f52d7558d828617fac9187",
+                "reference": "62fcc5a94ac83b1506f52d7558d828617fac9187",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "paragonie/constant_time_encoding": "^1|^2",
+                "paragonie/random_compat": "^1.4|^2.0|^9.99.99",
+                "php": ">=5.6.1"
             },
             "require-dev": {
                 "phing/phing": "~2.7",
-                "phpunit/phpunit": "^4.8.35|^5.7|^6.0|^9.4",
+                "phpunit/phpunit": "^5.7|^6.0|^9.4",
                 "squizlabs/php_codesniffer": "~2.0"
             },
             "suggest": {
@@ -1170,7 +1289,7 @@
                     "phpseclib/bootstrap.php"
                 ],
                 "psr-4": {
-                    "phpseclib\\": "phpseclib/"
+                    "phpseclib3\\": "phpseclib/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1225,6 +1344,10 @@
                 "x.509",
                 "x509"
             ],
+            "support": {
+                "issues": "https://github.com/phpseclib/phpseclib/issues",
+                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.10"
+            },
             "funding": [
                 {
                     "url": "https://github.com/terrafrost",
@@ -1239,7 +1362,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-12-17T05:42:04+00:00"
+            "time": "2021-08-16T04:24:45+00:00"
         },
         {
             "name": "psr/container",
@@ -6091,8 +6214,8 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^7.4",
-        "ext-json": "*",
-        "ext-curl": "*"
+        "ext-curl": "*",
+        "ext-json": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.1.0"
