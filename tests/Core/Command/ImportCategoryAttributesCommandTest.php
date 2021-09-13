@@ -12,6 +12,7 @@ use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataCategoryAttributeLoader;
 use JTL\SCX\Lib\Channel\Core\Command\ImportCategoryAttributesCommand;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
+use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeDeleter;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeUpdater;
 use PHPUnit\Framework\TestCase;
@@ -37,8 +38,9 @@ class ImportCategoryAttributesCommandTest extends TestCase
             ->willReturn($testAttributeList);
 
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
+        $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
 
-        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $this->createStub(ScxLogger::class));
+        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $deleterMock, $this->createStub(ScxLogger::class));
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
             'categoryId' => $testCategoryId
@@ -64,8 +66,9 @@ class ImportCategoryAttributesCommandTest extends TestCase
             ->willReturn($testAttributeList);
 
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
+        $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
 
-        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $this->createStub(ScxLogger::class));
+        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $deleterMock, $this->createStub(ScxLogger::class));
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
             'categoryId' => $testCategoryId,
@@ -90,8 +93,9 @@ class ImportCategoryAttributesCommandTest extends TestCase
             ->willReturn($testAttributeList);
 
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
+        $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
 
-        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $this->createStub(ScxLogger::class));
+        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $deleterMock, $this->createStub(ScxLogger::class));
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
             'categoryId' => $testCategoryId
@@ -124,12 +128,56 @@ class ImportCategoryAttributesCommandTest extends TestCase
             ->willReturnOnConsecutiveCalls($testAttributeList, null);
 
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
+        $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
 
-        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $this->createStub(ScxLogger::class));
+        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $deleterMock, $this->createStub(ScxLogger::class));
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
             '--import-csv-list' => $testFilePath,
             '--process' => true
+        ]);
+
+        $this->assertEquals(0, $cmdTester->getStatusCode());
+
+        $output = $cmdTester->getDisplay();
+
+        $this->assertStringContainsString("Fetch CategoryAttributes for '{$testCategoryId1}'", $output);
+        $this->assertStringContainsString("Fetch CategoryAttributes for '{$testCategoryId2}'", $output);
+        $this->assertStringContainsString("Update Category {$testCategoryId1} with 1 Attributes ... done", $output);
+        $this->assertStringContainsString("No category-attributes available", $output);
+    }
+
+    public function testCanPruneCategoriesAndProcessAttributeForCSVListWithResults()
+    {
+        $testCategoryId1 = uniqid('testCat', true);
+        $testCategoryId2 = uniqid('testCat', true);
+
+        $testFilePath = sys_get_temp_dir() . '/' . __CLASS__ . '_' . __METHOD__;
+        $fp = fopen($testFilePath, 'wb+');
+        fputcsv($fp, [$testCategoryId1]);
+        fputcsv($fp, [$testCategoryId2]);
+
+        $attrList = $this->createMock(AttributeList::class);
+        $attrList->expects($this->atLeastOnce())->method('count')->willReturn(1);
+        $testAttributeList = new CategoryAttributeList();
+        $testAttributeList->addAttributeList($testCategoryId1, $attrList);
+
+        $loaderMock = $this->createMock(MetaDataCategoryAttributeLoader::class);
+        $loaderMock->expects($this->exactly(2))->method('fetch')
+            ->withConsecutive([[$testCategoryId1]], [[$testCategoryId2]])
+            ->willReturnOnConsecutiveCalls($testAttributeList, null);
+
+        $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
+        $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
+
+        $deleterMock->expects(self::exactly(2))->method('delete');
+
+        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $deleterMock, $this->createStub(ScxLogger::class));
+        $cmdTester = new CommandTester($cmd);
+        $cmdTester->execute([
+            '--import-csv-list' => $testFilePath,
+            '--process' => true,
+            '--prune' => true,
         ]);
 
         $this->assertEquals(0, $cmdTester->getStatusCode());

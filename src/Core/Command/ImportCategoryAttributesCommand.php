@@ -15,6 +15,7 @@ use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataCategoryAttributeLoader;
 use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttribute;
+use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeDeleter;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeUpdater;
 use Symfony\Component\Console\Input\InputArgument;
@@ -29,15 +30,18 @@ class ImportCategoryAttributesCommand extends AbstractCommand
 
     private MetaDataCategoryAttributeLoader $categoryAttributeLoader;
     private CategoryAttributeUpdater $attributeUpdater;
+    private CategoryAttributeDeleter $categoryAttributeDeleter;
 
     public function __construct(
         MetaDataCategoryAttributeLoader $categoryAttributeLoader,
         CategoryAttributeUpdater $attributeUpdater,
+        CategoryAttributeDeleter $categoryAttributeDeleter,
         ScxLogger $logger
     ) {
         parent::__construct($logger);
         $this->categoryAttributeLoader = $categoryAttributeLoader;
         $this->attributeUpdater = $attributeUpdater;
+        $this->categoryAttributeDeleter = $categoryAttributeDeleter;
     }
 
     protected function configure()
@@ -80,6 +84,13 @@ class ImportCategoryAttributesCommand extends AbstractCommand
                 InputOption::VALUE_REQUIRED,
                 'Read category Id from specific column',
                 '0'
+            )
+            ->addOption(
+                'prune',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Delete all categories before sending them',
+                true
             );
     }
 
@@ -99,6 +110,7 @@ class ImportCategoryAttributesCommand extends AbstractCommand
         $process = $input->getOption('process');
 
         $importFile = $input->getOption('import-csv-list');
+        $prune = (bool)$input->getOption('prune');
 
         if ($process === false) {
             $this->io->warning("There is no --process option given - attributes are NOT send to SCX-Channel-Api");
@@ -113,26 +125,25 @@ class ImportCategoryAttributesCommand extends AbstractCommand
 
             $file = fopen($importFile, "r");
             while (($row = fgetcsv($file, 0, $delimiter, $enclosure)) !== false) {
-                $this->import(trim($row[$column]), $process, $io);
+                $this->import(trim($row[$column]), $process, $io, $prune);
             }
         } else {
-            $this->import($categoryId, $process, $io);
+            $this->import($categoryId, $process, $io, $prune);
         }
 
         return 0;
     }
 
     /**
-     * @param string $categoryId
+     * @param string|null $categoryId
      * @param bool $process
      * @param SymfonyStyle $io
-     *
+     * @param bool $prune
      * @throws GuzzleException
      * @throws RequestFailedException
-     * @throws RequestValidationFailedException
      * @throws UnexpectedStatusException
      */
-    private function import(?string $categoryId, bool $process, SymfonyStyle $io): void
+    private function import(?string $categoryId, bool $process, SymfonyStyle $io, bool $prune): void
     {
         $io->write("Fetch CategoryAttributes for");
         if ($categoryId === null) {
@@ -143,6 +154,12 @@ class ImportCategoryAttributesCommand extends AbstractCommand
         $categoryIdList = is_null($categoryId)?null: [$categoryId];
         $categoryAttributeList = $this->categoryAttributeLoader->fetch($categoryIdList);
         $io->writeln(" ... done");
+
+        if ($prune) {
+            $io->write('Pruning channel categories...');
+            $this->categoryAttributeDeleter->delete();
+            $io->writeln('done');
+        }
 
         if ($categoryAttributeList instanceof CategoryAttributeList) {
             /** @var CategoryAttribute $categoryAttribute */
