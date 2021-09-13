@@ -12,6 +12,7 @@ use DateTimeImmutable;
 use Exception;
 use JTL\Nachricht\Contract\Serializer\MessageSerializer;
 use JTL\Nachricht\Contract\Transport\Amqp\AmqpQueueLister;
+use JTL\Nachricht\Message\AbstractAmqpTransportableMessage;
 use JTL\Nachricht\Serializer\Exception\DeserializationFailedException;
 use JTL\Nachricht\Transport\Amqp\AmqpHttpConnectionFailedException;
 use JTL\Nachricht\Transport\Amqp\AmqpTransport;
@@ -176,13 +177,13 @@ class DeadLetterRetryCommand extends AbstractCommand
                 return;
             }
 
-            /** @var AbstractEvent $event */
+            /** @var AbstractEvent|AbstractAmqpTransportableMessage $event */
             $event = $this->messageSerializer->deserialize($message->getBody());
 
             if ($olderThan !== null) {
                 $olderThanDate = new DateTimeImmutable($olderThan);
 
-                if ($event->getCreatedAt() > $olderThanDate) {
+                if ($event instanceof AbstractEvent && $event->getCreatedAt() > $olderThanDate) {
                     $skippedMessages++;
                     continue;
                 }
@@ -217,11 +218,11 @@ class DeadLetterRetryCommand extends AbstractCommand
 
     /**
      * @param AMQPMessage $message
-     * @param AbstractEvent $event
+     * @param mixed $event
      * @param bool $resetReceives
      * @throws DeserializationFailedException
      */
-    private function interaction(AMQPMessage $message, AbstractEvent $event, bool $resetReceives): void
+    private function interaction(AMQPMessage $message, $event, bool $resetReceives): void
     {
         $this->io->writeln(print_r($event, true));
 
