@@ -156,7 +156,7 @@ class ImportCategoryAttributesCommand extends AbstractCommand
         $io->writeln(" ... done");
 
         if ($prune) {
-            $io->writeln('Pruning channel categories');
+            $io->write('Pruning channel categories...');
             $this->categoryAttributeDeleter->delete();
             $io->writeln('done');
         }
