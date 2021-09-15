@@ -34,6 +34,7 @@ class SendOfferListingResultListener extends AbstractListener
     /**
      * @param SendOfferListingInProgressMessage $event
      * @throws GuzzleException
+     * @throws RequestFailedException
      */
     public function sendInProgress(SendOfferListingInProgressMessage $event): void
     {
@@ -56,6 +57,7 @@ class SendOfferListingResultListener extends AbstractListener
     /**
      * @param SendOfferListingFailedMessage $event
      * @throws GuzzleException
+     * @throws RequestFailedException
      */
     public function sendInFailed(SendOfferListingFailedMessage $event): void
     {
@@ -96,6 +98,7 @@ class SendOfferListingResultListener extends AbstractListener
     /**
      * @param SendOfferListingSuccessfulMessage $event
      * @throws GuzzleException
+     * @throws RequestFailedException
      */
     public function sendSuccessful(SendOfferListingSuccessfulMessage $event): void
     {
@@ -119,6 +122,7 @@ class SendOfferListingResultListener extends AbstractListener
 
     /**
      * @param RequestFailedException $exception
+     * @throws RequestFailedException
      */
     private function handleError(RequestFailedException $exception): void
     {
@@ -128,5 +132,6 @@ class SendOfferListingResultListener extends AbstractListener
         }
 
         $this->logger->warning("{$exception->getMessage()}\n\n{$error}");
+        throw $exception;
     }
 }

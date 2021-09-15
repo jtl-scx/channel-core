@@ -87,6 +87,8 @@ class SendOfferListingResultListenerTest extends TestCase
         $offerApi->expects(self::once())->method('markListingFailed')
             ->willThrowException($this->createStub(RequestFailedException::class));
         $listener = new SendOfferListingResultListener($offerApi, $this->createStub(ScxLogger::class));
+
+        self::expectException(RequestFailedException::class);
         $listener->sendInFailed($event);
     }
 
@@ -157,6 +159,8 @@ class SendOfferListingResultListenerTest extends TestCase
         $offerApi->expects(self::once())->method('markListed')
             ->willThrowException($this->createStub(RequestFailedException::class));
         $listener = new SendOfferListingResultListener($offerApi, $this->createStub(ScxLogger::class));
+
+        self::expectException(RequestFailedException::class);
         $listener->sendSuccessful($event);
     }
 
@@ -172,6 +176,8 @@ class SendOfferListingResultListenerTest extends TestCase
         $offerApi->expects(self::once())->method('markInProgress')
             ->willThrowException($this->createStub(RequestFailedException::class));
         $listener = new SendOfferListingResultListener($offerApi, $this->createStub(ScxLogger::class));
+
+        self::expectException(RequestFailedException::class);
         $listener->sendInProgress($event);
     }
 }
