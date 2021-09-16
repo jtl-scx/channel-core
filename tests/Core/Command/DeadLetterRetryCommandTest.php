@@ -56,7 +56,7 @@ class DeadLetterRetryCommandTest extends TestCase
         $this->logger = $this->createMock(ScxLogger::class);
     }
 
-    public function testCanRetryMessagesWithoutOptionsInInteractiveMode(): void
+    public function testListAndAskQueuesWithoutOptions(): void
     {
         $queueName = AmqpTransport::DEAD_LETTER_QUEUE_PREFIX . uniqid('queueName', true);
         $routingKey = uniqid('routingKey', true);
@@ -129,6 +129,7 @@ class DeadLetterRetryCommandTest extends TestCase
             $this->logger
         );
         $commandTester = new CommandTester($command);
+        $commandTester->setInputs(['0']);
         $commandTester->execute([]);
     }
 
@@ -183,6 +184,7 @@ class DeadLetterRetryCommandTest extends TestCase
             $this->logger
         );
         $commandTester = new CommandTester($command);
+        $commandTester->setInputs(['0']);
         $commandTester->execute(
             [
                 '--default-action' => 'delete',
@@ -416,6 +418,7 @@ class DeadLetterRetryCommandTest extends TestCase
             $this->logger
         );
         $commandTester = new CommandTester($command);
+        $commandTester->setInputs(['0']);
         $commandTester->execute(
             [
                 '--default-action' => 'delete',
@@ -492,6 +495,7 @@ class DeadLetterRetryCommandTest extends TestCase
             $this->logger
         );
         $commandTester = new CommandTester($command);
+        $commandTester->setInputs(['0']);
         $commandTester->execute(
             [
                 '--default-action' => 'delete',
@@ -568,6 +572,7 @@ class DeadLetterRetryCommandTest extends TestCase
             $this->logger
         );
         $commandTester = new CommandTester($command);
+        $commandTester->setInputs(['0']);
         $commandTester->execute(
             [
                 '--default-action' => 'delete',
@@ -661,6 +666,7 @@ class DeadLetterRetryCommandTest extends TestCase
             $this->logger
         );
         $commandTester = new CommandTester($command);
+        $commandTester->setInputs(['0']);
         $commandTester->execute(
             [
                 '--default-action' => 'yes',

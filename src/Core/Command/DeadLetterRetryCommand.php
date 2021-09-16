@@ -141,11 +141,63 @@ class DeadLetterRetryCommand extends AbstractCommand
             return Command::SUCCESS;
         }
 
+        $this->printAndProcessQueues(
+            $queueList,
+            $interactive,
+            $defaultAction,
+            $resetReceives,
+            $olderThan,
+            $filterByLastError
+        );
+        return Command::SUCCESS;
+    }
+
+    /**
+     * @param array $queueList
+     * @param bool $interactive
+     * @param string $defaultAction
+     * @param bool $resetReceives
+     * @param string|null $olderThan
+     * @param string|null $filterByLastError
+     * @throws DeserializationFailedException
+     */
+    private function printAndProcessQueues(
+        array $queueList,
+        bool $interactive,
+        string $defaultAction,
+        bool $resetReceives,
+        ?string $olderThan,
+        ?string $filterByLastError
+    ): void {
+        $printQueues = [];
+
         foreach ($queueList as $queue) {
-            $this->processQueue($queue, $interactive, $defaultAction, $resetReceives, $olderThan, $filterByLastError);
+            $messageCount = $this->transport->countMessagesInQueue($queue);
+            $printQueues[$queue] = $messageCount;
         }
 
-        return Command::SUCCESS;
+        arsort($printQueues, SORT_NUMERIC);
+        $index = 0;
+
+        foreach ($printQueues as $queue => $messageCount) {
+            $this->io->writeln("{$index}: {$queue}: {$messageCount} messages");
+            $index++;
+        }
+
+        $answer = $this->io->ask('Please select a queue to process');
+        $queues = array_values($queueList);
+
+        if (is_numeric($answer)) {
+            $this->processQueue(
+                $queues[(int)$answer],
+                $interactive,
+                $defaultAction,
+                $resetReceives,
+                $olderThan,
+                $filterByLastError,
+                $printQueues[$queues[(int)$answer]]
+            );
+        }
     }
 
     /**
@@ -155,8 +207,8 @@ class DeadLetterRetryCommand extends AbstractCommand
      * @param bool $resetReceives
      * @param string|null $olderThan
      * @param string|null $filterByLastError
+     * @param int|null $messageCount
      * @throws DeserializationFailedException
-     * @throws Exception
      */
     private function processQueue(
         string $queue,
@@ -164,13 +216,18 @@ class DeadLetterRetryCommand extends AbstractCommand
         string $defaultAction,
         bool $resetReceives,
         ?string $olderThan,
-        ?string $filterByLastError
+        ?string $filterByLastError,
+        int $messageCount = null
     ): void {
-        $messageCount = $this->transport->countMessagesInQueue($queue);
-        $processedMessages = $skippedMessages = 0;
-        $this->io->writeln("Found {$messageCount} messages in queue '{$queue}'");
+        $numMessages = $messageCount;
+        if ($numMessages === null) {
+            $numMessages = $this->transport->countMessagesInQueue($queue);
+        }
 
-        while ($processedMessages + $skippedMessages < $messageCount) {
+        $processedMessages = $skippedMessages = 0;
+        $this->io->writeln("Found {$numMessages} messages in queue '{$queue}'");
+
+        while ($processedMessages + $skippedMessages < $numMessages) {
             $message = $this->transport->getMessageFromQueue($queue, false);
 
             if ($message === null) {
