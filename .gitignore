@@ -6,3 +6,4 @@ build/
 .phpunit.result.cache
 .env
 .env.local
+/.php-cs-fixer.cache
