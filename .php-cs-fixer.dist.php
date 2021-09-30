@@ -3,8 +3,12 @@
 $finder = PhpCsFixer\Finder::create();
 $finder->in(['src', 'tests']);
 
-$config = PhpCsFixer\Config::create();
+
+$config = new PhpCsFixer\Config();
 $config->setFinder($finder);
-$config->setRules(['@PSR2' => true]);
+$config->setRules([
+    '@PSR2' => true,
+    'array_syntax' => ['syntax' => 'short'],
+]);
 
 return $config;
