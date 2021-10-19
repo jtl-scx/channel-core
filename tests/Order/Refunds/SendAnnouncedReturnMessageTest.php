@@ -42,6 +42,5 @@ class SendAnnouncedReturnMessageTest extends TestCase
         $this->returnAnnouncement->expects(self::once())->method('getOrderId')->willReturn($orderId);
 
         self::assertSame($orderId, $this->sut->getChannelOrderId());
-
     }
 }

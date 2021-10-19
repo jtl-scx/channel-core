@@ -13,7 +13,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SendAnnouncedReturnListenerTest extends TestCase
 {
-
     public function testCanSendToChannelApi(): void
     {
         $returnAnnouncement = $this->createStub(ReturnAnnouncement::class);

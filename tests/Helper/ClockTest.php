@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ClockTest extends TestCase
 {
-
     public function testCanGetNowDateTime(): void
     {
         $beginTime = new \DateTimeImmutable();
