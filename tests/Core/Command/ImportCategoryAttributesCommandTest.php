@@ -51,6 +51,30 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $this->assertStringContainsString('AttributeList', $output);
     }
 
+    public function testCanProcessAllCategories()
+    {
+        $testAttributeList = new CategoryAttributeList();
+        $testAttributeList->addAttributeList('egal', $this->createStub(AttributeList::class));
+
+        $loaderMock = $this->createMock(MetaDataCategoryAttributeLoader::class);
+        $loaderMock->expects($this->once())->method('fetch')
+            ->with(null)
+            ->willReturn($testAttributeList);
+
+        $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
+        $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
+
+        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $deleterMock, $this->createStub(ScxLogger::class));
+        $cmdTester = new CommandTester($cmd);
+        $cmdTester->execute([]);
+
+        $this->assertEquals(0, $cmdTester->getStatusCode());
+
+        $output = $cmdTester->getDisplay();
+        $this->assertStringContainsString('Fetch CategoryAttributes for all Categories', $output);
+        $this->assertStringContainsString('AttributeList', $output);
+    }
+
     public function testCanProcessAttributeForCategoryWithResults()
     {
         $testCategoryId = uniqid('testCategoryId');
