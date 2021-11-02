@@ -109,7 +109,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
             '--process' => true
         ]);
 
-        self::assertFalse($cmdTester->getInput()->getOption('keep-attributes'),'Option --keep-attributes must be disabled on this test run');
+        self::assertFalse($cmdTester->getInput()->getOption('keep-attributes'), 'Option --keep-attributes must be disabled on this test run');
 
         $this->assertEquals(0, $cmdTester->getStatusCode());
 

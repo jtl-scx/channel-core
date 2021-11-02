@@ -158,7 +158,6 @@ class ImportCategoryAttributesCommand extends AbstractCommand
             /** @var CategoryAttribute $categoryAttribute */
             foreach ($categoryAttributeList as $categoryAttribute) {
                 if ($process === true) {
-
                     if ($keepAttributes === false) {
                         $io->write("Delete Attributes in Category {$categoryAttribute->getCategoryId()}");
                         $this->categoryAttributeDeleter->delete($categoryAttribute->getCategoryId());
