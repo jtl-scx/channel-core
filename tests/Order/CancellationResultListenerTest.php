@@ -39,7 +39,7 @@ class CancellationResultListenerTest extends TestCase
                         [
                             "sellerId" => $sellerIdStr,
                             "orderCancellationRequestId" => $requestId,
-                            "reason" => $reason
+                            "reason" => $reason,
                         ],
                         JSON_PRETTY_PRINT
                     );

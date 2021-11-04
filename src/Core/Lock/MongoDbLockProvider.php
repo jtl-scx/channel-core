@@ -30,7 +30,7 @@ class MongoDbLockProvider implements LockProvider
     public function delete(string $key): bool
     {
         $result = $this->collection->deleteMany([
-            "lockKey" => $key
+            "lockKey" => $key,
         ]);
 
         return $result->getDeletedCount() > 0;
@@ -41,7 +41,7 @@ class MongoDbLockProvider implements LockProvider
         try {
             $result = $this->collection->insertOne([
                 "lockKey" => $key,
-                "expireAt" => $this->dateTimeConverter->create($expireAt)
+                "expireAt" => $this->dateTimeConverter->create($expireAt),
             ]);
         } catch (RuntimeException $e) {
             return false;
@@ -61,7 +61,7 @@ class MongoDbLockProvider implements LockProvider
                     ],
                     '$setOnInsert' => [
                         "lockKey" => $key,
-                    ]
+                    ],
                 ],
                 ['upsert' => true]
             );
@@ -75,7 +75,7 @@ class MongoDbLockProvider implements LockProvider
     public function isset(string $key): bool
     {
         $result = $this->collection->findOne([
-            "lockKey" => $key
+            "lockKey" => $key,
         ]);
 
         return $result !== null;

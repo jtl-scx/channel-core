@@ -70,7 +70,7 @@ class EventFactoryTest extends TestCase
             [
                 OrderCancellationRequestEvent::class,
                 SellerEventOrderCancellationRequest::class,
-                EventType::SellerOrderCancellationRequest()
+                EventType::SellerOrderCancellationRequest(),
             ],
             [OfferEndEvent::class, SellerEventOfferEnd::class, EventType::SellerOfferEnd()],
             [OfferNewEvent::class, SellerEventOfferNew::class, EventType::SellerOfferNew()],
@@ -82,17 +82,17 @@ class EventFactoryTest extends TestCase
             [
                 AttributesUpdateRequestEvent::class,
                 SellerEventSellerAttributesUpdateRequest::class,
-                EventType::SellerMetaSellerAttributesUpdateRequest()
+                EventType::SellerMetaSellerAttributesUpdateRequest(),
             ],
             [
                 OrderCancellationAcceptedEvent::class,
                 SellerEventOrderCancellationAccepted::class,
-                EventType::SellerOrderCancellationAccept()
+                EventType::SellerOrderCancellationAccept(),
             ],
             [
                 OrderCancellationDeniedEvent::class,
                 SellerEventOrderCancellationDenied::class,
-                EventType::SellerOrderCancellationDenied()
+                EventType::SellerOrderCancellationDenied(),
             ],
             [OrderInvoiceEvent::class, SellerEventOrderInvoice::class, EventType::SellerEventOrderInvoice()],
             [OrderRefundEvent::class, SellerEventOrderRefund::class, EventType::SellerEventOrderRefund()],

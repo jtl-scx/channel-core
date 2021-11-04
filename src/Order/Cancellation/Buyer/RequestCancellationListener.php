@@ -57,7 +57,7 @@ class RequestCancellationListener extends AbstractListener
             'orderId' => $message->getChannelOrderId(),
             'orderItem' => $orderItemList,
             'cancelReason' => new CancelReason($message->getCancelReason()),
-            'message' => $message->getMessage()
+            'message' => $message->getMessage(),
         ]);
     }
 }

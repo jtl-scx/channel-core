@@ -56,7 +56,7 @@ class ImportCategoryTreeCommandTest extends TestCase
         $command = new ImportCategoryTreeCommand($loaderMock, $updaterMock, $this->createStub(ScxLogger::class));
         $commandTester = new CommandTester($command);
         $commandTester->execute([
-            '--dump-categories-to-file' => $testFilePath
+            '--dump-categories-to-file' => $testFilePath,
         ]);
 
         $expectation = <<< CSV

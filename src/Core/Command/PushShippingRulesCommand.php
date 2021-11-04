@@ -66,7 +66,7 @@ class PushShippingRulesCommand extends AbstractCommand
             if (isset($supportedCarrierData['carrierId'], $supportedCarrierData['displayName'])) {
                 $supportedCarrierList[] = new SupportedCarrier([
                     'carrierId' => $supportedCarrierData['carrierId'],
-                    'displayName' => $supportedCarrierData['displayName']
+                    'displayName' => $supportedCarrierData['displayName'],
                 ]);
             }
         }

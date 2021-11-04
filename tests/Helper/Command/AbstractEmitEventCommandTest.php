@@ -49,7 +49,7 @@ class AbstractEmitEventCommandTest extends TestCase
 
         $commandTester = new CommandTester($concreteCmd);
         $commandTester->execute([
-            'jsonFile' => $this->testJsonFile
+            'jsonFile' => $this->testJsonFile,
         ]);
 
         $output = $commandTester->getDisplay();
@@ -71,7 +71,7 @@ class AbstractEmitEventCommandTest extends TestCase
         $commandTester = new CommandTester($concreteCmd);
         $commandTester->execute([
             'jsonFile' => $this->testJsonFile,
-            'sellerId' => 'my_unique_sellerId'
+            'sellerId' => 'my_unique_sellerId',
         ]);
 
         $output = $commandTester->getDisplay();
@@ -101,7 +101,7 @@ class AbstractEmitEventCommandTest extends TestCase
         $this->expectExceptionMessage("Invalid event schema");
         $this->expectExceptionMessage("'channel' can't be null");
         $commandTester->execute([
-            'jsonFile' => $this->testJsonFile
+            'jsonFile' => $this->testJsonFile,
         ]);
     }
 
@@ -113,7 +113,7 @@ class AbstractEmitEventCommandTest extends TestCase
         $commandTester = new CommandTester($concreteCmd);
         $this->expectException(RuntimeException::class);
         $commandTester->execute([
-            'jsonFile' => '/any/unknown.json'
+            'jsonFile' => '/any/unknown.json',
         ]);
     }
 

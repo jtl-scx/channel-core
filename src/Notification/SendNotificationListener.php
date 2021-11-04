@@ -40,7 +40,7 @@ class SendNotificationListener extends AbstractListener
         if ($message->getReference() instanceof NotificationReference) {
             $reference = new ChannelNotificationReference([
                 'id' => $message->getReference()->getId(),
-                'type' => new ChannelNotificationReferenceType($message->getReference()->getType())
+                'type' => new ChannelNotificationReferenceType($message->getReference()->getType()),
             ]);
         }
 

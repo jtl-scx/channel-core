@@ -40,7 +40,7 @@ class MongoDbConnection
                 [
                     'username' => $this->databaseConnectionCredentials->getUser(),
                     'password' => $this->databaseConnectionCredentials->getPassword(),
-                    'readPreference' => 'secondaryPreferred'
+                    'readPreference' => 'secondaryPreferred',
                 ]
             );
         }

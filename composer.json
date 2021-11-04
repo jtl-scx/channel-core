@@ -4,7 +4,7 @@
     "description": "SCX Channel Library",
     "license": "MIT",
     "require": {
-        "php": "^7.4",
+        "php": ">=8.0",
         "ext-curl": "*",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.2",
@@ -12,7 +12,7 @@
         "jtl/nachricht": "^0.13",
         "monolog/monolog": "^2.0",
         "myclabs/php-enum": "^1.7",
-        "php-amqplib/php-amqplib": "^v2.12",
+        "php-amqplib/php-amqplib": "^v3.1",
         "psr/log": "^1.1",
         "symfony/config": "^5.1",
         "symfony/console": "^5.1",

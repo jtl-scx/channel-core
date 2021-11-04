@@ -19,7 +19,7 @@ class AttributeEnumValueListTest extends TestCase
     {
         $data = [
             'value1',
-            'value2'
+            'value2',
         ];
         $list = AttributeEnumValueList::fromScalarArray($data);
 

@@ -24,7 +24,7 @@ class EmitChannelNotificationCommandTest extends AbstractEmitterCommandTestCaseH
     {
         $args = [
             'sellerId' => uniqid('seller'),
-            'message' => uniqid('message')
+            'message' => uniqid('message'),
         ];
         $emitterMock = $this->createEmitterMock();
         $out = $this->buildAndRunCommand($emitterMock, $args);
@@ -40,7 +40,7 @@ class EmitChannelNotificationCommandTest extends AbstractEmitterCommandTestCaseH
         $args = [
             'sellerId' => uniqid('seller'),
             'message' => uniqid('message'),
-            '--warning' => null
+            '--warning' => null,
         ];
         $emitterMock = $this->createEmitterMock();
         $out = $this->buildAndRunCommand($emitterMock, $args);
@@ -56,7 +56,7 @@ class EmitChannelNotificationCommandTest extends AbstractEmitterCommandTestCaseH
         $args = [
             'sellerId' => uniqid('seller'),
             'message' => uniqid('message'),
-            '--error' => null
+            '--error' => null,
         ];
         $emitterMock = $this->createEmitterMock();
         $out = $this->buildAndRunCommand($emitterMock, $args);
@@ -73,7 +73,7 @@ class EmitChannelNotificationCommandTest extends AbstractEmitterCommandTestCaseH
         $args = [
             'sellerId' => uniqid('seller'),
             'message' => uniqid('message'),
-            '--offerId' => $testReferenceId
+            '--offerId' => $testReferenceId,
         ];
         $emitterMock = $this->createEmitterMock();
         $out = $this->buildAndRunCommand($emitterMock, $args);
@@ -90,7 +90,7 @@ class EmitChannelNotificationCommandTest extends AbstractEmitterCommandTestCaseH
         $args = [
             'sellerId' => uniqid('seller'),
             'message' => uniqid('message'),
-            '--orderItemId' => $testReferenceId
+            '--orderItemId' => $testReferenceId,
         ];
         $emitterMock = $this->createEmitterMock();
         $out = $this->buildAndRunCommand($emitterMock, $args);

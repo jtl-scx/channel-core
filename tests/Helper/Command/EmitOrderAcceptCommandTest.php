@@ -34,7 +34,7 @@ JSON;
         );
         $commandTest->execute([
             'jsonFile' => $testJsonFile,
-            'sellerId' => uniqid('sellerId')
+            'sellerId' => uniqid('sellerId'),
         ]);
     }
 }

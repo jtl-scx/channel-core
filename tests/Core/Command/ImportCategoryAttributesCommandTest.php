@@ -43,7 +43,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $deleterMock, $this->createStub(ScxLogger::class));
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
-            'categoryId' => $testCategoryId
+            'categoryId' => $testCategoryId,
         ]);
 
         $this->assertEquals(0, $cmdTester->getStatusCode());
@@ -72,7 +72,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
             'categoryId' => $testCategoryId,
-            '--process' => true
+            '--process' => true,
         ]);
 
         $this->assertEquals(0, $cmdTester->getStatusCode());
@@ -98,7 +98,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $deleterMock, $this->createStub(ScxLogger::class));
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
-            'categoryId' => $testCategoryId
+            'categoryId' => $testCategoryId,
         ]);
 
         $this->assertEquals(0, $cmdTester->getStatusCode());
@@ -134,7 +134,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
             '--import-csv-list' => $testFilePath,
-            '--process' => true
+            '--process' => true,
         ]);
 
         $this->assertEquals(0, $cmdTester->getStatusCode());

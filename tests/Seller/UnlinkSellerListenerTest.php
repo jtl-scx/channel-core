@@ -26,7 +26,7 @@ class UnlinkSellerListenerTest extends TestCase
             ->with(self::callback(function (UnlinkSellerRequest $request) use ($sellerId, $reason) {
                 $expected = [
                     'sellerId' => (string)$sellerId,
-                    'reason' => $reason
+                    'reason' => $reason,
                 ];
                 return $request->getParams() === $expected;
             }))->willReturn($unlinkSellerResponseMock);
@@ -47,7 +47,7 @@ class UnlinkSellerListenerTest extends TestCase
             ->with(self::callback(function (UnlinkSellerRequest $request) use ($sellerId, $reason) {
                 $expected = [
                     'sellerId' => (string)$sellerId,
-                    'reason' => $reason
+                    'reason' => $reason,
                 ];
                 return $request->getParams() === $expected;
             }))->willReturn($unlinkSellerResponseMock);

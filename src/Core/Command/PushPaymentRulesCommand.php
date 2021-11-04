@@ -66,7 +66,7 @@ class PushPaymentRulesCommand extends AbstractCommand
             if (isset($supportedPaymentData['paymentMethodId'], $supportedPaymentData['displayName'])) {
                 $supportedPaymentMethodList[] = new SupportedPaymentMethod([
                     'paymentMethodId' => $supportedPaymentData['paymentMethodId'],
-                    'displayName' => $supportedPaymentData['displayName']
+                    'displayName' => $supportedPaymentData['displayName'],
                 ]);
             }
         }

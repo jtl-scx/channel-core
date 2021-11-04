@@ -28,7 +28,7 @@ class ToArrayTraitTest extends TestCase
         $collection->add(new MyTestClass($a, $b, $c, $d, $e));
 
         self::assertSame([
-            ["a" => $a, "b" => $b, "c" => $c->format('c'), "d" => $d, 'e' => ['a' => $a]]
+            ["a" => $a, "b" => $b, "c" => $c->format('c'), "d" => $d, 'e' => ['a' => $a]],
         ], $collection->toArray());
     }
 

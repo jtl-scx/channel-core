@@ -59,7 +59,7 @@ class RequestCancellationListenerTest extends TestCase
                 $this->assertCorrectProperty($request, 'message', 'A_MESSAGE');
                 $this->assertCorrectProperty($request, 'orderItem', [
                     (object)['orderItemId' => '1', 'quantity' => "1.0"],
-                    (object)['orderItemId' => '2', 'quantity' => "2.0"]
+                    (object)['orderItemId' => '2', 'quantity' => "2.0"],
                 ]);
                 return true;
             }));

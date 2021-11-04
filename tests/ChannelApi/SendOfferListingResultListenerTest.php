@@ -59,10 +59,10 @@ class SendOfferListingResultListenerTest extends TestCase
                                 'offerId' => (int)$sellerOfferId,
                                 'failedAt' => $failedAt->format('c'),
                                 'errorList' => [
-                                    ['code' => $errorCode, 'message' => $errorMsg]
-                                ]
-                            ]
-                        ]
+                                    ['code' => $errorCode, 'message' => $errorMsg],
+                                ],
+                            ],
+                        ],
                     ],
                     json_decode($json, true)
                 );
@@ -126,9 +126,9 @@ class SendOfferListingResultListenerTest extends TestCase
                                 'offerId' => $sellerOfferId,
                                 'listedAt' => $listedAt->format('c'),
                                 'channelOfferId' => $channelOfferId,
-                                'listingUrl' => $listingUrl
-                            ]
-                        ]
+                                'listingUrl' => $listingUrl,
+                            ],
+                        ],
                     ],
                     json_decode($json, true)
                 );
