@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8bbd5af1c8454a45fcc8c6120268536a",
+    "content-hash": "57a7c61fcfceb062a81125c29e4f3016",
     "packages": [
         {
             "name": "brick/math",
@@ -533,16 +533,16 @@
         },
         {
             "name": "jtl-scx/channel-api-client",
-            "version": "dev-EA-4041",
+            "version": "0.51.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-scx/channel-api-client.git",
-                "reference": "2784ef82cc50368305dd127ac3156d934042cc30"
+                "reference": "341f4b7c1e333f27c191556b90ffc20c6e43817d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/2784ef82cc50368305dd127ac3156d934042cc30",
-                "reference": "2784ef82cc50368305dd127ac3156d934042cc30",
+                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/341f4b7c1e333f27c191556b90ffc20c6e43817d",
+                "reference": "341f4b7c1e333f27c191556b90ffc20c6e43817d",
                 "shasum": ""
             },
             "require": {
@@ -576,9 +576,9 @@
             "description": "API Client for SCX Channel API",
             "support": {
                 "issues": "https://github.com/jtl-scx/channel-api-client/issues",
-                "source": "https://github.com/jtl-scx/channel-api-client/tree/EA-4041"
+                "source": "https://github.com/jtl-scx/channel-api-client/tree/0.51.0"
             },
-            "time": "2021-11-02T14:14:21+00:00"
+            "time": "2021-11-08T15:42:35+00:00"
         },
         {
             "name": "jtl/nachricht",
@@ -6346,9 +6346,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "jtl-scx/channel-api-client": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
