@@ -12,7 +12,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.0'
           extensions: mongodb-mongodb/mongo-php-driver@v1.9
 
       - name: Checkout Code
@@ -32,7 +32,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.0'
 
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -51,8 +51,7 @@ jobs:
       fail-fast: false
       matrix:
         php-version:
-          - "7.4"
-          # - "8.0" - allow php8 once dependencies are ready
+          - "8.0"
 
     steps:
       - name: "Install PHP"
@@ -75,23 +74,3 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-
-  testing-php80-experimental:
-
-    runs-on: ubuntu-20.04
-
-    steps:
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.0'
-          extensions: mongodb-mongodb/mongo-php-driver@v1.9
-          
-      - uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: composer install --no-progress || true
-
-      - name: Run test suite (experimental)
-        run: vendor/bin/phpunit || true
-
