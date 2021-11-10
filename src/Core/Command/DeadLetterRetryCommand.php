@@ -185,17 +185,17 @@ class DeadLetterRetryCommand extends AbstractCommand
         }
 
         $answer = $this->io->ask('Please select a queue to process');
-        $queues = array_values($queueList);
 
         if (is_numeric($answer)) {
+            $printQueueKeys = array_keys($printQueues);
             $this->processQueue(
-                $queues[(int)$answer],
+                $printQueueKeys[(int)$answer],
                 $interactive,
                 $defaultAction,
                 $resetReceives,
                 $olderThan,
                 $filterByLastError,
-                $printQueues[$queues[(int)$answer]]
+                $printQueues[$printQueueKeys[(int)$answer]]
             );
         }
     }
