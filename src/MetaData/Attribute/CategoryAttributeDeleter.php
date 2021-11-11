@@ -10,7 +10,6 @@ namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
 use GuzzleHttp\Exception\GuzzleException;
 use JTL\SCX\Client\Channel\Api\Attribute\AttributesApi;
-use JTL\SCX\Client\Channel\Api\Attribute\Request\DeleteCategoryAttributesRequest;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 
@@ -28,12 +27,10 @@ class CategoryAttributeDeleter
      * @throws RequestFailedException
      * @throws UnexpectedStatusException
      */
-    public function delete(): void
+    public function delete(string $categoryId): void
     {
-        $request = new DeleteCategoryAttributesRequest();
-        $response = $this->client->deleteCategoryAttributes($request);
-
-        if ($response->getStatusCode() !== 201) {
+        $response = $this->client->deleteCategoryAttributes($categoryId);
+        if (!$response->isSuccessful()) {
             throw new UnexpectedStatusException("Could not delete category attributes. Request returned status code {$response->getStatusCode()}");
         }
     }

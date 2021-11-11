@@ -28,20 +28,22 @@ class CategoryAttributeDeleterTest extends TestCase
      */
     public function canDeleteAttributes(): void
     {
+        $testCategoryId = 'A_CATEGORY_ID';
+
         $api = $this->createMock(AttributesApi::class);
         $response = $this->createMock(AttributesDeletedResponse::class);
 
         $api->expects(self::once())
             ->method('deleteCategoryAttributes')
-            ->with(self::isInstanceOf(DeleteCategoryAttributesRequest::class))
+            ->with($testCategoryId)
             ->willReturn($response);
 
         $response->expects(self::once())
-            ->method('getStatusCode')
-            ->willReturn(201);
+            ->method('isSuccessful')
+            ->willReturn(true);
 
         $deleter = new CategoryAttributeDeleter($api);
-        $deleter->delete();
+        $deleter->delete($testCategoryId);
     }
 
     /**
@@ -49,20 +51,22 @@ class CategoryAttributeDeleterTest extends TestCase
      */
     public function failIfApiDoesNotReturnHttp201(): void
     {
+        $testCategoryId = 'A_CATEGORY_ID';
+
         $api = $this->createMock(AttributesApi::class);
         $response = $this->createMock(AttributesDeletedResponse::class);
 
         $api->expects(self::once())
             ->method('deleteCategoryAttributes')
-            ->with(self::isInstanceOf(DeleteCategoryAttributesRequest::class))
+            ->with($testCategoryId)
             ->willReturn($response);
 
-        $response->expects(self::exactly(2))
-            ->method('getStatusCode')
-            ->willReturn(random_int(500, 520));
+        $response->expects(self::once())
+            ->method('isSuccessful')
+            ->willReturn(false);
 
         $deleter = new CategoryAttributeDeleter($api);
         $this->expectException(UnexpectedStatusException::class);
-        $deleter->delete();
+        $deleter->delete($testCategoryId);
     }
 }

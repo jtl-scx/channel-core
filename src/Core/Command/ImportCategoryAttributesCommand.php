@@ -86,20 +86,19 @@ class ImportCategoryAttributesCommand extends AbstractCommand
                 '0'
             )
             ->addOption(
-                'prune',
+                'keep-attributes',
                 null,
-                InputOption::VALUE_REQUIRED,
-                'Delete all categories before sending them',
-                true
+                InputOption::VALUE_NONE,
+                'Set flag to keep existing Category Attributes. The default behaviour will delete existing attributes first.'
             );
     }
 
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
+     * @return int
      * @throws GuzzleException
      * @throws RequestFailedException
-     * @throws RequestValidationFailedException
      * @throws UnexpectedStatusException
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -110,7 +109,7 @@ class ImportCategoryAttributesCommand extends AbstractCommand
         $process = $input->getOption('process');
 
         $importFile = $input->getOption('import-csv-list');
-        $prune = (bool)$input->getOption('prune');
+        $keepAttributes = $input->getOption('keep-attributes');
 
         if ($process === false) {
             $this->io->warning("There is no --process option given - attributes are NOT send to SCX-Channel-Api");
@@ -125,10 +124,10 @@ class ImportCategoryAttributesCommand extends AbstractCommand
 
             $file = fopen($importFile, "r");
             while (($row = fgetcsv($file, 0, $delimiter, $enclosure)) !== false) {
-                $this->import(trim($row[$column]), $process, $io, $prune);
+                $this->import(trim($row[$column]), $process, $io, $keepAttributes);
             }
         } else {
-            $this->import($categoryId, $process, $io, $prune);
+            $this->import($categoryId, $process, $io, $keepAttributes);
         }
 
         return 0;
@@ -138,12 +137,12 @@ class ImportCategoryAttributesCommand extends AbstractCommand
      * @param string|null $categoryId
      * @param bool $process
      * @param SymfonyStyle $io
-     * @param bool $prune
+     * @param bool $keepAttributes
      * @throws GuzzleException
      * @throws RequestFailedException
      * @throws UnexpectedStatusException
      */
-    private function import(?string $categoryId, bool $process, SymfonyStyle $io, bool $prune): void
+    private function import(?string $categoryId, bool $process, SymfonyStyle $io, bool $keepAttributes): void
     {
         $io->write("Fetch CategoryAttributes for");
         if ($categoryId === null) {
@@ -151,21 +150,21 @@ class ImportCategoryAttributesCommand extends AbstractCommand
         } else {
             $io->write(" '{$categoryId}'");
         }
-        $categoryIdList = is_null($categoryId)?null: [$categoryId];
+        $categoryIdList = is_null($categoryId) ? null : [$categoryId];
         $categoryAttributeList = $this->categoryAttributeLoader->fetch($categoryIdList);
         $io->writeln(" ... done");
-
-        if ($prune) {
-            $io->write('Pruning channel categories...');
-            $this->categoryAttributeDeleter->delete();
-            $io->writeln('done');
-        }
 
         if ($categoryAttributeList instanceof CategoryAttributeList) {
             /** @var CategoryAttribute $categoryAttribute */
             foreach ($categoryAttributeList as $categoryAttribute) {
                 if ($process === true) {
-                    $io->write("Update Category {$categoryAttribute->getCategoryId()} with {$categoryAttribute->getAttributeList()->count()} Attributes");
+                    if ($keepAttributes === false) {
+                        $io->write("Delete Attributes in Category {$categoryAttribute->getCategoryId()}");
+                        $this->categoryAttributeDeleter->delete($categoryAttribute->getCategoryId());
+                        $io->writeln(' ... done');
+                    }
+
+                    $io->write("Update Category Id: {$categoryAttribute->getCategoryId()} with {$categoryAttribute->getAttributeList()->count()} Attributes");
                     $this->attributeUpdater->update($categoryAttribute);
                     $io->writeln(" ... done");
                 } else {
