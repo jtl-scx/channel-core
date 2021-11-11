@@ -52,6 +52,7 @@ jobs:
       matrix:
         php-version:
           - "8.0"
+          - "8.1"
 
     steps:
       - name: "Install PHP"
@@ -65,7 +66,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: "Install dependencies"
-        run: composer install --no-progress
+        run: composer install --no-progress --ignore-platform-req=php
 
       - name: "Run test suite"
         run: vendor/bin/phpunit --coverage-clover=coverage.xml
