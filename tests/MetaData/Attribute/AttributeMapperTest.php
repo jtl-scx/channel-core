@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
-use JTL\SCX\Client\Channel\Model\Attribute as ClientAttribute;
+use JTL\SCX\Lib\Channel\Client\Model\Attribute as ClientAttribute;
 use PHPUnit\Framework\TestCase;
 
 /**

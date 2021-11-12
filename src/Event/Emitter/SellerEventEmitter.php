@@ -9,7 +9,7 @@
 namespace JTL\SCX\Lib\Channel\Event\Emitter;
 
 use JTL\Nachricht\Contract\Emitter\Emitter;
-use JTL\SCX\Client\Channel\Api\Event\Model\EventContainerList;
+use JTL\SCX\Lib\Channel\Client\Api\Event\Model\EventContainerList;
 use JTL\SCX\Lib\Channel\Event\EventFactory;
 use Psr\Log\LoggerInterface;
 use Throwable;

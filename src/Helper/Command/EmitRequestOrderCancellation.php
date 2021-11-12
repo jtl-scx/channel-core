@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
-use JTL\SCX\Client\Channel\Event\EventType;
+use JTL\SCX\Lib\Channel\Client\Event\EventType;
 use Symfony\Component\Console\Input\InputOption;
 
 class EmitRequestOrderCancellation extends AbstractEmitEventCommand

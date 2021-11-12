@@ -7,7 +7,7 @@
  */
 namespace JTL\SCX\Lib\Channel\Notification;
 
-use JTL\SCX\Client\Channel\Model\ChannelNotificationReferenceType;
+use JTL\SCX\Lib\Channel\Client\Model\ChannelNotificationReferenceType;
 use PHPUnit\Framework\TestCase;
 
 /**

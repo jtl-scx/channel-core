@@ -8,9 +8,9 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
-use JTL\SCX\Client\Channel\Api\Attribute\AttributesApi;
-use JTL\SCX\Client\Channel\Api\Attribute\Request\CreateGlobalAttributesRequest;
-use JTL\SCX\Client\Channel\Model\AttributeList as ClientAttributeList;
+use JTL\SCX\Lib\Channel\Client\Api\Attribute\AttributesApi;
+use JTL\SCX\Lib\Channel\Client\Api\Attribute\Request\CreateGlobalAttributesRequest;
+use JTL\SCX\Lib\Channel\Client\Model\AttributeList as ClientAttributeList;
 
 class GlobalAttributeSender
 {

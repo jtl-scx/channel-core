@@ -8,9 +8,9 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
-use JTL\SCX\Client\Channel\Api\Meta\PaymentRulesApi;
-use JTL\SCX\Client\Channel\Api\Meta\Request\CreatePaymentRulesRequest;
-use JTL\SCX\Client\Channel\Api\Meta\Response\CreatePaymentRulesResponse;
+use JTL\SCX\Lib\Channel\Client\Api\Meta\PaymentRulesApi;
+use JTL\SCX\Lib\Channel\Client\Api\Meta\Request\CreatePaymentRulesRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Meta\Response\CreatePaymentRulesResponse;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Helper\FileHandler;

@@ -8,9 +8,9 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
-use JTL\SCX\Client\Channel\Api\Attribute\AttributesApi;
-use JTL\SCX\Client\Channel\Api\Attribute\Request\DeleteCategoryAttributesRequest;
-use JTL\SCX\Client\Channel\Api\Attribute\Response\AttributesDeletedResponse;
+use JTL\SCX\Lib\Channel\Client\Api\Attribute\AttributesApi;
+use JTL\SCX\Lib\Channel\Client\Api\Attribute\Request\DeleteCategoryAttributesRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Attribute\Response\AttributesDeletedResponse;
 use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 use PHPUnit\Framework\TestCase;
 

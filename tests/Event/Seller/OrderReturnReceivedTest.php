@@ -3,7 +3,7 @@
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
 use DateTimeImmutable;
-use JTL\SCX\Client\Channel\Model\SellerEventOrderReturnReceived;
+use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderReturnReceived;
 use PHPUnit\Framework\TestCase;
 
 /**

@@ -9,7 +9,7 @@
 namespace JTL\SCX\Lib\Channel\MetaData\Price;
 
 use InvalidArgumentException;
-use JTL\SCX\Client\Channel\Model\PriceType;
+use JTL\SCX\Lib\Channel\Client\Model\PriceType;
 use JTL\SCX\Lib\Channel\Helper\FileHandler;
 use PHPUnit\Framework\TestCase;
 

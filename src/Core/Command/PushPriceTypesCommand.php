@@ -9,9 +9,9 @@
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
 use Exception;
-use JTL\SCX\Client\Channel\Api\Price\PriceApi;
-use JTL\SCX\Client\Channel\Api\Price\Request\CreatePriceTypeRequest;
-use JTL\SCX\Client\Channel\Model\PriceType;
+use JTL\SCX\Lib\Channel\Client\Api\Price\PriceApi;
+use JTL\SCX\Lib\Channel\Client\Api\Price\Request\CreatePriceTypeRequest;
+use JTL\SCX\Lib\Channel\Client\Model\PriceType;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\MetaData\Price\PriceTypeLoader;
 use Symfony\Component\Console\Input\InputArgument;

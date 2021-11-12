@@ -3,7 +3,7 @@
 namespace JTL\SCX\Lib\Channel\Order\Refunds;
 
 use JTL\Nachricht\Message\AbstractAmqpTransportableMessage;
-use JTL\SCX\Client\Channel\Model\ReturnAnnouncement;
+use JTL\SCX\Lib\Channel\Client\Model\ReturnAnnouncement;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\ChannelOrderIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;

@@ -2,7 +2,7 @@
 
 namespace JTL\SCX\Lib\Channel\Order\Refunds;
 
-use JTL\SCX\Client\Channel\Model\ReturnAnnouncement;
+use JTL\SCX\Lib\Channel\Client\Model\ReturnAnnouncement;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

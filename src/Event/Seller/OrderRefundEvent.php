@@ -9,8 +9,8 @@
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
 use DateTimeImmutable;
-use JTL\SCX\Client\Channel\Event\EventType;
-use JTL\SCX\Client\Channel\Model\SellerEventOrderRefund;
+use JTL\SCX\Lib\Channel\Client\Event\EventType;
+use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderRefund;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\ChannelOrderIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\RefundIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerIdRelatedMessage;

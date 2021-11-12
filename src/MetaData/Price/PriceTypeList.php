@@ -8,7 +8,7 @@
 namespace JTL\SCX\Lib\Channel\MetaData\Price;
 
 use JTL\Generic\GenericCollection;
-use JTL\SCX\Client\Channel\Model\PriceType;
+use JTL\SCX\Lib\Channel\Client\Model\PriceType;
 
 class PriceTypeList extends GenericCollection
 {

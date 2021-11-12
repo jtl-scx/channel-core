@@ -9,10 +9,10 @@
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
 use Exception;
-use JTL\SCX\Client\Channel\Api\Meta\PaymentRulesApi;
-use JTL\SCX\Client\Channel\Api\Meta\Request\CreatePaymentRulesRequest;
-use JTL\SCX\Client\Channel\Model\PaymentRules;
-use JTL\SCX\Client\Channel\Model\SupportedPaymentMethod;
+use JTL\SCX\Lib\Channel\Client\Api\Meta\PaymentRulesApi;
+use JTL\SCX\Lib\Channel\Client\Api\Meta\Request\CreatePaymentRulesRequest;
+use JTL\SCX\Lib\Channel\Client\Model\PaymentRules;
+use JTL\SCX\Lib\Channel\Client\Model\SupportedPaymentMethod;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Helper\FileHandler;
 use Symfony\Component\Console\Input\InputArgument;

@@ -8,8 +8,8 @@
 
 namespace JTL\SCX\Lib\Channel\Notification;
 
-use JTL\SCX\Client\Channel\Api\Notification\NotificationApi;
-use JTL\SCX\Client\Channel\Api\Notification\Request\NotificationRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Notification\NotificationApi;
+use JTL\SCX\Lib\Channel\Client\Api\Notification\Request\NotificationRequest;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use PHPUnit\Framework\TestCase;
 

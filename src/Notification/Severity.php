@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\Notification;
 
-use JTL\SCX\Client\Channel\Model\ChannelNotificationSeverity;
+use JTL\SCX\Lib\Channel\Client\Model\ChannelNotificationSeverity;
 use MyCLabs\Enum\Enum;
 
 /**

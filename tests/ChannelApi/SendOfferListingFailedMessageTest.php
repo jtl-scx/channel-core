@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\ChannelApi;
 
-use JTL\SCX\Client\Channel\Model\ErrorResponseList;
+use JTL\SCX\Lib\Channel\Client\Model\ErrorResponseList;
 use JTL\SCX\Lib\Channel\ChannelApi\ListingFailedErrorList;
 use JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingFailedMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;

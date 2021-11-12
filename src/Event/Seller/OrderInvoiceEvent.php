@@ -9,8 +9,8 @@
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
 use DateTimeImmutable;
-use JTL\SCX\Client\Channel\Event\EventType;
-use JTL\SCX\Client\Channel\Model\SellerEventOrderInvoice;
+use JTL\SCX\Lib\Channel\Client\Event\EventType;
+use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderInvoice;
 use JTL\SCX\Lib\Channel\Event\AbstractEvent;
 
 class OrderInvoiceEvent extends AbstractEvent

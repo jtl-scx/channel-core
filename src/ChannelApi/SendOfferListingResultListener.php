@@ -9,14 +9,14 @@
 namespace JTL\SCX\Lib\Channel\ChannelApi;
 
 use GuzzleHttp\Exception\GuzzleException;
-use JTL\SCX\Client\Channel\Api\Offer\OfferApi;
-use JTL\SCX\Client\Channel\Api\Offer\Request\MarkListingAsFailedRequest;
-use JTL\SCX\Client\Channel\Api\Offer\Request\MarkListingInProgressRequest;
-use JTL\SCX\Client\Channel\Api\Offer\Request\MarkListingSuccessfulRequest;
-use JTL\SCX\Client\Channel\Model\OfferListingFailed;
-use JTL\SCX\Client\Channel\Model\OfferListingFailedError;
-use JTL\SCX\Client\Channel\Model\OfferListingInProgress;
-use JTL\SCX\Client\Channel\Model\OfferListingSuccessful;
+use JTL\SCX\Lib\Channel\Client\Api\Offer\OfferApi;
+use JTL\SCX\Lib\Channel\Client\Api\Offer\Request\MarkListingAsFailedRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Offer\Request\MarkListingInProgressRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Offer\Request\MarkListingSuccessfulRequest;
+use JTL\SCX\Lib\Channel\Client\Model\OfferListingFailed;
+use JTL\SCX\Lib\Channel\Client\Model\OfferListingFailedError;
+use JTL\SCX\Lib\Channel\Client\Model\OfferListingInProgress;
+use JTL\SCX\Lib\Channel\Client\Model\OfferListingSuccessful;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Message\AbstractListener;

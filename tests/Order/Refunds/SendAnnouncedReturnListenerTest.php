@@ -2,9 +2,9 @@
 
 namespace JTL\SCX\Lib\Channel\Order\Refunds;
 
-use JTL\SCX\Client\Channel\Api\Order\OrderApi;
-use JTL\SCX\Client\Channel\Api\Order\Request\ReturnOrderRequest;
-use JTL\SCX\Client\Channel\Model\ReturnAnnouncement;
+use JTL\SCX\Lib\Channel\Client\Api\Order\OrderApi;
+use JTL\SCX\Lib\Channel\Client\Api\Order\Request\ReturnOrderRequest;
+use JTL\SCX\Lib\Channel\Client\Model\ReturnAnnouncement;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use PHPUnit\Framework\TestCase;
 

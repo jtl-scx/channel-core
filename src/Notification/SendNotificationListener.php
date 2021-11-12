@@ -9,12 +9,12 @@
 namespace JTL\SCX\Lib\Channel\Notification;
 
 use GuzzleHttp\Exception\GuzzleException;
-use JTL\SCX\Client\Channel\Api\Notification\NotificationApi;
-use JTL\SCX\Client\Channel\Api\Notification\Request\NotificationRequest;
-use JTL\SCX\Client\Channel\Model\ChannelNotificationReference;
-use JTL\SCX\Client\Channel\Model\ChannelNotificationReferenceType;
-use JTL\SCX\Client\Channel\Model\ChannelNotificationSeverity;
-use JTL\SCX\Client\Channel\Model\Notification;
+use JTL\SCX\Lib\Channel\Client\Api\Notification\NotificationApi;
+use JTL\SCX\Lib\Channel\Client\Api\Notification\Request\NotificationRequest;
+use JTL\SCX\Lib\Channel\Client\Model\ChannelNotificationReference;
+use JTL\SCX\Lib\Channel\Client\Model\ChannelNotificationReferenceType;
+use JTL\SCX\Lib\Channel\Client\Model\ChannelNotificationSeverity;
+use JTL\SCX\Lib\Channel\Client\Model\Notification;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Message\AbstractListener;

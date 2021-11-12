@@ -2,11 +2,11 @@
 
 namespace JTL\SCX\Lib\Channel\Event\Command;
 
-use JTL\SCX\Client\Channel\Api\Event\EventApi;
-use JTL\SCX\Client\Channel\Api\Event\Model\ErroneousEvent;
-use JTL\SCX\Client\Channel\Api\Event\Model\EventContainerList;
-use JTL\SCX\Client\Channel\Api\Event\Request\AcknowledgeEventIdListRequest;
-use JTL\SCX\Client\Channel\Api\Event\Response\GetSellerEventListResponse;
+use JTL\SCX\Lib\Channel\Client\Api\Event\EventApi;
+use JTL\SCX\Lib\Channel\Client\Api\Event\Model\ErroneousEvent;
+use JTL\SCX\Lib\Channel\Client\Api\Event\Model\EventContainerList;
+use JTL\SCX\Lib\Channel\Client\Api\Event\Request\AcknowledgeEventIdListRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Event\Response\GetSellerEventListResponse;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Event\Emitter\SellerEventEmitter;
 use PHPUnit\Framework\TestCase;
@@ -147,7 +147,7 @@ class ScxApiEventConsumeCommandTest extends TestCase
 
     /**
      * @param $testEvents
-     * @return \JTL\SCX\Client\Channel\Api\Event\Response\GetSellerEventListResponse|\PHPUnit\Framework\MockObject\Stub
+     * @return \JTL\SCX\Lib\Channel\Client\Api\Event\Response\GetSellerEventListResponse|\PHPUnit\Framework\MockObject\Stub
      */
     protected function buildEventApiResponse($testEvents = null)
     {
