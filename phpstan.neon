@@ -2,3 +2,7 @@ parameters:
     level: 5
     paths:
         - src
+    excludePaths:
+        - src/Client/Api
+        - src/Client/Model
+        - src/Client/ObjectSerializer.php
