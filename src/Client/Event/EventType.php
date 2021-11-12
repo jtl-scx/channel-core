@@ -82,7 +82,7 @@ class EventType extends Enum
     /**
      * EventType constructor.
      * @psalm-suppress MissingImmutableAnnotation
-     * @param $value
+     * @param mixed $value
      */
     public function __construct($value)
     {
