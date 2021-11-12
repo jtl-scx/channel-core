@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData;
 
-use JTL\SCX\Client\Channel\Model\Category;
+use JTL\SCX\Lib\Channel\Client\Model\Category;
 
 class CategoryMapper
 {

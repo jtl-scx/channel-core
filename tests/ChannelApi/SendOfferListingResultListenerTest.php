@@ -9,9 +9,9 @@
 namespace JTL\SCX\Lib\Channel\ChannelApi;
 
 use DateTime;
-use JTL\SCX\Client\Channel\Api\Offer\OfferApi;
-use JTL\SCX\Client\Channel\Api\Offer\Request\MarkListingAsFailedRequest;
-use JTL\SCX\Client\Channel\Api\Offer\Request\MarkListingSuccessfulRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Offer\OfferApi;
+use JTL\SCX\Lib\Channel\Client\Api\Offer\Request\MarkListingAsFailedRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Offer\Request\MarkListingSuccessfulRequest;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingFailedMessage;
 use JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingInProgressMessage;

@@ -8,8 +8,8 @@
 
 namespace JTL\SCX\Lib\Channel\Report\SellerInventory\Client;
 
-use JTL\SCX\Client\Channel\Api\Report\ReportApi;
-use JTL\SCX\Client\Channel\Api\Report\Request\SendReportRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Report\ReportApi;
+use JTL\SCX\Lib\Channel\Client\Api\Report\Request\SendReportRequest;
 use JTL\SCX\Lib\Channel\Report\SellerInventory\Model\InventoryItemList;
 
 class SendInventoryReportClient

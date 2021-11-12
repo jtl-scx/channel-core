@@ -8,8 +8,8 @@
 
 namespace JTL\SCX\Lib\Channel\Order;
 
-use JTL\SCX\Client\Channel\Api\Order\OrderApi;
-use JTL\SCX\Client\Channel\Api\Order\Request\RequestOrderCancellationRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Order\OrderApi;
+use JTL\SCX\Lib\Channel\Client\Api\Order\Request\RequestOrderCancellationRequest;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\OrderCancellationItem;
 use JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\OrderCancellationItemList;

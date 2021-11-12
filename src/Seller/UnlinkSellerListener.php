@@ -3,8 +3,8 @@
 
 namespace JTL\SCX\Lib\Channel\Seller;
 
-use JTL\SCX\Client\Channel\Api\Seller\Request\UnlinkSellerRequest;
-use JTL\SCX\Client\Channel\Api\Seller\SellerApi;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UnlinkSellerRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\SellerApi;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Message\AbstractListener;
 

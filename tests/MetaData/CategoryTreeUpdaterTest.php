@@ -8,9 +8,9 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData;
 
-use JTL\SCX\Client\Channel\Api\Category\CategoryApi;
-use JTL\SCX\Client\Channel\Api\Category\Response\UpdateCategoryTreeResponse;
-use JTL\SCX\Client\Channel\Model\CategoryTreeVersion;
+use JTL\SCX\Lib\Channel\Client\Api\Category\CategoryApi;
+use JTL\SCX\Lib\Channel\Client\Api\Category\Response\UpdateCategoryTreeResponse;
+use JTL\SCX\Lib\Channel\Client\Model\CategoryTreeVersion;
 use PHPUnit\Framework\TestCase;
 
 /**

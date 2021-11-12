@@ -8,8 +8,8 @@
 
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
-use JTL\SCX\Client\Channel\Event\EventType;
-use JTL\SCX\Client\Channel\Model\SellerEventOfferUpdate;
+use JTL\SCX\Lib\Channel\Client\Event\EventType;
+use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferUpdate;
 use JTL\SCX\Lib\Channel\Event\AbstractEvent;
 
 class OfferUpdateEvent extends AbstractEvent

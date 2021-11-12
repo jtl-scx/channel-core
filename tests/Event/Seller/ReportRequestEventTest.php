@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
-use JTL\SCX\Client\Channel\Model\SellerEventReportRequest;
+use JTL\SCX\Lib\Channel\Client\Model\SellerEventReportRequest;
 use PHPUnit\Framework\TestCase;
 
 /**

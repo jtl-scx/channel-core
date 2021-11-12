@@ -4,7 +4,7 @@
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
 use JTL\Nachricht\Emitter\AmqpEmitter;
-use JTL\SCX\Client\Channel\Api\ChannelApiResponseDeserializer;
+use JTL\SCX\Lib\Channel\Client\Api\ChannelApiResponseDeserializer;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
 use JTL\SCX\Lib\Channel\Event\EventFactory;

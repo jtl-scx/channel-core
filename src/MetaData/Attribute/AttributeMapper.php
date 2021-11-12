@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
-use JTL\SCX\Client\Channel\Model\Attribute as ScxAttribute;
+use JTL\SCX\Lib\Channel\Client\Model\Attribute as ScxAttribute;
 
 class AttributeMapper
 {

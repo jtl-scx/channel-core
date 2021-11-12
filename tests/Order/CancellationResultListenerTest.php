@@ -8,9 +8,9 @@
 
 namespace JTL\SCX\Lib\Channel\Order;
 
-use JTL\SCX\Client\Channel\Api\Order\OrderApi;
-use JTL\SCX\Client\Channel\Api\Order\Request\AcceptCancellationRequest;
-use JTL\SCX\Client\Channel\Api\Order\Request\DenyCancellationRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Order\OrderApi;
+use JTL\SCX\Lib\Channel\Client\Api\Order\Request\AcceptCancellationRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Order\Request\DenyCancellationRequest;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Order\Cancellation\Seller\CancellationAcceptMessage;
 use JTL\SCX\Lib\Channel\Order\Cancellation\Seller\CancellationDenyMessage;

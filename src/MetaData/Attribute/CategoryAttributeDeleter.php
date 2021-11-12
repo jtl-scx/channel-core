@@ -9,7 +9,7 @@
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
 use GuzzleHttp\Exception\GuzzleException;
-use JTL\SCX\Client\Channel\Api\Attribute\AttributesApi;
+use JTL\SCX\Lib\Channel\Client\Api\Attribute\AttributesApi;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 

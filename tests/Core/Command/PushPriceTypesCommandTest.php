@@ -9,9 +9,9 @@
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
 use Exception;
-use JTL\SCX\Client\Channel\Api\Price\PriceApi;
-use JTL\SCX\Client\Channel\Api\Price\Response\CreatePriceTypeResponse;
-use JTL\SCX\Client\Channel\Model\PriceType;
+use JTL\SCX\Lib\Channel\Client\Api\Price\PriceApi;
+use JTL\SCX\Lib\Channel\Client\Api\Price\Response\CreatePriceTypeResponse;
+use JTL\SCX\Lib\Channel\Client\Model\PriceType;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\MetaData\Price\PriceTypeList;
 use JTL\SCX\Lib\Channel\MetaData\Price\PriceTypeLoader;

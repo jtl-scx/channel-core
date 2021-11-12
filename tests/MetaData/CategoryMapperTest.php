@@ -30,7 +30,7 @@ class CategoryMapperTest extends TestCase
         $this->assertIsArray($result);
         $this->assertCount($categoryList->count(), $result);
 
-        /** @var \JTL\SCX\Client\Channel\Model\Category $categoryModel */
+        /** @var \JTL\SCX\Lib\Channel\Client\Model\Category $categoryModel */
         foreach ($result as $key => $categoryModel) {
             $this->assertSame((string)$key, $categoryModel->getCategoryId());
             $this->assertSame("name{$key}", $categoryModel->getDisplayName());

@@ -8,7 +8,7 @@
 
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
-use JTL\SCX\Client\Channel\Model\SellerEventSellerAttributesUpdateRequest;
+use JTL\SCX\Lib\Channel\Client\Model\SellerEventSellerAttributesUpdateRequest;
 use JTL\SCX\Lib\Channel\Event\Seller\AttributesUpdateRequestEvent;
 use PHPUnit\Framework\TestCase;
 

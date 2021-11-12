@@ -9,10 +9,10 @@
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
 use Exception;
-use JTL\SCX\Client\Channel\Api\Meta\Request\CreateShippingRulesRequest;
-use JTL\SCX\Client\Channel\Api\Meta\ShippingRulesApi;
-use JTL\SCX\Client\Channel\Model\ShippingRules;
-use JTL\SCX\Client\Channel\Model\SupportedCarrier;
+use JTL\SCX\Lib\Channel\Client\Api\Meta\Request\CreateShippingRulesRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Meta\ShippingRulesApi;
+use JTL\SCX\Lib\Channel\Client\Model\ShippingRules;
+use JTL\SCX\Lib\Channel\Client\Model\SupportedCarrier;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Helper\FileHandler;
 use Symfony\Component\Console\Input\InputArgument;

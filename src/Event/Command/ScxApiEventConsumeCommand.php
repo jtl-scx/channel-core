@@ -9,9 +9,9 @@
 namespace JTL\SCX\Lib\Channel\Event\Command;
 
 use GuzzleHttp\Exception\GuzzleException;
-use JTL\SCX\Client\Channel\Api\Event\EventApi;
-use JTL\SCX\Client\Channel\Api\Event\Request\AcknowledgeEventIdListRequest;
-use JTL\SCX\Client\Channel\Api\Event\Response\GetSellerEventListResponse;
+use JTL\SCX\Lib\Channel\Client\Api\Event\EventApi;
+use JTL\SCX\Lib\Channel\Client\Api\Event\Request\AcknowledgeEventIdListRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Event\Response\GetSellerEventListResponse;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;

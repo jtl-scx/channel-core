@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f20e38e8f31e92e73f1a5d04b8ced9d",
+    "content-hash": "999bfb245cb19c4a9567c33e273492ed",
     "packages": [
         {
             "name": "brick/math",
@@ -620,55 +620,6 @@
                 "source": "https://github.com/jtl-scx/api-base-client/tree/1.4.0"
             },
             "time": "2021-01-06T15:24:18+00:00"
-        },
-        {
-            "name": "jtl-scx/channel-api-client",
-            "version": "0.51.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jtl-scx/channel-api-client.git",
-                "reference": "341f4b7c1e333f27c191556b90ffc20c6e43817d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jtl-scx/channel-api-client/zipball/341f4b7c1e333f27c191556b90ffc20c6e43817d",
-                "reference": "341f4b7c1e333f27c191556b90ffc20c6e43817d",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "ext-zlib": "*",
-                "jtl-scx/api-base-client": "^1.4",
-                "jtl/php-generic-collection": "^0.3",
-                "myclabs/php-enum": "^1.8",
-                "php": "^7.4|8.0.*"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.15",
-                "phpstan/phpstan": "^0.12.64",
-                "phpunit/phpunit": "^9.0",
-                "vimeo/psalm": "^4.3"
-            },
-            "suggest": {
-                "guzzlehttp/guzzle": "Require this for making HTTP calls",
-                "jtl/scx-api-client": "Required. Installed it!"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "JTL\\SCX\\Client\\Channel\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "API Client for SCX Channel API",
-            "support": {
-                "issues": "https://github.com/jtl-scx/channel-api-client/issues",
-                "source": "https://github.com/jtl-scx/channel-api-client/tree/0.51.0"
-            },
-            "time": "2021-11-08T15:42:35+00:00"
         },
         {
             "name": "jtl/nachricht",

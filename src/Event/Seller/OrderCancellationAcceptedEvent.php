@@ -9,8 +9,8 @@
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
 use DateTimeImmutable;
-use JTL\SCX\Client\Channel\Event\EventType;
-use JTL\SCX\Client\Channel\Model\SellerEventOrderCancellationAccepted;
+use JTL\SCX\Lib\Channel\Client\Event\EventType;
+use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderCancellationAccepted;
 use JTL\SCX\Lib\Channel\Event\AbstractEvent;
 
 class OrderCancellationAcceptedEvent extends AbstractEvent

@@ -9,9 +9,9 @@
 namespace JTL\SCX\Lib\Channel\MetaData;
 
 use GuzzleHttp\Exception\GuzzleException;
-use JTL\SCX\Client\Channel\Api\Category\CategoryApi;
-use JTL\SCX\Client\Channel\Api\Category\Request\UpdateCategoryTreeRequest;
-use JTL\SCX\Client\Channel\Model\ChannelCategoryTree;
+use JTL\SCX\Lib\Channel\Client\Api\Category\CategoryApi;
+use JTL\SCX\Lib\Channel\Client\Api\Category\Request\UpdateCategoryTreeRequest;
+use JTL\SCX\Lib\Channel\Client\Model\ChannelCategoryTree;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
 use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;

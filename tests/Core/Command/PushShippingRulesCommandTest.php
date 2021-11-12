@@ -8,9 +8,9 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
-use JTL\SCX\Client\Channel\Api\Meta\Request\CreateShippingRulesRequest;
-use JTL\SCX\Client\Channel\Api\Meta\Response\CreateShippingRulesResponse;
-use JTL\SCX\Client\Channel\Api\Meta\ShippingRulesApi;
+use JTL\SCX\Lib\Channel\Client\Api\Meta\Request\CreateShippingRulesRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Meta\Response\CreateShippingRulesResponse;
+use JTL\SCX\Lib\Channel\Client\Api\Meta\ShippingRulesApi;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Helper\FileHandler;

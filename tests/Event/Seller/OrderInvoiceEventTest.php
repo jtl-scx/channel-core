@@ -9,7 +9,7 @@
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
 use DateTimeImmutable;
-use JTL\SCX\Client\Channel\Model\SellerEventOrderInvoice;
+use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderInvoice;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderInvoiceEvent;
 use PHPUnit\Framework\TestCase;
 

@@ -8,8 +8,8 @@
 
 namespace JTL\SCX\Lib\Channel\Event;
 
-use JTL\SCX\Client\Channel\Api\Event\Model\EventContainer;
-use JTL\SCX\Client\Channel\Event\EventType;
+use JTL\SCX\Lib\Channel\Client\Api\Event\Model\EventContainer;
+use JTL\SCX\Lib\Channel\Client\Event\EventType;
 use JTL\SCX\Lib\Channel\Event\Seller\AttributesUpdateRequestEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\ChannelUnlinkedEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferEndEvent;

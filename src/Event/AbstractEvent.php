@@ -10,7 +10,7 @@ namespace JTL\SCX\Lib\Channel\Event;
 
 use DateTimeImmutable;
 use JTL\Nachricht\Message\AbstractAmqpTransportableMessage;
-use JTL\SCX\Client\Channel\Event\EventType;
+use JTL\SCX\Lib\Channel\Client\Event\EventType;
 
 abstract class AbstractEvent extends AbstractAmqpTransportableMessage
 {

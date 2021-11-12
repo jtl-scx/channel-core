@@ -2,9 +2,9 @@
 
 namespace JTL\SCX\Lib\Channel\Seller;
 
-use JTL\SCX\Client\Channel\Api\Seller\Request\UnlinkSellerRequest;
-use JTL\SCX\Client\Channel\Api\Seller\Response\UnlinkSellerResponse;
-use JTL\SCX\Client\Channel\Api\Seller\SellerApi;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UnlinkSellerRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UnlinkSellerResponse;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\SellerApi;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use PHPUnit\Framework\TestCase;
 
