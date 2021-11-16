@@ -36,9 +36,6 @@ services:
   JTL\SCX\Client\:
     resource: './vendor/jtl-scx/api-base-client/src/*'
 
-  JTL\SCX\Client\Channel\:
-    resource: './vendor/jtl-scx/channel-api-client/src/*'
-
   JTL\SCX\Client\Api\Configuration:
     arguments:
       $host: '%env(SCX_CHANNEL_API_HOST)%'
