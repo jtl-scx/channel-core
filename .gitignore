@@ -7,3 +7,7 @@ build/
 .env
 .env.local
 /.php-cs-fixer.cache
+tests/Client/Model/SalesChannelBaseTest.php
+src/Client/Model/ReportRequest.php
+tests/Client/Model/ReportRequestTest.php
+src/Client/Model/ReportSellerInventory.php
