@@ -4,7 +4,7 @@
     "description": "SCX Channel Library",
     "license": "MIT",
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^7.4 || ^8.0 || ^8.1",
         "ext-curl": "*",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.2",
@@ -23,15 +23,17 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
+        "jtl/go-prometrics-client": "^1.2",
         "mongodb/mongodb": "^1.8",
         "phpstan/phpstan": "^0.12",
-        "phpunit/phpunit": "^9.0",
+        "phpunit/phpunit": "^9.5",
         "symfony/dotenv": "^5.0",
         "twig/twig": "^2.0"
     },
     "suggest": {
         "ext-mongodb": "Needed if MongoDbConnection is used",
-        "mongodb/mongodb": "Needed if MongoDbConnection is used"
+        "mongodb/mongodb": "Needed if MongoDbConnection is used",
+        "jtl/go-prometrics-client": "Needed if Metric Collection is used"
     },
     "autoload": {
         "psr-4": {
