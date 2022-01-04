@@ -16,6 +16,14 @@ class CreateSellerRequest extends AbstractScxApiRequest
 {
     private CreateSeller $createSellerModel;
 
+    public static function make(string $sellerId, string $session): CreateSellerRequest
+    {
+        return new self(new CreateSeller([
+            'session' => $session,
+            'sellerId' => $sellerId
+        ]));
+    }
+
     public function __construct(CreateSeller $createSellerModel)
     {
         $this->createSellerModel = $createSellerModel;

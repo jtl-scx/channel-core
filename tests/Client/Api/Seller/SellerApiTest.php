@@ -12,10 +12,12 @@ use JTL\SCX\Client\Api\AuthAwareApiClient;
 use JTL\SCX\Lib\Channel\Client\Api\ChannelApiResponseDeserializer;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\CreateSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\GetSellerIdFromUpdateSessionRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\GetSignupSessionDataRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UnlinkSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UpdateSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\CreateSellerResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UnlinkSellerResponse;
+use JTL\SCX\Lib\Channel\Client\Model\SignupSession;
 use JTL\SCX\Lib\Channel\Client\Model\UpdateSeller;
 use JTL\SCX\Lib\Channel\Client\Model\UpdateSession;
 use PHPUnit\Framework\TestCase;
@@ -109,5 +111,37 @@ class SellerApiTest extends TestCase
             ->willReturn($responseMock);
 
         $client->update(self::createStub(UpdateSeller::class));
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_read_signup_session_data(): void
+    {
+        $sessionId = 'SESSION_ID';
+        $jtlAccountId = 4711;
+        $client = new SellerApi(
+            $apiClientMock = $this->createMock(AuthAwareApiClient::class),
+            $deserializer = self::createMock(ChannelApiResponseDeserializer::class)
+        );
+
+        $responseMock = $this->createStub(ResponseInterface::class);
+        $responseMock->method('getStatusCode')->willReturn(200);
+
+        $apiClientMock->expects($this->once())->method('request')
+            ->with(
+                self::callback(function (GetSignupSessionDataRequest $request) use ($sessionId) {
+                    self::assertEquals($sessionId, $request->getParams()['session']);
+                    return true;
+                })
+            )
+            ->willReturn($responseMock);
+
+        $deserializer->expects(self::once())
+            ->method('deserialize')
+            ->willReturn(new SignupSession(['jtlAccountId' => $jtlAccountId]));
+
+        $data = $client->getSignupSessionData($sessionId);
+        self::assertEquals($jtlAccountId, $data->getJtlAccountId());
     }
 }

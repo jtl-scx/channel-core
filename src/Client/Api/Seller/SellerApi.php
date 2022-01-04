@@ -13,12 +13,15 @@ use JTL\SCX\Client\Api\AuthAwareApiClient;
 use JTL\SCX\Lib\Channel\Client\Api\ChannelApiResponseDeserializer;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\CreateSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\GetSellerIdFromUpdateSessionRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\GetSignupSessionDataRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UnlinkSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UpdateSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\CreateSellerResponse;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\SignupSessionDataResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UnlinkSellerResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UpdateSellerResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UpdateSessionResponse;
+use JTL\SCX\Lib\Channel\Client\Model\SignupSession;
 use JTL\SCX\Lib\Channel\Client\Model\UpdateSeller;
 use JTL\SCX\Lib\Channel\Client\Model\UpdateSession;
 use JTL\SCX\Client\Exception\RequestFailedException;
@@ -58,6 +61,20 @@ class SellerApi
         /** @var UpdateSession $updateSession */
         $updateSession = $this->responseDeserializer->deserialize($response, UpdateSession::class);
         return new UpdateSessionResponse($updateSession->getSellerId(), $response->getStatusCode());
+    }
+
+    /**
+     * @param string $sessionId
+     * @return SignupSessionDataResponse
+     * @throws GuzzleException
+     * @throws RequestFailedException
+     */
+    public function getSignupSessionData(string $sessionId): SignupSessionDataResponse
+    {
+        $response = $this->client->request(new GetSignupSessionDataRequest($sessionId));
+        /** @var SignupSession $data */
+        $data = $this->responseDeserializer->deserialize($response, SignupSession::class);
+        return new SignupSessionDataResponse($data->getJtlAccountId(), $response->getStatusCode());
     }
 
     /**
