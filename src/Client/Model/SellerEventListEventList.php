@@ -59,7 +59,7 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @param \DateTime
       * @param SellerEventTypeList
-      * @param OneOfSellerEventOrderShippingSellerEventOrderPaymentSellerEventOfferEndSellerEventOfferNewSellerEventOfferUpdateSellerEventOfferStockUpdateSellerEventOfferPriceUpdateSellerEventTestSellerEventReportRequestSystemEventNotificationSellerEventChannelUnlinkedSellerEventSellerAttributesUpdateRequestSellerEventOrderCancellationRequestSellerEventOrderCancellationAcceptedSellerEventOrderCancellationDeniedSellerEventOrderAcceptSellerEventOrderInvoiceSellerEventOrderReturnReceivedSellerEventOrderRefundSellerEventTicketReply
+      * @param object
       *
       * @var string[]
       */
@@ -273,12 +273,12 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
 
-    public function getEvent(): OneOfSellerEventOrderShippingSellerEventOrderPaymentSellerEventOfferEndSellerEventOfferNewSellerEventOfferUpdateSellerEventOfferStockUpdateSellerEventOfferPriceUpdateSellerEventTestSellerEventReportRequestSystemEventNotificationSellerEventChannelUnlinkedSellerEventSellerAttributesUpdateRequestSellerEventOrderCancellationRequestSellerEventOrderCancellationAcceptedSellerEventOrderCancellationDeniedSellerEventOrderAcceptSellerEventOrderInvoiceSellerEventOrderReturnReceivedSellerEventOrderRefundSellerEventTicketReply
+    public function getEvent(): object
     {
         return $this->container['event'];
     }
 
-    public function setEvent(OneOfSellerEventOrderShippingSellerEventOrderPaymentSellerEventOfferEndSellerEventOfferNewSellerEventOfferUpdateSellerEventOfferStockUpdateSellerEventOfferPriceUpdateSellerEventTestSellerEventReportRequestSystemEventNotificationSellerEventChannelUnlinkedSellerEventSellerAttributesUpdateRequestSellerEventOrderCancellationRequestSellerEventOrderCancellationAcceptedSellerEventOrderCancellationDeniedSellerEventOrderAcceptSellerEventOrderInvoiceSellerEventOrderReturnReceivedSellerEventOrderRefundSellerEventTicketReply $event): SellerEventListEventList
+    public function setEvent(object $event): SellerEventListEventList
     {
         $this->container['event'] = $event;
         return $this;
