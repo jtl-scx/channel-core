@@ -44,7 +44,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class OrderItemTest extends AbstractApiModelTest
 {
 
-
     /**
      * @return array
      * @dataProvider
@@ -56,109 +55,127 @@ class OrderItemTest extends AbstractApiModelTest
                 'orderItemId',
                 'string',
                 'getOrderItemId',
-                'setOrderItemId'
+                'setOrderItemId',
+                false
             ],
             'assert property Type' => [
                 'type',
                 'string',
                 'getType',
-                'setType'
+                'setType',
+                false
             ],
             'assert property ItemStatus' => [
                 'itemStatus',
                 '\JTL\SCX\Lib\Channel\Client\Model\OrderItemStatus',
                 'getItemStatus',
-                'setItemStatus'
+                'setItemStatus',
+                true
             ],
             'assert property ItemPaymentStatus' => [
                 'itemPaymentStatus',
                 '\JTL\SCX\Lib\Channel\Client\Model\OrderItemPaymentStatus',
                 'getItemPaymentStatus',
-                'setItemPaymentStatus'
+                'setItemPaymentStatus',
+                true
             ],
             'assert property GrossPrice' => [
                 'grossPrice',
                 'string',
                 'getGrossPrice',
-                'setGrossPrice'
+                'setGrossPrice',
+                false
             ],
             'assert property Total' => [
                 'total',
                 'string',
                 'getTotal',
-                'setTotal'
+                'setTotal',
+                false
             ],
             'assert property TaxPercent' => [
                 'taxPercent',
                 'string',
                 'getTaxPercent',
-                'setTaxPercent'
+                'setTaxPercent',
+                true
             ],
             'assert property GrossFee' => [
                 'grossFee',
                 'string',
                 'getGrossFee',
-                'setGrossFee'
+                'setGrossFee',
+                true
             ],
             'assert property OfferId' => [
                 'offerId',
                 'int',
                 'getOfferId',
-                'setOfferId'
+                'setOfferId',
+                true
             ],
             'assert property ChannelOfferId' => [
                 'channelOfferId',
                 'string',
                 'getChannelOfferId',
-                'setChannelOfferId'
+                'setChannelOfferId',
+                true
             ],
             'assert property Sku' => [
                 'sku',
                 'string',
                 'getSku',
-                'setSku'
+                'setSku',
+                true
             ],
             'assert property Quantity' => [
                 'quantity',
                 'string',
                 'getQuantity',
-                'setQuantity'
+                'setQuantity',
+                false
             ],
             'assert property Title' => [
                 'title',
                 'string',
                 'getTitle',
-                'setTitle'
+                'setTitle',
+                true
             ],
             'assert property EstimatedShippingDate' => [
                 'estimatedShippingDate',
                 '\DateTime',
                 'getEstimatedShippingDate',
-                'setEstimatedShippingDate'
+                'setEstimatedShippingDate',
+                true
             ],
             'assert property EstimatedDeliveryDate' => [
                 'estimatedDeliveryDate',
                 '\DateTime',
                 'getEstimatedDeliveryDate',
-                'setEstimatedDeliveryDate'
+                'setEstimatedDeliveryDate',
+                true
             ],
             'assert property RemainingQuantity' => [
                 'remainingQuantity',
                 'string',
                 'getRemainingQuantity',
-                'setRemainingQuantity'
+                'setRemainingQuantity',
+                true
             ],
             'assert property ShippingGroup' => [
                 'shippingGroup',
                 'string',
                 'getShippingGroup',
-                'setShippingGroup'
+                'setShippingGroup',
+                false
             ],
             'assert property Note' => [
                 'note',
                 'string',
                 'getNote',
-                'setNote'
+                'setNote',
+                false
             ],
         ];
     }
@@ -167,7 +184,7 @@ class OrderItemTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new OrderItem([$property => $sample]);
@@ -182,5 +199,13 @@ class OrderItemTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
+
+        if ($isNullable) {
+            $sut = new OrderItem([$property => null]);
+            $this->assertNull($sut->$expectedGetter());
+
+            $sut->$expectedSetter(null);
+            $this->assertNull($sut->$expectedGetter());
+        }
     }
 }

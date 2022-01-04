@@ -230,9 +230,6 @@ class OrderItemTypeShipping implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['grossPrice'] === null) {
             $invalidProperties[] = "'grossPrice' can't be null";
         }
-        if ($this->container['taxPercent'] === null) {
-            $invalidProperties[] = "'taxPercent' can't be null";
-        }
         if ($this->container['shippingGroup'] === null) {
             $invalidProperties[] = "'shippingGroup' can't be null";
         }
@@ -287,12 +284,12 @@ class OrderItemTypeShipping implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
 
-    public function getTaxPercent(): string
+    public function getTaxPercent(): ?string
     {
         return $this->container['taxPercent'];
     }
 
-    public function setTaxPercent(string $taxPercent): OrderItemTypeShipping
+    public function setTaxPercent(?string $taxPercent): OrderItemTypeShipping
     {
         $this->container['taxPercent'] = $taxPercent;
         return $this;
