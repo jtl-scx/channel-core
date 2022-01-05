@@ -1,6 +1,6 @@
 <?php
 /**
- * OrderItemTypeShippingTest
+ * SellerEventListEventListTest
  *
  * PHP version 7.2
  *
@@ -32,16 +32,16 @@ namespace JTL\SCX\Lib\Channel\Client\Model;
 use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 
 /**
- * OrderItemTypeShippingTest Class Doc Comment
+ * SellerEventListEventListTest Class Doc Comment
  *
  * @category    Class
- * @description OrderItemTypeShipping
+ * @description SellerEventListEventList
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\OrderItemTypeShipping
+ * @covers      \JTL\SCX\Lib\Channel\Client\Model\SellerEventListEventList
  */
-class OrderItemTypeShippingTest extends AbstractApiModelTest
+class SellerEventListEventListTest extends AbstractApiModelTest
 {
 
     /**
@@ -51,40 +51,29 @@ class OrderItemTypeShippingTest extends AbstractApiModelTest
     public function expectedInterface(): array
     {
         return [
-            'assert property OrderItemId' => [
-                'orderItemId',
+            'assert property Id' => [
+                'id',
                 'string',
-                'getOrderItemId',
-                'setOrderItemId',
-                false
+                'getId',
+                'setId'
+            ],
+            'assert property CreatedAt' => [
+                'createdAt',
+                '\DateTime',
+                'getCreatedAt',
+                'setCreatedAt'
             ],
             'assert property Type' => [
                 'type',
-                'string',
+                '\JTL\SCX\Lib\Channel\Client\Model\SellerEventTypeList',
                 'getType',
-                'setType',
-                false
+                'setType'
             ],
-            'assert property GrossPrice' => [
-                'grossPrice',
-                'string',
-                'getGrossPrice',
-                'setGrossPrice',
-                false
-            ],
-            'assert property TaxPercent' => [
-                'taxPercent',
-                'string',
-                'getTaxPercent',
-                'setTaxPercent',
-                true
-            ],
-            'assert property ShippingGroup' => [
-                'shippingGroup',
-                'string',
-                'getShippingGroup',
-                'setShippingGroup',
-                false
+            'assert property Event' => [
+                'event',
+                'object',
+                'getEvent',
+                'setEvent'
             ],
         ];
     }
@@ -93,10 +82,10 @@ class OrderItemTypeShippingTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
-        $sut = new OrderItemTypeShipping([$property => $sample]);
+        $sut = new SellerEventListEventList([$property => $sample]);
 
         $this->assertMethodExists($sut, $expectedGetter);
         $this->assertSame($sample, $sut->$expectedGetter());
@@ -108,13 +97,5 @@ class OrderItemTypeShippingTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new OrderItemTypeShipping([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

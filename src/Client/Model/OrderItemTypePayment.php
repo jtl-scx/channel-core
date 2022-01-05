@@ -230,9 +230,6 @@ class OrderItemTypePayment implements ModelInterface, ArrayAccess, \JsonSerializ
         if ($this->container['grossPrice'] === null) {
             $invalidProperties[] = "'grossPrice' can't be null";
         }
-        if ($this->container['taxPercent'] === null) {
-            $invalidProperties[] = "'taxPercent' can't be null";
-        }
         if ($this->container['note'] === null) {
             $invalidProperties[] = "'note' can't be null";
         }
@@ -287,12 +284,12 @@ class OrderItemTypePayment implements ModelInterface, ArrayAccess, \JsonSerializ
     }
 
 
-    public function getTaxPercent(): string
+    public function getTaxPercent(): ?string
     {
         return $this->container['taxPercent'];
     }
 
-    public function setTaxPercent(string $taxPercent): OrderItemTypePayment
+    public function setTaxPercent(?string $taxPercent): OrderItemTypePayment
     {
         $this->container['taxPercent'] = $taxPercent;
         return $this;

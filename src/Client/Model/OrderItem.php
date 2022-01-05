@@ -315,9 +315,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['total'] === null) {
             $invalidProperties[] = "'total' can't be null";
         }
-        if ($this->container['taxPercent'] === null) {
-            $invalidProperties[] = "'taxPercent' can't be null";
-        }
         if (!is_null($this->container['offerId']) && ($this->container['offerId'] < 1)) {
             $invalidProperties[] = "invalid value for 'offerId', must be bigger than or equal to 1.";
         }
@@ -431,12 +428,12 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    public function getTaxPercent(): string
+    public function getTaxPercent(): ?string
     {
         return $this->container['taxPercent'];
     }
 
-    public function setTaxPercent(string $taxPercent): OrderItem
+    public function setTaxPercent(?string $taxPercent): OrderItem
     {
         $this->container['taxPercent'] = $taxPercent;
         return $this;

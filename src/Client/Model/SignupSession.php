@@ -1,6 +1,6 @@
 <?php
 /**
- * OrderItemTypeShipping
+ * SignupSession
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use ArrayAccess;
 use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
 
 /**
- * OrderItemTypeShipping Class Doc Comment
+ * SignupSession Class Doc Comment
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
@@ -43,7 +43,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class OrderItemTypeShipping implements ModelInterface, ArrayAccess, \JsonSerializable
+class SignupSession implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class OrderItemTypeShipping implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var string
       */
-    protected static $openAPIModelName = 'OrderItemTypeShipping';
+    protected static $openAPIModelName = 'SignupSession';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,11 +61,7 @@ class OrderItemTypeShipping implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'orderItemId' => 'string',
-        'type' => 'string',
-        'grossPrice' => 'string',
-        'taxPercent' => 'string',
-        'shippingGroup' => 'string'
+        'jtlAccountId' => 'int'
     ];
 
     /**
@@ -76,11 +72,7 @@ class OrderItemTypeShipping implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'orderItemId' => 'string',
-        'type' => null,
-        'grossPrice' => null,
-        'taxPercent' => null,
-        'shippingGroup' => null
+        'jtlAccountId' => 'int32'
     ];
 
     /**
@@ -110,11 +102,7 @@ class OrderItemTypeShipping implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'orderItemId' => 'orderItemId',
-        'type' => 'type',
-        'grossPrice' => 'grossPrice',
-        'taxPercent' => 'taxPercent',
-        'shippingGroup' => 'shippingGroup'
+        'jtlAccountId' => 'jtlAccountId'
     ];
 
     /**
@@ -123,11 +111,7 @@ class OrderItemTypeShipping implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'orderItemId' => 'setOrderItemId',
-        'type' => 'setType',
-        'grossPrice' => 'setGrossPrice',
-        'taxPercent' => 'setTaxPercent',
-        'shippingGroup' => 'setShippingGroup'
+        'jtlAccountId' => 'setJtlAccountId'
     ];
 
     /**
@@ -136,11 +120,7 @@ class OrderItemTypeShipping implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'orderItemId' => 'getOrderItemId',
-        'type' => 'getType',
-        'grossPrice' => 'getGrossPrice',
-        'taxPercent' => 'getTaxPercent',
-        'shippingGroup' => 'getShippingGroup'
+        'jtlAccountId' => 'getJtlAccountId'
     ];
 
     /**
@@ -197,11 +177,7 @@ class OrderItemTypeShipping implements ModelInterface, ArrayAccess, \JsonSeriali
 
     public function __construct(array $data = null)
     {
-        $this->container['orderItemId'] = $data['orderItemId'] ?? null;
-        $this->container['type'] = $data['type'] ?? 'SHIPPING';
-        $this->container['grossPrice'] = $data['grossPrice'] ?? null;
-        $this->container['taxPercent'] = $data['taxPercent'] ?? null;
-        $this->container['shippingGroup'] = $data['shippingGroup'] ?? null;
+        $this->container['jtlAccountId'] = $data['jtlAccountId'] ?? null;
     }
 
     /**
@@ -213,26 +189,13 @@ class OrderItemTypeShipping implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
-        if ($this->container['orderItemId'] === null) {
-            $invalidProperties[] = "'orderItemId' can't be null";
+        if ($this->container['jtlAccountId'] === null) {
+            $invalidProperties[] = "'jtlAccountId' can't be null";
         }
-        if ((mb_strlen($this->container['orderItemId']) > 50)) {
-            $invalidProperties[] = "invalid value for 'orderItemId', the character length must be smaller than or equal to 50.";
-        }
-
-        if ((mb_strlen($this->container['orderItemId']) < 1)) {
-            $invalidProperties[] = "invalid value for 'orderItemId', the character length must be bigger than or equal to 1.";
+        if (($this->container['jtlAccountId'] < 1)) {
+            $invalidProperties[] = "invalid value for 'jtlAccountId', must be bigger than or equal to 1.";
         }
 
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        if ($this->container['grossPrice'] === null) {
-            $invalidProperties[] = "'grossPrice' can't be null";
-        }
-        if ($this->container['shippingGroup'] === null) {
-            $invalidProperties[] = "'shippingGroup' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -248,62 +211,14 @@ class OrderItemTypeShipping implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
 
-    public function getOrderItemId(): string
+    public function getJtlAccountId(): int
     {
-        return $this->container['orderItemId'];
+        return $this->container['jtlAccountId'];
     }
 
-    public function setOrderItemId(string $orderItemId): OrderItemTypeShipping
+    public function setJtlAccountId(int $jtlAccountId): SignupSession
     {
-        $this->container['orderItemId'] = $orderItemId;
-        return $this;
-    }
-
-
-    public function getType(): string
-    {
-        return $this->container['type'];
-    }
-
-    public function setType(string $type): OrderItemTypeShipping
-    {
-        $this->container['type'] = $type;
-        return $this;
-    }
-
-
-    public function getGrossPrice(): string
-    {
-        return $this->container['grossPrice'];
-    }
-
-    public function setGrossPrice(string $grossPrice): OrderItemTypeShipping
-    {
-        $this->container['grossPrice'] = $grossPrice;
-        return $this;
-    }
-
-
-    public function getTaxPercent(): ?string
-    {
-        return $this->container['taxPercent'];
-    }
-
-    public function setTaxPercent(?string $taxPercent): OrderItemTypeShipping
-    {
-        $this->container['taxPercent'] = $taxPercent;
-        return $this;
-    }
-
-
-    public function getShippingGroup(): string
-    {
-        return $this->container['shippingGroup'];
-    }
-
-    public function setShippingGroup(string $shippingGroup): OrderItemTypeShipping
-    {
-        $this->container['shippingGroup'] = $shippingGroup;
+        $this->container['jtlAccountId'] = $jtlAccountId;
         return $this;
     }
 

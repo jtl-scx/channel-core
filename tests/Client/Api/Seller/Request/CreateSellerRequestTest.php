@@ -30,4 +30,22 @@ class CreateSellerRequestTest extends TestCase
         $this->assertSame('/v1/channel/seller', $request->getUrl());
         $this->assertSame('POST', $request->getHttpMethod());
     }
+
+    /**
+     * @test
+     */
+    public function it_can_be_build_from_sellerId_and_session(): void
+    {
+        $sellerId = 'A_SELLER_ID';
+        $sesson = 'A_SESSION';
+        $sut = CreateSellerRequest::make($sellerId, $sesson);
+
+        $expecation = <<<JSON
+{
+    "session": "A_SESSION",
+    "sellerId": "A_SELLER_ID"
+}
+JSON;
+        self::assertEquals($expecation, $sut->getBody());
+    }
 }
