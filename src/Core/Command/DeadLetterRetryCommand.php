@@ -107,6 +107,7 @@ class DeadLetterRetryCommand extends AbstractCommand
 
         $this->transport->connect();
         $queueList = $this->queueLister->listQueues(AmqpTransport::DEAD_LETTER_QUEUE_PREFIX);
+        $queueList = array_unique($queueList);
 
         if ($messageType !== null) {
             $filteredQueueList = array_filter($queueList, static fn ($name) => stripos($name, $messageType) !== false);
