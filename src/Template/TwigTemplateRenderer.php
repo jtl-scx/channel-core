@@ -21,9 +21,9 @@ class TwigTemplateRenderer
 
     public function __construct(Environment $environment)
     {
-        $loader = new FilesystemLoader($environment->get('ROOT_DIRECTORY') . '/' . $environment->get('TEMPLATE_DIR'));
+        $loader = new FilesystemLoader($environment->get('TEMPLATE_DIR'));
         $this->twig = new \Twig\Environment($loader, [
-            'cache' => $environment->get('ROOT_DIRECTORY') . '/' . $environment->get('TEMPLATE_CACHE'),
+            'cache' => $environment->get('TEMPLATE_CACHE'),
             'auto_reload' => $environment->isDevelopment(),
         ]);
     }
