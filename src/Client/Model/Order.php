@@ -84,7 +84,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'billingAddress' => '\JTL\SCX\Lib\Channel\Client\Model\Address',
         'shippingAddress' => '\JTL\SCX\Lib\Channel\Client\Model\Address',
         'note' => 'string',
-        'buyer' => '\JTL\SCX\Lib\Channel\Client\Model\OrderBuyer'
+        'buyer' => '\JTL\SCX\Lib\Channel\Client\Model\OrderBuyer',
+        'weeePickup' => 'bool'
     ];
 
     /**
@@ -109,7 +110,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'billingAddress' => null,
         'shippingAddress' => null,
         'note' => null,
-        'buyer' => null
+        'buyer' => null,
+        'weeePickup' => null
     ];
 
     /**
@@ -153,7 +155,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'billingAddress' => 'billingAddress',
         'shippingAddress' => 'shippingAddress',
         'note' => 'note',
-        'buyer' => 'buyer'
+        'buyer' => 'buyer',
+        'weeePickup' => 'weeePickup'
     ];
 
     /**
@@ -176,7 +179,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'billingAddress' => 'setBillingAddress',
         'shippingAddress' => 'setShippingAddress',
         'note' => 'setNote',
-        'buyer' => 'setBuyer'
+        'buyer' => 'setBuyer',
+        'weeePickup' => 'setWeeePickup'
     ];
 
     /**
@@ -199,7 +203,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'billingAddress' => 'getBillingAddress',
         'shippingAddress' => 'getShippingAddress',
         'note' => 'getNote',
-        'buyer' => 'getBuyer'
+        'buyer' => 'getBuyer',
+        'weeePickup' => 'getWeeePickup'
     ];
 
     /**
@@ -271,6 +276,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['shippingAddress'] = $data['shippingAddress'] ?? null;
         $this->container['note'] = $data['note'] ?? null;
         $this->container['buyer'] = $data['buyer'] ?? null;
+        $this->container['weeePickup'] = $data['weeePickup'] ?? null;
     }
 
     /**
@@ -514,6 +520,18 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setBuyer(?OrderBuyer $buyer): Order
     {
         $this->container['buyer'] = $buyer;
+        return $this;
+    }
+
+
+    public function getWeeePickup(): ?bool
+    {
+        return $this->container['weeePickup'];
+    }
+
+    public function setWeeePickup(?bool $weeePickup): Order
+    {
+        $this->container['weeePickup'] = $weeePickup;
         return $this;
     }
 
