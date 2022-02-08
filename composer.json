@@ -9,7 +9,7 @@
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.2",
         "jtl-scx/api-base-client": "^1.4",
-        "jtl/nachricht": "^0.13",
+        "jtl/nachricht": "dev-ExtendLog0_13",
         "monolog/monolog": "^2.0",
         "myclabs/php-enum": "^1.7",
         "php-amqplib/php-amqplib": "^3.1",

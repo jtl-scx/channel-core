@@ -20,6 +20,7 @@ use MyCLabs\Enum\Enum;
  * @method static OrderStatus CANCELED_BY_BUYER()
  *
  * @psalm-immutable
+ * @deprecated
  */
 class OrderStatus extends Enum
 {
