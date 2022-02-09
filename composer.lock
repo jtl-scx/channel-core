@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "45481e6702f8c4be03c1bf93bd09162e",
+    "content-hash": "d0f4f4d43dacd037fde4500e43bb13d0",
     "packages": [
         {
             "name": "brick/math",
@@ -623,7 +623,7 @@
         },
         {
             "name": "jtl/nachricht",
-            "version": "dev-ExtendLog0_13",
+            "version": "0.13.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-software/nachricht.git",
@@ -673,7 +673,7 @@
             "description": "Nachricht is a distributed event queue system",
             "support": {
                 "issues": "https://github.com/jtl-software/nachricht/issues",
-                "source": "https://github.com/jtl-software/nachricht/tree/ExtendLog0_13"
+                "source": "https://github.com/jtl-software/nachricht/tree/0.13.2"
             },
             "time": "2022-02-08T10:30:55+00:00"
         },
@@ -6491,9 +6491,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "jtl/nachricht": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
