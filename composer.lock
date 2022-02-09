@@ -623,16 +623,16 @@
         },
         {
             "name": "jtl/nachricht",
-            "version": "0.13.2",
+            "version": "0.13.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-software/nachricht.git",
-                "reference": "85142b6d8d390b6094cd9f1641bea83ed721301c"
+                "reference": "cf2bb4d5fb03c1d6bf64eb43ebcca2b6a2756196"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/85142b6d8d390b6094cd9f1641bea83ed721301c",
-                "reference": "85142b6d8d390b6094cd9f1641bea83ed721301c",
+                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/cf2bb4d5fb03c1d6bf64eb43ebcca2b6a2756196",
+                "reference": "cf2bb4d5fb03c1d6bf64eb43ebcca2b6a2756196",
                 "shasum": ""
             },
             "require": {
@@ -673,9 +673,9 @@
             "description": "Nachricht is a distributed event queue system",
             "support": {
                 "issues": "https://github.com/jtl-software/nachricht/issues",
-                "source": "https://github.com/jtl-software/nachricht/tree/0.13.2"
+                "source": "https://github.com/jtl-software/nachricht/tree/0.13.3"
             },
-            "time": "2022-02-08T10:30:55+00:00"
+            "time": "2022-02-09T08:41:44+00:00"
         },
         {
             "name": "jtl/php-generic-collection",
