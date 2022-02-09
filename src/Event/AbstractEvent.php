@@ -15,7 +15,6 @@ use JTL\SCX\Lib\Channel\Client\Event\EventType;
 abstract class AbstractEvent extends AbstractAmqpTransportableMessage
 {
     protected string $id;
-    protected DateTimeImmutable $createdAt;
     protected EventType $type;
 
     public function __construct(
@@ -24,20 +23,14 @@ abstract class AbstractEvent extends AbstractAmqpTransportableMessage
         EventType $type,
         string $internalEventId = null
     ) {
-        parent::__construct($internalEventId);
+        parent::__construct($internalEventId, $createdAt);
         $this->id = $id;
-        $this->createdAt = $createdAt;
         $this->type = $type;
     }
 
     public function getId(): string
     {
         return $this->id;
-    }
-
-    public function getCreatedAt(): DateTimeImmutable
-    {
-        return $this->createdAt;
     }
 
     public function getType(): EventType
