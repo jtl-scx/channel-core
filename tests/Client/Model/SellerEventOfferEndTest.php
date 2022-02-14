@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class SellerEventOfferEndTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,22 +56,19 @@ class SellerEventOfferEndTest extends AbstractApiModelTest
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property OfferId' => [
                 'offerId',
                 'int',
                 'getOfferId',
-                'setOfferId',
-                false
+                'setOfferId'
             ],
             'assert property ChannelOfferId' => [
                 'channelOfferId',
                 'string',
                 'getChannelOfferId',
-                'setChannelOfferId',
-                true
+                'setChannelOfferId'
             ],
         ];
     }
@@ -79,7 +77,7 @@ class SellerEventOfferEndTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new SellerEventOfferEnd([$property => $sample]);
@@ -94,13 +92,5 @@ class SellerEventOfferEndTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new SellerEventOfferEnd([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

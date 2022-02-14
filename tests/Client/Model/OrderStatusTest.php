@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class OrderStatusTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,36 +56,31 @@ class OrderStatusTest extends AbstractApiModelTest
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property OrderId' => [
                 'orderId',
                 'string',
                 'getOrderId',
-                'setOrderId',
-                false
+                'setOrderId'
             ],
             'assert property OrderStatus' => [
                 'orderStatus',
                 '\JTL\SCX\Lib\Channel\Client\Model\ChannelOrderStatus',
                 'getOrderStatus',
-                'setOrderStatus',
-                false
+                'setOrderStatus'
             ],
             'assert property PaymentStatus' => [
                 'paymentStatus',
                 '\JTL\SCX\Lib\Channel\Client\Model\ChannelPaymentStatus',
                 'getPaymentStatus',
-                'setPaymentStatus',
-                true
+                'setPaymentStatus'
             ],
             'assert property OrderItems' => [
                 'orderItems',
                 '\JTL\SCX\Lib\Channel\Client\Model\OrderStatusOrderItems[]',
                 'getOrderItems',
-                'setOrderItems',
-                true
+                'setOrderItems'
             ],
         ];
     }
@@ -93,7 +89,7 @@ class OrderStatusTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new OrderStatus([$property => $sample]);
@@ -108,13 +104,5 @@ class OrderStatusTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new OrderStatus([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

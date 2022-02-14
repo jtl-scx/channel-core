@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class OfferListingFailedErrorTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,22 +56,19 @@ class OfferListingFailedErrorTest extends AbstractApiModelTest
                 'code',
                 'string',
                 'getCode',
-                'setCode',
-                false
+                'setCode'
             ],
             'assert property Message' => [
                 'message',
                 'string',
                 'getMessage',
-                'setMessage',
-                false
+                'setMessage'
             ],
             'assert property LongMessage' => [
                 'longMessage',
                 'string',
                 'getLongMessage',
-                'setLongMessage',
-                true
+                'setLongMessage'
             ],
         ];
     }
@@ -79,7 +77,7 @@ class OfferListingFailedErrorTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new OfferListingFailedError([$property => $sample]);
@@ -94,13 +92,5 @@ class OfferListingFailedErrorTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new OfferListingFailedError([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

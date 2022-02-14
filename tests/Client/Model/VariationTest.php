@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class VariationTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,85 +56,73 @@ class VariationTest extends AbstractApiModelTest
                 'offerId',
                 'int',
                 'getOfferId',
-                'setOfferId',
-                false
+                'setOfferId'
             ],
             'assert property Sku' => [
                 'sku',
                 'string',
                 'getSku',
-                'setSku',
-                false
+                'setSku'
             ],
             'assert property Gtin' => [
                 'gtin',
                 'string',
                 'getGtin',
-                'setGtin',
-                true
+                'setGtin'
             ],
             'assert property VariationDimensionList' => [
                 'variationDimensionList',
                 '\JTL\SCX\Lib\Channel\Client\Model\ChannelAttribute[]',
                 'getVariationDimensionList',
-                'setVariationDimensionList',
-                false
+                'setVariationDimensionList'
             ],
             'assert property Quantity' => [
                 'quantity',
                 'string',
                 'getQuantity',
-                'setQuantity',
-                false
+                'setQuantity'
             ],
             'assert property PriceList' => [
                 'priceList',
                 '\JTL\SCX\Lib\Channel\Client\Model\PriceContainer[]',
                 'getPriceList',
-                'setPriceList',
-                false
+                'setPriceList'
             ],
             'assert property TaxPercent' => [
                 'taxPercent',
                 'string',
                 'getTaxPercent',
-                'setTaxPercent',
-                true
+                'setTaxPercent'
             ],
             'assert property PictureList' => [
                 'pictureList',
                 'string[]',
                 'getPictureList',
-                'setPictureList',
-                true
+                'setPictureList'
             ],
             'assert property Title' => [
                 'title',
                 'string',
                 'getTitle',
-                'setTitle',
-                true
+                'setTitle'
             ],
             'assert property SubTitle' => [
                 'subTitle',
                 'string',
                 'getSubTitle',
-                'setSubTitle',
-                true
+                'setSubTitle'
             ],
             'assert property Description' => [
                 'description',
                 'string',
                 'getDescription',
-                'setDescription',
-                true
+                'setDescription'
             ],
             'assert property ChannelAttributeList' => [
                 'channelAttributeList',
                 '\JTL\SCX\Lib\Channel\Client\Model\ChannelAttribute[]',
                 'getChannelAttributeList',
-                'setChannelAttributeList',
-                true
+                'setChannelAttributeList'
             ],
         ];
     }
@@ -142,7 +131,7 @@ class VariationTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new Variation([$property => $sample]);
@@ -157,13 +146,5 @@ class VariationTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new Variation([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

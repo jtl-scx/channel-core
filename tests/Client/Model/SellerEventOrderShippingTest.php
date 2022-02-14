@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class SellerEventOrderShippingTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,29 +56,25 @@ class SellerEventOrderShippingTest extends AbstractApiModelTest
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property OrderId' => [
                 'orderId',
                 'string',
                 'getOrderId',
-                'setOrderId',
-                false
+                'setOrderId'
             ],
             'assert property ShippingComplete' => [
                 'shippingComplete',
                 'bool',
                 'getShippingComplete',
-                'setShippingComplete',
-                false
+                'setShippingComplete'
             ],
             'assert property ShippingItems' => [
                 'shippingItems',
                 '\JTL\SCX\Lib\Channel\Client\Model\OrderShippingPosition[]',
                 'getShippingItems',
-                'setShippingItems',
-                false
+                'setShippingItems'
             ],
         ];
     }
@@ -86,7 +83,7 @@ class SellerEventOrderShippingTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new SellerEventOrderShipping([$property => $sample]);
@@ -101,13 +98,5 @@ class SellerEventOrderShippingTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new SellerEventOrderShipping([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

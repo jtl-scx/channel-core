@@ -43,6 +43,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class CancelReasonTest extends AbstractApiModelTest
 {
+
     /**
      * Test Enum Value "BUYER_CANCELLED"
      * @test

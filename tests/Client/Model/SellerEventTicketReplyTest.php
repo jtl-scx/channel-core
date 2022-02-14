@@ -55,50 +55,43 @@ class SellerEventTicketReplyTest extends AbstractApiModelTest
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property TicketId' => [
                 'ticketId',
                 'string',
                 'getTicketId',
-                'setTicketId',
-                false
+                'setTicketId'
             ],
             'assert property ReplyRequested' => [
                 'replyRequested',
                 'bool',
                 'getReplyRequested',
-                'setReplyRequested',
-                false
+                'setReplyRequested'
             ],
             'assert property CreatedAt' => [
                 'createdAt',
                 '\DateTime',
                 'getCreatedAt',
-                'setCreatedAt',
-                false
+                'setCreatedAt'
             ],
             'assert property From' => [
                 'from',
                 '\JTL\SCX\Lib\Channel\Client\Model\TicketFrom',
                 'getFrom',
-                'setFrom',
-                false
+                'setFrom'
             ],
             'assert property Message' => [
                 'message',
                 'string',
                 'getMessage',
-                'setMessage',
-                false
+                'setMessage'
             ],
             'assert property Attachment' => [
                 'attachment',
                 '\JTL\SCX\Lib\Channel\Client\Model\TicketAttachment[]',
                 'getAttachment',
-                'setAttachment',
-                true
+                'setAttachment'
             ],
         ];
     }
@@ -107,7 +100,7 @@ class SellerEventTicketReplyTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new SellerEventTicketReply([$property => $sample]);
@@ -122,13 +115,5 @@ class SellerEventTicketReplyTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new SellerEventTicketReply([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

@@ -44,20 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class ChannelUpdateTest extends AbstractApiModelTest
 {
 
-    /**
-     * Test allowed values for channelType
-     * @test
-     */
-    public function it_has_correct_allowed_values_for_channelType(): void
-    {
-        $allowed = [
-            'MARKETPLACE','OTHER',
-        ];
 
-        $sut = new ChannelUpdate();
-        $this->assertMethodExists($sut, 'getChannelTypeAllowableValues');
-        $this->assertEquals($allowed, $sut->getChannelTypeAllowableValues());
-    }
     /**
      * @return array
      * @dataProvider
@@ -65,110 +52,65 @@ class ChannelUpdateTest extends AbstractApiModelTest
     public function expectedInterface(): array
     {
         return [
-            'assert property Group' => [
-                'group',
-                'string',
-                'getGroup',
-                'setGroup',
-                true
-            ],
             'assert property Currency' => [
                 'currency',
                 'string',
                 'getCurrency',
-                'setCurrency',
-                true
+                'setCurrency'
             ],
             'assert property MarketplaceList' => [
                 'marketplaceList',
                 'string[]',
                 'getMarketplaceList',
-                'setMarketplaceList',
-                false
+                'setMarketplaceList'
             ],
             'assert property SupportedLanguages' => [
                 'supportedLanguages',
                 'string[]',
                 'getSupportedLanguages',
-                'setSupportedLanguages',
-                true
+                'setSupportedLanguages'
             ],
             'assert property DisplayName' => [
                 'displayName',
                 'string',
                 'getDisplayName',
-                'setDisplayName',
-                false
+                'setDisplayName'
             ],
             'assert property Website' => [
                 'website',
                 'string',
                 'getWebsite',
-                'setWebsite',
-                false
-            ],
-            'assert property Pricing' => [
-                'pricing',
-                'string',
-                'getPricing',
-                'setPricing',
-                true
-            ],
-            'assert property ChannelType' => [
-                'channelType',
-                'string',
-                'getChannelType',
-                'setChannelType',
-                false
+                'setWebsite'
             ],
             'assert property SupportContact' => [
                 'supportContact',
                 'string',
                 'getSupportContact',
-                'setSupportContact',
-                false
+                'setSupportContact'
             ],
             'assert property Vendor' => [
                 'vendor',
                 'string',
                 'getVendor',
-                'setVendor',
-                false
+                'setVendor'
             ],
             'assert property SignUpUrl' => [
                 'signUpUrl',
                 'string',
                 'getSignUpUrl',
-                'setSignUpUrl',
-                false
-            ],
-            'assert property UpdateUrl' => [
-                'updateUrl',
-                'string',
-                'getUpdateUrl',
-                'setUpdateUrl',
-                true
-            ],
-            'assert property Logo' => [
-                'logo',
-                'string',
-                'getLogo',
-                'setLogo',
-                true
-            ],
-            'assert property Description' => [
-                'description',
-                'string',
-                'getDescription',
-                'setDescription',
-                true
+                'setSignUpUrl'
             ],
             'assert property FeatureList' => [
                 'featureList',
                 '\JTL\SCX\Lib\Channel\Client\Model\ChannelUpdateFeatureList',
                 'getFeatureList',
-                'setFeatureList',
-                false
+                'setFeatureList'
+            ],
+            'assert property UpdateUrl' => [
+                'updateUrl',
+                'string',
+                'getUpdateUrl',
+                'setUpdateUrl'
             ],
         ];
     }
@@ -177,7 +119,7 @@ class ChannelUpdateTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new ChannelUpdate([$property => $sample]);
@@ -192,13 +134,5 @@ class ChannelUpdateTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new ChannelUpdate([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

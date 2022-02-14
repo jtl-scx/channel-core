@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class AddressTest extends AbstractApiModelTest
 {
 
+
     /**
      * Test allowed values for gender
      * @test
@@ -69,78 +70,67 @@ class AddressTest extends AbstractApiModelTest
                 'firstName',
                 'string',
                 'getFirstName',
-                'setFirstName',
-                true
+                'setFirstName'
             ],
             'assert property LastName' => [
                 'lastName',
                 'string',
                 'getLastName',
-                'setLastName',
-                false
+                'setLastName'
             ],
             'assert property Gender' => [
                 'gender',
                 'string',
                 'getGender',
-                'setGender',
-                true
+                'setGender'
             ],
             'assert property CompanyName' => [
                 'companyName',
                 'string',
                 'getCompanyName',
-                'setCompanyName',
-                true
+                'setCompanyName'
             ],
             'assert property Street' => [
                 'street',
                 'string',
                 'getStreet',
-                'setStreet',
-                false
+                'setStreet'
             ],
             'assert property HouseNumber' => [
                 'houseNumber',
                 'string',
                 'getHouseNumber',
-                'setHouseNumber',
-                true
+                'setHouseNumber'
             ],
             'assert property Addition' => [
                 'addition',
                 'string',
                 'getAddition',
-                'setAddition',
-                true
+                'setAddition'
             ],
             'assert property Postcode' => [
                 'postcode',
                 'string',
                 'getPostcode',
-                'setPostcode',
-                true
+                'setPostcode'
             ],
             'assert property City' => [
                 'city',
                 'string',
                 'getCity',
-                'setCity',
-                false
+                'setCity'
             ],
             'assert property Phone' => [
                 'phone',
                 'string',
                 'getPhone',
-                'setPhone',
-                true
+                'setPhone'
             ],
             'assert property Country' => [
                 'country',
                 'string',
                 'getCountry',
-                'setCountry',
-                false
+                'setCountry'
             ],
         ];
     }
@@ -149,7 +139,7 @@ class AddressTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new Address([$property => $sample]);
@@ -164,13 +154,5 @@ class AddressTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new Address([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

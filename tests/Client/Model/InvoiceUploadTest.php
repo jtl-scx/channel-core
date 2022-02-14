@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class InvoiceUploadTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,15 +56,13 @@ class InvoiceUploadTest extends AbstractApiModelTest
                 'invoice',
                 '\JTL\SCX\Lib\Channel\Client\Model\InvoiceMetaData',
                 'getInvoice',
-                'setInvoice',
-                false
+                'setInvoice'
             ],
             'assert property Document' => [
                 'document',
                 '\SplFileObject',
                 'getDocument',
-                'setDocument',
-                false
+                'setDocument'
             ],
         ];
     }
@@ -72,7 +71,7 @@ class InvoiceUploadTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new InvoiceUpload([$property => $sample]);
@@ -87,13 +86,5 @@ class InvoiceUploadTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new InvoiceUpload([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

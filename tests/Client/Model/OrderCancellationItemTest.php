@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class OrderCancellationItemTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,15 +56,13 @@ class OrderCancellationItemTest extends AbstractApiModelTest
                 'orderItemId',
                 'string',
                 'getOrderItemId',
-                'setOrderItemId',
-                false
+                'setOrderItemId'
             ],
             'assert property Quantity' => [
                 'quantity',
                 'string',
                 'getQuantity',
-                'setQuantity',
-                false
+                'setQuantity'
             ],
         ];
     }
@@ -72,7 +71,7 @@ class OrderCancellationItemTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new OrderCancellationItem([$property => $sample]);
@@ -87,13 +86,5 @@ class OrderCancellationItemTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new OrderCancellationItem([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

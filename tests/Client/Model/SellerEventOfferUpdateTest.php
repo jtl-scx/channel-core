@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class SellerEventOfferUpdateTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,155 +56,133 @@ class SellerEventOfferUpdateTest extends AbstractApiModelTest
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property OfferId' => [
                 'offerId',
                 'int',
                 'getOfferId',
-                'setOfferId',
-                false
+                'setOfferId'
             ],
             'assert property ParentOfferId' => [
                 'parentOfferId',
                 'int',
                 'getParentOfferId',
-                'setParentOfferId',
-                true
+                'setParentOfferId'
             ],
             'assert property ChannelOfferId' => [
                 'channelOfferId',
                 'string',
                 'getChannelOfferId',
-                'setChannelOfferId',
-                true
+                'setChannelOfferId'
             ],
             'assert property ChannelCategoryId' => [
                 'channelCategoryId',
                 'string',
                 'getChannelCategoryId',
-                'setChannelCategoryId',
-                true
+                'setChannelCategoryId'
             ],
             'assert property Quantity' => [
                 'quantity',
                 'string',
                 'getQuantity',
-                'setQuantity',
-                true
+                'setQuantity'
             ],
             'assert property TaxPercent' => [
                 'taxPercent',
                 'string',
                 'getTaxPercent',
-                'setTaxPercent',
-                true
+                'setTaxPercent'
             ],
             'assert property PriceList' => [
                 'priceList',
                 '\JTL\SCX\Lib\Channel\Client\Model\PriceContainer[]',
                 'getPriceList',
-                'setPriceList',
-                false
+                'setPriceList'
             ],
             'assert property Title' => [
                 'title',
                 'string',
                 'getTitle',
-                'setTitle',
-                true
+                'setTitle'
             ],
             'assert property SubTitle' => [
                 'subTitle',
                 'string',
                 'getSubTitle',
-                'setSubTitle',
-                true
+                'setSubTitle'
             ],
             'assert property Description' => [
                 'description',
                 'string',
                 'getDescription',
-                'setDescription',
-                true
+                'setDescription'
             ],
             'assert property MainPicture' => [
                 'mainPicture',
                 'string',
                 'getMainPicture',
-                'setMainPicture',
-                true
+                'setMainPicture'
             ],
             'assert property PictureList' => [
                 'pictureList',
                 'string[]',
                 'getPictureList',
-                'setPictureList',
-                true
+                'setPictureList'
             ],
             'assert property ChannelAttributeList' => [
                 'channelAttributeList',
                 '\JTL\SCX\Lib\Channel\Client\Model\ChannelAttribute[]',
                 'getChannelAttributeList',
-                'setChannelAttributeList',
-                true
+                'setChannelAttributeList'
             ],
             'assert property VariationList' => [
                 'variationList',
                 '\JTL\SCX\Lib\Channel\Client\Model\Variation[]',
                 'getVariationList',
-                'setVariationList',
-                true
+                'setVariationList'
             ],
             'assert property Sku' => [
                 'sku',
                 'string',
                 'getSku',
-                'setSku',
-                false
+                'setSku'
             ],
             'assert property Gtin' => [
                 'gtin',
                 'string',
                 'getGtin',
-                'setGtin',
-                true
+                'setGtin'
             ],
             'assert property Mpn' => [
                 'mpn',
                 'string',
                 'getMpn',
-                'setMpn',
-                true
+                'setMpn'
             ],
             'assert property Isbn' => [
                 'isbn',
                 'string',
                 'getIsbn',
-                'setIsbn',
-                true
+                'setIsbn'
             ],
             'assert property Brand' => [
                 'brand',
                 'string',
                 'getBrand',
-                'setBrand',
-                true
+                'setBrand'
             ],
             'assert property Srp' => [
                 'srp',
                 '\JTL\SCX\Lib\Channel\Client\Model\Price',
                 'getSrp',
-                'setSrp',
-                true
+                'setSrp'
             ],
             'assert property ProductAttributeList' => [
                 'productAttributeList',
                 '\JTL\SCX\Lib\Channel\Client\Model\ProductAttribute[]',
                 'getProductAttributeList',
-                'setProductAttributeList',
-                true
+                'setProductAttributeList'
             ],
         ];
     }
@@ -212,7 +191,7 @@ class SellerEventOfferUpdateTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new SellerEventOfferUpdate([$property => $sample]);
@@ -227,13 +206,5 @@ class SellerEventOfferUpdateTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new SellerEventOfferUpdate([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

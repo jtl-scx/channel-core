@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class AttributeTest extends AbstractApiModelTest
 {
 
+
     /**
      * Test allowed values for type
      * @test
@@ -69,120 +70,103 @@ class AttributeTest extends AbstractApiModelTest
                 'attributeId',
                 'string',
                 'getAttributeId',
-                'setAttributeId',
-                false
+                'setAttributeId'
             ],
             'assert property DisplayName' => [
                 'displayName',
                 'string',
                 'getDisplayName',
-                'setDisplayName',
-                false
+                'setDisplayName'
             ],
             'assert property IsMultipleAllowed' => [
                 'isMultipleAllowed',
                 'bool',
                 'getIsMultipleAllowed',
-                'setIsMultipleAllowed',
-                false
+                'setIsMultipleAllowed'
             ],
             'assert property Type' => [
                 'type',
                 'string',
                 'getType',
-                'setType',
-                false
+                'setType'
             ],
             'assert property Values' => [
                 'values',
                 '\JTL\SCX\Lib\Channel\Client\Model\AllowedValue[]',
                 'getValues',
-                'setValues',
-                true
+                'setValues'
             ],
             'assert property AttributeValueValidation' => [
                 'attributeValueValidation',
                 'string',
                 'getAttributeValueValidation',
-                'setAttributeValueValidation',
-                true
+                'setAttributeValueValidation'
             ],
             'assert property ConditionalMandatoryBy' => [
                 'conditionalMandatoryBy',
                 '\JTL\SCX\Lib\Channel\Client\Model\AttributeConditionalMandatoryBy[]',
                 'getConditionalMandatoryBy',
-                'setConditionalMandatoryBy',
-                true
+                'setConditionalMandatoryBy'
             ],
             'assert property ConditionalOptionalBy' => [
                 'conditionalOptionalBy',
                 '\JTL\SCX\Lib\Channel\Client\Model\AttributeConditionalOptionalBy[]',
                 'getConditionalOptionalBy',
-                'setConditionalOptionalBy',
-                true
+                'setConditionalOptionalBy'
             ],
             'assert property Required' => [
                 'required',
                 'bool',
                 'getRequired',
-                'setRequired',
-                false
+                'setRequired'
             ],
             'assert property Recommended' => [
                 'recommended',
                 'bool',
                 'getRecommended',
-                'setRecommended',
-                false
+                'setRecommended'
             ],
             'assert property Section' => [
                 'section',
                 'string',
                 'getSection',
-                'setSection',
-                true
+                'setSection'
             ],
             'assert property SectionPosition' => [
                 'sectionPosition',
                 'int',
                 'getSectionPosition',
-                'setSectionPosition',
-                false
+                'setSectionPosition'
             ],
             'assert property SubSection' => [
                 'subSection',
                 'string',
                 'getSubSection',
-                'setSubSection',
-                true
+                'setSubSection'
             ],
             'assert property SubSectionPosition' => [
                 'subSectionPosition',
                 'int',
                 'getSubSectionPosition',
-                'setSubSectionPosition',
-                false
+                'setSubSectionPosition'
             ],
             'assert property Description' => [
                 'description',
                 'string',
                 'getDescription',
-                'setDescription',
-                true
+                'setDescription'
             ],
             'assert property IsVariationDimension' => [
                 'isVariationDimension',
                 'bool',
                 'getIsVariationDimension',
-                'setIsVariationDimension',
-                true
+                'setIsVariationDimension'
             ],
             'assert property EnumValues' => [
                 'enumValues',
                 'string[]',
                 'getEnumValues',
-                'setEnumValues',
-                true
+                'setEnumValues'
             ],
         ];
     }
@@ -191,7 +175,7 @@ class AttributeTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new Attribute([$property => $sample]);
@@ -206,13 +190,5 @@ class AttributeTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new Attribute([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

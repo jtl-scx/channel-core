@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class NotificationTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,29 +56,25 @@ class NotificationTest extends AbstractApiModelTest
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property Severity' => [
                 'severity',
                 '\JTL\SCX\Lib\Channel\Client\Model\ChannelNotificationSeverity',
                 'getSeverity',
-                'setSeverity',
-                false
+                'setSeverity'
             ],
             'assert property Message' => [
                 'message',
                 'string',
                 'getMessage',
-                'setMessage',
-                false
+                'setMessage'
             ],
             'assert property Reference' => [
                 'reference',
                 '\JTL\SCX\Lib\Channel\Client\Model\ChannelNotificationReference',
                 'getReference',
-                'setReference',
-                true
+                'setReference'
             ],
         ];
     }
@@ -86,7 +83,7 @@ class NotificationTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new Notification([$property => $sample]);
@@ -101,13 +98,5 @@ class NotificationTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new Notification([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

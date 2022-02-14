@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class SellerEventOrderCancellationRequestTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,43 +56,37 @@ class SellerEventOrderCancellationRequestTest extends AbstractApiModelTest
                 'orderCancellationRequestId',
                 'string',
                 'getOrderCancellationRequestId',
-                'setOrderCancellationRequestId',
-                false
+                'setOrderCancellationRequestId'
             ],
             'assert property SellerId' => [
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property OrderId' => [
                 'orderId',
                 'string',
                 'getOrderId',
-                'setOrderId',
-                false
+                'setOrderId'
             ],
             'assert property OrderItem' => [
                 'orderItem',
                 '\JTL\SCX\Lib\Channel\Client\Model\OrderCancellationItem[]',
                 'getOrderItem',
-                'setOrderItem',
-                false
+                'setOrderItem'
             ],
             'assert property CancelReason' => [
                 'cancelReason',
                 '\JTL\SCX\Lib\Channel\Client\Model\CancelReason',
                 'getCancelReason',
-                'setCancelReason',
-                true
+                'setCancelReason'
             ],
             'assert property Message' => [
                 'message',
                 'string',
                 'getMessage',
-                'setMessage',
-                true
+                'setMessage'
             ],
         ];
     }
@@ -100,7 +95,7 @@ class SellerEventOrderCancellationRequestTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new SellerEventOrderCancellationRequest([$property => $sample]);
@@ -115,13 +110,5 @@ class SellerEventOrderCancellationRequestTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new SellerEventOrderCancellationRequest([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

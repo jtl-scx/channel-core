@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class SellerInventoryItemTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,64 +56,55 @@ class SellerInventoryItemTest extends AbstractApiModelTest
                 'offerId',
                 'int',
                 'getOfferId',
-                'setOfferId',
-                true
+                'setOfferId'
             ],
             'assert property ChannelOfferId' => [
                 'channelOfferId',
                 'string',
                 'getChannelOfferId',
-                'setChannelOfferId',
-                true
+                'setChannelOfferId'
             ],
             'assert property Sku' => [
                 'sku',
                 'string',
                 'getSku',
-                'setSku',
-                true
+                'setSku'
             ],
             'assert property Ean' => [
                 'ean',
                 'string',
                 'getEan',
-                'setEan',
-                true
+                'setEan'
             ],
             'assert property Quantity' => [
                 'quantity',
                 'string',
                 'getQuantity',
-                'setQuantity',
-                true
+                'setQuantity'
             ],
             'assert property PriceList' => [
                 'priceList',
                 '\JTL\SCX\Lib\Channel\Client\Model\PriceContainer[]',
                 'getPriceList',
-                'setPriceList',
-                true
+                'setPriceList'
             ],
             'assert property Title' => [
                 'title',
                 'string',
                 'getTitle',
-                'setTitle',
-                true
+                'setTitle'
             ],
             'assert property ChannelCategoryId' => [
                 'channelCategoryId',
                 'string',
                 'getChannelCategoryId',
-                'setChannelCategoryId',
-                true
+                'setChannelCategoryId'
             ],
             'assert property ChannelAttributeList' => [
                 'channelAttributeList',
                 '\JTL\SCX\Lib\Channel\Client\Model\ChannelAttribute[]',
                 'getChannelAttributeList',
-                'setChannelAttributeList',
-                true
+                'setChannelAttributeList'
             ],
         ];
     }
@@ -121,7 +113,7 @@ class SellerInventoryItemTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new SellerInventoryItem([$property => $sample]);
@@ -136,13 +128,5 @@ class SellerInventoryItemTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new SellerInventoryItem([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class CancellationDeniedTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,22 +56,19 @@ class CancellationDeniedTest extends AbstractApiModelTest
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property OrderCancellationRequestId' => [
                 'orderCancellationRequestId',
                 'string',
                 'getOrderCancellationRequestId',
-                'setOrderCancellationRequestId',
-                false
+                'setOrderCancellationRequestId'
             ],
             'assert property Reason' => [
                 'reason',
                 'string',
                 'getReason',
-                'setReason',
-                false
+                'setReason'
             ],
         ];
     }
@@ -79,7 +77,7 @@ class CancellationDeniedTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new CancellationDenied([$property => $sample]);
@@ -94,13 +92,5 @@ class CancellationDeniedTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new CancellationDenied([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class SellerEventOrderReturnReceivedTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,36 +56,31 @@ class SellerEventOrderReturnReceivedTest extends AbstractApiModelTest
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property OrderId' => [
                 'orderId',
                 'string',
                 'getOrderId',
-                'setOrderId',
-                false
+                'setOrderId'
             ],
             'assert property SellerReturnId' => [
                 'sellerReturnId',
                 'string',
                 'getSellerReturnId',
-                'setSellerReturnId',
-                false
+                'setSellerReturnId'
             ],
             'assert property ChannelReturnId' => [
                 'channelReturnId',
                 'string',
                 'getChannelReturnId',
-                'setChannelReturnId',
-                true
+                'setChannelReturnId'
             ],
             'assert property OrderItem' => [
                 'orderItem',
                 '\JTL\SCX\Lib\Channel\Client\Model\ReturnReceivedOrderItem[]',
                 'getOrderItem',
-                'setOrderItem',
-                false
+                'setOrderItem'
             ],
         ];
     }
@@ -93,7 +89,7 @@ class SellerEventOrderReturnReceivedTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new SellerEventOrderReturnReceived([$property => $sample]);
@@ -108,13 +104,5 @@ class SellerEventOrderReturnReceivedTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new SellerEventOrderReturnReceived([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

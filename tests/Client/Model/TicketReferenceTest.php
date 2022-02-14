@@ -69,15 +69,13 @@ class TicketReferenceTest extends AbstractApiModelTest
                 'type',
                 'string',
                 'getType',
-                'setType',
-                false
+                'setType'
             ],
             'assert property Id' => [
                 'id',
                 'string',
                 'getId',
-                'setId',
-                false
+                'setId'
             ],
         ];
     }
@@ -86,7 +84,7 @@ class TicketReferenceTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new TicketReference([$property => $sample]);
@@ -101,13 +99,5 @@ class TicketReferenceTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new TicketReference([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

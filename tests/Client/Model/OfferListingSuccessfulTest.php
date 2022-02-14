@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class OfferListingSuccessfulTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,36 +56,31 @@ class OfferListingSuccessfulTest extends AbstractApiModelTest
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property OfferId' => [
                 'offerId',
                 'int',
                 'getOfferId',
-                'setOfferId',
-                false
+                'setOfferId'
             ],
             'assert property ChannelOfferId' => [
                 'channelOfferId',
                 'string',
                 'getChannelOfferId',
-                'setChannelOfferId',
-                true
+                'setChannelOfferId'
             ],
             'assert property ListedAt' => [
                 'listedAt',
                 '\DateTime',
                 'getListedAt',
-                'setListedAt',
-                false
+                'setListedAt'
             ],
             'assert property ListingUrl' => [
                 'listingUrl',
                 'string',
                 'getListingUrl',
-                'setListingUrl',
-                true
+                'setListingUrl'
             ],
         ];
     }
@@ -93,7 +89,7 @@ class OfferListingSuccessfulTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new OfferListingSuccessful([$property => $sample]);
@@ -108,13 +104,5 @@ class OfferListingSuccessfulTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new OfferListingSuccessful([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

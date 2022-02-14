@@ -43,6 +43,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class OrderItemPaymentStatusTest extends AbstractApiModelTest
 {
+
     /**
      * Test Enum Value "PENDING"
      * @test

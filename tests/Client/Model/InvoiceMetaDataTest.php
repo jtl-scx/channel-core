@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class InvoiceMetaDataTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,29 +56,25 @@ class InvoiceMetaDataTest extends AbstractApiModelTest
                 'type',
                 '\JTL\SCX\Lib\Channel\Client\Model\InvoiceDocumentType',
                 'getType',
-                'setType',
-                false
+                'setType'
             ],
             'assert property SellerId' => [
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property OrderId' => [
                 'orderId',
                 'string',
                 'getOrderId',
-                'setOrderId',
-                false
+                'setOrderId'
             ],
             'assert property InvoiceNumber' => [
                 'invoiceNumber',
                 'string',
                 'getInvoiceNumber',
-                'setInvoiceNumber',
-                false
+                'setInvoiceNumber'
             ],
         ];
     }
@@ -86,7 +83,7 @@ class InvoiceMetaDataTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new InvoiceMetaData([$property => $sample]);
@@ -101,13 +98,5 @@ class InvoiceMetaDataTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new InvoiceMetaData([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

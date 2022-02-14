@@ -43,6 +43,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class ConditionTest extends AbstractApiModelTest
 {
+
     /**
      * Test Enum Value "ORIGINAL_PACKAGING"
      * @test

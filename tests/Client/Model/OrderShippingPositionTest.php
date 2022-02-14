@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class OrderShippingPositionTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,43 +56,37 @@ class OrderShippingPositionTest extends AbstractApiModelTest
                 'carrier',
                 'string',
                 'getCarrier',
-                'setCarrier',
-                false
+                'setCarrier'
             ],
             'assert property TrackingNumber' => [
                 'trackingNumber',
                 'string',
                 'getTrackingNumber',
-                'setTrackingNumber',
-                true
+                'setTrackingNumber'
             ],
             'assert property ReturnTracking' => [
                 'returnTracking',
                 '\JTL\SCX\Lib\Channel\Client\Model\OrderShippingReturnTracking',
                 'getReturnTracking',
-                'setReturnTracking',
-                true
+                'setReturnTracking'
             ],
             'assert property ShippedAt' => [
                 'shippedAt',
                 '\DateTime',
                 'getShippedAt',
-                'setShippedAt',
-                true
+                'setShippedAt'
             ],
             'assert property OrderItemIdList' => [
                 'orderItemIdList',
                 '\JTL\SCX\Lib\Channel\Client\Model\OrderShippingPositionItem[]',
                 'getOrderItemIdList',
-                'setOrderItemIdList',
-                true
+                'setOrderItemIdList'
             ],
             'assert property ShippedFrom' => [
                 'shippedFrom',
                 '\JTL\SCX\Lib\Channel\Client\Model\OrderShippingShippedFrom',
                 'getShippedFrom',
-                'setShippedFrom',
-                true
+                'setShippedFrom'
             ],
         ];
     }
@@ -100,7 +95,7 @@ class OrderShippingPositionTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new OrderShippingPosition([$property => $sample]);
@@ -115,13 +110,5 @@ class OrderShippingPositionTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new OrderShippingPosition([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

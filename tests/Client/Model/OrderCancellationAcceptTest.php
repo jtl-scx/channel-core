@@ -55,15 +55,13 @@ class OrderCancellationAcceptTest extends AbstractApiModelTest
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property OrderCancellationRequestId' => [
                 'orderCancellationRequestId',
                 'string',
                 'getOrderCancellationRequestId',
-                'setOrderCancellationRequestId',
-                false
+                'setOrderCancellationRequestId'
             ],
         ];
     }
@@ -72,7 +70,7 @@ class OrderCancellationAcceptTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new OrderCancellationAccept([$property => $sample]);
@@ -87,13 +85,5 @@ class OrderCancellationAcceptTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new OrderCancellationAccept([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

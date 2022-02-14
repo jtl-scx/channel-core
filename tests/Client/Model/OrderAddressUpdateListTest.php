@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class OrderAddressUpdateListTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,8 +56,7 @@ class OrderAddressUpdateListTest extends AbstractApiModelTest
                 'orderList',
                 '\JTL\SCX\Lib\Channel\Client\Model\OrderAddressUpdate[]',
                 'getOrderList',
-                'setOrderList',
-                false
+                'setOrderList'
             ],
         ];
     }
@@ -65,7 +65,7 @@ class OrderAddressUpdateListTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new OrderAddressUpdateList([$property => $sample]);
@@ -80,13 +80,5 @@ class OrderAddressUpdateListTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new OrderAddressUpdateList([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

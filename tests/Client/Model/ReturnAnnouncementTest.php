@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class ReturnAnnouncementTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,36 +56,31 @@ class ReturnAnnouncementTest extends AbstractApiModelTest
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property OrderId' => [
                 'orderId',
                 'string',
                 'getOrderId',
-                'setOrderId',
-                false
+                'setOrderId'
             ],
             'assert property OrderItem' => [
                 'orderItem',
                 '\JTL\SCX\Lib\Channel\Client\Model\ReturnAnnouncementOrderItem[]',
                 'getOrderItem',
-                'setOrderItem',
-                true
+                'setOrderItem'
             ],
             'assert property ChannelReturnId' => [
                 'channelReturnId',
                 'string',
                 'getChannelReturnId',
-                'setChannelReturnId',
-                false
+                'setChannelReturnId'
             ],
             'assert property ReturnTracking' => [
                 'returnTracking',
                 '\JTL\SCX\Lib\Channel\Client\Model\ReturnAnnouncementReturnTracking',
                 'getReturnTracking',
-                'setReturnTracking',
-                true
+                'setReturnTracking'
             ],
         ];
     }
@@ -93,7 +89,7 @@ class ReturnAnnouncementTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new ReturnAnnouncement([$property => $sample]);
@@ -108,13 +104,5 @@ class ReturnAnnouncementTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new ReturnAnnouncement([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

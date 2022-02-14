@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class ReturnReceivedOrderItemTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,50 +56,43 @@ class ReturnReceivedOrderItemTest extends AbstractApiModelTest
                 'orderItemId',
                 'string',
                 'getOrderItemId',
-                'setOrderItemId',
-                false
+                'setOrderItemId'
             ],
             'assert property Quantity' => [
                 'quantity',
                 'string',
                 'getQuantity',
-                'setQuantity',
-                false
+                'setQuantity'
             ],
             'assert property ReturnReason' => [
                 'returnReason',
                 '\JTL\SCX\Lib\Channel\Client\Model\ReturnReason',
                 'getReturnReason',
-                'setReturnReason',
-                false
+                'setReturnReason'
             ],
             'assert property Note' => [
                 'note',
                 'string',
                 'getNote',
-                'setNote',
-                true
+                'setNote'
             ],
             'assert property Condition' => [
                 'condition',
                 '\JTL\SCX\Lib\Channel\Client\Model\Condition',
                 'getCondition',
-                'setCondition',
-                false
+                'setCondition'
             ],
             'assert property AcceptReturn' => [
                 'acceptReturn',
                 'bool',
                 'getAcceptReturn',
-                'setAcceptReturn',
-                false
+                'setAcceptReturn'
             ],
             'assert property RequireReturnShipping' => [
                 'requireReturnShipping',
                 'bool',
                 'getRequireReturnShipping',
-                'setRequireReturnShipping',
-                false
+                'setRequireReturnShipping'
             ],
         ];
     }
@@ -107,7 +101,7 @@ class ReturnReceivedOrderItemTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new ReturnReceivedOrderItem([$property => $sample]);
@@ -122,13 +116,5 @@ class ReturnReceivedOrderItemTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new ReturnReceivedOrderItem([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

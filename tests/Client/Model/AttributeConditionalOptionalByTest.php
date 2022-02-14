@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class AttributeConditionalOptionalByTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,15 +56,13 @@ class AttributeConditionalOptionalByTest extends AbstractApiModelTest
                 'attributeId',
                 'string',
                 'getAttributeId',
-                'setAttributeId',
-                true
+                'setAttributeId'
             ],
             'assert property AttributeValues' => [
                 'attributeValues',
                 'string[]',
                 'getAttributeValues',
-                'setAttributeValues',
-                true
+                'setAttributeValues'
             ],
         ];
     }
@@ -72,7 +71,7 @@ class AttributeConditionalOptionalByTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new AttributeConditionalOptionalBy([$property => $sample]);
@@ -87,13 +86,5 @@ class AttributeConditionalOptionalByTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new AttributeConditionalOptionalBy([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

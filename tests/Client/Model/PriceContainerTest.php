@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class PriceContainerTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,15 +56,13 @@ class PriceContainerTest extends AbstractApiModelTest
                 'id',
                 'string',
                 'getId',
-                'setId',
-                false
+                'setId'
             ],
             'assert property QuantityPriceList' => [
                 'quantityPriceList',
                 '\JTL\SCX\Lib\Channel\Client\Model\QuantityPrice[]',
                 'getQuantityPriceList',
-                'setQuantityPriceList',
-                false
+                'setQuantityPriceList'
             ],
         ];
     }
@@ -72,7 +71,7 @@ class PriceContainerTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new PriceContainer([$property => $sample]);
@@ -87,13 +86,5 @@ class PriceContainerTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new PriceContainer([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

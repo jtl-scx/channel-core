@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class ErrorResponseListTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,8 +56,7 @@ class ErrorResponseListTest extends AbstractApiModelTest
                 'errorList',
                 '\JTL\SCX\Lib\Channel\Client\Model\Error[]',
                 'getErrorList',
-                'setErrorList',
-                true
+                'setErrorList'
             ],
         ];
     }
@@ -65,7 +65,7 @@ class ErrorResponseListTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new ErrorResponseList([$property => $sample]);
@@ -80,13 +80,5 @@ class ErrorResponseListTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new ErrorResponseList([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

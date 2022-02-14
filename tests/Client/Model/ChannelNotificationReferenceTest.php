@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class ChannelNotificationReferenceTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,15 +56,13 @@ class ChannelNotificationReferenceTest extends AbstractApiModelTest
                 'type',
                 '\JTL\SCX\Lib\Channel\Client\Model\ChannelNotificationReferenceType',
                 'getType',
-                'setType',
-                false
+                'setType'
             ],
             'assert property Id' => [
                 'id',
                 'string',
                 'getId',
-                'setId',
-                false
+                'setId'
             ],
         ];
     }
@@ -72,7 +71,7 @@ class ChannelNotificationReferenceTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new ChannelNotificationReference([$property => $sample]);
@@ -87,13 +86,5 @@ class ChannelNotificationReferenceTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new ChannelNotificationReference([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

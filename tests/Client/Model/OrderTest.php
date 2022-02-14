@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class OrderTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,106 +56,91 @@ class OrderTest extends AbstractApiModelTest
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property OrderStatus' => [
                 'orderStatus',
                 '\JTL\SCX\Lib\Channel\Client\Model\ChannelOrderStatus',
                 'getOrderStatus',
-                'setOrderStatus',
-                false
+                'setOrderStatus'
             ],
             'assert property OrderAcceptUntil' => [
                 'orderAcceptUntil',
                 '\DateTime',
                 'getOrderAcceptUntil',
-                'setOrderAcceptUntil',
-                true
+                'setOrderAcceptUntil'
             ],
             'assert property PaymentStatus' => [
                 'paymentStatus',
                 '\JTL\SCX\Lib\Channel\Client\Model\ChannelPaymentStatus',
                 'getPaymentStatus',
-                'setPaymentStatus',
-                true
+                'setPaymentStatus'
             ],
             'assert property PaymentMethod' => [
                 'paymentMethod',
                 'string',
                 'getPaymentMethod',
-                'setPaymentMethod',
-                true
+                'setPaymentMethod'
             ],
             'assert property PaymentReference' => [
                 'paymentReference',
                 'string',
                 'getPaymentReference',
-                'setPaymentReference',
-                true
+                'setPaymentReference'
             ],
             'assert property OrderId' => [
                 'orderId',
                 'string',
                 'getOrderId',
-                'setOrderId',
-                false
+                'setOrderId'
             ],
             'assert property PurchasedAt' => [
                 'purchasedAt',
                 '\DateTime',
                 'getPurchasedAt',
-                'setPurchasedAt',
-                false
+                'setPurchasedAt'
             ],
             'assert property LastChangedAt' => [
                 'lastChangedAt',
                 '\DateTime',
                 'getLastChangedAt',
-                'setLastChangedAt',
-                false
+                'setLastChangedAt'
             ],
             'assert property Currency' => [
                 'currency',
                 'string',
                 'getCurrency',
-                'setCurrency',
-                false
+                'setCurrency'
             ],
             'assert property OrderItem' => [
                 'orderItem',
                 '\JTL\SCX\Lib\Channel\Client\Model\OrderItem[]',
                 'getOrderItem',
-                'setOrderItem',
-                false
+                'setOrderItem'
             ],
             'assert property BillingAddress' => [
                 'billingAddress',
                 '\JTL\SCX\Lib\Channel\Client\Model\Address',
                 'getBillingAddress',
-                'setBillingAddress',
-                true
+                'setBillingAddress'
             ],
             'assert property ShippingAddress' => [
                 'shippingAddress',
                 '\JTL\SCX\Lib\Channel\Client\Model\Address',
                 'getShippingAddress',
-                'setShippingAddress',
-                true
+                'setShippingAddress'
             ],
             'assert property Note' => [
                 'note',
                 'string',
                 'getNote',
-                'setNote',
-                true
+                'setNote'
             ],
             'assert property Buyer' => [
                 'buyer',
                 '\JTL\SCX\Lib\Channel\Client\Model\OrderBuyer',
                 'getBuyer',
-                'setBuyer',
-                true
+                'setBuyer'
             ],
         ];
     }
@@ -163,7 +149,7 @@ class OrderTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new Order([$property => $sample]);
@@ -178,13 +164,5 @@ class OrderTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new Order([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

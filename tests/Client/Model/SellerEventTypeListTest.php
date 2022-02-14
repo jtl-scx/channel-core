@@ -43,6 +43,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class SellerEventTypeListTest extends AbstractApiModelTest
 {
+
     /**
      * Test Enum Value "SYSTEMTEST"
      * @test
@@ -423,19 +424,9 @@ class SellerEventTypeListTest extends AbstractApiModelTest
         $sut = SellerEventTypeList::SELLERMETA_SELLER_ATTRIBUTES_UPDATE_REQUEST();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
-    /**
-     * Test Enum Value "SELLERTICKET_REPLY"
-     * @test
-     */
-    public function is_a_const_SELLERTICKET_REPLY(): void
-    {
-        self::assertEquals('Seller:Ticket.Reply', SellerEventTypeList::SELLERTICKET_REPLY);
-        $sut = new SellerEventTypeList('Seller:Ticket.Reply');
-        self::assertEquals('Seller:Ticket.Reply', $sut->getValue());
-    }
 
     /**
-     * Test Enum Value Named Constructor "SELLERTICKET_REPLY"
+     * Test Enum Value Named Constructor "SELLERMETA_SELLER_ATTRIBUTES_UPDATE_REQUEST"
      * @test
      */
     public function it_can_be_constructed_forSELLERTICKET_REPLY(): void

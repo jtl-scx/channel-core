@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class ChannelCategoryTreeTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,8 +56,7 @@ class ChannelCategoryTreeTest extends AbstractApiModelTest
                 'categoryList',
                 '\JTL\SCX\Lib\Channel\Client\Model\Category[]',
                 'getCategoryList',
-                'setCategoryList',
-                true
+                'setCategoryList'
             ],
         ];
     }
@@ -65,7 +65,7 @@ class ChannelCategoryTreeTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new ChannelCategoryTree([$property => $sample]);
@@ -80,13 +80,5 @@ class ChannelCategoryTreeTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new ChannelCategoryTree([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

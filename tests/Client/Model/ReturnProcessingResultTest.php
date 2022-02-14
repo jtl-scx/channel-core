@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class ReturnProcessingResultTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,29 +56,25 @@ class ReturnProcessingResultTest extends AbstractApiModelTest
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property SellerReturnId' => [
                 'sellerReturnId',
                 'string',
                 'getSellerReturnId',
-                'setSellerReturnId',
-                false
+                'setSellerReturnId'
             ],
             'assert property IsAccepted' => [
                 'isAccepted',
                 'bool',
                 'getIsAccepted',
-                'setIsAccepted',
-                false
+                'setIsAccepted'
             ],
             'assert property ProcessingErrorList' => [
                 'processingErrorList',
                 '\JTL\SCX\Lib\Channel\Client\Model\ReturnProcessingError[]',
                 'getProcessingErrorList',
-                'setProcessingErrorList',
-                true
+                'setProcessingErrorList'
             ],
         ];
     }
@@ -86,7 +83,7 @@ class ReturnProcessingResultTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new ReturnProcessingResult([$property => $sample]);
@@ -101,13 +98,5 @@ class ReturnProcessingResultTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new ReturnProcessingResult([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

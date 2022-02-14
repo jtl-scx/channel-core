@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class SellerEventOrderRefundTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,29 +56,25 @@ class SellerEventOrderRefundTest extends AbstractApiModelTest
                 'refundId',
                 'string',
                 'getRefundId',
-                'setRefundId',
-                false
+                'setRefundId'
             ],
             'assert property SellerId' => [
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property OrderId' => [
                 'orderId',
                 'string',
                 'getOrderId',
-                'setOrderId',
-                false
+                'setOrderId'
             ],
             'assert property OrderItem' => [
                 'orderItem',
                 '\JTL\SCX\Lib\Channel\Client\Model\RefundOrderItem[]',
                 'getOrderItem',
-                'setOrderItem',
-                false
+                'setOrderItem'
             ],
         ];
     }
@@ -86,7 +83,7 @@ class SellerEventOrderRefundTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new SellerEventOrderRefund([$property => $sample]);
@@ -101,13 +98,5 @@ class SellerEventOrderRefundTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new SellerEventOrderRefund([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

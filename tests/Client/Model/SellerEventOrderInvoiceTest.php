@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class SellerEventOrderInvoiceTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,43 +56,37 @@ class SellerEventOrderInvoiceTest extends AbstractApiModelTest
                 'type',
                 '\JTL\SCX\Lib\Channel\Client\Model\InvoiceDocumentType',
                 'getType',
-                'setType',
-                false
+                'setType'
             ],
             'assert property SellerId' => [
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property OrderId' => [
                 'orderId',
                 'string',
                 'getOrderId',
-                'setOrderId',
-                false
+                'setOrderId'
             ],
             'assert property InvoiceNumber' => [
                 'invoiceNumber',
                 'string',
                 'getInvoiceNumber',
-                'setInvoiceNumber',
-                false
+                'setInvoiceNumber'
             ],
             'assert property DocumentId' => [
                 'documentId',
                 'string',
                 'getDocumentId',
-                'setDocumentId',
-                false
+                'setDocumentId'
             ],
             'assert property DocumentExpiresAt' => [
                 'documentExpiresAt',
                 '\DateTime',
                 'getDocumentExpiresAt',
-                'setDocumentExpiresAt',
-                false
+                'setDocumentExpiresAt'
             ],
         ];
     }
@@ -100,7 +95,7 @@ class SellerEventOrderInvoiceTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new SellerEventOrderInvoice([$property => $sample]);
@@ -115,13 +110,5 @@ class SellerEventOrderInvoiceTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new SellerEventOrderInvoice([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

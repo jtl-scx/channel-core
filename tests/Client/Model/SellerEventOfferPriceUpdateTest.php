@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class SellerEventOfferPriceUpdateTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,29 +56,25 @@ class SellerEventOfferPriceUpdateTest extends AbstractApiModelTest
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property OfferId' => [
                 'offerId',
                 'int',
                 'getOfferId',
-                'setOfferId',
-                false
+                'setOfferId'
             ],
             'assert property ChannelOfferId' => [
                 'channelOfferId',
                 'string',
                 'getChannelOfferId',
-                'setChannelOfferId',
-                true
+                'setChannelOfferId'
             ],
             'assert property PriceList' => [
                 'priceList',
                 '\JTL\SCX\Lib\Channel\Client\Model\PriceContainer[]',
                 'getPriceList',
-                'setPriceList',
-                false
+                'setPriceList'
             ],
         ];
     }
@@ -86,7 +83,7 @@ class SellerEventOfferPriceUpdateTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new SellerEventOfferPriceUpdate([$property => $sample]);
@@ -101,13 +98,5 @@ class SellerEventOfferPriceUpdateTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new SellerEventOfferPriceUpdate([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

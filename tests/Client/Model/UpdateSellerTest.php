@@ -55,15 +55,13 @@ class UpdateSellerTest extends AbstractApiModelTest
                 'session',
                 'string',
                 'getSession',
-                'setSession',
-                true
+                'setSession'
             ],
             'assert property IsActive' => [
                 'isActive',
                 'bool',
                 'getIsActive',
-                'setIsActive',
-                true
+                'setIsActive'
             ],
         ];
     }
@@ -72,7 +70,7 @@ class UpdateSellerTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new UpdateSeller([$property => $sample]);
@@ -87,13 +85,5 @@ class UpdateSellerTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new UpdateSeller([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

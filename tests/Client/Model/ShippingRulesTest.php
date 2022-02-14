@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class ShippingRulesTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,8 +56,7 @@ class ShippingRulesTest extends AbstractApiModelTest
                 'supportedCarrierList',
                 '\JTL\SCX\Lib\Channel\Client\Model\SupportedCarrier[]',
                 'getSupportedCarrierList',
-                'setSupportedCarrierList',
-                true
+                'setSupportedCarrierList'
             ],
         ];
     }
@@ -65,7 +65,7 @@ class ShippingRulesTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new ShippingRules([$property => $sample]);
@@ -80,13 +80,5 @@ class ShippingRulesTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new ShippingRules([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class ChannelUpdateFeatureListTest extends AbstractApiModelTest
 {
 
+
     /**
      * Test allowed values for invoiceDocumentTransfer
      * @test
@@ -69,50 +70,43 @@ class ChannelUpdateFeatureListTest extends AbstractApiModelTest
                 'invoiceDocumentTransfer',
                 'string',
                 'getInvoiceDocumentTransfer',
-                'setInvoiceDocumentTransfer',
-                false
+                'setInvoiceDocumentTransfer'
             ],
             'assert property PriceUpdatesSupported' => [
                 'priceUpdatesSupported',
                 'bool',
                 'getPriceUpdatesSupported',
-                'setPriceUpdatesSupported',
-                false
+                'setPriceUpdatesSupported'
             ],
             'assert property QuantityPriceSupported' => [
                 'quantityPriceSupported',
                 'bool',
                 'getQuantityPriceSupported',
-                'setQuantityPriceSupported',
-                false
+                'setQuantityPriceSupported'
             ],
             'assert property RemainingQuanitySupported' => [
                 'remainingQuanitySupported',
                 'bool',
                 'getRemainingQuanitySupported',
-                'setRemainingQuanitySupported',
-                false
+                'setRemainingQuanitySupported'
             ],
             'assert property VariationsSupported' => [
                 'variationsSupported',
                 'bool',
                 'getVariationsSupported',
-                'setVariationsSupported',
-                false
+                'setVariationsSupported'
             ],
             'assert property ReturnTrackingRequired' => [
                 'returnTrackingRequired',
                 'bool',
                 'getReturnTrackingRequired',
-                'setReturnTrackingRequired',
-                false
+                'setReturnTrackingRequired'
             ],
             'assert property AllowCombineOrders' => [
                 'allowCombineOrders',
                 'bool',
                 'getAllowCombineOrders',
-                'setAllowCombineOrders',
-                false
+                'setAllowCombineOrders'
             ],
         ];
     }
@@ -121,7 +115,7 @@ class ChannelUpdateFeatureListTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new ChannelUpdateFeatureList([$property => $sample]);
@@ -136,13 +130,5 @@ class ChannelUpdateFeatureListTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new ChannelUpdateFeatureList([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class SupportedPaymentMethodTest extends AbstractApiModelTest
 {
 
+
     /**
      * @return array
      * @dataProvider
@@ -55,15 +56,13 @@ class SupportedPaymentMethodTest extends AbstractApiModelTest
                 'paymentMethodId',
                 'string',
                 'getPaymentMethodId',
-                'setPaymentMethodId',
-                false
+                'setPaymentMethodId'
             ],
             'assert property DisplayName' => [
                 'displayName',
                 'string',
                 'getDisplayName',
-                'setDisplayName',
-                true
+                'setDisplayName'
             ],
         ];
     }
@@ -72,7 +71,7 @@ class SupportedPaymentMethodTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new SupportedPaymentMethod([$property => $sample]);
@@ -87,13 +86,5 @@ class SupportedPaymentMethodTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new SupportedPaymentMethod([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }

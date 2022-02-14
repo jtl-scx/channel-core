@@ -43,6 +43,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class ReportTypeTest extends AbstractApiModelTest
 {
+
     /**
      * Test Enum Value "SELLER_INVENTORY"
      * @test

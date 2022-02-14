@@ -44,6 +44,7 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class SystemEventNotificationTest extends AbstractApiModelTest
 {
 
+
     /**
      * Test allowed values for severity
      * @test
@@ -69,29 +70,25 @@ class SystemEventNotificationTest extends AbstractApiModelTest
                 'channel',
                 'string',
                 'getChannel',
-                'setChannel',
-                false
+                'setChannel'
             ],
             'assert property SellerId' => [
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId',
-                false
+                'setSellerId'
             ],
             'assert property Message' => [
                 'message',
                 'string',
                 'getMessage',
-                'setMessage',
-                false
+                'setMessage'
             ],
             'assert property Severity' => [
                 'severity',
                 'string',
                 'getSeverity',
-                'setSeverity',
-                false
+                'setSeverity'
             ],
         ];
     }
@@ -100,7 +97,7 @@ class SystemEventNotificationTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new SystemEventNotification([$property => $sample]);
@@ -115,13 +112,5 @@ class SystemEventNotificationTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new SystemEventNotification([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
     }
 }
