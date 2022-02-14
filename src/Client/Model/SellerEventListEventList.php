@@ -59,7 +59,7 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @param \DateTime
       * @param SellerEventTypeList
-      * @param OneOfSellerEventOrderShippingSellerEventOrderPaymentSellerEventOfferEndSellerEventOfferNewSellerEventOfferUpdateSellerEventOfferStockUpdateSellerEventOfferPriceUpdateSellerEventTestSellerEventReportRequestSystemEventNotificationSellerEventChannelUnlinkedSellerEventSellerAttributesUpdateRequestSellerEventOrderCancellationRequestSellerEventOrderCancellationAcceptedSellerEventOrderCancellationDeniedSellerEventOrderAcceptSellerEventOrderInvoiceSellerEventOrderReturnReceivedSellerEventOrderRefundSellerEventTicketReply
+      * @param object
       *
       * @var string[]
       */
