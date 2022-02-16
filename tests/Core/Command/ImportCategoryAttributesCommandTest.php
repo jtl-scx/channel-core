@@ -338,4 +338,32 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $this->assertStringContainsString("Update Category Id: {$testCategoryId1} with 1 Attributes ... done", $output);
         $this->assertStringContainsString("No category-attributes available", $output);
     }
+
+    public function testWillStopIfProcessIsLocked()
+    {
+        $testCategoryId = uniqid('testCategoryId');
+
+        $loaderMock = $this->createMock(MetaDataCategoryAttributeLoader::class);
+        $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
+        $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
+        $lockFactory = $this->createMock(LockFactory::class);
+
+        $lockFactory->expects($this->once())
+            ->method('obtain')
+            ->willReturn(false);
+
+        $cmd = new ImportCategoryAttributesCommand(
+            $loaderMock,
+            $updaterMock,
+            $deleterMock,
+            $lockFactory,
+            $this->createStub(ScxLogger::class)
+        );
+        $cmdTester = new CommandTester($cmd);
+        $cmdTester->execute([
+            'categoryId' => $testCategoryId,
+        ]);
+
+        $this->assertEquals(0, $cmdTester->getStatusCode());
+    }
 }
