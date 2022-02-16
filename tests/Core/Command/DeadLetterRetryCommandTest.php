@@ -674,4 +674,168 @@ class DeadLetterRetryCommandTest extends TestCase
             ]
         );
     }
+
+    public function testCanRetryMessagesAndShowEmptyQueues(): void
+    {
+        $queueName1 = AmqpTransport::DEAD_LETTER_QUEUE_PREFIX . uniqid('queueName', true);
+        $queueName2 = AmqpTransport::DEAD_LETTER_QUEUE_PREFIX . uniqid('queueName', true);
+        $routingKey = uniqid('routingKey', true);
+        $deliveryTag = uniqid('deliveryTag', true);
+        $isRedelivered = uniqid('isRedelivered', true);
+        $exchange = uniqid('exchange', true);
+
+        $message = $this->createMock(AMQPMessage::class);
+        $event = $this->createMock(AbstractEvent::class);
+
+        $this->transport->expects(self::once())
+            ->method('connect');
+
+        $this->queueLister->expects(self::once())
+            ->method('listQueues')
+            ->with(AmqpTransport::DEAD_LETTER_QUEUE_PREFIX)
+            ->willReturn([$queueName1, $queueName2]);
+
+        $this->transport->expects(self::exactly(2))
+            ->method('countMessagesInQueue')
+            ->withConsecutive([$queueName1], [$queueName2])
+            ->willReturn(1);
+
+        $this->transport->expects(self::once())
+            ->method('getMessageFromQueue')
+            ->with($queueName1, false)
+            ->willReturn($message);
+
+        $message->expects(self::once())
+            ->method('getBody')
+            ->willReturn('');
+
+        $this->messageSerializer->expects(self::once())
+            ->method('deserialize')
+            ->willReturn($event);
+
+        $message->expects(self::once())
+            ->method('getRoutingKey')
+            ->willReturn($routingKey);
+
+        $message->expects(self::once())
+            ->method('getDeliveryTag')
+            ->willReturn($deliveryTag);
+
+        $message->expects(self::once())
+            ->method('isRedelivered')
+            ->willReturn($isRedelivered);
+
+        $message->expects(self::once())
+            ->method('getExchange')
+            ->willReturn($exchange);
+
+        $message->expects(self::once())
+            ->method('setDeliveryInfo')
+            ->with($deliveryTag, $isRedelivered, $exchange, substr($routingKey, 4));
+
+        $this->transport->expects(self::once())
+            ->method('ack')
+            ->with($message);
+
+        $this->transport->expects(self::once())
+            ->method('directPublish')
+            ->with($message);
+
+        $command = new DeadLetterRetryCommand(
+            $this->transport,
+            $this->queueLister,
+            $this->messageSerializer,
+            $this->logger
+        );
+        $commandTester = new CommandTester($command);
+        $commandTester->setInputs(['0']);
+        $commandTester->execute(
+            [
+                '--show-empty' => true,
+            ]
+        );
+    }
+
+    public function testCanSetOptionDefaultValues(): void
+    {
+        $queueName = AmqpTransport::DEAD_LETTER_QUEUE_PREFIX . uniqid('queueName', true);
+        $routingKey = uniqid('routingKey', true);
+        $deliveryTag = uniqid('deliveryTag', true);
+        $isRedelivered = uniqid('isRedelivered', true);
+        $exchange = uniqid('exchange', true);
+
+        $message = $this->createMock(AMQPMessage::class);
+        $event = $this->createMock(AbstractEvent::class);
+
+        $this->transport->expects(self::once())
+            ->method('connect');
+
+        $this->queueLister->expects(self::once())
+            ->method('listQueues')
+            ->with(AmqpTransport::DEAD_LETTER_QUEUE_PREFIX)
+            ->willReturn([$queueName]);
+
+        $this->transport->expects(self::once())
+            ->method('countMessagesInQueue')
+            ->with($queueName)
+            ->willReturn(1);
+
+        $this->transport->expects(self::once())
+            ->method('getMessageFromQueue')
+            ->with($queueName, false)
+            ->willReturn($message);
+
+        $message->expects(self::once())
+            ->method('getBody')
+            ->willReturn('');
+
+        $this->messageSerializer->expects(self::once())
+            ->method('deserialize')
+            ->willReturn($event);
+
+        $message->expects(self::once())
+            ->method('getRoutingKey')
+            ->willReturn($routingKey);
+
+        $message->expects(self::once())
+            ->method('getDeliveryTag')
+            ->willReturn($deliveryTag);
+
+        $message->expects(self::once())
+            ->method('isRedelivered')
+            ->willReturn($isRedelivered);
+
+        $message->expects(self::once())
+            ->method('getExchange')
+            ->willReturn($exchange);
+
+        $message->expects(self::once())
+            ->method('setDeliveryInfo')
+            ->with($deliveryTag, $isRedelivered, $exchange, substr($routingKey, 4));
+
+        $this->transport->expects(self::once())
+            ->method('ack')
+            ->with($message);
+
+        $this->transport->expects(self::once())
+            ->method('directPublish')
+            ->with($message);
+
+        $command = new DeadLetterRetryCommand(
+            $this->transport,
+            $this->queueLister,
+            $this->messageSerializer,
+            $this->logger
+        );
+        $commandTester = new CommandTester($command);
+        $commandTester->setInputs(['0']);
+        $commandTester->execute(
+            [
+                '--older-than' => true,
+                '--filter-by-lasterror' => true,
+                '--reset-receives' => 'asdf',
+                '--show-empty' => 'asdf',
+            ]
+        );
+    }
 }
