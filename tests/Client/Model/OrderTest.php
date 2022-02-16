@@ -142,7 +142,7 @@ class OrderTest extends AbstractApiModelTest
                 'getBuyer',
                 'setBuyer'
             ],
-            'assert weee pickup' => [
+            'assert weeePickup flag' => [
                 'weeePickup',
                 'bool',
                 'getWeeePickup',
