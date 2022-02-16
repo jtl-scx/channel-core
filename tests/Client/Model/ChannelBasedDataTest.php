@@ -112,6 +112,36 @@ class ChannelBasedDataTest extends AbstractApiModelTest
                 'getUpdateUrl',
                 'setUpdateUrl'
             ],
+            'assert group' => [
+                'group',
+                'string',
+                'getGroup',
+                'setGroup'
+            ],
+            'assert pricing' => [
+                'pricing',
+                'string',
+                'getPricing',
+                'setPricing'
+            ],
+            'assert channel type' => [
+                'channelType',
+                'string',
+                'getChannelType',
+                'setChannelType'
+            ],
+            'assert logo' => [
+                'logo',
+                'string',
+                'getLogo',
+                'setLogo'
+            ],
+            'assert description' => [
+                'description',
+                'string',
+                'getDescription',
+                'setDescription'
+            ],
         ];
     }
 
@@ -134,5 +164,17 @@ class ChannelBasedDataTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
+    }
+
+    /**
+     * @test
+     */
+    public function allowableValuesMatchEnum(): void
+    {
+        $instance = new ChannelBasedData();
+        $this->assertEquals([
+            ChannelBasedData::CHANNEL_TYPE_MARKETPLACE,
+            ChannelBasedData::CHANNEL_TYPE_OTHER,
+        ], $instance->getChannelTypeAllowableValues());
     }
 }
