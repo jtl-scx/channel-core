@@ -210,8 +210,8 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['categoryId'] === null) {
             $invalidProperties[] = "'categoryId' can't be null";
         }
-        if ((mb_strlen($this->container['categoryId']) > 32)) {
-            $invalidProperties[] = "invalid value for 'categoryId', the character length must be smaller than or equal to 32.";
+        if ((mb_strlen($this->container['categoryId']) > 512)) {
+            $invalidProperties[] = "invalid value for 'categoryId', the character length must be smaller than or equal to 512.";
         }
 
         if ((mb_strlen($this->container['categoryId']) < 1)) {
@@ -229,8 +229,8 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'displayName', the character length must be bigger than or equal to 1.";
         }
 
-        if (!is_null($this->container['parentCategoryId']) && (mb_strlen($this->container['parentCategoryId']) > 32)) {
-            $invalidProperties[] = "invalid value for 'parentCategoryId', the character length must be smaller than or equal to 32.";
+        if (!is_null($this->container['parentCategoryId']) && (mb_strlen($this->container['parentCategoryId']) > 512)) {
+            $invalidProperties[] = "invalid value for 'parentCategoryId', the character length must be smaller than or equal to 512.";
         }
 
         if (!is_null($this->container['parentCategoryId']) && (mb_strlen($this->container['parentCategoryId']) < 1)) {

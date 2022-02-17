@@ -195,8 +195,8 @@ class AttributeConditionalOptionalBy implements ModelInterface, ArrayAccess, \Js
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['attributeId']) && (mb_strlen($this->container['attributeId']) > 128)) {
-            $invalidProperties[] = "invalid value for 'attributeId', the character length must be smaller than or equal to 128.";
+        if (!is_null($this->container['attributeId']) && (mb_strlen($this->container['attributeId']) > 512)) {
+            $invalidProperties[] = "invalid value for 'attributeId', the character length must be smaller than or equal to 512.";
         }
 
         if (!is_null($this->container['attributeId']) && (mb_strlen($this->container['attributeId']) < 1)) {

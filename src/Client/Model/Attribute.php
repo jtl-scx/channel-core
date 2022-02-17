@@ -318,8 +318,8 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['attributeId'] === null) {
             $invalidProperties[] = "'attributeId' can't be null";
         }
-        if ((mb_strlen($this->container['attributeId']) > 128)) {
-            $invalidProperties[] = "invalid value for 'attributeId', the character length must be smaller than or equal to 128.";
+        if ((mb_strlen($this->container['attributeId']) > 512)) {
+            $invalidProperties[] = "invalid value for 'attributeId', the character length must be smaller than or equal to 512.";
         }
 
         if ((mb_strlen($this->container['attributeId']) < 1)) {
