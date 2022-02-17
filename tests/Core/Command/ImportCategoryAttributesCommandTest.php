@@ -10,6 +10,8 @@ namespace JTL\SCX\Lib\Channel\Core\Command;
 
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataCategoryAttributeLoader;
+use JTL\SCX\Lib\Channel\Core\Lock\Lock;
+use JTL\SCX\Lib\Channel\Core\Lock\LockFactory;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeDeleter;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList;
@@ -39,7 +41,19 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
         $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
 
-        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $deleterMock, $this->createStub(ScxLogger::class));
+        $lockFactory = $this->createMock(LockFactory::class);
+
+        $lockFactory->expects($this->once())
+            ->method('obtain')
+            ->willReturn(true);
+
+        $cmd = new ImportCategoryAttributesCommand(
+            $loaderMock,
+            $updaterMock,
+            $deleterMock,
+            $lockFactory,
+            $this->createStub(ScxLogger::class)
+        );
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
             'categoryId' => $testCategoryId,
@@ -64,7 +78,19 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
         $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
 
-        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $deleterMock, $this->createStub(ScxLogger::class));
+        $lockFactory = $this->createMock(LockFactory::class);
+
+        $lockFactory->expects($this->once())
+            ->method('obtain')
+            ->willReturn(true);
+
+        $cmd = new ImportCategoryAttributesCommand(
+            $loaderMock,
+            $updaterMock,
+            $deleterMock,
+            $lockFactory,
+            $this->createStub(ScxLogger::class)
+        );
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([]);
 
@@ -91,7 +117,19 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
         $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
 
-        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $deleterMock, $this->createStub(ScxLogger::class));
+        $lockFactory = $this->createMock(LockFactory::class);
+
+        $lockFactory->expects($this->once())
+            ->method('obtain')
+            ->willReturn(true);
+
+        $cmd = new ImportCategoryAttributesCommand(
+            $loaderMock,
+            $updaterMock,
+            $deleterMock,
+            $lockFactory,
+            $this->createStub(ScxLogger::class)
+        );
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
             'categoryId' => $testCategoryId,
@@ -126,14 +164,29 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
         $deleterMock->expects(self::once())->method('delete')->with($testCategoryId);
 
-        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $deleterMock, $this->createStub(ScxLogger::class));
+        $lockFactory = $this->createMock(LockFactory::class);
+
+        $lockFactory->expects($this->once())
+            ->method('obtain')
+            ->willReturn(true);
+
+        $cmd = new ImportCategoryAttributesCommand(
+            $loaderMock,
+            $updaterMock,
+            $deleterMock,
+            $lockFactory,
+            $this->createStub(ScxLogger::class)
+        );
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
             'categoryId' => $testCategoryId,
             '--process' => true
         ]);
 
-        self::assertFalse($cmdTester->getInput()->getOption('keep-attributes'), 'Option --keep-attributes must be disabled on this test run');
+        self::assertFalse(
+            $cmdTester->getInput()->getOption('keep-attributes'),
+            'Option --keep-attributes must be disabled on this test run'
+        );
 
         $this->assertEquals(0, $cmdTester->getStatusCode());
 
@@ -155,7 +208,19 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
         $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
 
-        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $deleterMock, $this->createStub(ScxLogger::class));
+        $lockFactory = $this->createMock(LockFactory::class);
+
+        $lockFactory->expects($this->once())
+            ->method('obtain')
+            ->willReturn(true);
+
+        $cmd = new ImportCategoryAttributesCommand(
+            $loaderMock,
+            $updaterMock,
+            $deleterMock,
+            $lockFactory,
+            $this->createStub(ScxLogger::class)
+        );
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
             'categoryId' => $testCategoryId,
@@ -190,7 +255,19 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
         $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
 
-        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $deleterMock, $this->createStub(ScxLogger::class));
+        $lockFactory = $this->createMock(LockFactory::class);
+
+        $lockFactory->expects($this->once())
+            ->method('obtain')
+            ->willReturn(true);
+
+        $cmd = new ImportCategoryAttributesCommand(
+            $loaderMock,
+            $updaterMock,
+            $deleterMock,
+            $lockFactory,
+            $this->createStub(ScxLogger::class)
+        );
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
             '--import-csv-list' => $testFilePath,
@@ -232,7 +309,19 @@ class ImportCategoryAttributesCommandTest extends TestCase
 
         $deleterMock->expects(self::never())->method('delete');
 
-        $cmd = new ImportCategoryAttributesCommand($loaderMock, $updaterMock, $deleterMock, $this->createStub(ScxLogger::class));
+        $lockFactory = $this->createMock(LockFactory::class);
+
+        $lockFactory->expects($this->once())
+            ->method('obtain')
+            ->willReturn(true);
+
+        $cmd = new ImportCategoryAttributesCommand(
+            $loaderMock,
+            $updaterMock,
+            $deleterMock,
+            $lockFactory,
+            $this->createStub(ScxLogger::class)
+        );
         $cmdTester = new CommandTester($cmd);
         $cmdTester->execute([
             '--import-csv-list' => $testFilePath,
@@ -248,5 +337,33 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $this->assertStringContainsString("Fetch CategoryAttributes for '{$testCategoryId2}'", $output);
         $this->assertStringContainsString("Update Category Id: {$testCategoryId1} with 1 Attributes ... done", $output);
         $this->assertStringContainsString("No category-attributes available", $output);
+    }
+
+    public function testWillStopIfProcessIsLocked()
+    {
+        $testCategoryId = uniqid('testCategoryId');
+
+        $loaderMock = $this->createMock(MetaDataCategoryAttributeLoader::class);
+        $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
+        $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
+        $lockFactory = $this->createMock(LockFactory::class);
+
+        $lockFactory->expects($this->once())
+            ->method('obtain')
+            ->willReturn(false);
+
+        $cmd = new ImportCategoryAttributesCommand(
+            $loaderMock,
+            $updaterMock,
+            $deleterMock,
+            $lockFactory,
+            $this->createStub(ScxLogger::class)
+        );
+        $cmdTester = new CommandTester($cmd);
+        $cmdTester->execute([
+            'categoryId' => $testCategoryId,
+        ]);
+
+        $this->assertEquals(0, $cmdTester->getStatusCode());
     }
 }

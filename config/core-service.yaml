@@ -47,6 +47,9 @@ services:
   JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataAttributeLoader:
     class: JTL\SCX\Lib\Channel\MetaData\Attribute\DefaultMetaDataAttributeLoader
 
+  JTL\SCX\Lib\Channel\Contract\Core\Lock\LockProvider:
+    class: JTL\SCX\Lib\Channel\Core\Lock\DefaultLockProvider
+
   JTL\SCX\Lib\Channel\Core\Lock\LockCreator:
     shared: false
 

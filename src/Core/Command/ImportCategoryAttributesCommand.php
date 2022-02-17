@@ -14,6 +14,7 @@ use JTL\SCX\Client\Exception\RequestValidationFailedException;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataCategoryAttributeLoader;
 use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
+use JTL\SCX\Lib\Channel\Core\Lock\LockFactory;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttribute;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeDeleter;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList;
@@ -27,21 +28,25 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class ImportCategoryAttributesCommand extends AbstractCommand
 {
     protected static $defaultName = 'scx-api:put.attributes-category';
+    private const LOCK_KEY = 'scx-api:put.attributes-category';
 
     private MetaDataCategoryAttributeLoader $categoryAttributeLoader;
     private CategoryAttributeUpdater $attributeUpdater;
     private CategoryAttributeDeleter $categoryAttributeDeleter;
+    private LockFactory $lockFactory;
 
     public function __construct(
         MetaDataCategoryAttributeLoader $categoryAttributeLoader,
         CategoryAttributeUpdater $attributeUpdater,
         CategoryAttributeDeleter $categoryAttributeDeleter,
+        LockFactory $lockFactory,
         ScxLogger $logger
     ) {
         parent::__construct($logger);
         $this->categoryAttributeLoader = $categoryAttributeLoader;
         $this->attributeUpdater = $attributeUpdater;
         $this->categoryAttributeDeleter = $categoryAttributeDeleter;
+        $this->lockFactory = $lockFactory;
     }
 
     protected function configure()
@@ -104,6 +109,12 @@ class ImportCategoryAttributesCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
+
+        $lock = $this->lockFactory->createLock(self::LOCK_KEY, 45);
+        if (!$this->lockFactory->obtain($lock)) {
+            $this->io->info("Process is locked");
+            return 0;
+        }
 
         $categoryId = $input->getArgument('categoryId');
         $process = $input->getOption('process');
