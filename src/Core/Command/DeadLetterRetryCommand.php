@@ -73,6 +73,12 @@ class DeadLetterRetryCommand extends AbstractCommand
                 'r',
                 InputOption::VALUE_NONE,
                 'Reset the number of receives'
+            )
+            ->addOption(
+                'show-empty',
+                's',
+                InputOption::VALUE_NONE,
+                'Show empty queues'
             );
     }
 
@@ -92,6 +98,7 @@ class DeadLetterRetryCommand extends AbstractCommand
         $resetReceives = $input->getOption('reset-receives');
         $interactive = $defaultAction === false;
         $defaultAction = (string)$defaultAction;
+        $showEmpty = $input->getOption('show-empty');
 
         if (!is_string($olderThan)) {
             $olderThan = null;
@@ -103,6 +110,10 @@ class DeadLetterRetryCommand extends AbstractCommand
 
         if (!is_bool($resetReceives)) {
             $resetReceives = false;
+        }
+
+        if (!is_bool($showEmpty)) {
+            $showEmpty = false;
         }
 
         $this->transport->connect();
@@ -148,7 +159,8 @@ class DeadLetterRetryCommand extends AbstractCommand
             $defaultAction,
             $resetReceives,
             $olderThan,
-            $filterByLastError
+            $filterByLastError,
+            $showEmpty
         );
         return Command::SUCCESS;
     }
@@ -160,6 +172,7 @@ class DeadLetterRetryCommand extends AbstractCommand
      * @param bool $resetReceives
      * @param string|null $olderThan
      * @param string|null $filterByLastError
+     * @param bool $showEmpty
      * @throws DeserializationFailedException
      */
     private function printAndProcessQueues(
@@ -168,13 +181,17 @@ class DeadLetterRetryCommand extends AbstractCommand
         string $defaultAction,
         bool $resetReceives,
         ?string $olderThan,
-        ?string $filterByLastError
+        ?string $filterByLastError,
+        bool $showEmpty
     ): void {
         $printQueues = [];
 
         foreach ($queueList as $queue) {
             $messageCount = $this->transport->countMessagesInQueue($queue);
-            $printQueues[$queue] = $messageCount;
+
+            if ($showEmpty || $messageCount > 0) {
+                $printQueues[$queue] = $messageCount;
+            }
         }
 
         arsort($printQueues, SORT_NUMERIC);
