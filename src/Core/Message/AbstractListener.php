@@ -72,6 +72,12 @@ abstract class AbstractListener implements Listener, BeforeMessageHook, AfterMes
         if ($message instanceof RefundIdRelatedMessage) {
             $this->logger->replaceContext(new RefundIdContext($message->getRefundId()));
         }
+
+        $logMessage = 'Handle message of type ' . get_class($message);
+        if ($message instanceof AmqpTransportableMessage) {
+            $logMessage .= " which is created at {$message->getCreatedAt()->format('c')}";
+        }
+        $this->logger->info($logMessage);
     }
 
     public function onError(Message $message, Throwable $throwable): void
