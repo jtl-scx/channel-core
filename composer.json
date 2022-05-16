@@ -29,7 +29,7 @@
         "phpstan/phpstan": "^0.12",
         "phpunit/phpunit": "^9.5",
         "symfony/dotenv": "^5.0",
-        "twig/twig": "^2.0"
+        "twig/twig": "^2.0 || ^3.0"
     },
     "suggest": {
         "ext-mongodb": "Needed if MongoDbConnection is used",
