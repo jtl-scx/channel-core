@@ -23,7 +23,7 @@ class UTCDateTimeConverter
     public function convert(?UTCDateTime $utcDateTime): ?\DateTimeImmutable
     {
         if ($utcDateTime instanceof UTCDateTime) {
-            return new \DateTimeImmutable('@' . $utcDateTime->toDateTime()->getTimestamp());
+            return new \DateTimeImmutable($utcDateTime->toDateTime()->format(\DateTimeInterface::RFC3339_EXTENDED));
         }
         return null;
     }
