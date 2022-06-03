@@ -21,6 +21,8 @@ services:
 
   JTL\SCX\Lib\Channel\Core\Log\MonologFactory: ~
 
+  Psr\Container\ContainerInterface: '@service_container'
+
   Monolog\Logger:
     factory: ['@JTL\SCX\Lib\Channel\Core\Log\MonologFactory', 'create']
     arguments:

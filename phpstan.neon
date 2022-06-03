@@ -6,3 +6,4 @@ parameters:
         - src/Client/Api
         - src/Client/Model
         - src/Client/ObjectSerializer.php
+        - src/Core/Log/MonologFactory.php

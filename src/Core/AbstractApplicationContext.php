@@ -155,6 +155,7 @@ abstract class AbstractApplicationContext
             ->setFactory([new Reference(MessageCacheCreator::class), 'create'])
             ->setArgument('$cacheFile', $this->listenerCacheFile)
             ->setArgument('$lookupPathList', [$this->rootDirectory . '/src', __DIR__ . '/../'])
-            ->setArgument('$isDevelopment', $this->isDevelopment);
+            ->setArgument('$isDevelopment', $this->isDevelopment)
+            ->setArgument('$excludePathList', [__DIR__ . '/../Client']);
     }
 }

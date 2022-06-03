@@ -123,7 +123,7 @@ class AbstractEmitEventCommandTest extends TestCase
         $loggerStub = $this->createStub(ScxLogger::class);
 
         return new class($environmentStub, new EventFactory(), $emitterMock, new ChannelApiResponseDeserializer(), $loggerStub) extends AbstractEmitEventCommand {
-            public function getName()
+            public function getName(): ?string
             {
                 return 'Dummy';
             }
