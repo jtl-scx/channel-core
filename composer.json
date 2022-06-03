@@ -10,7 +10,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "jtl-scx/api-base-client": "^1.4",
         "jtl/go-prometrics-client": "^2.0",
-        "jtl/nachricht": "dev-EA-4622",
+        "jtl/nachricht": "^0.15",
         "jtl/php-generic-collection": "^0.5",
         "monolog/monolog": "^2.6",
         "myclabs/php-enum": "^1.7",

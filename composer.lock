@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c3c3523be1e5abb041619269df6a99b8",
+    "content-hash": "7facd0ff4a500b29e8a569f42ec424dc",
     "packages": [
         {
             "name": "brick/math",
@@ -631,16 +631,16 @@
         },
         {
             "name": "jtl/nachricht",
-            "version": "dev-EA-4622",
+            "version": "0.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-software/nachricht.git",
-                "reference": "e1cf21c1cb24017c2c54ca9329aeaa206d78d03e"
+                "reference": "affe1f4086054c3ebd49caee287837f3d6c8d546"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/e1cf21c1cb24017c2c54ca9329aeaa206d78d03e",
-                "reference": "e1cf21c1cb24017c2c54ca9329aeaa206d78d03e",
+                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/affe1f4086054c3ebd49caee287837f3d6c8d546",
+                "reference": "affe1f4086054c3ebd49caee287837f3d6c8d546",
                 "shasum": ""
             },
             "require": {
@@ -681,9 +681,9 @@
             "description": "Nachricht is a distributed event queue system",
             "support": {
                 "issues": "https://github.com/jtl-software/nachricht/issues",
-                "source": "https://github.com/jtl-software/nachricht/tree/EA-4622"
+                "source": "https://github.com/jtl-software/nachricht/tree/0.15.0"
             },
-            "time": "2022-05-20T08:03:49+00:00"
+            "time": "2022-06-03T08:46:53+00:00"
         },
         {
             "name": "jtl/php-generic-collection",
@@ -6537,9 +6537,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "jtl/nachricht": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
