@@ -12,7 +12,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'
+          php-version: '8.1'
           extensions: mongodb-mongodb/mongo-php-driver@v1.9
 
       - name: Checkout Code
@@ -32,7 +32,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'
+          php-version: '8.1'
 
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -51,8 +51,7 @@ jobs:
       fail-fast: false
       matrix:
         php-version:
-          # - "8.1"
-          - "8.0"
+          - "8.1"
 
     steps:
       - name: "Install PHP"
