@@ -7,3 +7,4 @@ parameters:
         - src/Client/Model
         - src/Client/ObjectSerializer.php
         - src/Core/Log/MonologFactory.php
+        - src/MetaData/Attribute/AttributeType.php

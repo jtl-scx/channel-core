@@ -26,7 +26,7 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.8",
         "mongodb/mongodb": "^1.8",
-        "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan": "^1.7",
         "phpunit/phpunit": "^9.5",
         "symfony/dotenv": "^6.1",
         "twig/twig": "^2.0"
