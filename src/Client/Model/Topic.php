@@ -100,5 +100,3 @@ class Topic implements EnumInterface
         return $this->value;
     }
 }
-
-

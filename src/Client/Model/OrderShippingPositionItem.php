@@ -292,7 +292,7 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -318,5 +318,3 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
         return json_encode($this->jsonSerialize());
     }
 }
-
-

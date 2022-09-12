@@ -264,7 +264,7 @@ class OfferListingSuccessfulList implements ModelInterface, ArrayAccess, \JsonSe
      */
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -290,5 +290,3 @@ class OfferListingSuccessfulList implements ModelInterface, ArrayAccess, \JsonSe
         return json_encode($this->jsonSerialize());
     }
 }
-
-

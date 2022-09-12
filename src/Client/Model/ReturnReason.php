@@ -100,5 +100,3 @@ class ReturnReason implements EnumInterface
         return $this->value;
     }
 }
-
-

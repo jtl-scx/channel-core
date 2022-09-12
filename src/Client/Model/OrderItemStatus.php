@@ -101,5 +101,3 @@ class OrderItemStatus implements EnumInterface
         return $this->value;
     }
 }
-
-

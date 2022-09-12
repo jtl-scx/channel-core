@@ -260,7 +260,7 @@ class CategoryTreeVersion implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -286,5 +286,3 @@ class CategoryTreeVersion implements ModelInterface, ArrayAccess, \JsonSerializa
         return json_encode($this->jsonSerialize());
     }
 }
-
-

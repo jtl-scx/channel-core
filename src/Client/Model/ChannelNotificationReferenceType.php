@@ -79,5 +79,3 @@ class ChannelNotificationReferenceType implements EnumInterface
         return $this->value;
     }
 }
-
-

@@ -335,7 +335,7 @@ class OfferListingFailed implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -361,5 +361,3 @@ class OfferListingFailed implements ModelInterface, ArrayAccess, \JsonSerializab
         return json_encode($this->jsonSerialize());
     }
 }
-
-

@@ -80,5 +80,3 @@ class ChannelPaymentStatus implements EnumInterface
         return $this->value;
     }
 }
-
-

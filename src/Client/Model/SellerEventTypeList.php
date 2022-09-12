@@ -198,5 +198,3 @@ class SellerEventTypeList implements EnumInterface
         return $this->value;
     }
 }
-
-

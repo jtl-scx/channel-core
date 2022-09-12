@@ -73,5 +73,3 @@ class OrderItemPaymentStatus implements EnumInterface
         return $this->value;
     }
 }
-
-

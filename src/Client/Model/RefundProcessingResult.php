@@ -336,7 +336,7 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -362,5 +362,3 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode($this->jsonSerialize());
     }
 }
-
-

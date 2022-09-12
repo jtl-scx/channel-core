@@ -65,5 +65,3 @@ class ReportType implements EnumInterface
         return $this->value;
     }
 }
-
-

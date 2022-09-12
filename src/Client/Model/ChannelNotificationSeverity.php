@@ -79,5 +79,3 @@ class ChannelNotificationSeverity implements EnumInterface
         return $this->value;
     }
 }
-
-

@@ -286,7 +286,7 @@ class AttributeConditionalMandatoryBy implements ModelInterface, ArrayAccess, \J
      */
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -312,5 +312,3 @@ class AttributeConditionalMandatoryBy implements ModelInterface, ArrayAccess, \J
         return json_encode($this->jsonSerialize());
     }
 }
-
-

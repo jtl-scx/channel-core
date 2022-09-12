@@ -341,7 +341,7 @@ class SellerEventOfferPriceUpdate implements ModelInterface, ArrayAccess, \JsonS
      */
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -367,5 +367,3 @@ class SellerEventOfferPriceUpdate implements ModelInterface, ArrayAccess, \JsonS
         return json_encode($this->jsonSerialize());
     }
 }
-
-

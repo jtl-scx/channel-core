@@ -188,6 +188,4 @@ JSON;
         self::assertEquals($expectedJson, $sut->__toString());
         self::assertEquals($sut, ObjectSerializer::deserialize($sut->__toString(), $sut::class));
     }
-
-
 }

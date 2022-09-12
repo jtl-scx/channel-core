@@ -360,7 +360,7 @@ class OrderShippingPosition implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -386,5 +386,3 @@ class OrderShippingPosition implements ModelInterface, ArrayAccess, \JsonSeriali
         return json_encode($this->jsonSerialize());
     }
 }
-
-

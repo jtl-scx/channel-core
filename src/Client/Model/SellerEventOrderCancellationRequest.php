@@ -384,7 +384,7 @@ class SellerEventOrderCancellationRequest implements ModelInterface, ArrayAccess
      */
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -410,5 +410,3 @@ class SellerEventOrderCancellationRequest implements ModelInterface, ArrayAccess
         return json_encode($this->jsonSerialize());
     }
 }
-
-

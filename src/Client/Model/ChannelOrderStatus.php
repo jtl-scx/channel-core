@@ -108,5 +108,3 @@ class ChannelOrderStatus implements EnumInterface
         return $this->value;
     }
 }
-
-

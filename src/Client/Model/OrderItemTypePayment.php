@@ -352,7 +352,7 @@ class OrderItemTypePayment implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -378,5 +378,3 @@ class OrderItemTypePayment implements ModelInterface, ArrayAccess, \JsonSerializ
         return json_encode($this->jsonSerialize());
     }
 }
-
-

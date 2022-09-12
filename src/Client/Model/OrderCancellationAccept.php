@@ -288,7 +288,7 @@ class OrderCancellationAccept implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -314,5 +314,3 @@ class OrderCancellationAccept implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode($this->jsonSerialize());
     }
 }
-
-

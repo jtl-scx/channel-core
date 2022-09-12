@@ -72,5 +72,3 @@ class InvoiceDocumentType implements EnumInterface
         return $this->value;
     }
 }
-
-

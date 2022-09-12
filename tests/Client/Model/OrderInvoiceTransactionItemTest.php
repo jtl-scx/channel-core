@@ -151,5 +151,4 @@ class OrderInvoiceTransactionItemTest extends AbstractApiModelTest
             $this->assertNull($sut->$expectedGetter());
         }
     }
-
 }

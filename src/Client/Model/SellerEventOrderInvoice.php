@@ -389,7 +389,7 @@ class SellerEventOrderInvoice implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -415,5 +415,3 @@ class SellerEventOrderInvoice implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode($this->jsonSerialize());
     }
 }
-
-

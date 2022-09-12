@@ -285,7 +285,7 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
      */
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -311,5 +311,3 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
         return json_encode($this->jsonSerialize());
     }
 }
-
-

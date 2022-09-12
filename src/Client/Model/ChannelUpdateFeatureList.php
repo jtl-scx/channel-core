@@ -394,7 +394,7 @@ class ChannelUpdateFeatureList implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -420,5 +420,3 @@ class ChannelUpdateFeatureList implements ModelInterface, ArrayAccess, \JsonSeri
         return json_encode($this->jsonSerialize());
     }
 }
-
-

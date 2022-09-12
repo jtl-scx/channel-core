@@ -108,5 +108,3 @@ class CancelReason implements EnumInterface
         return $this->value;
     }
 }
-
-

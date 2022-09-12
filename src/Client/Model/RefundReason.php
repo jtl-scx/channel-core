@@ -107,5 +107,3 @@ class RefundReason implements EnumInterface
         return $this->value;
     }
 }
-
-

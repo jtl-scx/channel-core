@@ -357,7 +357,7 @@ class SellerEventOrderReturnReceived implements ModelInterface, ArrayAccess, \Js
      */
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -383,5 +383,3 @@ class SellerEventOrderReturnReceived implements ModelInterface, ArrayAccess, \Js
         return json_encode($this->jsonSerialize());
     }
 }
-
-
