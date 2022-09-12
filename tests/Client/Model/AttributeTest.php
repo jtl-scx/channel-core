@@ -52,7 +52,7 @@ class AttributeTest extends AbstractApiModelTest
     public function it_has_correct_allowed_values_for_type(): void
     {
         $allowed = [
-            'smalltext','htmltext','text','integer','decimal','enum','date','boolean',
+            'smalltext','htmltext','text','integer','decimal','enum','date','boolean', 'image', 'document', 'url'
         ];
 
         $sut = new Attribute();
