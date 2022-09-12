@@ -168,6 +168,12 @@ class AttributeTest extends AbstractApiModelTest
                 'getEnumValues',
                 'setEnumValues'
             ],
+            'assert property isRepeatableSubSection' => [
+                'isRepeatableSubSection',
+                'boolean',
+                'getIsRepeatableSubSection',
+                'setIsRepeatableSubSection'
+            ],
         ];
     }
 
