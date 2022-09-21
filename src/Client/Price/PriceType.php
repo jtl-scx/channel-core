@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * This File is part of JTL-Software
  *
@@ -19,6 +21,6 @@ use MyCLabs\Enum\Enum;
  */
 class PriceType extends Enum
 {
-    const B2C = "B2C";
-    const B2B = "B2B";
+    public const B2C = "B2C";
+    public const B2B = "B2B";
 }

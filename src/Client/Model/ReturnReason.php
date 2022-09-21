@@ -35,13 +35,13 @@ class ReturnReason implements EnumInterface
     /**
      * Possible values of this enum
      */
-    const NO_REASON = 'NO_REASON';
-    const DEFECT = 'DEFECT';
-    const WRONG_ITEM = 'WRONG_ITEM';
-    const WRONG_SIZE = 'WRONG_SIZE';
-    const TOO_LATE = 'TOO_LATE';
-    const BAD_QUALITY = 'BAD_QUALITY';
-    
+    public const NO_REASON = 'NO_REASON';
+    public const DEFECT = 'DEFECT';
+    public const WRONG_ITEM = 'WRONG_ITEM';
+    public const WRONG_SIZE = 'WRONG_SIZE';
+    public const TOO_LATE = 'TOO_LATE';
+    public const BAD_QUALITY = 'BAD_QUALITY';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -58,37 +58,37 @@ class ReturnReason implements EnumInterface
         ];
     }
 
-    
+
     public static function NO_REASON(): ReturnReason
     {
         return new self('NO_REASON');
     }
-    
+
     public static function DEFECT(): ReturnReason
     {
         return new self('DEFECT');
     }
-    
+
     public static function WRONG_ITEM(): ReturnReason
     {
         return new self('WRONG_ITEM');
     }
-    
+
     public static function WRONG_SIZE(): ReturnReason
     {
         return new self('WRONG_SIZE');
     }
-    
+
     public static function TOO_LATE(): ReturnReason
     {
         return new self('TOO_LATE');
     }
-    
+
     public static function BAD_QUALITY(): ReturnReason
     {
         return new self('BAD_QUALITY');
     }
-    
+
 
     public function __construct($value)
     {

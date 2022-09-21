@@ -168,12 +168,12 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    const SEVERITY_ERROR = 'error';
-    const SEVERITY_WARNING = 'warning';
-    const SEVERITY_INFO = 'info';
-    
+    public const SEVERITY_ERROR = 'error';
+    public const SEVERITY_WARNING = 'warning';
+    public const SEVERITY_INFO = 'info';
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -187,7 +187,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
             self::SEVERITY_INFO,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * This File is part of JTL-Software
  *
@@ -40,7 +42,7 @@ class UpdateCategoryTreeRequest extends AbstractScxApiRequest
         return ScxApiRequest::HTTP_METHOD_PUT;
     }
 
-    public function getBody():string
+    public function getBody(): string
     {
         return (string)$this->getChannelCategoryTree();
     }

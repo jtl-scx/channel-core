@@ -43,7 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class TicketFromTest extends AbstractApiModelTest
 {
-
     /**
      * Test allowed values for role
      * @test

@@ -159,9 +159,9 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values

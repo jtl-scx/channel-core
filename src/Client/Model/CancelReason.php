@@ -36,14 +36,14 @@ class CancelReason implements EnumInterface
     /**
      * Possible values of this enum
      */
-    const BUYER_CANCELLED = 'BUYER_CANCELLED';
-    const UNDELIVERABLE_TO_SHIPPING_ADDRESS = 'UNDELIVERABLE_TO_SHIPPING_ADDRESS';
-    const UNDELIVERABLE_BY_CARRIER = 'UNDELIVERABLE_BY_CARRIER';
-    const OUT_OF_STOCK = 'OUT_OF_STOCK';
-    const DELAYED_INVENTORY = 'DELAYED_INVENTORY';
-    const PRICING_ERROR = 'PRICING_ERROR';
-    const OTHER = 'OTHER';
-    
+    public const BUYER_CANCELLED = 'BUYER_CANCELLED';
+    public const UNDELIVERABLE_TO_SHIPPING_ADDRESS = 'UNDELIVERABLE_TO_SHIPPING_ADDRESS';
+    public const UNDELIVERABLE_BY_CARRIER = 'UNDELIVERABLE_BY_CARRIER';
+    public const OUT_OF_STOCK = 'OUT_OF_STOCK';
+    public const DELAYED_INVENTORY = 'DELAYED_INVENTORY';
+    public const PRICING_ERROR = 'PRICING_ERROR';
+    public const OTHER = 'OTHER';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -61,42 +61,42 @@ class CancelReason implements EnumInterface
         ];
     }
 
-    
+
     public static function BUYER_CANCELLED(): CancelReason
     {
         return new self('BUYER_CANCELLED');
     }
-    
+
     public static function UNDELIVERABLE_TO_SHIPPING_ADDRESS(): CancelReason
     {
         return new self('UNDELIVERABLE_TO_SHIPPING_ADDRESS');
     }
-    
+
     public static function UNDELIVERABLE_BY_CARRIER(): CancelReason
     {
         return new self('UNDELIVERABLE_BY_CARRIER');
     }
-    
+
     public static function OUT_OF_STOCK(): CancelReason
     {
         return new self('OUT_OF_STOCK');
     }
-    
+
     public static function DELAYED_INVENTORY(): CancelReason
     {
         return new self('DELAYED_INVENTORY');
     }
-    
+
     public static function PRICING_ERROR(): CancelReason
     {
         return new self('PRICING_ERROR');
     }
-    
+
     public static function OTHER(): CancelReason
     {
         return new self('OTHER');
     }
-    
+
 
     public function __construct($value)
     {

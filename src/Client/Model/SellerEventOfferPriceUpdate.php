@@ -170,9 +170,9 @@ class SellerEventOfferPriceUpdate implements ModelInterface, ArrayAccess, \JsonS
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values

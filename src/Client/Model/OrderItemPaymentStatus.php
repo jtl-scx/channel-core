@@ -36,9 +36,9 @@ class OrderItemPaymentStatus implements EnumInterface
     /**
      * Possible values of this enum
      */
-    const PENDING = 'PENDING';
-    const PAID = 'PAID';
-    
+    public const PENDING = 'PENDING';
+    public const PAID = 'PAID';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -51,17 +51,17 @@ class OrderItemPaymentStatus implements EnumInterface
         ];
     }
 
-    
+
     public static function PENDING(): OrderItemPaymentStatus
     {
         return new self('PENDING');
     }
-    
+
     public static function PAID(): OrderItemPaymentStatus
     {
         return new self('PAID');
     }
-    
+
 
     public function __construct($value)
     {

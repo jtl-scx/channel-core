@@ -43,8 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class InvoiceUploadTest extends AbstractApiModelTest
 {
-
-
     /**
      * @return array
      * @dataProvider

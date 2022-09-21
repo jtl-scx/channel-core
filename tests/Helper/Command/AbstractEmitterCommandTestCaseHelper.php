@@ -1,6 +1,5 @@
 <?php
 
-
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
 use JTL\Nachricht\Emitter\AmqpEmitter;

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * This File is part of JTL-Software
  *
@@ -24,7 +26,6 @@ use stdClass;
  */
 class RequestCancellationListenerTest extends TestCase
 {
-
     /**
      * @test
      */

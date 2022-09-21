@@ -158,13 +158,13 @@ class TicketReference implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    const TYPE_OFFER = 'OFFER';
-    const TYPE_CHANNELOFFER = 'CHANNELOFFER';
-    const TYPE_ORDERID = 'ORDERID';
-    const TYPE_ORDERITEMID = 'ORDERITEMID';
-    
+    public const TYPE_OFFER = 'OFFER';
+    public const TYPE_CHANNELOFFER = 'CHANNELOFFER';
+    public const TYPE_ORDERID = 'ORDERID';
+    public const TYPE_ORDERITEMID = 'ORDERITEMID';
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -179,7 +179,7 @@ class TicketReference implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_ORDERITEMID,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values

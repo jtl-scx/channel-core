@@ -11,7 +11,6 @@ use PHPUnit\Framework\TestCase;
  */
 class UpdateSellerRequestTest extends TestCase
 {
-
     /**
      * @test
      */

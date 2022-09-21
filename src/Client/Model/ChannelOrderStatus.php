@@ -36,14 +36,14 @@ class ChannelOrderStatus implements EnumInterface
     /**
      * Possible values of this enum
      */
-    const UNACKED = 'UNACKED';
-    const CREATED = 'CREATED';
-    const ACCEPTED = 'ACCEPTED';
-    const SHIPPED = 'SHIPPED';
-    const PARTIALLY_SHIPPED = 'PARTIALLY_SHIPPED';
-    const CANCELED_BY_SELLER = 'CANCELED_BY_SELLER';
-    const CANCELED_BY_BUYER = 'CANCELED_BY_BUYER';
-    
+    public const UNACKED = 'UNACKED';
+    public const CREATED = 'CREATED';
+    public const ACCEPTED = 'ACCEPTED';
+    public const SHIPPED = 'SHIPPED';
+    public const PARTIALLY_SHIPPED = 'PARTIALLY_SHIPPED';
+    public const CANCELED_BY_SELLER = 'CANCELED_BY_SELLER';
+    public const CANCELED_BY_BUYER = 'CANCELED_BY_BUYER';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -61,42 +61,42 @@ class ChannelOrderStatus implements EnumInterface
         ];
     }
 
-    
+
     public static function UNACKED(): ChannelOrderStatus
     {
         return new self('UNACKED');
     }
-    
+
     public static function CREATED(): ChannelOrderStatus
     {
         return new self('CREATED');
     }
-    
+
     public static function ACCEPTED(): ChannelOrderStatus
     {
         return new self('ACCEPTED');
     }
-    
+
     public static function SHIPPED(): ChannelOrderStatus
     {
         return new self('SHIPPED');
     }
-    
+
     public static function PARTIALLY_SHIPPED(): ChannelOrderStatus
     {
         return new self('PARTIALLY_SHIPPED');
     }
-    
+
     public static function CANCELED_BY_SELLER(): ChannelOrderStatus
     {
         return new self('CANCELED_BY_SELLER');
     }
-    
+
     public static function CANCELED_BY_BUYER(): ChannelOrderStatus
     {
         return new self('CANCELED_BY_BUYER');
     }
-    
+
 
     public function __construct($value)
     {

@@ -43,7 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class ChannelOrderStatusTest extends AbstractApiModelTest
 {
-
     /**
      * Test Enum Value "UNACKED"
      * @test

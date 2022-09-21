@@ -43,8 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class SystemEventNotificationTest extends AbstractApiModelTest
 {
-
-
     /**
      * Test allowed values for severity
      * @test

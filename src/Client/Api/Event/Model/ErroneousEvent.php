@@ -1,6 +1,5 @@
 <?php
 
-
 namespace JTL\SCX\Lib\Channel\Client\Api\Event\Model;
 
 class ErroneousEvent

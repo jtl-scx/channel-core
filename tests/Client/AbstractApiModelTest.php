@@ -1,6 +1,5 @@
 <?php
 
-
 namespace JTL\SCX\Lib\Channel\Client;
 
 use JTL\SCX\Lib\Channel\Client\Model\ModelInterface;

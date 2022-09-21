@@ -43,7 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class OrderItemStatusTest extends AbstractApiModelTest
 {
-
     /**
      * Test Enum Value "UNSHIPPED"
      * @test

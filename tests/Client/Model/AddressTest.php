@@ -44,8 +44,6 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  */
 class AddressTest extends AbstractApiModelTest
 {
-
-
     /**
      * Test allowed values for gender
      * @test

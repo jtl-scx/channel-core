@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * This File is part of JTL-Software
  *
@@ -6,11 +8,11 @@
  * Date: 2020-05-27
  */
 
-
 namespace JTL\SCX\Lib\Channel\Core;
 
 use DateTimeImmutable;
 use Traversable;
+
 use function is_array;
 use function is_object;
 

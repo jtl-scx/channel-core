@@ -36,10 +36,10 @@ class ChannelPaymentStatus implements EnumInterface
     /**
      * Possible values of this enum
      */
-    const PENDING = 'PENDING';
-    const PAID = 'PAID';
-    const PARTIALLY_PAID = 'PARTIALLY_PAID';
-    
+    public const PENDING = 'PENDING';
+    public const PAID = 'PAID';
+    public const PARTIALLY_PAID = 'PARTIALLY_PAID';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -53,22 +53,22 @@ class ChannelPaymentStatus implements EnumInterface
         ];
     }
 
-    
+
     public static function PENDING(): ChannelPaymentStatus
     {
         return new self('PENDING');
     }
-    
+
     public static function PAID(): ChannelPaymentStatus
     {
         return new self('PAID');
     }
-    
+
     public static function PARTIALLY_PAID(): ChannelPaymentStatus
     {
         return new self('PARTIALLY_PAID');
     }
-    
+
 
     public function __construct($value)
     {

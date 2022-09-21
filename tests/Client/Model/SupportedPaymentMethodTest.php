@@ -43,8 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class SupportedPaymentMethodTest extends AbstractApiModelTest
 {
-
-
     /**
      * @return array
      * @dataProvider

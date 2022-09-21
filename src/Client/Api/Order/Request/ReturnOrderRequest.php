@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * This File is part of JTL-Software
  *
@@ -32,6 +34,6 @@ class ReturnOrderRequest extends AbstractScxApiRequest
 
     public function getBody(): ?string
     {
-        return (String)$this->returnAnnouncement;
+        return (string)$this->returnAnnouncement;
     }
 }

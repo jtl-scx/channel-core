@@ -43,8 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class ChannelAttributeTest extends AbstractApiModelTest
 {
-
-
     /**
      * @return array
      * @dataProvider
