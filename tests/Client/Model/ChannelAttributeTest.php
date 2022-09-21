@@ -64,6 +64,12 @@ class ChannelAttributeTest extends AbstractApiModelTest
                 'getValue',
                 'setValue'
             ],
+            'assert property group' => [
+                'group',
+                'string',
+                'getGroup',
+                'setGroup'
+            ],
         ];
     }
 

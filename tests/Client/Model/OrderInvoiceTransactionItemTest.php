@@ -1,6 +1,6 @@
 <?php
 /**
- * UpdateSellerTest
+ * OrderInvoiceTransactionItemTest
  *
  * PHP version 7.2
  *
@@ -29,21 +29,34 @@
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
 use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
-use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
 
 /**
- * UpdateSellerTest Class Doc Comment
+ * OrderInvoiceTransactionItemTest Class Doc Comment
  *
  * @category    Class
- * @description UpdateSeller
+ * @description OrderInvoiceTransactionItem
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\UpdateSeller
+ * @covers      \JTL\SCX\Lib\Channel\Client\Model\OrderInvoiceTransactionItem
  */
-class UpdateSellerTest extends AbstractApiModelTest
+class OrderInvoiceTransactionItemTest extends AbstractApiModelTest
 {
 
+    /**
+     * Test allowed values for orderItemType
+     * @test
+     */
+    public function it_has_correct_allowed_values_for_orderItemType(): void
+    {
+        $allowed = [
+            'ITEM','SHIPPING','PAYMENT',
+        ];
+
+        $sut = new OrderInvoiceTransactionItem();
+        $this->assertMethodExists($sut, 'getOrderItemTypeAllowableValues');
+        $this->assertEquals($allowed, $sut->getOrderItemTypeAllowableValues());
+    }
     /**
      * @return array
      * @dataProvider
@@ -51,25 +64,60 @@ class UpdateSellerTest extends AbstractApiModelTest
     public function expectedInterface(): array
     {
         return [
-            'assert property Session' => [
-                'session',
+            'assert property OrderItemId' => [
+                'orderItemId',
                 'string',
-                'getSession',
-                'setSession',
+                'getOrderItemId',
+                'setOrderItemId',
                 false
             ],
-            'assert property IsActive' => [
-                'isActive',
-                'bool',
-                'getIsActive',
-                'setIsActive',
+            'assert property OrderItemType' => [
+                'orderItemType',
+                'string',
+                'getOrderItemType',
+                'setOrderItemType',
                 false
             ],
-            'assert property CompanyName' => [
-                'companyName',
+            'assert property Sku' => [
+                'sku',
                 'string',
-                'getCompanyName',
-                'setCompanyName',
+                'getSku',
+                'setSku',
+                true
+            ],
+            'assert property Title' => [
+                'title',
+                'string',
+                'getTitle',
+                'setTitle',
+                true
+            ],
+            'assert property Quantity' => [
+                'quantity',
+                'float',
+                'getQuantity',
+                'setQuantity',
+                true
+            ],
+            'assert property TotalGrossPrice' => [
+                'totalGrossPrice',
+                'float',
+                'getTotalGrossPrice',
+                'setTotalGrossPrice',
+                true
+            ],
+            'assert property TotalNetPrice' => [
+                'totalNetPrice',
+                'float',
+                'getTotalNetPrice',
+                'setTotalNetPrice',
+                true
+            ],
+            'assert property TotalVatAmount' => [
+                'totalVatAmount',
+                'float',
+                'getTotalVatAmount',
+                'setTotalVatAmount',
                 true
             ],
         ];
@@ -82,7 +130,7 @@ class UpdateSellerTest extends AbstractApiModelTest
     public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
     {
         $sample = $this->buildSampleForDataType($type);
-        $sut = new UpdateSeller([$property => $sample]);
+        $sut = new OrderInvoiceTransactionItem([$property => $sample]);
 
         $this->assertMethodExists($sut, $expectedGetter);
         $this->assertSame($sample, $sut->$expectedGetter());
@@ -96,7 +144,7 @@ class UpdateSellerTest extends AbstractApiModelTest
         $this->assertSame($newSample, $sut[$property]);
 
         if ($isNullable) {
-            $sut = new UpdateSeller([$property => null]);
+            $sut = new OrderInvoiceTransactionItem([$property => null]);
             $this->assertNull($sut->$expectedGetter());
 
             $sut->$expectedSetter(null);

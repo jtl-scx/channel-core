@@ -52,7 +52,7 @@ class AttributeTest extends AbstractApiModelTest
     public function it_has_correct_allowed_values_for_type(): void
     {
         $allowed = [
-            'smalltext','htmltext','text','integer','decimal','enum','date','boolean',
+            'smalltext','htmltext','text','integer','decimal','enum','date','boolean', 'image', 'document', 'url'
         ];
 
         $sut = new Attribute();
@@ -167,6 +167,12 @@ class AttributeTest extends AbstractApiModelTest
                 'string[]',
                 'getEnumValues',
                 'setEnumValues'
+            ],
+            'assert property isRepeatableSubSection' => [
+                'isRepeatableSubSection',
+                'boolean',
+                'getIsRepeatableSubSection',
+                'setIsRepeatableSubSection'
             ],
         ];
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * SellerEventTest
+ * OrderInvoice
  *
  * PHP version 7.2
  *
@@ -22,7 +22,7 @@ use ArrayAccess;
 use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
 
 /**
- * SellerEventTest Class Doc Comment
+ * OrderInvoice Class Doc Comment
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
@@ -32,7 +32,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
+class OrderInvoice implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -41,17 +41,21 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SellerEventTest';
+    protected static $openAPIModelName = 'OrderInvoice';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
+      * @param Address
+      * @param OrderInvoiceTransactionItem
       *
       * @var string[]
       */
     protected static $openAPITypes = [
-        'channel' => 'string',
-        'sellerId' => 'string'
+        'orderId' => 'string',
+        'purchasedAt' => '\DateTime',
+        'shippingAddress' => '\JTL\SCX\Lib\Channel\Client\Model\Address',
+        'transactionItemList' => '\JTL\SCX\Lib\Channel\Client\Model\OrderInvoiceTransactionItem[]'
     ];
 
     /**
@@ -62,8 +66,10 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'channel' => null,
-        'sellerId' => null
+        'orderId' => null,
+        'purchasedAt' => 'date-time',
+        'shippingAddress' => null,
+        'transactionItemList' => null
     ];
 
     /**
@@ -93,8 +99,10 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'channel' => 'channel',
-        'sellerId' => 'sellerId'
+        'orderId' => 'orderId',
+        'purchasedAt' => 'purchasedAt',
+        'shippingAddress' => 'shippingAddress',
+        'transactionItemList' => 'transactionItemList'
     ];
 
     /**
@@ -103,8 +111,10 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'channel' => 'setChannel',
-        'sellerId' => 'setSellerId'
+        'orderId' => 'setOrderId',
+        'purchasedAt' => 'setPurchasedAt',
+        'shippingAddress' => 'setShippingAddress',
+        'transactionItemList' => 'setTransactionItemList'
     ];
 
     /**
@@ -113,8 +123,10 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'channel' => 'getChannel',
-        'sellerId' => 'getSellerId'
+        'orderId' => 'getOrderId',
+        'purchasedAt' => 'getPurchasedAt',
+        'shippingAddress' => 'getShippingAddress',
+        'transactionItemList' => 'getTransactionItemList'
     ];
 
     /**
@@ -171,8 +183,10 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public function __construct(array $data = null)
     {
-        $this->container['channel'] = $data['channel'] ?? null;
-        $this->container['sellerId'] = $data['sellerId'] ?? null;
+        $this->container['orderId'] = $data['orderId'] ?? null;
+        $this->container['purchasedAt'] = $data['purchasedAt'] ?? null;
+        $this->container['shippingAddress'] = $data['shippingAddress'] ?? null;
+        $this->container['transactionItemList'] = $data['transactionItemList'] ?? null;
     }
 
     /**
@@ -184,14 +198,20 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['channel']) && !preg_match("/^\\w{5,15}$/", $this->container['channel'])) {
-            $invalidProperties[] = "invalid value for 'channel', must be conform to the pattern /^\\w{5,15}$/.";
+        if ($this->container['orderId'] === null) {
+            $invalidProperties[] = "'orderId' can't be null";
+        }
+        if ((mb_strlen($this->container['orderId']) > 150)) {
+            $invalidProperties[] = "invalid value for 'orderId', the character length must be smaller than or equal to 150.";
         }
 
-        if (!is_null($this->container['sellerId']) && !preg_match("/^\\w{1,50}$/", $this->container['sellerId'])) {
-            $invalidProperties[] = "invalid value for 'sellerId', must be conform to the pattern /^\\w{1,50}$/.";
+        if ((mb_strlen($this->container['orderId']) < 1)) {
+            $invalidProperties[] = "invalid value for 'orderId', the character length must be bigger than or equal to 1.";
         }
 
+        if ($this->container['purchasedAt'] === null) {
+            $invalidProperties[] = "'purchasedAt' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -207,26 +227,50 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    public function getChannel(): ?string
+    public function getOrderId(): string
     {
-        return $this->container['channel'];
+        return $this->container['orderId'];
     }
 
-    public function setChannel(?string $channel): SellerEventTest
+    public function setOrderId(string $orderId): OrderInvoice
     {
-        $this->container['channel'] = $channel;
+        $this->container['orderId'] = $orderId;
         return $this;
     }
 
 
-    public function getSellerId(): ?string
+    public function getPurchasedAt(): \DateTime
     {
-        return $this->container['sellerId'];
+        return $this->container['purchasedAt'];
     }
 
-    public function setSellerId(?string $sellerId): SellerEventTest
+    public function setPurchasedAt(\DateTime $purchasedAt): OrderInvoice
     {
-        $this->container['sellerId'] = $sellerId;
+        $this->container['purchasedAt'] = $purchasedAt;
+        return $this;
+    }
+
+
+    public function getShippingAddress(): ?Address
+    {
+        return $this->container['shippingAddress'];
+    }
+
+    public function setShippingAddress(?Address $shippingAddress): OrderInvoice
+    {
+        $this->container['shippingAddress'] = $shippingAddress;
+        return $this;
+    }
+
+
+    public function getTransactionItemList(): ?array
+    {
+        return $this->container['transactionItemList'];
+    }
+
+    public function setTransactionItemList(?array $transactionItemList): OrderInvoice
+    {
+        $this->container['transactionItemList'] = $transactionItemList;
         return $this;
     }
 

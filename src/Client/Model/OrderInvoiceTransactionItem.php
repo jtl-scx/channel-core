@@ -1,6 +1,6 @@
 <?php
 /**
- * SellerEventTest
+ * OrderInvoiceTransactionItem
  *
  * PHP version 7.2
  *
@@ -22,7 +22,7 @@ use ArrayAccess;
 use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
 
 /**
- * SellerEventTest Class Doc Comment
+ * OrderInvoiceTransactionItem Class Doc Comment
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
@@ -32,7 +32,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
+class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -41,7 +41,7 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SellerEventTest';
+    protected static $openAPIModelName = 'OrderInvoiceTransactionItem';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -50,8 +50,14 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'channel' => 'string',
-        'sellerId' => 'string'
+        'orderItemId' => 'string',
+        'orderItemType' => 'string',
+        'sku' => 'string',
+        'title' => 'string',
+        'quantity' => 'float',
+        'totalGrossPrice' => 'float',
+        'totalNetPrice' => 'float',
+        'totalVatAmount' => 'float'
     ];
 
     /**
@@ -62,8 +68,14 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'channel' => null,
-        'sellerId' => null
+        'orderItemId' => null,
+        'orderItemType' => null,
+        'sku' => null,
+        'title' => null,
+        'quantity' => 'float',
+        'totalGrossPrice' => 'float',
+        'totalNetPrice' => 'float',
+        'totalVatAmount' => 'float'
     ];
 
     /**
@@ -93,8 +105,14 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'channel' => 'channel',
-        'sellerId' => 'sellerId'
+        'orderItemId' => 'orderItemId',
+        'orderItemType' => 'orderItemType',
+        'sku' => 'sku',
+        'title' => 'title',
+        'quantity' => 'quantity',
+        'totalGrossPrice' => 'totalGrossPrice',
+        'totalNetPrice' => 'totalNetPrice',
+        'totalVatAmount' => 'totalVatAmount'
     ];
 
     /**
@@ -103,8 +121,14 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'channel' => 'setChannel',
-        'sellerId' => 'setSellerId'
+        'orderItemId' => 'setOrderItemId',
+        'orderItemType' => 'setOrderItemType',
+        'sku' => 'setSku',
+        'title' => 'setTitle',
+        'quantity' => 'setQuantity',
+        'totalGrossPrice' => 'setTotalGrossPrice',
+        'totalNetPrice' => 'setTotalNetPrice',
+        'totalVatAmount' => 'setTotalVatAmount'
     ];
 
     /**
@@ -113,8 +137,14 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'channel' => 'getChannel',
-        'sellerId' => 'getSellerId'
+        'orderItemId' => 'getOrderItemId',
+        'orderItemType' => 'getOrderItemType',
+        'sku' => 'getSku',
+        'title' => 'getTitle',
+        'quantity' => 'getQuantity',
+        'totalGrossPrice' => 'getTotalGrossPrice',
+        'totalNetPrice' => 'getTotalNetPrice',
+        'totalVatAmount' => 'getTotalVatAmount'
     ];
 
     /**
@@ -158,8 +188,25 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    const ORDER_ITEM_TYPE_ITEM = 'ITEM';
+    const ORDER_ITEM_TYPE_SHIPPING = 'SHIPPING';
+    const ORDER_ITEM_TYPE_PAYMENT = 'PAYMENT';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getOrderItemTypeAllowableValues()
+    {
+        return [
+            self::ORDER_ITEM_TYPE_ITEM,
+            self::ORDER_ITEM_TYPE_SHIPPING,
+            self::ORDER_ITEM_TYPE_PAYMENT,
+        ];
+    }
     
 
     /**
@@ -171,8 +218,14 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public function __construct(array $data = null)
     {
-        $this->container['channel'] = $data['channel'] ?? null;
-        $this->container['sellerId'] = $data['sellerId'] ?? null;
+        $this->container['orderItemId'] = $data['orderItemId'] ?? null;
+        $this->container['orderItemType'] = $data['orderItemType'] ?? null;
+        $this->container['sku'] = $data['sku'] ?? null;
+        $this->container['title'] = $data['title'] ?? null;
+        $this->container['quantity'] = $data['quantity'] ?? null;
+        $this->container['totalGrossPrice'] = $data['totalGrossPrice'] ?? null;
+        $this->container['totalNetPrice'] = $data['totalNetPrice'] ?? null;
+        $this->container['totalVatAmount'] = $data['totalVatAmount'] ?? null;
     }
 
     /**
@@ -184,12 +237,23 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['channel']) && !preg_match("/^\\w{5,15}$/", $this->container['channel'])) {
-            $invalidProperties[] = "invalid value for 'channel', must be conform to the pattern /^\\w{5,15}$/.";
+        if ($this->container['orderItemId'] === null) {
+            $invalidProperties[] = "'orderItemId' can't be null";
+        }
+        if ($this->container['orderItemType'] === null) {
+            $invalidProperties[] = "'orderItemType' can't be null";
+        }
+        $allowedValues = $this->getOrderItemTypeAllowableValues();
+        if (!is_null($this->container['orderItemType']) && !in_array($this->container['orderItemType'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'orderItemType', must be one of '%s'",
+                $this->container['orderItemType'],
+                implode("', '", $allowedValues)
+            );
         }
 
-        if (!is_null($this->container['sellerId']) && !preg_match("/^\\w{1,50}$/", $this->container['sellerId'])) {
-            $invalidProperties[] = "invalid value for 'sellerId', must be conform to the pattern /^\\w{1,50}$/.";
+        if (!is_null($this->container['quantity']) && ($this->container['quantity'] < 1)) {
+            $invalidProperties[] = "invalid value for 'quantity', must be bigger than or equal to 1.";
         }
 
         return $invalidProperties;
@@ -207,26 +271,98 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    public function getChannel(): ?string
+    public function getOrderItemId(): string
     {
-        return $this->container['channel'];
+        return $this->container['orderItemId'];
     }
 
-    public function setChannel(?string $channel): SellerEventTest
+    public function setOrderItemId(string $orderItemId): OrderInvoiceTransactionItem
     {
-        $this->container['channel'] = $channel;
+        $this->container['orderItemId'] = $orderItemId;
         return $this;
     }
 
 
-    public function getSellerId(): ?string
+    public function getOrderItemType(): string
     {
-        return $this->container['sellerId'];
+        return $this->container['orderItemType'];
     }
 
-    public function setSellerId(?string $sellerId): SellerEventTest
+    public function setOrderItemType(string $orderItemType): OrderInvoiceTransactionItem
     {
-        $this->container['sellerId'] = $sellerId;
+        $this->container['orderItemType'] = $orderItemType;
+        return $this;
+    }
+
+
+    public function getSku(): ?string
+    {
+        return $this->container['sku'];
+    }
+
+    public function setSku(?string $sku): OrderInvoiceTransactionItem
+    {
+        $this->container['sku'] = $sku;
+        return $this;
+    }
+
+
+    public function getTitle(): ?string
+    {
+        return $this->container['title'];
+    }
+
+    public function setTitle(?string $title): OrderInvoiceTransactionItem
+    {
+        $this->container['title'] = $title;
+        return $this;
+    }
+
+
+    public function getQuantity(): ?float
+    {
+        return $this->container['quantity'];
+    }
+
+    public function setQuantity(?float $quantity): OrderInvoiceTransactionItem
+    {
+        $this->container['quantity'] = $quantity;
+        return $this;
+    }
+
+
+    public function getTotalGrossPrice(): ?float
+    {
+        return $this->container['totalGrossPrice'];
+    }
+
+    public function setTotalGrossPrice(?float $totalGrossPrice): OrderInvoiceTransactionItem
+    {
+        $this->container['totalGrossPrice'] = $totalGrossPrice;
+        return $this;
+    }
+
+
+    public function getTotalNetPrice(): ?float
+    {
+        return $this->container['totalNetPrice'];
+    }
+
+    public function setTotalNetPrice(?float $totalNetPrice): OrderInvoiceTransactionItem
+    {
+        $this->container['totalNetPrice'] = $totalNetPrice;
+        return $this;
+    }
+
+
+    public function getTotalVatAmount(): ?float
+    {
+        return $this->container['totalVatAmount'];
+    }
+
+    public function setTotalVatAmount(?float $totalVatAmount): OrderInvoiceTransactionItem
+    {
+        $this->container['totalVatAmount'] = $totalVatAmount;
         return $this;
     }
 

@@ -30,6 +30,7 @@
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
 use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
 
 /**
  * AddressTest Class Doc Comment
@@ -52,13 +53,16 @@ class AddressTest extends AbstractApiModelTest
     public function it_has_correct_allowed_values_for_gender(): void
     {
         $allowed = [
-            'male','female','diverse',
+            'male',
+            'female',
+            'diverse',
         ];
 
         $sut = new Address();
         $this->assertMethodExists($sut, 'getGenderAllowableValues');
         $this->assertEquals($allowed, $sut->getGenderAllowableValues());
     }
+
     /**
      * @return array
      * @dataProvider
@@ -139,8 +143,12 @@ class AddressTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
-    {
+    public function it_has_expected_interface(
+        string $property,
+        string $type,
+        string $expectedGetter,
+        string $expectedSetter
+    ): void {
         $sample = $this->buildSampleForDataType($type);
         $sut = new Address([$property => $sample]);
 
@@ -154,5 +162,30 @@ class AddressTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_be_serialized_and_deserialized(): void
+    {
+        $sut = new Address([
+            "lastName" => 'foo',
+            "street" => 'A_STREET',
+            'city' => 'A_CITY',
+            'country' => 'A_COUNTRY'
+        ]);
+
+        $expectedJson = <<<JSON
+{
+    "lastName": "foo",
+    "street": "A_STREET",
+    "city": "A_CITY",
+    "country": "A_COUNTRY"
+}
+JSON;
+
+        self::assertEquals($expectedJson, $sut->__toString());
+        self::assertEquals($sut, ObjectSerializer::deserialize($sut->__toString(), $sut::class));
     }
 }
