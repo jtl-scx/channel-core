@@ -30,7 +30,7 @@
         "phpunit/phpunit": "^9.5",
         "roave/backward-compatibility-check": "^7.1",
         "symfony/dotenv": "^6.1",
-        "twig/twig": "^2.0"
+        "twig/twig": "^2.0 || ^3.0"
     },
     "suggest": {
         "ext-mongodb": "Needed if MongoDbConnection is used",
