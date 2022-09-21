@@ -1,6 +1,7 @@
 name: Dependabot Merge
 
 on:
+  pull_request:
   workflow_run:
     workflows: ["Testing"]
     types:
