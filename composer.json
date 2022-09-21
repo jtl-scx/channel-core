@@ -28,6 +28,7 @@
         "mongodb/mongodb": "^1.8",
         "phpstan/phpstan": "^1.7",
         "phpunit/phpunit": "^9.5",
+        "roave/backward-compatibility-check": "^7.1",
         "symfony/dotenv": "^6.1",
         "twig/twig": "^2.0"
     },
