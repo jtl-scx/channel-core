@@ -1,11 +1,13 @@
 name: Dependabot Merge
 
 on:
-  pull_request:
   workflow_run:
     workflows: ["Testing"]
     types:
       - completed
+    branches-ignore:
+      - "master"
+      - "main"
 
 jobs:
   auto-merge:
