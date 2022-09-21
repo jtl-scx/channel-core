@@ -1,6 +1,5 @@
 <?php
 
-
 namespace JTL\SCX\Lib\Channel\Seller;
 
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UnlinkSellerRequest;

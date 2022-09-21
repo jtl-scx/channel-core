@@ -35,13 +35,13 @@ class Topic implements EnumInterface
     /**
      * Possible values of this enum
      */
-    const QUESTION = 'QUESTION';
-    const FEEDBACK = 'FEEDBACK';
-    const DELIVERY = 'DELIVERY';
-    const _RETURN = 'RETURN';
-    const REFUND = 'REFUND';
-    const INCIDENT = 'INCIDENT';
-    
+    public const QUESTION = 'QUESTION';
+    public const FEEDBACK = 'FEEDBACK';
+    public const DELIVERY = 'DELIVERY';
+    public const _RETURN = 'RETURN';
+    public const REFUND = 'REFUND';
+    public const INCIDENT = 'INCIDENT';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -58,37 +58,37 @@ class Topic implements EnumInterface
         ];
     }
 
-    
+
     public static function QUESTION(): Topic
     {
         return new self('QUESTION');
     }
-    
+
     public static function FEEDBACK(): Topic
     {
         return new self('FEEDBACK');
     }
-    
+
     public static function DELIVERY(): Topic
     {
         return new self('DELIVERY');
     }
-    
+
     public static function _RETURN(): Topic
     {
         return new self('RETURN');
     }
-    
+
     public static function REFUND(): Topic
     {
         return new self('REFUND');
     }
-    
+
     public static function INCIDENT(): Topic
     {
         return new self('INCIDENT');
     }
-    
+
 
     public function __construct($value)
     {

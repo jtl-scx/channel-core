@@ -168,12 +168,12 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
         return self::$openAPIModelName;
     }
 
-    const SEVERITY_INFO = 'INFO';
-    const SEVERITY_WARNING = 'WARNING';
-    const SEVERITY_ERROR = 'ERROR';
-    
+    public const SEVERITY_INFO = 'INFO';
+    public const SEVERITY_WARNING = 'WARNING';
+    public const SEVERITY_ERROR = 'ERROR';
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -187,7 +187,7 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
             self::SEVERITY_ERROR,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values

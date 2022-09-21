@@ -43,8 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class ChannelUpdateFeatureListTest extends AbstractApiModelTest
 {
-
-
     /**
      * Test allowed values for invoiceDocumentTransfer
      * @test

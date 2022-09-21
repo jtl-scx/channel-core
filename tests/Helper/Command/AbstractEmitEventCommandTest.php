@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * This File is part of JTL-Software
  *
@@ -122,7 +124,7 @@ class AbstractEmitEventCommandTest extends TestCase
         $environmentStub = $this->createStub(Environment::class);
         $loggerStub = $this->createStub(ScxLogger::class);
 
-        return new class($environmentStub, new EventFactory(), $emitterMock, new ChannelApiResponseDeserializer(), $loggerStub) extends AbstractEmitEventCommand {
+        return new class ($environmentStub, new EventFactory(), $emitterMock, new ChannelApiResponseDeserializer(), $loggerStub) extends AbstractEmitEventCommand {
             public function getName(): ?string
             {
                 return 'Dummy';

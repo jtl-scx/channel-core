@@ -203,12 +203,12 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    const GENDER_MALE = 'male';
-    const GENDER_FEMALE = 'female';
-    const GENDER_DIVERSE = 'diverse';
-    
+    public const GENDER_MALE = 'male';
+    public const GENDER_FEMALE = 'female';
+    public const GENDER_DIVERSE = 'diverse';
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -222,7 +222,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
             self::GENDER_DIVERSE,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values

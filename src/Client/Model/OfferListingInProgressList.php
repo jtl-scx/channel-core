@@ -154,9 +154,9 @@ class OfferListingInProgressList implements ModelInterface, ArrayAccess, \JsonSe
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values

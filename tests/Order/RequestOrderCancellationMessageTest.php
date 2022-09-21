@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * This File is part of JTL-Software
  *
@@ -20,7 +22,6 @@ use PHPUnit\Framework\TestCase;
  */
 class RequestOrderCancellationMessageTest extends TestCase
 {
-
     /**
      * @test
      */

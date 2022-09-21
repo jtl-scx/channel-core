@@ -1,6 +1,5 @@
 <?php
 
-
 namespace JTL\SCX\Lib\Channel\Seller;
 
 use JTL\Nachricht\Message\AbstractAmqpTransportableMessage;

@@ -43,7 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class TicketReferenceTest extends AbstractApiModelTest
 {
-
     /**
      * Test allowed values for type
      * @test

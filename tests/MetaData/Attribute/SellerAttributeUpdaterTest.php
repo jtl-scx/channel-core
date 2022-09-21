@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * This File is part of JTL-Software
  *
@@ -21,7 +23,7 @@ use PHPUnit\Framework\TestCase;
  */
 class SellerAttributeUpdaterTest extends TestCase
 {
-    public function testCanUpdate():void
+    public function testCanUpdate(): void
     {
         $sellerId = uniqid('sellerId', true);
 

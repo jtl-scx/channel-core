@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * This File is part of JTL-Software
  *
@@ -26,7 +28,7 @@ class CollectionSchemaLoader
         foreach ($classes as $class) {
             $reflect = new ReflectionClass($class);
             if ($reflect->implementsInterface(CollectionSchema::class) && !$reflect->isAbstract()) {
-                $migrationClasses[] = new $class;
+                $migrationClasses[] = new $class();
             }
         }
 

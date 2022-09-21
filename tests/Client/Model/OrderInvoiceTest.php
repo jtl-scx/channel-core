@@ -42,7 +42,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class OrderInvoiceTest extends AbstractApiModelTest
 {
-
     /**
      * @return array
      * @dataProvider

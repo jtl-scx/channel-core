@@ -1,6 +1,5 @@
 <?php
 
-
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
 use JTL\SCX\Lib\Channel\Client\Event\EventType;

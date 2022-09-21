@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * This File is part of JTL-Software
  *
@@ -34,7 +36,7 @@ class AttributeSelector
      * @param array $channelAttributeList
      * @return string|null
      */
-    public function getValueById(string $attributeId, array $channelAttributeList):?string
+    public function getValueById(string $attributeId, array $channelAttributeList): ?string
     {
         /** @var ChannelAttribute $attribute */
         foreach ($channelAttributeList as $attribute) {

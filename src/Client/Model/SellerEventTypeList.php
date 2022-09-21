@@ -35,27 +35,27 @@ class SellerEventTypeList implements EnumInterface
     /**
      * Possible values of this enum
      */
-    const SYSTEMTEST = 'System:Test';
-    const SYSTEMNOTIFICATION = 'System:Notification';
-    const SELLERORDER_ACCEPTED = 'Seller:Order.Accepted';
-    const SELLERORDER_SHIPPING = 'Seller:Order.Shipping';
-    const SELLERORDER_PAYMENT = 'Seller:Order.Payment';
-    const SELLERORDER_CANCELLATION_REQUEST = 'Seller:Order.Cancellation.Request';
-    const SELLERORDER_CANCELLATION_ACCEPTED = 'Seller:Order.Cancellation.Accepted';
-    const SELLERORDER_CANCELLATION_DENIED = 'Seller:Order.Cancellation.Denied';
-    const SELLERORDER_REFUND = 'Seller:Order.Refund';
-    const SELLERORDER_INVOICE = 'Seller:Order.Invoice';
-    const SELLERORDER_RETURN_RECEIVED = 'Seller:Order.ReturnReceived';
-    const SELLEROFFER_NEW = 'Seller:Offer.New';
-    const SELLEROFFER_UPDATE = 'Seller:Offer.Update';
-    const SELLEROFFER_END = 'Seller:Offer.End';
-    const SELLEROFFER_STOCK_UPDATE = 'Seller:Offer.StockUpdate';
-    const SELLEROFFER_PRICE_UPDATE = 'Seller:Offer.PriceUpdate';
-    const SELLERREPORT_REQUEST = 'Seller:Report.Request';
-    const SELLERCHANNEL_UNLINKED = 'Seller:Channel.Unlinked';
-    const SELLERMETA_SELLER_ATTRIBUTES_UPDATE_REQUEST = 'Seller:Meta.SellerAttributesUpdateRequest';
-    const SELLERTICKET_REPLY = 'Seller:Ticket.Reply';
-    
+    public const SYSTEMTEST = 'System:Test';
+    public const SYSTEMNOTIFICATION = 'System:Notification';
+    public const SELLERORDER_ACCEPTED = 'Seller:Order.Accepted';
+    public const SELLERORDER_SHIPPING = 'Seller:Order.Shipping';
+    public const SELLERORDER_PAYMENT = 'Seller:Order.Payment';
+    public const SELLERORDER_CANCELLATION_REQUEST = 'Seller:Order.Cancellation.Request';
+    public const SELLERORDER_CANCELLATION_ACCEPTED = 'Seller:Order.Cancellation.Accepted';
+    public const SELLERORDER_CANCELLATION_DENIED = 'Seller:Order.Cancellation.Denied';
+    public const SELLERORDER_REFUND = 'Seller:Order.Refund';
+    public const SELLERORDER_INVOICE = 'Seller:Order.Invoice';
+    public const SELLERORDER_RETURN_RECEIVED = 'Seller:Order.ReturnReceived';
+    public const SELLEROFFER_NEW = 'Seller:Offer.New';
+    public const SELLEROFFER_UPDATE = 'Seller:Offer.Update';
+    public const SELLEROFFER_END = 'Seller:Offer.End';
+    public const SELLEROFFER_STOCK_UPDATE = 'Seller:Offer.StockUpdate';
+    public const SELLEROFFER_PRICE_UPDATE = 'Seller:Offer.PriceUpdate';
+    public const SELLERREPORT_REQUEST = 'Seller:Report.Request';
+    public const SELLERCHANNEL_UNLINKED = 'Seller:Channel.Unlinked';
+    public const SELLERMETA_SELLER_ATTRIBUTES_UPDATE_REQUEST = 'Seller:Meta.SellerAttributesUpdateRequest';
+    public const SELLERTICKET_REPLY = 'Seller:Ticket.Reply';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -86,107 +86,107 @@ class SellerEventTypeList implements EnumInterface
         ];
     }
 
-    
+
     public static function SYSTEMTEST(): SellerEventTypeList
     {
         return new self('System:Test');
     }
-    
+
     public static function SYSTEMNOTIFICATION(): SellerEventTypeList
     {
         return new self('System:Notification');
     }
-    
+
     public static function SELLERORDER_ACCEPTED(): SellerEventTypeList
     {
         return new self('Seller:Order.Accepted');
     }
-    
+
     public static function SELLERORDER_SHIPPING(): SellerEventTypeList
     {
         return new self('Seller:Order.Shipping');
     }
-    
+
     public static function SELLERORDER_PAYMENT(): SellerEventTypeList
     {
         return new self('Seller:Order.Payment');
     }
-    
+
     public static function SELLERORDER_CANCELLATION_REQUEST(): SellerEventTypeList
     {
         return new self('Seller:Order.Cancellation.Request');
     }
-    
+
     public static function SELLERORDER_CANCELLATION_ACCEPTED(): SellerEventTypeList
     {
         return new self('Seller:Order.Cancellation.Accepted');
     }
-    
+
     public static function SELLERORDER_CANCELLATION_DENIED(): SellerEventTypeList
     {
         return new self('Seller:Order.Cancellation.Denied');
     }
-    
+
     public static function SELLERORDER_REFUND(): SellerEventTypeList
     {
         return new self('Seller:Order.Refund');
     }
-    
+
     public static function SELLERORDER_INVOICE(): SellerEventTypeList
     {
         return new self('Seller:Order.Invoice');
     }
-    
+
     public static function SELLERORDER_RETURN_RECEIVED(): SellerEventTypeList
     {
         return new self('Seller:Order.ReturnReceived');
     }
-    
+
     public static function SELLEROFFER_NEW(): SellerEventTypeList
     {
         return new self('Seller:Offer.New');
     }
-    
+
     public static function SELLEROFFER_UPDATE(): SellerEventTypeList
     {
         return new self('Seller:Offer.Update');
     }
-    
+
     public static function SELLEROFFER_END(): SellerEventTypeList
     {
         return new self('Seller:Offer.End');
     }
-    
+
     public static function SELLEROFFER_STOCK_UPDATE(): SellerEventTypeList
     {
         return new self('Seller:Offer.StockUpdate');
     }
-    
+
     public static function SELLEROFFER_PRICE_UPDATE(): SellerEventTypeList
     {
         return new self('Seller:Offer.PriceUpdate');
     }
-    
+
     public static function SELLERREPORT_REQUEST(): SellerEventTypeList
     {
         return new self('Seller:Report.Request');
     }
-    
+
     public static function SELLERCHANNEL_UNLINKED(): SellerEventTypeList
     {
         return new self('Seller:Channel.Unlinked');
     }
-    
+
     public static function SELLERMETA_SELLER_ATTRIBUTES_UPDATE_REQUEST(): SellerEventTypeList
     {
         return new self('Seller:Meta.SellerAttributesUpdateRequest');
     }
-    
+
     public static function SELLERTICKET_REPLY(): SellerEventTypeList
     {
         return new self('Seller:Ticket.Reply');
     }
-    
+
 
     public function __construct($value)
     {

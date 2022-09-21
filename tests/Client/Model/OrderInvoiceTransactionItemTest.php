@@ -42,7 +42,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class OrderInvoiceTransactionItemTest extends AbstractApiModelTest
 {
-
     /**
      * Test allowed values for orderItemType
      * @test

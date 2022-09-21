@@ -43,7 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class ChannelNotificationSeverityTest extends AbstractApiModelTest
 {
-
     /**
      * Test Enum Value "INFO"
      * @test

@@ -43,7 +43,6 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  */
 class UpdateSellerTest extends AbstractApiModelTest
 {
-
     /**
      * @return array
      * @dataProvider

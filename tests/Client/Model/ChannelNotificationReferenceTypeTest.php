@@ -43,7 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class ChannelNotificationReferenceTypeTest extends AbstractApiModelTest
 {
-
     /**
      * Test Enum Value "OFFER"
      * @test

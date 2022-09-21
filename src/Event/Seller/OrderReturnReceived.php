@@ -1,6 +1,5 @@
 <?php
 
-
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
 use DateTimeImmutable;

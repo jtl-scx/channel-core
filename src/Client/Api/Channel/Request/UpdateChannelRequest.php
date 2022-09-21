@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * This File is part of JTL-Software
  *
@@ -36,7 +38,7 @@ class UpdateChannelRequest extends AbstractScxApiRequest
         return ScxApiRequest::HTTP_METHOD_PATCH;
     }
 
-    public function getBody():string
+    public function getBody(): string
     {
         return (string)$this->getChannelUpdate();
     }

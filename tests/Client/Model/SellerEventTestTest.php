@@ -43,8 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class SellerEventTestTest extends AbstractApiModelTest
 {
-
-
     /**
      * @return array
      * @dataProvider

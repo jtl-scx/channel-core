@@ -43,7 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class SellerEventTypeListTest extends AbstractApiModelTest
 {
-
     /**
      * Test Enum Value "SYSTEMTEST"
      * @test

@@ -43,7 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class RefundReasonTest extends AbstractApiModelTest
 {
-
     /**
      * Test Enum Value "NO_REASON"
      * @test

@@ -87,7 +87,7 @@ JSON
     public function it_has_enumValues_when_type_is_ENUM(): void
     {
         $sut = $this->setupGlobalAttributeFileReader(
-        /** @lang JSON */
+            /** @lang JSON */
             <<<JSON
 [
     {

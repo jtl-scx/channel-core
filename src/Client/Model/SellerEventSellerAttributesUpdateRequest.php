@@ -153,9 +153,9 @@ class SellerEventSellerAttributesUpdateRequest implements ModelInterface, ArrayA
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values

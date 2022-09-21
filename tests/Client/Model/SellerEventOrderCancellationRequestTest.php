@@ -43,8 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class SellerEventOrderCancellationRequestTest extends AbstractApiModelTest
 {
-
-
     /**
      * @return array
      * @dataProvider

@@ -158,12 +158,12 @@ class TicketFrom implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    const ROLE_BUYER = 'BUYER';
-    const ROLE_SELLER = 'SELLER';
-    const ROLE_CHANNEL = 'CHANNEL';
-    
+    public const ROLE_BUYER = 'BUYER';
+    public const ROLE_SELLER = 'SELLER';
+    public const ROLE_CHANNEL = 'CHANNEL';
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -177,7 +177,7 @@ class TicketFrom implements ModelInterface, ArrayAccess, \JsonSerializable
             self::ROLE_CHANNEL,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values

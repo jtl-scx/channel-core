@@ -158,9 +158,9 @@ class SellerEventOrderCancellationAccepted implements ModelInterface, ArrayAcces
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values

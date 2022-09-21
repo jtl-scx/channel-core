@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * This File is part of JTL-Software
  *
@@ -19,7 +21,7 @@ use Psr\Http\Message\ResponseInterface;
  */
 class ShippingRulesApiTest extends TestCase
 {
-    public function testCanCreatePaymentRules():void
+    public function testCanCreatePaymentRules(): void
     {
         $requestMock = $this->createMock(CreateShippingRulesRequest::class);
 

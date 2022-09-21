@@ -43,7 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class InvoiceDocumentTypeTest extends AbstractApiModelTest
 {
-
     /**
      * Test Enum Value "INVOICE"
      * @test

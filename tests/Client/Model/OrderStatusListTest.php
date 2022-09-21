@@ -43,8 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class OrderStatusListTest extends AbstractApiModelTest
 {
-
-
     /**
      * @return array
      * @dataProvider

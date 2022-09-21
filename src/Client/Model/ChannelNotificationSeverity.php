@@ -35,10 +35,10 @@ class ChannelNotificationSeverity implements EnumInterface
     /**
      * Possible values of this enum
      */
-    const INFO = 'INFO';
-    const WARNING = 'WARNING';
-    const ERROR = 'ERROR';
-    
+    public const INFO = 'INFO';
+    public const WARNING = 'WARNING';
+    public const ERROR = 'ERROR';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -52,22 +52,22 @@ class ChannelNotificationSeverity implements EnumInterface
         ];
     }
 
-    
+
     public static function INFO(): ChannelNotificationSeverity
     {
         return new self('INFO');
     }
-    
+
     public static function WARNING(): ChannelNotificationSeverity
     {
         return new self('WARNING');
     }
-    
+
     public static function ERROR(): ChannelNotificationSeverity
     {
         return new self('ERROR');
     }
-    
+
 
     public function __construct($value)
     {
