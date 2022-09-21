@@ -56,13 +56,22 @@ class CreateSellerTest extends AbstractApiModelTest
                 'session',
                 'string',
                 'getSession',
-                'setSession'
+                'setSession',
+                false,
             ],
             'assert property SellerId' => [
                 'sellerId',
                 'string',
                 'getSellerId',
-                'setSellerId'
+                'setSellerId',
+                false,
+            ],
+            'assert property companyName' => [
+                'companyName',
+                'string',
+                'getCompanyName',
+                'setCompanyName',
+                true,
             ],
         ];
     }
@@ -71,8 +80,13 @@ class CreateSellerTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
-    {
+    public function it_has_expected_interface(
+        string $property,
+        string $type,
+        string $expectedGetter,
+        string $expectedSetter,
+        bool $isNullable
+    ): void {
         $sample = $this->buildSampleForDataType($type);
         $sut = new CreateSeller([$property => $sample]);
 
@@ -86,5 +100,13 @@ class CreateSellerTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
+
+        if ($isNullable) {
+            $sut = new CreateSeller([$property => null]);
+            $this->assertNull($sut->$expectedGetter());
+
+            $sut->$expectedSetter(null);
+            $this->assertNull($sut->$expectedGetter());
+        }
     }
 }
