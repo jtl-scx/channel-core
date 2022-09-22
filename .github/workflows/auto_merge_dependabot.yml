@@ -1,21 +1,14 @@
 name: Dependabot Merge
 
 on:
-  workflow_run:
-    workflows: ["Testing"]
-    types:
-      - completed
-    branches-ignore:
-      - "master"
-      - "main"
+  pull_request:
 
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v2
       - uses: ahmadnassri/action-dependabot-auto-merge@v2
         with:
-          target: minor
+          target: patch
           github-token: ${{ secrets.TOKEN }}
