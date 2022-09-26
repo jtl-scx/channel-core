@@ -51,7 +51,8 @@ class AllowedValue implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'value' => 'string',
-        'display' => 'string'
+        'display' => 'string',
+        'sort' => 'int'
     ];
 
     /**
@@ -63,7 +64,8 @@ class AllowedValue implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'value' => null,
-        'display' => null
+        'display' => null,
+        'sort' => null
     ];
 
     /**
@@ -94,7 +96,8 @@ class AllowedValue implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'value' => 'value',
-        'display' => 'display'
+        'display' => 'display',
+        'sort' => 'sort'
     ];
 
     /**
@@ -104,7 +107,8 @@ class AllowedValue implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'value' => 'setValue',
-        'display' => 'setDisplay'
+        'display' => 'setDisplay',
+        'sort' => 'setSort'
     ];
 
     /**
@@ -114,7 +118,8 @@ class AllowedValue implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'value' => 'getValue',
-        'display' => 'getDisplay'
+        'display' => 'getDisplay',
+        'sort' => 'getSort'
     ];
 
     /**
@@ -173,6 +178,7 @@ class AllowedValue implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->container['value'] = $data['value'] ?? null;
         $this->container['display'] = $data['display'] ?? null;
+        $this->container['sort'] = $data['sort'] ?? 0;
     }
 
     /**
@@ -238,6 +244,18 @@ class AllowedValue implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDisplay(?string $display): AllowedValue
     {
         $this->container['display'] = $display;
+        return $this;
+    }
+
+
+    public function getSort(): ?int
+    {
+        return $this->container['sort'];
+    }
+
+    public function setSort(?int $sort): AllowedValue
+    {
+        $this->container['sort'] = $sort;
         return $this;
     }
 

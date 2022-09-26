@@ -62,6 +62,12 @@ class AllowedValueTest extends AbstractApiModelTest
                 'getDisplay',
                 'setDisplay'
             ],
+            'assert property sort' => [
+                'sort',
+                'int',
+                'getSort',
+                'setSort'
+            ]
         ];
     }
 
