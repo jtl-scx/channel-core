@@ -169,8 +169,13 @@ class InvoiceMetaDataTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
-    {
+    public function it_has_expected_interface(
+        string $property,
+        string $type,
+        string $expectedGetter,
+        string $expectedSetter,
+        bool $isNullable
+    ): void {
         $sample = $this->buildSampleForDataType($type);
         $sut = new InvoiceMetaData([$property => $sample]);
 
@@ -193,4 +198,15 @@ class InvoiceMetaDataTest extends AbstractApiModelTest
             $this->assertNull($sut->$expectedGetter());
         }
     }
+
+    /**
+     * @test
+     */
+    public function it_has_allowed_values_for_taxAddressRole(): void
+    {
+        $sut = new InvoiceMetaData();
+        self::assertEquals(['shipFrom', 'shipTo'], $sut->getTaxAddressRoleAllowableValues());
+    }
+
+
 }

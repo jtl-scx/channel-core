@@ -232,8 +232,23 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TAX_ADDRESS_ROLE_SHIP_FROM = 'shipFrom';
+    public const TAX_ADDRESS_ROLE_SHIP_TO = 'shipTo';
 
 
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTaxAddressRoleAllowableValues()
+    {
+        return [
+            self::TAX_ADDRESS_ROLE_SHIP_FROM,
+            self::TAX_ADDRESS_ROLE_SHIP_TO,
+        ];
+    }
 
 
     /**
@@ -302,6 +317,15 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if ((mb_strlen($this->container['invoiceNumber']) < 1)) {
             $invalidProperties[] = "invalid value for 'invoiceNumber', the character length must be bigger than or equal to 1.";
+        }
+
+        $allowedValues = $this->getTaxAddressRoleAllowableValues();
+        if (!is_null($this->container['taxAddressRole']) && !in_array($this->container['taxAddressRole'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'taxAddressRole', must be one of '%s'",
+                $this->container['taxAddressRole'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
