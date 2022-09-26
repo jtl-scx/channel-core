@@ -207,6 +207,4 @@ class InvoiceMetaDataTest extends AbstractApiModelTest
         $sut = new InvoiceMetaData();
         self::assertEquals(['shipFrom', 'shipTo'], $sut->getTaxAddressRoleAllowableValues());
     }
-
-
 }
