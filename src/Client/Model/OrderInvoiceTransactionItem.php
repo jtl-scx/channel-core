@@ -46,6 +46,7 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
+      * @param OrderInvoiceTransactionItemDiscounts
       *
       * @var string[]
       */
@@ -55,9 +56,10 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         'sku' => 'string',
         'title' => 'string',
         'quantity' => 'float',
-        'totalGrossPrice' => 'float',
-        'totalNetPrice' => 'float',
-        'totalVatAmount' => 'float'
+        'totalGrossPriceWithDiscounts' => 'float',
+        'totalNetPriceWithDiscounts' => 'float',
+        'totalVatAmountWithDiscounts' => 'float',
+        'discounts' => '\JTL\SCX\Lib\Channel\Client\Model\OrderInvoiceTransactionItemDiscounts[]'
     ];
 
     /**
@@ -73,9 +75,10 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         'sku' => null,
         'title' => null,
         'quantity' => 'float',
-        'totalGrossPrice' => 'float',
-        'totalNetPrice' => 'float',
-        'totalVatAmount' => 'float'
+        'totalGrossPriceWithDiscounts' => 'float',
+        'totalNetPriceWithDiscounts' => 'float',
+        'totalVatAmountWithDiscounts' => 'float',
+        'discounts' => null
     ];
 
     /**
@@ -110,9 +113,10 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         'sku' => 'sku',
         'title' => 'title',
         'quantity' => 'quantity',
-        'totalGrossPrice' => 'totalGrossPrice',
-        'totalNetPrice' => 'totalNetPrice',
-        'totalVatAmount' => 'totalVatAmount'
+        'totalGrossPriceWithDiscounts' => 'totalGrossPriceWithDiscounts',
+        'totalNetPriceWithDiscounts' => 'totalNetPriceWithDiscounts',
+        'totalVatAmountWithDiscounts' => 'totalVatAmountWithDiscounts',
+        'discounts' => 'discounts'
     ];
 
     /**
@@ -126,9 +130,10 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         'sku' => 'setSku',
         'title' => 'setTitle',
         'quantity' => 'setQuantity',
-        'totalGrossPrice' => 'setTotalGrossPrice',
-        'totalNetPrice' => 'setTotalNetPrice',
-        'totalVatAmount' => 'setTotalVatAmount'
+        'totalGrossPriceWithDiscounts' => 'setTotalGrossPriceWithDiscounts',
+        'totalNetPriceWithDiscounts' => 'setTotalNetPriceWithDiscounts',
+        'totalVatAmountWithDiscounts' => 'setTotalVatAmountWithDiscounts',
+        'discounts' => 'setDiscounts'
     ];
 
     /**
@@ -142,9 +147,10 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         'sku' => 'getSku',
         'title' => 'getTitle',
         'quantity' => 'getQuantity',
-        'totalGrossPrice' => 'getTotalGrossPrice',
-        'totalNetPrice' => 'getTotalNetPrice',
-        'totalVatAmount' => 'getTotalVatAmount'
+        'totalGrossPriceWithDiscounts' => 'getTotalGrossPriceWithDiscounts',
+        'totalNetPriceWithDiscounts' => 'getTotalNetPriceWithDiscounts',
+        'totalVatAmountWithDiscounts' => 'getTotalVatAmountWithDiscounts',
+        'discounts' => 'getDiscounts'
     ];
 
     /**
@@ -223,9 +229,10 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         $this->container['sku'] = $data['sku'] ?? null;
         $this->container['title'] = $data['title'] ?? null;
         $this->container['quantity'] = $data['quantity'] ?? null;
-        $this->container['totalGrossPrice'] = $data['totalGrossPrice'] ?? null;
-        $this->container['totalNetPrice'] = $data['totalNetPrice'] ?? null;
-        $this->container['totalVatAmount'] = $data['totalVatAmount'] ?? null;
+        $this->container['totalGrossPriceWithDiscounts'] = $data['totalGrossPriceWithDiscounts'] ?? null;
+        $this->container['totalNetPriceWithDiscounts'] = $data['totalNetPriceWithDiscounts'] ?? null;
+        $this->container['totalVatAmountWithDiscounts'] = $data['totalVatAmountWithDiscounts'] ?? null;
+        $this->container['discounts'] = $data['discounts'] ?? null;
     }
 
     /**
@@ -331,38 +338,50 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
     }
 
 
-    public function getTotalGrossPrice(): ?float
+    public function getTotalGrossPriceWithDiscounts(): ?float
     {
-        return $this->container['totalGrossPrice'];
+        return $this->container['totalGrossPriceWithDiscounts'];
     }
 
-    public function setTotalGrossPrice(?float $totalGrossPrice): OrderInvoiceTransactionItem
+    public function setTotalGrossPriceWithDiscounts(?float $totalGrossPriceWithDiscounts): OrderInvoiceTransactionItem
     {
-        $this->container['totalGrossPrice'] = $totalGrossPrice;
+        $this->container['totalGrossPriceWithDiscounts'] = $totalGrossPriceWithDiscounts;
         return $this;
     }
 
 
-    public function getTotalNetPrice(): ?float
+    public function getTotalNetPriceWithDiscounts(): ?float
     {
-        return $this->container['totalNetPrice'];
+        return $this->container['totalNetPriceWithDiscounts'];
     }
 
-    public function setTotalNetPrice(?float $totalNetPrice): OrderInvoiceTransactionItem
+    public function setTotalNetPriceWithDiscounts(?float $totalNetPriceWithDiscounts): OrderInvoiceTransactionItem
     {
-        $this->container['totalNetPrice'] = $totalNetPrice;
+        $this->container['totalNetPriceWithDiscounts'] = $totalNetPriceWithDiscounts;
         return $this;
     }
 
 
-    public function getTotalVatAmount(): ?float
+    public function getTotalVatAmountWithDiscounts(): ?float
     {
-        return $this->container['totalVatAmount'];
+        return $this->container['totalVatAmountWithDiscounts'];
     }
 
-    public function setTotalVatAmount(?float $totalVatAmount): OrderInvoiceTransactionItem
+    public function setTotalVatAmountWithDiscounts(?float $totalVatAmountWithDiscounts): OrderInvoiceTransactionItem
     {
-        $this->container['totalVatAmount'] = $totalVatAmount;
+        $this->container['totalVatAmountWithDiscounts'] = $totalVatAmountWithDiscounts;
+        return $this;
+    }
+
+
+    public function getDiscounts(): ?array
+    {
+        return $this->container['discounts'];
+    }
+
+    public function setDiscounts(?array $discounts): OrderInvoiceTransactionItem
+    {
+        $this->container['discounts'] = $discounts;
         return $this;
     }
 

@@ -98,25 +98,32 @@ class OrderInvoiceTransactionItemTest extends AbstractApiModelTest
                 'setQuantity',
                 true
             ],
-            'assert property TotalGrossPrice' => [
-                'totalGrossPrice',
+            'assert property TotalGrossPriceWithDiscounts' => [
+                'totalGrossPriceWithDiscounts',
                 'float',
-                'getTotalGrossPrice',
-                'setTotalGrossPrice',
+                'getTotalGrossPriceWithDiscounts',
+                'setTotalGrossPriceWithDiscounts',
                 true
             ],
-            'assert property TotalNetPrice' => [
-                'totalNetPrice',
+            'assert property TotalNetPriceWithDiscounts' => [
+                'totalNetPriceWithDiscounts',
                 'float',
-                'getTotalNetPrice',
-                'setTotalNetPrice',
+                'getTotalNetPriceWithDiscounts',
+                'setTotalNetPriceWithDiscounts',
                 true
             ],
-            'assert property TotalVatAmount' => [
-                'totalVatAmount',
+            'assert property TotalVatAmountWithDiscounts' => [
+                'totalVatAmountWithDiscounts',
                 'float',
-                'getTotalVatAmount',
-                'setTotalVatAmount',
+                'getTotalVatAmountWithDiscounts',
+                'setTotalVatAmountWithDiscounts',
+                true
+            ],
+            'assert property Discounts' => [
+                'discounts',
+                '\JTL\SCX\Lib\Channel\Client\Model\OrderInvoiceTransactionItemDiscounts[]',
+                'getDiscounts',
+                'setDiscounts',
                 true
             ],
         ];
