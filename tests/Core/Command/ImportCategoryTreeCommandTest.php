@@ -68,4 +68,30 @@ cat1
 CSV;
         $this->assertEquals($expectation, file_get_contents($testFilePath));
     }
+
+    public function testWillDumpCategoriesListingAllowedOnly(): void
+    {
+        $categoryList = new CategoryList();
+        $categoryList[] = new Category("branch", 'foo', "0", false);
+        $categoryList[] = new Category("leaf", 'foo', "branch", true);
+
+        $loaderMock = $this->createMock(MetaCategoryLoader::class);
+        $loaderMock->expects($this->once())->method('fetchAll')->willReturn($categoryList);
+
+        $updaterMock = $this->createStub(CategoryTreeUpdater::class);
+
+        $testFilePath = sys_get_temp_dir() . '/' . __CLASS__ . '_' . __METHOD__;
+        $command = new ImportCategoryTreeCommand($loaderMock, $updaterMock, $this->createStub(ScxLogger::class));
+        $commandTester = new CommandTester($command);
+        $commandTester->execute([
+            '--dump-categories-to-file' => $testFilePath,
+            '--dump-categories-listing-allowed-only' => true
+        ]);
+
+        $expectation = <<< CSV
+leaf
+
+CSV;
+        $this->assertEquals($expectation, file_get_contents($testFilePath));
+    }
 }
