@@ -16,6 +16,7 @@ use JTL\SCX\Client\Exception\RequestValidationFailedException;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaCategoryLoader;
 use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
+use JTL\SCX\Lib\Channel\MetaData\Category;
 use JTL\SCX\Lib\Channel\MetaData\CategoryTreeUpdater;
 use RuntimeException;
 use Symfony\Component\Console\Input\InputInterface;
@@ -43,6 +44,12 @@ class ImportCategoryTreeCommand extends AbstractCommand
     protected function configure()
     {
         $this->setDescription('Import Category-Tree from marketplace and push to SCX')
+            ->addOption(
+                'dump-categories-listing-allowed-only',
+                'leafs',
+                InputOption::VALUE_NONE,
+                'Dump only leaf categoryIds'
+            )
             ->addOption(
                 'dump-categories-to-file',
                 'd',
@@ -83,6 +90,7 @@ class ImportCategoryTreeCommand extends AbstractCommand
 
         $dump = $input->getOption('dump-categories-to-file');
         if ($dump !== null) {
+            $dumpLeafsOnly = $input->getOption('dump-categories-listing-allowed-only');
             $delimiter = $input->getOption('dump-csv-delimiter');
             $enclosure = $input->getOption('dump-csv-enclosure');
 
@@ -92,7 +100,12 @@ class ImportCategoryTreeCommand extends AbstractCommand
             }
 
             $io->write("Dump category tree to file");
+            /** @var Category $category */
             foreach ($categoryList as $category) {
+                if ($dumpLeafsOnly === true && $category->isListingAllowed() === false) {
+                    continue;
+                }
+
                 fputcsv($fp, [$category->getCategoryId()], $delimiter, $enclosure);
             }
             $io->writeln(' ... done');
