@@ -60,8 +60,8 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         'invoiceNumber' => 'string',
         'originalInvoiceNumber' => 'string',
         'transactionDate' => '\DateTime',
-        'transactionDetails' => 'string',
         'taxCalculationDate' => '\DateTime',
+        'transactionDetails' => 'string',
         'shipmentDate' => '\DateTime',
         'taxAddressRole' => 'string',
         'exportOutsideEu' => 'Bool',
@@ -86,8 +86,8 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         'invoiceNumber' => null,
         'originalInvoiceNumber' => null,
         'transactionDate' => 'date-time',
-        'transactionDetails' => null,
         'taxCalculationDate' => 'date-time',
+        'transactionDetails' => null,
         'shipmentDate' => 'date-time',
         'taxAddressRole' => null,
         'exportOutsideEu' => null,
@@ -131,8 +131,8 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         'invoiceNumber' => 'invoiceNumber',
         'originalInvoiceNumber' => 'originalInvoiceNumber',
         'transactionDate' => 'transactionDate',
-        'transactionDetails' => 'transactionDetails',
         'taxCalculationDate' => 'taxCalculationDate',
+        'transactionDetails' => 'transactionDetails',
         'shipmentDate' => 'shipmentDate',
         'taxAddressRole' => 'taxAddressRole',
         'exportOutsideEu' => 'exportOutsideEu',
@@ -155,8 +155,8 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         'invoiceNumber' => 'setInvoiceNumber',
         'originalInvoiceNumber' => 'setOriginalInvoiceNumber',
         'transactionDate' => 'setTransactionDate',
-        'transactionDetails' => 'setTransactionDetails',
         'taxCalculationDate' => 'setTaxCalculationDate',
+        'transactionDetails' => 'setTransactionDetails',
         'shipmentDate' => 'setShipmentDate',
         'taxAddressRole' => 'setTaxAddressRole',
         'exportOutsideEu' => 'setExportOutsideEu',
@@ -179,8 +179,8 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         'invoiceNumber' => 'getInvoiceNumber',
         'originalInvoiceNumber' => 'getOriginalInvoiceNumber',
         'transactionDate' => 'getTransactionDate',
-        'transactionDetails' => 'getTransactionDetails',
         'taxCalculationDate' => 'getTaxCalculationDate',
+        'transactionDetails' => 'getTransactionDetails',
         'shipmentDate' => 'getShipmentDate',
         'taxAddressRole' => 'getTaxAddressRole',
         'exportOutsideEu' => 'getExportOutsideEu',
@@ -266,8 +266,8 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['invoiceNumber'] = $data['invoiceNumber'] ?? null;
         $this->container['originalInvoiceNumber'] = $data['originalInvoiceNumber'] ?? null;
         $this->container['transactionDate'] = $data['transactionDate'] ?? null;
-        $this->container['transactionDetails'] = $data['transactionDetails'] ?? null;
         $this->container['taxCalculationDate'] = $data['taxCalculationDate'] ?? null;
+        $this->container['transactionDetails'] = $data['transactionDetails'] ?? null;
         $this->container['shipmentDate'] = $data['shipmentDate'] ?? null;
         $this->container['taxAddressRole'] = $data['taxAddressRole'] ?? null;
         $this->container['exportOutsideEu'] = $data['exportOutsideEu'] ?? null;
@@ -319,6 +319,12 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'invoiceNumber', the character length must be bigger than or equal to 1.";
         }
 
+        if ($this->container['transactionDate'] === null) {
+            $invalidProperties[] = "'transactionDate' can't be null";
+        }
+        if ($this->container['taxCalculationDate'] === null) {
+            $invalidProperties[] = "'taxCalculationDate' can't be null";
+        }
         $allowedValues = $this->getTaxAddressRoleAllowableValues();
         if (!is_null($this->container['taxAddressRole']) && !in_array($this->container['taxAddressRole'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -328,6 +334,12 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        if ($this->container['currency'] === null) {
+            $invalidProperties[] = "'currency' can't be null";
+        }
+        if ($this->container['billingAddress'] === null) {
+            $invalidProperties[] = "'billingAddress' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -403,14 +415,26 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    public function getTransactionDate(): ?\DateTime
+    public function getTransactionDate(): \DateTime
     {
         return $this->container['transactionDate'];
     }
 
-    public function setTransactionDate(?\DateTime $transactionDate): InvoiceMetaData
+    public function setTransactionDate(\DateTime $transactionDate): InvoiceMetaData
     {
         $this->container['transactionDate'] = $transactionDate;
+        return $this;
+    }
+
+
+    public function getTaxCalculationDate(): \DateTime
+    {
+        return $this->container['taxCalculationDate'];
+    }
+
+    public function setTaxCalculationDate(\DateTime $taxCalculationDate): InvoiceMetaData
+    {
+        $this->container['taxCalculationDate'] = $taxCalculationDate;
         return $this;
     }
 
@@ -423,18 +447,6 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setTransactionDetails(?string $transactionDetails): InvoiceMetaData
     {
         $this->container['transactionDetails'] = $transactionDetails;
-        return $this;
-    }
-
-
-    public function getTaxCalculationDate(): ?\DateTime
-    {
-        return $this->container['taxCalculationDate'];
-    }
-
-    public function setTaxCalculationDate(?\DateTime $taxCalculationDate): InvoiceMetaData
-    {
-        $this->container['taxCalculationDate'] = $taxCalculationDate;
         return $this;
     }
 
@@ -475,24 +487,24 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    public function getCurrency(): ?string
+    public function getCurrency(): string
     {
         return $this->container['currency'];
     }
 
-    public function setCurrency(?string $currency): InvoiceMetaData
+    public function setCurrency(string $currency): InvoiceMetaData
     {
         $this->container['currency'] = $currency;
         return $this;
     }
 
 
-    public function getBillingAddress(): ?Address
+    public function getBillingAddress(): Address
     {
         return $this->container['billingAddress'];
     }
 
-    public function setBillingAddress(?Address $billingAddress): InvoiceMetaData
+    public function setBillingAddress(Address $billingAddress): InvoiceMetaData
     {
         $this->container['billingAddress'] = $billingAddress;
         return $this;
