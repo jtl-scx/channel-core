@@ -84,6 +84,13 @@ class OrderInvoiceTransactionItemDiscountsTest extends AbstractApiModelTest
                 'setTotalVatAmount',
                 false
             ],
+            'assert property VatRate' => [
+                'vatRate',
+                'float',
+                'getVatRate',
+                'setVatRate',
+                false
+            ],
         ];
     }
 

@@ -59,6 +59,7 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         'totalGrossPriceWithDiscounts' => 'float',
         'totalNetPriceWithDiscounts' => 'float',
         'totalVatAmountWithDiscounts' => 'float',
+        'vatRate' => 'float',
         'discounts' => '\JTL\SCX\Lib\Channel\Client\Model\OrderInvoiceTransactionItemDiscounts[]'
     ];
 
@@ -78,6 +79,7 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         'totalGrossPriceWithDiscounts' => 'float',
         'totalNetPriceWithDiscounts' => 'float',
         'totalVatAmountWithDiscounts' => 'float',
+        'vatRate' => 'float',
         'discounts' => null
     ];
 
@@ -116,6 +118,7 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         'totalGrossPriceWithDiscounts' => 'totalGrossPriceWithDiscounts',
         'totalNetPriceWithDiscounts' => 'totalNetPriceWithDiscounts',
         'totalVatAmountWithDiscounts' => 'totalVatAmountWithDiscounts',
+        'vatRate' => 'vatRate',
         'discounts' => 'discounts'
     ];
 
@@ -133,6 +136,7 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         'totalGrossPriceWithDiscounts' => 'setTotalGrossPriceWithDiscounts',
         'totalNetPriceWithDiscounts' => 'setTotalNetPriceWithDiscounts',
         'totalVatAmountWithDiscounts' => 'setTotalVatAmountWithDiscounts',
+        'vatRate' => 'setVatRate',
         'discounts' => 'setDiscounts'
     ];
 
@@ -150,6 +154,7 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         'totalGrossPriceWithDiscounts' => 'getTotalGrossPriceWithDiscounts',
         'totalNetPriceWithDiscounts' => 'getTotalNetPriceWithDiscounts',
         'totalVatAmountWithDiscounts' => 'getTotalVatAmountWithDiscounts',
+        'vatRate' => 'getVatRate',
         'discounts' => 'getDiscounts'
     ];
 
@@ -228,10 +233,11 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         $this->container['orderItemType'] = $data['orderItemType'] ?? null;
         $this->container['sku'] = $data['sku'] ?? null;
         $this->container['title'] = $data['title'] ?? null;
-        $this->container['quantity'] = $data['quantity'] ?? null;
+        $this->container['quantity'] = $data['quantity'] ?? 1.0;
         $this->container['totalGrossPriceWithDiscounts'] = $data['totalGrossPriceWithDiscounts'] ?? null;
         $this->container['totalNetPriceWithDiscounts'] = $data['totalNetPriceWithDiscounts'] ?? null;
         $this->container['totalVatAmountWithDiscounts'] = $data['totalVatAmountWithDiscounts'] ?? null;
+        $this->container['vatRate'] = $data['vatRate'] ?? null;
         $this->container['discounts'] = $data['discounts'] ?? null;
     }
 
@@ -259,8 +265,36 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
             );
         }
 
-        if (!is_null($this->container['quantity']) && ($this->container['quantity'] < 1)) {
-            $invalidProperties[] = "invalid value for 'quantity', must be bigger than or equal to 1.";
+        if (!is_null($this->container['quantity']) && ($this->container['quantity'] < 0.0)) {
+            $invalidProperties[] = "invalid value for 'quantity', must be bigger than or equal to 0.0.";
+        }
+
+        if ($this->container['totalGrossPriceWithDiscounts'] === null) {
+            $invalidProperties[] = "'totalGrossPriceWithDiscounts' can't be null";
+        }
+        if (($this->container['totalGrossPriceWithDiscounts'] < 0.0)) {
+            $invalidProperties[] = "invalid value for 'totalGrossPriceWithDiscounts', must be bigger than or equal to 0.0.";
+        }
+
+        if ($this->container['totalNetPriceWithDiscounts'] === null) {
+            $invalidProperties[] = "'totalNetPriceWithDiscounts' can't be null";
+        }
+        if (($this->container['totalNetPriceWithDiscounts'] < 0.0)) {
+            $invalidProperties[] = "invalid value for 'totalNetPriceWithDiscounts', must be bigger than or equal to 0.0.";
+        }
+
+        if ($this->container['totalVatAmountWithDiscounts'] === null) {
+            $invalidProperties[] = "'totalVatAmountWithDiscounts' can't be null";
+        }
+        if (($this->container['totalVatAmountWithDiscounts'] < 0.0)) {
+            $invalidProperties[] = "invalid value for 'totalVatAmountWithDiscounts', must be bigger than or equal to 0.0.";
+        }
+
+        if ($this->container['vatRate'] === null) {
+            $invalidProperties[] = "'vatRate' can't be null";
+        }
+        if (($this->container['vatRate'] < 0.0)) {
+            $invalidProperties[] = "invalid value for 'vatRate', must be bigger than or equal to 0.0.";
         }
 
         return $invalidProperties;
@@ -338,38 +372,50 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
     }
 
 
-    public function getTotalGrossPriceWithDiscounts(): ?float
+    public function getTotalGrossPriceWithDiscounts(): float
     {
         return $this->container['totalGrossPriceWithDiscounts'];
     }
 
-    public function setTotalGrossPriceWithDiscounts(?float $totalGrossPriceWithDiscounts): OrderInvoiceTransactionItem
+    public function setTotalGrossPriceWithDiscounts(float $totalGrossPriceWithDiscounts): OrderInvoiceTransactionItem
     {
         $this->container['totalGrossPriceWithDiscounts'] = $totalGrossPriceWithDiscounts;
         return $this;
     }
 
 
-    public function getTotalNetPriceWithDiscounts(): ?float
+    public function getTotalNetPriceWithDiscounts(): float
     {
         return $this->container['totalNetPriceWithDiscounts'];
     }
 
-    public function setTotalNetPriceWithDiscounts(?float $totalNetPriceWithDiscounts): OrderInvoiceTransactionItem
+    public function setTotalNetPriceWithDiscounts(float $totalNetPriceWithDiscounts): OrderInvoiceTransactionItem
     {
         $this->container['totalNetPriceWithDiscounts'] = $totalNetPriceWithDiscounts;
         return $this;
     }
 
 
-    public function getTotalVatAmountWithDiscounts(): ?float
+    public function getTotalVatAmountWithDiscounts(): float
     {
         return $this->container['totalVatAmountWithDiscounts'];
     }
 
-    public function setTotalVatAmountWithDiscounts(?float $totalVatAmountWithDiscounts): OrderInvoiceTransactionItem
+    public function setTotalVatAmountWithDiscounts(float $totalVatAmountWithDiscounts): OrderInvoiceTransactionItem
     {
         $this->container['totalVatAmountWithDiscounts'] = $totalVatAmountWithDiscounts;
+        return $this;
+    }
+
+
+    public function getVatRate(): float
+    {
+        return $this->container['vatRate'];
+    }
+
+    public function setVatRate(float $vatRate): OrderInvoiceTransactionItem
+    {
+        $this->container['vatRate'] = $vatRate;
         return $this;
     }
 

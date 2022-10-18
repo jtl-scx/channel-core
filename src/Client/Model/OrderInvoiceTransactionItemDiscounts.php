@@ -54,7 +54,8 @@ class OrderInvoiceTransactionItemDiscounts implements ModelInterface, ArrayAcces
         'discountId' => 'string',
         'totalGrossPrice' => 'float',
         'totalNetPrice' => 'float',
-        'totalVatAmount' => 'float'
+        'totalVatAmount' => 'float',
+        'vatRate' => 'float'
     ];
 
     /**
@@ -69,7 +70,8 @@ class OrderInvoiceTransactionItemDiscounts implements ModelInterface, ArrayAcces
         'discountId' => null,
         'totalGrossPrice' => 'float',
         'totalNetPrice' => 'float',
-        'totalVatAmount' => 'float'
+        'totalVatAmount' => 'float',
+        'vatRate' => 'float'
     ];
 
     /**
@@ -103,7 +105,8 @@ class OrderInvoiceTransactionItemDiscounts implements ModelInterface, ArrayAcces
         'discountId' => 'discountId',
         'totalGrossPrice' => 'totalGrossPrice',
         'totalNetPrice' => 'totalNetPrice',
-        'totalVatAmount' => 'totalVatAmount'
+        'totalVatAmount' => 'totalVatAmount',
+        'vatRate' => 'vatRate'
     ];
 
     /**
@@ -116,7 +119,8 @@ class OrderInvoiceTransactionItemDiscounts implements ModelInterface, ArrayAcces
         'discountId' => 'setDiscountId',
         'totalGrossPrice' => 'setTotalGrossPrice',
         'totalNetPrice' => 'setTotalNetPrice',
-        'totalVatAmount' => 'setTotalVatAmount'
+        'totalVatAmount' => 'setTotalVatAmount',
+        'vatRate' => 'setVatRate'
     ];
 
     /**
@@ -129,7 +133,8 @@ class OrderInvoiceTransactionItemDiscounts implements ModelInterface, ArrayAcces
         'discountId' => 'getDiscountId',
         'totalGrossPrice' => 'getTotalGrossPrice',
         'totalNetPrice' => 'getTotalNetPrice',
-        'totalVatAmount' => 'getTotalVatAmount'
+        'totalVatAmount' => 'getTotalVatAmount',
+        'vatRate' => 'getVatRate'
     ];
 
     /**
@@ -191,6 +196,7 @@ class OrderInvoiceTransactionItemDiscounts implements ModelInterface, ArrayAcces
         $this->container['totalGrossPrice'] = $data['totalGrossPrice'] ?? 0.0;
         $this->container['totalNetPrice'] = $data['totalNetPrice'] ?? 0.0;
         $this->container['totalVatAmount'] = $data['totalVatAmount'] ?? 0.0;
+        $this->container['vatRate'] = $data['vatRate'] ?? 0.0;
     }
 
     /**
@@ -221,6 +227,10 @@ class OrderInvoiceTransactionItemDiscounts implements ModelInterface, ArrayAcces
         }
         if (($this->container['totalVatAmount'] < 0.0)) {
             $invalidProperties[] = "invalid value for 'totalVatAmount', must be bigger than or equal to 0.0.";
+        }
+
+        if (!is_null($this->container['vatRate']) && ($this->container['vatRate'] < 0.0)) {
+            $invalidProperties[] = "invalid value for 'vatRate', must be bigger than or equal to 0.0.";
         }
 
         return $invalidProperties;
@@ -294,6 +304,18 @@ class OrderInvoiceTransactionItemDiscounts implements ModelInterface, ArrayAcces
     public function setTotalVatAmount(float $totalVatAmount): OrderInvoiceTransactionItemDiscounts
     {
         $this->container['totalVatAmount'] = $totalVatAmount;
+        return $this;
+    }
+
+
+    public function getVatRate(): ?float
+    {
+        return $this->container['vatRate'];
+    }
+
+    public function setVatRate(?float $vatRate): OrderInvoiceTransactionItemDiscounts
+    {
+        $this->container['vatRate'] = $vatRate;
         return $this;
     }
 
