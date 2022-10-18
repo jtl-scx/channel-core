@@ -134,6 +134,12 @@ class AddressTest extends AbstractApiModelTest
                 'getCountry',
                 'setCountry'
             ],
+            'assert property state' => [
+                'state',
+                'string',
+                'getState',
+                'setState'
+            ],
         ];
     }
 

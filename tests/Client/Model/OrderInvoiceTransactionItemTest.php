@@ -96,28 +96,35 @@ class OrderInvoiceTransactionItemTest extends AbstractApiModelTest
                 'float',
                 'getQuantity',
                 'setQuantity',
-                true
+                false
             ],
             'assert property TotalGrossPriceWithDiscounts' => [
                 'totalGrossPriceWithDiscounts',
                 'float',
                 'getTotalGrossPriceWithDiscounts',
                 'setTotalGrossPriceWithDiscounts',
-                true
+                false
             ],
             'assert property TotalNetPriceWithDiscounts' => [
                 'totalNetPriceWithDiscounts',
                 'float',
                 'getTotalNetPriceWithDiscounts',
                 'setTotalNetPriceWithDiscounts',
-                true
+                false
             ],
             'assert property TotalVatAmountWithDiscounts' => [
                 'totalVatAmountWithDiscounts',
                 'float',
                 'getTotalVatAmountWithDiscounts',
                 'setTotalVatAmountWithDiscounts',
-                true
+                false
+            ],
+            'assert property vatRate' => [
+                'vatRate',
+                'float',
+                'getVatRate',
+                'setVatRate',
+                false
             ],
             'assert property Discounts' => [
                 'discounts',

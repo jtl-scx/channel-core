@@ -90,7 +90,7 @@ class InvoiceMetaDataTest extends AbstractApiModelTest
                 '\DateTime',
                 'getTransactionDate',
                 'setTransactionDate',
-                true
+                false
             ],
             'assert property TransactionDetails' => [
                 'transactionDetails',
@@ -104,7 +104,7 @@ class InvoiceMetaDataTest extends AbstractApiModelTest
                 '\DateTime',
                 'getTaxCalculationDate',
                 'setTaxCalculationDate',
-                true
+                false
             ],
             'assert property ShipmentDate' => [
                 'shipmentDate',
@@ -132,14 +132,14 @@ class InvoiceMetaDataTest extends AbstractApiModelTest
                 'string',
                 'getCurrency',
                 'setCurrency',
-                true
+                false
             ],
             'assert property BillingAddress' => [
                 'billingAddress',
                 '\JTL\SCX\Lib\Channel\Client\Model\Address',
                 'getBillingAddress',
                 'setBillingAddress',
-                true
+                false
             ],
             'assert property SellerVatNumber' => [
                 'sellerVatNumber',

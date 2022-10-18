@@ -60,7 +60,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         'postcode' => 'string',
         'city' => 'string',
         'phone' => 'string',
-        'country' => 'string'
+        'country' => 'string',
+        'state' => 'string'
     ];
 
     /**
@@ -81,7 +82,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         'postcode' => null,
         'city' => null,
         'phone' => null,
-        'country' => null
+        'country' => null,
+        'state' => null
     ];
 
     /**
@@ -121,7 +123,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         'postcode' => 'postcode',
         'city' => 'city',
         'phone' => 'phone',
-        'country' => 'country'
+        'country' => 'country',
+        'state' => 'state'
     ];
 
     /**
@@ -140,7 +143,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         'postcode' => 'setPostcode',
         'city' => 'setCity',
         'phone' => 'setPhone',
-        'country' => 'setCountry'
+        'country' => 'setCountry',
+        'state' => 'setState'
     ];
 
     /**
@@ -159,7 +163,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         'postcode' => 'getPostcode',
         'city' => 'getCity',
         'phone' => 'getPhone',
-        'country' => 'getCountry'
+        'country' => 'getCountry',
+        'state' => 'getState'
     ];
 
     /**
@@ -244,6 +249,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['city'] = $data['city'] ?? null;
         $this->container['phone'] = $data['phone'] ?? null;
         $this->container['country'] = $data['country'] ?? null;
+        $this->container['state'] = $data['state'] ?? null;
     }
 
     /**
@@ -419,6 +425,18 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCountry(string $country): Address
     {
         $this->container['country'] = $country;
+        return $this;
+    }
+
+
+    public function getState(): ?string
+    {
+        return $this->container['state'];
+    }
+
+    public function setState(?string $state): Address
+    {
+        $this->container['state'] = $state;
         return $this;
     }
 
