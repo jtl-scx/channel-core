@@ -24,6 +24,8 @@ class CancellationRequestIdContext implements ContextAware
     public function __invoke(array $record): array
     {
         $record['orderCancellationRequestId'] = $this->orderCancellationRequestId;
+        $record['label'][] = 'cancellation';
+        $record['label'] = array_unique($record['label']);
         return $record;
     }
 

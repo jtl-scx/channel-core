@@ -24,6 +24,8 @@ class SellerOfferIdContext implements ContextAware
     public function __invoke(array $record): array
     {
         $record['sellerOfferId'] = $this->sellerOfferId;
+        $record['label'][] = 'offer';
+        $record['label'] = array_unique($record['label']);
         return $record;
     }
 

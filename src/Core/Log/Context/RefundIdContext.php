@@ -24,6 +24,8 @@ class RefundIdContext implements ContextAware
     public function __invoke(array $record): array
     {
         $record['refundId'] = $this->refundId;
+        $record['label'][] = 'refund';
+        $record['label'] = array_unique($record['label']);
         return $record;
     }
 

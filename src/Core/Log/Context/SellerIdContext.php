@@ -24,6 +24,8 @@ class SellerIdContext
     public function __invoke(array $record): array
     {
         $record['seller']['id'] = $this->channelSellerId->getId();
+        $record['label'][] = 'seller';
+        $record['label'] = array_unique($record['label']);
         return $record;
     }
 }

@@ -24,6 +24,8 @@ class ChannelOfferIdContext implements ContextAware
     public function __invoke(array $record): array
     {
         $record['channelOffer']['id'] = $this->channelOfferId;
+        $record['label'][] = 'offer';
+        $record['label'] = array_unique($record['label']);
         return $record;
     }
 

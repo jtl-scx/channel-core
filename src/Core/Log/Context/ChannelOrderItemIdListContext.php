@@ -26,6 +26,9 @@ class ChannelOrderItemIdListContext implements ContextAware
     public function __invoke(array $record): array
     {
         $record['channelOrder']['itemIdList'] = $this->channelOrderIdList;
+        $record['label'][] = 'channel';
+        $record['label'][] = 'order';
+        $record['label'] = array_unique($record['label']);
         return $record;
     }
 
