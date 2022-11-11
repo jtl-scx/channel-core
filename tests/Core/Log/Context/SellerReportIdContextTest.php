@@ -25,7 +25,7 @@ class SellerReportIdContextTest extends TestCase
 
         $record = ['foo' => 'bar'];
         self::assertSame(
-            $record + ['sellerReportId' => $sellerReportId, 'label' => ['report', 'seller']],
+            $record + ['extra' => ['sellerReportId' => $sellerReportId, 'label' => ['report', 'seller']]],
             $context($record)
         );
     }

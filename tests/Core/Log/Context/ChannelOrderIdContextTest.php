@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Log\Context;
 
-use JTL\SCX\Lib\Channel\Core\Log\Context\ChannelOrderIdContext;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -25,7 +24,7 @@ class ChannelOrderIdContextTest extends TestCase
 
         $record = ['foo' => 'bar'];
         self::assertSame(
-            $record + ['channelOrder' => ['id' => $channelOrderId], 'label' => ['channel', 'order']],
+            $record + ['extra' => ['channelOrder' => ['id' => $channelOrderId], 'label' => ['channel', 'order']]],
             $context($record)
         );
     }
