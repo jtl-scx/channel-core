@@ -10,9 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Log\Context;
 
-use JTL\SCX\Lib\Channel\Contract\Core\Log\ContextAware;
-
-class CancellationRequestIdContext implements ContextAware
+class CancellationRequestIdContext extends LabeledContextAware
 {
     private string $orderCancellationRequestId;
 
@@ -21,14 +19,18 @@ class CancellationRequestIdContext implements ContextAware
         $this->orderCancellationRequestId = $orderCancellationRequestId;
     }
 
-    public function __invoke(array $record): array
-    {
-        $record['orderCancellationRequestId'] = $this->orderCancellationRequestId;
-        return $record;
-    }
-
     public function createContextInstance(): callable
     {
         return $this;
+    }
+
+    protected function getLabels(): array
+    {
+        return [ContextLabel::cancellation];
+    }
+
+    protected function getLogContext(): array
+    {
+        return ['orderCancellationRequestId' => $this->orderCancellationRequestId];
     }
 }

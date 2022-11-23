@@ -24,6 +24,6 @@ class RefundIdContextTest extends TestCase
         $context = new RefundIdContext($refundId);
 
         $record = ['foo' => 'bar'];
-        self::assertSame($record + ['refundId' => $refundId], $context($record));
+        self::assertSame($record + ['extra' => ['refundId' => $refundId, 'label' => ['refund']]], $context($record));
     }
 }

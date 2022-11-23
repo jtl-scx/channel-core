@@ -24,6 +24,6 @@ class SellerOfferIdContextTest extends TestCase
         $context = new SellerOfferIdContext($sellerOfferId);
 
         $record = ['foo' => 'bar'];
-        self::assertSame($record + ['sellerOfferId' => $sellerOfferId], $context($record));
+        self::assertSame($record + ['extra' => ['sellerOfferId' => $sellerOfferId, 'label' => ['offer']]], $context($record));
     }
 }

@@ -27,8 +27,12 @@ class CancellationRequestIdContextTest extends TestCase
         $records = $context($records);
 
         self::assertIsArray($records);
-        self::assertArrayHasKey('orderCancellationRequestId', $records);
-        self::assertSame($id, $records['orderCancellationRequestId']);
+        self::assertArrayHasKey('orderCancellationRequestId', $records['extra']);
+        self::assertSame($id, $records['extra']['orderCancellationRequestId']);
+
+        self::assertArrayHasKey('label', $records['extra']);
+        self::assertIsArray($records['extra']['label']);
+        self::assertSame(['cancellation'], $records['extra']['label']);
     }
 
     public function testCanCreateContextInstance()

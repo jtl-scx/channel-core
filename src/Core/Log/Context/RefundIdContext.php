@@ -10,9 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Log\Context;
 
-use JTL\SCX\Lib\Channel\Contract\Core\Log\ContextAware;
-
-class RefundIdContext implements ContextAware
+class RefundIdContext extends LabeledContextAware
 {
     private string $refundId;
 
@@ -21,14 +19,18 @@ class RefundIdContext implements ContextAware
         $this->refundId = $refundId;
     }
 
-    public function __invoke(array $record): array
-    {
-        $record['refundId'] = $this->refundId;
-        return $record;
-    }
-
     public function createContextInstance(): callable
     {
         return $this;
+    }
+
+    protected function getLabels(): array
+    {
+        return [ContextLabel::refund];
+    }
+
+    protected function getLogContext(): array
+    {
+        return ['refundId' => $this->refundId];
     }
 }

@@ -10,10 +10,10 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Seller;
 
-use JTL\SCX\Lib\Channel\Contract\Core\Log\ContextAware;
-use JTL\SCX\Lib\Channel\Core\Log\Context\SellerIdContext;
+use JTL\SCX\Lib\Channel\Core\Log\Context\ContextLabel;
+use JTL\SCX\Lib\Channel\Core\Log\Context\LabeledContextAware;
 
-class ChannelSellerId implements ContextAware
+class ChannelSellerId extends LabeledContextAware
 {
     private string $sellerId;
 
@@ -34,6 +34,20 @@ class ChannelSellerId implements ContextAware
 
     public function createContextInstance(): callable
     {
-        return new SellerIdContext($this);
+        return $this;
+    }
+
+    protected function getLabels(): array
+    {
+        return [ContextLabel::seller];
+    }
+
+    protected function getLogContext(): array
+    {
+        return [
+            'seller' => [
+                'id' => $this->sellerId
+            ]
+        ];
     }
 }

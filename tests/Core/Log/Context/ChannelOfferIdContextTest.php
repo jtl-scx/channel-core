@@ -24,6 +24,9 @@ class ChannelOfferIdContextTest extends TestCase
         $context = new ChannelOfferIdContext($channelOfferId);
 
         $record = ['foo' => 'bar'];
-        self::assertSame($record + ['channelOffer' => ['id' => $channelOfferId]], $context($record));
+        self::assertSame(
+            $record + ['extra' => ['channelOffer' => ['id' => $channelOfferId], 'label' => ['offer']]],
+            $context($record)
+        );
     }
 }

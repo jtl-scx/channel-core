@@ -10,9 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Log\Context;
 
-use JTL\SCX\Lib\Channel\Contract\Core\Log\ContextAware;
-
-class ChannelOfferIdContext implements ContextAware
+class ChannelOfferIdContext extends LabeledContextAware
 {
     private string $channelOfferId;
 
@@ -21,14 +19,22 @@ class ChannelOfferIdContext implements ContextAware
         $this->channelOfferId = $channelOfferId;
     }
 
-    public function __invoke(array $record): array
-    {
-        $record['channelOffer']['id'] = $this->channelOfferId;
-        return $record;
-    }
-
     public function createContextInstance(): callable
     {
         return $this;
+    }
+
+    protected function getLabels(): array
+    {
+        return [ContextLabel::offer];
+    }
+
+    protected function getLogContext(): array
+    {
+        return [
+            'channelOffer' => [
+                'id' => $this->channelOfferId,
+            ],
+        ];
     }
 }
