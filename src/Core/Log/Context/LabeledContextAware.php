@@ -23,14 +23,12 @@ abstract class LabeledContextAware implements ContextAware
     public function __invoke(array $record): array
     {
         $record['extra'] = array_merge($record['extra'] ?? [], $this->getLogContext());
-        $record['extra']['label'] = $this->attachLabel();
+        $record['extra']['label'] = $this->attachLabel($record['extra']['label'] ?? []);
         return $record;
     }
 
-    private function attachLabel(): array
+    private function attachLabel(array $labels): array
     {
-        $labels = [];
-
         foreach ($this->getLabels() as $label) {
             $labels[] = $label->value;
         }
