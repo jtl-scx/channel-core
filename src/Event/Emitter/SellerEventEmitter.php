@@ -49,7 +49,7 @@ class SellerEventEmitter
                 continue;
             }
             $this->emitter->emit($event);
-            $this->logger->info("Emitted event '{$eventContainer->getId()}' of type '{$eventContainer->getType()}'");
+            $this->logger->debug("Emitted event '{$eventContainer->getId()}' of type '{$eventContainer->getType()}'");
             $emittedEventIdList[] = $eventContainer->getId();
         }
 
