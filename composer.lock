@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d38e92332ceda101f2b821146cce9457",
+    "content-hash": "46e73884eeb7590e01a6afafaa0e2103",
     "packages": [
         {
             "name": "brick/math",
@@ -640,16 +640,16 @@
         },
         {
             "name": "jtl/nachricht",
-            "version": "0.17.1",
+            "version": "dev-log_deadletter",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-software/nachricht.git",
-                "reference": "9e70da3ecf4a20b799c6ba1f47a0d1bc88fae836"
+                "reference": "654095736853eb01c465a90646c7c8ff9b089b2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/9e70da3ecf4a20b799c6ba1f47a0d1bc88fae836",
-                "reference": "9e70da3ecf4a20b799c6ba1f47a0d1bc88fae836",
+                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/654095736853eb01c465a90646c7c8ff9b089b2d",
+                "reference": "654095736853eb01c465a90646c7c8ff9b089b2d",
                 "shasum": ""
             },
             "require": {
@@ -690,9 +690,9 @@
             "description": "Nachricht is a distributed event queue system",
             "support": {
                 "issues": "https://github.com/jtl-software/nachricht/issues",
-                "source": "https://github.com/jtl-software/nachricht/tree/0.17.1"
+                "source": "https://github.com/jtl-software/nachricht/tree/log_deadletter"
             },
-            "time": "2022-07-05T14:52:34+00:00"
+            "time": "2022-12-14T09:27:32+00:00"
         },
         {
             "name": "jtl/php-generic-collection",
@@ -7539,7 +7539,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "jtl/nachricht": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
