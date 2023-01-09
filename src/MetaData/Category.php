@@ -82,4 +82,24 @@ class Category
     {
         return $this->listingAllowed;
     }
+
+    public function setCategoryId(string $categoryId): void
+    {
+        $this->categoryId = $categoryId;
+    }
+
+    public function setCategoryName(string $categoryName): void
+    {
+        $this->categoryName = $categoryName;
+    }
+
+    public function setParentCategoryId(string $parentCategoryId): void
+    {
+        $this->parentCategoryId = $parentCategoryId;
+    }
+
+    public function setListingAllowed(bool $listingAllowed): void
+    {
+        $this->listingAllowed = $listingAllowed;
+    }
 }
