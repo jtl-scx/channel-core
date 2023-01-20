@@ -55,6 +55,8 @@ services:
   JTL\SCX\Lib\Channel\Core\Lock\LockCreator:
     shared: false
 
+  Psr\Clock\ClockInterface: '@JTL\SCX\Lib\Channel\Helper\Clock'
+
   # ###########################################################################
   # Message Broker service
   # ###########################################################################
