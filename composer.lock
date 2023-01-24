@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "46e73884eeb7590e01a6afafaa0e2103",
+    "content-hash": "1a002a06a0ee19243e0084e5d2180652",
     "packages": [
         {
             "name": "brick/math",
@@ -640,16 +640,16 @@
         },
         {
             "name": "jtl/nachricht",
-            "version": "dev-log_deadletter",
+            "version": "0.17.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-software/nachricht.git",
-                "reference": "654095736853eb01c465a90646c7c8ff9b089b2d"
+                "reference": "1135cb099e8163fb02ab78802748bc8012699b65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/654095736853eb01c465a90646c7c8ff9b089b2d",
-                "reference": "654095736853eb01c465a90646c7c8ff9b089b2d",
+                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/1135cb099e8163fb02ab78802748bc8012699b65",
+                "reference": "1135cb099e8163fb02ab78802748bc8012699b65",
                 "shasum": ""
             },
             "require": {
@@ -690,9 +690,9 @@
             "description": "Nachricht is a distributed event queue system",
             "support": {
                 "issues": "https://github.com/jtl-software/nachricht/issues",
-                "source": "https://github.com/jtl-software/nachricht/tree/log_deadletter"
+                "source": "https://github.com/jtl-software/nachricht/tree/0.17.3"
             },
-            "time": "2022-12-14T09:27:32+00:00"
+            "time": "2023-01-24T08:25:48+00:00"
         },
         {
             "name": "jtl/php-generic-collection",
@@ -7539,9 +7539,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "jtl/nachricht": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
