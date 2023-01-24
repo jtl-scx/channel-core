@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4863f1ddc1bf02fc7157035d7eea24f7",
+    "content-hash": "85c4e77e872a0e6f9759d0bf0c83876b",
     "packages": [
         {
             "name": "brick/math",
@@ -640,16 +640,16 @@
         },
         {
             "name": "jtl/nachricht",
-            "version": "0.17.1",
+            "version": "0.17.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-software/nachricht.git",
-                "reference": "9e70da3ecf4a20b799c6ba1f47a0d1bc88fae836"
+                "reference": "1135cb099e8163fb02ab78802748bc8012699b65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/9e70da3ecf4a20b799c6ba1f47a0d1bc88fae836",
-                "reference": "9e70da3ecf4a20b799c6ba1f47a0d1bc88fae836",
+                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/1135cb099e8163fb02ab78802748bc8012699b65",
+                "reference": "1135cb099e8163fb02ab78802748bc8012699b65",
                 "shasum": ""
             },
             "require": {
@@ -690,9 +690,9 @@
             "description": "Nachricht is a distributed event queue system",
             "support": {
                 "issues": "https://github.com/jtl-software/nachricht/issues",
-                "source": "https://github.com/jtl-software/nachricht/tree/0.17.1"
+                "source": "https://github.com/jtl-software/nachricht/tree/0.17.3"
             },
-            "time": "2022-07-05T14:52:34+00:00"
+            "time": "2023-01-24T08:25:48+00:00"
         },
         {
             "name": "jtl/php-generic-collection",
