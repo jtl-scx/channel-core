@@ -36,13 +36,13 @@ class OrderItemStatus implements EnumInterface
     /**
      * Possible values of this enum
      */
-    public const UNSHIPPED = 'UNSHIPPED';
-    public const SHIPPED = 'SHIPPED';
-    public const CANCELED_BY_SELLER = 'CANCELED_BY_SELLER';
-    public const CANCELED_BY_BUYER = 'CANCELED_BY_BUYER';
-    public const RETURNED = 'RETURNED';
-    public const REFUNDED = 'REFUNDED';
-
+    const UNSHIPPED = 'UNSHIPPED';
+    const SHIPPED = 'SHIPPED';
+    const CANCELED_BY_SELLER = 'CANCELED_BY_SELLER';
+    const CANCELED_BY_BUYER = 'CANCELED_BY_BUYER';
+    const RETURNED = 'RETURNED';
+    const REFUNDED = 'REFUNDED';
+    
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -59,37 +59,37 @@ class OrderItemStatus implements EnumInterface
         ];
     }
 
-
+    
     public static function UNSHIPPED(): OrderItemStatus
     {
         return new self('UNSHIPPED');
     }
-
+    
     public static function SHIPPED(): OrderItemStatus
     {
         return new self('SHIPPED');
     }
-
+    
     public static function CANCELED_BY_SELLER(): OrderItemStatus
     {
         return new self('CANCELED_BY_SELLER');
     }
-
+    
     public static function CANCELED_BY_BUYER(): OrderItemStatus
     {
         return new self('CANCELED_BY_BUYER');
     }
-
+    
     public static function RETURNED(): OrderItemStatus
     {
         return new self('RETURNED');
     }
-
+    
     public static function REFUNDED(): OrderItemStatus
     {
         return new self('REFUNDED');
     }
-
+    
 
     public function __construct($value)
     {
@@ -101,3 +101,5 @@ class OrderItemStatus implements EnumInterface
         return $this->value;
     }
 }
+
+

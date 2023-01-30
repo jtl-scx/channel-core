@@ -183,12 +183,12 @@ class ChannelUpdateFeatureList implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
-    public const INVOICE_DOCUMENT_TRANSFER_NOT_SUPPORTED = 'not-supported';
-    public const INVOICE_DOCUMENT_TRANSFER_FROM_CHANNEL = 'from-channel';
-    public const INVOICE_DOCUMENT_TRANSFER_FROM_SELLER = 'from-seller';
+    const INVOICE_DOCUMENT_TRANSFER_NOT_SUPPORTED = 'not-supported';
+    const INVOICE_DOCUMENT_TRANSFER_FROM_CHANNEL = 'from-channel';
+    const INVOICE_DOCUMENT_TRANSFER_FROM_SELLER = 'from-seller';
+    
 
-
-
+    
     /**
      * Gets allowable values of the enum
      *
@@ -202,7 +202,7 @@ class ChannelUpdateFeatureList implements ModelInterface, ArrayAccess, \JsonSeri
             self::INVOICE_DOCUMENT_TRANSFER_FROM_SELLER,
         ];
     }
-
+    
 
     /**
      * Associative array for storing property values
@@ -338,7 +338,7 @@ class ChannelUpdateFeatureList implements ModelInterface, ArrayAccess, \JsonSeri
         return $this;
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -350,7 +350,7 @@ class ChannelUpdateFeatureList implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -363,7 +363,7 @@ class ChannelUpdateFeatureList implements ModelInterface, ArrayAccess, \JsonSeri
      * @codeCoverageIgnore
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -379,7 +379,7 @@ class ChannelUpdateFeatureList implements ModelInterface, ArrayAccess, \JsonSeri
      * @codeCoverageIgnore
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -392,7 +392,7 @@ class ChannelUpdateFeatureList implements ModelInterface, ArrayAccess, \JsonSeri
      * of any type other than a resource.
      * @codeCoverageIgnore
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
     }
@@ -415,8 +415,10 @@ class ChannelUpdateFeatureList implements ModelInterface, ArrayAccess, \JsonSeri
      * @codeCoverageIgnore
      * @return string
      */
-    public function toHeaderValue()
+    public function toHeaderValue(): string
     {
         return json_encode($this->jsonSerialize());
     }
 }
+
+

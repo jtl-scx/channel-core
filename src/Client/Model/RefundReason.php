@@ -42,7 +42,7 @@ class RefundReason implements EnumInterface
     public const TOO_LATE = 'TOO_LATE';
     public const BAD_QUALITY = 'BAD_QUALITY';
     public const OTHER = 'OTHER';
-
+    
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -60,42 +60,42 @@ class RefundReason implements EnumInterface
         ];
     }
 
-
+    
     public static function NO_REASON(): RefundReason
     {
         return new self('NO_REASON');
     }
-
+    
     public static function DEFECT(): RefundReason
     {
         return new self('DEFECT');
     }
-
+    
     public static function WRONG_ITEM(): RefundReason
     {
         return new self('WRONG_ITEM');
     }
-
+    
     public static function WRONG_SIZE(): RefundReason
     {
         return new self('WRONG_SIZE');
     }
-
+    
     public static function TOO_LATE(): RefundReason
     {
         return new self('TOO_LATE');
     }
-
+    
     public static function BAD_QUALITY(): RefundReason
     {
         return new self('BAD_QUALITY');
     }
-
+    
     public static function OTHER(): RefundReason
     {
         return new self('OTHER');
     }
-
+    
 
     public function __construct($value)
     {
@@ -107,3 +107,5 @@ class RefundReason implements EnumInterface
         return $this->value;
     }
 }
+
+

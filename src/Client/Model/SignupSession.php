@@ -229,11 +229,11 @@ class SignupSession implements ModelInterface, ArrayAccess, \JsonSerializable
      * Sets value based on offset.
      *
      * @param int|null $offset Offset
-     * @param mixed $value Value to be set
+     * @param mixed    $value  Value to be set
      * @codeCoverageIgnore
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -285,8 +285,10 @@ class SignupSession implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return string
      */
-    public function toHeaderValue()
+    public function toHeaderValue(): string
     {
         return json_encode($this->jsonSerialize());
     }
 }
+
+

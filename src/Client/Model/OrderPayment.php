@@ -168,9 +168,9 @@ class OrderPayment implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    
 
-
-
+    
 
     /**
      * Associative array for storing property values
@@ -282,7 +282,7 @@ class OrderPayment implements ModelInterface, ArrayAccess, \JsonSerializable
         return $this;
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -294,7 +294,7 @@ class OrderPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -307,7 +307,7 @@ class OrderPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -323,7 +323,7 @@ class OrderPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -336,7 +336,7 @@ class OrderPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      * of any type other than a resource.
      * @codeCoverageIgnore
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
     }
@@ -359,8 +359,10 @@ class OrderPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return string
      */
-    public function toHeaderValue()
+    public function toHeaderValue(): string
     {
         return json_encode($this->jsonSerialize());
     }
 }
+
+

@@ -35,14 +35,14 @@ class Condition implements EnumInterface
     /**
      * Possible values of this enum
      */
-    public const ORIGINAL_PACKAGING = 'ORIGINAL_PACKAGING';
-    public const MINT_CONDITION = 'MINT_CONDITION';
-    public const SLIGHTLY_USED = 'SLIGHTLY_USED';
-    public const HEAVILY_USED = 'HEAVILY_USED';
-    public const DAMAGED = 'DAMAGED';
-    public const INCOMPLETE_DELIVERY = 'INCOMPLETE_DELIVERY';
-    public const FRAUD = 'FRAUD';
-
+    const ORIGINAL_PACKAGING = 'ORIGINAL_PACKAGING';
+    const MINT_CONDITION = 'MINT_CONDITION';
+    const SLIGHTLY_USED = 'SLIGHTLY_USED';
+    const HEAVILY_USED = 'HEAVILY_USED';
+    const DAMAGED = 'DAMAGED';
+    const INCOMPLETE_DELIVERY = 'INCOMPLETE_DELIVERY';
+    const FRAUD = 'FRAUD';
+    
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -60,42 +60,42 @@ class Condition implements EnumInterface
         ];
     }
 
-
+    
     public static function ORIGINAL_PACKAGING(): Condition
     {
         return new self('ORIGINAL_PACKAGING');
     }
-
+    
     public static function MINT_CONDITION(): Condition
     {
         return new self('MINT_CONDITION');
     }
-
+    
     public static function SLIGHTLY_USED(): Condition
     {
         return new self('SLIGHTLY_USED');
     }
-
+    
     public static function HEAVILY_USED(): Condition
     {
         return new self('HEAVILY_USED');
     }
-
+    
     public static function DAMAGED(): Condition
     {
         return new self('DAMAGED');
     }
-
+    
     public static function INCOMPLETE_DELIVERY(): Condition
     {
         return new self('INCOMPLETE_DELIVERY');
     }
-
+    
     public static function FRAUD(): Condition
     {
         return new self('FRAUD');
     }
-
+    
 
     public function __construct($value)
     {
@@ -107,3 +107,5 @@ class Condition implements EnumInterface
         return $this->value;
     }
 }
+
+

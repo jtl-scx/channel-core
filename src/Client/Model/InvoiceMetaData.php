@@ -234,9 +234,9 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public const TAX_ADDRESS_ROLE_SHIP_FROM = 'shipFrom';
     public const TAX_ADDRESS_ROLE_SHIP_TO = 'shipTo';
+    
 
-
-
+    
     /**
      * Gets allowable values of the enum
      *
@@ -249,7 +249,7 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TAX_ADDRESS_ROLE_SHIP_TO,
         ];
     }
-
+    
 
     /**
      * Associative array for storing property values
@@ -546,7 +546,7 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         return $this;
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -558,7 +558,7 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -571,7 +571,7 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -587,7 +587,7 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -600,7 +600,7 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      * of any type other than a resource.
      * @codeCoverageIgnore
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
     }
@@ -623,8 +623,10 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return string
      */
-    public function toHeaderValue()
+    public function toHeaderValue(): string
     {
         return json_encode($this->jsonSerialize());
     }
 }
+
+
