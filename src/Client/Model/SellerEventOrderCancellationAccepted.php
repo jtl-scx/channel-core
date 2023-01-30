@@ -158,9 +158,9 @@ class SellerEventOrderCancellationAccepted implements ModelInterface, ArrayAcces
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -314,5 +314,3 @@ class SellerEventOrderCancellationAccepted implements ModelInterface, ArrayAcces
         return json_encode($this->jsonSerialize());
     }
 }
-
-

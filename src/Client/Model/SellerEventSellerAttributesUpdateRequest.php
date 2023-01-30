@@ -153,9 +153,9 @@ class SellerEventSellerAttributesUpdateRequest implements ModelInterface, ArrayA
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -290,5 +290,3 @@ class SellerEventSellerAttributesUpdateRequest implements ModelInterface, ArrayA
         return json_encode($this->jsonSerialize());
     }
 }
-
-

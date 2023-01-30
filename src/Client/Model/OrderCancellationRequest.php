@@ -180,9 +180,9 @@ class OrderCancellationRequest implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -410,5 +410,3 @@ class OrderCancellationRequest implements ModelInterface, ArrayAccess, \JsonSeri
         return json_encode($this->jsonSerialize());
     }
 }
-
-

@@ -163,9 +163,9 @@ class OrderCancellationDenied implements ModelInterface, ArrayAccess, \JsonSeria
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -339,5 +339,3 @@ class OrderCancellationDenied implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode($this->jsonSerialize());
     }
 }
-
-

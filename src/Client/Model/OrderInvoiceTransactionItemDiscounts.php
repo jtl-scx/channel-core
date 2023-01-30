@@ -178,9 +178,9 @@ class OrderInvoiceTransactionItemDiscounts implements ModelInterface, ArrayAcces
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -401,5 +401,3 @@ class OrderInvoiceTransactionItemDiscounts implements ModelInterface, ArrayAcces
         return json_encode($this->jsonSerialize());
     }
 }
-
-

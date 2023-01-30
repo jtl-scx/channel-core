@@ -169,9 +169,9 @@ class SellerEventOfferStockUpdate implements ModelInterface, ArrayAccess, \JsonS
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -366,5 +366,3 @@ class SellerEventOfferStockUpdate implements ModelInterface, ArrayAccess, \JsonS
         return json_encode($this->jsonSerialize());
     }
 }
-
-

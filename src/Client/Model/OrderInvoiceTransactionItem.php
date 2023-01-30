@@ -199,12 +199,12 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         return self::$openAPIModelName;
     }
 
-    const ORDER_ITEM_TYPE_ITEM = 'ITEM';
-    const ORDER_ITEM_TYPE_SHIPPING = 'SHIPPING';
-    const ORDER_ITEM_TYPE_PAYMENT = 'PAYMENT';
-    
+    public const ORDER_ITEM_TYPE_ITEM = 'ITEM';
+    public const ORDER_ITEM_TYPE_SHIPPING = 'SHIPPING';
+    public const ORDER_ITEM_TYPE_PAYMENT = 'PAYMENT';
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -218,7 +218,7 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
             self::ORDER_ITEM_TYPE_PAYMENT,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -513,5 +513,3 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         return json_encode($this->jsonSerialize());
     }
 }
-
-

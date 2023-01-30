@@ -158,9 +158,9 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -312,5 +312,3 @@ class SellerEventTest implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode($this->jsonSerialize());
     }
 }
-
-

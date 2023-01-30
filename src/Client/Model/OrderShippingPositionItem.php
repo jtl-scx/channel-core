@@ -158,9 +158,9 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -318,5 +318,3 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
         return json_encode($this->jsonSerialize());
     }
 }
-
-

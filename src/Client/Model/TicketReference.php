@@ -179,7 +179,7 @@ class TicketReference implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_ORDERITEMID,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -338,5 +338,3 @@ class TicketReference implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode($this->jsonSerialize());
     }
 }
-
-

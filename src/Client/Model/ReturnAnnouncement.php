@@ -175,9 +175,9 @@ class ReturnAnnouncement implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -381,5 +381,3 @@ class ReturnAnnouncement implements ModelInterface, ArrayAccess, \JsonSerializab
         return json_encode($this->jsonSerialize());
     }
 }
-
-

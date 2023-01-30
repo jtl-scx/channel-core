@@ -195,9 +195,9 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -452,5 +452,3 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
         return json_encode($this->jsonSerialize());
     }
 }
-
-

@@ -36,7 +36,7 @@ class ReportType implements EnumInterface
      * Possible values of this enum
      */
     public const SELLER_INVENTORY = 'SELLER_INVENTORY';
-    
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -48,12 +48,12 @@ class ReportType implements EnumInterface
         ];
     }
 
-    
+
     public static function SELLER_INVENTORY(): ReportType
     {
         return new self('SELLER_INVENTORY');
     }
-    
+
 
     public function __construct($value)
     {
@@ -65,5 +65,3 @@ class ReportType implements EnumInterface
         return $this->value;
     }
 }
-
-

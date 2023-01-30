@@ -173,9 +173,9 @@ class OrderItemTypePayment implements ModelInterface, ArrayAccess, \JsonSerializ
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -378,5 +378,3 @@ class OrderItemTypePayment implements ModelInterface, ArrayAccess, \JsonSerializ
         return json_encode($this->jsonSerialize());
     }
 }
-
-

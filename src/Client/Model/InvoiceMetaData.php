@@ -234,9 +234,9 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public const TAX_ADDRESS_ROLE_SHIP_FROM = 'shipFrom';
     public const TAX_ADDRESS_ROLE_SHIP_TO = 'shipTo';
-    
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -249,7 +249,7 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TAX_ADDRESS_ROLE_SHIP_TO,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -628,5 +628,3 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode($this->jsonSerialize());
     }
 }
-
-

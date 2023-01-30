@@ -165,9 +165,9 @@ class OrderStatusOrderItems implements ModelInterface, ArrayAccess, \JsonSeriali
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -341,5 +341,3 @@ class OrderStatusOrderItems implements ModelInterface, ArrayAccess, \JsonSeriali
         return json_encode($this->jsonSerialize());
     }
 }
-
-

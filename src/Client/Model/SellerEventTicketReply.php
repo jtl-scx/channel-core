@@ -185,9 +185,9 @@ class SellerEventTicketReply implements ModelInterface, ArrayAccess, \JsonSerial
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -431,5 +431,3 @@ class SellerEventTicketReply implements ModelInterface, ArrayAccess, \JsonSerial
         return json_encode($this->jsonSerialize());
     }
 }
-
-

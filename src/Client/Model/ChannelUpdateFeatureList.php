@@ -183,12 +183,12 @@ class ChannelUpdateFeatureList implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
-    const INVOICE_DOCUMENT_TRANSFER_NOT_SUPPORTED = 'not-supported';
-    const INVOICE_DOCUMENT_TRANSFER_FROM_CHANNEL = 'from-channel';
-    const INVOICE_DOCUMENT_TRANSFER_FROM_SELLER = 'from-seller';
-    
+    public const INVOICE_DOCUMENT_TRANSFER_NOT_SUPPORTED = 'not-supported';
+    public const INVOICE_DOCUMENT_TRANSFER_FROM_CHANNEL = 'from-channel';
+    public const INVOICE_DOCUMENT_TRANSFER_FROM_SELLER = 'from-seller';
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -202,7 +202,7 @@ class ChannelUpdateFeatureList implements ModelInterface, ArrayAccess, \JsonSeri
             self::INVOICE_DOCUMENT_TRANSFER_FROM_SELLER,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -420,5 +420,3 @@ class ChannelUpdateFeatureList implements ModelInterface, ArrayAccess, \JsonSeri
         return json_encode($this->jsonSerialize());
     }
 }
-
-

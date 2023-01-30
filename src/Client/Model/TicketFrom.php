@@ -177,7 +177,7 @@ class TicketFrom implements ModelInterface, ArrayAccess, \JsonSerializable
             self::ROLE_CHANNEL,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -337,5 +337,3 @@ class TicketFrom implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode($this->jsonSerialize());
     }
 }
-
-

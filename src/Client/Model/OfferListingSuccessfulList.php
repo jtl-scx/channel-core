@@ -154,9 +154,9 @@ class OfferListingSuccessfulList implements ModelInterface, ArrayAccess, \JsonSe
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -290,5 +290,3 @@ class OfferListingSuccessfulList implements ModelInterface, ArrayAccess, \JsonSe
         return json_encode($this->jsonSerialize());
     }
 }
-
-

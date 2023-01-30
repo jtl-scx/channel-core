@@ -153,9 +153,9 @@ class CategoryTreeVersion implements ModelInterface, ArrayAccess, \JsonSerializa
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -286,5 +286,3 @@ class CategoryTreeVersion implements ModelInterface, ArrayAccess, \JsonSerializa
         return json_encode($this->jsonSerialize());
     }
 }
-
-

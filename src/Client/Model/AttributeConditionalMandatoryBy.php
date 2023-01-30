@@ -158,9 +158,9 @@ class AttributeConditionalMandatoryBy implements ModelInterface, ArrayAccess, \J
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -312,5 +312,3 @@ class AttributeConditionalMandatoryBy implements ModelInterface, ArrayAccess, \J
         return json_encode($this->jsonSerialize());
     }
 }
-
-

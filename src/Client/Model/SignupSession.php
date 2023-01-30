@@ -290,5 +290,3 @@ class SignupSession implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode($this->jsonSerialize());
     }
 }
-
-

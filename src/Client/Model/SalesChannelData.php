@@ -229,11 +229,11 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    const CHANNEL_TYPE_MARKETPLACE = 'MARKETPLACE';
-    const CHANNEL_TYPE_OTHER = 'OTHER';
-    
+    public const CHANNEL_TYPE_MARKETPLACE = 'MARKETPLACE';
+    public const CHANNEL_TYPE_OTHER = 'OTHER';
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -246,7 +246,7 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
             self::CHANNEL_TYPE_OTHER,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -612,5 +612,3 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode($this->jsonSerialize());
     }
 }
-
-

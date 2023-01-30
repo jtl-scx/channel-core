@@ -187,7 +187,7 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
             self::SEVERITY_ERROR,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -386,5 +386,3 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode($this->jsonSerialize());
     }
 }
-
-

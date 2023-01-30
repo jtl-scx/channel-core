@@ -159,9 +159,9 @@ class ReturnAnnouncementReturnTracking implements ModelInterface, ArrayAccess, \
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -311,5 +311,3 @@ class ReturnAnnouncementReturnTracking implements ModelInterface, ArrayAccess, \
         return json_encode($this->jsonSerialize());
     }
 }
-
-

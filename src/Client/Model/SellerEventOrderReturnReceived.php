@@ -174,9 +174,9 @@ class SellerEventOrderReturnReceived implements ModelInterface, ArrayAccess, \Js
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -383,5 +383,3 @@ class SellerEventOrderReturnReceived implements ModelInterface, ArrayAccess, \Js
         return json_encode($this->jsonSerialize());
     }
 }
-
-

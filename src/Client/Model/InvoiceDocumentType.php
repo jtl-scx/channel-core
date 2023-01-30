@@ -35,9 +35,9 @@ class InvoiceDocumentType implements EnumInterface
     /**
      * Possible values of this enum
      */
-    const INVOICE = 'INVOICE';
-    const CREDITNOTE = 'CREDITNOTE';
-    
+    public const INVOICE = 'INVOICE';
+    public const CREDITNOTE = 'CREDITNOTE';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -50,17 +50,17 @@ class InvoiceDocumentType implements EnumInterface
         ];
     }
 
-    
+
     public static function INVOICE(): InvoiceDocumentType
     {
         return new self('INVOICE');
     }
-    
+
     public static function CREDITNOTE(): InvoiceDocumentType
     {
         return new self('CREDITNOTE');
     }
-    
+
 
     public function __construct($value)
     {
@@ -72,5 +72,3 @@ class InvoiceDocumentType implements EnumInterface
         return $this->value;
     }
 }
-
-

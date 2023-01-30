@@ -154,9 +154,9 @@ class ErrorResponseList implements ModelInterface, ArrayAccess, \JsonSerializabl
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -287,5 +287,3 @@ class ErrorResponseList implements ModelInterface, ArrayAccess, \JsonSerializabl
         return json_encode($this->jsonSerialize());
     }
 }
-
-

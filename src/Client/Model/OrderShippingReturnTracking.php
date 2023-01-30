@@ -159,9 +159,9 @@ class OrderShippingReturnTracking implements ModelInterface, ArrayAccess, \JsonS
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -311,5 +311,3 @@ class OrderShippingReturnTracking implements ModelInterface, ArrayAccess, \JsonS
         return json_encode($this->jsonSerialize());
     }
 }
-
-

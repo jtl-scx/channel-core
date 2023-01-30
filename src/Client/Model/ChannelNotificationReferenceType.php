@@ -35,10 +35,10 @@ class ChannelNotificationReferenceType implements EnumInterface
     /**
      * Possible values of this enum
      */
-    const OFFER = 'OFFER';
-    const CHANNELOFFER = 'CHANNELOFFER';
-    const ORDERITEMID = 'ORDERITEMID';
-    
+    public const OFFER = 'OFFER';
+    public const CHANNELOFFER = 'CHANNELOFFER';
+    public const ORDERITEMID = 'ORDERITEMID';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -52,22 +52,22 @@ class ChannelNotificationReferenceType implements EnumInterface
         ];
     }
 
-    
+
     public static function OFFER(): ChannelNotificationReferenceType
     {
         return new self('OFFER');
     }
-    
+
     public static function CHANNELOFFER(): ChannelNotificationReferenceType
     {
         return new self('CHANNELOFFER');
     }
-    
+
     public static function ORDERITEMID(): ChannelNotificationReferenceType
     {
         return new self('ORDERITEMID');
     }
-    
+
 
     public function __construct($value)
     {
@@ -79,5 +79,3 @@ class ChannelNotificationReferenceType implements EnumInterface
         return $this->value;
     }
 }
-
-

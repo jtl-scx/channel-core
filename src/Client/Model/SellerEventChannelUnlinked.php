@@ -163,9 +163,9 @@ class SellerEventChannelUnlinked implements ModelInterface, ArrayAccess, \JsonSe
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -335,5 +335,3 @@ class SellerEventChannelUnlinked implements ModelInterface, ArrayAccess, \JsonSe
         return json_encode($this->jsonSerialize());
     }
 }
-
-

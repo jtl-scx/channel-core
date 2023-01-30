@@ -213,7 +213,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     public const GENDER_DIVERSE = 'diverse';
 
 
-    
+
     /**
      * Gets allowable values of the enum
      *
@@ -227,7 +227,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
             self::GENDER_DIVERSE,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -522,5 +522,3 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode($this->jsonSerialize());
     }
 }
-
-
