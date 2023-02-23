@@ -1,4 +1,5 @@
 <?php
+
 namespace JTL\SCX\Lib\Channel\Client\Api\Report\Request;
 
 use PHPUnit\Framework\TestCase;

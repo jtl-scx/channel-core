@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Report\Request;
 
