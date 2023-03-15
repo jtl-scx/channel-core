@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b1d4f9ca47c52e6a0a2d3ed3e1e13e1",
+    "content-hash": "93b37203246f96bad8fd054c52d66662",
     "packages": [
         {
             "name": "brick/math",
@@ -586,17 +586,56 @@
             "time": "2022-06-07T07:28:11+00:00"
         },
         {
-            "name": "jtl/go-prometrics-client",
-            "version": "2.0.2",
+            "name": "jtl-software/opsgenie-client",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jtl-software/goprometrics-client.git",
-                "reference": "d111b647551fb2c1293d168d16fe24097fa97e3e"
+                "url": "https://github.com/jtl-software/php-api-client-opsgenie.git",
+                "reference": "65115bae3bc51777de545a8357ee6ea0b206e89f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-software/goprometrics-client/zipball/d111b647551fb2c1293d168d16fe24097fa97e3e",
-                "reference": "d111b647551fb2c1293d168d16fe24097fa97e3e",
+                "url": "https://api.github.com/repos/jtl-software/php-api-client-opsgenie/zipball/65115bae3bc51777de545a8357ee6ea0b206e89f",
+                "reference": "65115bae3bc51777de545a8357ee6ea0b206e89f",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.2",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.12",
+                "phpstan/phpstan": "^0.10.5",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "JTL\\OpsGenie\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "support": {
+                "issues": "https://github.com/jtl-software/php-api-client-opsgenie/issues",
+                "source": "https://github.com/jtl-software/php-api-client-opsgenie/tree/2.1.0"
+            },
+            "time": "2022-01-18T15:45:13+00:00"
+        },
+        {
+            "name": "jtl/go-prometrics-client",
+            "version": "dev-EA-5333",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jtl-software/goprometrics-client.git",
+                "reference": "29a531bb16a8cf914af714626c9dddd8a5b7a31f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jtl-software/goprometrics-client/zipball/29a531bb16a8cf914af714626c9dddd8a5b7a31f",
+                "reference": "29a531bb16a8cf914af714626c9dddd8a5b7a31f",
                 "shasum": ""
             },
             "require": {
@@ -604,14 +643,14 @@
                 "ext-json": "*",
                 "guzzlehttp/guzzle": "^7.2",
                 "jtl/php-generic-collection": "^0.5",
-                "php": "^8.0"
+                "php": "^8.1"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^v2.19",
+                "friendsofphp/php-cs-fixer": "^v3.15",
                 "infection/infection": "^0.26.2",
-                "phpstan/phpstan": "^1.2",
+                "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^9.5",
-                "vimeo/psalm": "^4.9"
+                "vimeo/psalm": "^5.8"
             },
             "suggest": {
                 "guzzlehttp/guzzle": "Required to interact with GoProm",
@@ -630,22 +669,22 @@
             "description": "PHP-Client to use the JTL GoPrometrics Service",
             "support": {
                 "issues": "https://github.com/jtl-software/goprometrics-client/issues",
-                "source": "https://github.com/jtl-software/goprometrics-client/tree/2.0.2"
+                "source": "https://github.com/jtl-software/goprometrics-client/tree/EA-5333"
             },
-            "time": "2022-02-25T10:08:08+00:00"
+            "time": "2023-03-15T08:25:22+00:00"
         },
         {
             "name": "jtl/nachricht",
-            "version": "0.18.0",
+            "version": "dev-EA-5333",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-software/nachricht.git",
-                "reference": "cbcd36203006a5058877a136c99f5348cccde242"
+                "reference": "e53535f9757280e9edcbb46bbabcd1531d4c8e71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/cbcd36203006a5058877a136c99f5348cccde242",
-                "reference": "cbcd36203006a5058877a136c99f5348cccde242",
+                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/e53535f9757280e9edcbb46bbabcd1531d4c8e71",
+                "reference": "e53535f9757280e9edcbb46bbabcd1531d4c8e71",
                 "shasum": ""
             },
             "require": {
@@ -686,9 +725,9 @@
             "description": "Nachricht is a distributed event queue system",
             "support": {
                 "issues": "https://github.com/jtl-software/nachricht/issues",
-                "source": "https://github.com/jtl-software/nachricht/tree/0.18.0"
+                "source": "https://github.com/jtl-software/nachricht/tree/EA-5333"
             },
-            "time": "2023-02-28T09:58:02+00:00"
+            "time": "2023-03-15T07:02:22+00:00"
         },
         {
             "name": "jtl/php-generic-collection",
@@ -7591,7 +7630,10 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "jtl/go-prometrics-client": 20,
+        "jtl/nachricht": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

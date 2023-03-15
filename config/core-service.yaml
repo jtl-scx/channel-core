@@ -82,6 +82,12 @@ services:
   JTL\Nachricht\Contract\Transport\Amqp\AmqpQueueLister:
     class: JTL\SCX\Lib\Channel\Core\RabbitMqManagementApi\RabbitMqQueueLister
 
+  JTL\Nachricht\Contract\Message\MessageCounter:
+    class: JTL\SCX\Lib\Channel\Core\Metrics\AmqpMessageCounter
+
+  JTL\GoPrometrics\Client\GoPometricsConfigurator:
+    class: JTL\SCX\Lib\Channel\Core\Metrics\AmqpMetricsConfigurator
+
   GuzzleHttp\Client:
     public: true
 
