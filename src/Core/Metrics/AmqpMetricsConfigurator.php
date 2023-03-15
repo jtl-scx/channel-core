@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * This File is part of JTL-Software
  *
@@ -15,7 +17,8 @@ use JTL\SCX\Lib\Channel\Core\Environment\Environment;
 
 class AmqpMetricsConfigurator implements GoPometricsConfigurator
 {
-    public function __construct(private readonly Environment $environment) {
+    public function __construct(private readonly Environment $environment)
+    {
     }
 
     public function extendLabelList(LabelList $labelList): LabelList

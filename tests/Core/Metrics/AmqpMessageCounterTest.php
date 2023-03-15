@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * This File is part of JTL-Software
  *
@@ -66,5 +68,4 @@ class AmqpMessageCounterTest extends TestCase
 
 class AmqpTestMessage implements Message
 {
-
 }
