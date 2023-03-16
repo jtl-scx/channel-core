@@ -46,10 +46,10 @@ class AmqpMessageCounterTest extends TestCase
         $counter = new AmqpMessageCounter($gpCounter, $logger, $heartbeat, $environment);
         $heartbeatResponse = new Response(body: '{}');
 
-        $environment->expects(self::once())
+        $environment->expects(self::exactly(3))
             ->method('get')
-            ->with('CHANNEL_NAME')
-            ->willReturn($channelName);
+            ->withConsecutive(['CHANNEL_NAME'], ['OPSGENIE_ENABLED'], ['OPSGENIE_WORKER_HEARTBEAT_RATE'])
+            ->willReturnOnConsecutiveCalls($channelName, '1', '1');
 
         $guzzle->expects(self::once())
             ->method('request')
