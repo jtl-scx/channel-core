@@ -42,7 +42,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class AttributeTest extends AbstractApiModelTest
 {
-
     /**
      * Test allowed values for type
      * @test
@@ -221,5 +220,4 @@ class AttributeTest extends AbstractApiModelTest
             $this->assertNull($sut->$expectedGetter());
         }
     }
-
 }

@@ -241,21 +241,21 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    const TYPE_SMALLTEXT = 'smalltext';
-    const TYPE_HTMLTEXT = 'htmltext';
-    const TYPE_TEXT = 'text';
-    const TYPE_INTEGER = 'integer';
-    const TYPE_DECIMAL = 'decimal';
-    const TYPE_ENUM = 'enum';
-    const TYPE_DATE = 'date';
-    const TYPE_BOOLEAN = 'boolean';
-    const TYPE_IMAGE = 'image';
-    const TYPE_DOCUMENT = 'document';
-    const TYPE_URL = 'url';
-    const TYPE_LABEL = 'label';
-    
+    public const TYPE_SMALLTEXT = 'smalltext';
+    public const TYPE_HTMLTEXT = 'htmltext';
+    public const TYPE_TEXT = 'text';
+    public const TYPE_INTEGER = 'integer';
+    public const TYPE_DECIMAL = 'decimal';
+    public const TYPE_ENUM = 'enum';
+    public const TYPE_DATE = 'date';
+    public const TYPE_BOOLEAN = 'boolean';
+    public const TYPE_IMAGE = 'image';
+    public const TYPE_DOCUMENT = 'document';
+    public const TYPE_URL = 'url';
+    public const TYPE_LABEL = 'label';
 
-    
+
+
     /**
      * Gets allowable values of the enum
      *
@@ -278,7 +278,7 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_LABEL,
         ];
     }
-    
+
 
     /**
      * Associative array for storing property values
@@ -631,7 +631,7 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -657,5 +657,3 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode($this->jsonSerialize());
     }
 }
-
-
