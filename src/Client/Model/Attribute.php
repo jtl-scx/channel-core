@@ -252,6 +252,7 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_IMAGE = 'image';
     public const TYPE_DOCUMENT = 'document';
     public const TYPE_URL = 'url';
+    public const TYPE_LABEL = 'label';
 
 
 
@@ -274,6 +275,7 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_IMAGE,
             self::TYPE_DOCUMENT,
             self::TYPE_URL,
+            self::TYPE_LABEL,
         ];
     }
 
