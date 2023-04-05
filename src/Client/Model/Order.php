@@ -71,7 +71,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'shippingAddress' => '\JTL\SCX\Lib\Channel\Client\Model\Address',
         'note' => 'string',
         'buyer' => '\JTL\SCX\Lib\Channel\Client\Model\OrderBuyer',
-        'weeePickup' => 'bool'
+        'weeePickup' => 'bool',
+        'language' => 'string'
     ];
 
     /**
@@ -97,7 +98,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'shippingAddress' => null,
         'note' => null,
         'buyer' => null,
-        'weeePickup' => null
+        'weeePickup' => null,
+        'language' => null
     ];
 
     /**
@@ -142,7 +144,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'shippingAddress' => 'shippingAddress',
         'note' => 'note',
         'buyer' => 'buyer',
-        'weeePickup' => 'weeePickup'
+        'weeePickup' => 'weeePickup',
+        'language' => 'language'
     ];
 
     /**
@@ -166,7 +169,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'shippingAddress' => 'setShippingAddress',
         'note' => 'setNote',
         'buyer' => 'setBuyer',
-        'weeePickup' => 'setWeeePickup'
+        'weeePickup' => 'setWeeePickup',
+        'language' => 'setLanguage'
     ];
 
     /**
@@ -190,7 +194,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'shippingAddress' => 'getShippingAddress',
         'note' => 'getNote',
         'buyer' => 'getBuyer',
-        'weeePickup' => 'getWeeePickup'
+        'weeePickup' => 'getWeeePickup',
+        'language' => 'getLanguage'
     ];
 
     /**
@@ -263,6 +268,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['note'] = $data['note'] ?? null;
         $this->container['buyer'] = $data['buyer'] ?? null;
         $this->container['weeePickup'] = $data['weeePickup'] ?? null;
+        $this->container['language'] = $data['language'] ?? null;
     }
 
     /**
@@ -518,6 +524,18 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setWeeePickup(?bool $weeePickup): Order
     {
         $this->container['weeePickup'] = $weeePickup;
+        return $this;
+    }
+
+
+    public function getLanguage(): ?string
+    {
+        return $this->container['language'];
+    }
+
+    public function setLanguage(?string $language): Order
+    {
+        $this->container['language'] = $language;
         return $this;
     }
 

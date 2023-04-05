@@ -146,6 +146,12 @@ class OrderTest extends AbstractApiModelTest
                 'getWeeePickup',
                 'setWeeePickup'
             ],
+            'assert property language' => [
+                'language',
+                'string',
+                'getLanguage',
+                'setLanguage'
+            ],
         ];
     }
 
