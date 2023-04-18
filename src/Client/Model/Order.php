@@ -51,7 +51,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
       * @param OrderItem
       * @param Address
       * @param Address
-      * @param OrderBuyer
+      * @param Buyer
       *
       * @var string[]
       */
@@ -70,7 +70,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'billingAddress' => '\JTL\SCX\Lib\Channel\Client\Model\Address',
         'shippingAddress' => '\JTL\SCX\Lib\Channel\Client\Model\Address',
         'note' => 'string',
-        'buyer' => '\JTL\SCX\Lib\Channel\Client\Model\OrderBuyer',
+        'buyer' => '\JTL\SCX\Lib\Channel\Client\Model\Buyer',
         'weeePickup' => 'bool',
         'language' => 'string'
     ];
@@ -239,9 +239,9 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    
 
-
-
+    
 
     /**
      * Associative array for storing property values
@@ -504,12 +504,12 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    public function getBuyer(): ?OrderBuyer
+    public function getBuyer(): ?Buyer
     {
         return $this->container['buyer'];
     }
 
-    public function setBuyer(?OrderBuyer $buyer): Order
+    public function setBuyer(?Buyer $buyer): Order
     {
         $this->container['buyer'] = $buyer;
         return $this;
@@ -595,7 +595,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function jsonSerialize()
     {
-        return ObjectSerializer::sanitizeForSerialization($this);
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -621,3 +621,5 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         return json_encode($this->jsonSerialize());
     }
 }
+
+

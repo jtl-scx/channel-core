@@ -1,6 +1,6 @@
 <?php
 /**
- * OrderAddressUpdate
+ * Buyer
  *
  * PHP version 7.2
  *
@@ -22,7 +22,7 @@ use ArrayAccess;
 use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
 
 /**
- * OrderAddressUpdate Class Doc Comment
+ * Buyer Class Doc Comment
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
@@ -32,7 +32,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializable
+class Buyer implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -41,23 +41,16 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var string
       */
-    protected static $openAPIModelName = 'OrderAddressUpdate';
+    protected static $openAPIModelName = 'Buyer';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
-      * @param Address
-      * @param Address
-      * @param Buyer
       *
       * @var string[]
       */
     protected static $openAPITypes = [
-        'sellerId' => 'string',
-        'orderId' => 'string',
-        'billingAddress' => '\JTL\SCX\Lib\Channel\Client\Model\Address',
-        'shippingAddress' => '\JTL\SCX\Lib\Channel\Client\Model\Address',
-        'buyer' => '\JTL\SCX\Lib\Channel\Client\Model\Buyer'
+        'email' => 'string'
     ];
 
     /**
@@ -68,11 +61,7 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'sellerId' => null,
-        'orderId' => null,
-        'billingAddress' => null,
-        'shippingAddress' => null,
-        'buyer' => null
+        'email' => 'email'
     ];
 
     /**
@@ -102,11 +91,7 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
-        'sellerId' => 'sellerId',
-        'orderId' => 'orderId',
-        'billingAddress' => 'billingAddress',
-        'shippingAddress' => 'shippingAddress',
-        'buyer' => 'buyer'
+        'email' => 'email'
     ];
 
     /**
@@ -115,11 +100,7 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
-        'sellerId' => 'setSellerId',
-        'orderId' => 'setOrderId',
-        'billingAddress' => 'setBillingAddress',
-        'shippingAddress' => 'setShippingAddress',
-        'buyer' => 'setBuyer'
+        'email' => 'setEmail'
     ];
 
     /**
@@ -128,11 +109,7 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
-        'sellerId' => 'getSellerId',
-        'orderId' => 'getOrderId',
-        'billingAddress' => 'getBillingAddress',
-        'shippingAddress' => 'getShippingAddress',
-        'buyer' => 'getBuyer'
+        'email' => 'getEmail'
     ];
 
     /**
@@ -189,11 +166,7 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
 
     public function __construct(array $data = null)
     {
-        $this->container['sellerId'] = $data['sellerId'] ?? null;
-        $this->container['orderId'] = $data['orderId'] ?? null;
-        $this->container['billingAddress'] = $data['billingAddress'] ?? null;
-        $this->container['shippingAddress'] = $data['shippingAddress'] ?? null;
-        $this->container['buyer'] = $data['buyer'] ?? null;
+        $this->container['email'] = $data['email'] ?? null;
     }
 
     /**
@@ -204,24 +177,6 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        if ($this->container['sellerId'] === null) {
-            $invalidProperties[] = "'sellerId' can't be null";
-        }
-        if (!preg_match("/^\\w{1,50}$/", $this->container['sellerId'])) {
-            $invalidProperties[] = "invalid value for 'sellerId', must be conform to the pattern /^\\w{1,50}$/.";
-        }
-
-        if ($this->container['orderId'] === null) {
-            $invalidProperties[] = "'orderId' can't be null";
-        }
-        if ((mb_strlen($this->container['orderId']) > 150)) {
-            $invalidProperties[] = "invalid value for 'orderId', the character length must be smaller than or equal to 150.";
-        }
-
-        if ((mb_strlen($this->container['orderId']) < 1)) {
-            $invalidProperties[] = "invalid value for 'orderId', the character length must be bigger than or equal to 1.";
-        }
 
         return $invalidProperties;
     }
@@ -238,62 +193,14 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
 
-    public function getSellerId(): string
+    public function getEmail(): ?string
     {
-        return $this->container['sellerId'];
+        return $this->container['email'];
     }
 
-    public function setSellerId(string $sellerId): OrderAddressUpdate
+    public function setEmail(?string $email): Buyer
     {
-        $this->container['sellerId'] = $sellerId;
-        return $this;
-    }
-
-
-    public function getOrderId(): string
-    {
-        return $this->container['orderId'];
-    }
-
-    public function setOrderId(string $orderId): OrderAddressUpdate
-    {
-        $this->container['orderId'] = $orderId;
-        return $this;
-    }
-
-
-    public function getBillingAddress(): ?Address
-    {
-        return $this->container['billingAddress'];
-    }
-
-    public function setBillingAddress(?Address $billingAddress): OrderAddressUpdate
-    {
-        $this->container['billingAddress'] = $billingAddress;
-        return $this;
-    }
-
-
-    public function getShippingAddress(): ?Address
-    {
-        return $this->container['shippingAddress'];
-    }
-
-    public function setShippingAddress(?Address $shippingAddress): OrderAddressUpdate
-    {
-        $this->container['shippingAddress'] = $shippingAddress;
-        return $this;
-    }
-
-
-    public function getBuyer(): ?Buyer
-    {
-        return $this->container['buyer'];
-    }
-
-    public function setBuyer(?Buyer $buyer): OrderAddressUpdate
-    {
-        $this->container['buyer'] = $buyer;
+        $this->container['email'] = $email;
         return $this;
     }
 
