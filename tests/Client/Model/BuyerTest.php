@@ -1,6 +1,6 @@
 <?php
 /**
- * OrderAddressUpdateTest
+ * BuyerTest
  *
  * PHP version 7.2
  *
@@ -31,16 +31,16 @@ namespace JTL\SCX\Lib\Channel\Client\Model;
 use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 
 /**
- * OrderAddressUpdateTest Class Doc Comment
+ * BuyerTest Class Doc Comment
  *
  * @category    Class
- * @description OrderAddressUpdate
+ * @description Buyer
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\OrderAddressUpdate
+ * @covers      \JTL\SCX\Lib\Channel\Client\Model\Buyer
  */
-class OrderAddressUpdateTest extends AbstractApiModelTest
+class BuyerTest extends AbstractApiModelTest
 {
 
     /**
@@ -50,39 +50,11 @@ class OrderAddressUpdateTest extends AbstractApiModelTest
     public function expectedInterface(): array
     {
         return [
-            'assert property SellerId' => [
-                'sellerId',
+            'assert property Email' => [
+                'email',
                 'string',
-                'getSellerId',
-                'setSellerId',
-                false
-            ],
-            'assert property OrderId' => [
-                'orderId',
-                'string',
-                'getOrderId',
-                'setOrderId',
-                false
-            ],
-            'assert property BillingAddress' => [
-                'billingAddress',
-                '\JTL\SCX\Lib\Channel\Client\Model\Address',
-                'getBillingAddress',
-                'setBillingAddress',
-                true
-            ],
-            'assert property ShippingAddress' => [
-                'shippingAddress',
-                '\JTL\SCX\Lib\Channel\Client\Model\Address',
-                'getShippingAddress',
-                'setShippingAddress',
-                true
-            ],
-            'assert property Buyer' => [
-                'buyer',
-                '\JTL\SCX\Lib\Channel\Client\Model\Buyer',
-                'getBuyer',
-                'setBuyer',
+                'getEmail',
+                'setEmail',
                 true
             ],
         ];
@@ -95,7 +67,7 @@ class OrderAddressUpdateTest extends AbstractApiModelTest
     public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
     {
         $sample = $this->buildSampleForDataType($type);
-        $sut = new OrderAddressUpdate([$property => $sample]);
+        $sut = new Buyer([$property => $sample]);
 
         $this->assertMethodExists($sut, $expectedGetter);
         $this->assertSame($sample, $sut->$expectedGetter());
@@ -109,7 +81,7 @@ class OrderAddressUpdateTest extends AbstractApiModelTest
         $this->assertSame($newSample, $sut[$property]);
 
         if ($isNullable) {
-            $sut = new OrderAddressUpdate([$property => null]);
+            $sut = new Buyer([$property => null]);
             $this->assertNull($sut->$expectedGetter());
 
             $sut->$expectedSetter(null);

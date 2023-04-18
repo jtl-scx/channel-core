@@ -176,9 +176,9 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -353,7 +353,7 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function jsonSerialize()
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
@@ -379,5 +379,3 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
         return json_encode($this->jsonSerialize());
     }
 }
-
-
