@@ -42,7 +42,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class BuyerTest extends AbstractApiModelTest
 {
-
     /**
      * @return array
      * @dataProvider
@@ -88,5 +87,4 @@ class BuyerTest extends AbstractApiModelTest
             $this->assertNull($sut->$expectedGetter());
         }
     }
-
 }

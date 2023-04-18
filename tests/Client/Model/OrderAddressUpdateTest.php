@@ -42,7 +42,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class OrderAddressUpdateTest extends AbstractApiModelTest
 {
-
     /**
      * @return array
      * @dataProvider
@@ -116,5 +115,4 @@ class OrderAddressUpdateTest extends AbstractApiModelTest
             $this->assertNull($sut->$expectedGetter());
         }
     }
-
 }
