@@ -74,6 +74,12 @@ class OrderAddressUpdateTest extends AbstractApiModelTest
                 'getShippingAddress',
                 'setShippingAddress'
             ],
+            'assert property Buyer' => [
+                'buyer',
+                '\JTL\SCX\Lib\Channel\Client\Model\OrderBuyer',
+                'getBuyer',
+                'setBuyer'
+            ],
         ];
     }
 

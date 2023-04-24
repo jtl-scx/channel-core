@@ -48,6 +48,7 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @param Address
       * @param Address
+      * @param OrderBuyer
       *
       * @var string[]
       */
@@ -55,7 +56,8 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
         'sellerId' => 'string',
         'orderId' => 'string',
         'billingAddress' => '\JTL\SCX\Lib\Channel\Client\Model\Address',
-        'shippingAddress' => '\JTL\SCX\Lib\Channel\Client\Model\Address'
+        'shippingAddress' => '\JTL\SCX\Lib\Channel\Client\Model\Address',
+        'buyer' => '\JTL\SCX\Lib\Channel\Client\Model\OrderBuyer'
     ];
 
     /**
@@ -69,7 +71,8 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
         'sellerId' => null,
         'orderId' => null,
         'billingAddress' => null,
-        'shippingAddress' => null
+        'shippingAddress' => null,
+        'buyer' => null
     ];
 
     /**
@@ -102,7 +105,8 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
         'sellerId' => 'sellerId',
         'orderId' => 'orderId',
         'billingAddress' => 'billingAddress',
-        'shippingAddress' => 'shippingAddress'
+        'shippingAddress' => 'shippingAddress',
+        'buyer' => 'buyer'
     ];
 
     /**
@@ -114,7 +118,8 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
         'sellerId' => 'setSellerId',
         'orderId' => 'setOrderId',
         'billingAddress' => 'setBillingAddress',
-        'shippingAddress' => 'setShippingAddress'
+        'shippingAddress' => 'setShippingAddress',
+        'buyer' => 'setBuyer'
     ];
 
     /**
@@ -126,7 +131,8 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
         'sellerId' => 'getSellerId',
         'orderId' => 'getOrderId',
         'billingAddress' => 'getBillingAddress',
-        'shippingAddress' => 'getShippingAddress'
+        'shippingAddress' => 'getShippingAddress',
+        'buyer' => 'getBuyer'
     ];
 
     /**
@@ -187,6 +193,7 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->container['orderId'] = $data['orderId'] ?? null;
         $this->container['billingAddress'] = $data['billingAddress'] ?? null;
         $this->container['shippingAddress'] = $data['shippingAddress'] ?? null;
+        $this->container['buyer'] = $data['buyer'] ?? null;
     }
 
     /**
@@ -275,6 +282,18 @@ class OrderAddressUpdate implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setShippingAddress(?Address $shippingAddress): OrderAddressUpdate
     {
         $this->container['shippingAddress'] = $shippingAddress;
+        return $this;
+    }
+
+
+    public function getBuyer(): ?OrderBuyer
+    {
+        return $this->container['buyer'];
+    }
+
+    public function setBuyer(?OrderBuyer $buyer): OrderAddressUpdate
+    {
+        $this->container['buyer'] = $buyer;
         return $this;
     }
 
