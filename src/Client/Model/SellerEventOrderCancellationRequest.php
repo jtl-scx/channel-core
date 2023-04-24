@@ -328,7 +328,7 @@ class SellerEventOrderCancellationRequest implements ModelInterface, ArrayAccess
         return $this;
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -340,7 +340,7 @@ class SellerEventOrderCancellationRequest implements ModelInterface, ArrayAccess
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -353,7 +353,7 @@ class SellerEventOrderCancellationRequest implements ModelInterface, ArrayAccess
      * @codeCoverageIgnore
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -369,7 +369,7 @@ class SellerEventOrderCancellationRequest implements ModelInterface, ArrayAccess
      * @codeCoverageIgnore
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -382,7 +382,7 @@ class SellerEventOrderCancellationRequest implements ModelInterface, ArrayAccess
      * of any type other than a resource.
      * @codeCoverageIgnore
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
     }
@@ -405,7 +405,7 @@ class SellerEventOrderCancellationRequest implements ModelInterface, ArrayAccess
      * @codeCoverageIgnore
      * @return string
      */
-    public function toHeaderValue()
+    public function toHeaderValue(): string
     {
         return json_encode($this->jsonSerialize());
     }
