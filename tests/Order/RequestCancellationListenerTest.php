@@ -52,29 +52,27 @@ class RequestCancellationListenerTest extends TestCase
         $apiMock->expects($this->once())
             ->method('requestOrderCancellation')
             ->with($this->callback(function (RequestOrderCancellationRequest $apiRequest) {
-                $request = json_decode($apiRequest->getBody());
-                $this->assertCorrectProperty($request, 'orderCancellationRequestId', 'A_ID');
-                $this->assertCorrectProperty($request, 'sellerId', 'A_SELLER_ID');
-                $this->assertCorrectProperty($request, 'orderId', 'A_ORDER_ID');
-                $this->assertCorrectProperty($request, 'cancelReason', 'OTHER');
-                $this->assertCorrectProperty($request, 'message', 'A_MESSAGE');
-                $this->assertCorrectProperty($request, 'orderItem', [
-                    (object)['orderItemId' => '1', 'quantity' => "1.0"],
-                    (object)['orderItemId' => '2', 'quantity' => "2.0"],
-                ]);
+                $request = json_decode($apiRequest->getBody(), true);
+                $this->assertArrayHasKey('orderCancellationRequestId', $request);
+                $this->assertArrayHasKey('sellerId', $request);
+                $this->assertArrayHasKey('orderId', $request);
+                $this->assertArrayHasKey('cancelReason', $request);
+                $this->assertArrayHasKey('message', $request);
+                $this->assertArrayHasKey('orderItem', $request);
+
+                $this->assertEquals('A_ID', $request['orderCancellationRequestId']);
+                $this->assertEquals('A_SELLER_ID', $request['sellerId']);
+                $this->assertEquals('A_ORDER_ID', $request['orderId']);
+                $this->assertEquals('OTHER', $request['cancelReason']);
+                $this->assertEquals('A_MESSAGE', $request['message']);
+
+                $this->assertCount(2, $request['orderItem']);
+                $this->assertEquals('1', $request['orderItem'][0]['orderItemId']);
+                $this->assertEquals('1.0', $request['orderItem'][0]['quantity']);
+                $this->assertEquals('2', $request['orderItem'][1]['orderItemId']);
+                $this->assertEquals('2.0', $request['orderItem'][1]['quantity']);
                 return true;
             }));
         $sut->requestCancellation($message);
-    }
-
-    public function assertCorrectProperty(stdClass $given, string $property, $value)
-    {
-        $this->assertObjectHasAttribute($property, $given);
-        $this->assertEquals(
-            $value,
-            $given->$property,
-            "Expect that {$property} is value " . var_export($value, true)
-            . "; given " . var_export($given->$property, true)
-        );
     }
 }
