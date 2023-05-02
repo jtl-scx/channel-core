@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Log\Context;
 
@@ -9,7 +11,6 @@ use PHPUnit\Framework\TestCase;
  */
 class InvoiceNumberContextTest extends TestCase
 {
-
     public function testCanCreateContext(): void
     {
         $invoiceNumber = uniqid('invoiceNumber', true);
