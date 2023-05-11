@@ -1,6 +1,6 @@
 <?php
 /**
- * SellerEventReportRequest
+ * ReportRequestOptions
  *
  * PHP version 7.2
  *
@@ -22,7 +22,7 @@ use ArrayAccess;
 use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
 
 /**
- * SellerEventReportRequest Class Doc Comment
+ * ReportRequestOptions Class Doc Comment
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
@@ -32,7 +32,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSerializable
+class ReportRequestOptions implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -41,23 +41,16 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SellerEventReportRequest';
+    protected static $openAPIModelName = 'ReportRequest_options';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
-      * @param ReportType
-      * @param ReportRequestOptions
       *
       * @var string[]
       */
     protected static $openAPITypes = [
-        'sellerId' => 'string',
-        'reportType' => '\JTL\SCX\Lib\Channel\Client\Model\ReportType',
-        'options' => '\JTL\SCX\Lib\Channel\Client\Model\ReportRequestOptions',
-        'startDate' => '\DateTime',
-        'endDate' => '\DateTime',
-        'reportId' => 'string'
+        'resultsAsChannelEvent' => 'bool'
     ];
 
     /**
@@ -68,12 +61,7 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'sellerId' => null,
-        'reportType' => null,
-        'options' => null,
-        'startDate' => 'date',
-        'endDate' => 'date',
-        'reportId' => null
+        'resultsAsChannelEvent' => null
     ];
 
     /**
@@ -103,12 +91,7 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'sellerId' => 'sellerId',
-        'reportType' => 'reportType',
-        'options' => 'options',
-        'startDate' => 'startDate',
-        'endDate' => 'endDate',
-        'reportId' => 'reportId'
+        'resultsAsChannelEvent' => 'ResultsAsChannelEvent'
     ];
 
     /**
@@ -117,12 +100,7 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'sellerId' => 'setSellerId',
-        'reportType' => 'setReportType',
-        'options' => 'setOptions',
-        'startDate' => 'setStartDate',
-        'endDate' => 'setEndDate',
-        'reportId' => 'setReportId'
+        'resultsAsChannelEvent' => 'setResultsAsChannelEvent'
     ];
 
     /**
@@ -131,12 +109,7 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'sellerId' => 'getSellerId',
-        'reportType' => 'getReportType',
-        'options' => 'getOptions',
-        'startDate' => 'getStartDate',
-        'endDate' => 'getEndDate',
-        'reportId' => 'getReportId'
+        'resultsAsChannelEvent' => 'getResultsAsChannelEvent'
     ];
 
     /**
@@ -193,12 +166,7 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
 
     public function __construct(array $data = null)
     {
-        $this->container['sellerId'] = $data['sellerId'] ?? null;
-        $this->container['reportType'] = $data['reportType'] ?? null;
-        $this->container['options'] = $data['options'] ?? null;
-        $this->container['startDate'] = $data['startDate'] ?? null;
-        $this->container['endDate'] = $data['endDate'] ?? null;
-        $this->container['reportId'] = $data['reportId'] ?? null;
+        $this->container['resultsAsChannelEvent'] = $data['resultsAsChannelEvent'] ?? null;
     }
 
     /**
@@ -210,19 +178,6 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['sellerId'] === null) {
-            $invalidProperties[] = "'sellerId' can't be null";
-        }
-        if (!preg_match("/^\\w{1,50}$/", $this->container['sellerId'])) {
-            $invalidProperties[] = "invalid value for 'sellerId', must be conform to the pattern /^\\w{1,50}$/.";
-        }
-
-        if ($this->container['reportType'] === null) {
-            $invalidProperties[] = "'reportType' can't be null";
-        }
-        if ($this->container['reportId'] === null) {
-            $invalidProperties[] = "'reportId' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -238,74 +193,14 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
 
-    public function getSellerId(): string
+    public function getResultsAsChannelEvent(): ?bool
     {
-        return $this->container['sellerId'];
+        return $this->container['resultsAsChannelEvent'];
     }
 
-    public function setSellerId(string $sellerId): SellerEventReportRequest
+    public function setResultsAsChannelEvent(?bool $resultsAsChannelEvent): ReportRequestOptions
     {
-        $this->container['sellerId'] = $sellerId;
-        return $this;
-    }
-
-
-    public function getReportType(): ReportType
-    {
-        return $this->container['reportType'];
-    }
-
-    public function setReportType(ReportType $reportType): SellerEventReportRequest
-    {
-        $this->container['reportType'] = $reportType;
-        return $this;
-    }
-
-
-    public function getOptions(): ?ReportRequestOptions
-    {
-        return $this->container['options'];
-    }
-
-    public function setOptions(?ReportRequestOptions $options): SellerEventReportRequest
-    {
-        $this->container['options'] = $options;
-        return $this;
-    }
-
-
-    public function getStartDate(): ?\DateTime
-    {
-        return $this->container['startDate'];
-    }
-
-    public function setStartDate(?\DateTime $startDate): SellerEventReportRequest
-    {
-        $this->container['startDate'] = $startDate;
-        return $this;
-    }
-
-
-    public function getEndDate(): ?\DateTime
-    {
-        return $this->container['endDate'];
-    }
-
-    public function setEndDate(?\DateTime $endDate): SellerEventReportRequest
-    {
-        $this->container['endDate'] = $endDate;
-        return $this;
-    }
-
-
-    public function getReportId(): string
-    {
-        return $this->container['reportId'];
-    }
-
-    public function setReportId(string $reportId): SellerEventReportRequest
-    {
-        $this->container['reportId'] = $reportId;
+        $this->container['resultsAsChannelEvent'] = $resultsAsChannelEvent;
         return $this;
     }
 
