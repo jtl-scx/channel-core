@@ -1,12 +1,6 @@
 <?php
 
 declare(strict_types=1);
-/**
- * This File is part of JTL-Software
- *
- * User: pkanngiesser
- * Date: 2020/04/27
- */
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Report\Request;
 
@@ -14,12 +8,12 @@ use JTL\SCX\Lib\Channel\Client\Model\SellerInventoryItem;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class SendReportRequestTest
+ * Class SendReportDataRequestTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Report\Request
  *
  * @covers \JTL\SCX\Lib\Channel\Client\Api\Report\Request\SendReportRequest
  */
-class SendReportRequestTest extends TestCase
+class SendReportDataRequestTest extends TestCase
 {
     public function testCanBeCreatedAndUsed(): void
     {
@@ -30,32 +24,16 @@ class SendReportRequestTest extends TestCase
         ]);
         $reportId = uniqid('reportId', true);
 
-        $request = new SendReportRequest($reportId, [$sellerInventoryItem], false);
+        $request = new SendReportDataRequest($reportId, [$sellerInventoryItem], false);
         $this->assertSame('[{"offerId":123,"sku":"123","quantity":"1"}]', $request->getBody());
         $this->assertSame('POST', $request->getHttpMethod());
-        $this->assertSame('/v1/channel/report/{reportId}', $request->getUrl());
+        $this->assertSame('/v1/channel/report/{reportId}/data', $request->getUrl());
         $this->assertSame(['reportId' => $reportId], $request->getParams());
-    }
-
-    public function testCanBeCreatedForInventoryReport(): void
-    {
-        $reportId = '123';
-        $item = new SellerInventoryItem([
-            'offerId' => 123,
-            'sku' => '123',
-            'quantity' => '1',
-        ]);
-        $sut = new SendReportRequest($reportId, [$item], false);
-
-        $this->assertSame('[{"offerId":123,"sku":"123","quantity":"1"}]', $sut->getBody());
-        $this->assertSame('POST', $sut->getHttpMethod());
-        $this->assertSame('/v1/channel/report/{reportId}', $sut->getUrl());
-        $this->assertSame(['reportId' => $reportId], $sut->getParams());
     }
 
     public function testContentEncodingHeaderIsSetWhenUsingCompression(): void
     {
-        $sut = new SendReportRequest('123', [], true);
+        $sut = new SendReportDataRequest('123', [], true);
 
         $this->assertSame(['Content-Encoding' => 'gzip'], $sut->getAdditionalHeaders());
         $gzipData = $sut->getBody();
@@ -64,7 +42,7 @@ class SendReportRequestTest extends TestCase
 
     public function testContentEncodingHeaderIsNotSetWhenUsingNoCompression(): void
     {
-        $sut = new SendReportRequest('123', [], false);
+        $sut = new SendReportDataRequest('123', [], false);
 
         $this->assertEmpty($sut->getAdditionalHeaders());
         $this->assertEquals('[]', $sut->getBody());
