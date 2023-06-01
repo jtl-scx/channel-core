@@ -45,7 +45,7 @@ class SendReportRequestTest extends TestCase
             'sku' => '123',
             'quantity' => '1',
         ]);
-        $sut = SendReportRequest::forSellerInventoryReport($reportId, [$item], false);
+        $sut = new SendReportRequest($reportId, [$item], false);
 
         $this->assertSame('[{"offerId":123,"sku":"123","quantity":"1"}]', $sut->getBody());
         $this->assertSame('POST', $sut->getHttpMethod());
@@ -55,7 +55,7 @@ class SendReportRequestTest extends TestCase
 
     public function testContentEncodingHeaderIsSetWhenUsingCompression(): void
     {
-        $sut = SendReportRequest::forSellerInventoryReport('123', [], true);
+        $sut = new SendReportRequest('123', [], true);
 
         $this->assertSame(['Content-Encoding' => 'gzip'], $sut->getAdditionalHeaders());
         $gzipData = $sut->getBody();
@@ -64,7 +64,7 @@ class SendReportRequestTest extends TestCase
 
     public function testContentEncodingHeaderIsNotSetWhenUsingNoCompression(): void
     {
-        $sut = SendReportRequest::forSellerInventoryReport('123', [], false);
+        $sut = new SendReportRequest('123', [], false);
 
         $this->assertEmpty($sut->getAdditionalHeaders());
         $this->assertEquals('[]', $sut->getBody());

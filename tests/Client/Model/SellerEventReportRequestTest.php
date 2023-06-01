@@ -80,6 +80,12 @@ class SellerEventReportRequestTest extends AbstractApiModelTest
                 'getReportId',
                 'setReportId'
             ],
+            'assert property options' => [
+                'options',
+                '\JTL\SCX\Lib\Channel\Client\Model\ReportRequestOptions',
+                'getOptions',
+                'setOptions'
+            ],
         ];
     }
 

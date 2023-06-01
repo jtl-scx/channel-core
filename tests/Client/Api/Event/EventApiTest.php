@@ -26,6 +26,7 @@ use JTL\SCX\Lib\Channel\Client\Model\SystemEventNotification;
 use JTL\SCX\Client\JsonSerializer;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * @covers \JTL\SCX\Lib\Channel\Client\Api\Event\EventApi
@@ -63,10 +64,11 @@ class EventApiTest extends TestCase
 
         $requestMock = $this->createMock(GetEventListRequest::class);
 
-        $jsonContent = uniqid('jsonContent', true);
+        $streamResponse = self::createStub(StreamInterface::class);
+        $streamResponse->method('getContents')->willReturn(json_encode("SOME_JSON_CONTENT"));
         $responseMock = $this->createMock(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn($status);
-        $responseMock->method('getBody')->willReturn($jsonContent);
+        $responseMock->method('getBody')->willReturn($streamResponse);
 
         $eventMock = $this->createMock($eventClass);
 

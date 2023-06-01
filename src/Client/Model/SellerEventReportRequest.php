@@ -47,12 +47,14 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
       * Array of property to type mappings. Used for (de)serialization
       *
       * @param ReportType
+      * @param ReportRequestOptions
       *
       * @var string[]
       */
     protected static $openAPITypes = [
         'sellerId' => 'string',
         'reportType' => '\JTL\SCX\Lib\Channel\Client\Model\ReportType',
+        'options' => '\JTL\SCX\Lib\Channel\Client\Model\ReportRequestOptions',
         'startDate' => '\DateTime',
         'endDate' => '\DateTime',
         'reportId' => 'string'
@@ -68,6 +70,7 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPIFormats = [
         'sellerId' => null,
         'reportType' => null,
+        'options' => null,
         'startDate' => 'date',
         'endDate' => 'date',
         'reportId' => null
@@ -102,6 +105,7 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $attributeMap = [
         'sellerId' => 'sellerId',
         'reportType' => 'reportType',
+        'options' => 'options',
         'startDate' => 'startDate',
         'endDate' => 'endDate',
         'reportId' => 'reportId'
@@ -115,6 +119,7 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $setters = [
         'sellerId' => 'setSellerId',
         'reportType' => 'setReportType',
+        'options' => 'setOptions',
         'startDate' => 'setStartDate',
         'endDate' => 'setEndDate',
         'reportId' => 'setReportId'
@@ -128,6 +133,7 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $getters = [
         'sellerId' => 'getSellerId',
         'reportType' => 'getReportType',
+        'options' => 'getOptions',
         'startDate' => 'getStartDate',
         'endDate' => 'getEndDate',
         'reportId' => 'getReportId'
@@ -189,6 +195,7 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $this->container['sellerId'] = $data['sellerId'] ?? null;
         $this->container['reportType'] = $data['reportType'] ?? null;
+        $this->container['options'] = $data['options'] ?? null;
         $this->container['startDate'] = $data['startDate'] ?? null;
         $this->container['endDate'] = $data['endDate'] ?? null;
         $this->container['reportId'] = $data['reportId'] ?? null;
@@ -255,6 +262,18 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
 
+    public function getOptions(): ?ReportRequestOptions
+    {
+        return $this->container['options'];
+    }
+
+    public function setOptions(?ReportRequestOptions $options): SellerEventReportRequest
+    {
+        $this->container['options'] = $options;
+        return $this;
+    }
+
+
     public function getStartDate(): ?\DateTime
     {
         return $this->container['startDate'];
@@ -290,7 +309,7 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
         return $this;
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -302,7 +321,7 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -315,7 +334,7 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @codeCoverageIgnore
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -331,7 +350,7 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @codeCoverageIgnore
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -344,7 +363,7 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * of any type other than a resource.
      * @codeCoverageIgnore
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
     }
@@ -367,7 +386,7 @@ class SellerEventReportRequest implements ModelInterface, ArrayAccess, \JsonSeri
      * @codeCoverageIgnore
      * @return string
      */
-    public function toHeaderValue()
+    public function toHeaderValue(): string
     {
         return json_encode($this->jsonSerialize());
     }

@@ -50,7 +50,7 @@ class OrderApiTest extends TestCase
     {
         $requestMock = $this->createMock(CreateOrderRequest::class);
         $streamMock = $this->createMock(StreamInterface::class);
-        $streamMock->method('getContents')->willReturn(null);
+        $streamMock->method('getContents')->willReturn('');
         $responseMock = $this->createMock(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
         $responseMock->method('getBody')->willReturn($streamMock);
@@ -66,7 +66,7 @@ class OrderApiTest extends TestCase
     {
         $requestMock = $this->createMock(UpdateOrderStatusRequest::class);
         $streamMock = $this->createMock(StreamInterface::class);
-        $streamMock->method('getContents')->willReturn(null);
+        $streamMock->method('getContents')->willReturn('');
         $responseMock = $this->createMock(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
         $responseMock->method('getBody')->willReturn($streamMock);
@@ -82,7 +82,7 @@ class OrderApiTest extends TestCase
     {
         $requestMock = $this->createMock(UpdateOrderAddressRequest::class);
         $streamMock = $this->createMock(StreamInterface::class);
-        $streamMock->method('getContents')->willReturn(null);
+        $streamMock->method('getContents')->willReturn('');
         $responseMock = $this->createMock(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
         $responseMock->method('getBody')->willReturn($streamMock);
@@ -98,7 +98,7 @@ class OrderApiTest extends TestCase
     {
         $request = $this->createStub(RequestOrderCancellationRequest::class);
         $streamMock = $this->createMock(StreamInterface::class);
-        $streamMock->method('getContents')->willReturn(null);
+        $streamMock->method('getContents')->willReturn('');
         $responseMock = $this->createMock(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
         $responseMock->method('getBody')->willReturn($streamMock);

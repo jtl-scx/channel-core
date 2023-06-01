@@ -71,7 +71,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'shippingAddress' => '\JTL\SCX\Lib\Channel\Client\Model\Address',
         'note' => 'string',
         'buyer' => '\JTL\SCX\Lib\Channel\Client\Model\OrderBuyer',
-        'weeePickup' => 'bool'
+        'weeePickup' => 'bool',
+        'language' => 'string'
     ];
 
     /**
@@ -97,7 +98,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'shippingAddress' => null,
         'note' => null,
         'buyer' => null,
-        'weeePickup' => null
+        'weeePickup' => null,
+        'language' => null
     ];
 
     /**
@@ -142,7 +144,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'shippingAddress' => 'shippingAddress',
         'note' => 'note',
         'buyer' => 'buyer',
-        'weeePickup' => 'weeePickup'
+        'weeePickup' => 'weeePickup',
+        'language' => 'language'
     ];
 
     /**
@@ -166,7 +169,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'shippingAddress' => 'setShippingAddress',
         'note' => 'setNote',
         'buyer' => 'setBuyer',
-        'weeePickup' => 'setWeeePickup'
+        'weeePickup' => 'setWeeePickup',
+        'language' => 'setLanguage'
     ];
 
     /**
@@ -190,7 +194,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'shippingAddress' => 'getShippingAddress',
         'note' => 'getNote',
         'buyer' => 'getBuyer',
-        'weeePickup' => 'getWeeePickup'
+        'weeePickup' => 'getWeeePickup',
+        'language' => 'getLanguage'
     ];
 
     /**
@@ -263,6 +268,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['note'] = $data['note'] ?? null;
         $this->container['buyer'] = $data['buyer'] ?? null;
         $this->container['weeePickup'] = $data['weeePickup'] ?? null;
+        $this->container['language'] = $data['language'] ?? null;
     }
 
     /**
@@ -521,7 +527,19 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         return $this;
     }
 
-    public function offsetExists($offset)
+
+    public function getLanguage(): ?string
+    {
+        return $this->container['language'];
+    }
+
+    public function setLanguage(?string $language): Order
+    {
+        $this->container['language'] = $language;
+        return $this;
+    }
+
+    public function offsetExists($offset): bool
     {
         return isset($this->container[$offset]);
     }
@@ -533,7 +551,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->container[$offset] ?? null;
     }
@@ -546,7 +564,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -562,7 +580,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->container[$offset]);
     }
@@ -575,7 +593,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
      * of any type other than a resource.
      * @codeCoverageIgnore
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return ObjectSerializer::sanitizeForSerialization($this);
     }
@@ -598,7 +616,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return string
      */
-    public function toHeaderValue()
+    public function toHeaderValue(): string
     {
         return json_encode($this->jsonSerialize());
     }
