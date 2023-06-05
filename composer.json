@@ -28,7 +28,7 @@
         "friendsofphp/php-cs-fixer": "^3.16",
         "mongodb/mongodb": "^1.15",
         "phpstan/phpstan": "^1.10.14",
-        "phpunit/phpunit": "^9.6.7",
+        "phpunit/phpunit": "^9.6.7 || ^10.0.0",
         "roave/backward-compatibility-check": "^7.1 || ^8.3",
         "symfony/dotenv": "^6.2.8",
         "twig/twig": "^2.0 || ^3.5.1"
