@@ -17,4 +17,5 @@ enum ContextLabel: string
     case refund = 'refund';
     case seller = 'seller';
     case report = 'report';
+    case invoice = 'invoice';
 }

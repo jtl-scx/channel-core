@@ -37,29 +37,29 @@ class SignupSession implements ModelInterface, ArrayAccess, \JsonSerializable
     public const DISCRIMINATOR = null;
 
     /**
-     * The original name of the model.
-     *
-     * @var string
-     */
+      * The original name of the model.
+      *
+      * @var string
+      */
     protected static $openAPIModelName = 'SignupSession';
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     *
-     * @var string[]
-     */
+      * Array of property to type mappings. Used for (de)serialization
+      *
+      *
+      * @var string[]
+      */
     protected static $openAPITypes = [
         'jtlAccountId' => 'int'
     ];
 
     /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @var string[]
-     * @phpstan-var array<string, string|null>
-     * @psalm-var array<string, string|null>
-     */
+      * Array of property to format mappings. Used for (de)serialization
+      *
+      * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
+      */
     protected static $openAPIFormats = [
         'jtlAccountId' => 'int32'
     ];
@@ -154,6 +154,9 @@ class SignupSession implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
+
+
+
     /**
      * Associative array for storing property values
      *
@@ -229,11 +232,11 @@ class SignupSession implements ModelInterface, ArrayAccess, \JsonSerializable
      * Sets value based on offset.
      *
      * @param int|null $offset Offset
-     * @param mixed $value Value to be set
+     * @param mixed    $value  Value to be set
      * @codeCoverageIgnore
      * @return void
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->container[] = $value;
@@ -285,7 +288,7 @@ class SignupSession implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return string
      */
-    public function toHeaderValue()
+    public function toHeaderValue(): string
     {
         return json_encode($this->jsonSerialize());
     }

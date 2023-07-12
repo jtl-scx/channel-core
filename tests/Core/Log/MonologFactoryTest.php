@@ -2,6 +2,7 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Log;
 
+use JTL\SCX\Lib\Channel\Core\Environment\Environment;
 use Monolog\Handler\RotatingFileHandler;
 use PHPUnit\Framework\TestCase;
 
@@ -15,7 +16,7 @@ class MonologFactoryTest extends TestCase
      */
     public function it_create_a_log_instance(): void
     {
-        $sut = new MonologFactory();
+        $sut = new MonologFactory(self::createStub(Environment::class));
         $logger = $sut->create(101, '/tmp/foo', 'unittest');
 
         // check log-level

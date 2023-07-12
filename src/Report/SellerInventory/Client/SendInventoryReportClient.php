@@ -11,6 +11,8 @@ declare(strict_types=1);
 namespace JTL\SCX\Lib\Channel\Report\SellerInventory\Client;
 
 use JTL\SCX\Lib\Channel\Client\Api\Report\ReportApi;
+use JTL\SCX\Lib\Channel\Client\Api\Report\Request\CompleteReportRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Report\Request\SendReportDataRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Report\Request\SendReportRequest;
 use JTL\SCX\Lib\Channel\Report\SellerInventory\Model\InventoryItemList;
 
@@ -24,6 +26,7 @@ class SendInventoryReportClient
     }
 
     /**
+     * @deprecated
      * @param string $sellerReportId
      * @param InventoryItemList $itemList
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -33,5 +36,28 @@ class SendInventoryReportClient
     {
         $request = new SendReportRequest($sellerReportId, $itemList->toArray());
         $this->reportApi->sendReport($request);
+    }
+
+    /**
+     * @param string $sellerReportId
+     * @param InventoryItemList $itemList
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JTL\SCX\Client\Exception\RequestFailedException
+     */
+    public function sendReportData(string $sellerReportId, InventoryItemList $itemList)
+    {
+        $request = new SendReportDataRequest($sellerReportId, $itemList->toArray());
+        $this->reportApi->sendReportData($request);
+    }
+
+    /**
+     * @param string $sellerReportId
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JTL\SCX\Client\Exception\RequestFailedException
+     */
+    public function completeReport(string $sellerReportId)
+    {
+        $request = new CompleteReportRequest($sellerReportId);
+        $this->reportApi->completeReport($request);
     }
 }
