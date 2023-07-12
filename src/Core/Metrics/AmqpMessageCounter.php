@@ -30,12 +30,13 @@ class AmqpMessageCounter implements MessageCounter
         $labelList = new LabelList();
         $labelList->add(new Label('message', get_class($message)));
         $channelName = $this->environment->get('CHANNEL_NAME');
+        $environment = $this->environment->get('APP_ENV') ?? 'envmissing';
 
         if ($this->environment->get('OPSGENIE_ENABLED') === '1') {
             $heartbeatRate = (float)$this->environment->get('OPSGENIE_WORKER_HEARTBEAT_RATE');
 
             if (mt_rand() / mt_getrandmax() <= $heartbeatRate) {
-                $this->heartbeatApiClient->sendPing(new PingRequest("SCX_{$channelName}_worker_heartbeat"));
+                $this->heartbeatApiClient->sendPing(new PingRequest("SCX_{$environment}_{$channelName}_worker_heartbeat"));
             }
         }
 

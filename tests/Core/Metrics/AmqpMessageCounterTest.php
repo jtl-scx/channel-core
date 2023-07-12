@@ -46,14 +46,14 @@ class AmqpMessageCounterTest extends TestCase
         $counter = new AmqpMessageCounter($gpCounter, $logger, $heartbeat, $environment);
         $heartbeatResponse = new Response(body: '{}');
 
-        $environment->expects(self::exactly(3))
+        $environment->expects(self::exactly(4))
             ->method('get')
-            ->withConsecutive(['CHANNEL_NAME'], ['OPSGENIE_ENABLED'], ['OPSGENIE_WORKER_HEARTBEAT_RATE'])
-            ->willReturnOnConsecutiveCalls($channelName, '1', '1');
+            ->withConsecutive(['CHANNEL_NAME'], ['APP_ENV'], ['OPSGENIE_ENABLED'], ['OPSGENIE_WORKER_HEARTBEAT_RATE'])
+            ->willReturnOnConsecutiveCalls($channelName, 'STAGE', '1', '1');
 
         $guzzle->expects(self::once())
             ->method('request')
-            ->with('PUT', "heartbeats/SCX_{$channelName}_worker_heartbeat/ping", [
+            ->with('PUT', "heartbeats/SCX_STAGE_{$channelName}_worker_heartbeat/ping", [
                 'headers' => [
                     'Authorization' => 'GenieKey abc',
                     'Content-Type' => 'application/json',
