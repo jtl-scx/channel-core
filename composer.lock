@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "376941b138cc01d7190724090a205c26",
+    "content-hash": "b7b03d999a1d279ad408cc847cedb1af",
     "packages": [
         {
             "name": "brick/math",
@@ -599,17 +599,56 @@
             "time": "2022-06-07T07:28:11+00:00"
         },
         {
-            "name": "jtl/go-prometrics-client",
-            "version": "2.0.2",
+            "name": "jtl-software/opsgenie-client",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jtl-software/goprometrics-client.git",
-                "reference": "d111b647551fb2c1293d168d16fe24097fa97e3e"
+                "url": "https://github.com/jtl-software/php-api-client-opsgenie.git",
+                "reference": "65115bae3bc51777de545a8357ee6ea0b206e89f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-software/goprometrics-client/zipball/d111b647551fb2c1293d168d16fe24097fa97e3e",
-                "reference": "d111b647551fb2c1293d168d16fe24097fa97e3e",
+                "url": "https://api.github.com/repos/jtl-software/php-api-client-opsgenie/zipball/65115bae3bc51777de545a8357ee6ea0b206e89f",
+                "reference": "65115bae3bc51777de545a8357ee6ea0b206e89f",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.2",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.12",
+                "phpstan/phpstan": "^0.10.5",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "JTL\\OpsGenie\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "support": {
+                "issues": "https://github.com/jtl-software/php-api-client-opsgenie/issues",
+                "source": "https://github.com/jtl-software/php-api-client-opsgenie/tree/2.1.0"
+            },
+            "time": "2022-01-18T15:45:13+00:00"
+        },
+        {
+            "name": "jtl/go-prometrics-client",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jtl-software/goprometrics-client.git",
+                "reference": "c8274b2500868e2ce7631d9162404d49ac739599"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jtl-software/goprometrics-client/zipball/c8274b2500868e2ce7631d9162404d49ac739599",
+                "reference": "c8274b2500868e2ce7631d9162404d49ac739599",
                 "shasum": ""
             },
             "require": {
@@ -617,14 +656,14 @@
                 "ext-json": "*",
                 "guzzlehttp/guzzle": "^7.2",
                 "jtl/php-generic-collection": "^0.5",
-                "php": "^8.0"
+                "php": "^8.1"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^v2.19",
+                "friendsofphp/php-cs-fixer": "^v3.15",
                 "infection/infection": "^0.26.2",
-                "phpstan/phpstan": "^1.2",
+                "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^9.5",
-                "vimeo/psalm": "^4.9"
+                "vimeo/psalm": "^5.8"
             },
             "suggest": {
                 "guzzlehttp/guzzle": "Required to interact with GoProm",
@@ -643,22 +682,22 @@
             "description": "PHP-Client to use the JTL GoPrometrics Service",
             "support": {
                 "issues": "https://github.com/jtl-software/goprometrics-client/issues",
-                "source": "https://github.com/jtl-software/goprometrics-client/tree/2.0.2"
+                "source": "https://github.com/jtl-software/goprometrics-client/tree/2.1.0"
             },
-            "time": "2022-02-25T10:08:08+00:00"
+            "time": "2023-07-12T09:29:25+00:00"
         },
         {
             "name": "jtl/nachricht",
-            "version": "0.18.0",
+            "version": "0.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-software/nachricht.git",
-                "reference": "cbcd36203006a5058877a136c99f5348cccde242"
+                "reference": "bbe4aa27e5fd1fd9957b8f3e08d336b7e699466c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/cbcd36203006a5058877a136c99f5348cccde242",
-                "reference": "cbcd36203006a5058877a136c99f5348cccde242",
+                "url": "https://api.github.com/repos/jtl-software/nachricht/zipball/bbe4aa27e5fd1fd9957b8f3e08d336b7e699466c",
+                "reference": "bbe4aa27e5fd1fd9957b8f3e08d336b7e699466c",
                 "shasum": ""
             },
             "require": {
@@ -699,9 +738,9 @@
             "description": "Nachricht is a distributed event queue system",
             "support": {
                 "issues": "https://github.com/jtl-software/nachricht/issues",
-                "source": "https://github.com/jtl-software/nachricht/tree/0.18.0"
+                "source": "https://github.com/jtl-software/nachricht/tree/0.19.0"
             },
-            "time": "2023-02-28T09:58:02+00:00"
+            "time": "2023-07-12T09:14:01+00:00"
         },
         {
             "name": "jtl/php-generic-collection",
