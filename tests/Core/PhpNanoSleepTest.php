@@ -16,11 +16,12 @@ class PhpNanoSleepTest extends TestCase
     {
         $sut = new PhpNanoSleep();
 
-        $wait = 0.13089;
         $start = microtime(true);
-        $sut->sleep($wait);
+        $sut->sleep(0.1);
+        $sut->sleep(0.9);
+        $sut->sleep(1.1);
         $now = microtime(true);
 
-        self::assertGreaterThanOrEqual($now, $start + $wait);
+        self::assertTrue($now - $start > 2.0, "Expect to sleep at least 2 seconds but slept only " . ($now - $start) . " seconds");
     }
 }

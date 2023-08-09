@@ -12,7 +12,7 @@ final class PhpNanoSleep implements Sleeper
     {
         $fullSec = (int)floor($seconds);
         $decimalPlaces = $seconds - $fullSec;
-        $nano = (int)($decimalPlaces * 1000000);
+        $nano = (int)($decimalPlaces * 1000000000);
         time_nanosleep($fullSec, $nano);
     }
 }
