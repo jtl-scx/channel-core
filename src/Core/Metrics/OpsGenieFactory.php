@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Metrics;
 
+use JTL\OpsGenie\Client\AlertApiClient;
 use JTL\OpsGenie\Client\HeartbeatApiClient;
 use JTL\OpsGenie\Client\HttpClient;
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
@@ -24,5 +25,11 @@ class OpsGenieFactory
     {
         $client = HttpClient::createForEUApi($this->environment->get('OPSGENIE_TOKEN'));
         return new HeartbeatApiClient($client);
+    }
+
+    public function createAlertClient(): AlertApiClient
+    {
+        $client = HttpClient::createForEUApi($this->environment->get('OPSGENIE_TOKEN'));
+        return new AlertApiClient($client);
     }
 }
