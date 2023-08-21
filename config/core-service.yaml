@@ -91,6 +91,9 @@ services:
   JTL\OpsGenie\Client\HeartbeatApiClient:
     factory: ['@JTL\SCX\Lib\Channel\Core\Metrics\OpsGenieFactory', 'createHeartbeatClient']
 
+  JTL\OpsGenie\Client\AlertApiClient:
+    factory: ['@JTL\SCX\Lib\Channel\Core\Metrics\OpsGenieFactory', 'createAlertClient']
+
   GuzzleHttp\Client:
     public: true
 
