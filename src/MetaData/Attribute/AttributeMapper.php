@@ -43,6 +43,7 @@ class AttributeMapper
                 'subSectionPosition' => $attribute->getSubSectionPosition(),
                 'description' => $attribute->getDescription(),
                 'isVariationDimension' => $attribute->isVariationDimension(),
+                'isRepeatableSubSection' => $attribute->isRepeatableSubSection(),
             ]);
         }
 
