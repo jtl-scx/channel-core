@@ -15,8 +15,9 @@ use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerOfferIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 
-class SendOfferListingFailedMessage extends AbstractAmqpTransportableMessage implements SellerIdRelatedMessage,
-                                                                                        SellerOfferIdRelatedMessage
+class SendOfferListingFailedMessage extends AbstractAmqpTransportableMessage implements
+    SellerIdRelatedMessage,
+    SellerOfferIdRelatedMessage
 {
     private ChannelSellerId $sellerId;
     private int $sellerOfferId;
