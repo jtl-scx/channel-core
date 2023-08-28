@@ -2,6 +2,8 @@
 
 namespace JTL\SCX\Lib\Channel\Seller;
 
+use GuzzleHttp\Exception\GuzzleException;
+use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UnlinkSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\SellerApi;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
@@ -20,10 +22,20 @@ class UnlinkSellerListener extends AbstractListener
     public function unlink(UnlinkSellerMessage $message)
     {
         $reason = $message->getReason();
-        $result = $this->sellerApi->unlink(new UnlinkSellerRequest(
-            (string)$message->getSellerId(),
-            $reason
-        ));
+        try {
+            $result = $this->sellerApi->unlink(
+                new UnlinkSellerRequest(
+                    (string)$message->getSellerId(),
+                    $reason
+                )
+            );
+        } catch (RequestFailedException $e) {
+            if ($e->hasErrorCode("CHN204")) {
+                $this->logger->info("Seller already unlinked in SCX API - skipping");
+                return;
+            }
+            throw $e;
+        }
 
         if ($result->isSuccessful()) {
             $reasonLog = '';
