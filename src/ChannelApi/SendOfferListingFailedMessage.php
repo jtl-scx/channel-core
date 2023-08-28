@@ -15,7 +15,8 @@ use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerOfferIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 
-class SendOfferListingFailedMessage extends AbstractAmqpTransportableMessage implements SellerIdRelatedMessage, SellerOfferIdRelatedMessage
+class SendOfferListingFailedMessage extends AbstractAmqpTransportableMessage implements SellerIdRelatedMessage,
+                                                                                        SellerOfferIdRelatedMessage
 {
     private ChannelSellerId $sellerId;
     private int $sellerOfferId;
@@ -35,7 +36,14 @@ class SendOfferListingFailedMessage extends AbstractAmqpTransportableMessage imp
         $this->sellerId = $sellerId;
         $this->sellerOfferId = $sellerOfferId;
         $this->errorList = new ListingFailedErrorList();
-        $this->errorList->add(new ListingFailedError($errorCode, $errorMessage));
+
+        $details = null;
+        if (strlen($errorMessage) > 250) {
+            $details = $errorMessage;
+            $errorMessage = substr($errorMessage, 0, 250);
+        }
+
+        $this->errorList->add(new ListingFailedError($errorCode, $errorMessage, $details));
         $this->failedAt = $failedAt ?? new \DateTime();
     }
 

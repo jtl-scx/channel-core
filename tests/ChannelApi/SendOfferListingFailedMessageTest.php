@@ -62,4 +62,25 @@ class SendOfferListingFailedMessageTest extends TestCase
         self::assertSame($errorMsg2, $msg->getErrorList()->offsetGet(1)->getMessage());
         self::assertSame($errorLongMsg2, $msg->getErrorList()->offsetGet(1)->getLongMessage());
     }
+
+
+    /**
+     * @test
+     */
+    public function it_use_longMessage_when_errorMessage_exceed_maximum_length(): void
+    {
+
+        $sut = new SendOfferListingFailedMessage(
+            $this->createStub(ChannelSellerId::class),
+            123,
+            'ERR_111',
+            str_repeat('A', 251),
+        );
+
+        $err = $sut->getErrorList();
+
+        self::assertArrayHasKey(0, $err);
+        self::assertEquals(250, strlen($err[0]->getMessage()));
+        self::assertEquals(251, strlen($err[0]->getLongMessage()));
+    }
 }
