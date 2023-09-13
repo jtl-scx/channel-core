@@ -44,6 +44,7 @@ class AttributeTest extends TestCase
         $isVariationDimension = (bool)random_int(0, 1);
         $isRecommended = (bool)random_int(0, 1);
         $values = new AttributeEnumValueList();
+        $isRepeatableSubSection = (bool)random_int(0, 1);
 
         $attribute = new Attribute(
             $attributeId,
@@ -62,7 +63,8 @@ class AttributeTest extends TestCase
             $subSectionPosition,
             $isVariationDimension,
             $isRecommended,
-            $values
+            $values,
+            $isRepeatableSubSection,
         );
 
         $this->assertEquals($attributeId, $attribute->getAttributeId());
@@ -82,5 +84,6 @@ class AttributeTest extends TestCase
         $this->assertEquals($isVariationDimension, $attribute->isVariationDimension());
         $this->assertEquals($isRecommended, $attribute->isRecommended());
         $this->assertEquals($values, $attribute->getValues());
+        $this->assertEquals($isRepeatableSubSection, $attribute->isRepeatableSubSection());
     }
 }
