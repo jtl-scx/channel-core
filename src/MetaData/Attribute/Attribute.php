@@ -29,7 +29,7 @@ class Attribute
     private ?bool $isVariationDimension;
     private ?bool $recommended;
     private ?AttributeEnumValueList $values;
-    private ?bool $isRepeatableSubSection;
+    private bool $isRepeatableSubSection;
 
     public function __construct(
         string $attributeId,
@@ -49,7 +49,7 @@ class Attribute
         bool $isVariationDimension = null,
         bool $recommended = null,
         AttributeEnumValueList $values = null,
-        bool $isRepeatableSubSection = null
+        bool $isRepeatableSubSection = false
     ) {
         $this->attributeId = $attributeId;
         $this->displayName = $displayName;
@@ -159,7 +159,7 @@ class Attribute
         return $this->values;
     }
 
-    public function isRepeatableSubSection(): ?bool
+    public function isRepeatableSubSection(): bool
     {
         return $this->isRepeatableSubSection;
     }
