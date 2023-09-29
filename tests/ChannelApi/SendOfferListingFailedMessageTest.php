@@ -63,11 +63,10 @@ class SendOfferListingFailedMessageTest extends TestCase
         self::assertSame($errorLongMsg2, $msg->getErrorList()->offsetGet(1)->getLongMessage());
     }
 
-
     /**
      * @test
      */
-    public function it_use_longMessage_when_errorMessage_exceed_maximum_length(): void
+    public function it_use_longMessage_when_errorMessage_exceed_maximum_length_on_construct(): void
     {
 
         $sut = new SendOfferListingFailedMessage(
@@ -82,5 +81,29 @@ class SendOfferListingFailedMessageTest extends TestCase
         self::assertArrayHasKey(0, $err);
         self::assertEquals(250, strlen($err[0]->getMessage()));
         self::assertEquals(251, strlen($err[0]->getLongMessage()));
+    }
+
+    /**
+     * @test
+     */
+    public function it_use_longMessage_when_errorMessage_exceed_maximum_length_on_add_error(): void
+    {
+
+        $errorMessage = str_repeat('A', 251);
+        $longErrorMessage = str_repeat('B', 251);
+        $sut = new SendOfferListingFailedMessage(
+            $this->createStub(ChannelSellerId::class),
+            123,
+            'ERR_111',
+            'smallError',
+        );
+        $sut->addError('ERR_222', $errorMessage, $longErrorMessage);
+
+        $err = $sut->getErrorList();
+
+        self::assertArrayHasKey(1, $err);
+        self::assertEquals(250, strlen($err[1]->getMessage()));
+        self::assertStringContainsString($longErrorMessage, $err[1]->getLongMessage());
+        self::assertStringContainsString($errorMessage, $err[1]->getLongMessage());
     }
 }
