@@ -23,8 +23,20 @@ class AmqpMetricsConfigurator implements GoPometricsConfigurator
 
     public function extendLabelList(LabelList $labelList): LabelList
     {
-        $channelName = $this->environment->get('CHANNEL_NAME');
+        $hasChannelLabel = false;
 
+        /** @var Label $label */
+        foreach ($labelList as $label) {
+            if ($label->getKey() === 'channel') {
+                $hasChannelLabel = true;
+            }
+        }
+
+        if ($hasChannelLabel) {
+            return $labelList;
+        }
+
+        $channelName = $this->environment->get('CHANNEL_NAME');
         $labelList->add(new Label('channel', $channelName));
         return $labelList;
     }

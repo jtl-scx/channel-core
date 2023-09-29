@@ -34,6 +34,7 @@ use JTL\SCX\Lib\Channel\Core\Log\Context\RefundIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\SellerOfferIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\SellerReportIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\MessageIdContext;
+use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use Throwable;
 
 abstract class AbstractListener implements Listener, BeforeMessageHook, AfterMessageErrorHook
@@ -54,6 +55,8 @@ abstract class AbstractListener implements Listener, BeforeMessageHook, AfterMes
         }
         if ($message instanceof SellerIdRelatedMessage) {
             $this->logger->replaceContext($message->getSellerId());
+        } elseif (method_exists($message, 'getEvent') && method_exists($message->getEvent(), 'getSellerId')) {
+            $this->logger->replaceContext(new ChannelSellerId((string)$message->getEvent()->getSellerId()));
         }
         if ($message instanceof ChannelOfferIdRelatedMessage) {
             $this->logger->replaceContext(new ChannelOfferIdContext($message->getChannelOfferId()));

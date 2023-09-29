@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Metrics;
 
+use JTL\GoPrometrics\Client\Label;
 use JTL\GoPrometrics\Client\LabelList;
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
 use PHPUnit\Framework\TestCase;
@@ -46,4 +47,23 @@ class AmqpMetricsConfiguratorTest extends TestCase
         self::assertEquals($channelName, $newLabelList[0]->getValue());
         self::assertTrue($configurator->isActive());
     }
+
+    /**
+     * @test
+     */
+    public function it_will_not_extend_channel_label_when_already_exist(): void
+    {
+        $labelList = new LabelList();
+        $labelList->add(new Label('channel', 'ANY_CHANNEL'));
+
+        $environment = new Environment(['channel' => 'ENV_CHANNEL']);
+
+        $configurator = new AmqpMetricsConfigurator($environment);
+        $newLabelList = $configurator->extendLabelList($labelList);
+
+        self::assertEquals(1, $newLabelList->count());
+        self::assertEquals('ANY_CHANNEL', $newLabelList[0]->getValue());
+    }
+
+
 }
