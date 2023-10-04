@@ -45,6 +45,13 @@ class MessageConsumeCommand extends AbstractCommand
                 InputOption::VALUE_OPTIONAL,
                 'A EntityId to identify the current running process',
                 '0'
+            )
+            ->addOption(
+                'time-limit',
+                't',
+                InputOption::VALUE_OPTIONAL,
+                'The time limit in seconds the worker can run',
+                '-1'
             );
     }
 
@@ -72,7 +79,8 @@ class MessageConsumeCommand extends AbstractCommand
                 $io->writeln(" - <error>RoutingKey is empty </> \"$eventClass\" skip");
             }
         }
-        $subscriptionSettings = new SubscriptionSettings($eventRoutingKeyList);
+        $timeLimit = (int)$input->getOption('time-limit');
+        $subscriptionSettings = new SubscriptionSettings($eventRoutingKeyList, $timeLimit);
 
         $io->writeln("");
         $io->writeln("Consume Messages");
