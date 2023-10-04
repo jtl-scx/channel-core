@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
 use DateTimeImmutable;
+use JTL\Nachricht\Message\AbstractAmqpTransportableMessage;
 use JTL\SCX\Lib\Channel\Client\Event\EventType;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderShipping;
 use JTL\SCX\Lib\Channel\Event\AbstractEvent;
@@ -23,9 +24,20 @@ class OrderShippingEvent extends AbstractEvent
         string $id,
         DateTimeImmutable $createdAt,
         SellerEventOrderShipping $event,
-        string $internalEventId = null
+        string $internalEventId = null,
+        int $delay = null,
+        int $retryDelay = null,
+        int $retryCount = null,
     ) {
-        parent::__construct($id, $createdAt, EventType::SellerOrderShipping(), $internalEventId);
+        parent::__construct(
+            id: $id,
+            createdAt: $createdAt,
+            type: EventType::SellerOrderShipping(),
+            internalEventId: $internalEventId,
+            delay: $delay,
+            retryDelay: $retryDelay,
+            retryCount: $retryCount
+        );
         $this->event = $event;
     }
 
