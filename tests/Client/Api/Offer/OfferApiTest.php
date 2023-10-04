@@ -27,7 +27,7 @@ class OfferApiTest extends TestCase
     public function testCanMarkInProgress()
     {
         $requestMock = $this->createMock(MarkListingInProgressRequest::class);
-        $apiClientMock= $this->createMock(AuthAwareApiClient::class);
+        $apiClientMock = $this->createMock(AuthAwareApiClient::class);
         $apiClientMock->expects($this->once())->method('request')->with($requestMock);
 
         $api = new OfferApi($apiClientMock);
@@ -37,7 +37,7 @@ class OfferApiTest extends TestCase
     public function testMarkListingFailed()
     {
         $requestMock = $this->createMock(MarkListingAsFailedRequest::class);
-        $apiClientMock= $this->createMock(AuthAwareApiClient::class);
+        $apiClientMock = $this->createMock(AuthAwareApiClient::class);
         $apiClientMock->expects($this->once())->method('request')->with($requestMock);
 
         $api = new OfferApi($apiClientMock);
@@ -47,7 +47,7 @@ class OfferApiTest extends TestCase
     public function testMarkListed()
     {
         $requestMock = $this->createMock(MarkListingSuccessfulRequest::class);
-        $apiClientMock= $this->createMock(AuthAwareApiClient::class);
+        $apiClientMock = $this->createMock(AuthAwareApiClient::class);
         $apiClientMock->expects($this->once())->method('request')->with($requestMock);
 
         $api = new OfferApi($apiClientMock);

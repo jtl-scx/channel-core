@@ -30,7 +30,7 @@ class SellerAttributeUpdaterTest extends TestCase
         $attrListMock = $this->createMock(AttributeList::class);
         $clientAttrList = [];
 
-        $createSellerResponse= $this->createMock(AttributesCreatedResponse::class);
+        $createSellerResponse = $this->createMock(AttributesCreatedResponse::class);
         $createSellerResponse->method('getStatusCode')->willReturn(201);
         $apiClientMock = $this->createMock(AttributesApi::class);
         $apiClientMock->expects($this->once())

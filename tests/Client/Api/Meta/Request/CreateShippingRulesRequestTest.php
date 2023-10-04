@@ -20,7 +20,7 @@ class CreateShippingRulesRequestTest extends TestCase
 {
     public function testCanBeCreatedAndUsed(): void
     {
-        $bodyStr =uniqid('body', true);
+        $bodyStr = uniqid('body', true);
         $shippingRules = $this->createMock(ShippingRules::class);
         $shippingRules->expects($this->atLeastOnce())->method('__toString')->willReturn($bodyStr);
 
