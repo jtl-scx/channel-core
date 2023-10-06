@@ -20,7 +20,7 @@ class CreatePaymentRulesRequestTest extends TestCase
 {
     public function testCanBeCreatedAndUsed(): void
     {
-        $bodyStr =uniqid('body', true);
+        $bodyStr = uniqid('body', true);
         $paymentRules = $this->createMock(PaymentRules::class);
         $paymentRules->expects($this->atLeastOnce())->method('__toString')->willReturn($bodyStr);
 

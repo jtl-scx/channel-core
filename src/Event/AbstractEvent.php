@@ -18,16 +18,31 @@ abstract class AbstractEvent extends AbstractAmqpTransportableMessage
 {
     protected string $id;
     protected EventType $type;
+    private ?int $retryCount;
 
     public function __construct(
         string $id,
         DateTimeImmutable $createdAt,
         EventType $type,
-        string $internalEventId = null
+        string $internalEventId = null,
+        int $delay = null,
+        int $retryDelay = null,
+        int $retryCount = null,
     ) {
-        parent::__construct($internalEventId, $createdAt);
+        parent::__construct(
+            messageId: $internalEventId,
+            createdAt: $createdAt,
+            delay: $delay ?? 0,
+            retryDelay: $retryDelay ?? 120
+        );
+        $this->retryCount = $retryCount;
         $this->id = $id;
         $this->type = $type;
+    }
+
+    public function getRetryCount(): int
+    {
+        return $this->retryCount ?? parent::getRetryCount();
     }
 
     public function getId(): string

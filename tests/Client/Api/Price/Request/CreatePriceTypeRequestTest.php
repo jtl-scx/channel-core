@@ -23,7 +23,7 @@ class CreatePriceTypeRequestTest extends TestCase
 {
     public function testCanBeCreatedAndUsed(): void
     {
-        $bodyStr =uniqid('body', true);
+        $bodyStr = uniqid('body', true);
         $priceTypeMock = $this->createMock(PriceType::class);
         $priceTypeMock->expects($this->atLeastOnce())->method('__toString')->willReturn($bodyStr);
 

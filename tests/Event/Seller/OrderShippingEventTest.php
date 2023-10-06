@@ -1,34 +1,43 @@
 <?php
 
-namespace JTL\SCX\Lib\Channel\Event;
+declare(strict_types=1);
+
+namespace JTL\SCX\Lib\Channel\Event\Seller;
 
 use JTL\SCX\Lib\Channel\Client\Event\EventType;
+use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderShipping;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers  \JTL\SCX\Lib\Channel\Event\AbstractEvent
+ * @covers \JTL\SCX\Lib\Channel\Event\Seller\OrderShippingEvent
  */
-class AbstractEventTest extends TestCase
+class OrderShippingEventTest extends TestCase
 {
-    public function test_it_can_be_constructed_correctly(): void
+    /**
+     * @test
+     */
+    public function it_can_be_constructed_correctly(): void
     {
-        $sut = new class (
+        $sut = new OrderShippingEvent(
             id: $id = uniqid(),
-            createdAt:  $createdAt = new \DateTimeImmutable(),
-            type: $type = $this->createStub(EventType::class),
+            createdAt: $createdAt = new \DateTimeImmutable(),
+            event: $event = $this->createStub(SellerEventOrderShipping::class),
             internalEventId: $internalEventId = uniqid(),
             delay: $delay = random_int(1, 10000),
             retryDelay: $retryDelay = random_int(1, 10000),
             retryCount: $retryCount = random_int(1, 10000)
-        ) extends AbstractEvent {
-        };
+        );
 
         self::assertSame($id, $sut->getId());
         self::assertSame($createdAt, $sut->getCreatedAt());
-        self::assertSame($type, $sut->getType());
+        self::assertSame($event, $sut->getEvent());
         self::assertSame($internalEventId, $sut->getMessageId());
         self::assertEquals($delay, $sut->getDelay());
         self::assertEquals($retryDelay, $sut->getRetryDelay());
         self::assertEquals($retryCount, $sut->getRetryCount());
+
+        self::assertEquals(EventType::SellerOrderShipping(), $sut->getType());
     }
+
+
 }
