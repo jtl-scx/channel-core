@@ -25,6 +25,10 @@ use MyCLabs\Enum\Enum;
  * @method static AttributeType ENUM()
  * @method static AttributeType DATE()
  * @method static AttributeType BOOLEAN()
+ * @method static AttributeType IMAGE()
+ * @method static AttributeType DOCUMENT()
+ * @method static AttributeType URL()
+ * @method static AttributeType LABEL()
  */
 class AttributeType extends Enum
 {
@@ -36,4 +40,8 @@ class AttributeType extends Enum
     private const ENUM = Attribute::TYPE_ENUM;
     private const DATE = Attribute::TYPE_DATE;
     private const BOOLEAN = Attribute::TYPE_BOOLEAN;
+    private const IMAGE = Attribute::TYPE_IMAGE;
+    private const DOCUMENT = Attribute::TYPE_DOCUMENT;
+    private const URL = Attribute::TYPE_URL;
+    private const LABEL = Attribute::TYPE_LABEL;
 }
