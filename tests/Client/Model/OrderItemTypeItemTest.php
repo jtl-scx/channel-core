@@ -162,6 +162,13 @@ class OrderItemTypeItemTest extends AbstractApiModelTest
                 'setRemainingQuantity',
                 true
             ],
+            'assert property additionalOrderItemData' => [
+                'additionalOrderItemData',
+                '\JTL\SCX\Lib\Channel\Client\Model\AdditionalOrderDataGroup[]',
+                'getAdditionalOrderItemData',
+                'setAdditionalOrderItemData',
+                true
+            ],
         ];
     }
 

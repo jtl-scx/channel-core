@@ -152,6 +152,13 @@ class OrderTest extends AbstractApiModelTest
                 'getLanguage',
                 'setLanguage'
             ],
+            'assert property additionalOrderData' => [
+                'additionalOrderData',
+                '\JTL\SCX\Lib\Channel\Client\Model\AdditionalOrderDataGroup[]',
+                'getAdditionalOrderData',
+                'setAdditionalOrderData',
+                true
+            ],
         ];
     }
 
