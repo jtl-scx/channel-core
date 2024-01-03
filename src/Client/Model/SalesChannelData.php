@@ -66,6 +66,7 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
         'updateUrl' => 'string',
         'logo' => 'string',
         'description' => 'string',
+        'appId' => 'string',
         'featureList' => '\JTL\SCX\Lib\Channel\Client\Model\ChannelUpdateFeatureList'
     ];
 
@@ -92,6 +93,7 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
         'updateUrl' => null,
         'logo' => null,
         'description' => null,
+        'appId' => null,
         'featureList' => null
     ];
 
@@ -137,6 +139,7 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
         'updateUrl' => 'updateUrl',
         'logo' => 'logo',
         'description' => 'description',
+        'appId' => 'appId',
         'featureList' => 'featureList'
     ];
 
@@ -161,6 +164,7 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
         'updateUrl' => 'setUpdateUrl',
         'logo' => 'setLogo',
         'description' => 'setDescription',
+        'appId' => 'setAppId',
         'featureList' => 'setFeatureList'
     ];
 
@@ -185,6 +189,7 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
         'updateUrl' => 'getUpdateUrl',
         'logo' => 'getLogo',
         'description' => 'getDescription',
+        'appId' => 'getAppId',
         'featureList' => 'getFeatureList'
     ];
 
@@ -272,6 +277,7 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['updateUrl'] = $data['updateUrl'] ?? null;
         $this->container['logo'] = $data['logo'] ?? null;
         $this->container['description'] = $data['description'] ?? null;
+        $this->container['appId'] = $data['appId'] ?? null;
         $this->container['featureList'] = $data['featureList'] ?? null;
     }
 
@@ -515,6 +521,18 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDescription(?string $description): SalesChannelData
     {
         $this->container['description'] = $description;
+        return $this;
+    }
+
+
+    public function getAppId(): ?string
+    {
+        return $this->container['appId'];
+    }
+
+    public function setAppId(?string $appId): SalesChannelData
+    {
+        $this->container['appId'] = $appId;
         return $this;
     }
 

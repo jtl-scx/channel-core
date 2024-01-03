@@ -184,6 +184,12 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -199,24 +205,24 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->container['name'];
     }
 
-    public function setName(?string $name): ProductAttribute
+    public function setName(string $name): ProductAttribute
     {
         $this->container['name'] = $name;
         return $this;
     }
 
 
-    public function getValue(): ?string
+    public function getValue(): string
     {
         return $this->container['value'];
     }
 
-    public function setValue(?string $value): ProductAttribute
+    public function setValue(string $value): ProductAttribute
     {
         $this->container['value'] = $value;
         return $this;
