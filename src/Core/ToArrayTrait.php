@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core;
 
+use BackedEnum;
 use DateTimeImmutable;
 use Traversable;
 
@@ -45,6 +46,8 @@ trait ToArrayTrait
                     $return[$key] = $attr->format('c');
                 } elseif (method_exists($attr, 'toArray')) {
                     $return[$key] = $attr->toArray();
+                } elseif ($attr instanceof BackedEnum) {
+                    $return[$key] = $attr->value;
                 } else {
                     $return[$key] = $this->createArray((array)$attr);
                 }
