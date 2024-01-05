@@ -43,8 +43,10 @@ class ToArrayTraitTest extends TestCase
         $e = new My2ndTestClass($a);
         $obj = new MyTestClass($a, $b, $c, $d, $e);
 
-        self::assertSame(["a" => $a, "b" => $b, "c" => $c->format('c'), "d" => $d, 'e' => ['a' => $a]],
-            $obj->toArray());
+        self::assertSame(
+            ["a" => $a, "b" => $b, "c" => $c->format('c'), "d" => $d, 'e' => ['a' => $a]],
+            $obj->toArray()
+        );
     }
 
     /**
@@ -52,7 +54,7 @@ class ToArrayTraitTest extends TestCase
      */
     public function it_use_value_from_backedEnums(): void
     {
-        $sut = new class(Foo::Bar) {
+        $sut = new class (Foo::Bar) {
             use ToArrayTrait;
 
             public function __construct(
@@ -113,4 +115,3 @@ enum Foo: string
 {
     case Bar = 'bar';
 }
-
