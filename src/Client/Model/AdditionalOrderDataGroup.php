@@ -1,6 +1,6 @@
 <?php
 /**
- * ProductAttribute
+ * AdditionalOrderDataGroup
  *
  * PHP version 7.2
  *
@@ -22,9 +22,10 @@ use ArrayAccess;
 use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
 
 /**
- * ProductAttribute Class Doc Comment
+ * AdditionalOrderDataGroup Class Doc Comment
  *
  * @category Class
+ * @description Additional order data is a list of key value pairs and should be used to add additional information to an order. The data is used by a connected client implementation (such as JTL-Wawi) to display and print this information.
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -32,7 +33,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
+class AdditionalOrderDataGroup implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -41,17 +42,18 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ProductAttribute';
+    protected static $openAPIModelName = 'AdditionalOrderDataGroup';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
+      * @param AdditionalOrderDataGroupValues
       *
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'value' => 'string'
+        'group' => 'string',
+        'values' => '\JTL\SCX\Lib\Channel\Client\Model\AdditionalOrderDataGroupValues[]'
     ];
 
     /**
@@ -62,8 +64,8 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'value' => null
+        'group' => null,
+        'values' => null
     ];
 
     /**
@@ -93,8 +95,8 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'value' => 'value'
+        'group' => 'group',
+        'values' => 'values'
     ];
 
     /**
@@ -103,8 +105,8 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'value' => 'setValue'
+        'group' => 'setGroup',
+        'values' => 'setValues'
     ];
 
     /**
@@ -113,8 +115,8 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'value' => 'getValue'
+        'group' => 'getGroup',
+        'values' => 'getValues'
     ];
 
     /**
@@ -171,8 +173,8 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public function __construct(array $data = null)
     {
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['value'] = $data['value'] ?? null;
+        $this->container['group'] = $data['group'] ?? null;
+        $this->container['values'] = $data['values'] ?? null;
     }
 
     /**
@@ -184,12 +186,22 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if (!is_null($this->container['group']) && (mb_strlen($this->container['group']) > 150)) {
+            $invalidProperties[] = "invalid value for 'group', the character length must be smaller than or equal to 150.";
         }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+
+        if (!is_null($this->container['group']) && (mb_strlen($this->container['group']) < 1)) {
+            $invalidProperties[] = "invalid value for 'group', the character length must be bigger than or equal to 1.";
         }
+
+        if (!is_null($this->container['values']) && (is_countable($this->container['values']) && ($this->container['values']) > 50)) {
+            $invalidProperties[] = "invalid value for 'values', number of items must be less than or equal to 50.";
+        }
+
+        if (!is_null($this->container['values']) && (is_countable($this->container['values']) && count($this->container['values']) < 1)) {
+            $invalidProperties[] = "invalid value for 'values', number of items must be greater than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -205,26 +217,26 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    public function getName(): string
+    public function getGroup(): ?string
     {
-        return $this->container['name'];
+        return $this->container['group'];
     }
 
-    public function setName(string $name): ProductAttribute
+    public function setGroup(?string $group): AdditionalOrderDataGroup
     {
-        $this->container['name'] = $name;
+        $this->container['group'] = $group;
         return $this;
     }
 
 
-    public function getValue(): string
+    public function getValues(): ?array
     {
-        return $this->container['value'];
+        return $this->container['values'];
     }
 
-    public function setValue(string $value): ProductAttribute
+    public function setValues(?array $values): AdditionalOrderDataGroup
     {
-        $this->container['value'] = $value;
+        $this->container['values'] = $values;
         return $this;
     }
 

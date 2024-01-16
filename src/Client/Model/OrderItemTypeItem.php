@@ -48,6 +48,7 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @param OrderItemStatus
       * @param OrderItemPaymentStatus
+      * @param AdditionalOrderDataGroup
       *
       * @var string[]
       */
@@ -67,7 +68,8 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
         'title' => 'string',
         'estimatedShippingDate' => '\DateTime',
         'estimatedDeliveryDate' => '\DateTime',
-        'remainingQuantity' => 'string'
+        'remainingQuantity' => 'string',
+        'additionalOrderItemData' => '\JTL\SCX\Lib\Channel\Client\Model\AdditionalOrderDataGroup[]'
     ];
 
     /**
@@ -93,7 +95,8 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
         'title' => null,
         'estimatedShippingDate' => 'date-time',
         'estimatedDeliveryDate' => 'date-time',
-        'remainingQuantity' => null
+        'remainingQuantity' => null,
+        'additionalOrderItemData' => null
     ];
 
     /**
@@ -138,7 +141,8 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
         'title' => 'title',
         'estimatedShippingDate' => 'estimatedShippingDate',
         'estimatedDeliveryDate' => 'estimatedDeliveryDate',
-        'remainingQuantity' => 'remainingQuantity'
+        'remainingQuantity' => 'remainingQuantity',
+        'additionalOrderItemData' => 'additionalOrderItemData'
     ];
 
     /**
@@ -162,7 +166,8 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
         'title' => 'setTitle',
         'estimatedShippingDate' => 'setEstimatedShippingDate',
         'estimatedDeliveryDate' => 'setEstimatedDeliveryDate',
-        'remainingQuantity' => 'setRemainingQuantity'
+        'remainingQuantity' => 'setRemainingQuantity',
+        'additionalOrderItemData' => 'setAdditionalOrderItemData'
     ];
 
     /**
@@ -186,7 +191,8 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
         'title' => 'getTitle',
         'estimatedShippingDate' => 'getEstimatedShippingDate',
         'estimatedDeliveryDate' => 'getEstimatedDeliveryDate',
-        'remainingQuantity' => 'getRemainingQuantity'
+        'remainingQuantity' => 'getRemainingQuantity',
+        'additionalOrderItemData' => 'getAdditionalOrderItemData'
     ];
 
     /**
@@ -259,6 +265,7 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->container['estimatedShippingDate'] = $data['estimatedShippingDate'] ?? null;
         $this->container['estimatedDeliveryDate'] = $data['estimatedDeliveryDate'] ?? null;
         $this->container['remainingQuantity'] = $data['remainingQuantity'] ?? null;
+        $this->container['additionalOrderItemData'] = $data['additionalOrderItemData'] ?? null;
     }
 
     /**
@@ -308,6 +315,14 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
 
         if (!is_null($this->container['sku']) && (mb_strlen($this->container['sku']) < 1)) {
             $invalidProperties[] = "invalid value for 'sku', the character length must be bigger than or equal to 1.";
+        }
+
+        if (!is_null($this->container['additionalOrderItemData']) && (is_countable($this->container['additionalOrderItemData']) && ($this->container['additionalOrderItemData']) > 10)) {
+            $invalidProperties[] = "invalid value for 'additionalOrderItemData', number of items must be less than or equal to 10.";
+        }
+
+        if (!is_null($this->container['additionalOrderItemData']) && (is_countable($this->container['additionalOrderItemData']) && count($this->container['additionalOrderItemData']) < 0)) {
+            $invalidProperties[] = "invalid value for 'additionalOrderItemData', number of items must be greater than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -513,6 +528,18 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setRemainingQuantity(?string $remainingQuantity): OrderItemTypeItem
     {
         $this->container['remainingQuantity'] = $remainingQuantity;
+        return $this;
+    }
+
+
+    public function getAdditionalOrderItemData(): ?array
+    {
+        return $this->container['additionalOrderItemData'];
+    }
+
+    public function setAdditionalOrderItemData(?array $additionalOrderItemData): OrderItemTypeItem
+    {
+        $this->container['additionalOrderItemData'] = $additionalOrderItemData;
         return $this;
     }
 

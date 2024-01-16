@@ -1,6 +1,6 @@
 <?php
 /**
- * ProductAttribute
+ * AdditionalOrderDataGroupValues
  *
  * PHP version 7.2
  *
@@ -22,7 +22,7 @@ use ArrayAccess;
 use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
 
 /**
- * ProductAttribute Class Doc Comment
+ * AdditionalOrderDataGroupValues Class Doc Comment
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
@@ -32,7 +32,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
+class AdditionalOrderDataGroupValues implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -41,7 +41,7 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ProductAttribute';
+    protected static $openAPIModelName = 'AdditionalOrderDataGroupValues';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -50,7 +50,7 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
+        'key' => 'string',
         'value' => 'string'
     ];
 
@@ -62,7 +62,7 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'name' => null,
+        'key' => null,
         'value' => null
     ];
 
@@ -93,7 +93,7 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
+        'key' => 'key',
         'value' => 'value'
     ];
 
@@ -103,7 +103,7 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
+        'key' => 'setKey',
         'value' => 'setValue'
     ];
 
@@ -113,7 +113,7 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
+        'key' => 'getKey',
         'value' => 'getValue'
     ];
 
@@ -171,7 +171,7 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public function __construct(array $data = null)
     {
-        $this->container['name'] = $data['name'] ?? null;
+        $this->container['key'] = $data['key'] ?? null;
         $this->container['value'] = $data['value'] ?? null;
     }
 
@@ -184,12 +184,22 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if (!is_null($this->container['key']) && (mb_strlen($this->container['key']) > 255)) {
+            $invalidProperties[] = "invalid value for 'key', the character length must be smaller than or equal to 255.";
         }
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
+
+        if (!is_null($this->container['key']) && (mb_strlen($this->container['key']) < 1)) {
+            $invalidProperties[] = "invalid value for 'key', the character length must be bigger than or equal to 1.";
         }
+
+        if (!is_null($this->container['value']) && (mb_strlen($this->container['value']) > 5000)) {
+            $invalidProperties[] = "invalid value for 'value', the character length must be smaller than or equal to 5000.";
+        }
+
+        if (!is_null($this->container['value']) && (mb_strlen($this->container['value']) < 1)) {
+            $invalidProperties[] = "invalid value for 'value', the character length must be bigger than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -205,24 +215,24 @@ class ProductAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    public function getName(): string
+    public function getKey(): ?string
     {
-        return $this->container['name'];
+        return $this->container['key'];
     }
 
-    public function setName(string $name): ProductAttribute
+    public function setKey(?string $key): AdditionalOrderDataGroupValues
     {
-        $this->container['name'] = $name;
+        $this->container['key'] = $key;
         return $this;
     }
 
 
-    public function getValue(): string
+    public function getValue(): ?string
     {
         return $this->container['value'];
     }
 
-    public function setValue(string $value): ProductAttribute
+    public function setValue(?string $value): AdditionalOrderDataGroupValues
     {
         $this->container['value'] = $value;
         return $this;

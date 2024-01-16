@@ -274,6 +274,18 @@ class Variation implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['priceList'] === null) {
             $invalidProperties[] = "'priceList' can't be null";
         }
+        if (!is_null($this->container['title']) && (mb_strlen($this->container['title']) > 512)) {
+            $invalidProperties[] = "invalid value for 'title', the character length must be smaller than or equal to 512.";
+        }
+
+        if (!is_null($this->container['subTitle']) && (mb_strlen($this->container['subTitle']) > 1024)) {
+            $invalidProperties[] = "invalid value for 'subTitle', the character length must be smaller than or equal to 1024.";
+        }
+
+        if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 50000)) {
+            $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 50000.";
+        }
+
         return $invalidProperties;
     }
 

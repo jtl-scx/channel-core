@@ -65,6 +65,7 @@ class ChannelBasedData implements ModelInterface, ArrayAccess, \JsonSerializable
         'updateUrl' => 'string',
         'logo' => 'string',
         'description' => 'string',
+        'appId' => 'string',
         'featureList' => '\JTL\SCX\Lib\Channel\Client\Model\ChannelUpdateFeatureList'
     ];
 
@@ -90,6 +91,7 @@ class ChannelBasedData implements ModelInterface, ArrayAccess, \JsonSerializable
         'updateUrl' => null,
         'logo' => null,
         'description' => null,
+        'appId' => null,
         'featureList' => null
     ];
 
@@ -134,6 +136,7 @@ class ChannelBasedData implements ModelInterface, ArrayAccess, \JsonSerializable
         'updateUrl' => 'updateUrl',
         'logo' => 'logo',
         'description' => 'description',
+        'appId' => 'appId',
         'featureList' => 'featureList'
     ];
 
@@ -157,6 +160,7 @@ class ChannelBasedData implements ModelInterface, ArrayAccess, \JsonSerializable
         'updateUrl' => 'setUpdateUrl',
         'logo' => 'setLogo',
         'description' => 'setDescription',
+        'appId' => 'setAppId',
         'featureList' => 'setFeatureList'
     ];
 
@@ -180,6 +184,7 @@ class ChannelBasedData implements ModelInterface, ArrayAccess, \JsonSerializable
         'updateUrl' => 'getUpdateUrl',
         'logo' => 'getLogo',
         'description' => 'getDescription',
+        'appId' => 'getAppId',
         'featureList' => 'getFeatureList'
     ];
 
@@ -266,6 +271,7 @@ class ChannelBasedData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['updateUrl'] = $data['updateUrl'] ?? null;
         $this->container['logo'] = $data['logo'] ?? null;
         $this->container['description'] = $data['description'] ?? null;
+        $this->container['appId'] = $data['appId'] ?? null;
         $this->container['featureList'] = $data['featureList'] ?? null;
     }
 
@@ -487,6 +493,18 @@ class ChannelBasedData implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDescription(?string $description): ChannelBasedData
     {
         $this->container['description'] = $description;
+        return $this;
+    }
+
+
+    public function getAppId(): ?string
+    {
+        return $this->container['appId'];
+    }
+
+    public function setAppId(?string $appId): ChannelBasedData
+    {
+        $this->container['appId'] = $appId;
         return $this;
     }
 

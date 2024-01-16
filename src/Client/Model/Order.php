@@ -52,6 +52,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
       * @param Address
       * @param Address
       * @param OrderBuyer
+      * @param AdditionalOrderDataGroup
       *
       * @var string[]
       */
@@ -72,7 +73,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'note' => 'string',
         'buyer' => '\JTL\SCX\Lib\Channel\Client\Model\OrderBuyer',
         'weeePickup' => 'bool',
-        'language' => 'string'
+        'language' => 'string',
+        'additionalOrderData' => '\JTL\SCX\Lib\Channel\Client\Model\AdditionalOrderDataGroup[]'
     ];
 
     /**
@@ -99,7 +101,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'note' => null,
         'buyer' => null,
         'weeePickup' => null,
-        'language' => null
+        'language' => null,
+        'additionalOrderData' => null
     ];
 
     /**
@@ -145,7 +148,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'note' => 'note',
         'buyer' => 'buyer',
         'weeePickup' => 'weeePickup',
-        'language' => 'language'
+        'language' => 'language',
+        'additionalOrderData' => 'additionalOrderData'
     ];
 
     /**
@@ -170,7 +174,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'note' => 'setNote',
         'buyer' => 'setBuyer',
         'weeePickup' => 'setWeeePickup',
-        'language' => 'setLanguage'
+        'language' => 'setLanguage',
+        'additionalOrderData' => 'setAdditionalOrderData'
     ];
 
     /**
@@ -195,7 +200,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'note' => 'getNote',
         'buyer' => 'getBuyer',
         'weeePickup' => 'getWeeePickup',
-        'language' => 'getLanguage'
+        'language' => 'getLanguage',
+        'additionalOrderData' => 'getAdditionalOrderData'
     ];
 
     /**
@@ -269,6 +275,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['buyer'] = $data['buyer'] ?? null;
         $this->container['weeePickup'] = $data['weeePickup'] ?? null;
         $this->container['language'] = $data['language'] ?? null;
+        $this->container['additionalOrderData'] = $data['additionalOrderData'] ?? null;
     }
 
     /**
@@ -321,6 +328,14 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['orderItem'] === null) {
             $invalidProperties[] = "'orderItem' can't be null";
         }
+        if (!is_null($this->container['additionalOrderData']) && (is_countable($this->container['additionalOrderData']) && ($this->container['additionalOrderData']) > 10)) {
+            $invalidProperties[] = "invalid value for 'additionalOrderData', number of items must be less than or equal to 10.";
+        }
+
+        if (!is_null($this->container['additionalOrderData']) && (is_countable($this->container['additionalOrderData']) && count($this->container['additionalOrderData']) < 0)) {
+            $invalidProperties[] = "invalid value for 'additionalOrderData', number of items must be greater than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -536,6 +551,18 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setLanguage(?string $language): Order
     {
         $this->container['language'] = $language;
+        return $this;
+    }
+
+
+    public function getAdditionalOrderData(): ?array
+    {
+        return $this->container['additionalOrderData'];
+    }
+
+    public function setAdditionalOrderData(?array $additionalOrderData): Order
+    {
+        $this->container['additionalOrderData'] = $additionalOrderData;
         return $this;
     }
 
