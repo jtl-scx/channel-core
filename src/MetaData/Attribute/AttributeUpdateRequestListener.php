@@ -45,7 +45,9 @@ class AttributeUpdateRequestListener extends AbstractListener
     {
         $sellerId = $event->getEvent()->getSellerId();
         $attributeList = $this->attributeLoader->fetchAll($sellerId);
-        $this->attributeUpdater->update($sellerId, $attributeList);
-        $this->logger->info("Attributes updated successfully for seller ID: {$sellerId}");
+        if ($attributeList->count() > 0) {
+            $this->attributeUpdater->update($sellerId, $attributeList);
+            $this->logger->info("Attributes updated successfully for seller ID: {$sellerId}");
+        }
     }
 }
