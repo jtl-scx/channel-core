@@ -1,0 +1,6 @@
+{
+  "channel": "channel",
+  "sellerId": "sellerId",
+  "message": "Hello, Channel!",
+  "severity": "INFO"
+}
