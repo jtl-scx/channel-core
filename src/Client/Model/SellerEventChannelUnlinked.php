@@ -52,7 +52,8 @@ class SellerEventChannelUnlinked implements ModelInterface, ArrayAccess, \JsonSe
     protected static $openAPITypes = [
         'sellerId' => 'string',
         'reason' => 'string',
-        'unlinkedAt' => '\DateTime'
+        'unlinkedAt' => '\DateTime',
+        'permanentlyRemoved' => 'bool'
     ];
 
     /**
@@ -65,7 +66,8 @@ class SellerEventChannelUnlinked implements ModelInterface, ArrayAccess, \JsonSe
     protected static $openAPIFormats = [
         'sellerId' => null,
         'reason' => null,
-        'unlinkedAt' => 'date-time'
+        'unlinkedAt' => 'date-time',
+        'permanentlyRemoved' => null
     ];
 
     /**
@@ -97,7 +99,8 @@ class SellerEventChannelUnlinked implements ModelInterface, ArrayAccess, \JsonSe
     protected static $attributeMap = [
         'sellerId' => 'sellerId',
         'reason' => 'reason',
-        'unlinkedAt' => 'unlinkedAt'
+        'unlinkedAt' => 'unlinkedAt',
+        'permanentlyRemoved' => 'permanentlyRemoved'
     ];
 
     /**
@@ -108,7 +111,8 @@ class SellerEventChannelUnlinked implements ModelInterface, ArrayAccess, \JsonSe
     protected static $setters = [
         'sellerId' => 'setSellerId',
         'reason' => 'setReason',
-        'unlinkedAt' => 'setUnlinkedAt'
+        'unlinkedAt' => 'setUnlinkedAt',
+        'permanentlyRemoved' => 'setPermanentlyRemoved'
     ];
 
     /**
@@ -119,7 +123,8 @@ class SellerEventChannelUnlinked implements ModelInterface, ArrayAccess, \JsonSe
     protected static $getters = [
         'sellerId' => 'getSellerId',
         'reason' => 'getReason',
-        'unlinkedAt' => 'getUnlinkedAt'
+        'unlinkedAt' => 'getUnlinkedAt',
+        'permanentlyRemoved' => 'getPermanentlyRemoved'
     ];
 
     /**
@@ -179,6 +184,7 @@ class SellerEventChannelUnlinked implements ModelInterface, ArrayAccess, \JsonSe
         $this->container['sellerId'] = $data['sellerId'] ?? null;
         $this->container['reason'] = $data['reason'] ?? null;
         $this->container['unlinkedAt'] = $data['unlinkedAt'] ?? null;
+        $this->container['permanentlyRemoved'] = $data['permanentlyRemoved'] ?? false;
     }
 
     /**
@@ -250,6 +256,18 @@ class SellerEventChannelUnlinked implements ModelInterface, ArrayAccess, \JsonSe
     public function setUnlinkedAt(\DateTime $unlinkedAt): SellerEventChannelUnlinked
     {
         $this->container['unlinkedAt'] = $unlinkedAt;
+        return $this;
+    }
+
+
+    public function getPermanentlyRemoved(): ?bool
+    {
+        return $this->container['permanentlyRemoved'];
+    }
+
+    public function setPermanentlyRemoved(?bool $permanentlyRemoved): SellerEventChannelUnlinked
+    {
+        $this->container['permanentlyRemoved'] = $permanentlyRemoved;
         return $this;
     }
 
