@@ -52,7 +52,9 @@ class OfferListingFailedError implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $openAPITypes = [
         'code' => 'string',
         'message' => 'string',
-        'longMessage' => 'string'
+        'longMessage' => 'string',
+        'relatedAttributeId' => 'string',
+        'recommendedValue' => 'string'
     ];
 
     /**
@@ -65,7 +67,9 @@ class OfferListingFailedError implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $openAPIFormats = [
         'code' => null,
         'message' => null,
-        'longMessage' => null
+        'longMessage' => null,
+        'relatedAttributeId' => null,
+        'recommendedValue' => null
     ];
 
     /**
@@ -97,7 +101,9 @@ class OfferListingFailedError implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $attributeMap = [
         'code' => 'code',
         'message' => 'message',
-        'longMessage' => 'longMessage'
+        'longMessage' => 'longMessage',
+        'relatedAttributeId' => 'relatedAttributeId',
+        'recommendedValue' => 'recommendedValue'
     ];
 
     /**
@@ -108,7 +114,9 @@ class OfferListingFailedError implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $setters = [
         'code' => 'setCode',
         'message' => 'setMessage',
-        'longMessage' => 'setLongMessage'
+        'longMessage' => 'setLongMessage',
+        'relatedAttributeId' => 'setRelatedAttributeId',
+        'recommendedValue' => 'setRecommendedValue'
     ];
 
     /**
@@ -119,7 +127,9 @@ class OfferListingFailedError implements ModelInterface, ArrayAccess, \JsonSeria
     protected static $getters = [
         'code' => 'getCode',
         'message' => 'getMessage',
-        'longMessage' => 'getLongMessage'
+        'longMessage' => 'getLongMessage',
+        'relatedAttributeId' => 'getRelatedAttributeId',
+        'recommendedValue' => 'getRecommendedValue'
     ];
 
     /**
@@ -179,6 +189,8 @@ class OfferListingFailedError implements ModelInterface, ArrayAccess, \JsonSeria
         $this->container['code'] = $data['code'] ?? null;
         $this->container['message'] = $data['message'] ?? null;
         $this->container['longMessage'] = $data['longMessage'] ?? null;
+        $this->container['relatedAttributeId'] = $data['relatedAttributeId'] ?? null;
+        $this->container['recommendedValue'] = $data['recommendedValue'] ?? null;
     }
 
     /**
@@ -193,9 +205,49 @@ class OfferListingFailedError implements ModelInterface, ArrayAccess, \JsonSeria
         if ($this->container['code'] === null) {
             $invalidProperties[] = "'code' can't be null";
         }
+        if ((mb_strlen($this->container['code']) > 255)) {
+            $invalidProperties[] = "invalid value for 'code', the character length must be smaller than or equal to 255.";
+        }
+
+        if ((mb_strlen($this->container['code']) < 1)) {
+            $invalidProperties[] = "invalid value for 'code', the character length must be bigger than or equal to 1.";
+        }
+
         if ($this->container['message'] === null) {
             $invalidProperties[] = "'message' can't be null";
         }
+        if ((mb_strlen($this->container['message']) > 250)) {
+            $invalidProperties[] = "invalid value for 'message', the character length must be smaller than or equal to 250.";
+        }
+
+        if ((mb_strlen($this->container['message']) < 1)) {
+            $invalidProperties[] = "invalid value for 'message', the character length must be bigger than or equal to 1.";
+        }
+
+        if (!is_null($this->container['longMessage']) && (mb_strlen($this->container['longMessage']) > 10000)) {
+            $invalidProperties[] = "invalid value for 'longMessage', the character length must be smaller than or equal to 10000.";
+        }
+
+        if (!is_null($this->container['longMessage']) && (mb_strlen($this->container['longMessage']) < 1)) {
+            $invalidProperties[] = "invalid value for 'longMessage', the character length must be bigger than or equal to 1.";
+        }
+
+        if (!is_null($this->container['relatedAttributeId']) && (mb_strlen($this->container['relatedAttributeId']) > 512)) {
+            $invalidProperties[] = "invalid value for 'relatedAttributeId', the character length must be smaller than or equal to 512.";
+        }
+
+        if (!is_null($this->container['relatedAttributeId']) && (mb_strlen($this->container['relatedAttributeId']) < 1)) {
+            $invalidProperties[] = "invalid value for 'relatedAttributeId', the character length must be bigger than or equal to 1.";
+        }
+
+        if (!is_null($this->container['recommendedValue']) && (mb_strlen($this->container['recommendedValue']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'recommendedValue', the character length must be smaller than or equal to 1000.";
+        }
+
+        if (!is_null($this->container['recommendedValue']) && (mb_strlen($this->container['recommendedValue']) < 1)) {
+            $invalidProperties[] = "invalid value for 'recommendedValue', the character length must be bigger than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -243,6 +295,30 @@ class OfferListingFailedError implements ModelInterface, ArrayAccess, \JsonSeria
     public function setLongMessage(?string $longMessage): OfferListingFailedError
     {
         $this->container['longMessage'] = $longMessage;
+        return $this;
+    }
+
+
+    public function getRelatedAttributeId(): ?string
+    {
+        return $this->container['relatedAttributeId'];
+    }
+
+    public function setRelatedAttributeId(?string $relatedAttributeId): OfferListingFailedError
+    {
+        $this->container['relatedAttributeId'] = $relatedAttributeId;
+        return $this;
+    }
+
+
+    public function getRecommendedValue(): ?string
+    {
+        return $this->container['recommendedValue'];
+    }
+
+    public function setRecommendedValue(?string $recommendedValue): OfferListingFailedError
+    {
+        $this->container['recommendedValue'] = $recommendedValue;
         return $this;
     }
 

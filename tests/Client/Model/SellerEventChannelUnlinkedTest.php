@@ -68,6 +68,12 @@ class SellerEventChannelUnlinkedTest extends AbstractApiModelTest
                 'getUnlinkedAt',
                 'setUnlinkedAt'
             ],
+            'assert property permanently Removed' => [
+                'permanentlyRemoved',
+                'bool',
+                'getPermanentlyRemoved',
+                'setPermanentlyRemoved'
+            ],
         ];
     }
 

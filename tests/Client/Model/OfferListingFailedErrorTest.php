@@ -68,6 +68,18 @@ class OfferListingFailedErrorTest extends AbstractApiModelTest
                 'getLongMessage',
                 'setLongMessage'
             ],
+            'assert property Related AttributeId' => [
+                'relatedAttributeId',
+                'string',
+                'getRelatedAttributeId',
+                'setRelatedAttributeId'
+            ],
+            'assert property Recommended Value' => [
+                'recommendedValue',
+                'string',
+                'getRecommendedValue',
+                'setRecommendedValue'
+            ],
         ];
     }
 

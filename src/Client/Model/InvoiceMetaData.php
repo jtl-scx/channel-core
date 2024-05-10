@@ -47,7 +47,6 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
       * Array of property to type mappings. Used for (de)serialization
       *
       * @param InvoiceDocumentType
-      * @param Bool
       * @param Address
       * @param OrderInvoice
       *
@@ -64,7 +63,7 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         'transactionDetails' => 'string',
         'shipmentDate' => '\DateTime',
         'taxAddressRole' => 'string',
-        'exportOutsideEu' => 'Bool',
+        'exportOutsideEu' => 'bool',
         'currency' => 'string',
         'billingAddress' => '\JTL\SCX\Lib\Channel\Client\Model\Address',
         'sellerVatNumber' => 'string',
@@ -475,12 +474,12 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    public function getExportOutsideEu(): ?Bool
+    public function getExportOutsideEu(): ?bool
     {
         return $this->container['exportOutsideEu'];
     }
 
-    public function setExportOutsideEu(?Bool $exportOutsideEu): InvoiceMetaData
+    public function setExportOutsideEu(?bool $exportOutsideEu): InvoiceMetaData
     {
         $this->container['exportOutsideEu'] = $exportOutsideEu;
         return $this;
