@@ -45,7 +45,7 @@ class CollectionSchemaLoader
         }
 
         foreach ($files as $file) {
-            include $file;
+            include_once $file;
         }
     }
 }
