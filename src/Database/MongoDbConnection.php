@@ -37,15 +37,20 @@ class MongoDbConnection
     private function getDatabaseConnection(): Client
     {
         if ($this->dbConn === null) {
-            $this->dbConn = new Client(
-                $this->databaseConnectionCredentials->getDsn(),
-                [
-                    'username' => $this->databaseConnectionCredentials->getUser(),
-                    'password' => $this->databaseConnectionCredentials->getPassword(),
-                    'readPreference' => 'secondaryPreferred',
-                ]
-            );
+            $option = [
+                'readPreference' => 'secondaryPreferred',
+            ];
+
+            if (
+                !empty($this->databaseConnectionCredentials->getUser())
+                && !empty($this->databaseConnectionCredentials->getPassword())
+            ) {
+                $option['username'] = $this->databaseConnectionCredentials->getUser();
+                $option['password'] = $this->databaseConnectionCredentials->getPassword();
+            }
+            $this->dbConn = new Client($this->databaseConnectionCredentials->getDsn(), $option);
         }
+
         return $this->dbConn;
     }
 }
