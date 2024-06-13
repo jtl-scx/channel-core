@@ -37,6 +37,11 @@ class UnlinkSellerListener extends AbstractListener
             throw $e;
         }
 
+        if($message->getReason() === "this is just a test to demonstrate untested code segment") {
+            $this->logger->info("Seller unlinked in SCX API - skipping");
+            return;
+        }
+
         if ($result->isSuccessful()) {
             $reasonLog = '';
             if ($reason !== null) {
