@@ -17,10 +17,8 @@ class GlobalAttributeFileReaderTest extends TestCase
      */
     public function it_can_load_attributes_from_file(): void
     {
-        $isRequired = random_int(0, 1) === 0 ? 'false' : 'true';
-        $isMultipleAllowed = random_int(0, 1) === 0 ? 'false' : 'true';
-        $isVariationDimension = random_int(0, 1) === 0 ? 'false' : 'true';
-        $isRecommended = random_int(0, 1) === 0 ? 'false' : 'true';
+        $random = static fn() => random_int(0, 1) === 0 ? 'false' : 'true';
+        $isRequired = $isMultipleAllowed = $isVariationDimension = $isRecommended = $isRepeatableSubSection = $random();
         $sut = $this->setupGlobalAttributeFileReader(
             <<<JSON
 [
@@ -38,6 +36,7 @@ class GlobalAttributeFileReaderTest extends TestCase
         , "isVariationDimension": $isVariationDimension
         , "recommended": $isRecommended
         , "values": [{"value": "123", "display": "foo"}]
+        , "isRepeatableSubSection": $isRepeatableSubSection
     },
     {
         "attributeId": "testId2",
