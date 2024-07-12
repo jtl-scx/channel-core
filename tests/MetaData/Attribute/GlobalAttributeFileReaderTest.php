@@ -17,7 +17,7 @@ class GlobalAttributeFileReaderTest extends TestCase
      */
     public function it_can_load_attributes_from_file(): void
     {
-        $random = static fn() => random_int(0, 1) === 0 ? 'false' : 'true';
+        $random = static fn () => random_int(0, 1) === 0 ? 'false' : 'true';
         $isRequired = $isMultipleAllowed = $isVariationDimension = $isRecommended = $isRepeatableSubSection = $random();
         $sut = $this->setupGlobalAttributeFileReader(
             <<<JSON
