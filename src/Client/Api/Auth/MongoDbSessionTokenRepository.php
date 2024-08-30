@@ -6,6 +6,8 @@ use JTL\SCX\Client\Auth\Model\SessionToken;
 use JTL\SCX\Client\Auth\SessionTokenStorage;
 use JTL\SCX\Lib\Channel\Database\MongoDbConnection;
 use JTL\SCX\Lib\Channel\Database\UTCDateTimeConverter;
+use MongoDB\BSON\UTCDateTime;
+use MongoDB\BSON\UTCDateTimeInterface;
 use MongoDB\Collection;
 
 class MongoDbSessionTokenRepository implements SessionTokenStorage
@@ -26,12 +28,15 @@ class MongoDbSessionTokenRepository implements SessionTokenStorage
     {
         if (!isset($this->sessionTokenMap[$key])) {
             $result = $this->collection->findOne(['key' => $key]);
-            if ($result !== null && isset($result['authToken'], $result['expireAt']) && $result['expireAt'] instanceof \DateTimeInterface) {
-                $token = new SessionToken((string)$result['authToken'], $result['expireAt']);
-                $this->sessionTokenMap[$key] = $token;
-                return $token;
+
+            if (!isset($result->authToken) || !isset($result->expireAt) || !$result->expireAt instanceof UTCDateTimeInterface) {
+                return null;
             }
-            return null;
+
+            $expireAt = \DateTimeImmutable::createFromMutable($result->expireAt->toDateTime());
+            $token = new SessionToken((string)$result->authToken, $expireAt);
+            $this->sessionTokenMap[$key] = $token;
+            return $token;
         }
 
         return $this->sessionTokenMap[$key];
