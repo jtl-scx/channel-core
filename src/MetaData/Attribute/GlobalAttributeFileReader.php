@@ -60,32 +60,33 @@ class GlobalAttributeFileReader
             $enumValues = null;
             if ($type->equals(AttributeType::ENUM())) {
                 if (isset($attributeData['values'])) {
-                    $enumValues = AttributeEnumValueList::fromArray($attributeData['values'] ?? []);
+                    $enumValues = AttributeEnumValueList::fromArray($attributeData['values']);
                 } elseif (isset($attributeData['enumValues'])) {
-                    $enumValues = AttributeEnumValueList::fromScalarArray($attributeData['enumValues'] ?? []);
+                    $enumValues = AttributeEnumValueList::fromScalarArray($attributeData['enumValues']);
                 } else {
                     $enumValues = new AttributeEnumValueList();
                 }
             }
 
             $attribute = new Attribute(
-                $attributeData['attributeId'],
-                $attributeData['displayName'],
-                $attributeData['description'] ?? null,
-                $attributeData['required'] ?? false,
-                [],
-                $type,
-                $attributeData['isMultipleAllowed'] ?? false,
-                $attributeData['attributeValueValidation'] ?? null,
-                $conditionalMandatory,
-                $conditionalOptional,
-                $attributeData['section'] ?? null,
-                $attributeData['sectionPosition'] ?? null,
-                $attributeData['subSection'] ?? null,
-                $attributeData['subSectionPosition'] ?? null,
-                $attributeData['isVariationDimension'] ?? null,
-                $attributeData['recommended'] ?? null,
-                $enumValues
+                attributeId: $attributeData['attributeId'],
+                displayName: $attributeData['displayName'],
+                description: $attributeData['description'] ?? null,
+                required: $attributeData['required'] ?? false,
+                enumValues: null,
+                type: $type,
+                isMultipleAllowed: $attributeData['isMultipleAllowed'] ?? false,
+                attributeValueValidation: $attributeData['attributeValueValidation'] ?? null,
+                conditionalMandatoryBy: $conditionalMandatory,
+                conditionalOptionalBy: $conditionalOptional,
+                section: $attributeData['section'] ?? null,
+                sectionPosition: $attributeData['sectionPosition'] ?? null,
+                subSection: $attributeData['subSection'] ?? null,
+                subSectionPosition: $attributeData['subSectionPosition'] ?? null,
+                isVariationDimension: $attributeData['isVariationDimension'] ?? null,
+                recommended: $attributeData['recommended'] ?? null,
+                values: $enumValues,
+                isRepeatableSubSection: $attributeData['isRepeatableSubSection'] ?? false
             );
             $attributeList[] = $attribute;
         }

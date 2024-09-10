@@ -8,7 +8,7 @@ declare(strict_types=1);
  * Date: 2020-05-14
  */
 
-namespace  JTL\SCX\Lib\Channel\Report\SellerInventory\Model;
+namespace JTL\SCX\Lib\Channel\Report\SellerInventory\Model;
 
 use JTL\Generic\GenericCollection;
 use JTL\SCX\Lib\Channel\Core\ToArrayTrait;
