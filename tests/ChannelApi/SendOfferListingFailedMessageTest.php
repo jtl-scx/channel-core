@@ -10,9 +10,6 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\ChannelApi;
 
-use JTL\SCX\Lib\Channel\Client\Model\ErrorResponseList;
-use JTL\SCX\Lib\Channel\ChannelApi\ListingFailedErrorList;
-use JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingFailedMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
 
@@ -21,6 +18,29 @@ use PHPUnit\Framework\TestCase;
  */
 class SendOfferListingFailedMessageTest extends TestCase
 {
+    /**
+     * @test
+     * @ticket EA-6714
+     */
+    public function it_create_a_multibyte_save_error_message(): void
+    {
+        $tooLong = <<<TXT
+Auf der Grundlage der Daten aus '[shirt_size#?.size_system, age_range_description.value, shirt_size#?.size_class]' ist das Feld '"height_type"' für das Attribut 'shirt_size' nicht zulässig. Erwartet wird höchstens '0' des Feldes '"height_type"' für das Attribut 'shirt_size'.Betroffene Attribute shirt_size
+Auf der Grundlage der Daten aus '[shirt_size#?.size_system, age_range_description.value, shirt_size#?.size_class]' ist das Feld '"height_type"' für das Attribut 'shirt_size' nicht zulässig. Erwartet wird höchstens '0' des Feldes '"height_type"' für das Attribut 'shirt_size'
+TXT;
+
+        $sut = new SendOfferListingFailedMessage(
+            sellerId: new ChannelSellerId("Foo der Bar"),
+            sellerOfferId: 123,
+            errorCode: "ICHMAGZUEGE",
+            errorMessage: $tooLong
+        );
+
+        $jsonEncodable = $sut->getErrorList()[0]->getMessage();
+        self::assertJson(json_encode($jsonEncodable));
+    }
+
+
     public function testCanBeUsed(): void
     {
         $sellerId = $this->createStub(ChannelSellerId::class);
@@ -68,7 +88,6 @@ class SendOfferListingFailedMessageTest extends TestCase
      */
     public function it_use_longMessage_when_errorMessage_exceed_maximum_length_on_construct(): void
     {
-
         $sut = new SendOfferListingFailedMessage(
             $this->createStub(ChannelSellerId::class),
             123,
@@ -88,7 +107,6 @@ class SendOfferListingFailedMessageTest extends TestCase
      */
     public function it_use_longMessage_when_errorMessage_exceed_maximum_length_on_add_error(): void
     {
-
         $errorMessage = str_repeat('A', 251);
         $longErrorMessage = str_repeat('B', 251);
         $sut = new SendOfferListingFailedMessage(
