@@ -30,6 +30,7 @@ use JTL\SCX\Lib\Channel\Core\Log\Context\ChannelOfferIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\ChannelOrderIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\ChannelOrderItemIdListContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\InvoiceNumberContext;
+use JTL\SCX\Lib\Channel\Core\Log\Context\MessageFQNContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\RefundIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\SellerOfferIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\SellerReportIdContext;
@@ -49,6 +50,8 @@ abstract class AbstractListener implements Listener, BeforeMessageHook, AfterMes
     public function setup(Message $message): void
     {
         $this->logger->reset();
+
+        $this->logger->replaceContext(new MessageFQNContext($message::class));
 
         if ($message instanceof AmqpTransportableMessage) {
             $this->logger->replaceContext(new MessageIdContext($message->getMessageId()));
@@ -95,7 +98,9 @@ abstract class AbstractListener implements Listener, BeforeMessageHook, AfterMes
         $messageClass = get_class($message);
         $throwableClass = get_class($throwable);
 
-        $this->logger->error("Message '{$messageClass}' failed with '{$throwableClass}' and message '{$throwable->getMessage()}");
+        $this->logger->error(
+            "Message '{$messageClass}' failed with '{$throwableClass}' and message '{$throwable->getMessage()}"
+        );
         throw $throwable;
     }
 }

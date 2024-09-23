@@ -60,9 +60,9 @@ class SendOfferListingFailedMessage extends AbstractAmqpTransportableMessage imp
 
     public function addError(string $errorCode, string $errorMessage, string $errorLongMessage = null): void
     {
-        if (strlen($errorMessage) > 250) {
+        if (mb_strlen($errorMessage) > 250) {
             $errorLongMessage = "{$errorLongMessage}\n{$errorMessage}";
-            $errorMessage = substr($errorMessage, 0, 250);
+            $errorMessage = mb_substr($errorMessage, 0, 250);
         }
         $this->errorList->add(new ListingFailedError($errorCode, $errorMessage, $errorLongMessage));
     }
