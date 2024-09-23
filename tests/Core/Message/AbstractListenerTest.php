@@ -19,10 +19,10 @@ use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerOfferIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerReportIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Core\Log\Context\ChannelOfferIdContext;
+use JTL\SCX\Lib\Channel\Core\Log\Context\MessageFQNContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\SellerOfferIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\Context\SellerReportIdContext;
 use JTL\SCX\Lib\Channel\Core\Log\MessageIdContext;
-use JTL\SCX\Lib\Channel\Core\Message\AbstractListener;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
 
@@ -36,7 +36,8 @@ class AbstractListenerTest extends TestCase
         $message = $this->createMock(TestMessage::class);
         $logger = $this->createMock(ScxLogger::class);
         $logger->expects(self::once())->method('reset');
-        $logger->expects(self::exactly(5))->method('replaceContext')->withConsecutive(
+        $logger->expects(self::exactly(6))->method('replaceContext')->withConsecutive(
+            [self::isInstanceOf(MessageFQNContext::class)],
             [self::isInstanceOf(MessageIdContext::class)],
             [self::isInstanceOf(ChannelSellerId::class)],
             [self::isInstanceOf(ChannelOfferIdContext::class)],
