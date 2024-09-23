@@ -39,7 +39,7 @@ class SendOfferListingFailedMessage extends AbstractAmqpTransportableMessage imp
         $this->errorList = new ListingFailedErrorList();
 
         $details = null;
-        if (strlen($errorMessage) > 250) {
+        if (mb_strlen($errorMessage) > 250) {
             $details = $errorMessage;
             $errorMessage = mb_substr($errorMessage, 0, 250);
         }
