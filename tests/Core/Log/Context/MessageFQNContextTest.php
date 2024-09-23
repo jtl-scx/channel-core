@@ -31,7 +31,7 @@ class MessageFQNContextTest extends TestCase
     public function it_can_create_context_instance(): void
     {
         $sut = new MessageFQNContext(SendOfferListingFailedMessage::class);
-        self::assertSame($this, $sut->createContextInstance());
+        self::assertSame($sut, $sut->createContextInstance());
     }
 
 
