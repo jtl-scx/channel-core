@@ -26,7 +26,7 @@ class SendOfferListingFailedMessageTest extends TestCase
     {
         $tooLong = <<<TXT
 Auf der Grundlage der Daten aus '[shirt_size#?.size_system, age_range_description.value, shirt_size#?.size_class]' ist das Feld '"height_type"' für das Attribut 'shirt_size' nicht zulässig. Erwartet wird höchstens '0' des Feldes '"height_type"' für das Attribut 'shirt_size'.Betroffene Attribute shirt_size
-Auf der Grundlage der Daten aus '[shirt_size#?.size_system, age_range_description.value, shirt_size#?.size_class]' ist das Feld '"height_type"' für das Attribut 'shirt_size' nicht zulässig. Erwartet wird höchstens '0' des Feldes '"height_type"' für das Attribut 'shirt_size'
+Auf der Grundlage der Daten aus '[shirt_size#?.size_system, age_range_description.value, shirt_size#?.size_class]' ist das Feld '"height_type"' für das Attribut 'shirt_size' nicht zulässig. Erwartet wird höchstens '0' des Feldes '"height_type"' für das Attribut 'shirt_size'.
 TXT;
 
         $sut = new SendOfferListingFailedMessage(
@@ -36,9 +36,16 @@ TXT;
             errorMessage: $tooLong
         );
 
+        $sut->addError("ICHMAGZUEGE", $tooLong);
+
         $jsonEncodable = $sut->getErrorList()[0]->getMessage();
         self::assertJson(json_encode($jsonEncodable));
+
+        $jsonEncodable = $sut->getErrorList()[1]->getMessage();
+        self::assertJson(json_encode($jsonEncodable));
     }
+
+
 
 
     public function testCanBeUsed(): void
