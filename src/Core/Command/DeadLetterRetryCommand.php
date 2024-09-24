@@ -260,9 +260,7 @@ class DeadLetterRetryCommand extends AbstractCommand
             if ($olderThan !== null) {
                 $olderThanDate = new DateTimeImmutable($olderThan);
 
-                if (($event instanceof AbstractEvent || $event instanceof AbstractAmqpTransportableMessage )
-                    && $event->getCreatedAt() > $olderThanDate
-                ) {
+                if ($event instanceof AbstractAmqpTransportableMessage  && $event->getCreatedAt() > $olderThanDate ) {
                     $skippedMessages++;
                     continue;
                 }
