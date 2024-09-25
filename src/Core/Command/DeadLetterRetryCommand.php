@@ -12,6 +12,7 @@ namespace JTL\SCX\Lib\Channel\Core\Command;
 
 use DateTimeImmutable;
 use Exception;
+use JTL\Nachricht\Contract\Message\AmqpTransportableMessage;
 use JTL\Nachricht\Contract\Serializer\MessageSerializer;
 use JTL\Nachricht\Contract\Transport\Amqp\AmqpQueueLister;
 use JTL\Nachricht\Message\AbstractAmqpTransportableMessage;
@@ -260,7 +261,7 @@ class DeadLetterRetryCommand extends AbstractCommand
             if ($olderThan !== null) {
                 $olderThanDate = new DateTimeImmutable($olderThan);
 
-                if ($event instanceof AbstractEvent && $event->getCreatedAt() > $olderThanDate) {
+                if ($event instanceof AmqpTransportableMessage  && $event->getCreatedAt() > $olderThanDate) {
                     $skippedMessages++;
                     continue;
                 }
