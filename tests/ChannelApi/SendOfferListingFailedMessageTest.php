@@ -131,4 +131,86 @@ TXT;
         self::assertStringContainsString($longErrorMessage, $err[1]->getLongMessage());
         self::assertStringContainsString($errorMessage, $err[1]->getLongMessage());
     }
+
+    /**
+     * @test
+     */
+    public function it_can_add_relatedAttributeId_in_constructor(): void
+    {
+        $relatedAttributeId = uniqid('relatedAttributeId', true);
+        $sut = new SendOfferListingFailedMessage(
+            $this->createStub(ChannelSellerId::class),
+            123,
+            'ERR_111',
+            'smallError',
+            relatedAttributeId: $relatedAttributeId
+        );
+
+        $err = $sut->getErrorList();
+
+        self::assertArrayHasKey(0, $err);
+        self::assertEquals($relatedAttributeId, $err[0]->getRelatedAttributeId());
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_add_recommendedValue_in_constructor(): void
+    {
+        $recommendedValue = uniqid('recommendedValue', true);
+        $sut = new SendOfferListingFailedMessage(
+            $this->createStub(ChannelSellerId::class),
+            123,
+            'ERR_111',
+            'smallError',
+            recommendedValue: $recommendedValue
+        );
+
+        $err = $sut->getErrorList();
+
+        self::assertArrayHasKey(0, $err);
+        self::assertEquals($recommendedValue, $err[0]->getRecommendedValue());
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_add_relatedAttributeId_when_add_a_error(): void
+    {
+        $relatedAttributeId = uniqid('relatedAttributeId', true);
+        $sut = new SendOfferListingFailedMessage(
+            $this->createStub(ChannelSellerId::class),
+            123,
+            'ERR_111',
+            'smallError',
+        );
+        $sut->addError('ERR_222', 'smallError', relatedAttributeId: $relatedAttributeId);
+
+        $err = $sut->getErrorList();
+
+        self::assertArrayHasKey(1, $err);
+        self::assertEquals($relatedAttributeId, $err[1]->getRelatedAttributeId());
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_add_recommendedValue_when_add_a_error(): void
+    {
+        $recommendedValue = uniqid('recommendedValue', true);
+        $sut = new SendOfferListingFailedMessage(
+            $this->createStub(ChannelSellerId::class),
+            123,
+            'ERR_111',
+            'smallError',
+        );
+        $sut->addError('ERR_222', 'smallError', recommendedValue: $recommendedValue);
+
+        $err = $sut->getErrorList();
+
+        self::assertArrayHasKey(1, $err);
+        self::assertEquals($recommendedValue, $err[1]->getRecommendedValue());
+    }
+
+
 }
