@@ -19,32 +19,28 @@ class SendOfferListingFailedMessage extends AbstractAmqpTransportableMessage imp
     SellerIdRelatedMessage,
     SellerOfferIdRelatedMessage
 {
-    private ChannelSellerId $sellerId;
-    private int $sellerOfferId;
     private \DateTime $failedAt;
     private ListingFailedErrorList $errorList;
 
     public function __construct(
-        ChannelSellerId $sellerId,
-        int $sellerOfferId,
+        private readonly ChannelSellerId $sellerId,
+        private readonly int $sellerOfferId,
         string $errorCode,
         string $errorMessage,
         \DateTime $failedAt = null,
-        string $messageId = null
+        string $messageId = null,
+        string|null $relatedAttributeId = null,
+        string|null $recommendedValue = null,
     ) {
         parent::__construct($messageId);
 
-        $this->sellerId = $sellerId;
-        $this->sellerOfferId = $sellerOfferId;
         $this->errorList = new ListingFailedErrorList();
-
-        $details = null;
-        if (mb_strlen($errorMessage) > 250) {
-            $details = $errorMessage;
-            $errorMessage = mb_substr($errorMessage, 0, 250);
-        }
-
-        $this->errorList->add(new ListingFailedError($errorCode, $errorMessage, $details));
+        $this->addError(
+            errorCode: $errorCode,
+            errorMessage: $errorMessage,
+            relatedAttributeId: $relatedAttributeId,
+            recommendedValue: $recommendedValue
+        );
         $this->failedAt = $failedAt ?? new \DateTime();
     }
 
@@ -58,13 +54,31 @@ class SendOfferListingFailedMessage extends AbstractAmqpTransportableMessage imp
         return $this->sellerOfferId;
     }
 
-    public function addError(string $errorCode, string $errorMessage, string $errorLongMessage = null): void
-    {
+    public function addError(
+        string $errorCode,
+        string $errorMessage,
+        string|null $errorLongMessage = null,
+        string|null $relatedAttributeId = null,
+        string|null $recommendedValue = null,
+    ): void {
         if (mb_strlen($errorMessage) > 250) {
-            $errorLongMessage = "{$errorLongMessage}\n{$errorMessage}";
+            if ($errorLongMessage === null) {
+                $errorLongMessage = $errorMessage;
+            } else {
+                $errorLongMessage = "{$errorLongMessage}\n{$errorMessage}";
+            }
             $errorMessage = mb_substr($errorMessage, 0, 250);
         }
-        $this->errorList->add(new ListingFailedError($errorCode, $errorMessage, $errorLongMessage));
+
+        $this->errorList->add(
+            new ListingFailedError(
+                code: $errorCode,
+                message: $errorMessage,
+                longMessage: $errorLongMessage,
+                relatedAttributeId: $relatedAttributeId,
+                recommendedValue: $recommendedValue
+            )
+        );
     }
 
     public function getErrorList(): ListingFailedErrorList

@@ -21,11 +21,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingResultListener
- *
- * @uses   \JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingInProgressMessage
- * @uses   \JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingFailedMessage
- * @uses   \JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingSuccessfulMessage
- * @uses   \JTL\SCX\Lib\Channel\Seller\ChannelSellerId
  */
 class SendOfferListingResultListenerTest extends TestCase
 {
@@ -37,7 +32,15 @@ class SendOfferListingResultListenerTest extends TestCase
         $errorCode = uniqid('errorCode', true);
         $errorMsg = uniqid('errorMsg', true);
         $failedAt = $this->createStub(DateTime::class);
-        $event = new SendOfferListingFailedMessage($sellerId, $sellerOfferId, $errorCode, $errorMsg, $failedAt);
+        $event = new SendOfferListingFailedMessage(
+            sellerId: $sellerId,
+            sellerOfferId: $sellerOfferId,
+            errorCode: $errorCode,
+            errorMessage: $errorMsg,
+            failedAt: $failedAt,
+            relatedAttributeId: 'any related Attribute',
+            recommendedValue: 'some recommended value'
+        );
 
         $offerApi = $this->createMock(OfferApi::class);
         $offerApi->expects(self::once())->method('markListingFailed')->with(self::callback(
@@ -57,7 +60,12 @@ class SendOfferListingResultListenerTest extends TestCase
                                 'offerId' => (int)$sellerOfferId,
                                 'failedAt' => $failedAt->format('c'),
                                 'errorList' => [
-                                    ['code' => $errorCode, 'message' => $errorMsg],
+                                    [
+                                        'code' => $errorCode,
+                                        'message' => $errorMsg,
+                                        'relatedAttributeId' => 'any related Attribute',
+                                        'recommendedValue' => 'some recommended value'
+                                    ],
                                 ],
                             ],
                         ],
@@ -70,6 +78,67 @@ class SendOfferListingResultListenerTest extends TestCase
         $listener = new SendOfferListingResultListener($offerApi, $this->createStub(ScxLogger::class));
         $listener->sendInFailed($event);
     }
+
+    /**
+     * @test
+     */
+    public function it_will_trim_relatedAttributId_to_512_characters_maximum(): void
+    {
+        $relatedAttributeId = str_repeat('A', 513);
+        $event = new SendOfferListingFailedMessage(
+            sellerId: new ChannelSellerId('123'),
+            sellerOfferId: 1,
+            errorCode: 'ABC',
+            errorMessage: 'joar geht halt nicht',
+            failedAt: new DateTime(),
+            relatedAttributeId: $relatedAttributeId,
+        );
+
+        $offerApi = $this->createMock(OfferApi::class);
+        $offerApi->expects(self::once())->method('markListingFailed')->with(self::callback(
+            function (MarkListingAsFailedRequest $request) use ($relatedAttributeId) {
+                $json = $request->getBody();
+                self::assertEquals(
+                    mb_substr($relatedAttributeId, 0, 512),
+                    json_decode($json, true)['offerList'][0]['errorList'][0]['relatedAttributeId']
+                );
+                return true;
+            }
+        ));
+        $listener = new SendOfferListingResultListener($offerApi, $this->createStub(ScxLogger::class));
+        $listener->sendInFailed($event);
+    }
+
+    /**
+     * @test
+     */
+    public function it_will_trim_recommendedValue_to_1000_characters_maximum(): void
+    {
+        $recommendedValue = str_repeat('A', 1001);
+        $event = new SendOfferListingFailedMessage(
+            sellerId: new ChannelSellerId('123'),
+            sellerOfferId: 1,
+            errorCode: 'ABC',
+            errorMessage: 'joar geht halt nicht',
+            failedAt: new DateTime(),
+            recommendedValue: $recommendedValue,
+        );
+
+        $offerApi = $this->createMock(OfferApi::class);
+        $offerApi->expects(self::once())->method('markListingFailed')->with(self::callback(
+            function (MarkListingAsFailedRequest $request) use ($recommendedValue) {
+                $json = $request->getBody();
+                self::assertEquals(
+                    mb_substr($recommendedValue, 0, 1000),
+                    json_decode($json, true)['offerList'][0]['errorList'][0]['recommendedValue']
+                );
+                return true;
+            }
+        ));
+        $listener = new SendOfferListingResultListener($offerApi, $this->createStub(ScxLogger::class));
+        $listener->sendInFailed($event);
+    }
+
 
     public function testCanSendInFailedWillFail(): void
     {
