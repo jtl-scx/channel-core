@@ -45,9 +45,6 @@ TXT;
         self::assertJson(json_encode($jsonEncodable));
     }
 
-
-
-
     public function testCanBeUsed(): void
     {
         $sellerId = $this->createStub(ChannelSellerId::class);
@@ -56,7 +53,7 @@ TXT;
         $errorMsg = uniqid('errorMsg', true);
         $failedAt = $this->createStub(\DateTime::class);
         $msgId = uniqid('msgId', true);
-        $msg = new SendOfferListingFailedMessage($sellerId, $sellerOfferId, $errorCode, $errorMsg, $failedAt, $msgId);
+        $msg = new SendOfferListingFailedMessage($sellerId, $sellerOfferId, $errorCode, $errorMsg, $failedAt, $msgId, 'related attribute', 'some recommended value');
 
         self::assertSame($sellerId, $msg->getSellerId());
         self::assertSame($sellerOfferId, $msg->getSellerOfferId());
@@ -65,6 +62,8 @@ TXT;
         self::assertInstanceOf(ListingFailedErrorList::class, $msg->getErrorList());
         self::assertSame($errorCode, $msg->getErrorList()->offsetGet(0)->getCode());
         self::assertSame($errorMsg, $msg->getErrorList()->offsetGet(0)->getMessage());
+        self::assertEquals('related attribute', $msg->getErrorList()->offsetGet(0)->getRelatedAttributeId());
+        self::assertEquals('some recommended value', $msg->getErrorList()->offsetGet(0)->getRecommendedValue());
     }
 
     public function testCanAddError(): void

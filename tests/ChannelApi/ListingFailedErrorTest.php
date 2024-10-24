@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\ChannelApi;
 
-use JTL\SCX\Lib\Channel\ChannelApi\ListingFailedError;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -23,10 +22,14 @@ class ListingFailedErrorTest extends TestCase
         $code = uniqid('code', true);
         $message = uniqid('message', true);
         $longMsg = uniqid('longMsg', true);
-        $error = new ListingFailedError($code, $message, $longMsg);
+        $relatedAttributeId = uniqid('relatedAttributeId', true);
+        $recommendedValue = uniqid('recommendedValue', true);
+        $error = new ListingFailedError($code, $message, $longMsg, $relatedAttributeId, $recommendedValue);
 
         self::assertSame($code, $error->getCode());
         self::assertSame($message, $error->getMessage());
         self::assertSame($longMsg, $error->getLongMessage());
+        self::assertSame($relatedAttributeId, $error->getRelatedAttributeId());
+        self::assertSame($recommendedValue, $error->getRecommendedValue());
     }
 }
