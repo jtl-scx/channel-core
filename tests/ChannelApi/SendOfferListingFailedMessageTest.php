@@ -45,9 +45,6 @@ TXT;
         self::assertJson(json_encode($jsonEncodable));
     }
 
-
-
-
     public function testCanBeUsed(): void
     {
         $sellerId = $this->createStub(ChannelSellerId::class);
@@ -56,7 +53,7 @@ TXT;
         $errorMsg = uniqid('errorMsg', true);
         $failedAt = $this->createStub(\DateTime::class);
         $msgId = uniqid('msgId', true);
-        $msg = new SendOfferListingFailedMessage($sellerId, $sellerOfferId, $errorCode, $errorMsg, $failedAt, $msgId);
+        $msg = new SendOfferListingFailedMessage($sellerId, $sellerOfferId, $errorCode, $errorMsg, $failedAt, $msgId, 'related attribute', 'some recommended value');
 
         self::assertSame($sellerId, $msg->getSellerId());
         self::assertSame($sellerOfferId, $msg->getSellerOfferId());
@@ -65,6 +62,8 @@ TXT;
         self::assertInstanceOf(ListingFailedErrorList::class, $msg->getErrorList());
         self::assertSame($errorCode, $msg->getErrorList()->offsetGet(0)->getCode());
         self::assertSame($errorMsg, $msg->getErrorList()->offsetGet(0)->getMessage());
+        self::assertEquals('related attribute', $msg->getErrorList()->offsetGet(0)->getRelatedAttributeId());
+        self::assertEquals('some recommended value', $msg->getErrorList()->offsetGet(0)->getRecommendedValue());
     }
 
     public function testCanAddError(): void
@@ -131,4 +130,86 @@ TXT;
         self::assertStringContainsString($longErrorMessage, $err[1]->getLongMessage());
         self::assertStringContainsString($errorMessage, $err[1]->getLongMessage());
     }
+
+    /**
+     * @test
+     */
+    public function it_can_add_relatedAttributeId_in_constructor(): void
+    {
+        $relatedAttributeId = uniqid('relatedAttributeId', true);
+        $sut = new SendOfferListingFailedMessage(
+            $this->createStub(ChannelSellerId::class),
+            123,
+            'ERR_111',
+            'smallError',
+            relatedAttributeId: $relatedAttributeId
+        );
+
+        $err = $sut->getErrorList();
+
+        self::assertArrayHasKey(0, $err);
+        self::assertEquals($relatedAttributeId, $err[0]->getRelatedAttributeId());
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_add_recommendedValue_in_constructor(): void
+    {
+        $recommendedValue = uniqid('recommendedValue', true);
+        $sut = new SendOfferListingFailedMessage(
+            $this->createStub(ChannelSellerId::class),
+            123,
+            'ERR_111',
+            'smallError',
+            recommendedValue: $recommendedValue
+        );
+
+        $err = $sut->getErrorList();
+
+        self::assertArrayHasKey(0, $err);
+        self::assertEquals($recommendedValue, $err[0]->getRecommendedValue());
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_add_relatedAttributeId_when_add_a_error(): void
+    {
+        $relatedAttributeId = uniqid('relatedAttributeId', true);
+        $sut = new SendOfferListingFailedMessage(
+            $this->createStub(ChannelSellerId::class),
+            123,
+            'ERR_111',
+            'smallError',
+        );
+        $sut->addError('ERR_222', 'smallError', relatedAttributeId: $relatedAttributeId);
+
+        $err = $sut->getErrorList();
+
+        self::assertArrayHasKey(1, $err);
+        self::assertEquals($relatedAttributeId, $err[1]->getRelatedAttributeId());
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_add_recommendedValue_when_add_a_error(): void
+    {
+        $recommendedValue = uniqid('recommendedValue', true);
+        $sut = new SendOfferListingFailedMessage(
+            $this->createStub(ChannelSellerId::class),
+            123,
+            'ERR_111',
+            'smallError',
+        );
+        $sut->addError('ERR_222', 'smallError', recommendedValue: $recommendedValue);
+
+        $err = $sut->getErrorList();
+
+        self::assertArrayHasKey(1, $err);
+        self::assertEquals($recommendedValue, $err[1]->getRecommendedValue());
+    }
+
+
 }

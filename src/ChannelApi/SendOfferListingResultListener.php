@@ -23,6 +23,8 @@ use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Message\AbstractListener;
 
+use function Psl\Str\length;
+
 class SendOfferListingResultListener extends AbstractListener
 {
     private OfferApi $offerApi;
@@ -72,10 +74,13 @@ class SendOfferListingResultListener extends AbstractListener
             $errorList = [];
             $logMessage = "";
             foreach ($event->getErrorList() as $err) {
-                $nextError = new OfferListingFailedError();
-                $nextError->setCode($err->getCode());
-                $nextError->setMessage($err->getMessage());
-                $nextError->setLongMessage($err->getLongMessage());
+                $nextError = new OfferListingFailedError([
+                    'code' => $err->getCode(),
+                    'message' => $err->getMessage(),
+                    'longMessage' => $err->getLongMessage(),
+                    'relatedAttributeId' => mb_substr((string)$err->getRelatedAttributeId(), 0, 512),
+                    'recommendedValue' => mb_substr((string)$err->getRecommendedValue(), 0, 1000),
+                ]);
                 $errorList[] = $nextError;
 
                 $logMessage = sprintf(
@@ -105,12 +110,13 @@ class SendOfferListingResultListener extends AbstractListener
     public function sendSuccessful(SendOfferListingSuccessfulMessage $event): void
     {
         try {
-            $offer = new OfferListingSuccessful();
-            $offer->setSellerId((string)$event->getSellerId());
-            $offer->setOfferId($event->getSellerOfferId());
-            $offer->setListedAt($event->getListedAt());
-            $offer->setListingUrl($event->getListingUrl());
-            $offer->setChannelOfferId($event->getChannelOfferId());
+            $offer = new OfferListingSuccessful([
+                'sellerId' => (string)$event->getSellerId(),
+                'offerId' => $event->getSellerOfferId(),
+                'channelOfferId' => $event->getChannelOfferId(),
+                'listedAt' => $event->getListedAt(),
+                'listingUrl' => $event->getListingUrl()
+            ]);
 
             $request = new MarkListingSuccessfulRequest();
             $request->addOffer($offer);
