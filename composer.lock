@@ -1189,16 +1189,16 @@
         },
         {
             "name": "php-amqplib/php-amqplib",
-            "version": "v3.7.1",
+            "version": "v3.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-amqplib/php-amqplib.git",
-                "reference": "5db9a68435fdde9ba4248a8fd2fae6d07b442b65"
+                "reference": "738a73eb0019b6c99d9bc25d7a0c0dd8f56a5199"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/5db9a68435fdde9ba4248a8fd2fae6d07b442b65",
-                "reference": "5db9a68435fdde9ba4248a8fd2fae6d07b442b65",
+                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/738a73eb0019b6c99d9bc25d7a0c0dd8f56a5199",
+                "reference": "738a73eb0019b6c99d9bc25d7a0c0dd8f56a5199",
                 "shasum": ""
             },
             "require": {
@@ -1264,22 +1264,22 @@
             ],
             "support": {
                 "issues": "https://github.com/php-amqplib/php-amqplib/issues",
-                "source": "https://github.com/php-amqplib/php-amqplib/tree/v3.7.1"
+                "source": "https://github.com/php-amqplib/php-amqplib/tree/v3.7.2"
             },
-            "time": "2024-09-03T19:18:03+00:00"
+            "time": "2024-11-21T09:21:41+00:00"
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "3.0.41",
+            "version": "3.0.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "621c73f7dcb310b61de34d1da4c4204e8ace6ceb"
+                "reference": "709ec107af3cb2f385b9617be72af8cf62441d02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/621c73f7dcb310b61de34d1da4c4204e8ace6ceb",
-                "reference": "621c73f7dcb310b61de34d1da4c4204e8ace6ceb",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/709ec107af3cb2f385b9617be72af8cf62441d02",
+                "reference": "709ec107af3cb2f385b9617be72af8cf62441d02",
                 "shasum": ""
             },
             "require": {
@@ -1360,7 +1360,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.41"
+                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.43"
             },
             "funding": [
                 {
@@ -1376,7 +1376,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-08-12T00:13:54+00:00"
+            "time": "2024-12-14T21:12:59+00:00"
         },
         {
             "name": "psr/clock",
