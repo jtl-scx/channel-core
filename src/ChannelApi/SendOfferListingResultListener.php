@@ -74,13 +74,22 @@ class SendOfferListingResultListener extends AbstractListener
             $errorList = [];
             $logMessage = "";
             foreach ($event->getErrorList() as $err) {
-                $nextError = new OfferListingFailedError([
+                $data = [
                     'code' => $err->getCode(),
                     'message' => $err->getMessage(),
                     'longMessage' => $err->getLongMessage(),
-                    'relatedAttributeId' => mb_substr((string)$err->getRelatedAttributeId(), 0, 512),
-                    'recommendedValue' => mb_substr((string)$err->getRecommendedValue(), 0, 1000),
-                ]);
+                ];
+
+                $relatedAttributeId = $err->getRelatedAttributeId();
+                if ($relatedAttributeId !== null && strlen($relatedAttributeId) > 0) {
+                    $data['relatedAttributeId'] = mb_substr((string)$relatedAttributeId, 0, 512);
+                }
+
+                $recommendedValue = $err->getRecommendedValue();
+                if ($recommendedValue !== null && strlen($recommendedValue) > 0) {
+                    $data['recommendedValue'] = mb_substr((string)$recommendedValue, 0, 1000);
+                }
+                $nextError = new OfferListingFailedError($data);
                 $errorList[] = $nextError;
 
                 $logMessage = sprintf(
