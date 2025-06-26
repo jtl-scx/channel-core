@@ -159,6 +159,40 @@ class SendOfferListingResultListenerTest extends TestCase
         $listener->sendInFailed($event);
     }
 
+    /**
+     * @test
+     * @ticket EA-7272
+     */
+    public function it_will_handle_null_values_for_relatedAttributeId_and_recommendedValue(): void
+    {
+        $event = new SendOfferListingFailedMessage(
+            sellerId: new ChannelSellerId('123'),
+            sellerOfferId: 1,
+            errorCode: 'ABC',
+            errorMessage: 'Error message',
+            failedAt: new DateTime(),
+            relatedAttributeId: null,
+            recommendedValue: null
+        );
+
+        $offerApi = $this->createMock(OfferApi::class);
+        $offerApi->expects(self::once())->method('markListingFailed')->with(self::callback(
+            function (MarkListingAsFailedRequest $request) {
+                $json = $request->getBody();
+                $data = json_decode($json, true);
+
+                // Check that relatedAttributeId and recommendedValue are not included in the request
+                self::assertArrayNotHasKey('relatedAttributeId', $data['offerList'][0]['errorList'][0]);
+                self::assertArrayNotHasKey('recommendedValue', $data['offerList'][0]['errorList'][0]);
+
+                return true;
+            }
+        ));
+
+        $listener = new SendOfferListingResultListener($offerApi, $this->createStub(ScxLogger::class));
+        $listener->sendInFailed($event);
+    }
+
     public function testCanSendSuccessful(): void
     {
         $sellerIdStr = uniqid('sellerId');
