@@ -34,7 +34,7 @@ class ItemAttributeList extends GenericCollection
 
         foreach ($itemDataList as $index => $itemData) {
             if (isset($itemData['attributeId'], $itemData['value'])) {
-                $return->add(new ItemAttribute($itemData['attributeId'], $itemData['value']));
+                $return->add(new ItemAttribute($itemData['attributeId'], $itemData['value'], $itemData['group'] ?? null));
             } else {
                 throw new \InvalidArgumentException("Missing 'attributeId' and/or 'value' for element '{$index}'");
             }
