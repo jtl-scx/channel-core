@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Report\SellerInventory\Model;
 
-use JTL\SCX\Lib\Channel\Core\ToArrayTrait;
-
 class ItemAttribute
 {
-    use ToArrayTrait;
-
     public function __construct(
         private readonly string $attributeId,
         private readonly string $value,
@@ -30,5 +26,16 @@ class ItemAttribute
     public function getGroup(): ?string
     {
         return $this->group;
+    }
+
+    public function toArray():array {
+        $arr = [
+            'attributeId' => $this->attributeId,
+            'value' => $this->value
+        ];
+        if ($this->group !== null) {
+            $arr['group'] = $this->group;
+        }
+        return $arr;
     }
 }
