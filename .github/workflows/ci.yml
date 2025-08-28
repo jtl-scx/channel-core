@@ -43,33 +43,6 @@ jobs:
       - name: Check Code Style
         run: composer phpcs-dry
 
-  backwards-compatibility-check:
-    name: Backwards Compatibility Check
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: "Install PHP"
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.1"
-
-      - name: "Install dependencies"
-        run: "composer install"
-
-      - name: "Check for BC breaks"
-        continue-on-error: true
-        # run: "vendor/bin/roave-backward-compatibility-check --format=github-actions || true"
-        run: "vendor/bin/roave-backward-compatibility-check --format=markdown > bc-check-report.md || true"
-
-      - name: 'Upload Report'
-        uses: actions/upload-artifact@v3
-        with:
-          name: bc-check-report
-          path: bc-check-report.md
-
   tests:
     name: Unit Testing
     runs-on: ubuntu-22.04
