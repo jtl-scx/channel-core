@@ -13,7 +13,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-          extensions: mongodb-mongodb/mongo-php-driver@v1.9
+          extensions: mongodb-mongodb/mongo-php-driver@v1.21
 
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -26,13 +26,14 @@ jobs:
 
   check-code-style:
     name: Code Style Check
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
+          extensions: mongodb-mongodb/mongo-php-driver@v1.21
 
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -54,6 +55,7 @@ jobs:
           - "8.1"
           - "8.2"
           - "8.3"
+          - "8.4"
 
     steps:
       - name: "Install PHP"
@@ -61,7 +63,7 @@ jobs:
         with:
           php-version: "${{ matrix.php-version }}"
           coverage: xdebug3
-          extensions: mongodb-mongodb/mongo-php-driver@v1.9
+          extensions: mongodb-mongodb/mongo-php-driver@v1.21
 
       - name: "Checkout"
         uses: actions/checkout@v2
