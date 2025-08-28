@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "458e27d39c22e5497bd4e22184d6204f",
+    "content-hash": "b523c248868950ce7e7805c8640e1bdc",
     "packages": [
         {
             "name": "brick/math",
@@ -645,10 +645,16 @@
         {
             "name": "jtl/go-prometrics-client",
             "version": "dev-EA-7266-php-8-4",
-            "dist": {
-                "type": "path",
-                "url": "/application/source/vendor_local/goprometrics-client",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jtl-software/goprometrics-client.git",
                 "reference": "76ed1300ef953d647f10b46665a8526a3a3f5721"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jtl-software/goprometrics-client/zipball/76ed1300ef953d647f10b46665a8526a3a3f5721",
+                "reference": "76ed1300ef953d647f10b46665a8526a3a3f5721",
+                "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
@@ -670,37 +676,16 @@
                     "JTL\\GoPrometrics\\Client\\": "src/"
                 }
             },
-            "scripts": {
-                "tests": [
-                    "composer phpcs",
-                    "composer phpstan",
-                    "composer phpunit",
-                    "composer infection"
-                ],
-                "infection": [
-                    "vendor/bin/infection -s -j4 --min-covered-msi=98 --min-msi=98"
-                ],
-                "phpunit": [
-                    "vendor/bin/phpunit"
-                ],
-                "phpstan": [
-                    "vendor/bin/phpstan",
-                    "vendor/bin/psalm"
-                ],
-                "phpcs": [
-                    "vendor/bin/php-cs-fixer fix --config=./.php-cs-fixer.dist.php"
-                ],
-                "phpcs-dry": [
-                    "vendor/bin/php-cs-fixer fix --config=./.php-cs-fixer.dist.php --dry-run"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "PHP-Client to use the JTL GoPrometrics Service",
-            "transport-options": {
-                "relative": false
-            }
+            "support": {
+                "issues": "https://github.com/jtl-software/goprometrics-client/issues",
+                "source": "https://github.com/jtl-software/goprometrics-client/tree/EA-7266-php-8-4"
+            },
+            "time": "2025-08-27T14:04:43+00:00"
         },
         {
             "name": "jtl/nachricht",
