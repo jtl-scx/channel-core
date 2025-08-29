@@ -53,6 +53,7 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPITypes = [
         'id' => 'string',
+        'clientVersion' => 'string',
         'createdAt' => '\DateTime',
         'type' => '\JTL\SCX\Lib\Channel\Client\Model\SellerEventTypeList',
         'event' => 'OneOfSellerEventOrderShippingSellerEventOrderPaymentSellerEventOfferEndSellerEventOfferNewSellerEventOfferUpdateSellerEventOfferStockUpdateSellerEventOfferPriceUpdateSellerEventTestSellerEventReportRequestSystemEventNotificationSellerEventChannelUnlinkedSellerEventSellerAttributesUpdateRequestSellerEventOrderCancellationRequestSellerEventOrderCancellationAcceptedSellerEventOrderCancellationDeniedSellerEventOrderAcceptSellerEventOrderInvoiceSellerEventOrderReturnReceivedSellerEventOrderRefundSellerEventTicketReply'
@@ -67,6 +68,7 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPIFormats = [
         'id' => null,
+        'clientVersion' => null,
         'createdAt' => 'date-time',
         'type' => null,
         'event' => null
@@ -100,6 +102,7 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $attributeMap = [
         'id' => 'id',
+        'clientVersion' => 'clientVersion',
         'createdAt' => 'createdAt',
         'type' => 'type',
         'event' => 'event'
@@ -112,6 +115,7 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $setters = [
         'id' => 'setId',
+        'clientVersion' => 'setClientVersion',
         'createdAt' => 'setCreatedAt',
         'type' => 'setType',
         'event' => 'setEvent'
@@ -124,6 +128,7 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected static $getters = [
         'id' => 'getId',
+        'clientVersion' => 'getClientVersion',
         'createdAt' => 'getCreatedAt',
         'type' => 'getType',
         'event' => 'getEvent'
@@ -170,9 +175,9 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
+    
 
-
-
+    
 
     /**
      * Associative array for storing property values
@@ -184,6 +189,7 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
     public function __construct(array $data = null)
     {
         $this->container['id'] = $data['id'] ?? null;
+        $this->container['clientVersion'] = $data['clientVersion'] ?? null;
         $this->container['createdAt'] = $data['createdAt'] ?? null;
         $this->container['type'] = $data['type'] ?? null;
         $this->container['event'] = $data['event'] ?? null;
@@ -233,6 +239,18 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
     public function setId(string $id): SellerEventListEventList
     {
         $this->container['id'] = $id;
+        return $this;
+    }
+
+
+    public function getClientVersion(): ?string
+    {
+        return $this->container['clientVersion'];
+    }
+
+    public function setClientVersion(?string $clientVersion): SellerEventListEventList
+    {
+        $this->container['clientVersion'] = $clientVersion;
         return $this;
     }
 
