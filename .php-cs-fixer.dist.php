@@ -9,6 +9,7 @@ $config->setFinder($finder);
 $config->setRules([
     '@PSR12' => true,
     'array_syntax' => ['syntax' => 'short'],
+    'blank_line_after_opening_tag' => false
 ]);
 
 return $config;
