@@ -23,8 +23,6 @@ use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Message\AbstractListener;
 
-use function Psl\Str\length;
-
 class SendOfferListingResultListener extends AbstractListener
 {
     private OfferApi $offerApi;
