@@ -210,8 +210,8 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
         if ($this->container['createdAt'] === null) {
             $invalidProperties[] = "'createdAt' can't be null";
         }
-        if (!is_null($this->container['clientVersion']) && !preg_match("/^\\d+\\.\\d+\\.\\d+\\.\\d+$/", $this->container['clientVersion'])) {
-            $invalidProperties[] = "invalid value for 'clientVersion', must be conform to the pattern /^\\d+\\.\\d+\\.\\d+\\.\\d+$/.";
+        if (!is_null($this->container['clientVersion']) && !preg_match("/^\\w{1,25}$/", $this->container['clientVersion'])) {
+            $invalidProperties[] = "invalid value for 'clientVersion', must be conform to the pattern /^\\w{1,25}$/.";
         }
 
         if ($this->container['type'] === null) {
