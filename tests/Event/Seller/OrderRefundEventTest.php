@@ -27,6 +27,7 @@ class OrderRefundEventTest extends TestCase
     public function it_can_be_created()
     {
         $id = uniqid('id', true);
+        $version = uniqid('version', true);
         $createdAt = new \DateTimeImmutable();
         $sellerId = uniqid('sellerId', true);
         $refundId = uniqid('refundId', true);
@@ -38,6 +39,7 @@ class OrderRefundEventTest extends TestCase
 
         $orderRefundEvent = new OrderRefundEvent(
             $id,
+            $version,
             $createdAt,
             $event
         );

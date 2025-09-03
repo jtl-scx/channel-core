@@ -36,6 +36,7 @@ class AttributeUpdateRequestListenerTest extends TestCase
     {
         $event = new AttributesUpdateRequestEvent(
             id: 'any_id',
+            clientVersion: 'any_client_version',
             createdAt: new \DateTimeImmutable(),
             event: new SellerEventSellerAttributesUpdateRequest(['sellerId' => 'any_seller_id'])
         );
@@ -63,6 +64,7 @@ class AttributeUpdateRequestListenerTest extends TestCase
     {
         $event = new AttributesUpdateRequestEvent(
             id: 'any_id',
+            clientVersion: 'any_client_version',
             createdAt: new \DateTimeImmutable(),
             event: new SellerEventSellerAttributesUpdateRequest(['sellerId' => 'any_seller_id'])
         );

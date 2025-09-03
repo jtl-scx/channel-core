@@ -119,6 +119,7 @@ class EventFactoryTest extends TestCase
 
         $containerMock->expects($this->any())->method('getId')->willReturn(uniqid("id"));
         $containerMock->expects($this->any())->method('getCreatedAt')->willReturn(new DateTimeImmutable());
+        $containerMock->expects($this->any())->method('getClientVersion')->willReturn(uniqid("version"));;
 
         $factory = new EventFactory();
         $this->assertInstanceOf($expectation, $factory->createFromEventContainer($containerMock));

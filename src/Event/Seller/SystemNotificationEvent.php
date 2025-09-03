@@ -21,11 +21,12 @@ class SystemNotificationEvent extends AbstractEvent
 
     public function __construct(
         string $id,
+        string $clientVersion,
         DateTimeImmutable $createdAt,
         SystemEventNotification $event,
         string $internalEventId = null
     ) {
-        parent::__construct($id, $createdAt, EventType::SystemNotification(), $internalEventId);
+        parent::__construct($id, $clientVersion,$createdAt, EventType::SystemNotification(), $internalEventId);
         $this->event = $event;
     }
 

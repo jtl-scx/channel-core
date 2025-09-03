@@ -18,6 +18,7 @@ class OrderReturnReceivedTest extends TestCase
     {
         $sut = new OrderReturnReceived(
             'A_ID',
+            'VERSION',
             self::createStub(DateTimeImmutable::class),
             $expectedEvent = self::createStub(SellerEventOrderReturnReceived::class)
         );
@@ -31,6 +32,7 @@ class OrderReturnReceivedTest extends TestCase
     {
         $sut = new OrderReturnReceived(
             'A_ID',
+            'VERSION',
             self::createStub(DateTimeImmutable::class),
             $expectedEvent = self::createStub(SellerEventOrderReturnReceived::class)
         );
@@ -47,6 +49,7 @@ class OrderReturnReceivedTest extends TestCase
     {
         $sut = new OrderReturnReceived(
             'A_ID',
+            'VERSION',
             self::createStub(DateTimeImmutable::class),
             $expectedEvent = self::createStub(SellerEventOrderReturnReceived::class)
         );

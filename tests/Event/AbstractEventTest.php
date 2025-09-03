@@ -14,6 +14,7 @@ class AbstractEventTest extends TestCase
     {
         $sut = new class (
             id: $id = uniqid(),
+            clientVersion: uniqid(),
             createdAt:  $createdAt = new \DateTimeImmutable(),
             type: $type = $this->createStub(EventType::class),
             internalEventId: $internalEventId = uniqid(),

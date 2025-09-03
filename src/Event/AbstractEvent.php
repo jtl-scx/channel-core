@@ -17,11 +17,13 @@ use JTL\SCX\Lib\Channel\Client\Event\EventType;
 abstract class AbstractEvent extends AbstractAmqpTransportableMessage
 {
     protected string $id;
+    protected string $clientVersion;
     protected EventType $type;
     private ?int $retryCount;
 
     public function __construct(
         string $id,
+        string $clientVersion,
         DateTimeImmutable $createdAt,
         EventType $type,
         string $internalEventId = null,
@@ -48,6 +50,11 @@ abstract class AbstractEvent extends AbstractAmqpTransportableMessage
     public function getId(): string
     {
         return $this->id;
+    }
+
+    public function getClientVersion(): string
+    {
+        return $this->clientVersion;
     }
 
     public function getType(): EventType
