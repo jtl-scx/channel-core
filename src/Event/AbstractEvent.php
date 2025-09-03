@@ -40,6 +40,7 @@ abstract class AbstractEvent extends AbstractAmqpTransportableMessage
         $this->retryCount = $retryCount;
         $this->id = $id;
         $this->type = $type;
+        $this->clientVersion = $clientVersion;
     }
 
     public function getRetryCount(): int
