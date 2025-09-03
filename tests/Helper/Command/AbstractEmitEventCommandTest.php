@@ -35,6 +35,7 @@ class AbstractEmitEventCommandTest extends TestCase
         file_put_contents($this->testJsonFile, json_encode([
             'sellerId' => '123',
             'channel' => 'dingens',
+            'clientVersion' => '1.0.0',
             'message' => 'a message',
             'severity' => 'INFO',
         ]));

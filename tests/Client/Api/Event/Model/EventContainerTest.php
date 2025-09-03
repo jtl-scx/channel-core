@@ -25,13 +25,15 @@ class EventContainerTest extends TestCase
     public function testCanBeCreated(): void
     {
         $id = uniqid('id', true);
+        $clientVersion = uniqid('clientVersion', true);
         $createdAt = new \DateTimeImmutable();
         $type = $this->createStub(EventType::class);
         $event = $this->createStub(SellerEventOfferEnd::class);
 
-        $eventContainer = new EventContainer($id, $createdAt, $type, $event);
+        $eventContainer = new EventContainer($id, $createdAt, $clientVersion, $type, $event);
 
         $this->assertSame($id, $eventContainer->getId());
+        $this->assertSame($clientVersion, $eventContainer->getClientVersion());
         $this->assertSame($createdAt, $eventContainer->getCreatedAt());
         $this->assertSame($type, $eventContainer->getType());
         $this->assertSame($event, $eventContainer->getEvent());

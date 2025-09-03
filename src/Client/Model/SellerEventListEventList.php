@@ -47,7 +47,7 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
       * Array of property to type mappings. Used for (de)serialization
       *
       * @param SellerEventTypeList
-      * @param OneOfSellerEventOrderShippingSellerEventOrderPaymentSellerEventOfferEndSellerEventOfferNewSellerEventOfferUpdateSellerEventOfferStockUpdateSellerEventOfferPriceUpdateSellerEventTestSellerEventReportRequestSystemEventNotificationSellerEventChannelUnlinkedSellerEventSellerAttributesUpdateRequestSellerEventOrderCancellationRequestSellerEventOrderCancellationAcceptedSellerEventOrderCancellationDeniedSellerEventOrderAcceptSellerEventOrderInvoiceSellerEventOrderReturnReceivedSellerEventOrderRefundSellerEventTicketReply
+      * @param object
       *
       * @var string[]
       */

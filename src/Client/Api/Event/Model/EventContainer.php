@@ -30,13 +30,15 @@ use JTL\SCX\Lib\Channel\Client\Model\SystemEventNotification as Notification;
 class EventContainer
 {
     private string $id;
+    private string $clientVersion;
     private \DateTimeImmutable $createdAt;
     private EventType $type;
     private $event;
 
-    public function __construct(string $id, \DateTimeImmutable $createdAt, EventType $type, $event)
+    public function __construct(string $id, \DateTimeImmutable $createdAt, string $clientVersion, EventType $type, $event)
     {
         $this->id = $id;
+        $this->clientVersion = $clientVersion;
         $this->createdAt = $createdAt;
         $this->type = $type;
         $this->event = $event;
@@ -45,6 +47,11 @@ class EventContainer
     public function getId(): string
     {
         return $this->id;
+    }
+
+    public function getClientVersion(): string
+    {
+        return $this->clientVersion;
     }
 
     public function getCreatedAt(): \DateTimeImmutable

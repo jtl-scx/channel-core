@@ -71,6 +71,7 @@ class EventApi
                 $eventContainer = new EventContainer(
                     (string)$event->id,
                     new \DateTimeImmutable($event->createdAt),
+                    (string)$event->clientVersion ?? '',
                     $eventType,
                     $eventData
                 );
