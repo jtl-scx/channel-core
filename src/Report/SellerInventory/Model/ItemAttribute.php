@@ -28,7 +28,8 @@ class ItemAttribute
         return $this->group;
     }
 
-    public function toArray():array {
+    public function toArray(): array
+    {
         $arr = [
             'attributeId' => $this->attributeId,
             'value' => $this->value
