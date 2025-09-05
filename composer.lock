@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff5867863a4be28f03d14352f6747133",
+    "content-hash": "b675e605713664f421104620a4bd6000",
     "packages": [
         {
             "name": "brick/math",
@@ -745,16 +745,16 @@
         },
         {
             "name": "jtl/php-generic-collection",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-software/php-generic-collection.git",
-                "reference": "c647a3737d9b1cf838bcedce61356ea1898bcdd5"
+                "reference": "2f73dc86b9831023dc3d5925b9b351cd5d6a1389"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-software/php-generic-collection/zipball/c647a3737d9b1cf838bcedce61356ea1898bcdd5",
-                "reference": "c647a3737d9b1cf838bcedce61356ea1898bcdd5",
+                "url": "https://api.github.com/repos/jtl-software/php-generic-collection/zipball/2f73dc86b9831023dc3d5925b9b351cd5d6a1389",
+                "reference": "2f73dc86b9831023dc3d5925b9b351cd5d6a1389",
                 "shasum": ""
             },
             "require-dev": {
@@ -777,9 +777,9 @@
             "description": "An implementation of a generic collection for PHP",
             "support": {
                 "issues": "https://github.com/jtl-software/php-generic-collection/issues",
-                "source": "https://github.com/jtl-software/php-generic-collection/tree/1.0.0"
+                "source": "https://github.com/jtl-software/php-generic-collection/tree/1.0.1"
             },
-            "time": "2023-11-29T17:32:51+00:00"
+            "time": "2025-09-05T09:28:15+00:00"
         },
         {
             "name": "laminas/laminas-code",
