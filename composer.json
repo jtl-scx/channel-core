@@ -12,7 +12,7 @@
         "jtl-software/opsgenie-client": "^2.1",
         "jtl/go-prometrics-client": "^3.2",
         "jtl/nachricht": "0.19.6",
-        "jtl/php-generic-collection": "0.5.0 || 1.0.0",
+        "jtl/php-generic-collection": "0.5.0 || ^1.0.0",
         "monolog/monolog": "^2.9.3",
         "myclabs/php-enum": "^1.8.4",
         "php-amqplib/php-amqplib": "^3.7.1",
