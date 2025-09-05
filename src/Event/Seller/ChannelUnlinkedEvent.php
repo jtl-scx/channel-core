@@ -21,11 +21,12 @@ class ChannelUnlinkedEvent extends AbstractEvent
 
     public function __construct(
         string $id,
+        string $clientVersion,
         DateTimeImmutable $createdAt,
         SellerEventChannelUnlinked $event,
         string $internalEventId = null
     ) {
-        parent::__construct($id, $createdAt, EventType::SellerChannelUnlinked(), $internalEventId);
+        parent::__construct($id, $clientVersion, $createdAt, EventType::SellerChannelUnlinked(), $internalEventId);
         $this->event = $event;
     }
 

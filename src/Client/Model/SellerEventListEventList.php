@@ -54,6 +54,7 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPITypes = [
         'id' => 'string',
         'createdAt' => '\DateTime',
+        'clientVersion' => 'string',
         'type' => '\JTL\SCX\Lib\Channel\Client\Model\SellerEventTypeList',
         'event' => 'OneOfSellerEventOrderShippingSellerEventOrderPaymentSellerEventOfferEndSellerEventOfferNewSellerEventOfferUpdateSellerEventOfferStockUpdateSellerEventOfferPriceUpdateSellerEventTestSellerEventReportRequestSystemEventNotificationSellerEventChannelUnlinkedSellerEventSellerAttributesUpdateRequestSellerEventOrderCancellationRequestSellerEventOrderCancellationAcceptedSellerEventOrderCancellationDeniedSellerEventOrderAcceptSellerEventOrderInvoiceSellerEventOrderReturnReceivedSellerEventOrderRefundSellerEventTicketReply'
     ];
@@ -68,6 +69,7 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $openAPIFormats = [
         'id' => null,
         'createdAt' => 'date-time',
+        'clientVersion' => null,
         'type' => null,
         'event' => null
     ];
@@ -101,6 +103,7 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $attributeMap = [
         'id' => 'id',
         'createdAt' => 'createdAt',
+        'clientVersion' => 'clientVersion',
         'type' => 'type',
         'event' => 'event'
     ];
@@ -113,6 +116,7 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $setters = [
         'id' => 'setId',
         'createdAt' => 'setCreatedAt',
+        'clientVersion' => 'setClientVersion',
         'type' => 'setType',
         'event' => 'setEvent'
     ];
@@ -125,6 +129,7 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
     protected static $getters = [
         'id' => 'getId',
         'createdAt' => 'getCreatedAt',
+        'clientVersion' => 'getClientVersion',
         'type' => 'getType',
         'event' => 'getEvent'
     ];
@@ -185,6 +190,7 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $this->container['id'] = $data['id'] ?? null;
         $this->container['createdAt'] = $data['createdAt'] ?? null;
+        $this->container['clientVersion'] = $data['clientVersion'] ?? null;
         $this->container['type'] = $data['type'] ?? null;
         $this->container['event'] = $data['event'] ?? null;
     }
@@ -204,6 +210,10 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
         if ($this->container['createdAt'] === null) {
             $invalidProperties[] = "'createdAt' can't be null";
         }
+        if (!is_null($this->container['clientVersion']) && !preg_match("/^\\w{1,25}$/", $this->container['clientVersion'])) {
+            $invalidProperties[] = "invalid value for 'clientVersion', must be conform to the pattern /^\\w{1,25}$/.";
+        }
+
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
@@ -245,6 +255,18 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
     public function setCreatedAt(\DateTime $createdAt): SellerEventListEventList
     {
         $this->container['createdAt'] = $createdAt;
+        return $this;
+    }
+
+
+    public function getClientVersion(): ?string
+    {
+        return $this->container['clientVersion'];
+    }
+
+    public function setClientVersion(?string $clientVersion): SellerEventListEventList
+    {
+        $this->container['clientVersion'] = $clientVersion;
         return $this;
     }
 

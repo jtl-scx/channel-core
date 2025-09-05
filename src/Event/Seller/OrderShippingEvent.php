@@ -22,6 +22,7 @@ class OrderShippingEvent extends AbstractEvent
 
     public function __construct(
         string $id,
+        string $clientVersion,
         DateTimeImmutable $createdAt,
         SellerEventOrderShipping $event,
         string $internalEventId = null,
@@ -31,6 +32,7 @@ class OrderShippingEvent extends AbstractEvent
     ) {
         parent::__construct(
             id: $id,
+            clientVersion: $clientVersion,
             createdAt: $createdAt,
             type: EventType::SellerOrderShipping(),
             internalEventId: $internalEventId,

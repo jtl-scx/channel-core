@@ -99,6 +99,6 @@ class EventFactory
         }
 
         /** @phpstan-ignore-next-line */
-        return new $eventClass($eventContainer->getId(), $eventContainer->getCreatedAt(), $eventContainer->getEvent());
+        return new $eventClass($eventContainer->getId(), $eventContainer->getClientVersion(), $eventContainer->getCreatedAt(), $eventContainer->getEvent());
     }
 }

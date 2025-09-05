@@ -107,6 +107,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
         return $this->eventFactory->createFromEventContainer(new EventContainer(
             uniqid($this->getName() ?? ''),
             new DateTimeImmutable('now'),
+            uniqid('clientVersion', true),
             $eventType,
             $model
         ));

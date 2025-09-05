@@ -23,7 +23,7 @@ class OrderInvoiceEventTest extends TestCase
     public function testCanReceiveEvent()
     {
         $apiEventModel = $this->createStub(SellerEventOrderInvoice::class);
-        $event = new OrderInvoiceEvent('id', new DateTimeImmutable(), $apiEventModel);
+        $event = new OrderInvoiceEvent('id', 'version', new DateTimeImmutable(), $apiEventModel);
         $this->assertSame($apiEventModel, $event->getEvent());
     }
 }

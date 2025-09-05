@@ -20,6 +20,7 @@ class OrderShippingEventTest extends TestCase
     {
         $sut = new OrderShippingEvent(
             id: $id = uniqid(),
+            clientVersion: uniqid(),
             createdAt: $createdAt = new \DateTimeImmutable(),
             event: $event = $this->createStub(SellerEventOrderShipping::class),
             internalEventId: $internalEventId = uniqid(),

@@ -21,11 +21,12 @@ class OfferPriceUpdateEvent extends AbstractEvent
 
     public function __construct(
         string $id,
+        string $clientVersion,
         DateTimeImmutable $createdAt,
         SellerEventOfferPriceUpdate $event,
         string $internalEventId = null
     ) {
-        parent::__construct($id, $createdAt, EventType::SellerOfferPriceUpdate(), $internalEventId);
+        parent::__construct($id, $clientVersion, $createdAt, EventType::SellerOfferPriceUpdate(), $internalEventId);
 
         $this->event = $event;
     }

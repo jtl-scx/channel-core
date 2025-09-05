@@ -22,7 +22,7 @@ class ReportRequestEventTest extends TestCase
     public function testCanGetEvent()
     {
         $apiEventModel = $this->createStub(SellerEventReportRequest::class);
-        $event = new ReportRequestEvent('id', new \DateTimeImmutable(), $apiEventModel);
+        $event = new ReportRequestEvent('id', 'version', new \DateTimeImmutable(), $apiEventModel);
         $this->assertSame($apiEventModel, $event->getEvent());
     }
 }

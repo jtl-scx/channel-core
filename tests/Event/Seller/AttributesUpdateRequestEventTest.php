@@ -22,7 +22,7 @@ class AttributesUpdateRequestEventTest extends TestCase
     public function testCanReceiveEvent()
     {
         $apiEventModel = $this->createStub(SellerEventSellerAttributesUpdateRequest::class);
-        $event = new AttributesUpdateRequestEvent('id', new \DateTimeImmutable(), $apiEventModel);
+        $event = new AttributesUpdateRequestEvent('id', 'version', new \DateTimeImmutable(), $apiEventModel);
         self::assertSame($apiEventModel, $event->getEvent());
     }
 
