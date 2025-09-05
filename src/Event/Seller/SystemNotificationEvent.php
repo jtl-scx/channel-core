@@ -26,7 +26,7 @@ class SystemNotificationEvent extends AbstractEvent
         SystemEventNotification $event,
         string $internalEventId = null
     ) {
-        parent::__construct($id, $clientVersion,$createdAt, EventType::SystemNotification(), $internalEventId);
+        parent::__construct($id, $clientVersion, $createdAt, EventType::SystemNotification(), $internalEventId);
         $this->event = $event;
     }
 

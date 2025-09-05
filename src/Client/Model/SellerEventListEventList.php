@@ -175,9 +175,9 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
-    
 
-    
+
+
 
     /**
      * Associative array for storing property values
@@ -376,5 +376,3 @@ class SellerEventListEventList implements ModelInterface, ArrayAccess, \JsonSeri
         return json_encode($this->jsonSerialize());
     }
 }
-
-
