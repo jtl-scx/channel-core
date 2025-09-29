@@ -134,6 +134,29 @@ class ScxApiEventConsumeCommandTest extends TestCase
         $tester->execute([]);
     }
 
+    /**
+     * @test
+     */
+    public function it_will_not_ack_when_no_events_were_emitted(): void
+    {
+        $sut = new ScxApiEventConsumeCommand(
+            $api = $this->createMock(EventApi::class),
+            $emitter = $this->createMock(SellerEventEmitter::class),
+            $this->createStub(ScxLogger::class)
+        );
+
+        // First call returns events, but emitter emits none; second call returns no events to break the loop
+        $api->method('get')->willReturnOnConsecutiveCalls(
+            $this->buildEventApiResponse(),
+            $this->buildEmptyEventApiResponse()
+        );
+
+        $emitter->method('emit')->willReturn([]);
+        $api->expects(self::never())->method('ack');
+
+        $tester = new CommandTester($sut);
+        $tester->execute([]);
+    }
 
     protected function buildEmptyEventApiResponse(): GetSellerEventListResponse
     {

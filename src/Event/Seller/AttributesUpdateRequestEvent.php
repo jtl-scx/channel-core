@@ -21,11 +21,12 @@ class AttributesUpdateRequestEvent extends AbstractEvent
 
     public function __construct(
         string $id,
+        string $clientVersion,
         DateTimeImmutable $createdAt,
         SellerEventSellerAttributesUpdateRequest $event,
         string $internalEventId = null
     ) {
-        parent::__construct($id, $createdAt, EventType::SellerMetaSellerAttributesUpdateRequest(), $internalEventId);
+        parent::__construct($id, $clientVersion, $createdAt, EventType::SellerMetaSellerAttributesUpdateRequest(), $internalEventId);
         $this->event = $event;
     }
 
@@ -33,6 +34,7 @@ class AttributesUpdateRequestEvent extends AbstractEvent
     {
         return new self(
             uniqid(),
+            '',
             new DateTimeImmutable(),
             new SellerEventSellerAttributesUpdateRequest(['sellerId' => $sellerId])
         );

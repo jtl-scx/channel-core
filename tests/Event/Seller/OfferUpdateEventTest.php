@@ -22,7 +22,7 @@ class OfferUpdateEventTest extends TestCase
     public function testCanReceiveEvent()
     {
         $apiEventModel = $this->createStub(SellerEventOfferUpdate::class);
-        $event = new OfferUpdateEvent('id', new \DateTimeImmutable(), $apiEventModel);
+        $event = new OfferUpdateEvent('id', 'version', new \DateTimeImmutable(), $apiEventModel);
         $this->assertSame($apiEventModel, $event->getEvent());
     }
 }

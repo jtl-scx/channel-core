@@ -27,7 +27,7 @@ class OrderAcceptEventTest extends TestCase
     public function it_can_provide_correct_event(): void
     {
         $event = new SellerEventOrderAccept();
-        $sut = new OrderAcceptEvent('id', new DateTimeImmutable(), $event);
+        $sut = new OrderAcceptEvent('id', 'version', new DateTimeImmutable(), $event);
         $this->assertSame($event, $sut->getEvent());
     }
 }

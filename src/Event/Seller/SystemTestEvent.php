@@ -21,11 +21,12 @@ class SystemTestEvent extends AbstractEvent
 
     public function __construct(
         string $id,
+        string $clientVersion,
         DateTimeImmutable $createdAt,
         SellerEventTest $event,
         string $internalEventId = null
     ) {
-        parent::__construct($id, $createdAt, EventType::SellerEventTest(), $internalEventId);
+        parent::__construct($id, $clientVersion, $createdAt, EventType::SellerEventTest(), $internalEventId);
         $this->event = $event;
     }
 

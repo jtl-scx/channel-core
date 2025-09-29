@@ -21,11 +21,12 @@ class OrderCancellationAcceptedEvent extends AbstractEvent
 
     public function __construct(
         string $id,
+        string $clientVersion,
         DateTimeImmutable $createdAt,
         SellerEventOrderCancellationAccepted $event,
         string $internalEventId = null
     ) {
-        parent::__construct($id, $createdAt, EventType::SellerOrderCancellationAccept(), $internalEventId);
+        parent::__construct($id, $clientVersion, $createdAt, EventType::SellerOrderCancellationAccept(), $internalEventId);
         $this->event = $event;
     }
 
