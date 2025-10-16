@@ -32,8 +32,8 @@ class EventApi
 
     public function __construct(
         AuthAwareApiClient $client,
-        JsonSerializer $jsonSerializer = null,
-        ChannelApiResponseDeserializer $responseDeserializer = null
+        JsonSerializer|null $jsonSerializer = null,
+        ChannelApiResponseDeserializer|null $responseDeserializer = null
     ) {
         $this->client = $client;
         $this->jsonSerializer = $jsonSerializer ?? new JsonSerializer();
@@ -46,7 +46,7 @@ class EventApi
      * @throws GuzzleException
      * @throws RequestFailedException
      */
-    public function get(GetEventListRequest $request = null): GetSellerEventListResponse
+    public function get(GetEventListRequest|null $request = null): GetSellerEventListResponse
     {
         $responseData = $this->client->request($request ?? new GetEventListRequest());
         $data = $this->jsonSerializer->deserialize((string)$responseData->getBody(), false);

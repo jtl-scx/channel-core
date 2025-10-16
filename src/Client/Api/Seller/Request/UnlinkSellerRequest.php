@@ -10,7 +10,7 @@ class UnlinkSellerRequest extends AbstractScxApiRequest
     private string $sellerId;
     private ?string $reason;
 
-    public function __construct(string $sellerId, string $reason = null)
+    public function __construct(string $sellerId, string|null $reason = null)
     {
         $this->sellerId = $sellerId;
         $this->reason = $reason;

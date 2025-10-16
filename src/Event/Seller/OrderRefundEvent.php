@@ -28,7 +28,7 @@ class OrderRefundEvent extends AbstractEvent implements SellerIdRelatedMessage, 
         string $clientVersion,
         DateTimeImmutable $createdAt,
         SellerEventOrderRefund $event,
-        string $internalEventId = null
+        string|null $internalEventId = null
     ) {
         parent::__construct($id, $clientVersion, $createdAt, EventType::SellerEventOrderRefund(), $internalEventId);
         $this->event = $event;

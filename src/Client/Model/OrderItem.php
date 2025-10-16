@@ -2,7 +2,7 @@
 /**
  * OrderItem
  *
- * PHP version 7.2
+ * PHP version 8.4
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
@@ -38,10 +38,8 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
       * The original name of the model.
-      *
-      * @var string
       */
-    protected static $openAPIModelName = 'OrderItem';
+    protected static string $openAPIModelName = 'OrderItem';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -50,9 +48,8 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
       * @param OrderItemPaymentStatus
       * @param AdditionalOrderDataGroup
       *
-      * @var string[]
       */
-    protected static $openAPITypes = [
+    protected static array $openAPITypes = [
         'orderItemId' => 'string',
         'type' => 'string',
         'itemStatus' => '\JTL\SCX\Lib\Channel\Client\Model\OrderItemStatus',
@@ -77,11 +74,10 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
       * Array of property to format mappings. Used for (de)serialization
       *
-      * @var string[]
       * @phpstan-var array<string, string|null>
       * @psalm-var array<string, string|null>
       */
-    protected static $openAPIFormats = [
+    protected static array $openAPIFormats = [
         'orderItemId' => 'string',
         'type' => null,
         'itemStatus' => null,
@@ -106,9 +102,8 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of property to type mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPITypes()
+    public static function openAPITypes(): array
     {
         return self::$openAPITypes;
     }
@@ -116,9 +111,8 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of property to format mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPIFormats()
+    public static function openAPIFormats(): array
     {
         return self::$openAPIFormats;
     }
@@ -126,10 +120,8 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
-     *
-     * @var string[]
      */
-    protected static $attributeMap = [
+    protected static array $attributeMap = [
         'orderItemId' => 'orderItemId',
         'type' => 'type',
         'itemStatus' => 'itemStatus',
@@ -153,10 +145,8 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @var string[]
      */
-    protected static $setters = [
+    protected static array $setters = [
         'orderItemId' => 'setOrderItemId',
         'type' => 'setType',
         'itemStatus' => 'setItemStatus',
@@ -180,10 +170,8 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
      */
-    protected static $getters = [
+    protected static array $getters = [
         'orderItemId' => 'getOrderItemId',
         'type' => 'getType',
         'itemStatus' => 'getItemStatus',
@@ -209,9 +197,8 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      * Array of attributes where the key is the local name,
      * and the value is the original name
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function attributeMap()
+    public static function attributeMap(): array
     {
         return self::$attributeMap;
     }
@@ -219,9 +206,8 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function setters()
+    public static function setters(): array
     {
         return self::$setters;
     }
@@ -229,9 +215,8 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }
@@ -239,9 +224,8 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * The original name of the model.
      * @codeCoverageIgnore
-     * @return string
      */
-    public function getModelName()
+    public function getModelName(): string
     {
         return self::$openAPIModelName;
     }
@@ -252,12 +236,10 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Associative array for storing property values
-     *
-     * @var mixed[]
      */
-    protected $container = [];
+    protected array $container = [];
 
-    public function __construct(array $data = null)
+    public function __construct(array|null $data = null)
     {
         $this->container['orderItemId'] = $data['orderItemId'] ?? null;
         $this->container['type'] = $data['type'] ?? 'PAYMENT';
@@ -285,7 +267,7 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalidProperties = [];
 
@@ -313,8 +295,8 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'offerId', must be bigger than or equal to 1.";
         }
 
-        if (!is_null($this->container['channelOfferId']) && (mb_strlen($this->container['channelOfferId']) > 50)) {
-            $invalidProperties[] = "invalid value for 'channelOfferId', the character length must be smaller than or equal to 50.";
+        if (!is_null($this->container['channelOfferId']) && (mb_strlen($this->container['channelOfferId']) > 100)) {
+            $invalidProperties[] = "invalid value for 'channelOfferId', the character length must be smaller than or equal to 100.";
         }
 
         if (!is_null($this->container['channelOfferId']) && (mb_strlen($this->container['channelOfferId']) < 1)) {
@@ -352,12 +334,10 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
-
     public function getOrderItemId(): string
     {
         return $this->container['orderItemId'];
@@ -368,8 +348,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['orderItemId'] = $orderItemId;
         return $this;
     }
-
-
     public function getType(): string
     {
         return $this->container['type'];
@@ -380,8 +358,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['type'] = $type;
         return $this;
     }
-
-
     public function getItemStatus(): ?OrderItemStatus
     {
         return $this->container['itemStatus'];
@@ -392,8 +368,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['itemStatus'] = $itemStatus;
         return $this;
     }
-
-
     public function getItemPaymentStatus(): ?OrderItemPaymentStatus
     {
         return $this->container['itemPaymentStatus'];
@@ -404,8 +378,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['itemPaymentStatus'] = $itemPaymentStatus;
         return $this;
     }
-
-
     public function getGrossPrice(): string
     {
         return $this->container['grossPrice'];
@@ -416,8 +388,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['grossPrice'] = $grossPrice;
         return $this;
     }
-
-
     public function getTotal(): string
     {
         return $this->container['total'];
@@ -428,8 +398,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['total'] = $total;
         return $this;
     }
-
-
     public function getTaxPercent(): ?string
     {
         return $this->container['taxPercent'];
@@ -440,8 +408,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['taxPercent'] = $taxPercent;
         return $this;
     }
-
-
     public function getGrossFee(): ?string
     {
         return $this->container['grossFee'];
@@ -452,8 +418,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['grossFee'] = $grossFee;
         return $this;
     }
-
-
     public function getOfferId(): ?int
     {
         return $this->container['offerId'];
@@ -594,8 +558,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets offset.
      *
      * @param integer $offset Offset
-     *
-     * @return mixed|null
      */
     public function offsetGet($offset): mixed
     {
@@ -608,7 +570,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetSet($offset, mixed $value): void
     {
@@ -624,7 +585,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param integer $offset Offset
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetUnset($offset): void
     {
@@ -647,9 +607,8 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets the string presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return json_encode(
             $this->jsonSerialize(),
@@ -660,7 +619,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets a header-safe presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
     public function toHeaderValue(): string
     {

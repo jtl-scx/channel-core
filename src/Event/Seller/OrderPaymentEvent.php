@@ -24,7 +24,7 @@ class OrderPaymentEvent extends AbstractEvent
         string $clientVersion,
         DateTimeImmutable $createdAt,
         SellerEventOrderPayment $event,
-        string $internalEventId = null
+        string|null $internalEventId = null
     ) {
         parent::__construct($id, $clientVersion, $createdAt, EventType::SellerOrderPayment(), $internalEventId);
         $this->event = $event;

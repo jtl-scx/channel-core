@@ -2,7 +2,7 @@
 /**
  * ChannelNotificationReference
  *
- * PHP version 7.2
+ * PHP version 8.4
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
@@ -38,19 +38,16 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
 
     /**
       * The original name of the model.
-      *
-      * @var string
       */
-    protected static $openAPIModelName = 'ChannelNotificationReference';
+    protected static string $openAPIModelName = 'ChannelNotificationReference';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
       * @param ChannelNotificationReferenceType
       *
-      * @var string[]
       */
-    protected static $openAPITypes = [
+    protected static array $openAPITypes = [
         'type' => '\JTL\SCX\Lib\Channel\Client\Model\ChannelNotificationReferenceType',
         'id' => 'string'
     ];
@@ -58,11 +55,10 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
     /**
       * Array of property to format mappings. Used for (de)serialization
       *
-      * @var string[]
       * @phpstan-var array<string, string|null>
       * @psalm-var array<string, string|null>
       */
-    protected static $openAPIFormats = [
+    protected static array $openAPIFormats = [
         'type' => null,
         'id' => null
     ];
@@ -70,9 +66,8 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
     /**
      * Array of property to type mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPITypes()
+    public static function openAPITypes(): array
     {
         return self::$openAPITypes;
     }
@@ -80,9 +75,8 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
     /**
      * Array of property to format mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPIFormats()
+    public static function openAPIFormats(): array
     {
         return self::$openAPIFormats;
     }
@@ -90,30 +84,24 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
-     *
-     * @var string[]
      */
-    protected static $attributeMap = [
+    protected static array $attributeMap = [
         'type' => 'type',
         'id' => 'id'
     ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @var string[]
      */
-    protected static $setters = [
+    protected static array $setters = [
         'type' => 'setType',
         'id' => 'setId'
     ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
      */
-    protected static $getters = [
+    protected static array $getters = [
         'type' => 'getType',
         'id' => 'getId'
     ];
@@ -122,9 +110,8 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
      * Array of attributes where the key is the local name,
      * and the value is the original name
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function attributeMap()
+    public static function attributeMap(): array
     {
         return self::$attributeMap;
     }
@@ -132,9 +119,8 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function setters()
+    public static function setters(): array
     {
         return self::$setters;
     }
@@ -142,9 +128,8 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }
@@ -152,9 +137,8 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
     /**
      * The original name of the model.
      * @codeCoverageIgnore
-     * @return string
      */
-    public function getModelName()
+    public function getModelName(): string
     {
         return self::$openAPIModelName;
     }
@@ -165,12 +149,10 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
 
     /**
      * Associative array for storing property values
-     *
-     * @var mixed[]
      */
-    protected $container = [];
+    protected array $container = [];
 
-    public function __construct(array $data = null)
+    public function __construct(array|null $data = null)
     {
         $this->container['type'] = $data['type'] ?? null;
         $this->container['id'] = $data['id'] ?? null;
@@ -181,7 +163,7 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
      * @codeCoverageIgnore
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalidProperties = [];
 
@@ -200,7 +182,7 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
      * @codeCoverageIgnore
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return count($this->listInvalidProperties()) === 0;
     }
@@ -238,8 +220,6 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
      * Gets offset.
      *
      * @param integer $offset Offset
-     *
-     * @return mixed|null
      */
     public function offsetGet($offset): mixed
     {
@@ -252,7 +232,6 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetSet($offset, mixed $value): void
     {
@@ -268,7 +247,6 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
      *
      * @param integer $offset Offset
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetUnset($offset): void
     {
@@ -291,9 +269,8 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets the string presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return json_encode(
             $this->jsonSerialize(),
@@ -304,7 +281,6 @@ class ChannelNotificationReference implements ModelInterface, ArrayAccess, \Json
     /**
      * Gets a header-safe presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
     public function toHeaderValue(): string
     {

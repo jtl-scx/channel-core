@@ -19,7 +19,7 @@ class MarkListingSuccessfulRequest extends AbstractScxApiRequest
 {
     private OfferListingSuccessfulList $offerList;
 
-    public function __construct(OfferListingSuccessfulList $offerList = null)
+    public function __construct(OfferListingSuccessfulList|null $offerList = null)
     {
         $this->offerList = $offerList ?? new OfferListingSuccessfulList(['offerList' => []]);
     }

@@ -37,7 +37,7 @@ class InventoryItem
         ?string $title,
         ?string $channelCategoryId,
         ?ItemAttributeList $channelAttributeList,
-        \DateTimeImmutable $createdAt = null
+        \DateTimeImmutable|null $createdAt = null
     ) {
         $this->sellerOfferId = $sellerOfferId;
         $this->channelOfferId = $channelOfferId;

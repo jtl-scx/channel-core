@@ -19,7 +19,7 @@ class AttributeEnumValue
     private string $value;
     private ?string $display;
 
-    public function __construct(string $value, string $display = null)
+    public function __construct(string $value, string|null $display = null)
     {
         $this->value = $value;
         $this->display = $display;

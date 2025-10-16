@@ -238,7 +238,7 @@ class DeadLetterRetryCommand extends AbstractCommand
         bool $resetReceives,
         ?string $olderThan,
         ?string $filterByLastError,
-        int $messageCount = null
+        int|null $messageCount = null
     ): void {
         $numMessages = $messageCount;
         if ($numMessages === null) {

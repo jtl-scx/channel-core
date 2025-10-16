@@ -2,7 +2,7 @@
 /**
  * Order
  *
- * PHP version 7.2
+ * PHP version 8.4
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
@@ -38,10 +38,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
       * The original name of the model.
-      *
-      * @var string
       */
-    protected static $openAPIModelName = 'Order';
+    protected static string $openAPIModelName = 'Order';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -52,11 +50,11 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
       * @param Address
       * @param Address
       * @param OrderBuyer
+      * @param Enum
       * @param AdditionalOrderDataGroup
       *
-      * @var string[]
       */
-    protected static $openAPITypes = [
+    protected static array $openAPITypes = [
         'sellerId' => 'string',
         'orderStatus' => '\JTL\SCX\Lib\Channel\Client\Model\ChannelOrderStatus',
         'orderAcceptUntil' => '\DateTime',
@@ -74,21 +72,20 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'buyer' => '\JTL\SCX\Lib\Channel\Client\Model\OrderBuyer',
         'weeePickup' => 'bool',
         'language' => 'string',
+        'invoiceDocumentTransfer' => 'Enum',
         'additionalOrderData' => '\JTL\SCX\Lib\Channel\Client\Model\AdditionalOrderDataGroup[]'
     ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
       *
-      * @var string[]
       * @phpstan-var array<string, string|null>
       * @psalm-var array<string, string|null>
       */
-    protected static $openAPIFormats = [
+    protected static array $openAPIFormats = [
         'sellerId' => null,
         'orderStatus' => null,
         'orderAcceptUntil' => 'date-time',
-        'paymentStatus' => null,
         'paymentMethod' => null,
         'paymentReference' => null,
         'orderId' => null,
@@ -102,15 +99,15 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'buyer' => null,
         'weeePickup' => null,
         'language' => null,
+        'invoiceDocumentTransfer' => null,
         'additionalOrderData' => null
     ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPITypes()
+    public static function openAPITypes(): array
     {
         return self::$openAPITypes;
     }
@@ -118,9 +115,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of property to format mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPIFormats()
+    public static function openAPIFormats(): array
     {
         return self::$openAPIFormats;
     }
@@ -128,10 +124,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
-     *
-     * @var string[]
      */
-    protected static $attributeMap = [
+    protected static array $attributeMap = [
         'sellerId' => 'sellerId',
         'orderStatus' => 'orderStatus',
         'orderAcceptUntil' => 'orderAcceptUntil',
@@ -149,15 +143,14 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'buyer' => 'buyer',
         'weeePickup' => 'weeePickup',
         'language' => 'language',
+        'invoiceDocumentTransfer' => 'invoiceDocumentTransfer',
         'additionalOrderData' => 'additionalOrderData'
     ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @var string[]
      */
-    protected static $setters = [
+    protected static array $setters = [
         'sellerId' => 'setSellerId',
         'orderStatus' => 'setOrderStatus',
         'orderAcceptUntil' => 'setOrderAcceptUntil',
@@ -175,15 +168,14 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'buyer' => 'setBuyer',
         'weeePickup' => 'setWeeePickup',
         'language' => 'setLanguage',
+        'invoiceDocumentTransfer' => 'setInvoiceDocumentTransfer',
         'additionalOrderData' => 'setAdditionalOrderData'
     ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
      */
-    protected static $getters = [
+    protected static array $getters = [
         'sellerId' => 'getSellerId',
         'orderStatus' => 'getOrderStatus',
         'orderAcceptUntil' => 'getOrderAcceptUntil',
@@ -201,6 +193,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'buyer' => 'getBuyer',
         'weeePickup' => 'getWeeePickup',
         'language' => 'getLanguage',
+        'invoiceDocumentTransfer' => 'getInvoiceDocumentTransfer',
         'additionalOrderData' => 'getAdditionalOrderData'
     ];
 
@@ -208,9 +201,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
      * Array of attributes where the key is the local name,
      * and the value is the original name
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function attributeMap()
+    public static function attributeMap(): array
     {
         return self::$attributeMap;
     }
@@ -218,9 +210,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function setters()
+    public static function setters(): array
     {
         return self::$setters;
     }
@@ -228,9 +219,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }
@@ -238,25 +228,37 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * The original name of the model.
      * @codeCoverageIgnore
-     * @return string
      */
-    public function getModelName()
+    public function getModelName(): string
     {
         return self::$openAPIModelName;
     }
 
-
+    public const INVOICE_DOCUMENT_TRANSFER_NOT_SET = 'not-set';
+    public const INVOICE_DOCUMENT_TRANSFER_FROM_SELLER = 'from-seller';
+    public const INVOICE_DOCUMENT_TRANSFER_FROM_CHANNEL = 'from-channel';
 
 
 
     /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
+     * Gets allowable values of the enum
      */
-    protected $container = [];
+    public function getInvoiceDocumentTransferAllowableValues(): array
+    {
+        return [
+            self::INVOICE_DOCUMENT_TRANSFER_NOT_SET,
+            self::INVOICE_DOCUMENT_TRANSFER_FROM_SELLER,
+            self::INVOICE_DOCUMENT_TRANSFER_FROM_CHANNEL,
+        ];
+    }
 
-    public function __construct(array $data = null)
+
+    /**
+     * Associative array for storing property values
+     */
+    protected array $container = [];
+
+    public function __construct(array|null $data = null)
     {
         $this->container['sellerId'] = $data['sellerId'] ?? null;
         $this->container['orderStatus'] = $data['orderStatus'] ?? null;
@@ -275,6 +277,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['buyer'] = $data['buyer'] ?? null;
         $this->container['weeePickup'] = $data['weeePickup'] ?? null;
         $this->container['language'] = $data['language'] ?? null;
+        $this->container['invoiceDocumentTransfer'] = $data['invoiceDocumentTransfer'] ?? null;
         $this->container['additionalOrderData'] = $data['additionalOrderData'] ?? null;
     }
 
@@ -283,7 +286,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalidProperties = [];
 
@@ -328,6 +331,15 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['orderItem'] === null) {
             $invalidProperties[] = "'orderItem' can't be null";
         }
+        $allowedValues = $this->getInvoiceDocumentTransferAllowableValues();
+        if (!is_null($this->container['invoiceDocumentTransfer']) && !in_array($this->container['invoiceDocumentTransfer'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'invoiceDocumentTransfer', must be one of '%s'",
+                $this->container['invoiceDocumentTransfer'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if (!is_null($this->container['additionalOrderData']) && (is_countable($this->container['additionalOrderData']) && ($this->container['additionalOrderData']) > 10)) {
             $invalidProperties[] = "invalid value for 'additionalOrderData', number of items must be less than or equal to 10.";
         }
@@ -345,12 +357,10 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
-
     public function getSellerId(): string
     {
         return $this->container['sellerId'];
@@ -361,8 +371,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['sellerId'] = $sellerId;
         return $this;
     }
-
-
     public function getOrderStatus(): ChannelOrderStatus
     {
         return $this->container['orderStatus'];
@@ -373,8 +381,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['orderStatus'] = $orderStatus;
         return $this;
     }
-
-
     public function getOrderAcceptUntil(): ?\DateTime
     {
         return $this->container['orderAcceptUntil'];
@@ -385,8 +391,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['orderAcceptUntil'] = $orderAcceptUntil;
         return $this;
     }
-
-
     public function getPaymentStatus(): ?ChannelPaymentStatus
     {
         return $this->container['paymentStatus'];
@@ -397,8 +401,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['paymentStatus'] = $paymentStatus;
         return $this;
     }
-
-
     public function getPaymentMethod(): ?string
     {
         return $this->container['paymentMethod'];
@@ -409,8 +411,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['paymentMethod'] = $paymentMethod;
         return $this;
     }
-
-
     public function getPaymentReference(): ?string
     {
         return $this->container['paymentReference'];
@@ -421,8 +421,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['paymentReference'] = $paymentReference;
         return $this;
     }
-
-
     public function getOrderId(): string
     {
         return $this->container['orderId'];
@@ -433,8 +431,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['orderId'] = $orderId;
         return $this;
     }
-
-
     public function getPurchasedAt(): \DateTime
     {
         return $this->container['purchasedAt'];
@@ -445,8 +441,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['purchasedAt'] = $purchasedAt;
         return $this;
     }
-
-
     public function getLastChangedAt(): \DateTime
     {
         return $this->container['lastChangedAt'];
@@ -555,6 +549,18 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
+    public function getInvoiceDocumentTransfer(): ?Enum
+    {
+        return $this->container['invoiceDocumentTransfer'];
+    }
+
+    public function setInvoiceDocumentTransfer(?Enum $invoiceDocumentTransfer): Order
+    {
+        $this->container['invoiceDocumentTransfer'] = $invoiceDocumentTransfer;
+        return $this;
+    }
+
+
     public function getAdditionalOrderData(): ?array
     {
         return $this->container['additionalOrderData'];
@@ -575,8 +581,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets offset.
      *
      * @param integer $offset Offset
-     *
-     * @return mixed|null
      */
     public function offsetGet($offset): mixed
     {
@@ -589,7 +593,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetSet($offset, mixed $value): void
     {
@@ -605,7 +608,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param integer $offset Offset
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetUnset($offset): void
     {
@@ -628,9 +630,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets the string presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return json_encode(
             $this->jsonSerialize(),
@@ -641,7 +642,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets a header-safe presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
     public function toHeaderValue(): string
     {

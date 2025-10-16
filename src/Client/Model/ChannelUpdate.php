@@ -255,7 +255,7 @@ class ChannelUpdate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected $container = [];
 
-    public function __construct(array $data = null)
+    public function __construct(array|null $data = null)
     {
         $this->container['group'] = $data['group'] ?? null;
         $this->container['currency'] = $data['currency'] ?? null;

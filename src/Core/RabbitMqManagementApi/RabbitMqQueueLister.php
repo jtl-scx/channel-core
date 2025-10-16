@@ -34,7 +34,7 @@ class RabbitMqQueueLister implements AmqpQueueLister
      * @throws GuzzleException
      * @return array<int, string>
      */
-    public function listQueues(string $queuePrefix = null): array
+    public function listQueues(string|null $queuePrefix = null): array
     {
         $con = $this->transport->getConnectionSettings();
         $url = $con->getHost();

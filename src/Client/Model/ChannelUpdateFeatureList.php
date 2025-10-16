@@ -211,7 +211,7 @@ class ChannelUpdateFeatureList implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected $container = [];
 
-    public function __construct(array $data = null)
+    public function __construct(array|null $data = null)
     {
         $this->container['invoiceDocumentTransfer'] = $data['invoiceDocumentTransfer'] ?? 'not-supported';
         $this->container['priceUpdatesSupported'] = $data['priceUpdatesSupported'] ?? false;

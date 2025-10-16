@@ -24,7 +24,7 @@ class ReportRequestEvent extends AbstractEvent
         string $clientVersion,
         DateTimeImmutable $createdAt,
         SellerEventReportRequest $event,
-        string $internalEventId = null
+        string|null $internalEventId = null
     ) {
         parent::__construct($id, $clientVersion, $createdAt, EventType::SellerReportRequest(), $internalEventId);
         $this->event = $event;

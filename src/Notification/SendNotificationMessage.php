@@ -22,9 +22,9 @@ class SendNotificationMessage extends AbstractAmqpTransportableMessage
     public function __construct(
         string $sellerId,
         string $message,
-        Severity $severity = null,
-        NotificationReference $reference = null,
-        string $messageId = null
+        Severity|null $severity = null,
+        NotificationReference|null $reference = null,
+        string|null $messageId = null
     ) {
         parent::__construct($messageId);
 
@@ -37,8 +37,8 @@ class SendNotificationMessage extends AbstractAmqpTransportableMessage
     public static function info(
         string $sellerId,
         string $message,
-        NotificationReference $reference = null,
-        string $messageId = null
+        NotificationReference|null $reference = null,
+        string|null $messageId = null
     ): SendNotificationMessage {
         return new self($sellerId, $message, Severity::INFO(), $reference, $messageId);
     }
@@ -46,8 +46,8 @@ class SendNotificationMessage extends AbstractAmqpTransportableMessage
     public static function warning(
         string $sellerId,
         string $message,
-        NotificationReference $reference = null,
-        string $messageId = null
+        NotificationReference|null $reference = null,
+        string|null $messageId = null
     ): SendNotificationMessage {
         return new self($sellerId, $message, Severity::WARNING(), $reference, $messageId);
     }
@@ -55,8 +55,8 @@ class SendNotificationMessage extends AbstractAmqpTransportableMessage
     public static function error(
         string $sellerId,
         string $message,
-        NotificationReference $reference = null,
-        string $messageId = null
+        NotificationReference|null $reference = null,
+        string|null $messageId = null
     ): SendNotificationMessage {
         return new self($sellerId, $message, Severity::ERROR(), $reference, $messageId);
     }

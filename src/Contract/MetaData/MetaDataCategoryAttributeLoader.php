@@ -14,5 +14,5 @@ use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList;
 
 interface MetaDataCategoryAttributeLoader
 {
-    public function fetch(array $categoryIdList = null): ?CategoryAttributeList;
+    public function fetch(array|null $categoryIdList = null): ?CategoryAttributeList;
 }

@@ -27,7 +27,7 @@ class Counter
         $this->logger = $logger;
     }
 
-    public function countKey(string $key, LabelList $labelList = null): void
+    public function countKey(string $key, LabelList|null $labelList = null): void
     {
         if (!$this->isEnabled()) {
             return;

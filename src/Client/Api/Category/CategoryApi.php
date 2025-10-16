@@ -25,7 +25,7 @@ class CategoryApi
 
     public function __construct(
         AuthAwareApiClient $apiClient,
-        ChannelApiResponseDeserializer $responseDeserializer = null
+        ChannelApiResponseDeserializer|null $responseDeserializer = null
     ) {
         $this->apiClient = $apiClient;
         $this->responseDeserializer = $responseDeserializer ?? new ChannelApiResponseDeserializer();

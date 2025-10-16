@@ -27,7 +27,7 @@ class CancellationAcceptMessage extends AbstractAmqpTransportableMessage impleme
         ChannelSellerId $sellerId,
         string $orderCancellationRequestId,
         string $orderId,
-        string $messageId = null
+        string|null $messageId = null
     ) {
         parent::__construct($messageId);
         $this->sellerId = $sellerId;

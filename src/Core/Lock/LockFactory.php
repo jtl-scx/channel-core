@@ -53,7 +53,7 @@ class LockFactory
         return $isLocked;
     }
 
-    public function extend(Lock $lock, \DateTimeImmutable $expiresAt = null): bool
+    public function extend(Lock $lock, \DateTimeImmutable|null $expiresAt = null): bool
     {
         $expiresAt = $expiresAt ?? $lock->getExpiresAt();
         return $this->lockProvider->extend($lock->getKey(), $expiresAt);

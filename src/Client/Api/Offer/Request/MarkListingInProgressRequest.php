@@ -19,7 +19,7 @@ class MarkListingInProgressRequest extends AbstractScxApiRequest
 {
     private OfferListingInProgressList $offerList;
 
-    public function __construct(OfferListingInProgressList $offerList = null)
+    public function __construct(OfferListingInProgressList|null $offerList = null)
     {
         $this->offerList = $offerList ?? new OfferListingInProgressList(['offerList' => []]);
     }

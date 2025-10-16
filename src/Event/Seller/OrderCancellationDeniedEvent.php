@@ -24,7 +24,7 @@ class OrderCancellationDeniedEvent extends AbstractEvent
         string $clientVersion,
         DateTimeImmutable $createdAt,
         SellerEventOrderCancellationDenied $event,
-        string $internalEventId = null
+        string|null $internalEventId = null
     ) {
         parent::__construct($id, $clientVersion, $createdAt, EventType::SellerOrderCancellationDenied(), $internalEventId);
         $this->event = $event;

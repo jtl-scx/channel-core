@@ -21,7 +21,7 @@ class Translator
         $this->translator = $translator;
     }
 
-    public function trans(string $id, array $parameters = [], $locale = null): string
+    public function trans(string $id, array $parameters = [],string|null $locale = null): string
     {
         return $this->translator->trans($id, $parameters, null, $locale);
     }

@@ -24,7 +24,7 @@ class OrderInvoiceEvent extends AbstractEvent
         string $clientVersion,
         DateTimeImmutable $createdAt,
         SellerEventOrderInvoice $eventOrderInvoice,
-        string $internalEventId = null
+        string|null $internalEventId = null
     ) {
         parent::__construct($id, $clientVersion, $createdAt, EventType::SellerEventOrderInvoice(), $internalEventId);
         $this->eventOrderInvoice = $eventOrderInvoice;

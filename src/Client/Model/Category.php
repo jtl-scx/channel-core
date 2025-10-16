@@ -2,7 +2,7 @@
 /**
  * Category
  *
- * PHP version 7.2
+ * PHP version 8.4
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
@@ -38,18 +38,15 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
       * The original name of the model.
-      *
-      * @var string
       */
-    protected static $openAPIModelName = 'Category';
+    protected static string $openAPIModelName = 'Category';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
       *
-      * @var string[]
       */
-    protected static $openAPITypes = [
+    protected static array $openAPITypes = [
         'categoryId' => 'string',
         'displayName' => 'string',
         'listingAllowed' => 'bool',
@@ -59,11 +56,10 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
       * Array of property to format mappings. Used for (de)serialization
       *
-      * @var string[]
       * @phpstan-var array<string, string|null>
       * @psalm-var array<string, string|null>
       */
-    protected static $openAPIFormats = [
+    protected static array $openAPIFormats = [
         'categoryId' => null,
         'displayName' => null,
         'listingAllowed' => null,
@@ -73,9 +69,8 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of property to type mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPITypes()
+    public static function openAPITypes(): array
     {
         return self::$openAPITypes;
     }
@@ -83,9 +78,8 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of property to format mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPIFormats()
+    public static function openAPIFormats(): array
     {
         return self::$openAPIFormats;
     }
@@ -93,10 +87,8 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
-     *
-     * @var string[]
      */
-    protected static $attributeMap = [
+    protected static array $attributeMap = [
         'categoryId' => 'categoryId',
         'displayName' => 'displayName',
         'listingAllowed' => 'listingAllowed',
@@ -105,10 +97,8 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @var string[]
      */
-    protected static $setters = [
+    protected static array $setters = [
         'categoryId' => 'setCategoryId',
         'displayName' => 'setDisplayName',
         'listingAllowed' => 'setListingAllowed',
@@ -117,10 +107,8 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
      */
-    protected static $getters = [
+    protected static array $getters = [
         'categoryId' => 'getCategoryId',
         'displayName' => 'getDisplayName',
         'listingAllowed' => 'getListingAllowed',
@@ -131,9 +119,8 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
      * Array of attributes where the key is the local name,
      * and the value is the original name
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function attributeMap()
+    public static function attributeMap(): array
     {
         return self::$attributeMap;
     }
@@ -141,9 +128,8 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function setters()
+    public static function setters(): array
     {
         return self::$setters;
     }
@@ -151,9 +137,8 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }
@@ -161,9 +146,8 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * The original name of the model.
      * @codeCoverageIgnore
-     * @return string
      */
-    public function getModelName()
+    public function getModelName(): string
     {
         return self::$openAPIModelName;
     }
@@ -174,12 +158,10 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Associative array for storing property values
-     *
-     * @var mixed[]
      */
-    protected $container = [];
+    protected array $container = [];
 
-    public function __construct(array $data = null)
+    public function __construct(array|null $data = null)
     {
         $this->container['categoryId'] = $data['categoryId'] ?? null;
         $this->container['displayName'] = $data['displayName'] ?? null;
@@ -192,7 +174,7 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalidProperties = [];
 
@@ -235,12 +217,10 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
-
     public function getCategoryId(): string
     {
         return $this->container['categoryId'];
@@ -251,8 +231,6 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['categoryId'] = $categoryId;
         return $this;
     }
-
-
     public function getDisplayName(): string
     {
         return $this->container['displayName'];
@@ -263,8 +241,6 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['displayName'] = $displayName;
         return $this;
     }
-
-
     public function getListingAllowed(): ?bool
     {
         return $this->container['listingAllowed'];
@@ -275,8 +251,6 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['listingAllowed'] = $listingAllowed;
         return $this;
     }
-
-
     public function getParentCategoryId(): ?string
     {
         return $this->container['parentCategoryId'];
@@ -297,8 +271,6 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets offset.
      *
      * @param integer $offset Offset
-     *
-     * @return mixed|null
      */
     public function offsetGet($offset): mixed
     {
@@ -311,7 +283,6 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetSet($offset, mixed $value): void
     {
@@ -327,7 +298,6 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param integer $offset Offset
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetUnset($offset): void
     {
@@ -350,9 +320,8 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets the string presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return json_encode(
             $this->jsonSerialize(),
@@ -363,7 +332,6 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets a header-safe presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
     public function toHeaderValue(): string
     {

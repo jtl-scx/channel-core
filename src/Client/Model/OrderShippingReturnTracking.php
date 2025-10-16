@@ -170,7 +170,7 @@ class OrderShippingReturnTracking implements ModelInterface, ArrayAccess, \JsonS
      */
     protected $container = [];
 
-    public function __construct(array $data = null)
+    public function __construct(array|null $data = null)
     {
         $this->container['carrier'] = $data['carrier'] ?? null;
         $this->container['trackingNumber'] = $data['trackingNumber'] ?? null;

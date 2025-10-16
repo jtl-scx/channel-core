@@ -24,7 +24,7 @@ class SystemTestEvent extends AbstractEvent
         string $clientVersion,
         DateTimeImmutable $createdAt,
         SellerEventTest $event,
-        string $internalEventId = null
+        string|null $internalEventId = null
     ) {
         parent::__construct($id, $clientVersion, $createdAt, EventType::SellerEventTest(), $internalEventId);
         $this->event = $event;

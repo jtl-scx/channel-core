@@ -21,7 +21,7 @@ class CancellationDenyMessage extends CancellationAcceptMessage
         string $orderCancellationRequestId,
         string $orderId,
         string $reason,
-        string $messageId = null
+        string|null $messageId = null
     ) {
         parent::__construct($sellerId, $orderCancellationRequestId, $orderId, $messageId);
         $this->reason = $reason;

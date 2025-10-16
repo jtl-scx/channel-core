@@ -24,7 +24,7 @@ abstract class AbstractOrderResponse extends AbstractResponse
      * @param int $statusCode
      * @param Error[] $errorList
      */
-    public function __construct(int $statusCode, array $errorList = null)
+    public function __construct(int $statusCode, array|null $errorList = null)
     {
         parent::__construct($statusCode);
         $this->errorList = $errorList;

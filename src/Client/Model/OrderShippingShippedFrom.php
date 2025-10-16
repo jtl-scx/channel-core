@@ -175,7 +175,7 @@ class OrderShippingShippedFrom implements ModelInterface, ArrayAccess, \JsonSeri
      */
     protected $container = [];
 
-    public function __construct(array $data = null)
+    public function __construct(array|null $data = null)
     {
         $this->container['city'] = $data['city'] ?? null;
         $this->container['country'] = $data['country'] ?? null;

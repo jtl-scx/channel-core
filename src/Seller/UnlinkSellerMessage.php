@@ -10,7 +10,7 @@ class UnlinkSellerMessage extends AbstractAmqpTransportableMessage implements Se
     private ChannelSellerId $channelSellerId;
     private ?string $reason;
 
-    public function __construct(ChannelSellerId $channelSellerId, string $reason = null, string $messageId = null)
+    public function __construct(ChannelSellerId $channelSellerId, string|null $reason = null, string|null $messageId = null)
     {
         parent::__construct($messageId);
         $this->channelSellerId = $channelSellerId;
