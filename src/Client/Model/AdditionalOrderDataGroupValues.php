@@ -2,7 +2,7 @@
 /**
  * AdditionalOrderDataGroupValues
  *
-0999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999 * PHP version 8.4
+ * PHP version 8.4
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
