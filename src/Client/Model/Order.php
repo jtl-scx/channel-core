@@ -50,7 +50,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
       * @param Address
       * @param Address
       * @param OrderBuyer
-      * @param Enum
       * @param AdditionalOrderDataGroup
       *
       */
@@ -72,7 +71,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'buyer' => '\JTL\SCX\Lib\Channel\Client\Model\OrderBuyer',
         'weeePickup' => 'bool',
         'language' => 'string',
-        'invoiceDocumentTransfer' => 'Enum',
         'additionalOrderData' => '\JTL\SCX\Lib\Channel\Client\Model\AdditionalOrderDataGroup[]'
     ];
 
@@ -547,19 +545,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['language'] = $language;
         return $this;
     }
-
-
-    public function getInvoiceDocumentTransfer(): ?Enum
-    {
-        return $this->container['invoiceDocumentTransfer'];
-    }
-
-    public function setInvoiceDocumentTransfer(?Enum $invoiceDocumentTransfer): Order
-    {
-        $this->container['invoiceDocumentTransfer'] = $invoiceDocumentTransfer;
-        return $this;
-    }
-
 
     public function getAdditionalOrderData(): ?array
     {

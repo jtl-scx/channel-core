@@ -176,13 +176,6 @@ class OrderTest extends AbstractApiModelTest
                 'setLanguage',
                 true
             ],
-            'assert property invoiceDocumentTransfer' => [
-                'invoiceDocumentTransfer',
-                'string',
-                'getInvoiceDocumentTransfer',
-                'setInvoiceDocumentTransfer',
-                true
-            ],
             'assert property additionalOrderData' => [
                 'additionalOrderData',
                 '\JTL\SCX\Lib\Channel\Client\Model\AdditionalOrderDataGroup[]',
