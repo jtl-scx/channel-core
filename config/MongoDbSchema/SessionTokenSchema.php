@@ -6,7 +6,6 @@ use MongoDB\Collection;
 
 class SessionTokenSchema extends AbstractCollectionSchema
 {
-
     public function getCollectionName(): string
     {
         return MongoDbSessionTokenRepository::COLLECTION_NAME;

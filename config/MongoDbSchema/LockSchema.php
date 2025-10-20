@@ -12,7 +12,6 @@ use MongoDB\Collection;
  */
 class LockSchema extends AbstractCollectionSchema
 {
-
     public function getCollectionName(): string
     {
         return MongoDbLockProvider::COLLECTION_NAME;

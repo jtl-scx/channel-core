@@ -43,7 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class SalesChannelDataTest extends AbstractApiModelTest
 {
-
     /**
      * Test allowed values for visibility
      * @test
@@ -197,14 +196,7 @@ class SalesChannelDataTest extends AbstractApiModelTest
                 'getAppId',
                 'setAppId',
                 true
-            ],
-            'assert property featureList' => [
-                'featureList',
-                '\JTL\SCX\Lib\Channel\Client\Model\ChannelFeatureList',
-                'getFeatureList',
-                'setFeatureList',
-                false
-            ],
+            ]
         ];
     }
 

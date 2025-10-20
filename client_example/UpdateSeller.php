@@ -35,4 +35,3 @@ $updateSeller = new UpdateSeller([
 echo $updateSeller;
 $api->update($updateSeller);
 echo "Update Session executed\n";
-

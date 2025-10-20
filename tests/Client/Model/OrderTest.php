@@ -43,7 +43,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class OrderTest extends AbstractApiModelTest
 {
-
     /**
      * Test allowed values for invoiceDocumentTransfer
      * @test
@@ -179,7 +178,7 @@ class OrderTest extends AbstractApiModelTest
             ],
             'assert property invoiceDocumentTransfer' => [
                 'invoiceDocumentTransfer',
-                'Enum',
+                'string',
                 'getInvoiceDocumentTransfer',
                 'setInvoiceDocumentTransfer',
                 true
