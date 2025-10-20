@@ -50,11 +50,19 @@ class OrderBuyerTest extends AbstractApiModelTest
     public function expectedInterface(): array
     {
         return [
-            'assert property Email' => [
+            'assert property email' => [
                 'email',
                 'string',
                 'getEmail',
-                'setEmail'
+                'setEmail',
+                true
+            ],
+            'assert property vatId' => [
+                'vatId',
+                'string',
+                'getVatId',
+                'setVatId',
+                true
             ],
         ];
     }
@@ -63,7 +71,7 @@ class OrderBuyerTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new OrderBuyer([$property => $sample]);
@@ -78,5 +86,13 @@ class OrderBuyerTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
+
+        if ($isNullable) {
+            $sut = new OrderBuyer([$property => null]);
+            $this->assertNull($sut->$expectedGetter());
+
+            $sut->$expectedSetter(null);
+            $this->assertNull($sut->$expectedGetter());
+        }
     }
 }
