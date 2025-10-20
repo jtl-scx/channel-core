@@ -24,7 +24,7 @@ class OrderAcceptEvent extends AbstractEvent
         string $clientVersion,
         DateTimeImmutable $createdAt,
         SellerEventOrderAccept $event,
-        string $internalEventId = null
+        string|null $internalEventId = null
     ) {
         parent::__construct($id, $clientVersion, $createdAt, EventType::SellerOrderAccept(), $internalEventId);
         $this->event = $event;

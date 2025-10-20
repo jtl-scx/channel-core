@@ -169,7 +169,7 @@ class AttributeConditionalMandatoryBy implements ModelInterface, ArrayAccess, \J
      */
     protected $container = [];
 
-    public function __construct(array $data = null)
+    public function __construct(array|null $data = null)
     {
         $this->container['attributeId'] = $data['attributeId'] ?? null;
         $this->container['attributeValues'] = $data['attributeValues'] ?? null;

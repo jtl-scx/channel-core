@@ -24,7 +24,7 @@ class OfferPriceUpdateEvent extends AbstractEvent
         string $clientVersion,
         DateTimeImmutable $createdAt,
         SellerEventOfferPriceUpdate $event,
-        string $internalEventId = null
+        string|null $internalEventId = null
     ) {
         parent::__construct($id, $clientVersion, $createdAt, EventType::SellerOfferPriceUpdate(), $internalEventId);
 

@@ -14,7 +14,7 @@ class Environment
 {
     private array $env;
 
-    public function __construct(array $env = null)
+    public function __construct(array|null $env = null)
     {
         $this->env = $env ?? $_ENV;
     }

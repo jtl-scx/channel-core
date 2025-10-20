@@ -2,7 +2,7 @@
 /**
  * OrderCancellationItem
  *
- * PHP version 7.2
+ * PHP version 8.4
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
@@ -38,18 +38,15 @@ class OrderCancellationItem implements ModelInterface, ArrayAccess, \JsonSeriali
 
     /**
       * The original name of the model.
-      *
-      * @var string
       */
-    protected static $openAPIModelName = 'OrderCancellationItem';
+    protected static string $openAPIModelName = 'OrderCancellationItem';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
       *
-      * @var string[]
       */
-    protected static $openAPITypes = [
+    protected static array $openAPITypes = [
         'orderItemId' => 'string',
         'quantity' => 'string'
     ];
@@ -57,11 +54,10 @@ class OrderCancellationItem implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
       * Array of property to format mappings. Used for (de)serialization
       *
-      * @var string[]
       * @phpstan-var array<string, string|null>
       * @psalm-var array<string, string|null>
       */
-    protected static $openAPIFormats = [
+    protected static array $openAPIFormats = [
         'orderItemId' => 'string',
         'quantity' => null
     ];
@@ -69,9 +65,8 @@ class OrderCancellationItem implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Array of property to type mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPITypes()
+    public static function openAPITypes(): array
     {
         return self::$openAPITypes;
     }
@@ -79,9 +74,8 @@ class OrderCancellationItem implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Array of property to format mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPIFormats()
+    public static function openAPIFormats(): array
     {
         return self::$openAPIFormats;
     }
@@ -89,30 +83,24 @@ class OrderCancellationItem implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
-     *
-     * @var string[]
      */
-    protected static $attributeMap = [
+    protected static array $attributeMap = [
         'orderItemId' => 'orderItemId',
         'quantity' => 'quantity'
     ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @var string[]
      */
-    protected static $setters = [
+    protected static array $setters = [
         'orderItemId' => 'setOrderItemId',
         'quantity' => 'setQuantity'
     ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
      */
-    protected static $getters = [
+    protected static array $getters = [
         'orderItemId' => 'getOrderItemId',
         'quantity' => 'getQuantity'
     ];
@@ -121,9 +109,8 @@ class OrderCancellationItem implements ModelInterface, ArrayAccess, \JsonSeriali
      * Array of attributes where the key is the local name,
      * and the value is the original name
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function attributeMap()
+    public static function attributeMap(): array
     {
         return self::$attributeMap;
     }
@@ -131,9 +118,8 @@ class OrderCancellationItem implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function setters()
+    public static function setters(): array
     {
         return self::$setters;
     }
@@ -141,9 +127,8 @@ class OrderCancellationItem implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }
@@ -151,9 +136,8 @@ class OrderCancellationItem implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * The original name of the model.
      * @codeCoverageIgnore
-     * @return string
      */
-    public function getModelName()
+    public function getModelName(): string
     {
         return self::$openAPIModelName;
     }
@@ -164,12 +148,10 @@ class OrderCancellationItem implements ModelInterface, ArrayAccess, \JsonSeriali
 
     /**
      * Associative array for storing property values
-     *
-     * @var mixed[]
      */
-    protected $container = [];
+    protected array $container = [];
 
-    public function __construct(array $data = null)
+    public function __construct(array|null $data = null)
     {
         $this->container['orderItemId'] = $data['orderItemId'] ?? null;
         $this->container['quantity'] = $data['quantity'] ?? '1.0';
@@ -180,7 +162,7 @@ class OrderCancellationItem implements ModelInterface, ArrayAccess, \JsonSeriali
      * @codeCoverageIgnore
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalidProperties = [];
 
@@ -204,7 +186,7 @@ class OrderCancellationItem implements ModelInterface, ArrayAccess, \JsonSeriali
      * @codeCoverageIgnore
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return count($this->listInvalidProperties()) === 0;
     }
@@ -242,8 +224,6 @@ class OrderCancellationItem implements ModelInterface, ArrayAccess, \JsonSeriali
      * Gets offset.
      *
      * @param integer $offset Offset
-     *
-     * @return mixed|null
      */
     public function offsetGet($offset): mixed
     {
@@ -256,7 +236,6 @@ class OrderCancellationItem implements ModelInterface, ArrayAccess, \JsonSeriali
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetSet($offset, mixed $value): void
     {
@@ -272,7 +251,6 @@ class OrderCancellationItem implements ModelInterface, ArrayAccess, \JsonSeriali
      *
      * @param integer $offset Offset
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetUnset($offset): void
     {
@@ -295,9 +273,8 @@ class OrderCancellationItem implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets the string presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return json_encode(
             $this->jsonSerialize(),
@@ -308,7 +285,6 @@ class OrderCancellationItem implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets a header-safe presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
     public function toHeaderValue(): string
     {

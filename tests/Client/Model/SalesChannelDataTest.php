@@ -44,108 +44,159 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class SalesChannelDataTest extends AbstractApiModelTest
 {
     /**
+     * Test allowed values for visibility
+     * @test
+     */
+    public function it_has_correct_allowed_values_for_visibility(): void
+    {
+        $allowed = [
+            'JTL','THIRDPARTY','ONBOARDING','RESTRICTED',
+        ];
+
+        $sut = new SalesChannelData();
+        $this->assertMethodExists($sut, 'getVisibilityAllowableValues');
+        $this->assertEquals($allowed, $sut->getVisibilityAllowableValues());
+    }
+    /**
+     * Test allowed values for channelType
+     * @test
+     */
+    public function it_has_correct_allowed_values_for_channelType(): void
+    {
+        $allowed = [
+            'MARKETPLACE','OTHER',
+        ];
+
+        $sut = new SalesChannelData();
+        $this->assertMethodExists($sut, 'getChannelTypeAllowableValues');
+        $this->assertEquals($allowed, $sut->getChannelTypeAllowableValues());
+    }
+    /**
      * @return array
      * @dataProvider
      */
     public function expectedInterface(): array
     {
         return [
-            'assert property Channel' => [
+            'assert property channel' => [
                 'channel',
                 'string',
                 'getChannel',
-                'setChannel'
+                'setChannel',
+                false
             ],
-            'assert property Currency' => [
-                'currency',
+            'assert property visibility' => [
+                'visibility',
                 'string',
-                'getCurrency',
-                'setCurrency'
+                'getVisibility',
+                'setVisibility',
+                false
             ],
-            'assert property MarketplaceList' => [
-                'marketplaceList',
-                'string[]',
-                'getMarketplaceList',
-                'setMarketplaceList'
-            ],
-            'assert property SupportedLanguages' => [
-                'supportedLanguages',
-                'string[]',
-                'getSupportedLanguages',
-                'setSupportedLanguages'
-            ],
-            'assert property DisplayName' => [
-                'displayName',
-                'string',
-                'getDisplayName',
-                'setDisplayName'
-            ],
-            'assert property Website' => [
-                'website',
-                'string',
-                'getWebsite',
-                'setWebsite'
-            ],
-            'assert property SupportContact' => [
-                'supportContact',
-                'string',
-                'getSupportContact',
-                'setSupportContact'
-            ],
-            'assert property Vendor' => [
-                'vendor',
-                'string',
-                'getVendor',
-                'setVendor'
-            ],
-            'assert property SignUpUrl' => [
-                'signUpUrl',
-                'string',
-                'getSignUpUrl',
-                'setSignUpUrl'
-            ],
-            'assert property FeatureList' => [
-                'featureList',
-                '\JTL\SCX\Lib\Channel\Client\Model\ChannelUpdateFeatureList',
-                'getFeatureList',
-                'setFeatureList'
-            ],
-            'assert property UpdateUrl' => [
-                'updateUrl',
-                'string',
-                'getUpdateUrl',
-                'setUpdateUrl'
-            ],
-            'assert group' => [
+            'assert property group' => [
                 'group',
                 'string',
                 'getGroup',
-                'setGroup'
+                'setGroup',
+                true
             ],
-            'assert pricing' => [
+            'assert property currency' => [
+                'currency',
+                'string',
+                'getCurrency',
+                'setCurrency',
+                false
+            ],
+            'assert property marketplaceList' => [
+                'marketplaceList',
+                'string[]',
+                'getMarketplaceList',
+                'setMarketplaceList',
+                false
+            ],
+            'assert property supportedLanguages' => [
+                'supportedLanguages',
+                'string[]',
+                'getSupportedLanguages',
+                'setSupportedLanguages',
+                true
+            ],
+            'assert property displayName' => [
+                'displayName',
+                'string',
+                'getDisplayName',
+                'setDisplayName',
+                false
+            ],
+            'assert property website' => [
+                'website',
+                'string',
+                'getWebsite',
+                'setWebsite',
+                false
+            ],
+            'assert property pricing' => [
                 'pricing',
                 'string',
                 'getPricing',
-                'setPricing'
+                'setPricing',
+                true
             ],
-            'assert channel type' => [
+            'assert property channelType' => [
                 'channelType',
                 'string',
                 'getChannelType',
-                'setChannelType'
+                'setChannelType',
+                false
             ],
-            'assert logo' => [
+            'assert property supportContact' => [
+                'supportContact',
+                'string',
+                'getSupportContact',
+                'setSupportContact',
+                false
+            ],
+            'assert property vendor' => [
+                'vendor',
+                'string',
+                'getVendor',
+                'setVendor',
+                false
+            ],
+            'assert property signUpUrl' => [
+                'signUpUrl',
+                'string',
+                'getSignUpUrl',
+                'setSignUpUrl',
+                false
+            ],
+            'assert property updateUrl' => [
+                'updateUrl',
+                'string',
+                'getUpdateUrl',
+                'setUpdateUrl',
+                true
+            ],
+            'assert property logo' => [
                 'logo',
                 'string',
                 'getLogo',
-                'setLogo'
+                'setLogo',
+                true
             ],
-            'assert description' => [
+            'assert property description' => [
                 'description',
                 'string',
                 'getDescription',
-                'setDescription'
+                'setDescription',
+                true
             ],
+            'assert property appId' => [
+                'appId',
+                'string',
+                'getAppId',
+                'setAppId',
+                true
+            ]
         ];
     }
 
@@ -153,7 +204,7 @@ class SalesChannelDataTest extends AbstractApiModelTest
      * @test
      * @dataProvider expectedInterface
      */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter): void
+    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
     {
         $sample = $this->buildSampleForDataType($type);
         $sut = new SalesChannelData([$property => $sample]);
@@ -168,6 +219,14 @@ class SalesChannelDataTest extends AbstractApiModelTest
         $this->assertMethodExists($sut, $expectedSetter);
         $sut->$expectedSetter($newSample);
         $this->assertSame($newSample, $sut[$property]);
+
+        if ($isNullable) {
+            $sut = new SalesChannelData([$property => null]);
+            $this->assertNull($sut->$expectedGetter());
+
+            $sut->$expectedSetter(null);
+            $this->assertNull($sut->$expectedGetter());
+        }
     }
 
     /**

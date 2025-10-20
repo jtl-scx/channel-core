@@ -28,9 +28,9 @@ class SendOfferListingSuccessfulMessage extends AbstractAmqpTransportableMessage
         ChannelSellerId $sellerId,
         int $sellerOfferId,
         string $channelOfferId,
-        string $listingUrl = null,
-        \DateTime $listedAt = null,
-        string $messageId = null
+        string|null $listingUrl = null,
+        \DateTime|null $listedAt = null,
+        string|null $messageId = null
     ) {
         parent::__construct($messageId);
 

@@ -2,7 +2,7 @@
 /**
  * OrderItemStatus
  *
- * PHP version 7.2
+ * PHP version 8.4
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client

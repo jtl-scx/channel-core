@@ -19,7 +19,7 @@ class OrderReturnReceived extends AbstractEvent implements SellerIdRelatedMessag
         string $clientVersion,
         DateTimeImmutable $createdAt,
         SellerEventOrderReturnReceived $type,
-        string $internalEventId = null
+        string|null $internalEventId = null
     ) {
         parent::__construct($id, $clientVersion, $createdAt, EventType::SellerOrderReturnReceived(), $internalEventId);
         $this->event = $type;

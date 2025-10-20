@@ -48,12 +48,12 @@ class ObjectSerializer
      * Serialize data
      *
      * @param mixed  $data   the data to serialize
-     * @param string $type   the OpenAPIToolsType of the data
-     * @param string $format the format of the OpenAPITools type of the data
+     * @param string|null $type   the OpenAPIToolsType of the data
+     * @param string|null $format the format of the OpenAPITools type of the data
      *
      * @return scalar|object|array|null serialized form of $data
      */
-    public static function sanitizeForSerialization($data, $type = null, $format = null)
+    public static function sanitizeForSerialization(mixed $data, string|null $type = null, string|null $format = null): mixed
     {
         if (is_scalar($data) || null === $data) {
             return $data;

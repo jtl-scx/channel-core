@@ -2,7 +2,7 @@
 /**
  * RefundProcessingResult
  *
- * PHP version 7.2
+ * PHP version 8.4
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
@@ -38,19 +38,16 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
 
     /**
       * The original name of the model.
-      *
-      * @var string
       */
-    protected static $openAPIModelName = 'RefundProcessingResult';
+    protected static string $openAPIModelName = 'RefundProcessingResult';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
       * @param RefundProcessingError
       *
-      * @var string[]
       */
-    protected static $openAPITypes = [
+    protected static array $openAPITypes = [
         'refundId' => 'string',
         'sellerId' => 'string',
         'isAccepted' => 'bool',
@@ -60,11 +57,10 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
     /**
       * Array of property to format mappings. Used for (de)serialization
       *
-      * @var string[]
       * @phpstan-var array<string, string|null>
       * @psalm-var array<string, string|null>
       */
-    protected static $openAPIFormats = [
+    protected static array $openAPIFormats = [
         'refundId' => null,
         'sellerId' => null,
         'isAccepted' => null,
@@ -74,9 +70,8 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Array of property to type mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPITypes()
+    public static function openAPITypes(): array
     {
         return self::$openAPITypes;
     }
@@ -84,9 +79,8 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Array of property to format mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPIFormats()
+    public static function openAPIFormats(): array
     {
         return self::$openAPIFormats;
     }
@@ -94,10 +88,8 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
-     *
-     * @var string[]
      */
-    protected static $attributeMap = [
+    protected static array $attributeMap = [
         'refundId' => 'refundId',
         'sellerId' => 'sellerId',
         'isAccepted' => 'isAccepted',
@@ -106,10 +98,8 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @var string[]
      */
-    protected static $setters = [
+    protected static array $setters = [
         'refundId' => 'setRefundId',
         'sellerId' => 'setSellerId',
         'isAccepted' => 'setIsAccepted',
@@ -118,10 +108,8 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
      */
-    protected static $getters = [
+    protected static array $getters = [
         'refundId' => 'getRefundId',
         'sellerId' => 'getSellerId',
         'isAccepted' => 'getIsAccepted',
@@ -132,9 +120,8 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
      * Array of attributes where the key is the local name,
      * and the value is the original name
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function attributeMap()
+    public static function attributeMap(): array
     {
         return self::$attributeMap;
     }
@@ -142,9 +129,8 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function setters()
+    public static function setters(): array
     {
         return self::$setters;
     }
@@ -152,9 +138,8 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }
@@ -162,9 +147,8 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * The original name of the model.
      * @codeCoverageIgnore
-     * @return string
      */
-    public function getModelName()
+    public function getModelName(): string
     {
         return self::$openAPIModelName;
     }
@@ -175,12 +159,10 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
 
     /**
      * Associative array for storing property values
-     *
-     * @var mixed[]
      */
-    protected $container = [];
+    protected array $container = [];
 
-    public function __construct(array $data = null)
+    public function __construct(array|null $data = null)
     {
         $this->container['refundId'] = $data['refundId'] ?? null;
         $this->container['sellerId'] = $data['sellerId'] ?? null;
@@ -193,7 +175,7 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
      * @codeCoverageIgnore
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalidProperties = [];
 
@@ -227,7 +209,7 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
      * @codeCoverageIgnore
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return count($this->listInvalidProperties()) === 0;
     }
@@ -289,8 +271,6 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
      * Gets offset.
      *
      * @param integer $offset Offset
-     *
-     * @return mixed|null
      */
     public function offsetGet($offset): mixed
     {
@@ -303,7 +283,6 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetSet($offset, mixed $value): void
     {
@@ -319,7 +298,6 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
      *
      * @param integer $offset Offset
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetUnset($offset): void
     {
@@ -342,9 +320,8 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets the string presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return json_encode(
             $this->jsonSerialize(),
@@ -355,7 +332,6 @@ class RefundProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets a header-safe presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
     public function toHeaderValue(): string
     {

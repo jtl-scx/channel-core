@@ -25,10 +25,10 @@ class OrderShippingEvent extends AbstractEvent
         string $clientVersion,
         DateTimeImmutable $createdAt,
         SellerEventOrderShipping $event,
-        string $internalEventId = null,
-        int $delay = null,
-        int $retryDelay = null,
-        int $retryCount = null,
+        string|null $internalEventId = null,
+        int|null $delay = null,
+        int|null $retryDelay = null,
+        int|null $retryCount = null,
     ) {
         parent::__construct(
             id: $id,

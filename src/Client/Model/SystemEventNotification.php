@@ -2,7 +2,7 @@
 /**
  * SystemEventNotification
  *
- * PHP version 7.2
+ * PHP version 8.4
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
@@ -38,18 +38,15 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
 
     /**
       * The original name of the model.
-      *
-      * @var string
       */
-    protected static $openAPIModelName = 'SystemEventNotification';
+    protected static string $openAPIModelName = 'SystemEventNotification';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
       *
-      * @var string[]
       */
-    protected static $openAPITypes = [
+    protected static array $openAPITypes = [
         'channel' => 'string',
         'sellerId' => 'string',
         'message' => 'string',
@@ -59,11 +56,10 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
     /**
       * Array of property to format mappings. Used for (de)serialization
       *
-      * @var string[]
       * @phpstan-var array<string, string|null>
       * @psalm-var array<string, string|null>
       */
-    protected static $openAPIFormats = [
+    protected static array $openAPIFormats = [
         'channel' => null,
         'sellerId' => null,
         'message' => null,
@@ -73,9 +69,8 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Array of property to type mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPITypes()
+    public static function openAPITypes(): array
     {
         return self::$openAPITypes;
     }
@@ -83,9 +78,8 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Array of property to format mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPIFormats()
+    public static function openAPIFormats(): array
     {
         return self::$openAPIFormats;
     }
@@ -93,10 +87,8 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
-     *
-     * @var string[]
      */
-    protected static $attributeMap = [
+    protected static array $attributeMap = [
         'channel' => 'channel',
         'sellerId' => 'sellerId',
         'message' => 'message',
@@ -105,10 +97,8 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @var string[]
      */
-    protected static $setters = [
+    protected static array $setters = [
         'channel' => 'setChannel',
         'sellerId' => 'setSellerId',
         'message' => 'setMessage',
@@ -117,10 +107,8 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
      */
-    protected static $getters = [
+    protected static array $getters = [
         'channel' => 'getChannel',
         'sellerId' => 'getSellerId',
         'message' => 'getMessage',
@@ -131,9 +119,8 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
      * Array of attributes where the key is the local name,
      * and the value is the original name
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function attributeMap()
+    public static function attributeMap(): array
     {
         return self::$attributeMap;
     }
@@ -141,9 +128,8 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function setters()
+    public static function setters(): array
     {
         return self::$setters;
     }
@@ -151,9 +137,8 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }
@@ -161,9 +146,8 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * The original name of the model.
      * @codeCoverageIgnore
-     * @return string
      */
-    public function getModelName()
+    public function getModelName(): string
     {
         return self::$openAPIModelName;
     }
@@ -176,10 +160,8 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
 
     /**
      * Gets allowable values of the enum
-     *
-     * @return string[]
      */
-    public function getSeverityAllowableValues()
+    public function getSeverityAllowableValues(): array
     {
         return [
             self::SEVERITY_INFO,
@@ -191,12 +173,10 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
 
     /**
      * Associative array for storing property values
-     *
-     * @var mixed[]
      */
-    protected $container = [];
+    protected array $container = [];
 
-    public function __construct(array $data = null)
+    public function __construct(array|null $data = null)
     {
         $this->container['channel'] = $data['channel'] ?? null;
         $this->container['sellerId'] = $data['sellerId'] ?? null;
@@ -209,7 +189,7 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
      * @codeCoverageIgnore
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalidProperties = [];
 
@@ -251,7 +231,7 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
      * @codeCoverageIgnore
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return count($this->listInvalidProperties()) === 0;
     }
@@ -313,8 +293,6 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
      * Gets offset.
      *
      * @param integer $offset Offset
-     *
-     * @return mixed|null
      */
     public function offsetGet($offset): mixed
     {
@@ -327,7 +305,6 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetSet($offset, mixed $value): void
     {
@@ -343,7 +320,6 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
      *
      * @param integer $offset Offset
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetUnset($offset): void
     {
@@ -366,9 +342,8 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets the string presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return json_encode(
             $this->jsonSerialize(),
@@ -379,7 +354,6 @@ class SystemEventNotification implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets a header-safe presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
     public function toHeaderValue(): string
     {

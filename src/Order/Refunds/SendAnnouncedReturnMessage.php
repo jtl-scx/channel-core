@@ -14,7 +14,7 @@ class SendAnnouncedReturnMessage extends AbstractAmqpTransportableMessage implem
 
     public function __construct(
         ReturnAnnouncement $returnAnnouncement,
-        string $messageId = null
+        string|null $messageId = null
     ) {
         parent::__construct($messageId);
         $this->returnAnnouncement = $returnAnnouncement;

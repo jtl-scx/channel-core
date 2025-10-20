@@ -2,7 +2,7 @@
 /**
  * Address
  *
- * PHP version 7.2
+ * PHP version 8.4
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
@@ -38,18 +38,15 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
       * The original name of the model.
-      *
-      * @var string
       */
-    protected static $openAPIModelName = 'Address';
+    protected static string $openAPIModelName = 'Address';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
       *
-      * @var string[]
       */
-    protected static $openAPITypes = [
+    protected static array $openAPITypes = [
         'firstName' => 'string',
         'lastName' => 'string',
         'gender' => 'string',
@@ -67,11 +64,10 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
       * Array of property to format mappings. Used for (de)serialization
       *
-      * @var string[]
       * @phpstan-var array<string, string|null>
       * @psalm-var array<string, string|null>
       */
-    protected static $openAPIFormats = [
+    protected static array $openAPIFormats = [
         'firstName' => null,
         'lastName' => null,
         'gender' => null,
@@ -89,9 +85,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of property to type mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPITypes()
+    public static function openAPITypes(): array
     {
         return self::$openAPITypes;
     }
@@ -99,9 +94,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of property to format mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPIFormats()
+    public static function openAPIFormats(): array
     {
         return self::$openAPIFormats;
     }
@@ -109,10 +103,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
-     *
-     * @var string[]
      */
-    protected static $attributeMap = [
+    protected static array $attributeMap = [
         'firstName' => 'firstName',
         'lastName' => 'lastName',
         'gender' => 'gender',
@@ -129,10 +121,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @var string[]
      */
-    protected static $setters = [
+    protected static array $setters = [
         'firstName' => 'setFirstName',
         'lastName' => 'setLastName',
         'gender' => 'setGender',
@@ -149,10 +139,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
      */
-    protected static $getters = [
+    protected static array $getters = [
         'firstName' => 'getFirstName',
         'lastName' => 'getLastName',
         'gender' => 'getGender',
@@ -171,9 +159,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      * Array of attributes where the key is the local name,
      * and the value is the original name
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function attributeMap()
+    public static function attributeMap(): array
     {
         return self::$attributeMap;
     }
@@ -181,9 +168,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function setters()
+    public static function setters(): array
     {
         return self::$setters;
     }
@@ -191,9 +177,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }
@@ -201,9 +186,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * The original name of the model.
      * @codeCoverageIgnore
-     * @return string
      */
-    public function getModelName()
+    public function getModelName(): string
     {
         return self::$openAPIModelName;
     }
@@ -216,10 +200,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Gets allowable values of the enum
-     *
-     * @return string[]
      */
-    public function getGenderAllowableValues()
+    public function getGenderAllowableValues(): array
     {
         return [
             self::GENDER_MALE,
@@ -231,12 +213,10 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
 
     /**
      * Associative array for storing property values
-     *
-     * @var mixed[]
      */
-    protected $container = [];
+    protected array $container = [];
 
-    public function __construct(array $data = null)
+    public function __construct(array|null $data = null)
     {
         $this->container['firstName'] = $data['firstName'] ?? null;
         $this->container['lastName'] = $data['lastName'] ?? null;
@@ -257,7 +237,7 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalidProperties = [];
 
@@ -291,12 +271,10 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      * @codeCoverageIgnore
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
-
     public function getFirstName(): ?string
     {
         return $this->container['firstName'];
@@ -307,8 +285,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['firstName'] = $firstName;
         return $this;
     }
-
-
     public function getLastName(): string
     {
         return $this->container['lastName'];
@@ -319,8 +295,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['lastName'] = $lastName;
         return $this;
     }
-
-
     public function getGender(): ?string
     {
         return $this->container['gender'];
@@ -331,8 +305,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['gender'] = $gender;
         return $this;
     }
-
-
     public function getCompanyName(): ?string
     {
         return $this->container['companyName'];
@@ -343,8 +315,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['companyName'] = $companyName;
         return $this;
     }
-
-
     public function getStreet(): string
     {
         return $this->container['street'];
@@ -355,8 +325,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['street'] = $street;
         return $this;
     }
-
-
     public function getHouseNumber(): ?string
     {
         return $this->container['houseNumber'];
@@ -367,8 +335,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['houseNumber'] = $houseNumber;
         return $this;
     }
-
-
     public function getAddition(): ?string
     {
         return $this->container['addition'];
@@ -379,8 +345,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['addition'] = $addition;
         return $this;
     }
-
-
     public function getPostcode(): ?string
     {
         return $this->container['postcode'];
@@ -391,8 +355,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['postcode'] = $postcode;
         return $this;
     }
-
-
     public function getCity(): string
     {
         return $this->container['city'];
@@ -403,8 +365,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['city'] = $city;
         return $this;
     }
-
-
     public function getPhone(): ?string
     {
         return $this->container['phone'];
@@ -415,8 +375,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['phone'] = $phone;
         return $this;
     }
-
-
     public function getCountry(): string
     {
         return $this->container['country'];
@@ -427,8 +385,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['country'] = $country;
         return $this;
     }
-
-
     public function getState(): ?string
     {
         return $this->container['state'];
@@ -449,8 +405,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets offset.
      *
      * @param integer $offset Offset
-     *
-     * @return mixed|null
      */
     public function offsetGet($offset): mixed
     {
@@ -463,7 +417,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetSet($offset, mixed $value): void
     {
@@ -479,7 +432,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @param integer $offset Offset
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetUnset($offset): void
     {
@@ -502,9 +454,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets the string presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return json_encode(
             $this->jsonSerialize(),
@@ -515,7 +466,6 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets a header-safe presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
     public function toHeaderValue(): string
     {

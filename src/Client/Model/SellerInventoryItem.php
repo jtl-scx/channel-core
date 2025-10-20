@@ -2,7 +2,7 @@
 /**
  * SellerInventoryItem
  *
- * PHP version 7.2
+ * PHP version 8.4
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
@@ -38,10 +38,8 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
 
     /**
       * The original name of the model.
-      *
-      * @var string
       */
-    protected static $openAPIModelName = 'SellerInventoryItem';
+    protected static string $openAPIModelName = 'SellerInventoryItem';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -49,9 +47,8 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
       * @param PriceContainer
       * @param ChannelAttribute
       *
-      * @var string[]
       */
-    protected static $openAPITypes = [
+    protected static array $openAPITypes = [
         'offerId' => 'int',
         'channelOfferId' => 'string',
         'sku' => 'string',
@@ -66,11 +63,10 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
       * Array of property to format mappings. Used for (de)serialization
       *
-      * @var string[]
       * @phpstan-var array<string, string|null>
       * @psalm-var array<string, string|null>
       */
-    protected static $openAPIFormats = [
+    protected static array $openAPIFormats = [
         'offerId' => 'int64',
         'channelOfferId' => null,
         'sku' => null,
@@ -85,9 +81,8 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Array of property to type mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPITypes()
+    public static function openAPITypes(): array
     {
         return self::$openAPITypes;
     }
@@ -95,9 +90,8 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Array of property to format mappings. Used for (de)serialization
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function openAPIFormats()
+    public static function openAPIFormats(): array
     {
         return self::$openAPIFormats;
     }
@@ -105,10 +99,8 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Array of attributes where the key is the local name,
      * and the value is the original name
-     *
-     * @var string[]
      */
-    protected static $attributeMap = [
+    protected static array $attributeMap = [
         'offerId' => 'offerId',
         'channelOfferId' => 'channelOfferId',
         'sku' => 'sku',
@@ -122,10 +114,8 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @var string[]
      */
-    protected static $setters = [
+    protected static array $setters = [
         'offerId' => 'setOfferId',
         'channelOfferId' => 'setChannelOfferId',
         'sku' => 'setSku',
@@ -139,10 +129,8 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
      */
-    protected static $getters = [
+    protected static array $getters = [
         'offerId' => 'getOfferId',
         'channelOfferId' => 'getChannelOfferId',
         'sku' => 'getSku',
@@ -158,9 +146,8 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
      * Array of attributes where the key is the local name,
      * and the value is the original name
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function attributeMap()
+    public static function attributeMap(): array
     {
         return self::$attributeMap;
     }
@@ -168,9 +155,8 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function setters()
+    public static function setters(): array
     {
         return self::$setters;
     }
@@ -178,9 +164,8 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Array of attributes to getter functions (for serialization of requests)
      * @codeCoverageIgnore
-     * @return array
      */
-    public static function getters()
+    public static function getters(): array
     {
         return self::$getters;
     }
@@ -188,9 +173,8 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * The original name of the model.
      * @codeCoverageIgnore
-     * @return string
      */
-    public function getModelName()
+    public function getModelName(): string
     {
         return self::$openAPIModelName;
     }
@@ -201,12 +185,10 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
 
     /**
      * Associative array for storing property values
-     *
-     * @var mixed[]
      */
-    protected $container = [];
+    protected array $container = [];
 
-    public function __construct(array $data = null)
+    public function __construct(array|null $data = null)
     {
         $this->container['offerId'] = $data['offerId'] ?? null;
         $this->container['channelOfferId'] = $data['channelOfferId'] ?? null;
@@ -224,7 +206,7 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
      * @codeCoverageIgnore
      * @return array invalid properties with reasons
      */
-    public function listInvalidProperties()
+    public function listInvalidProperties(): array
     {
         $invalidProperties = [];
 
@@ -232,8 +214,8 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
             $invalidProperties[] = "invalid value for 'offerId', must be bigger than or equal to 1.";
         }
 
-        if (!is_null($this->container['channelOfferId']) && (mb_strlen($this->container['channelOfferId']) > 50)) {
-            $invalidProperties[] = "invalid value for 'channelOfferId', the character length must be smaller than or equal to 50.";
+        if (!is_null($this->container['channelOfferId']) && (mb_strlen($this->container['channelOfferId']) > 100)) {
+            $invalidProperties[] = "invalid value for 'channelOfferId', the character length must be smaller than or equal to 100.";
         }
 
         if (!is_null($this->container['channelOfferId']) && (mb_strlen($this->container['channelOfferId']) < 1)) {
@@ -257,7 +239,7 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
      * @codeCoverageIgnore
      * @return bool True if all properties are valid
      */
-    public function valid()
+    public function valid(): bool
     {
         return count($this->listInvalidProperties()) === 0;
     }
@@ -379,8 +361,6 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
      * Gets offset.
      *
      * @param integer $offset Offset
-     *
-     * @return mixed|null
      */
     public function offsetGet($offset): mixed
     {
@@ -393,7 +373,6 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
      * @param int|null $offset Offset
      * @param mixed    $value  Value to be set
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetSet($offset, mixed $value): void
     {
@@ -409,7 +388,6 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
      *
      * @param integer $offset Offset
      * @codeCoverageIgnore
-     * @return void
      */
     public function offsetUnset($offset): void
     {
@@ -432,9 +410,8 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets the string presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return json_encode(
             $this->jsonSerialize(),
@@ -445,7 +422,6 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets a header-safe presentation of the object
      * @codeCoverageIgnore
-     * @return string
      */
     public function toHeaderValue(): string
     {

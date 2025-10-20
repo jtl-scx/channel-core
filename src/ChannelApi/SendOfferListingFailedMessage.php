@@ -27,8 +27,8 @@ class SendOfferListingFailedMessage extends AbstractAmqpTransportableMessage imp
         private readonly int $sellerOfferId,
         string $errorCode,
         string $errorMessage,
-        \DateTime $failedAt = null,
-        string $messageId = null,
+        \DateTime|null $failedAt = null,
+        string|null $messageId = null,
         string|null $relatedAttributeId = null,
         string|null $recommendedValue = null,
     ) {

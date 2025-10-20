@@ -46,7 +46,7 @@ class OrderApi
     private AuthAwareApiClient $client;
     private ChannelApiResponseDeserializer $responseDeserializer;
 
-    public function __construct(AuthAwareApiClient $client, ChannelApiResponseDeserializer $responseDeserializer = null)
+    public function __construct(AuthAwareApiClient $client, ChannelApiResponseDeserializer|null $responseDeserializer = null)
     {
         $this->client = $client;
         $this->responseDeserializer = $responseDeserializer ?? new ChannelApiResponseDeserializer();

@@ -19,7 +19,7 @@ class MarkListingAsFailedRequest extends AbstractScxApiRequest
 {
     private OfferListingFailedList $offerList;
 
-    public function __construct(OfferListingFailedList $offerList = null)
+    public function __construct(OfferListingFailedList|null $offerList = null)
     {
         $this->offerList = $offerList ?? new OfferListingFailedList(['offerList' => []]);
     }

@@ -17,7 +17,7 @@ class RuntimeProcessor implements ProcessorInterface
     private float $startTime;
     private float $lastLogTime;
 
-    public function __construct(float $time = null)
+    public function __construct(float|null $time = null)
     {
         $this->startTime = $time ?? microtime(true);
         $this->lastLogTime = $this->startTime;

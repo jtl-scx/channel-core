@@ -24,7 +24,7 @@ class AttributesUpdateRequestEvent extends AbstractEvent
         string $clientVersion,
         DateTimeImmutable $createdAt,
         SellerEventSellerAttributesUpdateRequest $event,
-        string $internalEventId = null
+        string|null $internalEventId = null
     ) {
         parent::__construct($id, $clientVersion, $createdAt, EventType::SellerMetaSellerAttributesUpdateRequest(), $internalEventId);
         $this->event = $event;

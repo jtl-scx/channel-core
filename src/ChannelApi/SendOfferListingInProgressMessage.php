@@ -26,8 +26,8 @@ class SendOfferListingInProgressMessage extends AbstractAmqpTransportableMessage
     public function __construct(
         ChannelSellerId $sellerId,
         int $sellerOfferId,
-        \DateTime $startedAt = null,
-        string $messageId = null
+        \DateTime|null $startedAt = null,
+        string|null $messageId = null
     ) {
         parent::__construct($messageId);
 

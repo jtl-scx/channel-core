@@ -32,7 +32,7 @@ if (empty($listenerCache)) {
     $listenerCache = $rootDir . '/var/cache/listenerCache.php';
 }
 
-$core = new class($isDevelopment, $rootDir, $containerCache, $listenerCache) extends AbstractApplicationContext {
+$core = new class ($isDevelopment, $rootDir, $containerCache, $listenerCache) extends AbstractApplicationContext {
     public function __construct($isDevelopment, $rootDir, $containerCachePath, $listenerCachePath)
     {
         parent::__construct($isDevelopment, $rootDir, $containerCachePath, $listenerCachePath);

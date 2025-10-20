@@ -26,10 +26,10 @@ abstract class AbstractEvent extends AbstractAmqpTransportableMessage
         string $clientVersion,
         DateTimeImmutable $createdAt,
         EventType $type,
-        string $internalEventId = null,
-        int $delay = null,
-        int $retryDelay = null,
-        int $retryCount = null,
+        string|null $internalEventId = null,
+        int|null $delay = null,
+        int|null $retryDelay = null,
+        int|null $retryCount = null,
     ) {
         parent::__construct(
             messageId: $internalEventId,
