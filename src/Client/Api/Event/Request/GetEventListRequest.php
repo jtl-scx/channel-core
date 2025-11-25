@@ -15,6 +15,9 @@ use JTL\SCX\Client\Request\ScxApiRequest;
 
 class GetEventListRequest extends AbstractScxApiRequest
 {
+    public function __construct(private readonly int $limit = 100)
+    {
+    }
     public function getUrl(): string
     {
         return '/v1/channel/event';
@@ -23,5 +26,10 @@ class GetEventListRequest extends AbstractScxApiRequest
     public function getHttpMethod(): string
     {
         return ScxApiRequest::HTTP_METHOD_GET;
+    }
+
+    public function getParams(): array
+    {
+        return ['limit' => $this->limit];
     }
 }

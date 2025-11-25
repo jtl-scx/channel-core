@@ -13,6 +13,7 @@ namespace JTL\SCX\Lib\Channel\Event\Command;
 use GuzzleHttp\Exception\GuzzleException;
 use JTL\SCX\Lib\Channel\Client\Api\Event\EventApi;
 use JTL\SCX\Lib\Channel\Client\Api\Event\Request\AcknowledgeEventIdListRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Event\Request\GetEventListRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Event\Response\GetSellerEventListResponse;
 use JTL\SCX\Client\Exception\RequestFailedException;
 use JTL\SCX\Client\Exception\RequestValidationFailedException;
@@ -20,6 +21,7 @@ use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
 use JTL\SCX\Lib\Channel\Event\Emitter\SellerEventEmitter;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class ScxApiEventConsumeCommand extends AbstractCommand
@@ -39,6 +41,7 @@ class ScxApiEventConsumeCommand extends AbstractCommand
     protected function configure(): void
     {
         $this->setDescription('Consume seller events created from polling the SCX Channel API');
+        $this->addOption('limit', 'l', InputOption::VALUE_OPTIONAL, 'Limit the number of events to consume', 100);
     }
 
     /**
@@ -51,8 +54,12 @@ class ScxApiEventConsumeCommand extends AbstractCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $limit = (int)$input->getOption('limit');
+        $this->logger->info("Start consuming seller events with limit: {$limit}");
+        $request = new GetEventListRequest($limit);
+
         do {
-            $response = $this->eventApi->get();
+            $response = $this->eventApi->get($request);
 
             $withError = count($response->getErroneousEvents());
             $this->logger->info(
