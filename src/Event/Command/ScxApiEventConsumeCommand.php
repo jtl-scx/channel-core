@@ -41,7 +41,7 @@ class ScxApiEventConsumeCommand extends AbstractCommand
     protected function configure(): void
     {
         $this->setDescription('Consume seller events created from polling the SCX Channel API');
-        $this->addOption('limit', 'l', InputOption::VALUE_OPTIONAL, 'Limit the number of events to consume', 100);
+        $this->addOption('limit', 'l', InputOption::VALUE_OPTIONAL, 'Limit the number of events to consume', 1000);
     }
 
     /**
