@@ -12,6 +12,8 @@ namespace JTL\SCX\Lib\Channel\Database\Migration;
 
 use ReflectionClass;
 
+
+#[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
 class CollectionSchemaLoader
 {
     /**
@@ -19,6 +21,7 @@ class CollectionSchemaLoader
      * @return array
      * @throws \ReflectionException
      */
+    #[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
     public function getCollectionSchemaList(string $migrationPath): array
     {
         $this->loadPhpFiles($migrationPath);
