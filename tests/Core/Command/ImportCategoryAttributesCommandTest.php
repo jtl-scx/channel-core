@@ -43,17 +43,10 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
         $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
 
-        $lockFactory = $this->createMock(LockFactory::class);
-
-        $lockFactory->expects($this->once())
-            ->method('obtain')
-            ->willReturn(true);
-
         $cmd = new ImportCategoryAttributesCommand(
             $loaderMock,
             $updaterMock,
             $deleterMock,
-            $lockFactory,
             $this->createStub(ScxLogger::class)
         );
         $cmdTester = new CommandTester($cmd);
@@ -80,17 +73,10 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
         $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
 
-        $lockFactory = $this->createMock(LockFactory::class);
-
-        $lockFactory->expects($this->once())
-            ->method('obtain')
-            ->willReturn(true);
-
         $cmd = new ImportCategoryAttributesCommand(
             $loaderMock,
             $updaterMock,
             $deleterMock,
-            $lockFactory,
             $this->createStub(ScxLogger::class)
         );
         $cmdTester = new CommandTester($cmd);
@@ -119,17 +105,10 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
         $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
 
-        $lockFactory = $this->createMock(LockFactory::class);
-
-        $lockFactory->expects($this->once())
-            ->method('obtain')
-            ->willReturn(true);
-
         $cmd = new ImportCategoryAttributesCommand(
             $loaderMock,
             $updaterMock,
             $deleterMock,
-            $lockFactory,
             $this->createStub(ScxLogger::class)
         );
         $cmdTester = new CommandTester($cmd);
@@ -166,17 +145,10 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
         $deleterMock->expects(self::once())->method('delete')->with($testCategoryId);
 
-        $lockFactory = $this->createMock(LockFactory::class);
-
-        $lockFactory->expects($this->once())
-            ->method('obtain')
-            ->willReturn(true);
-
         $cmd = new ImportCategoryAttributesCommand(
             $loaderMock,
             $updaterMock,
             $deleterMock,
-            $lockFactory,
             $this->createStub(ScxLogger::class)
         );
         $cmdTester = new CommandTester($cmd);
@@ -210,17 +182,10 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
         $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
 
-        $lockFactory = $this->createMock(LockFactory::class);
-
-        $lockFactory->expects($this->once())
-            ->method('obtain')
-            ->willReturn(true);
-
         $cmd = new ImportCategoryAttributesCommand(
             $loaderMock,
             $updaterMock,
             $deleterMock,
-            $lockFactory,
             $this->createStub(ScxLogger::class)
         );
         $cmdTester = new CommandTester($cmd);
@@ -257,17 +222,10 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
         $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
 
-        $lockFactory = $this->createMock(LockFactory::class);
-
-        $lockFactory->expects($this->once())
-            ->method('obtain')
-            ->willReturn(true);
-
         $cmd = new ImportCategoryAttributesCommand(
             $loaderMock,
             $updaterMock,
             $deleterMock,
-            $lockFactory,
             $this->createStub(ScxLogger::class)
         );
         $cmdTester = new CommandTester($cmd);
@@ -311,17 +269,10 @@ class ImportCategoryAttributesCommandTest extends TestCase
 
         $deleterMock->expects(self::never())->method('delete');
 
-        $lockFactory = $this->createMock(LockFactory::class);
-
-        $lockFactory->expects($this->once())
-            ->method('obtain')
-            ->willReturn(true);
-
         $cmd = new ImportCategoryAttributesCommand(
             $loaderMock,
             $updaterMock,
             $deleterMock,
-            $lockFactory,
             $this->createStub(ScxLogger::class)
         );
         $cmdTester = new CommandTester($cmd);
@@ -348,17 +299,11 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $loaderMock = $this->createMock(MetaDataCategoryAttributeLoader::class);
         $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
         $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
-        $lockFactory = $this->createMock(LockFactory::class);
-
-        $lockFactory->expects($this->once())
-            ->method('obtain')
-            ->willReturn(false);
 
         $cmd = new ImportCategoryAttributesCommand(
             $loaderMock,
             $updaterMock,
             $deleterMock,
-            $lockFactory,
             $this->createStub(ScxLogger::class)
         );
         $cmdTester = new CommandTester($cmd);
