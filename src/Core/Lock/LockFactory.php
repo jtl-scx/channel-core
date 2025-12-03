@@ -12,6 +12,7 @@ namespace JTL\SCX\Lib\Channel\Core\Lock;
 
 use JTL\SCX\Lib\Channel\Contract\Core\Lock\LockProvider;
 
+#[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
 class LockFactory
 {
     private LockProvider $lockProvider;
@@ -20,6 +21,7 @@ class LockFactory
      */
     private array $unlockOnDestructList = [];
 
+    #[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
     public function __construct(LockProvider $lockProvider)
     {
         $this->lockProvider = $lockProvider;

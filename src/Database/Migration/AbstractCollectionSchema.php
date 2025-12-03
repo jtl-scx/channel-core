@@ -12,8 +12,11 @@ namespace JTL\SCX\Lib\Channel\Database\Migration;
 
 use MongoDB\Collection;
 
+#[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
 abstract class AbstractCollectionSchema implements CollectionSchema
 {
+
+    #[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
     protected function dropIndexIfExists(Collection $collection, string $indexName): void
     {
         foreach ($collection->listIndexes() as $info) {

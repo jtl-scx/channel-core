@@ -10,6 +10,7 @@ use MongoDB\Collection;
  * User: avermeulen
  * Date: 2021-01-26
  */
+#[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
 class LockSchema extends AbstractCollectionSchema
 {
     public function getCollectionName(): string
