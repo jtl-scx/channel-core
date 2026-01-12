@@ -42,7 +42,6 @@ use PHPUnit\Framework\TestCase;
 /** @covers \JTL\SCX\Lib\Channel\Client\Model\StockList */
 class StockListTest extends TestCase
 {
-
     public function testStockList()
     {
         $dateTime = new \DateTime();
