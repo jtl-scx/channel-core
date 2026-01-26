@@ -301,5 +301,3 @@ class UpsertMarketplaceSeller implements ModelInterface, ArrayAccess, \JsonSeria
         return json_encode($this->jsonSerialize());
     }
 }
-
-

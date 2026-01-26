@@ -41,7 +41,6 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  */
 class UpsertMarketplaceSellerTest extends AbstractApiModelTest
 {
-
     /**
      * @return array
      * @dataProvider
