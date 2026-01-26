@@ -105,6 +105,12 @@ class SellerApi
         return new UnlinkSellerResponse($response->getStatusCode());
     }
 
+    /**
+     * @param UpsertMarketplaceSellerRequest $upsertMarketplaceSellerRequest
+     * @return UpsertMarketplaceSellerResponse
+     * @throws GuzzleException
+     * @throws RequestFailedException
+     */
     public function upsert(UpsertMarketplaceSellerRequest $upsertMarketplaceSellerRequest): UpsertMarketplaceSellerResponse
     {
         $response = $this->client->request($upsertMarketplaceSellerRequest);
