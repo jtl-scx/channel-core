@@ -8,5 +8,4 @@ use JTL\SCX\Client\Response\AbstractResponse;
 
 class UpsertMarketplaceSellerResponse extends AbstractResponse
 {
-
 }

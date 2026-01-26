@@ -10,13 +10,13 @@ use JTL\SCX\Lib\Channel\Client\Model\UpsertMarketplaceSeller;
 
 class UpsertMarketplaceSellerRequest extends AbstractScxApiRequest
 {
-
     public function __construct(
         private readonly string $jtlAccountId,
-        private readonly UpsertMarketplaceSeller $upsertMarketplaceSeller)
-    {}
+        private readonly UpsertMarketplaceSeller $upsertMarketplaceSeller
+    ) {
+    }
 
-    public static function make(string $jtlAccountId, string $sellerId, bool $isActive = true, string $companyName = '' ): UpsertMarketplaceSellerRequest
+    public static function make(string $jtlAccountId, string $sellerId, bool $isActive = true, string $companyName = ''): UpsertMarketplaceSellerRequest
     {
         return new self($jtlAccountId, new UpsertMarketplaceSeller([
             'sellerId' => $sellerId,
