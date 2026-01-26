@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 class UpsertMarketplaceSellerRequestTest extends TestCase
 {
-    private const JTL_ACCOUNT_ID = 'account-123';
+    private const JTL_ACCOUNT_ID = 12345;
     private const SELLER_ID = 'seller-456';
     private const COMPANY_NAME = 'Acme GmbH';
 
