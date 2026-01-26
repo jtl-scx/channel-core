@@ -18,11 +18,13 @@ use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\GetSellerIdFromUpdateSessionRe
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\GetSignupSessionDataRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UnlinkSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UpdateSellerRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UpsertMarketplaceSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\CreateSellerResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\SignupSessionDataResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UnlinkSellerResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UpdateSellerResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UpdateSessionResponse;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UpsertMarketplaceSellerResponse;
 use JTL\SCX\Lib\Channel\Client\Model\SignupSession;
 use JTL\SCX\Lib\Channel\Client\Model\UpdateSeller;
 use JTL\SCX\Lib\Channel\Client\Model\UpdateSession;
@@ -101,5 +103,11 @@ class SellerApi
     {
         $response = $this->client->request($unlinkSellerRequest);
         return new UnlinkSellerResponse($response->getStatusCode());
+    }
+
+    public function upsert(UpsertMarketplaceSellerRequest $upsertMarketplaceSellerRequest): UpsertMarketplaceSellerResponse
+    {
+        $response = $this->client->request($upsertMarketplaceSellerRequest);
+        return new UpsertMarketplaceSellerResponse($response->getStatusCode());
     }
 }
