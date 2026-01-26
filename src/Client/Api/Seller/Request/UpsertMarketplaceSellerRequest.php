@@ -27,7 +27,7 @@ class UpsertMarketplaceSellerRequest extends AbstractScxApiRequest
 
     public function getUrl(): string
     {
-        return '/v1/channel/seller/{jtlAccountId}';
+        return '/v1/channel/seller/platform/{jtlAccountId}';
     }
 
     public function getHttpMethod(): string

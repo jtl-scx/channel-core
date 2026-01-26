@@ -31,7 +31,7 @@ class UpsertMarketplaceSellerRequestTest extends TestCase
 
     public function testGetUrlReturnsExpectedEndpoint(): void
     {
-        self::assertSame('/v1/channel/seller/{jtlAccountId}', $this->request->getUrl());
+        self::assertSame('/v1/channel/seller/platform/{jtlAccountId}', $this->request->getUrl());
     }
 
     public function testGetHttpMethodReturnsPost(): void
