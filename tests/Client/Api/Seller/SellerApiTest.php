@@ -17,8 +17,10 @@ use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\GetSellerIdFromUpdateSessionRe
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\GetSignupSessionDataRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UnlinkSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UpdateSellerRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UpsertMarketplaceSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\CreateSellerResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UnlinkSellerResponse;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UpsertMarketplaceSellerResponse;
 use JTL\SCX\Lib\Channel\Client\Model\SignupSession;
 use JTL\SCX\Lib\Channel\Client\Model\UpdateSeller;
 use JTL\SCX\Lib\Channel\Client\Model\UpdateSession;
@@ -145,5 +147,24 @@ class SellerApiTest extends TestCase
 
         $data = $client->getSignupSessionData($sessionId);
         self::assertEquals($jtlAccountId, $data->getJtlAccountId());
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_send_a_seller_upsert(): void
+    {
+        $requestMock = $this->createMock(UpsertMarketplaceSellerRequest::class);
+        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock->method('getStatusCode')->willReturn(201);
+
+        $apiClientMock = $this->createMock(AuthAwareApiClient::class);
+        $apiClientMock->expects($this->once())->method('request')->with($requestMock)->willReturn($responseMock);
+
+        $client = new SellerApi($apiClientMock);
+        $response = $client->upsert($requestMock);
+
+        self::assertInstanceOf(UpsertMarketplaceSellerResponse::class, $response);
+        self::assertSame(201, $response->getStatusCode());
     }
 }
