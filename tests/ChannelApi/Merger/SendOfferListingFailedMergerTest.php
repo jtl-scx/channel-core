@@ -40,7 +40,7 @@ class SendOfferListingFailedMergerTest extends TestCase
 
         $eventList = [$msg1, $msg2, $msg3];
 
-        $mergedError = SendOfferListingFailedMerger::merge($eventList);
+        $mergedError = SendOfferListingFailedMerger::merge(...$eventList);
 
         $this->assertCount(3, $mergedError->getErrorList());
         $this->assertEquals('CODE1', $mergedError->getErrorList()[0]->getCode());
