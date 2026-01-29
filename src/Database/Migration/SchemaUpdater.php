@@ -15,7 +15,6 @@ use MongoDB\Client;
 use MongoDB\Collection;
 use MongoDB\Database;
 
-#[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
 class SchemaUpdater
 {
     private MongoDbConnection $dbConn;
