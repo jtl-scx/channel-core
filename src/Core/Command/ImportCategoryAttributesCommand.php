@@ -30,7 +30,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class ImportCategoryAttributesCommand extends AbstractCommand
 {
     protected static $defaultName = 'scx-api:put.attributes-category';
-    private const LOCK_KEY = 'scx-api:put.attributes-category';
 
     private MetaDataCategoryAttributeLoader $categoryAttributeLoader;
     private CategoryAttributeUpdater $attributeUpdater;
