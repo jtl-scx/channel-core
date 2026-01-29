@@ -10,7 +10,6 @@ use JTL\SCX\Lib\Channel\Database\UTCDateTimeConverter;
 use MongoDB\Collection;
 use MongoDB\Driver\Exception\RuntimeException;
 
-#[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
 class MongoDbLockProvider implements LockProvider
 {
     public const COLLECTION_NAME = 'lock';

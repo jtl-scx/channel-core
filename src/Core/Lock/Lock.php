@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Lock;
 
-#[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
 class Lock
 {
     private string $key;

@@ -1,8 +1,10 @@
-version: "3"
 services:
 
-  chn-queue:
-    build: docker/rabbitmq
-    ports:
-      - "15673:15672"
-      - "5673:5672"
+  php-fpm:
+    image: local.dev.php-fpm:8.4
+    hostname: channel-core.local
+    environment:
+      TZ: Europe/Berlin
+      ENABLE_XDEBUG: 0
+    volumes:
+      - ./:/application/source

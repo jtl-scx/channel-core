@@ -10,7 +10,6 @@ use MongoDB\BSON\UTCDateTime;
 use MongoDB\BSON\UTCDateTimeInterface;
 use MongoDB\Collection;
 
-#[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
 class MongoDbSessionTokenRepository implements SessionTokenStorage
 {
     public const COLLECTION_NAME = 'sessionToken';

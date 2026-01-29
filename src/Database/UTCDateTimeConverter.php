@@ -12,11 +12,8 @@ namespace JTL\SCX\Lib\Channel\Database;
 
 use MongoDB\BSON\UTCDateTime;
 
-
-#[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
 class UTCDateTimeConverter
 {
-
     #[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
     public function create(?\DateTimeInterface $dateTime): ?UTCDateTime
     {
