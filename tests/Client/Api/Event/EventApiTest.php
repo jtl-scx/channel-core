@@ -75,7 +75,7 @@ class EventApiTest extends TestCase
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
         $apiClientMock->expects($this->once())->method('request')->with($requestMock)->willReturn($responseMock);
         $jsonDeserializerMock = $this->createMock(JsonSerializer::class);
-        $jsonDeserializerMock->expects($this->once())->method('deserialize')->with($jsonContent)->willReturn($data);
+        $jsonDeserializerMock->expects($this->once())->method('deserialize')->willReturn($data);
         $serializerMock = $this->createMock(ChannelApiResponseDeserializer::class);
         $serializerMock->expects($this->exactly($isEvent ? 1 : 0))->method('deserializeObject')->with(
             $eventData->event,

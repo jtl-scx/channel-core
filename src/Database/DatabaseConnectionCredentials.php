@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Database;
 
+#[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
 class DatabaseConnectionCredentials
 {
     private string $dsn;
@@ -17,6 +18,7 @@ class DatabaseConnectionCredentials
     private string $password;
     private string $database;
 
+    #[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
     public function __construct(string $dsn, string $user, string $password, string $database)
     {
         $this->dsn = $dsn;

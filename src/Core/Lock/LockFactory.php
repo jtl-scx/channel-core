@@ -20,6 +20,7 @@ class LockFactory
      */
     private array $unlockOnDestructList = [];
 
+    #[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
     public function __construct(LockProvider $lockProvider)
     {
         $this->lockProvider = $lockProvider;

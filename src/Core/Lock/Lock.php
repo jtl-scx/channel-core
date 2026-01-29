@@ -15,6 +15,7 @@ class Lock
     private string $key;
     private \DateTimeImmutable $expiresAt;
 
+    #[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
     public function __construct(string $key, \DateTimeImmutable $expiresAt)
     {
         $this->key = $key;

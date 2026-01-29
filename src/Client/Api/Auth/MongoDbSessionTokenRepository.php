@@ -19,6 +19,7 @@ class MongoDbSessionTokenRepository implements SessionTokenStorage
     private array $sessionTokenMap = [];
     private readonly Collection $collection;
 
+    #[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
     public function __construct(MongoDbConnection $connection, private readonly UTCDateTimeConverter $dateTimeConverter)
     {
         $this->collection = $connection->selectCollection(self::COLLECTION_NAME);

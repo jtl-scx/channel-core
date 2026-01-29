@@ -17,6 +17,7 @@ class MongoDbLockProvider implements LockProvider
     private Collection $collection;
     private UTCDateTimeConverter $dateTimeConverter;
 
+    #[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
     public function __construct(MongoDbConnection $connection, UTCDateTimeConverter $dateTimeConverter)
     {
         $this->collection = $connection->selectCollection(self::COLLECTION_NAME);

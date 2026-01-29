@@ -14,6 +14,7 @@ use MongoDB\Collection;
 
 abstract class AbstractCollectionSchema implements CollectionSchema
 {
+    #[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
     protected function dropIndexIfExists(Collection $collection, string $indexName): void
     {
         foreach ($collection->listIndexes() as $info) {

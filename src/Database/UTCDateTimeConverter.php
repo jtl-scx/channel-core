@@ -14,6 +14,7 @@ use MongoDB\BSON\UTCDateTime;
 
 class UTCDateTimeConverter
 {
+    #[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
     public function create(?\DateTimeInterface $dateTime): ?UTCDateTime
     {
         if ($dateTime instanceof \DateTimeInterface) {
@@ -22,6 +23,8 @@ class UTCDateTimeConverter
         return null;
     }
 
+
+    #[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
     public function convert(?UTCDateTime $utcDateTime): ?\DateTimeImmutable
     {
         if ($utcDateTime instanceof UTCDateTime) {
@@ -30,6 +33,8 @@ class UTCDateTimeConverter
         return null;
     }
 
+
+    #[\Deprecated(message: "Will be removed with 1.3.0", since: "1.2.1")]
     public function now(): UTCDateTime
     {
         return new UTCDateTime();
