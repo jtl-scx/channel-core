@@ -15,12 +15,12 @@ class GetAllStockUpdatesRequest extends AbstractScxApiRequest
 
     public function getParams(): array
     {
-        return ['updatedAfter' => $this->updatedAfter->format(\DateTimeInterface::ATOM)];
+        return ['updatedAfter' => $this->updatedAfter->format('Y-m-d\TH:i:s')];
     }
 
     public function getUrl(): string
     {
-        return '/v1/channel/offer/stock-updates/all';
+        return '/v1/channel/offer/stock-updates/all{?updatedAfter}';
     }
 
     public function getHttpMethod(): string
