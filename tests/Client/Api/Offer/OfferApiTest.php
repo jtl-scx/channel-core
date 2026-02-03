@@ -38,7 +38,7 @@ class OfferApiTest extends TestCase
         parent::setUp();
     }
 
-    public function testCanMarkInProgress()
+    public function testCanMarkInProgress(): void
     {
         $requestMock = $this->createMock(MarkListingInProgressRequest::class);
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
@@ -48,7 +48,7 @@ class OfferApiTest extends TestCase
         $api->markInProgress($requestMock);
     }
 
-    public function testMarkListingFailed()
+    public function testMarkListingFailed(): void
     {
         $requestMock = $this->createMock(MarkListingAsFailedRequest::class);
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
@@ -58,7 +58,7 @@ class OfferApiTest extends TestCase
         $api->markListingFailed($requestMock);
     }
 
-    public function testMarkListed()
+    public function testMarkListed(): void
     {
         $requestMock = $this->createMock(MarkListingSuccessfulRequest::class);
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
@@ -68,7 +68,7 @@ class OfferApiTest extends TestCase
         $api->markListed($requestMock);
     }
 
-    public function testCanGetAllStockUpdates()
+    public function testCanGetAllStockUpdates(): void
     {
         $dateTime = new \DateTime();
         $requestMock = $this->createMock(GetAllStockUpdatesRequest::class);
@@ -98,7 +98,7 @@ class OfferApiTest extends TestCase
         $this->assertSame($dateTime, $responseData->getStockUpdateList()[0]->getUpdatedAt());
     }
 
-    public function testCanGetStockUpdatesBySeller()
+    public function testCanGetStockUpdatesBySeller(): void
     {
         $dateTime = new \DateTime();
         $requestMock = $this->createMock(GetStockUpdatesBySellerRequest::class);
