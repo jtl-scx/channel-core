@@ -11,13 +11,13 @@ use PHPUnit\Framework\TestCase;
  */
 class GetAllStockUpdatesRequestTest extends TestCase
 {
-    public function testCanBeCreatedAndUsed()
+    public function testCanBeCreatedAndUsed(): void
     {
         $dateTime = new \DateTime();
         $request = new GetAllStockUpdatesRequest($dateTime);
 
         $this->assertSame('GET', $request->getHttpMethod());
-        $this->assertSame('/v1/channel/offer/stock-updates/all', $request->getUrl());
-        $this->assertSame(['updatedAfter' => $dateTime->format(\DateTimeInterface::ATOM)], $request->getParams());
+        $this->assertSame('/v1/channel/offer/stock-updates/all{?updatedAfter}', $request->getUrl());
+        $this->assertSame(['updatedAfter' => $dateTime->format('Y-m-d\TH:i:s')], $request->getParams());
     }
 }
