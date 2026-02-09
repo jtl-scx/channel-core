@@ -1,6 +1,6 @@
 <?php
 /**
- * OrderAccept
+ * SellerEventOrderConfirmed
  *
  * PHP version 8.4
  *
@@ -22,7 +22,7 @@ use ArrayAccess;
 use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
 
 /**
- * OrderAccept Class Doc Comment
+ * SellerEventOrderConfirmed Class Doc Comment
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
@@ -32,14 +32,14 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class OrderAccept implements ModelInterface, ArrayAccess, \JsonSerializable
+class SellerEventOrderConfirmed implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       */
-    protected static string $openAPIModelName = 'OrderAccept';
+    protected static string $openAPIModelName = 'SellerEventOrderConfirmed';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -202,42 +202,50 @@ class OrderAccept implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
+
     public function getSellerId(): string
     {
         return $this->container['sellerId'];
     }
 
-    public function setSellerId(string $sellerId): OrderAccept
+    public function setSellerId(string $sellerId): SellerEventOrderConfirmed
     {
         $this->container['sellerId'] = $sellerId;
         return $this;
     }
+
+
     public function getOrderId(): string
     {
         return $this->container['orderId'];
     }
 
-    public function setOrderId(string $orderId): OrderAccept
+    public function setOrderId(string $orderId): SellerEventOrderConfirmed
     {
         $this->container['orderId'] = $orderId;
         return $this;
     }
+
+
     public function getOrderAccepted(): ?bool
     {
         return $this->container['orderAccepted'];
     }
 
-    public function setOrderAccepted(?bool $orderAccepted): OrderAccept
+    public function setOrderAccepted(?bool $orderAccepted): SellerEventOrderConfirmed
     {
         $this->container['orderAccepted'] = $orderAccepted;
         return $this;
     }
+
+
     public function getReason(): ?CancelReason
     {
         return $this->container['reason'];
     }
 
-    public function setReason(?CancelReason $reason): OrderAccept
+    public function setReason(?CancelReason $reason): SellerEventOrderConfirmed
     {
         $this->container['reason'] = $reason;
         return $this;
