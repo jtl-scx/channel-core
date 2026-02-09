@@ -44,393 +44,393 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
 class SellerEventTypeListTest extends AbstractApiModelTest
 {
     /**
-     * Test Enum Value "SYSTEMTEST"
+     * Test Enum Value "SYSTEM_TEST"
      * @test
      */
-    public function is_a_const_SYSTEMTEST(): void
+    public function is_a_const_SYSTEM_TEST(): void
     {
-        self::assertEquals('System:Test', SellerEventTypeList::SYSTEMTEST);
+        self::assertEquals('System:Test', SellerEventTypeList::SYSTEM_TEST);
         $sut = new SellerEventTypeList('System:Test');
         self::assertEquals('System:Test', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SYSTEMTEST"
+     * Test Enum Value Named Constructor "SYSTEM_TEST"
      * @test
      */
-    public function it_can_be_constructed_forSYSTEMTEST(): void
+    public function it_can_be_constructed_forSYSTEM_TEST(): void
     {
-        $sut = SellerEventTypeList::SYSTEMTEST();
+        $sut = SellerEventTypeList::SYSTEM_TEST();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SYSTEMNOTIFICATION"
+     * Test Enum Value "SYSTEM_NOTIFICATION"
      * @test
      */
-    public function is_a_const_SYSTEMNOTIFICATION(): void
+    public function is_a_const_SYSTEM_NOTIFICATION(): void
     {
-        self::assertEquals('System:Notification', SellerEventTypeList::SYSTEMNOTIFICATION);
+        self::assertEquals('System:Notification', SellerEventTypeList::SYSTEM_NOTIFICATION);
         $sut = new SellerEventTypeList('System:Notification');
         self::assertEquals('System:Notification', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SYSTEMNOTIFICATION"
+     * Test Enum Value Named Constructor "SYSTEM_NOTIFICATION"
      * @test
      */
-    public function it_can_be_constructed_forSYSTEMNOTIFICATION(): void
+    public function it_can_be_constructed_forSYSTEM_NOTIFICATION(): void
     {
-        $sut = SellerEventTypeList::SYSTEMNOTIFICATION();
+        $sut = SellerEventTypeList::SYSTEM_NOTIFICATION();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SELLERORDER_ACCEPTED"
+     * Test Enum Value "SELLER_ORDER_CONFIRMED"
      * @test
      */
-    public function is_a_const_SELLERORDER_ACCEPTED(): void
+    public function is_a_const_SELLER_ORDER_CONFIRMED(): void
     {
-        self::assertEquals('Seller:Order.Accepted', SellerEventTypeList::SELLERORDER_ACCEPTED);
-        $sut = new SellerEventTypeList('Seller:Order.Accepted');
-        self::assertEquals('Seller:Order.Accepted', $sut->getValue());
+        self::assertEquals('Seller:Order.Confirmed', SellerEventTypeList::SELLER_ORDER_CONFIRMED);
+        $sut = new SellerEventTypeList('Seller:Order.Confirmed');
+        self::assertEquals('Seller:Order.Confirmed', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLERORDER_ACCEPTED"
+     * Test Enum Value Named Constructor "SELLER_ORDER_CONFIRMED"
      * @test
      */
-    public function it_can_be_constructed_forSELLERORDER_ACCEPTED(): void
+    public function it_can_be_constructed_forSELLER_ORDER_CONFIRMED(): void
     {
-        $sut = SellerEventTypeList::SELLERORDER_ACCEPTED();
+        $sut = SellerEventTypeList::SELLER_ORDER_CONFIRMED();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SELLERORDER_SHIPPING"
+     * Test Enum Value "SELLER_ORDER_SHIPPING"
      * @test
      */
-    public function is_a_const_SELLERORDER_SHIPPING(): void
+    public function is_a_const_SELLER_ORDER_SHIPPING(): void
     {
-        self::assertEquals('Seller:Order.Shipping', SellerEventTypeList::SELLERORDER_SHIPPING);
+        self::assertEquals('Seller:Order.Shipping', SellerEventTypeList::SELLER_ORDER_SHIPPING);
         $sut = new SellerEventTypeList('Seller:Order.Shipping');
         self::assertEquals('Seller:Order.Shipping', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLERORDER_SHIPPING"
+     * Test Enum Value Named Constructor "SELLER_ORDER_SHIPPING"
      * @test
      */
-    public function it_can_be_constructed_forSELLERORDER_SHIPPING(): void
+    public function it_can_be_constructed_forSELLER_ORDER_SHIPPING(): void
     {
-        $sut = SellerEventTypeList::SELLERORDER_SHIPPING();
+        $sut = SellerEventTypeList::SELLER_ORDER_SHIPPING();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SELLERORDER_PAYMENT"
+     * Test Enum Value "SELLER_ORDER_PAYMENT"
      * @test
      */
-    public function is_a_const_SELLERORDER_PAYMENT(): void
+    public function is_a_const_SELLER_ORDER_PAYMENT(): void
     {
-        self::assertEquals('Seller:Order.Payment', SellerEventTypeList::SELLERORDER_PAYMENT);
+        self::assertEquals('Seller:Order.Payment', SellerEventTypeList::SELLER_ORDER_PAYMENT);
         $sut = new SellerEventTypeList('Seller:Order.Payment');
         self::assertEquals('Seller:Order.Payment', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLERORDER_PAYMENT"
+     * Test Enum Value Named Constructor "SELLER_ORDER_PAYMENT"
      * @test
      */
-    public function it_can_be_constructed_forSELLERORDER_PAYMENT(): void
+    public function it_can_be_constructed_forSELLER_ORDER_PAYMENT(): void
     {
-        $sut = SellerEventTypeList::SELLERORDER_PAYMENT();
+        $sut = SellerEventTypeList::SELLER_ORDER_PAYMENT();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SELLERORDER_CANCELLATION_REQUEST"
+     * Test Enum Value "SELLER_ORDER_CANCELLATION_REQUEST"
      * @test
      */
-    public function is_a_const_SELLERORDER_CANCELLATION_REQUEST(): void
+    public function is_a_const_SELLER_ORDER_CANCELLATION_REQUEST(): void
     {
-        self::assertEquals('Seller:Order.Cancellation.Request', SellerEventTypeList::SELLERORDER_CANCELLATION_REQUEST);
+        self::assertEquals('Seller:Order.Cancellation.Request', SellerEventTypeList::SELLER_ORDER_CANCELLATION_REQUEST);
         $sut = new SellerEventTypeList('Seller:Order.Cancellation.Request');
         self::assertEquals('Seller:Order.Cancellation.Request', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLERORDER_CANCELLATION_REQUEST"
+     * Test Enum Value Named Constructor "SELLER_ORDER_CANCELLATION_REQUEST"
      * @test
      */
-    public function it_can_be_constructed_forSELLERORDER_CANCELLATION_REQUEST(): void
+    public function it_can_be_constructed_forSELLER_ORDER_CANCELLATION_REQUEST(): void
     {
-        $sut = SellerEventTypeList::SELLERORDER_CANCELLATION_REQUEST();
+        $sut = SellerEventTypeList::SELLER_ORDER_CANCELLATION_REQUEST();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SELLERORDER_CANCELLATION_ACCEPTED"
+     * Test Enum Value "SELLER_ORDER_CANCELLATION_ACCEPTED"
      * @test
      */
-    public function is_a_const_SELLERORDER_CANCELLATION_ACCEPTED(): void
+    public function is_a_const_SELLER_ORDER_CANCELLATION_ACCEPTED(): void
     {
-        self::assertEquals('Seller:Order.Cancellation.Accepted', SellerEventTypeList::SELLERORDER_CANCELLATION_ACCEPTED);
+        self::assertEquals('Seller:Order.Cancellation.Accepted', SellerEventTypeList::SELLER_ORDER_CANCELLATION_ACCEPTED);
         $sut = new SellerEventTypeList('Seller:Order.Cancellation.Accepted');
         self::assertEquals('Seller:Order.Cancellation.Accepted', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLERORDER_CANCELLATION_ACCEPTED"
+     * Test Enum Value Named Constructor "SELLER_ORDER_CANCELLATION_ACCEPTED"
      * @test
      */
-    public function it_can_be_constructed_forSELLERORDER_CANCELLATION_ACCEPTED(): void
+    public function it_can_be_constructed_forSELLER_ORDER_CANCELLATION_ACCEPTED(): void
     {
-        $sut = SellerEventTypeList::SELLERORDER_CANCELLATION_ACCEPTED();
+        $sut = SellerEventTypeList::SELLER_ORDER_CANCELLATION_ACCEPTED();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SELLERORDER_CANCELLATION_DENIED"
+     * Test Enum Value "SELLER_ORDER_CANCELLATION_DENIED"
      * @test
      */
-    public function is_a_const_SELLERORDER_CANCELLATION_DENIED(): void
+    public function is_a_const_SELLER_ORDER_CANCELLATION_DENIED(): void
     {
-        self::assertEquals('Seller:Order.Cancellation.Denied', SellerEventTypeList::SELLERORDER_CANCELLATION_DENIED);
+        self::assertEquals('Seller:Order.Cancellation.Denied', SellerEventTypeList::SELLER_ORDER_CANCELLATION_DENIED);
         $sut = new SellerEventTypeList('Seller:Order.Cancellation.Denied');
         self::assertEquals('Seller:Order.Cancellation.Denied', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLERORDER_CANCELLATION_DENIED"
+     * Test Enum Value Named Constructor "SELLER_ORDER_CANCELLATION_DENIED"
      * @test
      */
-    public function it_can_be_constructed_forSELLERORDER_CANCELLATION_DENIED(): void
+    public function it_can_be_constructed_forSELLER_ORDER_CANCELLATION_DENIED(): void
     {
-        $sut = SellerEventTypeList::SELLERORDER_CANCELLATION_DENIED();
+        $sut = SellerEventTypeList::SELLER_ORDER_CANCELLATION_DENIED();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SELLERORDER_REFUND"
+     * Test Enum Value "SELLER_ORDER_REFUND"
      * @test
      */
-    public function is_a_const_SELLERORDER_REFUND(): void
+    public function is_a_const_SELLER_ORDER_REFUND(): void
     {
-        self::assertEquals('Seller:Order.Refund', SellerEventTypeList::SELLERORDER_REFUND);
+        self::assertEquals('Seller:Order.Refund', SellerEventTypeList::SELLER_ORDER_REFUND);
         $sut = new SellerEventTypeList('Seller:Order.Refund');
         self::assertEquals('Seller:Order.Refund', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLERORDER_REFUND"
+     * Test Enum Value Named Constructor "SELLER_ORDER_REFUND"
      * @test
      */
-    public function it_can_be_constructed_forSELLERORDER_REFUND(): void
+    public function it_can_be_constructed_forSELLER_ORDER_REFUND(): void
     {
-        $sut = SellerEventTypeList::SELLERORDER_REFUND();
+        $sut = SellerEventTypeList::SELLER_ORDER_REFUND();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SELLERORDER_INVOICE"
+     * Test Enum Value "SELLER_ORDER_INVOICE"
      * @test
      */
-    public function is_a_const_SELLERORDER_INVOICE(): void
+    public function is_a_const_SELLER_ORDER_INVOICE(): void
     {
-        self::assertEquals('Seller:Order.Invoice', SellerEventTypeList::SELLERORDER_INVOICE);
+        self::assertEquals('Seller:Order.Invoice', SellerEventTypeList::SELLER_ORDER_INVOICE);
         $sut = new SellerEventTypeList('Seller:Order.Invoice');
         self::assertEquals('Seller:Order.Invoice', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLERORDER_INVOICE"
+     * Test Enum Value Named Constructor "SELLER_ORDER_INVOICE"
      * @test
      */
-    public function it_can_be_constructed_forSELLERORDER_INVOICE(): void
+    public function it_can_be_constructed_forSELLER_ORDER_INVOICE(): void
     {
-        $sut = SellerEventTypeList::SELLERORDER_INVOICE();
+        $sut = SellerEventTypeList::SELLER_ORDER_INVOICE();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SELLERORDER_RETURN_RECEIVED"
+     * Test Enum Value "SELLER_ORDER_RETURN_RECEIVED"
      * @test
      */
-    public function is_a_const_SELLERORDER_RETURN_RECEIVED(): void
+    public function is_a_const_SELLER_ORDER_RETURN_RECEIVED(): void
     {
-        self::assertEquals('Seller:Order.ReturnReceived', SellerEventTypeList::SELLERORDER_RETURN_RECEIVED);
+        self::assertEquals('Seller:Order.ReturnReceived', SellerEventTypeList::SELLER_ORDER_RETURN_RECEIVED);
         $sut = new SellerEventTypeList('Seller:Order.ReturnReceived');
         self::assertEquals('Seller:Order.ReturnReceived', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLERORDER_RETURN_RECEIVED"
+     * Test Enum Value Named Constructor "SELLER_ORDER_RETURN_RECEIVED"
      * @test
      */
-    public function it_can_be_constructed_forSELLERORDER_RETURN_RECEIVED(): void
+    public function it_can_be_constructed_forSELLER_ORDER_RETURN_RECEIVED(): void
     {
-        $sut = SellerEventTypeList::SELLERORDER_RETURN_RECEIVED();
+        $sut = SellerEventTypeList::SELLER_ORDER_RETURN_RECEIVED();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SELLEROFFER_NEW"
+     * Test Enum Value "SELLER_OFFER_NEW"
      * @test
      */
-    public function is_a_const_SELLEROFFER_NEW(): void
+    public function is_a_const_SELLER_OFFER_NEW(): void
     {
-        self::assertEquals('Seller:Offer.New', SellerEventTypeList::SELLEROFFER_NEW);
+        self::assertEquals('Seller:Offer.New', SellerEventTypeList::SELLER_OFFER_NEW);
         $sut = new SellerEventTypeList('Seller:Offer.New');
         self::assertEquals('Seller:Offer.New', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLEROFFER_NEW"
+     * Test Enum Value Named Constructor "SELLER_OFFER_NEW"
      * @test
      */
-    public function it_can_be_constructed_forSELLEROFFER_NEW(): void
+    public function it_can_be_constructed_forSELLER_OFFER_NEW(): void
     {
-        $sut = SellerEventTypeList::SELLEROFFER_NEW();
+        $sut = SellerEventTypeList::SELLER_OFFER_NEW();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SELLEROFFER_UPDATE"
+     * Test Enum Value "SELLER_OFFER_UPDATE"
      * @test
      */
-    public function is_a_const_SELLEROFFER_UPDATE(): void
+    public function is_a_const_SELLER_OFFER_UPDATE(): void
     {
-        self::assertEquals('Seller:Offer.Update', SellerEventTypeList::SELLEROFFER_UPDATE);
+        self::assertEquals('Seller:Offer.Update', SellerEventTypeList::SELLER_OFFER_UPDATE);
         $sut = new SellerEventTypeList('Seller:Offer.Update');
         self::assertEquals('Seller:Offer.Update', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLEROFFER_UPDATE"
+     * Test Enum Value Named Constructor "SELLER_OFFER_UPDATE"
      * @test
      */
-    public function it_can_be_constructed_forSELLEROFFER_UPDATE(): void
+    public function it_can_be_constructed_forSELLER_OFFER_UPDATE(): void
     {
-        $sut = SellerEventTypeList::SELLEROFFER_UPDATE();
+        $sut = SellerEventTypeList::SELLER_OFFER_UPDATE();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SELLEROFFER_END"
+     * Test Enum Value "SELLER_OFFER_END"
      * @test
      */
-    public function is_a_const_SELLEROFFER_END(): void
+    public function is_a_const_SELLER_OFFER_END(): void
     {
-        self::assertEquals('Seller:Offer.End', SellerEventTypeList::SELLEROFFER_END);
+        self::assertEquals('Seller:Offer.End', SellerEventTypeList::SELLER_OFFER_END);
         $sut = new SellerEventTypeList('Seller:Offer.End');
         self::assertEquals('Seller:Offer.End', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLEROFFER_END"
+     * Test Enum Value Named Constructor "SELLER_OFFER_END"
      * @test
      */
-    public function it_can_be_constructed_forSELLEROFFER_END(): void
+    public function it_can_be_constructed_forSELLER_OFFER_END(): void
     {
-        $sut = SellerEventTypeList::SELLEROFFER_END();
+        $sut = SellerEventTypeList::SELLER_OFFER_END();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SELLEROFFER_STOCK_UPDATE"
+     * Test Enum Value "SELLER_OFFER_STOCK_UPDATE"
      * @test
      */
-    public function is_a_const_SELLEROFFER_STOCK_UPDATE(): void
+    public function is_a_const_SELLER_OFFER_STOCK_UPDATE(): void
     {
-        self::assertEquals('Seller:Offer.StockUpdate', SellerEventTypeList::SELLEROFFER_STOCK_UPDATE);
+        self::assertEquals('Seller:Offer.StockUpdate', SellerEventTypeList::SELLER_OFFER_STOCK_UPDATE);
         $sut = new SellerEventTypeList('Seller:Offer.StockUpdate');
         self::assertEquals('Seller:Offer.StockUpdate', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLEROFFER_STOCK_UPDATE"
+     * Test Enum Value Named Constructor "SELLER_OFFER_STOCK_UPDATE"
      * @test
      */
-    public function it_can_be_constructed_forSELLEROFFER_STOCK_UPDATE(): void
+    public function it_can_be_constructed_forSELLER_OFFER_STOCK_UPDATE(): void
     {
-        $sut = SellerEventTypeList::SELLEROFFER_STOCK_UPDATE();
+        $sut = SellerEventTypeList::SELLER_OFFER_STOCK_UPDATE();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SELLEROFFER_PRICE_UPDATE"
+     * Test Enum Value "SELLER_OFFER_PRICE_UPDATE"
      * @test
      */
-    public function is_a_const_SELLEROFFER_PRICE_UPDATE(): void
+    public function is_a_const_SELLER_OFFER_PRICE_UPDATE(): void
     {
-        self::assertEquals('Seller:Offer.PriceUpdate', SellerEventTypeList::SELLEROFFER_PRICE_UPDATE);
+        self::assertEquals('Seller:Offer.PriceUpdate', SellerEventTypeList::SELLER_OFFER_PRICE_UPDATE);
         $sut = new SellerEventTypeList('Seller:Offer.PriceUpdate');
         self::assertEquals('Seller:Offer.PriceUpdate', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLEROFFER_PRICE_UPDATE"
+     * Test Enum Value Named Constructor "SELLER_OFFER_PRICE_UPDATE"
      * @test
      */
-    public function it_can_be_constructed_forSELLEROFFER_PRICE_UPDATE(): void
+    public function it_can_be_constructed_forSELLER_OFFER_PRICE_UPDATE(): void
     {
-        $sut = SellerEventTypeList::SELLEROFFER_PRICE_UPDATE();
+        $sut = SellerEventTypeList::SELLER_OFFER_PRICE_UPDATE();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SELLERREPORT_REQUEST"
+     * Test Enum Value "SELLER_REPORT_REQUEST"
      * @test
      */
-    public function is_a_const_SELLERREPORT_REQUEST(): void
+    public function is_a_const_SELLER_REPORT_REQUEST(): void
     {
-        self::assertEquals('Seller:Report.Request', SellerEventTypeList::SELLERREPORT_REQUEST);
+        self::assertEquals('Seller:Report.Request', SellerEventTypeList::SELLER_REPORT_REQUEST);
         $sut = new SellerEventTypeList('Seller:Report.Request');
         self::assertEquals('Seller:Report.Request', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLERREPORT_REQUEST"
+     * Test Enum Value Named Constructor "SELLER_REPORT_REQUEST"
      * @test
      */
-    public function it_can_be_constructed_forSELLERREPORT_REQUEST(): void
+    public function it_can_be_constructed_forSELLER_REPORT_REQUEST(): void
     {
-        $sut = SellerEventTypeList::SELLERREPORT_REQUEST();
+        $sut = SellerEventTypeList::SELLER_REPORT_REQUEST();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SELLERCHANNEL_UNLINKED"
+     * Test Enum Value "SELLER_CHANNEL_UNLINKED"
      * @test
      */
-    public function is_a_const_SELLERCHANNEL_UNLINKED(): void
+    public function is_a_const_SELLER_CHANNEL_UNLINKED(): void
     {
-        self::assertEquals('Seller:Channel.Unlinked', SellerEventTypeList::SELLERCHANNEL_UNLINKED);
+        self::assertEquals('Seller:Channel.Unlinked', SellerEventTypeList::SELLER_CHANNEL_UNLINKED);
         $sut = new SellerEventTypeList('Seller:Channel.Unlinked');
         self::assertEquals('Seller:Channel.Unlinked', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLERCHANNEL_UNLINKED"
+     * Test Enum Value Named Constructor "SELLER_CHANNEL_UNLINKED"
      * @test
      */
-    public function it_can_be_constructed_forSELLERCHANNEL_UNLINKED(): void
+    public function it_can_be_constructed_forSELLER_CHANNEL_UNLINKED(): void
     {
-        $sut = SellerEventTypeList::SELLERCHANNEL_UNLINKED();
+        $sut = SellerEventTypeList::SELLER_CHANNEL_UNLINKED();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
     /**
-     * Test Enum Value "SELLERMETA_SELLER_ATTRIBUTES_UPDATE_REQUEST"
+     * Test Enum Value "SELLER_META_SELLER_ATTRIBUTES_UPDATE_REQUEST"
      * @test
      */
-    public function is_a_const_SELLERMETA_SELLER_ATTRIBUTES_UPDATE_REQUEST(): void
+    public function is_a_const_SELLER_META_SELLER_ATTRIBUTES_UPDATE_REQUEST(): void
     {
-        self::assertEquals('Seller:Meta.SellerAttributesUpdateRequest', SellerEventTypeList::SELLERMETA_SELLER_ATTRIBUTES_UPDATE_REQUEST);
+        self::assertEquals('Seller:Meta.SellerAttributesUpdateRequest', SellerEventTypeList::SELLER_META_SELLER_ATTRIBUTES_UPDATE_REQUEST);
         $sut = new SellerEventTypeList('Seller:Meta.SellerAttributesUpdateRequest');
         self::assertEquals('Seller:Meta.SellerAttributesUpdateRequest', $sut->getValue());
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLERMETA_SELLER_ATTRIBUTES_UPDATE_REQUEST"
+     * Test Enum Value Named Constructor "SELLER_META_SELLER_ATTRIBUTES_UPDATE_REQUEST"
      * @test
      */
-    public function it_can_be_constructed_forSELLERMETA_SELLER_ATTRIBUTES_UPDATE_REQUEST(): void
+    public function it_can_be_constructed_forSELLER_META_SELLER_ATTRIBUTES_UPDATE_REQUEST(): void
     {
-        $sut = SellerEventTypeList::SELLERMETA_SELLER_ATTRIBUTES_UPDATE_REQUEST();
+        $sut = SellerEventTypeList::SELLER_META_SELLER_ATTRIBUTES_UPDATE_REQUEST();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
 
     /**
-     * Test Enum Value Named Constructor "SELLERMETA_SELLER_ATTRIBUTES_UPDATE_REQUEST"
+     * Test Enum Value Named Constructor "SELLER_META_SELLER_ATTRIBUTES_UPDATE_REQUEST"
      * @test
      */
-    public function it_can_be_constructed_forSELLERTICKET_REPLY(): void
+    public function it_can_be_constructed_forSELLER_TICKET_REPLY(): void
     {
-        $sut = SellerEventTypeList::SELLERTICKET_REPLY();
+        $sut = SellerEventTypeList::SELLER_TICKET_REPLY();
         self::assertInstanceOf(SellerEventTypeList::class, $sut);
     }
 
@@ -441,26 +441,26 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     public function it_has_correct_set_of_allowed_values(): void
     {
         $allowed = [
-            SellerEventTypeList::SYSTEMTEST,
-            SellerEventTypeList::SYSTEMNOTIFICATION,
-            SellerEventTypeList::SELLERORDER_ACCEPTED,
-            SellerEventTypeList::SELLERORDER_SHIPPING,
-            SellerEventTypeList::SELLERORDER_PAYMENT,
-            SellerEventTypeList::SELLERORDER_CANCELLATION_REQUEST,
-            SellerEventTypeList::SELLERORDER_CANCELLATION_ACCEPTED,
-            SellerEventTypeList::SELLERORDER_CANCELLATION_DENIED,
-            SellerEventTypeList::SELLERORDER_REFUND,
-            SellerEventTypeList::SELLERORDER_INVOICE,
-            SellerEventTypeList::SELLERORDER_RETURN_RECEIVED,
-            SellerEventTypeList::SELLEROFFER_NEW,
-            SellerEventTypeList::SELLEROFFER_UPDATE,
-            SellerEventTypeList::SELLEROFFER_END,
-            SellerEventTypeList::SELLEROFFER_STOCK_UPDATE,
-            SellerEventTypeList::SELLEROFFER_PRICE_UPDATE,
-            SellerEventTypeList::SELLERREPORT_REQUEST,
-            SellerEventTypeList::SELLERCHANNEL_UNLINKED,
-            SellerEventTypeList::SELLERMETA_SELLER_ATTRIBUTES_UPDATE_REQUEST,
-            SellerEventTypeList::SELLERTICKET_REPLY,
+            SellerEventTypeList::SYSTEM_TEST,
+            SellerEventTypeList::SYSTEM_NOTIFICATION,
+            SellerEventTypeList::SELLER_ORDER_CONFIRMED,
+            SellerEventTypeList::SELLER_ORDER_SHIPPING,
+            SellerEventTypeList::SELLER_ORDER_PAYMENT,
+            SellerEventTypeList::SELLER_ORDER_CANCELLATION_REQUEST,
+            SellerEventTypeList::SELLER_ORDER_CANCELLATION_ACCEPTED,
+            SellerEventTypeList::SELLER_ORDER_CANCELLATION_DENIED,
+            SellerEventTypeList::SELLER_ORDER_REFUND,
+            SellerEventTypeList::SELLER_ORDER_INVOICE,
+            SellerEventTypeList::SELLER_ORDER_RETURN_RECEIVED,
+            SellerEventTypeList::SELLER_OFFER_NEW,
+            SellerEventTypeList::SELLER_OFFER_UPDATE,
+            SellerEventTypeList::SELLER_OFFER_END,
+            SellerEventTypeList::SELLER_OFFER_STOCK_UPDATE,
+            SellerEventTypeList::SELLER_OFFER_PRICE_UPDATE,
+            SellerEventTypeList::SELLER_REPORT_REQUEST,
+            SellerEventTypeList::SELLER_CHANNEL_UNLINKED,
+            SellerEventTypeList::SELLER_META_SELLER_ATTRIBUTES_UPDATE_REQUEST,
+            SellerEventTypeList::SELLER_TICKET_REPLY,
         ];
         self::assertEquals($allowed, SellerEventTypeList::getAllowableEnumValues());
     }

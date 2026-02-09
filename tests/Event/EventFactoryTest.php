@@ -24,6 +24,7 @@ use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderAccept;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderCancellationAccepted;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderCancellationDenied;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderCancellationRequest;
+use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderConfirmed;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderInvoice;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderPayment;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderRefund;
@@ -41,7 +42,7 @@ use JTL\SCX\Lib\Channel\Event\Seller\OfferNewEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferPriceUpdateEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferStockUpdateEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OfferUpdateEvent;
-use JTL\SCX\Lib\Channel\Event\Seller\OrderAcceptEvent;
+use JTL\SCX\Lib\Channel\Event\Seller\OrderConfirmedEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationAcceptedEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationDeniedEvent;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationRequestEvent;
@@ -66,7 +67,7 @@ class EventFactoryTest extends TestCase
         return [
             [SystemNotificationEvent::class, SystemEventNotification::class, EventType::SystemNotification()],
             [SystemTestEvent::class, SellerEventTest::class, EventType::SellerEventTest()],
-            [OrderAcceptEvent::class, SellerEventOrderAccept::class, EventType::SellerOrderAccept()],
+            [OrderConfirmedEvent::class, SellerEventOrderConfirmed::class, EventType::SellerOrderConfirmed()],
             [OrderShippingEvent::class, SellerEventOrderShipping::class, EventType::SellerOrderShipping()],
             [OrderPaymentEvent::class, SellerEventOrderPayment::class, EventType::SellerOrderPayment()],
             [

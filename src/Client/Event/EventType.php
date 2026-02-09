@@ -16,7 +16,7 @@ use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferNew;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferPriceUpdate;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferStockUpdate;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferUpdate;
-use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderAccept;
+use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderConfirmed;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderCancellationAccepted;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderCancellationDenied;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderCancellationRequest;
@@ -37,7 +37,7 @@ use MyCLabs\Enum\Enum;
  * @method static EventType Unknown()
  * @method static EventType SystemNotification()
  * @method static EventType SellerEventTest()
- * @method static EventType SellerOrderAccept()
+ * @method static EventType SellerOrderConfirmed()
  * @method static EventType SellerOrderShipping()
  * @method static EventType SellerOrderPayment()
  * @method static EventType SellerOrderCancellationRequest()
@@ -60,25 +60,25 @@ use MyCLabs\Enum\Enum;
 class EventType extends Enum
 {
     public const Unknown = 'unknown';
-    public const SellerEventTest = Event::SYSTEMTEST;
-    public const SystemNotification = Event::SYSTEMNOTIFICATION;
-    public const SellerOrderAccept = Event::SELLERORDER_ACCEPTED;
-    public const SellerOrderShipping = Event::SELLERORDER_SHIPPING;
-    public const SellerOrderPayment = Event::SELLERORDER_PAYMENT;
-    public const SellerOfferNew = Event::SELLEROFFER_NEW;
-    public const SellerOfferUpdate = Event::SELLEROFFER_UPDATE;
-    public const SellerOfferEnd = Event::SELLEROFFER_END;
-    public const SellerOfferStockUpdate = Event::SELLEROFFER_STOCK_UPDATE;
-    public const SellerOfferPriceUpdate = Event::SELLEROFFER_PRICE_UPDATE;
-    public const SellerReportRequest = Event::SELLERREPORT_REQUEST;
-    public const SellerChannelUnlinked = Event::SELLERCHANNEL_UNLINKED;
-    public const SellerMetaSellerAttributesUpdateRequest = Event::SELLERMETA_SELLER_ATTRIBUTES_UPDATE_REQUEST;
-    public const SellerOrderCancellationAccept = Event::SELLERORDER_CANCELLATION_ACCEPTED;
-    public const SellerOrderCancellationDenied = Event::SELLERORDER_CANCELLATION_DENIED;
-    public const SellerOrderCancellationRequest = Event::SELLERORDER_CANCELLATION_REQUEST;
-    public const SellerEventOrderInvoice = Event::SELLERORDER_INVOICE;
-    public const SellerEventOrderRefund = Event::SELLERORDER_REFUND;
-    public const SellerOrderReturnReceived = Event::SELLERORDER_RETURN_RECEIVED;
+    public const SellerEventTest = Event::SYSTEM_TEST;
+    public const SystemNotification = Event::SYSTEM_NOTIFICATION;
+    public const SellerOrderConfirmed = Event::SELLER_ORDER_CONFIRMED;
+    public const SellerOrderShipping = Event::SELLER_ORDER_SHIPPING;
+    public const SellerOrderPayment = Event::SELLER_ORDER_PAYMENT;
+    public const SellerOfferNew = Event::SELLER_OFFER_NEW;
+    public const SellerOfferUpdate = Event::SELLER_OFFER_UPDATE;
+    public const SellerOfferEnd = Event::SELLER_OFFER_END;
+    public const SellerOfferStockUpdate = Event::SELLER_OFFER_STOCK_UPDATE;
+    public const SellerOfferPriceUpdate = Event::SELLER_OFFER_PRICE_UPDATE;
+    public const SellerReportRequest = Event::SELLER_REPORT_REQUEST;
+    public const SellerChannelUnlinked = Event::SELLER_CHANNEL_UNLINKED;
+    public const SellerMetaSellerAttributesUpdateRequest = Event::SELLER_META_SELLER_ATTRIBUTES_UPDATE_REQUEST;
+    public const SellerOrderCancellationAccept = Event::SELLER_ORDER_CANCELLATION_ACCEPTED;
+    public const SellerOrderCancellationDenied = Event::SELLER_ORDER_CANCELLATION_DENIED;
+    public const SellerOrderCancellationRequest = Event::SELLER_ORDER_CANCELLATION_REQUEST;
+    public const SellerEventOrderInvoice = Event::SELLER_ORDER_INVOICE;
+    public const SellerEventOrderRefund = Event::SELLER_ORDER_REFUND;
+    public const SellerOrderReturnReceived = Event::SELLER_ORDER_RETURN_RECEIVED;
 
 
     /**
@@ -102,8 +102,8 @@ class EventType extends Enum
                 return SellerEventTest::class;
             case $this::SystemNotification():
                 return SystemEventNotification::class;
-            case $this::SellerOrderAccept():
-                return SellerEventOrderAccept::class;
+            case $this::SellerOrderConfirmed():
+                return SellerEventOrderConfirmed::class;
             case $this::SellerOrderShipping():
                 return SellerEventOrderShipping::class;
             case $this::SellerOrderPayment():

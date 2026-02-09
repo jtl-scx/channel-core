@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
-use JTL\SCX\Lib\Channel\Event\Seller\OrderAcceptEvent;
+use JTL\SCX\Lib\Channel\Event\Seller\OrderConfirmedEvent;
 
 /**
  * @covers \JTL\SCX\Lib\Channel\Helper\Command\EmitOrderAcceptCommand
@@ -32,7 +32,7 @@ JSON;
 
         $commandTest = $this->createSystemOfTest(
             EmitOrderAcceptCommand::class,
-            $this->buildEmitterMock(OrderAcceptEvent::class)
+            $this->buildEmitterMock(OrderConfirmedEvent::class)
         );
         $commandTest->execute([
             'jsonFile' => $testJsonFile,
