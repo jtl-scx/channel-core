@@ -27,6 +27,6 @@ class EmitOrderAcceptCommand extends AbstractEmitEventCommand
 
     protected function getEventType(): EventType
     {
-        return EventType::SellerOrderAccept();
+        return EventType::SellerOrderConfirmed();
     }
 }

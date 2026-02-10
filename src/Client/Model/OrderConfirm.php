@@ -1,6 +1,6 @@
 <?php
 /**
- * SellerEventOrderAccept
+ * OrderConfirm
  *
  * PHP version 8.4
  *
@@ -22,7 +22,7 @@ use ArrayAccess;
 use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
 
 /**
- * SellerEventOrderAccept Class Doc Comment
+ * OrderConfirm Class Doc Comment
  *
  * @category Class
  * @package  JTL\SCX\Lib\Channel\Client
@@ -32,14 +32,14 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class SellerEventOrderAccept implements ModelInterface, ArrayAccess, \JsonSerializable
+class OrderConfirm implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       */
-    protected static string $openAPIModelName = 'SellerEventOrderAccept';
+    protected static string $openAPIModelName = 'OrderConfirm';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -209,7 +209,7 @@ class SellerEventOrderAccept implements ModelInterface, ArrayAccess, \JsonSerial
         return $this->container['sellerId'];
     }
 
-    public function setSellerId(string $sellerId): SellerEventOrderAccept
+    public function setSellerId(string $sellerId): OrderConfirm
     {
         $this->container['sellerId'] = $sellerId;
         return $this;
@@ -221,7 +221,7 @@ class SellerEventOrderAccept implements ModelInterface, ArrayAccess, \JsonSerial
         return $this->container['orderId'];
     }
 
-    public function setOrderId(string $orderId): SellerEventOrderAccept
+    public function setOrderId(string $orderId): OrderConfirm
     {
         $this->container['orderId'] = $orderId;
         return $this;
@@ -233,7 +233,7 @@ class SellerEventOrderAccept implements ModelInterface, ArrayAccess, \JsonSerial
         return $this->container['orderAccepted'];
     }
 
-    public function setOrderAccepted(?bool $orderAccepted): SellerEventOrderAccept
+    public function setOrderAccepted(?bool $orderAccepted): OrderConfirm
     {
         $this->container['orderAccepted'] = $orderAccepted;
         return $this;
@@ -245,7 +245,7 @@ class SellerEventOrderAccept implements ModelInterface, ArrayAccess, \JsonSerial
         return $this->container['reason'];
     }
 
-    public function setReason(?CancelReason $reason): SellerEventOrderAccept
+    public function setReason(?CancelReason $reason): OrderConfirm
     {
         $this->container['reason'] = $reason;
         return $this;
