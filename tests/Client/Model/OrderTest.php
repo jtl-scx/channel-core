@@ -183,6 +183,27 @@ class OrderTest extends AbstractApiModelTest
                 'setAdditionalOrderData',
                 true
             ],
+            'assert property fbc' => [
+                'fbc',
+                'bool',
+                'getFbc',
+                'setFbc',
+                true
+            ],
+            'assert property b2b' => [
+                'b2b',
+                'bool',
+                'getB2b',
+                'setB2b',
+                true
+            ],
+            'assert property salesChannelName' => [
+                'salesChannelName',
+                'string',
+                'getSalesChannelName',
+                'setSalesChannelName',
+                true
+            ],
         ];
     }
 
