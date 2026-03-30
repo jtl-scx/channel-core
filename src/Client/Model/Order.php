@@ -45,11 +45,11 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
       * Array of property to type mappings. Used for (de)serialization
       *
       * @param ChannelOrderStatus
-      * @param ChannelPaymentStatus
       * @param OrderItem
       * @param Address
       * @param Address
       * @param OrderBuyer
+      * @param Enum
       * @param AdditionalOrderDataGroup
       *
       */
@@ -57,7 +57,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'sellerId' => 'string',
         'orderStatus' => '\JTL\SCX\Lib\Channel\Client\Model\ChannelOrderStatus',
         'orderAcceptUntil' => '\DateTime',
-        'paymentStatus' => '\JTL\SCX\Lib\Channel\Client\Model\ChannelPaymentStatus',
         'paymentMethod' => 'string',
         'paymentReference' => 'string',
         'orderId' => 'string',
@@ -71,7 +70,11 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'buyer' => '\JTL\SCX\Lib\Channel\Client\Model\OrderBuyer',
         'weeePickup' => 'bool',
         'language' => 'string',
-        'additionalOrderData' => '\JTL\SCX\Lib\Channel\Client\Model\AdditionalOrderDataGroup[]'
+        'invoiceDocumentTransfer' => 'Enum',
+        'additionalOrderData' => '\JTL\SCX\Lib\Channel\Client\Model\AdditionalOrderDataGroup[]',
+        'fbc' => 'bool',
+        'b2b' => 'bool',
+        'salesChannelName' => 'string'
     ];
 
     /**
@@ -98,7 +101,10 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'weeePickup' => null,
         'language' => null,
         'invoiceDocumentTransfer' => null,
-        'additionalOrderData' => null
+        'additionalOrderData' => null,
+        'fbc' => null,
+        'b2b' => null,
+        'salesChannelName' => null
     ];
 
     /**
@@ -127,7 +133,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'sellerId' => 'sellerId',
         'orderStatus' => 'orderStatus',
         'orderAcceptUntil' => 'orderAcceptUntil',
-        'paymentStatus' => 'paymentStatus',
         'paymentMethod' => 'paymentMethod',
         'paymentReference' => 'paymentReference',
         'orderId' => 'orderId',
@@ -142,7 +147,10 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'weeePickup' => 'weeePickup',
         'language' => 'language',
         'invoiceDocumentTransfer' => 'invoiceDocumentTransfer',
-        'additionalOrderData' => 'additionalOrderData'
+        'additionalOrderData' => 'additionalOrderData',
+        'fbc' => 'fbc',
+        'b2b' => 'b2b',
+        'salesChannelName' => 'salesChannelName'
     ];
 
     /**
@@ -152,7 +160,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'sellerId' => 'setSellerId',
         'orderStatus' => 'setOrderStatus',
         'orderAcceptUntil' => 'setOrderAcceptUntil',
-        'paymentStatus' => 'setPaymentStatus',
         'paymentMethod' => 'setPaymentMethod',
         'paymentReference' => 'setPaymentReference',
         'orderId' => 'setOrderId',
@@ -167,7 +174,10 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'weeePickup' => 'setWeeePickup',
         'language' => 'setLanguage',
         'invoiceDocumentTransfer' => 'setInvoiceDocumentTransfer',
-        'additionalOrderData' => 'setAdditionalOrderData'
+        'additionalOrderData' => 'setAdditionalOrderData',
+        'fbc' => 'setFbc',
+        'b2b' => 'setB2b',
+        'salesChannelName' => 'setSalesChannelName'
     ];
 
     /**
@@ -177,7 +187,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'sellerId' => 'getSellerId',
         'orderStatus' => 'getOrderStatus',
         'orderAcceptUntil' => 'getOrderAcceptUntil',
-        'paymentStatus' => 'getPaymentStatus',
         'paymentMethod' => 'getPaymentMethod',
         'paymentReference' => 'getPaymentReference',
         'orderId' => 'getOrderId',
@@ -192,7 +201,10 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'weeePickup' => 'getWeeePickup',
         'language' => 'getLanguage',
         'invoiceDocumentTransfer' => 'getInvoiceDocumentTransfer',
-        'additionalOrderData' => 'getAdditionalOrderData'
+        'additionalOrderData' => 'getAdditionalOrderData',
+        'fbc' => 'getFbc',
+        'b2b' => 'getB2b',
+        'salesChannelName' => 'getSalesChannelName'
     ];
 
     /**
@@ -261,7 +273,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['sellerId'] = $data['sellerId'] ?? null;
         $this->container['orderStatus'] = $data['orderStatus'] ?? null;
         $this->container['orderAcceptUntil'] = $data['orderAcceptUntil'] ?? null;
-        $this->container['paymentStatus'] = $data['paymentStatus'] ?? null;
         $this->container['paymentMethod'] = $data['paymentMethod'] ?? null;
         $this->container['paymentReference'] = $data['paymentReference'] ?? null;
         $this->container['orderId'] = $data['orderId'] ?? null;
@@ -277,6 +288,9 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['language'] = $data['language'] ?? null;
         $this->container['invoiceDocumentTransfer'] = $data['invoiceDocumentTransfer'] ?? null;
         $this->container['additionalOrderData'] = $data['additionalOrderData'] ?? null;
+        $this->container['fbc'] = $data['fbc'] ?? null;
+        $this->container['b2b'] = $data['b2b'] ?? null;
+        $this->container['salesChannelName'] = $data['salesChannelName'] ?? null;
     }
 
     /**
@@ -346,6 +360,10 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'additionalOrderData', number of items must be greater than or equal to 0.";
         }
 
+        if (!is_null($this->container['salesChannelName']) && (mb_strlen($this->container['salesChannelName']) > 100)) {
+            $invalidProperties[] = "invalid value for 'salesChannelName', the character length must be smaller than or equal to 100.";
+        }
+
         return $invalidProperties;
     }
 
@@ -359,6 +377,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
+
     public function getSellerId(): string
     {
         return $this->container['sellerId'];
@@ -369,6 +389,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['sellerId'] = $sellerId;
         return $this;
     }
+
+
     public function getOrderStatus(): ChannelOrderStatus
     {
         return $this->container['orderStatus'];
@@ -379,6 +401,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['orderStatus'] = $orderStatus;
         return $this;
     }
+
+
     public function getOrderAcceptUntil(): ?\DateTime
     {
         return $this->container['orderAcceptUntil'];
@@ -389,16 +413,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['orderAcceptUntil'] = $orderAcceptUntil;
         return $this;
     }
-    public function getPaymentStatus(): ?ChannelPaymentStatus
-    {
-        return $this->container['paymentStatus'];
-    }
 
-    public function setPaymentStatus(?ChannelPaymentStatus $paymentStatus): Order
-    {
-        $this->container['paymentStatus'] = $paymentStatus;
-        return $this;
-    }
+
     public function getPaymentMethod(): ?string
     {
         return $this->container['paymentMethod'];
@@ -409,6 +425,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['paymentMethod'] = $paymentMethod;
         return $this;
     }
+
+
     public function getPaymentReference(): ?string
     {
         return $this->container['paymentReference'];
@@ -419,6 +437,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['paymentReference'] = $paymentReference;
         return $this;
     }
+
+
     public function getOrderId(): string
     {
         return $this->container['orderId'];
@@ -429,6 +449,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['orderId'] = $orderId;
         return $this;
     }
+
+
     public function getPurchasedAt(): \DateTime
     {
         return $this->container['purchasedAt'];
@@ -439,6 +461,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['purchasedAt'] = $purchasedAt;
         return $this;
     }
+
+
     public function getLastChangedAt(): \DateTime
     {
         return $this->container['lastChangedAt'];
@@ -546,6 +570,19 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         return $this;
     }
 
+
+    public function getInvoiceDocumentTransfer(): ?Enum
+    {
+        return $this->container['invoiceDocumentTransfer'];
+    }
+
+    public function setInvoiceDocumentTransfer(?Enum $invoiceDocumentTransfer): Order
+    {
+        $this->container['invoiceDocumentTransfer'] = $invoiceDocumentTransfer;
+        return $this;
+    }
+
+
     public function getAdditionalOrderData(): ?array
     {
         return $this->container['additionalOrderData'];
@@ -554,6 +591,42 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAdditionalOrderData(?array $additionalOrderData): Order
     {
         $this->container['additionalOrderData'] = $additionalOrderData;
+        return $this;
+    }
+
+
+    public function getFbc(): ?bool
+    {
+        return $this->container['fbc'];
+    }
+
+    public function setFbc(?bool $fbc): Order
+    {
+        $this->container['fbc'] = $fbc;
+        return $this;
+    }
+
+
+    public function getB2b(): ?bool
+    {
+        return $this->container['b2b'];
+    }
+
+    public function setB2b(?bool $b2b): Order
+    {
+        $this->container['b2b'] = $b2b;
+        return $this;
+    }
+
+
+    public function getSalesChannelName(): ?string
+    {
+        return $this->container['salesChannelName'];
+    }
+
+    public function setSalesChannelName(?string $salesChannelName): Order
+    {
+        $this->container['salesChannelName'] = $salesChannelName;
         return $this;
     }
 
