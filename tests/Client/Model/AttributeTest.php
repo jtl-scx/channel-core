@@ -160,12 +160,6 @@ class AttributeTest extends AbstractApiModelTest
                 'getIsVariationDimension',
                 'setIsVariationDimension'
             ],
-            'assert property EnumValues' => [
-                'enumValues',
-                'string[]',
-                'getEnumValues',
-                'setEnumValues'
-            ],
             'assert property isRepeatableSubSection' => [
                 'isRepeatableSubSection',
                 'boolean',

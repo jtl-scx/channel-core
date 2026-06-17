@@ -32,7 +32,6 @@ class AttributeMapper
                 'required' => $attribute->isRequired(),
                 'recommended' => $attribute->isRecommended(),
                 'type' => (string)$attribute->getType(),
-                'enumValues' => $attribute->getEnumValues(),
                 'values' => $values !== null ? $values->toArray() : null,
                 'attributeValueValidation' => $attribute->getAttributeValueValidation(),
                 'conditionalMandantoryBy' => $this->mapConditional($attribute->getConditionalMandatoryBy()),

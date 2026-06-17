@@ -83,7 +83,7 @@ JSON
     /**
      * @test
      */
-    public function it_has_enumValues_when_type_is_ENUM(): void
+    public function it_has_values_when_type_is_ENUM(): void
     {
         $sut = $this->setupGlobalAttributeFileReader(
             /** @lang JSON */
@@ -104,13 +104,6 @@ JSON
         "attributeId": "testId2",
         "displayName": "testDisplayName2",
         "type": "boolean"
-    },
-    {
-        "-comment": "Just for backwards compatibility we also support enumValues",
-        "attributeId": "testId3",
-        "displayName": "testDisplayName3",
-        "type": "enum",
-        "enumValues": ["1", "2"]
     },
     {
         "-comment": "enum values must not have a AttributeEnumValueList",
@@ -138,10 +131,33 @@ JSON
         $attribute = $result[2];
         $values = $attribute->getValues();
         self::assertInstanceOf(AttributeEnumValueList::class, $values);
-        self::assertCount(2, $values);
+        self::assertCount(0, $values);
+    }
 
-        self::assertArrayHasKey(3, $result);
-        $attribute = $result[3];
+    /**
+     * @test
+     */
+    public function it_ignores_legacy_enumValues_input_key(): void
+    {
+        $sut = $this->setupGlobalAttributeFileReader(
+            /** @lang JSON */
+            <<<JSON
+[
+    {
+        "-comment": "ENUM type - only legacy enumValues key, no values property -> must be ignored",
+        "attributeId": "testId",
+        "displayName": "testDisplayName",
+        "type": "enum",
+        "enumValues": ["1", "2"]
+    }
+]
+JSON
+        );
+
+        $result = $sut->read('foo.json');
+
+        self::assertArrayHasKey(0, $result);
+        $attribute = $result[0];
         $values = $attribute->getValues();
         self::assertInstanceOf(AttributeEnumValueList::class, $values);
         self::assertCount(0, $values);

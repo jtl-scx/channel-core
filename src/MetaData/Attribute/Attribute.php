@@ -16,7 +16,6 @@ class Attribute
     private string $displayName;
     private bool $isMultipleAllowed;
     private AttributeType $type;
-    private ?array $enumValues;
     private ?string $attributeValueValidation;
     private ?ConditionalAttributeList $conditionalMandatoryBy;
     private ?ConditionalAttributeList $conditionalOptionalBy;
@@ -36,7 +35,6 @@ class Attribute
         string $displayName,
         string|null $description = null,
         bool $required = false,
-        array|null $enumValues = null,
         AttributeType|null $type = null,
         bool $isMultipleAllowed = false,
         string|null $attributeValueValidation = null,
@@ -55,7 +53,6 @@ class Attribute
         $this->displayName = $displayName;
         $this->description = $description;
         $this->required = $required;
-        $this->enumValues = $enumValues;
 
         $type = $type ?? AttributeType::SMALLTEXT();
         $this->type = $type;
@@ -92,11 +89,6 @@ class Attribute
     public function getType(): AttributeType
     {
         return $this->type;
-    }
-
-    public function getEnumValues(): ?array
-    {
-        return $this->enumValues;
     }
 
     public function getAttributeValueValidation(): ?string

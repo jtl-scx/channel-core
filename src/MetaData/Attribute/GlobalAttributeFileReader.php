@@ -57,14 +57,12 @@ class GlobalAttributeFileReader
                 $type = new AttributeType($attributeData['type']);
             }
 
-            $enumValues = null;
+            $values = null;
             if ($type->equals(AttributeType::ENUM())) {
                 if (isset($attributeData['values'])) {
-                    $enumValues = AttributeEnumValueList::fromArray($attributeData['values']);
-                } elseif (isset($attributeData['enumValues'])) {
-                    $enumValues = AttributeEnumValueList::fromScalarArray($attributeData['enumValues']);
+                    $values = AttributeEnumValueList::fromArray($attributeData['values']);
                 } else {
-                    $enumValues = new AttributeEnumValueList();
+                    $values = new AttributeEnumValueList();
                 }
             }
 
@@ -73,7 +71,6 @@ class GlobalAttributeFileReader
                 displayName: $attributeData['displayName'],
                 description: $attributeData['description'] ?? null,
                 required: $attributeData['required'] ?? false,
-                enumValues: null,
                 type: $type,
                 isMultipleAllowed: $attributeData['isMultipleAllowed'] ?? false,
                 attributeValueValidation: $attributeData['attributeValueValidation'] ?? null,
@@ -85,7 +82,7 @@ class GlobalAttributeFileReader
                 subSectionPosition: $attributeData['subSectionPosition'] ?? null,
                 isVariationDimension: $attributeData['isVariationDimension'] ?? null,
                 recommended: $attributeData['recommended'] ?? null,
-                values: $enumValues,
+                values: $values,
                 isRepeatableSubSection: $attributeData['isRepeatableSubSection'] ?? false
             );
             $attributeList[] = $attribute;
