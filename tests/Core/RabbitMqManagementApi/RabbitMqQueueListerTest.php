@@ -49,6 +49,7 @@ class RabbitMqQueueListerTest extends TestCase
         $port = (string)random_int(1025, 100000);
         $username = uniqid('username', true);
         $password = uniqid('password', true);
+        $vhost = 'kaufland';
         $responseString = '[{"name": "queue1"}, {"name": "queue2"}]';
 
         $response = $this->createMock(Response::class);
@@ -67,6 +68,10 @@ class RabbitMqQueueListerTest extends TestCase
             ->willReturn($port);
 
         $this->connectionSettings->expects(self::once())
+            ->method('getVhost')
+            ->willReturn($vhost);
+
+        $this->connectionSettings->expects(self::once())
             ->method('getUser')
             ->willReturn($username);
 
@@ -78,7 +83,7 @@ class RabbitMqQueueListerTest extends TestCase
             ->method('request')
             ->with(
                 'GET',
-                "{$host}:{$port}/api/queues",
+                "{$host}:{$port}/api/queues/{$vhost}",
                 ['auth' => [$username, $password]]
             )
             ->willReturn($response);
@@ -102,12 +107,52 @@ class RabbitMqQueueListerTest extends TestCase
     /**
      * @test
      */
+    public function vhostIsUrlEncodedInQueueListUrl(): void
+    {
+        $host = uniqid('host', true);
+        $port = (string)random_int(1025, 100000);
+        $vhost = '/';
+        $responseString = '[{"name": "queue1"}]';
+
+        $response = $this->createMock(Response::class);
+        $responseBody = $this->createMock(StreamInterface::class);
+
+        $this->transport->expects(self::once())
+            ->method('getConnectionSettings')
+            ->willReturn($this->connectionSettings);
+
+        $this->connectionSettings->method('getHost')->willReturn($host);
+        $this->connectionSettings->method('getHttpPort')->willReturn($port);
+        $this->connectionSettings->method('getVhost')->willReturn($vhost);
+        $this->connectionSettings->method('getUser')->willReturn('user');
+        $this->connectionSettings->method('getPassword')->willReturn('pass');
+
+        $this->client->expects(self::once())
+            ->method('request')
+            ->with(
+                'GET',
+                "{$host}:{$port}/api/queues/%2F",
+                ['auth' => ['user', 'pass']]
+            )
+            ->willReturn($response);
+
+        $response->method('getStatusCode')->willReturn(200);
+        $response->method('getBody')->willReturn($responseBody);
+        $responseBody->method('getContents')->willReturn($responseString);
+
+        $this->lister->listQueues();
+    }
+
+    /**
+     * @test
+     */
     public function failListQueuesIfStatusCodeIsNot200(): void
     {
         $host = uniqid('host', true);
         $port = (string)random_int(1025, 100000);
         $username = uniqid('username', true);
         $password = uniqid('password', true);
+        $vhost = 'kaufland';
 
         $response = $this->createMock(Response::class);
 
@@ -124,6 +169,10 @@ class RabbitMqQueueListerTest extends TestCase
             ->willReturn($port);
 
         $this->connectionSettings->expects(self::once())
+            ->method('getVhost')
+            ->willReturn($vhost);
+
+        $this->connectionSettings->expects(self::once())
             ->method('getUser')
             ->willReturn($username);
 
@@ -135,7 +184,7 @@ class RabbitMqQueueListerTest extends TestCase
             ->method('request')
             ->with(
                 'GET',
-                "{$host}:{$port}/api/queues",
+                "{$host}:{$port}/api/queues/{$vhost}",
                 ['auth' => [$username, $password]]
             )
             ->willReturn($response);
