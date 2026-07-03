@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Channel\Response;
 
-use JTL\SCX\Lib\Channel\Client\Model\SalesChannelData;
+use JTL\SCX\Lib\Channel\Client\Model\SalesChannel;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -23,12 +23,12 @@ class GetChannelStatusResponseTest extends TestCase
 {
     public function testCanGetData(): void
     {
-        $salesChannelData = $this->createStub(SalesChannelData::class);
+        $salesChannel = $this->createStub(SalesChannel::class);
         $statusCode = random_int(1, 1000);
 
-        $response = new GetChannelStatusResponse($salesChannelData, $statusCode);
+        $response = new GetChannelStatusResponse($salesChannel, $statusCode);
 
-        $this->assertEquals($salesChannelData, $response->getSalesChannelData());
+        $this->assertEquals($salesChannel, $response->getSalesChannel());
         $this->assertEquals($statusCode, $response->getStatusCode());
     }
 }

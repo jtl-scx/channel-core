@@ -25,7 +25,7 @@ class SendReportDataRequestTest extends TestCase
         $reportId = uniqid('reportId', true);
 
         $request = new SendReportDataRequest($reportId, [$sellerInventoryItem], false);
-        $this->assertSame('[{"offerId":123,"sku":"123","quantity":"1"}]', $request->getBody());
+        $this->assertSame('[{"offerId":"123","sku":"123","quantity":"1"}]', $request->getBody());
         $this->assertSame('POST', $request->getHttpMethod());
         $this->assertSame('/v1/channel/report/{reportId}/data', $request->getUrl());
         $this->assertSame(['reportId' => $reportId], $request->getParams());
