@@ -15,14 +15,19 @@ use JTL\SCX\Client\Api\AuthAwareApiClient;
 use JTL\SCX\Lib\Channel\Client\Api\ChannelApiResponseDeserializer;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\CreateSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\GetSellerIdFromUpdateSessionRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\GetSellerListRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\GetSignupSessionDataRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UnlinkSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UpdateSellerRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UpsertMarketplaceSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\CreateSellerResponse;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\GetSellerListResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\SignupSessionDataResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UnlinkSellerResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UpdateSellerResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UpdateSessionResponse;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UpsertMarketplaceSellerResponse;
+use JTL\SCX\Lib\Channel\Client\Model\ChannelSellerList;
 use JTL\SCX\Lib\Channel\Client\Model\SignupSession;
 use JTL\SCX\Lib\Channel\Client\Model\UpdateSeller;
 use JTL\SCX\Lib\Channel\Client\Model\UpdateSession;
@@ -101,5 +106,30 @@ class SellerApi
     {
         $response = $this->client->request($unlinkSellerRequest);
         return new UnlinkSellerResponse($response->getStatusCode());
+    }
+
+    /**
+     * @param UpsertMarketplaceSellerRequest $upsertMarketplaceSellerRequest
+     * @return UpsertMarketplaceSellerResponse
+     * @throws GuzzleException
+     * @throws RequestFailedException
+     */
+    public function upsert(UpsertMarketplaceSellerRequest $upsertMarketplaceSellerRequest): UpsertMarketplaceSellerResponse
+    {
+        $response = $this->client->request($upsertMarketplaceSellerRequest);
+        return new UpsertMarketplaceSellerResponse($response->getStatusCode());
+    }
+
+    /**
+     * @throws GuzzleException
+     * @throws RequestFailedException
+     */
+    public function getList(GetSellerListRequest $request): GetSellerListResponse
+    {
+        $response = $this->client->request($request);
+        /** @var ChannelSellerList $sellerList */
+        $sellerList = $this->responseDeserializer->deserialize($response, ChannelSellerList::class);
+
+        return new GetSellerListResponse($sellerList, $response->getStatusCode());
     }
 }
