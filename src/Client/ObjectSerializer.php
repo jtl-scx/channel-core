@@ -260,7 +260,7 @@ class ObjectSerializer
      *
      * @return object|\DateTime|array|ModelInterface|\SplFileObject|null a single or an array of $class instances
      */
-    public static function deserialize(mixed $data, string $class, array $httpHeaders = null): object|\DateTime|array|ModelInterface|\SplFileObject|null
+    public static function deserialize(mixed $data, string $class, array $httpHeaders = null): object|array|null
     {
         if (null === $data) {
             return null;
