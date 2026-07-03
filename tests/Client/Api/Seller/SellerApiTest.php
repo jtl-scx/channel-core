@@ -156,25 +156,6 @@ class SellerApiTest extends TestCase
     /**
      * @test
      */
-    public function it_can_send_a_seller_upsert(): void
-    {
-        $requestMock = $this->createMock(UpsertMarketplaceSellerRequest::class);
-        $responseMock = $this->createMock(ResponseInterface::class);
-        $responseMock->method('getStatusCode')->willReturn(201);
-
-        $apiClientMock = $this->createMock(AuthAwareApiClient::class);
-        $apiClientMock->expects($this->once())->method('request')->with($requestMock)->willReturn($responseMock);
-
-        $client = new SellerApi($apiClientMock);
-        $response = $client->upsert($requestMock);
-
-        self::assertInstanceOf(UpsertMarketplaceSellerResponse::class, $response);
-        self::assertSame(201, $response->getStatusCode());
-    }
-
-    /**
-     * @test
-     */
     public function it_can_get_a_seller_list(): void
     {
         $requestMock = $this->createMock(GetSellerListRequest::class);

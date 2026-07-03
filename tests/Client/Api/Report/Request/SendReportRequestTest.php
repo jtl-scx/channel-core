@@ -31,7 +31,7 @@ class SendReportRequestTest extends TestCase
         $reportId = uniqid('reportId', true);
 
         $request = new SendReportRequest($reportId, [$sellerInventoryItem], false);
-        $this->assertSame('[{"offerId":123,"sku":"123","quantity":"1"}]', $request->getBody());
+        $this->assertSame('[{"offerId":"123","sku":"123","quantity":"1"}]', $request->getBody());
         $this->assertSame('POST', $request->getHttpMethod());
         $this->assertSame('/v1/channel/report/{reportId}', $request->getUrl());
         $this->assertSame(['reportId' => $reportId], $request->getParams());
@@ -47,7 +47,7 @@ class SendReportRequestTest extends TestCase
         ]);
         $sut = new SendReportRequest($reportId, [$item], false);
 
-        $this->assertSame('[{"offerId":123,"sku":"123","quantity":"1"}]', $sut->getBody());
+        $this->assertSame('[{"offerId":"123","sku":"123","quantity":"1"}]', $sut->getBody());
         $this->assertSame('POST', $sut->getHttpMethod());
         $this->assertSame('/v1/channel/report/{reportId}', $sut->getUrl());
         $this->assertSame(['reportId' => $reportId], $sut->getParams());

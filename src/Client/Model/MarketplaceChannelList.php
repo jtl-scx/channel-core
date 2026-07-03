@@ -158,9 +158,7 @@ class MarketplaceChannelList implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function listInvalidProperties(): array
     {
-        $invalidProperties = parent::listInvalidProperties();
-
-        return $invalidProperties;
+        return [];
     }
 
     /**
