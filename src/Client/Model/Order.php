@@ -49,7 +49,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
       * @param Address
       * @param Address
       * @param OrderBuyer
-      * @param Enum
       * @param AdditionalOrderDataGroup
       *
       */
@@ -70,7 +69,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'buyer' => '\JTL\SCX\Lib\Channel\Client\Model\OrderBuyer',
         'weeePickup' => 'bool',
         'language' => 'string',
-        'invoiceDocumentTransfer' => 'Enum',
+        'invoiceDocumentTransfer' => 'string',
         'additionalOrderData' => '\JTL\SCX\Lib\Channel\Client\Model\AdditionalOrderDataGroup[]',
         'fbc' => 'bool',
         'b2b' => 'bool',
@@ -286,7 +285,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['buyer'] = $data['buyer'] ?? null;
         $this->container['weeePickup'] = $data['weeePickup'] ?? null;
         $this->container['language'] = $data['language'] ?? null;
-        $this->container['invoiceDocumentTransfer'] = $data['invoiceDocumentTransfer'] ?? null;
+        $this->container['invoiceDocumentTransfer'] = $data['invoiceDocumentTransfer'] ?? 'not-set';
         $this->container['additionalOrderData'] = $data['additionalOrderData'] ?? null;
         $this->container['fbc'] = $data['fbc'] ?? null;
         $this->container['b2b'] = $data['b2b'] ?? null;
@@ -343,6 +342,10 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['orderItem'] === null) {
             $invalidProperties[] = "'orderItem' can't be null";
         }
+        if ((is_countable($this->container['orderItem']) && count($this->container['orderItem']) < 1)) {
+            $invalidProperties[] = "invalid value for 'orderItem', number of items must be greater than or equal to 1.";
+        }
+
         $allowedValues = $this->getInvoiceDocumentTransferAllowableValues();
         if (!is_null($this->container['invoiceDocumentTransfer']) && !in_array($this->container['invoiceDocumentTransfer'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -571,12 +574,12 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    public function getInvoiceDocumentTransfer(): ?Enum
+    public function getInvoiceDocumentTransfer(): ?string
     {
         return $this->container['invoiceDocumentTransfer'];
     }
 
-    public function setInvoiceDocumentTransfer(?Enum $invoiceDocumentTransfer): Order
+    public function setInvoiceDocumentTransfer(?string $invoiceDocumentTransfer): Order
     {
         $this->container['invoiceDocumentTransfer'] = $invoiceDocumentTransfer;
         return $this;

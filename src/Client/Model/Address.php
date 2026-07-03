@@ -275,6 +275,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
+
     public function getFirstName(): ?string
     {
         return $this->container['firstName'];
@@ -285,6 +287,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['firstName'] = $firstName;
         return $this;
     }
+
+
     public function getLastName(): string
     {
         return $this->container['lastName'];
@@ -295,6 +299,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['lastName'] = $lastName;
         return $this;
     }
+
+
     public function getGender(): ?string
     {
         return $this->container['gender'];
@@ -305,6 +311,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['gender'] = $gender;
         return $this;
     }
+
+
     public function getCompanyName(): ?string
     {
         return $this->container['companyName'];
@@ -315,6 +323,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['companyName'] = $companyName;
         return $this;
     }
+
+
     public function getStreet(): string
     {
         return $this->container['street'];
@@ -325,6 +335,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['street'] = $street;
         return $this;
     }
+
+
     public function getHouseNumber(): ?string
     {
         return $this->container['houseNumber'];
@@ -335,6 +347,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['houseNumber'] = $houseNumber;
         return $this;
     }
+
+
     public function getAddition(): ?string
     {
         return $this->container['addition'];
@@ -345,6 +359,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['addition'] = $addition;
         return $this;
     }
+
+
     public function getPostcode(): ?string
     {
         return $this->container['postcode'];
@@ -355,6 +371,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['postcode'] = $postcode;
         return $this;
     }
+
+
     public function getCity(): string
     {
         return $this->container['city'];
@@ -365,6 +383,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['city'] = $city;
         return $this;
     }
+
+
     public function getPhone(): ?string
     {
         return $this->container['phone'];
@@ -375,6 +395,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['phone'] = $phone;
         return $this;
     }
+
+
     public function getCountry(): string
     {
         return $this->container['country'];
@@ -385,6 +407,8 @@ class Address implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['country'] = $country;
         return $this;
     }
+
+
     public function getState(): ?string
     {
         return $this->container['state'];

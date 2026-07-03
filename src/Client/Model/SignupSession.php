@@ -25,6 +25,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * SignupSession Class Doc Comment
  *
  * @category Class
+ * @description Signup-flow session payload referencing the JTL account that initiated the seller signup.
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

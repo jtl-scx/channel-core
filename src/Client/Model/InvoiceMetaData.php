@@ -48,7 +48,6 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @param Address
       * @param OrderInvoice
       *
-      * @var string[]
       */
     protected static array $openAPITypes = [
         'type' => '\JTL\SCX\Lib\Channel\Client\Model\InvoiceDocumentType',
@@ -320,6 +319,10 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['billingAddress'] === null) {
             $invalidProperties[] = "'billingAddress' can't be null";
         }
+        if (!is_null($this->container['orderList']) && (is_countable($this->container['orderList']) && count($this->container['orderList']) < 1)) {
+            $invalidProperties[] = "invalid value for 'orderList', number of items must be greater than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 

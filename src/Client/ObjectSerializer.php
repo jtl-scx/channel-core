@@ -31,15 +31,14 @@ use JTL\SCX\Lib\Channel\Client\Model\ModelInterface;
  */
 class ObjectSerializer
 {
-    /** @var string */
-    private static $dateTimeFormat = \DateTimeInterface::ISO8601;
+    private static string $dateTimeFormat = \DateTimeInterface::ISO8601;
 
     /**
      * Change the date format
      *
      * @param string $format   the new date format to use
      */
-    public static function setDateTimeFormat($format)
+    public static function setDateTimeFormat(string $format): void
     {
         self::$dateTimeFormat = $format;
     }
@@ -51,9 +50,9 @@ class ObjectSerializer
      * @param string|null $type   the OpenAPIToolsType of the data
      * @param string|null $format the format of the OpenAPITools type of the data
      *
-     * @return scalar|object|array|null serialized form of $data
+     * @return object|array|null|string serialized form of $data
      */
-    public static function sanitizeForSerialization(mixed $data, string|null $type = null, string|null $format = null): mixed
+    public static function sanitizeForSerialization(mixed $data, string|null $type = null, string|null $format = null): object|array|null|string
     {
         if (is_scalar($data) || null === $data) {
             return $data;
@@ -77,7 +76,7 @@ class ObjectSerializer
                 foreach ($data::openAPITypes() as $property => $openAPIType) {
                     $getter = $data::getters()[$property];
                     $value = $data->$getter();
-                    if ($value !== null && !in_array($openAPIType, ['\DateTime', '\SplFileObject', 'array', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
+                    if ($value !== null && !in_array($openAPIType, ['\DateTime', '\SplFileObject', 'array', 'bool', 'boolean', 'byte', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
                         $callable = [$openAPIType, 'getAllowableEnumValues'];
                         if (is_callable($callable)) {
                             /** array $callable */
@@ -116,7 +115,7 @@ class ObjectSerializer
      *
      * @return string the sanitized filename
      */
-    public static function sanitizeFilename($filename)
+    public static function sanitizeFilename(string $filename): string
     {
         if (preg_match("/.*[\/\\\\](.*)$/", $filename, $match)) {
             return $match[1];
@@ -133,7 +132,7 @@ class ObjectSerializer
      *
      * @return string the serialized object
      */
-    public static function toPathValue($value)
+    public static function toPathValue(string $value): string
     {
         return rawurlencode(self::toString($value));
     }
@@ -148,7 +147,7 @@ class ObjectSerializer
      *
      * @return string the serialized object
      */
-    public static function toQueryValue($object)
+    public static function toQueryValue(array|string|\DateTime $object): string
     {
         if (is_array($object)) {
             return implode(',', $object);
@@ -166,7 +165,7 @@ class ObjectSerializer
      *
      * @return string the header string
      */
-    public static function toHeaderValue($value)
+    public static function toHeaderValue(string $value): string
     {
         $callable = [$value, 'toHeaderValue'];
         if (is_callable($callable)) {
@@ -185,7 +184,7 @@ class ObjectSerializer
      *
      * @return string the form string
      */
-    public static function toFormValue($value)
+    public static function toFormValue(string|\SplFileObject $value): string
     {
         if ($value instanceof \SplFileObject) {
             return $value->getRealPath();
@@ -204,7 +203,7 @@ class ObjectSerializer
      *
      * @return string the header string
      */
-    public static function toString($value)
+    public static function toString(string|bool|\DateTime $value): string
     {
         if ($value instanceof \DateTime) { // datetime in ISO8601 format
             return $value->format(self::$dateTimeFormat);
@@ -225,7 +224,7 @@ class ObjectSerializer
      *
      * @return string
      */
-    public static function serializeCollection(array $collection, $style, $allowCollectionFormatMulti = false)
+    public static function serializeCollection(array $collection, string $style, bool $allowCollectionFormatMulti = false): string
     {
         if ($allowCollectionFormatMulti && ('multi' === $style)) {
             // http_build_query() almost does the job for us. We just
@@ -258,11 +257,10 @@ class ObjectSerializer
      * @param mixed    $data          object or primitive to be deserialized
      * @param string   $class         class name is passed as a string
      * @param string[] $httpHeaders   HTTP headers
-     * @param string   $discriminator discriminator if polymorphism is used
      *
-     * @return object|array|null a single or an array of $class instances
+     * @return object|\DateTime|array|ModelInterface|\SplFileObject|null a single or an array of $class instances
      */
-    public static function deserialize($data, $class, $httpHeaders = null)
+    public static function deserialize(mixed $data, string $class, array $httpHeaders = null): object|\DateTime|array|ModelInterface|\SplFileObject|null
     {
         if (null === $data) {
             return null;
@@ -326,7 +324,7 @@ class ObjectSerializer
         }
 
         /** @psalm-suppress ParadoxicalCondition */
-        if (in_array($class, ['\DateTime', '\SplFileObject', 'array', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
+        if (in_array($class, ['\DateTime', '\SplFileObject', 'array', 'bool', 'boolean', 'byte', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
             settype($data, $class);
             return $data;
         }

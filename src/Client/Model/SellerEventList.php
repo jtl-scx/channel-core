@@ -25,6 +25,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * SellerEventList Class Doc Comment
  *
  * @category Class
+ * @description Paginated list of events relevant to a seller (e.g. listing failed, order received) emitted by the channel.
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -44,11 +45,11 @@ class SellerEventList implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
-      * @param SellerEventListEventList
+      * @param SellerEventListEventListInner
       *
       */
     protected static array $openAPITypes = [
-        'eventList' => '\JTL\SCX\Lib\Channel\Client\Model\SellerEventListEventList[]'
+        'eventList' => '\JTL\SCX\Lib\Channel\Client\Model\SellerEventListEventListInner[]'
     ];
 
     /**

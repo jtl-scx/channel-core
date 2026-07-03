@@ -25,6 +25,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * ShippingRules Class Doc Comment
  *
  * @category Class
+ * @description Shipping rules supported by the channel — list of carriers and the regions they cover.
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -160,6 +161,10 @@ class ShippingRules implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties(): array
     {
         $invalidProperties = [];
+
+        if (!is_null($this->container['supportedCarrierList']) && (is_countable($this->container['supportedCarrierList']) && count($this->container['supportedCarrierList']) < 0)) {
+            $invalidProperties[] = "invalid value for 'supportedCarrierList', number of items must be greater than or equal to 0.";
+        }
 
         return $invalidProperties;
     }

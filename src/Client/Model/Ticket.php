@@ -267,6 +267,14 @@ class Ticket implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'message', the character length must be bigger than or equal to 1.";
         }
 
+        if (!is_null($this->container['attachment']) && (is_countable($this->container['attachment']) && ($this->container['attachment']) > 10)) {
+            $invalidProperties[] = "invalid value for 'attachment', number of items must be less than or equal to 10.";
+        }
+
+        if (!is_null($this->container['attachment']) && (is_countable($this->container['attachment']) && count($this->container['attachment']) < 0)) {
+            $invalidProperties[] = "invalid value for 'attachment', number of items must be greater than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
