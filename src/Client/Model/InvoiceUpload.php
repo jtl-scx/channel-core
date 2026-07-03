@@ -25,6 +25,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * InvoiceUpload Class Doc Comment
  *
  * @category Class
+ * @description Multipart payload combining invoice metadata with the binary PDF document for upload.
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

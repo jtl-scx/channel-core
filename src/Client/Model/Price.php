@@ -186,6 +186,7 @@ class Price implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
     public function getAmount(): string
     {
         return $this->container['amount'];
@@ -196,6 +197,7 @@ class Price implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['amount'] = $amount;
         return $this;
     }
+
 
     public function getCurrency(): string
     {

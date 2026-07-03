@@ -44,12 +44,12 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
-      * @param ChannelUpdateFeatureList
+      * @param ChannelFeatureList
+      * @param MinimumClientsVersionRequired
+      * @param MarketplaceChannelList
       *
       */
     protected static array $openAPITypes = [
-        'channel' => 'string',
-        'visibility' => 'string',
         'group' => 'string',
         'currency' => 'string',
         'marketplaceList' => 'string[]',
@@ -65,7 +65,14 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
         'logo' => 'string',
         'description' => 'string',
         'appId' => 'string',
-        'featureList' => '\JTL\SCX\Lib\Channel\Client\Model\ChannelUpdateFeatureList'
+        'featureList' => '\JTL\SCX\Lib\Channel\Client\Model\ChannelFeatureList',
+        'minimumClientsVersionRequired' => '\JTL\SCX\Lib\Channel\Client\Model\MinimumClientsVersionRequired[]',
+        'isPlatform' => 'bool',
+        'platform' => 'string',
+        'marketplaceChannelList' => '\JTL\SCX\Lib\Channel\Client\Model\MarketplaceChannelList',
+        'stockSyncGroup' => 'string',
+        'visibility' => 'string',
+        'channel' => 'string'
     ];
 
     /**
@@ -75,8 +82,6 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static array $openAPIFormats = [
-        'channel' => null,
-        'visibility' => null,
         'group' => null,
         'currency' => null,
         'marketplaceList' => null,
@@ -92,7 +97,14 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
         'logo' => null,
         'description' => null,
         'appId' => null,
-        'featureList' => null
+        'featureList' => null,
+        'minimumClientsVersionRequired' => null,
+        'isPlatform' => null,
+        'platform' => null,
+        'marketplaceChannelList' => null,
+        'stockSyncGroup' => null,
+        'visibility' => null,
+        'channel' => null
     ];
 
     /**
@@ -118,8 +130,6 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
      * and the value is the original name
      */
     protected static array $attributeMap = [
-        'channel' => 'channel',
-        'visibility' => 'visibility',
         'group' => 'group',
         'currency' => 'currency',
         'marketplaceList' => 'marketplaceList',
@@ -135,15 +145,20 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
         'logo' => 'logo',
         'description' => 'description',
         'appId' => 'appId',
-        'featureList' => 'featureList'
+        'featureList' => 'featureList',
+        'minimumClientsVersionRequired' => 'minimumClientsVersionRequired',
+        'isPlatform' => 'isPlatform',
+        'platform' => 'platform',
+        'marketplaceChannelList' => 'marketplaceChannelList',
+        'stockSyncGroup' => 'stockSyncGroup',
+        'visibility' => 'visibility',
+        'channel' => 'channel'
     ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      */
     protected static array $setters = [
-        'channel' => 'setChannel',
-        'visibility' => 'setVisibility',
         'group' => 'setGroup',
         'currency' => 'setCurrency',
         'marketplaceList' => 'setMarketplaceList',
@@ -159,15 +174,20 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
         'logo' => 'setLogo',
         'description' => 'setDescription',
         'appId' => 'setAppId',
-        'featureList' => 'setFeatureList'
+        'featureList' => 'setFeatureList',
+        'minimumClientsVersionRequired' => 'setMinimumClientsVersionRequired',
+        'isPlatform' => 'setIsPlatform',
+        'platform' => 'setPlatform',
+        'marketplaceChannelList' => 'setMarketplaceChannelList',
+        'stockSyncGroup' => 'setStockSyncGroup',
+        'visibility' => 'setVisibility',
+        'channel' => 'setChannel'
     ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      */
     protected static array $getters = [
-        'channel' => 'getChannel',
-        'visibility' => 'getVisibility',
         'group' => 'getGroup',
         'currency' => 'getCurrency',
         'marketplaceList' => 'getMarketplaceList',
@@ -183,7 +203,14 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
         'logo' => 'getLogo',
         'description' => 'getDescription',
         'appId' => 'getAppId',
-        'featureList' => 'getFeatureList'
+        'featureList' => 'getFeatureList',
+        'minimumClientsVersionRequired' => 'getMinimumClientsVersionRequired',
+        'isPlatform' => 'getIsPlatform',
+        'platform' => 'getPlatform',
+        'marketplaceChannelList' => 'getMarketplaceChannelList',
+        'stockSyncGroup' => 'getStockSyncGroup',
+        'visibility' => 'getVisibility',
+        'channel' => 'getChannel'
     ];
 
     /**
@@ -223,14 +250,25 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const CHANNEL_TYPE_MARKETPLACE = 'MARKETPLACE';
+    public const CHANNEL_TYPE_OTHER = 'OTHER';
     public const VISIBILITY_JTL = 'JTL';
     public const VISIBILITY_THIRDPARTY = 'THIRDPARTY';
     public const VISIBILITY_ONBOARDING = 'ONBOARDING';
     public const VISIBILITY_RESTRICTED = 'RESTRICTED';
-    public const CHANNEL_TYPE_MARKETPLACE = 'MARKETPLACE';
-    public const CHANNEL_TYPE_OTHER = 'OTHER';
 
 
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getChannelTypeAllowableValues(): array
+    {
+        return [
+            self::CHANNEL_TYPE_MARKETPLACE,
+            self::CHANNEL_TYPE_OTHER,
+        ];
+    }
 
     /**
      * Gets allowable values of the enum
@@ -245,17 +283,6 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
         ];
     }
 
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getChannelTypeAllowableValues(): array
-    {
-        return [
-            self::CHANNEL_TYPE_MARKETPLACE,
-            self::CHANNEL_TYPE_OTHER,
-        ];
-    }
-
 
     /**
      * Associative array for storing property values
@@ -264,8 +291,6 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public function __construct(array|null $data = null)
     {
-        $this->container['channel'] = $data['channel'] ?? null;
-        $this->container['visibility'] = $data['visibility'] ?? null;
         $this->container['group'] = $data['group'] ?? null;
         $this->container['currency'] = $data['currency'] ?? null;
         $this->container['marketplaceList'] = $data['marketplaceList'] ?? null;
@@ -282,6 +307,13 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['description'] = $data['description'] ?? null;
         $this->container['appId'] = $data['appId'] ?? null;
         $this->container['featureList'] = $data['featureList'] ?? null;
+        $this->container['minimumClientsVersionRequired'] = $data['minimumClientsVersionRequired'] ?? null;
+        $this->container['isPlatform'] = $data['isPlatform'] ?? false;
+        $this->container['platform'] = $data['platform'] ?? null;
+        $this->container['marketplaceChannelList'] = $data['marketplaceChannelList'] ?? null;
+        $this->container['stockSyncGroup'] = $data['stockSyncGroup'] ?? null;
+        $this->container['visibility'] = $data['visibility'] ?? null;
+        $this->container['channel'] = $data['channel'] ?? null;
     }
 
     /**
@@ -293,28 +325,6 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['channel'] === null) {
-            $invalidProperties[] = "'channel' can't be null";
-        }
-        if (!preg_match("/^\\w{5,15}$/", $this->container['channel'])) {
-            $invalidProperties[] = "invalid value for 'channel', must be conform to the pattern /^\\w{5,15}$/.";
-        }
-
-        if ($this->container['visibility'] === null) {
-            $invalidProperties[] = "'visibility' can't be null";
-        }
-        $allowedValues = $this->getVisibilityAllowableValues();
-        if (!is_null($this->container['visibility']) && !in_array($this->container['visibility'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'visibility', must be one of '%s'",
-                $this->container['visibility'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
-        }
         if ($this->container['marketplaceList'] === null) {
             $invalidProperties[] = "'marketplaceList' can't be null";
         }
@@ -345,6 +355,22 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['featureList'] === null) {
             $invalidProperties[] = "'featureList' can't be null";
         }
+        $allowedValues = $this->getVisibilityAllowableValues();
+        if (!is_null($this->container['visibility']) && !in_array($this->container['visibility'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'visibility', must be one of '%s'",
+                $this->container['visibility'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['channel'] === null) {
+            $invalidProperties[] = "'channel' can't be null";
+        }
+        if (!preg_match("/^\\w{5,15}$/", $this->container['channel'])) {
+            $invalidProperties[] = "invalid value for 'channel', must be conform to the pattern /^\\w{5,15}$/.";
+        }
+
         return $invalidProperties;
     }
 
@@ -360,30 +386,6 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    public function getChannel(): string
-    {
-        return $this->container['channel'];
-    }
-
-    public function setChannel(string $channel): SalesChannelData
-    {
-        $this->container['channel'] = $channel;
-        return $this;
-    }
-
-
-    public function getVisibility(): string
-    {
-        return $this->container['visibility'];
-    }
-
-    public function setVisibility(string $visibility): SalesChannelData
-    {
-        $this->container['visibility'] = $visibility;
-        return $this;
-    }
-
-
     public function getGroup(): ?string
     {
         return $this->container['group'];
@@ -396,12 +398,12 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    public function getCurrency(): string
+    public function getCurrency(): ?string
     {
         return $this->container['currency'];
     }
 
-    public function setCurrency(string $currency): SalesChannelData
+    public function setCurrency(?string $currency): SalesChannelData
     {
         $this->container['currency'] = $currency;
         return $this;
@@ -564,14 +566,98 @@ class SalesChannelData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    public function getFeatureList(): ChannelUpdateFeatureList
+    public function getFeatureList(): ChannelFeatureList
     {
         return $this->container['featureList'];
     }
 
-    public function setFeatureList(ChannelUpdateFeatureList $featureList): SalesChannelData
+    public function setFeatureList(ChannelFeatureList $featureList): SalesChannelData
     {
         $this->container['featureList'] = $featureList;
+        return $this;
+    }
+
+
+    public function getMinimumClientsVersionRequired(): ?array
+    {
+        return $this->container['minimumClientsVersionRequired'];
+    }
+
+    public function setMinimumClientsVersionRequired(?array $minimumClientsVersionRequired): SalesChannelData
+    {
+        $this->container['minimumClientsVersionRequired'] = $minimumClientsVersionRequired;
+        return $this;
+    }
+
+
+    public function getIsPlatform(): ?bool
+    {
+        return $this->container['isPlatform'];
+    }
+
+    public function setIsPlatform(?bool $isPlatform): SalesChannelData
+    {
+        $this->container['isPlatform'] = $isPlatform;
+        return $this;
+    }
+
+
+    public function getPlatform(): ?string
+    {
+        return $this->container['platform'];
+    }
+
+    public function setPlatform(?string $platform): SalesChannelData
+    {
+        $this->container['platform'] = $platform;
+        return $this;
+    }
+
+
+    public function getMarketplaceChannelList(): ?MarketplaceChannelList
+    {
+        return $this->container['marketplaceChannelList'];
+    }
+
+    public function setMarketplaceChannelList(?MarketplaceChannelList $marketplaceChannelList): SalesChannelData
+    {
+        $this->container['marketplaceChannelList'] = $marketplaceChannelList;
+        return $this;
+    }
+
+
+    public function getStockSyncGroup(): ?string
+    {
+        return $this->container['stockSyncGroup'];
+    }
+
+    public function setStockSyncGroup(?string $stockSyncGroup): SalesChannelData
+    {
+        $this->container['stockSyncGroup'] = $stockSyncGroup;
+        return $this;
+    }
+
+
+    public function getVisibility(): ?string
+    {
+        return $this->container['visibility'];
+    }
+
+    public function setVisibility(?string $visibility): SalesChannelData
+    {
+        $this->container['visibility'] = $visibility;
+        return $this;
+    }
+
+
+    public function getChannel(): string
+    {
+        return $this->container['channel'];
+    }
+
+    public function setChannel(string $channel): SalesChannelData
+    {
+        $this->container['channel'] = $channel;
         return $this;
     }
 

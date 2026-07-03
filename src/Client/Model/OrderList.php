@@ -164,6 +164,14 @@ class OrderList implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['orderList'] === null) {
             $invalidProperties[] = "'orderList' can't be null";
         }
+        if ((is_countable($this->container['orderList']) && ($this->container['orderList']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'orderList', number of items must be less than or equal to 1000.";
+        }
+
+        if ((is_countable($this->container['orderList']) && count($this->container['orderList']) < 1)) {
+            $invalidProperties[] = "invalid value for 'orderList', number of items must be greater than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -177,6 +185,8 @@ class OrderList implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
+
     public function getOrderList(): array
     {
         return $this->container['orderList'];

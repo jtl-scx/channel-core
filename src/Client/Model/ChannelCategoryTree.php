@@ -25,6 +25,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * ChannelCategoryTree Class Doc Comment
  *
  * @category Class
+ * @description Full category tree published by the channel, structured as a list of root categories with nested children.
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

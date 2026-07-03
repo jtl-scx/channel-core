@@ -321,6 +321,10 @@ class SellerEventOfferUpdate implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['priceList'] === null) {
             $invalidProperties[] = "'priceList' can't be null";
         }
+        if ((is_countable($this->container['priceList']) && count($this->container['priceList']) < 1)) {
+            $invalidProperties[] = "invalid value for 'priceList', number of items must be greater than or equal to 1.";
+        }
+
         if (!is_null($this->container['title']) && (mb_strlen($this->container['title']) > 512)) {
             $invalidProperties[] = "invalid value for 'title', the character length must be smaller than or equal to 512.";
         }
@@ -335,6 +339,26 @@ class SellerEventOfferUpdate implements ModelInterface, ArrayAccess, \JsonSerial
 
         if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 50000)) {
             $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 50000.";
+        }
+
+        if (!is_null($this->container['pictureList']) && (is_countable($this->container['pictureList']) && ($this->container['pictureList']) > 50)) {
+            $invalidProperties[] = "invalid value for 'pictureList', number of items must be less than or equal to 50.";
+        }
+
+        if (!is_null($this->container['channelAttributeList']) && (is_countable($this->container['channelAttributeList']) && ($this->container['channelAttributeList']) > 250)) {
+            $invalidProperties[] = "invalid value for 'channelAttributeList', number of items must be less than or equal to 250.";
+        }
+
+        if (!is_null($this->container['channelAttributeList']) && (is_countable($this->container['channelAttributeList']) && count($this->container['channelAttributeList']) < 0)) {
+            $invalidProperties[] = "invalid value for 'channelAttributeList', number of items must be greater than or equal to 0.";
+        }
+
+        if (!is_null($this->container['variationList']) && (is_countable($this->container['variationList']) && ($this->container['variationList']) > 500)) {
+            $invalidProperties[] = "invalid value for 'variationList', number of items must be less than or equal to 500.";
+        }
+
+        if (!is_null($this->container['variationList']) && (is_countable($this->container['variationList']) && count($this->container['variationList']) < 0)) {
+            $invalidProperties[] = "invalid value for 'variationList', number of items must be greater than or equal to 0.";
         }
 
         if ($this->container['sku'] === null) {

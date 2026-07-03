@@ -230,6 +230,14 @@ class SellerInventoryItem implements ModelInterface, ArrayAccess, \JsonSerializa
             $invalidProperties[] = "invalid value for 'sku', the character length must be bigger than or equal to 1.";
         }
 
+        if (!is_null($this->container['channelAttributeList']) && (is_countable($this->container['channelAttributeList']) && ($this->container['channelAttributeList']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'channelAttributeList', number of items must be less than or equal to 1000.";
+        }
+
+        if (!is_null($this->container['channelAttributeList']) && (is_countable($this->container['channelAttributeList']) && count($this->container['channelAttributeList']) < 0)) {
+            $invalidProperties[] = "invalid value for 'channelAttributeList', number of items must be greater than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 

@@ -25,6 +25,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * UpdateSession Class Doc Comment
  *
  * @category Class
+ * @description Update-flow session payload identifying the seller whose master data is being updated.
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

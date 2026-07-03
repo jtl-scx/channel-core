@@ -45,16 +45,14 @@ class OrderStatus implements ModelInterface, ArrayAccess, \JsonSerializable
       * Array of property to type mappings. Used for (de)serialization
       *
       * @param ChannelOrderStatus
-      * @param ChannelPaymentStatus
-      * @param OrderStatusOrderItems
+      * @param OrderStatusOrderItemsInner
       *
       */
     protected static array $openAPITypes = [
         'sellerId' => 'string',
         'orderId' => 'string',
         'orderStatus' => '\JTL\SCX\Lib\Channel\Client\Model\ChannelOrderStatus',
-        'paymentStatus' => '\JTL\SCX\Lib\Channel\Client\Model\ChannelPaymentStatus',
-        'orderItems' => '\JTL\SCX\Lib\Channel\Client\Model\OrderStatusOrderItems[]'
+        'orderItems' => '\JTL\SCX\Lib\Channel\Client\Model\OrderStatusOrderItemsInner[]'
     ];
 
     /**
@@ -67,7 +65,6 @@ class OrderStatus implements ModelInterface, ArrayAccess, \JsonSerializable
         'sellerId' => null,
         'orderId' => null,
         'orderStatus' => null,
-        'paymentStatus' => null,
         'orderItems' => null
     ];
 
@@ -117,7 +114,6 @@ class OrderStatus implements ModelInterface, ArrayAccess, \JsonSerializable
         'sellerId' => 'getSellerId',
         'orderId' => 'getOrderId',
         'orderStatus' => 'getOrderStatus',
-        'paymentStatus' => 'getPaymentStatus',
         'orderItems' => 'getOrderItems'
     ];
 
@@ -172,7 +168,6 @@ class OrderStatus implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['sellerId'] = $data['sellerId'] ?? null;
         $this->container['orderId'] = $data['orderId'] ?? null;
         $this->container['orderStatus'] = $data['orderStatus'] ?? null;
-        $this->container['paymentStatus'] = $data['paymentStatus'] ?? null;
         $this->container['orderItems'] = $data['orderItems'] ?? null;
     }
 
@@ -257,18 +252,6 @@ class OrderStatus implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setOrderStatus(ChannelOrderStatus $orderStatus): OrderStatus
     {
         $this->container['orderStatus'] = $orderStatus;
-        return $this;
-    }
-
-
-    public function getPaymentStatus(): ?ChannelPaymentStatus
-    {
-        return $this->container['paymentStatus'];
-    }
-
-    public function setPaymentStatus(?ChannelPaymentStatus $paymentStatus): OrderStatus
-    {
-        $this->container['paymentStatus'] = $paymentStatus;
         return $this;
     }
 
