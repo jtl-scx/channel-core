@@ -221,6 +221,8 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
+
     public function getCategoryId(): string
     {
         return $this->container['categoryId'];
@@ -231,6 +233,8 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['categoryId'] = $categoryId;
         return $this;
     }
+
+
     public function getDisplayName(): string
     {
         return $this->container['displayName'];
@@ -241,6 +245,8 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['displayName'] = $displayName;
         return $this;
     }
+
+
     public function getListingAllowed(): ?bool
     {
         return $this->container['listingAllowed'];
@@ -251,6 +257,8 @@ class Category implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['listingAllowed'] = $listingAllowed;
         return $this;
     }
+
+
     public function getParentCategoryId(): ?string
     {
         return $this->container['parentCategoryId'];

@@ -25,6 +25,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * PaymentRules Class Doc Comment
  *
  * @category Class
+ * @description Payment rules supported by the channel — list of accepted payment methods.
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

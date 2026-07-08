@@ -44,19 +44,18 @@ class OrderShippingPosition implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
-      * @param OrderShippingReturnTracking
+      * @param OrderShippingPositionReturnTracking
       * @param OrderShippingPositionItem
-      * @param OrderShippingShippedFrom
+      * @param OrderShippingPositionShippedFrom
       *
-      * @var string[]
       */
     protected static array $openAPITypes = [
         'carrier' => 'string',
         'trackingNumber' => 'string',
-        'returnTracking' => '\JTL\SCX\Lib\Channel\Client\Model\OrderShippingReturnTracking',
+        'returnTracking' => '\JTL\SCX\Lib\Channel\Client\Model\OrderShippingPositionReturnTracking',
         'shippedAt' => '\DateTime',
         'orderItemIdList' => '\JTL\SCX\Lib\Channel\Client\Model\OrderShippingPositionItem[]',
-        'shippedFrom' => '\JTL\SCX\Lib\Channel\Client\Model\OrderShippingShippedFrom'
+        'shippedFrom' => '\JTL\SCX\Lib\Channel\Client\Model\OrderShippingPositionShippedFrom'
     ];
 
     /**
@@ -240,12 +239,12 @@ class OrderShippingPosition implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
 
-    public function getReturnTracking(): ?OrderShippingReturnTracking
+    public function getReturnTracking(): ?OrderShippingPositionReturnTracking
     {
         return $this->container['returnTracking'];
     }
 
-    public function setReturnTracking(?OrderShippingReturnTracking $returnTracking): OrderShippingPosition
+    public function setReturnTracking(?OrderShippingPositionReturnTracking $returnTracking): OrderShippingPosition
     {
         $this->container['returnTracking'] = $returnTracking;
         return $this;
@@ -276,12 +275,12 @@ class OrderShippingPosition implements ModelInterface, ArrayAccess, \JsonSeriali
     }
 
 
-    public function getShippedFrom(): ?OrderShippingShippedFrom
+    public function getShippedFrom(): ?OrderShippingPositionShippedFrom
     {
         return $this->container['shippedFrom'];
     }
 
-    public function setShippedFrom(?OrderShippingShippedFrom $shippedFrom): OrderShippingPosition
+    public function setShippedFrom(?OrderShippingPositionShippedFrom $shippedFrom): OrderShippingPosition
     {
         $this->container['shippedFrom'] = $shippedFrom;
         return $this;

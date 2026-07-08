@@ -25,6 +25,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * CategoryTreeList Class Doc Comment
  *
  * @category Class
+ * @description Wrapper around the published category tree (list of root categories with their children).
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

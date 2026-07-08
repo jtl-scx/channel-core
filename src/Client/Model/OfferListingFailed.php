@@ -196,6 +196,14 @@ class OfferListingFailed implements ModelInterface, ArrayAccess, \JsonSerializab
         if ($this->container['errorList'] === null) {
             $invalidProperties[] = "'errorList' can't be null";
         }
+        if ((is_countable($this->container['errorList']) && ($this->container['errorList']) > 250)) {
+            $invalidProperties[] = "invalid value for 'errorList', number of items must be less than or equal to 250.";
+        }
+
+        if ((is_countable($this->container['errorList']) && count($this->container['errorList']) < 1)) {
+            $invalidProperties[] = "invalid value for 'errorList', number of items must be greater than or equal to 1.";
+        }
+
         if ($this->container['failedAt'] === null) {
             $invalidProperties[] = "'failedAt' can't be null";
         }

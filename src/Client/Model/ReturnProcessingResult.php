@@ -192,6 +192,14 @@ class ReturnProcessingResult implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['isAccepted'] === null) {
             $invalidProperties[] = "'isAccepted' can't be null";
         }
+        if (!is_null($this->container['processingErrorList']) && (is_countable($this->container['processingErrorList']) && ($this->container['processingErrorList']) > 500)) {
+            $invalidProperties[] = "invalid value for 'processingErrorList', number of items must be less than or equal to 500.";
+        }
+
+        if (!is_null($this->container['processingErrorList']) && (is_countable($this->container['processingErrorList']) && count($this->container['processingErrorList']) < 0)) {
+            $invalidProperties[] = "invalid value for 'processingErrorList', number of items must be greater than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 

@@ -76,7 +76,7 @@ class OfferApiTest extends TestCase
             'lastUpdatedAt' => $dateTime,
             'stockUpdateList' => [new Stock([
                 'sellerId' => 'sellerId',
-                'offerId' => 'offerId',
+                'offerId' => 123,
                 'channelOfferId' => 'channelOfferId',
                 'quantity' => 1,
                 'updatedAt' => $dateTime,
@@ -92,7 +92,7 @@ class OfferApiTest extends TestCase
         $this->assertCount(1, $responseData->getStockUpdateList());
         $this->assertSame($dateTime, $responseData->getLastUpdatedAt());
         $this->assertSame('sellerId', $responseData->getStockUpdateList()[0]->getSellerId());
-        $this->assertSame('offerId', $responseData->getStockUpdateList()[0]->getOfferId());
+        $this->assertSame(123, $responseData->getStockUpdateList()[0]->getOfferId());
         $this->assertSame('channelOfferId', $responseData->getStockUpdateList()[0]->getChannelOfferId());
         $this->assertSame(1, $responseData->getStockUpdateList()[0]->getQuantity());
         $this->assertSame($dateTime, $responseData->getStockUpdateList()[0]->getUpdatedAt());
@@ -106,7 +106,7 @@ class OfferApiTest extends TestCase
             'lastUpdatedAt' => $dateTime,
             'stockUpdateList' => [new Stock([
                 'sellerId' => 'sellerId',
-                'offerId' => 'offerId',
+                'offerId' => 123,
                 'channelOfferId' => 'channelOfferId',
                 'quantity' => 1,
                 'updatedAt' => $dateTime,
@@ -122,7 +122,7 @@ class OfferApiTest extends TestCase
         $this->assertCount(1, $responseData->getStockUpdateList());
         $this->assertSame($dateTime, $responseData->getLastUpdatedAt());
         $this->assertSame('sellerId', $responseData->getStockUpdateList()[0]->getSellerId());
-        $this->assertSame('offerId', $responseData->getStockUpdateList()[0]->getOfferId());
+        $this->assertSame(123, $responseData->getStockUpdateList()[0]->getOfferId());
         $this->assertSame('channelOfferId', $responseData->getStockUpdateList()[0]->getChannelOfferId());
         $this->assertSame(1, $responseData->getStockUpdateList()[0]->getQuantity());
         $this->assertSame($dateTime, $responseData->getStockUpdateList()[0]->getUpdatedAt());

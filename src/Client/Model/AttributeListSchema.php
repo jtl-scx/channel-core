@@ -25,6 +25,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * AttributeListSchema Class Doc Comment
  *
  * @category Class
+ * @description Versioned list of attribute definitions published by the channel.
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

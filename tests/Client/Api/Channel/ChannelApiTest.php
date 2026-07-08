@@ -15,6 +15,7 @@ use JTL\SCX\Lib\Channel\Client\Api\Channel\Request\GetChannelStatusRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Channel\Request\UpdateChannelRequest;
 use JTL\SCX\Lib\Channel\Client\Api\ChannelApiResponseDeserializer;
 use JTL\SCX\Lib\Channel\Client\Model\ChannelStatus;
+use JTL\SCX\Lib\Channel\Client\Model\SalesChannel;
 use JTL\SCX\Lib\Channel\Client\Model\SalesChannelData;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
@@ -52,7 +53,7 @@ class ChannelApiTest extends TestCase
         $responseMock = $this->createMock(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn($status);
 
-        $channelData = $this->createMock(SalesChannelData::class);
+        $channelData = $this->createMock(SalesChannel::class);
         $channelStatusMock = $this->createMock(ChannelStatus::class);
         $channelStatusMock->expects($this->once())->method('getChannel')->willReturn($channelData);
 
@@ -65,6 +66,6 @@ class ChannelApiTest extends TestCase
         $response = $client->getStatus($requestMock);
 
         $this->assertSame($status, $response->getStatusCode());
-        $this->assertSame($channelData, $response->getSalesChannelData());
+        $this->assertSame($channelData, $response->getSalesChannel());
     }
 }

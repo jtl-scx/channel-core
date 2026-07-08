@@ -44,9 +44,10 @@ class ChannelBasedData implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
-      * @param ChannelUpdateFeatureList
+      * @param ChannelFeatureList
+      * @param MinimumClientsVersionRequired
+      * @param MarketplaceChannelList
       *
-      * @var string[]
       */
     protected static array $openAPITypes = [
         'group' => 'string',
@@ -64,7 +65,12 @@ class ChannelBasedData implements ModelInterface, ArrayAccess, \JsonSerializable
         'logo' => 'string',
         'description' => 'string',
         'appId' => 'string',
-        'featureList' => '\JTL\SCX\Lib\Channel\Client\Model\ChannelUpdateFeatureList'
+        'featureList' => '\JTL\SCX\Lib\Channel\Client\Model\ChannelFeatureList',
+        'minimumClientsVersionRequired' => '\JTL\SCX\Lib\Channel\Client\Model\MinimumClientsVersionRequired[]',
+        'isPlatform' => 'bool',
+        'platform' => 'string',
+        'marketplaceChannelList' => '\JTL\SCX\Lib\Channel\Client\Model\MarketplaceChannelList',
+        'stockSyncGroup' => 'string'
     ];
 
     /**
@@ -89,7 +95,12 @@ class ChannelBasedData implements ModelInterface, ArrayAccess, \JsonSerializable
         'logo' => null,
         'description' => null,
         'appId' => null,
-        'featureList' => null
+        'featureList' => null,
+        'minimumClientsVersionRequired' => null,
+        'isPlatform' => null,
+        'platform' => null,
+        'marketplaceChannelList' => null,
+        'stockSyncGroup' => null
     ];
 
     /**
@@ -130,7 +141,12 @@ class ChannelBasedData implements ModelInterface, ArrayAccess, \JsonSerializable
         'logo' => 'logo',
         'description' => 'description',
         'appId' => 'appId',
-        'featureList' => 'featureList'
+        'featureList' => 'featureList',
+        'minimumClientsVersionRequired' => 'minimumClientsVersionRequired',
+        'isPlatform' => 'isPlatform',
+        'platform' => 'platform',
+        'marketplaceChannelList' => 'marketplaceChannelList',
+        'stockSyncGroup' => 'stockSyncGroup'
     ];
 
     /**
@@ -152,7 +168,12 @@ class ChannelBasedData implements ModelInterface, ArrayAccess, \JsonSerializable
         'logo' => 'setLogo',
         'description' => 'setDescription',
         'appId' => 'setAppId',
-        'featureList' => 'setFeatureList'
+        'featureList' => 'setFeatureList',
+        'minimumClientsVersionRequired' => 'setMinimumClientsVersionRequired',
+        'isPlatform' => 'setIsPlatform',
+        'platform' => 'setPlatform',
+        'marketplaceChannelList' => 'setMarketplaceChannelList',
+        'stockSyncGroup' => 'setStockSyncGroup'
     ];
 
     /**
@@ -174,7 +195,12 @@ class ChannelBasedData implements ModelInterface, ArrayAccess, \JsonSerializable
         'logo' => 'getLogo',
         'description' => 'getDescription',
         'appId' => 'getAppId',
-        'featureList' => 'getFeatureList'
+        'featureList' => 'getFeatureList',
+        'minimumClientsVersionRequired' => 'getMinimumClientsVersionRequired',
+        'isPlatform' => 'getIsPlatform',
+        'platform' => 'getPlatform',
+        'marketplaceChannelList' => 'getMarketplaceChannelList',
+        'stockSyncGroup' => 'getStockSyncGroup'
     ];
 
     /**
@@ -254,6 +280,11 @@ class ChannelBasedData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['description'] = $data['description'] ?? null;
         $this->container['appId'] = $data['appId'] ?? null;
         $this->container['featureList'] = $data['featureList'] ?? null;
+        $this->container['minimumClientsVersionRequired'] = $data['minimumClientsVersionRequired'] ?? null;
+        $this->container['isPlatform'] = $data['isPlatform'] ?? false;
+        $this->container['platform'] = $data['platform'] ?? null;
+        $this->container['marketplaceChannelList'] = $data['marketplaceChannelList'] ?? null;
+        $this->container['stockSyncGroup'] = $data['stockSyncGroup'] ?? null;
     }
 
     /**
@@ -490,14 +521,74 @@ class ChannelBasedData implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    public function getFeatureList(): ChannelUpdateFeatureList
+    public function getFeatureList(): ChannelFeatureList
     {
         return $this->container['featureList'];
     }
 
-    public function setFeatureList(ChannelUpdateFeatureList $featureList): ChannelBasedData
+    public function setFeatureList(ChannelFeatureList $featureList): ChannelBasedData
     {
         $this->container['featureList'] = $featureList;
+        return $this;
+    }
+
+
+    public function getMinimumClientsVersionRequired(): ?array
+    {
+        return $this->container['minimumClientsVersionRequired'];
+    }
+
+    public function setMinimumClientsVersionRequired(?array $minimumClientsVersionRequired): ChannelBasedData
+    {
+        $this->container['minimumClientsVersionRequired'] = $minimumClientsVersionRequired;
+        return $this;
+    }
+
+
+    public function getIsPlatform(): ?bool
+    {
+        return $this->container['isPlatform'];
+    }
+
+    public function setIsPlatform(?bool $isPlatform): ChannelBasedData
+    {
+        $this->container['isPlatform'] = $isPlatform;
+        return $this;
+    }
+
+
+    public function getPlatform(): ?string
+    {
+        return $this->container['platform'];
+    }
+
+    public function setPlatform(?string $platform): ChannelBasedData
+    {
+        $this->container['platform'] = $platform;
+        return $this;
+    }
+
+
+    public function getMarketplaceChannelList(): ?MarketplaceChannelList
+    {
+        return $this->container['marketplaceChannelList'];
+    }
+
+    public function setMarketplaceChannelList(?MarketplaceChannelList $marketplaceChannelList): ChannelBasedData
+    {
+        $this->container['marketplaceChannelList'] = $marketplaceChannelList;
+        return $this;
+    }
+
+
+    public function getStockSyncGroup(): ?string
+    {
+        return $this->container['stockSyncGroup'];
+    }
+
+    public function setStockSyncGroup(?string $stockSyncGroup): ChannelBasedData
+    {
+        $this->container['stockSyncGroup'] = $stockSyncGroup;
         return $this;
     }
 

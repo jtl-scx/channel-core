@@ -277,6 +277,10 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
             $invalidProperties[] = "invalid value for 'vatRate', must be bigger than or equal to 0.0.";
         }
 
+        if (!is_null($this->container['discounts']) && (is_countable($this->container['discounts']) && count($this->container['discounts']) < 0)) {
+            $invalidProperties[] = "invalid value for 'discounts', number of items must be greater than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 

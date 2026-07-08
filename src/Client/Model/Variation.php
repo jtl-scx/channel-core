@@ -250,12 +250,32 @@ class Variation implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['variationDimensionList'] === null) {
             $invalidProperties[] = "'variationDimensionList' can't be null";
         }
+        if ((is_countable($this->container['variationDimensionList']) && ($this->container['variationDimensionList']) > 10)) {
+            $invalidProperties[] = "invalid value for 'variationDimensionList', number of items must be less than or equal to 10.";
+        }
+
+        if ((is_countable($this->container['variationDimensionList']) && count($this->container['variationDimensionList']) < 1)) {
+            $invalidProperties[] = "invalid value for 'variationDimensionList', number of items must be greater than or equal to 1.";
+        }
+
         if ($this->container['quantity'] === null) {
             $invalidProperties[] = "'quantity' can't be null";
         }
         if ($this->container['priceList'] === null) {
             $invalidProperties[] = "'priceList' can't be null";
         }
+        if ((is_countable($this->container['priceList']) && ($this->container['priceList']) > 10)) {
+            $invalidProperties[] = "invalid value for 'priceList', number of items must be less than or equal to 10.";
+        }
+
+        if ((is_countable($this->container['priceList']) && count($this->container['priceList']) < 1)) {
+            $invalidProperties[] = "invalid value for 'priceList', number of items must be greater than or equal to 1.";
+        }
+
+        if (!is_null($this->container['pictureList']) && (is_countable($this->container['pictureList']) && ($this->container['pictureList']) > 50)) {
+            $invalidProperties[] = "invalid value for 'pictureList', number of items must be less than or equal to 50.";
+        }
+
         if (!is_null($this->container['title']) && (mb_strlen($this->container['title']) > 512)) {
             $invalidProperties[] = "invalid value for 'title', the character length must be smaller than or equal to 512.";
         }
@@ -266,6 +286,14 @@ class Variation implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 50000)) {
             $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 50000.";
+        }
+
+        if (!is_null($this->container['channelAttributeList']) && (is_countable($this->container['channelAttributeList']) && ($this->container['channelAttributeList']) > 256)) {
+            $invalidProperties[] = "invalid value for 'channelAttributeList', number of items must be less than or equal to 256.";
+        }
+
+        if (!is_null($this->container['channelAttributeList']) && (is_countable($this->container['channelAttributeList']) && count($this->container['channelAttributeList']) < 0)) {
+            $invalidProperties[] = "invalid value for 'channelAttributeList', number of items must be greater than or equal to 0.";
         }
 
         return $invalidProperties;

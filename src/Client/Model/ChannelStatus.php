@@ -25,6 +25,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * ChannelStatus Class Doc Comment
  *
  * @category Class
+ * @description Operational status of the channel including whether it is currently active and its master data.
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -44,12 +45,12 @@ class ChannelStatus implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
-      * @param SalesChannelData
+      * @param SalesChannel
       *
       */
     protected static array $openAPITypes = [
         'isActive' => 'bool',
-        'channel' => '\JTL\SCX\Lib\Channel\Client\Model\SalesChannelData'
+        'channel' => '\JTL\SCX\Lib\Channel\Client\Model\SalesChannel'
     ];
 
     /**
@@ -194,12 +195,12 @@ class ChannelStatus implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    public function getChannel(): ?SalesChannelData
+    public function getChannel(): ?SalesChannel
     {
         return $this->container['channel'];
     }
 
-    public function setChannel(?SalesChannelData $channel): ChannelStatus
+    public function setChannel(?SalesChannel $channel): ChannelStatus
     {
         $this->container['channel'] = $channel;
         return $this;

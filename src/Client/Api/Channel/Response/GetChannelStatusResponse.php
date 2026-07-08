@@ -10,29 +10,29 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Channel\Response;
 
-use JTL\SCX\Lib\Channel\Client\Model\SalesChannelData;
+use JTL\SCX\Lib\Channel\Client\Model\SalesChannel;
 use JTL\SCX\Client\Response\AbstractResponse;
 
 class GetChannelStatusResponse extends AbstractResponse
 {
-    private SalesChannelData $salesChannelData;
+    private SalesChannel $salesChannel;
 
     /**
      * GetChannelStatusResponse constructor.
-     * @param SalesChannelData $salesChannelData
+     * @param SalesChannel $salesChannel
      * @param int $statusCode
      */
-    public function __construct(SalesChannelData $salesChannelData, int $statusCode)
+    public function __construct(SalesChannel $salesChannel, int $statusCode)
     {
-        $this->salesChannelData = $salesChannelData;
+        $this->salesChannel = $salesChannel;
         parent::__construct($statusCode);
     }
 
     /**
-     * @return SalesChannelData
+     * @return SalesChannel
      */
-    public function getSalesChannelData(): SalesChannelData
+    public function getSalesChannel(): SalesChannel
     {
-        return $this->salesChannelData;
+        return $this->salesChannel;
     }
 }
