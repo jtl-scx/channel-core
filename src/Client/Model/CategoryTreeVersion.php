@@ -25,6 +25,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * CategoryTreeVersion Class Doc Comment
  *
  * @category Class
+ * @description Version identifier returned after publishing or updating the channel category tree.
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

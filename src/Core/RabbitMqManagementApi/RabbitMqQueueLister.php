@@ -43,7 +43,8 @@ class RabbitMqQueueLister implements AmqpQueueLister
             $url = substr($url, 0, -1);
         }
 
-        $url .= ":{$con->getHttpPort()}/api/queues";
+        $vhost = rawurlencode($con->getVhost());
+        $url .= ":{$con->getHttpPort()}/api/queues/{$vhost}";
         $response = $this->client->request(
             'GET',
             $url,

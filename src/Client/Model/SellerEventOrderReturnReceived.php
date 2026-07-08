@@ -209,6 +209,10 @@ class SellerEventOrderReturnReceived implements ModelInterface, ArrayAccess, \Js
         if ($this->container['orderItem'] === null) {
             $invalidProperties[] = "'orderItem' can't be null";
         }
+        if ((is_countable($this->container['orderItem']) && count($this->container['orderItem']) < 1)) {
+            $invalidProperties[] = "invalid value for 'orderItem', number of items must be greater than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 

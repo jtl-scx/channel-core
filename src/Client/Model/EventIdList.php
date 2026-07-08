@@ -181,6 +181,8 @@ class EventIdList implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
+
     public function getEventIdList(): ?array
     {
         return $this->container['eventIdList'];

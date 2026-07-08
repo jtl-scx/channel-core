@@ -25,6 +25,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * CreateSeller Class Doc Comment
  *
  * @category Class
+ * @description Payload to register a new seller account on the channel after a successful signup session.
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

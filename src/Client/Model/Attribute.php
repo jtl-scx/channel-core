@@ -45,10 +45,9 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
       * Array of property to type mappings. Used for (de)serialization
       *
       * @param AllowedValue
-      * @param AttributeConditionalMandatoryBy
-      * @param AttributeConditionalOptionalBy
+      * @param AttributeConditionalMandatoryByInner
+      * @param AttributeConditionalMandatoryByInner
       *
-      * @var string[]
       */
     protected static array $openAPITypes = [
         'attributeId' => 'string',
@@ -57,8 +56,8 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         'type' => 'string',
         'values' => '\JTL\SCX\Lib\Channel\Client\Model\AllowedValue[]',
         'attributeValueValidation' => 'string',
-        'conditionalMandatoryBy' => '\JTL\SCX\Lib\Channel\Client\Model\AttributeConditionalMandatoryBy[]',
-        'conditionalOptionalBy' => '\JTL\SCX\Lib\Channel\Client\Model\AttributeConditionalOptionalBy[]',
+        'conditionalMandatoryBy' => '\JTL\SCX\Lib\Channel\Client\Model\AttributeConditionalMandatoryByInner[]',
+        'conditionalOptionalBy' => '\JTL\SCX\Lib\Channel\Client\Model\AttributeConditionalMandatoryByInner[]',
         'required' => 'bool',
         'recommended' => 'bool',
         'section' => 'string',
@@ -307,6 +306,10 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['displayName'] === null) {
             $invalidProperties[] = "'displayName' can't be null";
         }
+        if ((mb_strlen($this->container['displayName']) > 150)) {
+            $invalidProperties[] = "invalid value for 'displayName', the character length must be smaller than or equal to 150.";
+        }
+
         $allowedValues = $this->getTypeAllowableValues();
         if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -333,6 +336,8 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
+
     public function getAttributeId(): string
     {
         return $this->container['attributeId'];
@@ -343,6 +348,8 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['attributeId'] = $attributeId;
         return $this;
     }
+
+
     public function getDisplayName(): string
     {
         return $this->container['displayName'];
@@ -353,6 +360,8 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['displayName'] = $displayName;
         return $this;
     }
+
+
     public function getIsMultipleAllowed(): ?bool
     {
         return $this->container['isMultipleAllowed'];
@@ -363,6 +372,8 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['isMultipleAllowed'] = $isMultipleAllowed;
         return $this;
     }
+
+
     public function getType(): ?string
     {
         return $this->container['type'];
@@ -373,6 +384,8 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['type'] = $type;
         return $this;
     }
+
+
     public function getValues(): ?array
     {
         return $this->container['values'];
@@ -383,6 +396,8 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['values'] = $values;
         return $this;
     }
+
+
     public function getAttributeValueValidation(): ?string
     {
         return $this->container['attributeValueValidation'];
@@ -393,6 +408,8 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['attributeValueValidation'] = $attributeValueValidation;
         return $this;
     }
+
+
     public function getConditionalMandatoryBy(): ?array
     {
         return $this->container['conditionalMandatoryBy'];
@@ -403,6 +420,8 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['conditionalMandatoryBy'] = $conditionalMandatoryBy;
         return $this;
     }
+
+
     public function getConditionalOptionalBy(): ?array
     {
         return $this->container['conditionalOptionalBy'];

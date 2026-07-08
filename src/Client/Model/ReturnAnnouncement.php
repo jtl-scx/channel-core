@@ -204,6 +204,10 @@ class ReturnAnnouncement implements ModelInterface, ArrayAccess, \JsonSerializab
             $invalidProperties[] = "invalid value for 'orderId', the character length must be bigger than or equal to 1.";
         }
 
+        if (!is_null($this->container['orderItem']) && (is_countable($this->container['orderItem']) && count($this->container['orderItem']) < 0)) {
+            $invalidProperties[] = "invalid value for 'orderItem', number of items must be greater than or equal to 0.";
+        }
+
         if ($this->container['channelReturnId'] === null) {
             $invalidProperties[] = "'channelReturnId' can't be null";
         }

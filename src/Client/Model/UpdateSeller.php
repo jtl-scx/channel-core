@@ -25,6 +25,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * UpdateSeller Class Doc Comment
  *
  * @category Class
+ * @description Payload used to update master data and active flag of an existing seller account.
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

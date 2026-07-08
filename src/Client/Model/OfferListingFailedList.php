@@ -25,6 +25,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * OfferListingFailedList Class Doc Comment
  *
  * @category Class
+ * @description Batch of offers whose listing on the channel has failed, including the failure reason per offer.
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -164,6 +165,14 @@ class OfferListingFailedList implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['offerList'] === null) {
             $invalidProperties[] = "'offerList' can't be null";
         }
+        if ((is_countable($this->container['offerList']) && ($this->container['offerList']) > 1000)) {
+            $invalidProperties[] = "invalid value for 'offerList', number of items must be less than or equal to 1000.";
+        }
+
+        if ((is_countable($this->container['offerList']) && count($this->container['offerList']) < 1)) {
+            $invalidProperties[] = "invalid value for 'offerList', number of items must be greater than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 

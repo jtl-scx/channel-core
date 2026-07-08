@@ -179,6 +179,8 @@ class OrderBuyer implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
+
     public function getEmail(): ?string
     {
         return $this->container['email'];
@@ -189,6 +191,8 @@ class OrderBuyer implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['email'] = $email;
         return $this;
     }
+
+
     public function getVatId(): ?string
     {
         return $this->container['vatId'];

@@ -14,13 +14,17 @@ use JTL\SCX\Client\Api\AuthAwareApiClient;
 use JTL\SCX\Lib\Channel\Client\Api\ChannelApiResponseDeserializer;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\CreateSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\GetSellerIdFromUpdateSessionRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\GetSellerListRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\GetSignupSessionDataRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UnlinkSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UpdateSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UpsertMarketplaceSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\CreateSellerResponse;
+use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\GetSellerListResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UnlinkSellerResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UpsertMarketplaceSellerResponse;
+use JTL\SCX\Lib\Channel\Client\Model\ChannelSeller;
+use JTL\SCX\Lib\Channel\Client\Model\ChannelSellerList;
 use JTL\SCX\Lib\Channel\Client\Model\SignupSession;
 use JTL\SCX\Lib\Channel\Client\Model\UpdateSeller;
 use JTL\SCX\Lib\Channel\Client\Model\UpdateSession;
@@ -166,5 +170,46 @@ class SellerApiTest extends TestCase
 
         self::assertInstanceOf(UpsertMarketplaceSellerResponse::class, $response);
         self::assertSame(201, $response->getStatusCode());
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_get_a_seller_list(): void
+    {
+        $requestMock = $this->createMock(GetSellerListRequest::class);
+        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock->method('getStatusCode')->willReturn(200);
+
+        $apiClientMock = $this->createMock(AuthAwareApiClient::class);
+        $apiClientMock->expects($this->once())
+            ->method('request')
+            ->with($requestMock)
+            ->willReturn($responseMock);
+
+        $channelSellerList = new ChannelSellerList([
+            'sellerList' => [
+                new ChannelSeller([
+                    'sellerId' => 'A_SELLER_ID',
+                    'jtlAccountId' => 4711,
+                    'companyName' => 'Test GmbH',
+                    'isActiveByJTL' => false,
+                    'isActiveByChannel' => true,
+                ]),
+            ],
+        ]);
+
+        $deserializer = $this->createMock(ChannelApiResponseDeserializer::class);
+        $deserializer->expects(self::once())
+            ->method('deserialize')
+            ->with($responseMock, ChannelSellerList::class)
+            ->willReturn($channelSellerList);
+
+        $client = new SellerApi($apiClientMock, $deserializer);
+        $response = $client->getList($requestMock);
+
+        self::assertInstanceOf(GetSellerListResponse::class, $response);
+        self::assertSame(200, $response->getStatusCode());
+        self::assertSame($channelSellerList, $response->getSellerList());
     }
 }

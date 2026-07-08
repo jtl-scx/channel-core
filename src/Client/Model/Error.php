@@ -215,6 +215,8 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return count($this->listInvalidProperties()) === 0;
     }
+
+
     public function getCode(): ?string
     {
         return $this->container['code'];
@@ -225,6 +227,8 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['code'] = $code;
         return $this;
     }
+
+
     public function getMessage(): ?string
     {
         return $this->container['message'];
@@ -235,6 +239,8 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['message'] = $message;
         return $this;
     }
+
+
     public function getSeverity(): ?string
     {
         return $this->container['severity'];
@@ -245,6 +251,8 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['severity'] = $severity;
         return $this;
     }
+
+
     public function getHint(): ?string
     {
         return $this->container['hint'];

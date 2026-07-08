@@ -194,6 +194,10 @@ class OrderInvoice implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['purchasedAt'] === null) {
             $invalidProperties[] = "'purchasedAt' can't be null";
         }
+        if (!is_null($this->container['transactionItemList']) && (is_countable($this->container['transactionItemList']) && count($this->container['transactionItemList']) < 1)) {
+            $invalidProperties[] = "invalid value for 'transactionItemList', number of items must be greater than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 

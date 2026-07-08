@@ -25,6 +25,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * OrderCancellationAccept Class Doc Comment
  *
  * @category Class
+ * @description Wrapper around CancellationAccept used to keep a stable named schema in generated SDK clients. Acceptance of a cancellation request previously sent by the channel.
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
