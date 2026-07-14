@@ -12,7 +12,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.3'
           extensions: mongodb-mongodb/mongo-php-driver@v1.21
 
       - name: Checkout Code
@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: composer install --no-progress
-        
+
       - name: Run static code analysis
         run: composer phpstan
 
@@ -32,7 +32,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.3'
           extensions: mongodb-mongodb/mongo-php-driver@v1.21
 
       - name: Checkout Code
@@ -52,8 +52,6 @@ jobs:
       fail-fast: false
       matrix:
         php-version:
-          - "8.1"
-          - "8.2"
           - "8.3"
           - "8.4"
 
