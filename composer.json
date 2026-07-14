@@ -27,15 +27,12 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": " ^3.95.13",
-        "mongodb/mongodb": "^1.21.3",
         "phpstan/phpstan": "^1.12.33",
         "phpunit/phpunit": "^9.6.35",
         "symfony/dotenv": "^6.4.42",
         "twig/twig": "^2.0 || ^3.28.0"
     },
     "suggest": {
-        "ext-mongodb": "Needed if MongoDbConnection is used",
-        "mongodb/mongodb": "Needed if MongoDbConnection is used",
         "jtl/go-prometrics-client": "Needed if Metric Collection is used"
     },
     "autoload": {
