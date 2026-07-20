@@ -29,7 +29,6 @@ class AttributeTest extends TestCase
         $id = uniqid('id', true);
         $attributeId = uniqid('attributeId', true);
         $displayName = uniqid('displayName', true);
-        $enumValues = [uniqid('enumValues', true)];
         $description = uniqid('description', true);
         $required = (bool)random_int(0, 1);
         $type = AttributeType::DECIMAL();
@@ -51,7 +50,6 @@ class AttributeTest extends TestCase
             $displayName,
             $description,
             $required,
-            $enumValues,
             $type,
             $isMultipleAllowed,
             $attributeValueValidation,
@@ -70,7 +68,6 @@ class AttributeTest extends TestCase
         $this->assertEquals($attributeId, $attribute->getAttributeId());
         $this->assertEquals($displayName, $attribute->getDisplayName());
         $this->assertEquals($type, $attribute->getType());
-        $this->assertEquals($enumValues, $attribute->getEnumValues());
         $this->assertEquals($attributeValueValidation, $attribute->getAttributeValueValidation());
         $this->assertEquals($conditionalMandatoryBy, $attribute->getConditionalMandatoryBy());
         $this->assertEquals($conditionalOptionalBy, $attribute->getConditionalOptionalBy());

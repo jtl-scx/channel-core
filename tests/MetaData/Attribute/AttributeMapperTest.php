@@ -35,7 +35,6 @@ class AttributeMapperTest extends TestCase
             $name,
             $title,
             $required,
-            null,
             AttributeType::TEXT()
         );
 
@@ -46,5 +45,24 @@ class AttributeMapperTest extends TestCase
         $this->assertIsArray($result);
         $this->assertCount(1, $result);
         $this->assertInstanceOf(ClientAttribute::class, $result[0]);
+    }
+
+    public function testEnumAttributeSerializesViaValuesOnly(): void
+    {
+        $sut = new AttributeMapper();
+        $values = AttributeEnumValueList::fromArray([['value' => '1', 'display' => 'One']]);
+        $attribute = new Attribute(
+            attributeId: 'color',
+            displayName: 'Color',
+            type: AttributeType::ENUM(),
+            values: $values,
+        );
+
+        $result = $sut->map(AttributeList::from($attribute));
+
+        $json = json_decode(json_encode($result[0]), true);
+        self::assertArrayHasKey('values', $json);
+        self::assertArrayNotHasKey('enumValues', $json);
+        self::assertSame('1', $json['values'][0]['value']);
     }
 }

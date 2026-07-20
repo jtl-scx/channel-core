@@ -181,13 +181,6 @@ class AttributeTest extends AbstractApiModelTest
                 'setIsVariationDimension',
                 true
             ],
-            'assert property enumValues' => [
-                'enumValues',
-                'string[]',
-                'getEnumValues',
-                'setEnumValues',
-                true
-            ],
         ];
     }
 

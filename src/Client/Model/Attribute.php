@@ -67,7 +67,6 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         'subSectionPosition' => 'int',
         'description' => 'string',
         'isVariationDimension' => 'bool',
-        'enumValues' => 'string[]'
     ];
 
     /**
@@ -94,7 +93,6 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         'subSectionPosition' => null,
         'description' => null,
         'isVariationDimension' => null,
-        'enumValues' => null
     ];
 
     /**
@@ -137,7 +135,6 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         'subSectionPosition' => 'subSectionPosition',
         'description' => 'description',
         'isVariationDimension' => 'isVariationDimension',
-        'enumValues' => 'enumValues'
     ];
 
     /**
@@ -161,7 +158,6 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         'subSectionPosition' => 'setSubSectionPosition',
         'description' => 'setDescription',
         'isVariationDimension' => 'setIsVariationDimension',
-        'enumValues' => 'setEnumValues'
     ];
 
     /**
@@ -185,7 +181,6 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         'subSectionPosition' => 'getSubSectionPosition',
         'description' => 'getDescription',
         'isVariationDimension' => 'getIsVariationDimension',
-        'enumValues' => 'getEnumValues'
     ];
 
     /**
@@ -286,7 +281,6 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['subSectionPosition'] = $data['subSectionPosition'] ?? 0;
         $this->container['description'] = $data['description'] ?? null;
         $this->container['isVariationDimension'] = $data['isVariationDimension'] ?? null;
-        $this->container['enumValues'] = $data['enumValues'] ?? null;
     }
 
     /**
@@ -547,17 +541,6 @@ class Attribute implements ModelInterface, ArrayAccess, \JsonSerializable
         return $this;
     }
 
-
-    public function getEnumValues(): ?array
-    {
-        return $this->container['enumValues'];
-    }
-
-    public function setEnumValues(?array $enumValues): Attribute
-    {
-        $this->container['enumValues'] = $enumValues;
-        return $this;
-    }
 
     public function offsetExists($offset): bool
     {
