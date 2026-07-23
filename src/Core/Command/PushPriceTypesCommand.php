@@ -19,11 +19,11 @@ use JTL\SCX\Lib\Channel\MetaData\Price\PriceTypeLoader;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'scx-api:put.price-types')]
 class PushPriceTypesCommand extends AbstractCommand
 {
-    protected static $defaultName = 'scx-api:put.price-types';
-
     private PriceApi $client;
     private PriceTypeLoader $priceTypeLoader;
 

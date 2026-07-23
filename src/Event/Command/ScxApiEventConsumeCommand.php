@@ -23,11 +23,11 @@ use JTL\SCX\Lib\Channel\Event\Emitter\SellerEventEmitter;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'scx-api:get.events')]
 class ScxApiEventConsumeCommand extends AbstractCommand
 {
-    protected static $defaultName = 'scx-api:get.events';
-
     private SellerEventEmitter $eventEnqueuer;
     private EventApi $eventApi;
 

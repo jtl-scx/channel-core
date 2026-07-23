@@ -26,11 +26,11 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'scx-api:put.attributes-category')]
 class ImportCategoryAttributesCommand extends AbstractCommand
 {
-    protected static $defaultName = 'scx-api:put.attributes-category';
-
     private MetaDataCategoryAttributeLoader $categoryAttributeLoader;
     private CategoryAttributeUpdater $attributeUpdater;
     private CategoryAttributeDeleter $categoryAttributeDeleter;

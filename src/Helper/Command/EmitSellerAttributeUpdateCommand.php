@@ -11,11 +11,11 @@ declare(strict_types=1);
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
 use JTL\SCX\Lib\Channel\Client\Event\EventType;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'helper:emit.SellerAttributeUpdateRequest')]
 class EmitSellerAttributeUpdateCommand extends AbstractEmitEventCommand
 {
-    protected static $defaultName = 'helper:emit.SellerAttributeUpdateRequest';
-
     protected function configure(): void
     {
         parent::configure();

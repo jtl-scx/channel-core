@@ -12,11 +12,11 @@ namespace JTL\SCX\Lib\Channel\Helper\Command;
 
 use JTL\SCX\Lib\Channel\Client\Event\EventType;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'helper:emit.OrderInvoice')]
 class EmitSellerOrderInvoiceCommand extends AbstractEmitEventCommand
 {
-    protected static $defaultName = 'helper:emit.OrderInvoice';
-
     protected function configure(): void
     {
         parent::configure();

@@ -27,11 +27,11 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'queue:dead-letter.retry')]
 class DeadLetterRetryCommand extends AbstractCommand
 {
-    protected static $defaultName = 'queue:dead-letter.retry';
-
     private AmqpTransport $transport;
     private AmqpQueueLister $queueLister;
     private MessageSerializer $messageSerializer;

@@ -15,7 +15,6 @@ use Exception;
 use JTL\Nachricht\Message\Cache\MessageCache;
 use JTL\Nachricht\Message\Cache\MessageCacheCreator;
 use Psr\Container\ContainerInterface;
-use Symfony\Bridge\ProxyManager\LazyProxy\PhpDumper\ProxyDumper;
 use Symfony\Component\Config\ConfigCache;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -138,9 +137,7 @@ abstract class AbstractApplicationContext
      */
     private function dumpContainer(ContainerBuilder $containerBuilder, ConfigCache $configCache): void
     {
-        $proxyDumper = new ProxyDumper();
         $dumper = new PhpDumper($containerBuilder);
-        $dumper->setProxyDumper($proxyDumper);
 
         $configCache->write(
             $dumper->dump(['class' => 'CachedContainer']),

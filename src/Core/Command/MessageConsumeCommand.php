@@ -21,11 +21,11 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'chn:message.consume')]
 class MessageConsumeCommand extends AbstractCommand
 {
-    protected static $defaultName = 'chn:message.consume';
-
     private AmqpConsumer $amqpConsumer;
     private MessageCache $messageCache;
 
