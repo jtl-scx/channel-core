@@ -20,11 +20,11 @@ use JTL\SCX\Lib\Channel\Helper\FileHandler;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'scx-api:put.payment-rules')]
 class PushPaymentRulesCommand extends AbstractCommand
 {
-    protected static $defaultName = 'scx-api:put.payment-rules';
-
     private PaymentRulesApi $client;
     private FileHandler $fileHandler;
 

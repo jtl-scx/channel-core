@@ -4,11 +4,11 @@ namespace JTL\SCX\Lib\Channel\Helper\Command;
 
 use JTL\SCX\Lib\Channel\Client\Event\EventType;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'helper:emit.SystemNotification')]
 class EmitSystemNotificationCommand extends AbstractEmitEventCommand
 {
-    protected static $defaultName = 'helper:emit.SystemNotification';
-
     protected function configure(): void
     {
         parent::configure();
