@@ -211,5 +211,99 @@ TXT;
         self::assertEquals($recommendedValue, $err[1]->getRecommendedValue());
     }
 
+    /**
+     * @test
+     * @ticket EA-6902
+     */
+    public function it_can_add_errorLongMessage_in_constructor(): void
+    {
+        $errorLongMessage = uniqid('errorLongMessage', true);
+        $sut = new SendOfferListingFailedMessage(
+            $this->createStub(ChannelSellerId::class),
+            123,
+            'ERR_111',
+            'smallError',
+            errorLongMessage: $errorLongMessage
+        );
 
+        $err = $sut->getErrorList();
+
+        self::assertArrayHasKey(0, $err);
+        self::assertSame('smallError', $err[0]->getMessage());
+        self::assertSame($errorLongMessage, $err[0]->getLongMessage());
+    }
+
+    /**
+     * @test
+     * @ticket EA-6902
+     */
+    public function it_keeps_longMessage_null_when_errorLongMessage_is_not_given(): void
+    {
+        $sut = new SendOfferListingFailedMessage(
+            $this->createStub(ChannelSellerId::class),
+            123,
+            'ERR_111',
+            'smallError',
+        );
+
+        $err = $sut->getErrorList();
+
+        self::assertArrayHasKey(0, $err);
+        self::assertNull($err[0]->getLongMessage());
+    }
+
+    /**
+     * @test
+     * @ticket EA-6902
+     */
+    public function it_keeps_both_texts_when_errorLongMessage_meets_an_oversized_errorMessage(): void
+    {
+        $errorMessage = str_repeat('A', 251);
+        $errorLongMessage = str_repeat('B', 251);
+
+        $sut = new SendOfferListingFailedMessage(
+            $this->createStub(ChannelSellerId::class),
+            123,
+            'ERR_111',
+            $errorMessage,
+            errorLongMessage: $errorLongMessage
+        );
+
+        $err = $sut->getErrorList();
+
+        self::assertArrayHasKey(0, $err);
+        self::assertSame(250, mb_strlen($err[0]->getMessage()));
+        self::assertSame("{$errorLongMessage}\n{$errorMessage}", $err[0]->getLongMessage());
+    }
+
+    /**
+     * The new parameter must be appended at the very end of the signature. Every earlier position
+     * would shift $failedAt/$messageId/$relatedAttributeId/$recommendedValue and break positional
+     * callers like this one. See EA-6902.
+     *
+     * @test
+     * @ticket EA-6902
+     */
+    public function it_stays_backwards_compatible_for_positional_callers(): void
+    {
+        $sellerId = $this->createStub(ChannelSellerId::class);
+        $failedAt = $this->createStub(\DateTime::class);
+
+        $sut = new SendOfferListingFailedMessage(
+            $sellerId,
+            123,
+            'ERR_111',
+            'smallError',
+            $failedAt,
+            'MSG_ID',
+            'related attribute',
+            'some recommended value'
+        );
+
+        self::assertSame($failedAt, $sut->getFailedAt());
+        self::assertSame('MSG_ID', $sut->getMessageId());
+        self::assertSame('related attribute', $sut->getErrorList()[0]->getRelatedAttributeId());
+        self::assertSame('some recommended value', $sut->getErrorList()[0]->getRecommendedValue());
+        self::assertNull($sut->getErrorList()[0]->getLongMessage());
+    }
 }
