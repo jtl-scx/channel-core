@@ -52,7 +52,7 @@ class MonologFactory implements LogFactory
 
     /**
      * Selects exactly one handler: when LOG_STDOUT is enabled logs are written as JSON to
-     * php://stdout (for the k8s Fluent Bit log shipper), otherwise logs are written to the
+     * php://stdout, otherwise logs are written to the
      * rotating file as before. The file is NOT written additionally when stdout is enabled.
      */
     private function createHandler(int $globalLogLevel, string $logFile): StreamHandler
