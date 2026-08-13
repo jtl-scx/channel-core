@@ -10,13 +10,10 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Metrics;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Exception\GuzzleException;
 use JTL\GoPrometrics\Client\Counter;
+use JTL\GoPrometrics\Client\LabelList;
 use JTL\Nachricht\Contract\Message\Message;
-use JTL\OpsGenie\Client\HeartbeatApiClient;
-use JTL\OpsGenie\Client\HttpClient;
-use JTL\SCX\Lib\Channel\Core\Environment\Environment;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 
@@ -34,35 +31,30 @@ class AmqpMessageCounterTest extends TestCase
      */
     public function canCountMessage(): void
     {
-        $message = new AmqpTestMessage();
-        $channelName = uniqid('channelName', true);
-
         $gpCounter = $this->createMock(Counter::class);
         $logger = $this->createMock(LoggerInterface::class);
-        $guzzle = $this->createMock(Client::class);
-        $httpClient = new HttpClient('abc', $guzzle);
-        $heartbeat = new HeartbeatApiClient($httpClient);
-        $environment = $this->createMock(Environment::class);
-        $counter = new AmqpMessageCounter($gpCounter, $logger, $heartbeat, $environment);
-        $heartbeatResponse = new Response(body: '{}');
 
-        $environment->expects(self::exactly(4))
-            ->method('get')
-            ->withConsecutive(['CHANNEL_NAME'], ['APP_ENV'], ['OPSGENIE_ENABLED'], ['OPSGENIE_WORKER_HEARTBEAT_RATE'])
-            ->willReturnOnConsecutiveCalls($channelName, 'STAGE', '1', '1');
+        $gpCounter->expects(self::once())
+            ->method('count')
+            ->with('EA', 'messages_total', self::isInstanceOf(LabelList::class));
 
-        $guzzle->expects(self::once())
-            ->method('request')
-            ->with('PUT', "heartbeats/SCX_STAGE_{$channelName}_worker_heartbeat/ping", [
-                'headers' => [
-                    'Authorization' => 'GenieKey abc',
-                    'Content-Type' => 'application/json',
-                ],
-                'body' => '{}',
-            ])
-            ->willReturn($heartbeatResponse);
+        $counter = new AmqpMessageCounter($gpCounter, $logger);
+        $counter->countMessage(new AmqpTestMessage());
+    }
 
-        $counter->countMessage($message);
+    /**
+     * @test
+     */
+    public function logsErrorWhenCountingFails(): void
+    {
+        $gpCounter = $this->createMock(Counter::class);
+        $logger = $this->createMock(LoggerInterface::class);
+
+        $gpCounter->method('count')->willThrowException($this->createMock(GuzzleException::class));
+        $logger->expects(self::once())->method('error');
+
+        $counter = new AmqpMessageCounter($gpCounter, $logger);
+        $counter->countMessage(new AmqpTestMessage());
     }
 }
 

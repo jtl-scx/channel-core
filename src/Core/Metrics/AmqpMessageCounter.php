@@ -10,18 +10,13 @@ use JTL\GoPrometrics\Client\Label;
 use JTL\GoPrometrics\Client\LabelList;
 use JTL\Nachricht\Contract\Message\Message;
 use JTL\Nachricht\Contract\Message\MessageCounter;
-use JTL\OpsGenie\Client\Heartbeat\PingRequest;
-use JTL\OpsGenie\Client\HeartbeatApiClient;
-use JTL\SCX\Lib\Channel\Core\Environment\Environment;
 use Psr\Log\LoggerInterface;
 
 class AmqpMessageCounter implements MessageCounter
 {
     public function __construct(
         private readonly Counter $counter,
-        private readonly LoggerInterface $logger,
-        private readonly HeartbeatApiClient $heartbeatApiClient,
-        private readonly Environment $environment
+        private readonly LoggerInterface $logger
     ) {
     }
 
@@ -29,16 +24,6 @@ class AmqpMessageCounter implements MessageCounter
     {
         $labelList = new LabelList();
         $labelList->add(new Label('message', get_class($message)));
-        $channelName = $this->environment->get('CHANNEL_NAME');
-        $environment = $this->environment->get('APP_ENV') ?? 'envmissing';
-
-        if ($this->environment->get('OPSGENIE_ENABLED') === '1') {
-            $heartbeatRate = (float)$this->environment->get('OPSGENIE_WORKER_HEARTBEAT_RATE');
-
-            if (mt_rand() / mt_getrandmax() <= $heartbeatRate) {
-                $this->heartbeatApiClient->sendPing(new PingRequest("SCX_{$environment}_{$channelName}_worker_heartbeat"));
-            }
-        }
 
         try {
             $this->counter->count('EA', 'messages_total', $labelList);
