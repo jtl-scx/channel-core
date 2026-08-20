@@ -31,6 +31,7 @@ class SendOfferListingFailedMessage extends AbstractAmqpTransportableMessage imp
         string|null $messageId = null,
         string|null $relatedAttributeId = null,
         string|null $recommendedValue = null,
+        string|null $errorLongMessage = null,
     ) {
         parent::__construct($messageId);
 
@@ -38,6 +39,7 @@ class SendOfferListingFailedMessage extends AbstractAmqpTransportableMessage imp
         $this->addError(
             errorCode: $errorCode,
             errorMessage: $errorMessage,
+            errorLongMessage: $errorLongMessage,
             relatedAttributeId: $relatedAttributeId,
             recommendedValue: $recommendedValue
         );
