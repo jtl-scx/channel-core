@@ -50,9 +50,9 @@ class ObjectSerializer
      * @param string|null $type   the OpenAPIToolsType of the data
      * @param string|null $format the format of the OpenAPITools type of the data
      *
-     * @return object|array|null|string serialized form of $data
+     * @return object|array|null|string|bool|int|float serialized form of $data
      */
-    public static function sanitizeForSerialization(mixed $data, string|null $type = null, string|null $format = null): object|array|null|string
+    public static function sanitizeForSerialization(mixed $data, string|null $type = null, string|null $format = null): object|array|null|string|bool|int|float
     {
         if (is_scalar($data) || null === $data) {
             return $data;
