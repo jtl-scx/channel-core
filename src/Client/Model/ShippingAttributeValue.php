@@ -1,6 +1,6 @@
 <?php
 /**
- * OrderShippingPositionItem
+ * ShippingAttributeValue
  *
  * PHP version 8.4
  *
@@ -22,9 +22,10 @@ use ArrayAccess;
 use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
 
 /**
- * OrderShippingPositionItem Class Doc Comment
+ * ShippingAttributeValue Class Doc Comment
  *
  * @category Class
+ * @description A shipping attribute value submitted for a shipment or an order item (see &#x60;SellerOrderShipping&#x60;). This is a plain &#x60;attributeId&#x60;/&#x60;value&#x60; pair, not validated against the discovered/provisioned shipping attribute catalog (see &#x60;ResolvedShippingAttribute&#x60;).
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -32,25 +33,23 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSerializable
+class ShippingAttributeValue implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       */
-    protected static string $openAPIModelName = 'OrderShippingPositionItem';
+    protected static string $openAPIModelName = 'ShippingAttributeValue';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
-      * @param ShippingAttributeValue
       *
       */
     protected static array $openAPITypes = [
-        'orderItemId' => 'string',
-        'quantity' => 'int',
-        'attributeList' => '\JTL\SCX\Lib\Channel\Client\Model\ShippingAttributeValue[]'
+        'attributeId' => 'string',
+        'value' => 'string'
     ];
 
     /**
@@ -60,9 +59,8 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static array $openAPIFormats = [
-        'orderItemId' => 'string',
-        'quantity' => null,
-        'attributeList' => null
+        'attributeId' => null,
+        'value' => null
     ];
 
     /**
@@ -88,27 +86,24 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
      * and the value is the original name
      */
     protected static array $attributeMap = [
-        'orderItemId' => 'orderItemId',
-        'quantity' => 'quantity',
-        'attributeList' => 'attributeList'
+        'attributeId' => 'attributeId',
+        'value' => 'value'
     ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      */
     protected static array $setters = [
-        'orderItemId' => 'setOrderItemId',
-        'quantity' => 'setQuantity',
-        'attributeList' => 'setAttributeList'
+        'attributeId' => 'setAttributeId',
+        'value' => 'setValue'
     ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      */
     protected static array $getters = [
-        'orderItemId' => 'getOrderItemId',
-        'quantity' => 'getQuantity',
-        'attributeList' => 'getAttributeList'
+        'attributeId' => 'getAttributeId',
+        'value' => 'getValue'
     ];
 
     /**
@@ -159,9 +154,8 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
 
     public function __construct(array|null $data = null)
     {
-        $this->container['orderItemId'] = $data['orderItemId'] ?? null;
-        $this->container['quantity'] = $data['quantity'] ?? null;
-        $this->container['attributeList'] = $data['attributeList'] ?? null;
+        $this->container['attributeId'] = $data['attributeId'] ?? null;
+        $this->container['value'] = $data['value'] ?? null;
     }
 
     /**
@@ -173,22 +167,26 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if ($this->container['orderItemId'] === null) {
-            $invalidProperties[] = "'orderItemId' can't be null";
+        if ($this->container['attributeId'] === null) {
+            $invalidProperties[] = "'attributeId' can't be null";
         }
-        if ((mb_strlen($this->container['orderItemId']) > 50)) {
-            $invalidProperties[] = "invalid value for 'orderItemId', the character length must be smaller than or equal to 50.";
-        }
-
-        if ((mb_strlen($this->container['orderItemId']) < 1)) {
-            $invalidProperties[] = "invalid value for 'orderItemId', the character length must be bigger than or equal to 1.";
+        if ((mb_strlen($this->container['attributeId']) > 150)) {
+            $invalidProperties[] = "invalid value for 'attributeId', the character length must be smaller than or equal to 150.";
         }
 
-        if ($this->container['quantity'] === null) {
-            $invalidProperties[] = "'quantity' can't be null";
+        if ((mb_strlen($this->container['attributeId']) < 1)) {
+            $invalidProperties[] = "invalid value for 'attributeId', the character length must be bigger than or equal to 1.";
         }
-        if (!is_null($this->container['attributeList']) && (is_countable($this->container['attributeList']) && count($this->container['attributeList']) < 0)) {
-            $invalidProperties[] = "invalid value for 'attributeList', number of items must be greater than or equal to 0.";
+
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
+        }
+        if ((mb_strlen($this->container['value']) > 1024)) {
+            $invalidProperties[] = "invalid value for 'value', the character length must be smaller than or equal to 1024.";
+        }
+
+        if ((mb_strlen($this->container['value']) < 1)) {
+            $invalidProperties[] = "invalid value for 'value', the character length must be bigger than or equal to 1.";
         }
 
         return $invalidProperties;
@@ -206,38 +204,26 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
     }
 
 
-    public function getOrderItemId(): string
+    public function getAttributeId(): string
     {
-        return $this->container['orderItemId'];
+        return $this->container['attributeId'];
     }
 
-    public function setOrderItemId(string $orderItemId): OrderShippingPositionItem
+    public function setAttributeId(string $attributeId): ShippingAttributeValue
     {
-        $this->container['orderItemId'] = $orderItemId;
+        $this->container['attributeId'] = $attributeId;
         return $this;
     }
 
 
-    public function getQuantity(): int
+    public function getValue(): string
     {
-        return $this->container['quantity'];
+        return $this->container['value'];
     }
 
-    public function setQuantity(int $quantity): OrderShippingPositionItem
+    public function setValue(string $value): ShippingAttributeValue
     {
-        $this->container['quantity'] = $quantity;
-        return $this;
-    }
-
-
-    public function getAttributeList(): ?array
-    {
-        return $this->container['attributeList'];
-    }
-
-    public function setAttributeList(?array $attributeList): OrderShippingPositionItem
-    {
-        $this->container['attributeList'] = $attributeList;
+        $this->container['value'] = $value;
         return $this;
     }
 

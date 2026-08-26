@@ -1,6 +1,6 @@
 <?php
 /**
- * OrderShippingPositionItem
+ * SellerShippingRules
  *
  * PHP version 8.4
  *
@@ -22,9 +22,10 @@ use ArrayAccess;
 use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
 
 /**
- * OrderShippingPositionItem Class Doc Comment
+ * SellerShippingRules Class Doc Comment
  *
  * @category Class
+ * @description Seller specific shipping attributes for a channel, set by that channel.
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -32,25 +33,23 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSerializable
+class SellerShippingRules implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       */
-    protected static string $openAPIModelName = 'OrderShippingPositionItem';
+    protected static string $openAPIModelName = 'SellerShippingRules';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
-      * @param ShippingAttributeValue
+      * @param ChannelSpecificShippingAttribute
       *
       */
     protected static array $openAPITypes = [
-        'orderItemId' => 'string',
-        'quantity' => 'int',
-        'attributeList' => '\JTL\SCX\Lib\Channel\Client\Model\ShippingAttributeValue[]'
+        'channelSpecificAttributeList' => '\JTL\SCX\Lib\Channel\Client\Model\ChannelSpecificShippingAttribute[]'
     ];
 
     /**
@@ -60,9 +59,7 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static array $openAPIFormats = [
-        'orderItemId' => 'string',
-        'quantity' => null,
-        'attributeList' => null
+        'channelSpecificAttributeList' => null
     ];
 
     /**
@@ -88,27 +85,21 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
      * and the value is the original name
      */
     protected static array $attributeMap = [
-        'orderItemId' => 'orderItemId',
-        'quantity' => 'quantity',
-        'attributeList' => 'attributeList'
+        'channelSpecificAttributeList' => 'channelSpecificAttributeList'
     ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      */
     protected static array $setters = [
-        'orderItemId' => 'setOrderItemId',
-        'quantity' => 'setQuantity',
-        'attributeList' => 'setAttributeList'
+        'channelSpecificAttributeList' => 'setChannelSpecificAttributeList'
     ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      */
     protected static array $getters = [
-        'orderItemId' => 'getOrderItemId',
-        'quantity' => 'getQuantity',
-        'attributeList' => 'getAttributeList'
+        'channelSpecificAttributeList' => 'getChannelSpecificAttributeList'
     ];
 
     /**
@@ -159,9 +150,7 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
 
     public function __construct(array|null $data = null)
     {
-        $this->container['orderItemId'] = $data['orderItemId'] ?? null;
-        $this->container['quantity'] = $data['quantity'] ?? null;
-        $this->container['attributeList'] = $data['attributeList'] ?? null;
+        $this->container['channelSpecificAttributeList'] = $data['channelSpecificAttributeList'] ?? null;
     }
 
     /**
@@ -173,22 +162,15 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if ($this->container['orderItemId'] === null) {
-            $invalidProperties[] = "'orderItemId' can't be null";
+        if ($this->container['channelSpecificAttributeList'] === null) {
+            $invalidProperties[] = "'channelSpecificAttributeList' can't be null";
         }
-        if ((mb_strlen($this->container['orderItemId']) > 50)) {
-            $invalidProperties[] = "invalid value for 'orderItemId', the character length must be smaller than or equal to 50.";
-        }
-
-        if ((mb_strlen($this->container['orderItemId']) < 1)) {
-            $invalidProperties[] = "invalid value for 'orderItemId', the character length must be bigger than or equal to 1.";
+        if ((is_countable($this->container['channelSpecificAttributeList']) && ($this->container['channelSpecificAttributeList']) > 8)) {
+            $invalidProperties[] = "invalid value for 'channelSpecificAttributeList', number of items must be less than or equal to 8.";
         }
 
-        if ($this->container['quantity'] === null) {
-            $invalidProperties[] = "'quantity' can't be null";
-        }
-        if (!is_null($this->container['attributeList']) && (is_countable($this->container['attributeList']) && count($this->container['attributeList']) < 0)) {
-            $invalidProperties[] = "invalid value for 'attributeList', number of items must be greater than or equal to 0.";
+        if ((is_countable($this->container['channelSpecificAttributeList']) && count($this->container['channelSpecificAttributeList']) < 0)) {
+            $invalidProperties[] = "invalid value for 'channelSpecificAttributeList', number of items must be greater than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -206,38 +188,14 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
     }
 
 
-    public function getOrderItemId(): string
+    public function getChannelSpecificAttributeList(): array
     {
-        return $this->container['orderItemId'];
+        return $this->container['channelSpecificAttributeList'];
     }
 
-    public function setOrderItemId(string $orderItemId): OrderShippingPositionItem
+    public function setChannelSpecificAttributeList(array $channelSpecificAttributeList): SellerShippingRules
     {
-        $this->container['orderItemId'] = $orderItemId;
-        return $this;
-    }
-
-
-    public function getQuantity(): int
-    {
-        return $this->container['quantity'];
-    }
-
-    public function setQuantity(int $quantity): OrderShippingPositionItem
-    {
-        $this->container['quantity'] = $quantity;
-        return $this;
-    }
-
-
-    public function getAttributeList(): ?array
-    {
-        return $this->container['attributeList'];
-    }
-
-    public function setAttributeList(?array $attributeList): OrderShippingPositionItem
-    {
-        $this->container['attributeList'] = $attributeList;
+        $this->container['channelSpecificAttributeList'] = $channelSpecificAttributeList;
         return $this;
     }
 
