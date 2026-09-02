@@ -7,10 +7,13 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData\ShippingAttribute;
 
+use InvalidArgumentException;
 use JTL\SCX\Lib\Channel\Client\Api\Meta\Request\PutSellerShippingRulesRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Meta\Response\PutSellerShippingRulesResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Meta\ShippingRulesApi;
+use JTL\SCX\Lib\Channel\Client\Model\AttributeType;
 use JTL\SCX\Lib\Channel\Client\Model\ChannelSpecificShippingAttribute;
+use JTL\SCX\Lib\Channel\Client\Model\ShippingAttributeLevel;
 use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 use PHPUnit\Framework\TestCase;
 
@@ -22,7 +25,7 @@ class SellerShippingAttributeUpdaterTest extends TestCase
     public function testCanUpdate(): void
     {
         $sellerId = uniqid('sellerId', true);
-        $attributeList = [new ChannelSpecificShippingAttribute(['attributeId' => 'returnAddressCarrierId'])];
+        $attributeList = [$this->validAttribute()];
 
         $apiClientMock = $this->createMock(ShippingRulesApi::class);
         $apiClientMock->expects($this->once())
@@ -37,7 +40,7 @@ class SellerShippingAttributeUpdaterTest extends TestCase
     public function testThrowsOnUnexpectedStatus(): void
     {
         $sellerId = uniqid('sellerId', true);
-        $attributeList = [new ChannelSpecificShippingAttribute(['attributeId' => 'returnAddressCarrierId'])];
+        $attributeList = [$this->validAttribute()];
 
         $apiClientMock = $this->createMock(ShippingRulesApi::class);
         $apiClientMock->method('putSellerShippingRules')->willReturn(new PutSellerShippingRulesResponse(400));
@@ -46,5 +49,46 @@ class SellerShippingAttributeUpdaterTest extends TestCase
 
         $this->expectException(UnexpectedStatusException::class);
         $sut->update($sellerId, $attributeList);
+    }
+
+    public function testThrowsWhenAttributeMissesRequiredFields(): void
+    {
+        $sellerId = uniqid('sellerId', true);
+        $attributeList = [new ChannelSpecificShippingAttribute(['attributeId' => 'returnAddressCarrierId'])];
+
+        $apiClientMock = $this->createMock(ShippingRulesApi::class);
+        $apiClientMock->expects($this->never())->method('putSellerShippingRules');
+
+        $sut = new SellerShippingAttributeUpdater($apiClientMock);
+
+        $this->expectException(InvalidArgumentException::class);
+        $sut->update($sellerId, $attributeList);
+    }
+
+    public function testThrowsWhenMoreThanEightAttributesAreGiven(): void
+    {
+        $sellerId = uniqid('sellerId', true);
+        $attributeList = [];
+        for ($i = 0; $i <= SellerShippingAttributeUpdater::MAX_ATTRIBUTES; $i++) {
+            $attributeList[] = $this->validAttribute("attribute_{$i}");
+        }
+
+        $apiClientMock = $this->createMock(ShippingRulesApi::class);
+        $apiClientMock->expects($this->never())->method('putSellerShippingRules');
+
+        $sut = new SellerShippingAttributeUpdater($apiClientMock);
+
+        $this->expectException(InvalidArgumentException::class);
+        $sut->update($sellerId, $attributeList);
+    }
+
+    private function validAttribute(string $attributeId = 'returnAddressCarrierId'): ChannelSpecificShippingAttribute
+    {
+        return new ChannelSpecificShippingAttribute([
+            'attributeId' => $attributeId,
+            'displayName' => 'Rücksendelager',
+            'type' => AttributeType::ENUM(),
+            'level' => ShippingAttributeLevel::SHIPMENT(),
+        ]);
     }
 }

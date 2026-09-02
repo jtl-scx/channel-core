@@ -7,8 +7,10 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData\ShippingAttribute;
 
+use JTL\SCX\Lib\Channel\Client\Model\AttributeType;
 use JTL\SCX\Lib\Channel\Client\Model\ChannelSpecificShippingAttribute;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventSellerAttributesUpdateRequest;
+use JTL\SCX\Lib\Channel\Client\Model\ShippingAttributeLevel;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\SellerShippingAttributeLoader;
 use JTL\SCX\Lib\Channel\Event\Seller\AttributesUpdateRequestEvent;
@@ -39,7 +41,12 @@ class SellerShippingAttributeUpdateRequestListenerTest extends TestCase
     public function it_sends_shipping_attributes_to_SCX(): void
     {
         $event = $this->createEvent('any_seller_id');
-        $attributes = [new ChannelSpecificShippingAttribute(['attributeId' => 'returnAddressCarrierId'])];
+        $attributes = [new ChannelSpecificShippingAttribute([
+            'attributeId' => 'returnAddressCarrierId',
+            'displayName' => 'Rücksendelager',
+            'type' => AttributeType::ENUM(),
+            'level' => ShippingAttributeLevel::SHIPMENT(),
+        ])];
 
         $this->loader->expects(self::once())
             ->method('fetchAll')

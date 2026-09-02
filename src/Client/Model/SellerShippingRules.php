@@ -165,7 +165,7 @@ class SellerShippingRules implements ModelInterface, ArrayAccess, \JsonSerializa
         if ($this->container['channelSpecificAttributeList'] === null) {
             $invalidProperties[] = "'channelSpecificAttributeList' can't be null";
         }
-        if ((is_countable($this->container['channelSpecificAttributeList']) && ($this->container['channelSpecificAttributeList']) > 8)) {
+        if ((is_countable($this->container['channelSpecificAttributeList']) && count($this->container['channelSpecificAttributeList']) > 8)) {
             $invalidProperties[] = "invalid value for 'channelSpecificAttributeList', number of items must be less than or equal to 8.";
         }
 
