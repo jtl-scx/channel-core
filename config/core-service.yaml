@@ -52,6 +52,9 @@ services:
   JTL\SCX\Lib\Channel\Contract\MetaData\SellerShippingAttributeLoader:
     class: JTL\SCX\Lib\Channel\MetaData\ShippingAttribute\DefaultSellerShippingAttributeLoader
 
+  JTL\SCX\Lib\Channel\Contract\MetaData\GlobalShippingAttributeLoader:
+    class: JTL\SCX\Lib\Channel\MetaData\ShippingAttribute\DefaultGlobalShippingAttributeLoader
+
   JTL\SCX\Lib\Channel\Contract\Core\Lock\LockProvider:
     class: JTL\SCX\Lib\Channel\Core\Lock\DefaultLockProvider
 

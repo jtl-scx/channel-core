@@ -49,7 +49,8 @@ class ShippingRules implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       */
     protected static array $openAPITypes = [
-        'supportedCarrierList' => '\JTL\SCX\Lib\Channel\Client\Model\SupportedCarrier[]'
+        'supportedCarrierList' => '\JTL\SCX\Lib\Channel\Client\Model\SupportedCarrier[]',
+        'channelSpecificAttributeList' => '\JTL\SCX\Lib\Channel\Client\Model\ChannelSpecificShippingAttribute[]'
     ];
 
     /**
@@ -59,7 +60,8 @@ class ShippingRules implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static array $openAPIFormats = [
-        'supportedCarrierList' => null
+        'supportedCarrierList' => null,
+        'channelSpecificAttributeList' => null
     ];
 
     /**
@@ -85,21 +87,24 @@ class ShippingRules implements ModelInterface, ArrayAccess, \JsonSerializable
      * and the value is the original name
      */
     protected static array $attributeMap = [
-        'supportedCarrierList' => 'supportedCarrierList'
+        'supportedCarrierList' => 'supportedCarrierList',
+        'channelSpecificAttributeList' => 'channelSpecificAttributeList'
     ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      */
     protected static array $setters = [
-        'supportedCarrierList' => 'setSupportedCarrierList'
+        'supportedCarrierList' => 'setSupportedCarrierList',
+        'channelSpecificAttributeList' => 'setChannelSpecificAttributeList'
     ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      */
     protected static array $getters = [
-        'supportedCarrierList' => 'getSupportedCarrierList'
+        'supportedCarrierList' => 'getSupportedCarrierList',
+        'channelSpecificAttributeList' => 'getChannelSpecificAttributeList'
     ];
 
     /**
@@ -151,6 +156,7 @@ class ShippingRules implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array|null $data = null)
     {
         $this->container['supportedCarrierList'] = $data['supportedCarrierList'] ?? null;
+        $this->container['channelSpecificAttributeList'] = $data['channelSpecificAttributeList'] ?? null;
     }
 
     /**
@@ -164,6 +170,10 @@ class ShippingRules implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if (!is_null($this->container['supportedCarrierList']) && (is_countable($this->container['supportedCarrierList']) && count($this->container['supportedCarrierList']) < 0)) {
             $invalidProperties[] = "invalid value for 'supportedCarrierList', number of items must be greater than or equal to 0.";
+        }
+
+        if (!is_null($this->container['channelSpecificAttributeList']) && (is_countable($this->container['channelSpecificAttributeList']) && count($this->container['channelSpecificAttributeList']) > 8)) {
+            $invalidProperties[] = "invalid value for 'channelSpecificAttributeList', number of items must be less than or equal to 8.";
         }
 
         return $invalidProperties;
@@ -189,6 +199,17 @@ class ShippingRules implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSupportedCarrierList(?array $supportedCarrierList): ShippingRules
     {
         $this->container['supportedCarrierList'] = $supportedCarrierList;
+        return $this;
+    }
+
+    public function getChannelSpecificAttributeList(): ?array
+    {
+        return $this->container['channelSpecificAttributeList'];
+    }
+
+    public function setChannelSpecificAttributeList(?array $channelSpecificAttributeList): ShippingRules
+    {
+        $this->container['channelSpecificAttributeList'] = $channelSpecificAttributeList;
         return $this;
     }
 
