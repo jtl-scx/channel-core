@@ -45,6 +45,7 @@ class OrderShippingPosition implements ModelInterface, ArrayAccess, \JsonSeriali
       * Array of property to type mappings. Used for (de)serialization
       *
       * @param OrderShippingPositionReturnTracking
+      * @param ShippingAttributeValue
       * @param OrderShippingPositionItem
       * @param OrderShippingPositionShippedFrom
       *
@@ -54,6 +55,7 @@ class OrderShippingPosition implements ModelInterface, ArrayAccess, \JsonSeriali
         'trackingNumber' => 'string',
         'returnTracking' => '\JTL\SCX\Lib\Channel\Client\Model\OrderShippingPositionReturnTracking',
         'shippedAt' => '\DateTime',
+        'attributeList' => '\JTL\SCX\Lib\Channel\Client\Model\ShippingAttributeValue[]',
         'orderItemIdList' => '\JTL\SCX\Lib\Channel\Client\Model\OrderShippingPositionItem[]',
         'shippedFrom' => '\JTL\SCX\Lib\Channel\Client\Model\OrderShippingPositionShippedFrom'
     ];
@@ -69,6 +71,7 @@ class OrderShippingPosition implements ModelInterface, ArrayAccess, \JsonSeriali
         'trackingNumber' => null,
         'returnTracking' => null,
         'shippedAt' => 'date-time',
+        'attributeList' => null,
         'orderItemIdList' => null,
         'shippedFrom' => null
     ];
@@ -100,6 +103,7 @@ class OrderShippingPosition implements ModelInterface, ArrayAccess, \JsonSeriali
         'trackingNumber' => 'trackingNumber',
         'returnTracking' => 'returnTracking',
         'shippedAt' => 'shippedAt',
+        'attributeList' => 'attributeList',
         'orderItemIdList' => 'orderItemIdList',
         'shippedFrom' => 'shippedFrom'
     ];
@@ -112,6 +116,7 @@ class OrderShippingPosition implements ModelInterface, ArrayAccess, \JsonSeriali
         'trackingNumber' => 'setTrackingNumber',
         'returnTracking' => 'setReturnTracking',
         'shippedAt' => 'setShippedAt',
+        'attributeList' => 'setAttributeList',
         'orderItemIdList' => 'setOrderItemIdList',
         'shippedFrom' => 'setShippedFrom'
     ];
@@ -124,6 +129,7 @@ class OrderShippingPosition implements ModelInterface, ArrayAccess, \JsonSeriali
         'trackingNumber' => 'getTrackingNumber',
         'returnTracking' => 'getReturnTracking',
         'shippedAt' => 'getShippedAt',
+        'attributeList' => 'getAttributeList',
         'orderItemIdList' => 'getOrderItemIdList',
         'shippedFrom' => 'getShippedFrom'
     ];
@@ -180,6 +186,7 @@ class OrderShippingPosition implements ModelInterface, ArrayAccess, \JsonSeriali
         $this->container['trackingNumber'] = $data['trackingNumber'] ?? null;
         $this->container['returnTracking'] = $data['returnTracking'] ?? null;
         $this->container['shippedAt'] = $data['shippedAt'] ?? null;
+        $this->container['attributeList'] = $data['attributeList'] ?? null;
         $this->container['orderItemIdList'] = $data['orderItemIdList'] ?? null;
         $this->container['shippedFrom'] = $data['shippedFrom'] ?? null;
     }
@@ -196,6 +203,10 @@ class OrderShippingPosition implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['carrier'] === null) {
             $invalidProperties[] = "'carrier' can't be null";
         }
+        if (!is_null($this->container['attributeList']) && (is_countable($this->container['attributeList']) && count($this->container['attributeList']) < 0)) {
+            $invalidProperties[] = "invalid value for 'attributeList', number of items must be greater than or equal to 0.";
+        }
+
         if (!is_null($this->container['orderItemIdList']) && (is_countable($this->container['orderItemIdList']) && count($this->container['orderItemIdList']) < 0)) {
             $invalidProperties[] = "invalid value for 'orderItemIdList', number of items must be greater than or equal to 0.";
         }
@@ -259,6 +270,18 @@ class OrderShippingPosition implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setShippedAt(?\DateTime $shippedAt): OrderShippingPosition
     {
         $this->container['shippedAt'] = $shippedAt;
+        return $this;
+    }
+
+
+    public function getAttributeList(): ?array
+    {
+        return $this->container['attributeList'];
+    }
+
+    public function setAttributeList(?array $attributeList): OrderShippingPosition
+    {
+        $this->container['attributeList'] = $attributeList;
         return $this;
     }
 

@@ -44,11 +44,13 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
+      * @param ShippingAttributeValue
       *
       */
     protected static array $openAPITypes = [
         'orderItemId' => 'string',
-        'quantity' => 'int'
+        'quantity' => 'int',
+        'attributeList' => '\JTL\SCX\Lib\Channel\Client\Model\ShippingAttributeValue[]'
     ];
 
     /**
@@ -59,7 +61,8 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static array $openAPIFormats = [
         'orderItemId' => 'string',
-        'quantity' => null
+        'quantity' => null,
+        'attributeList' => null
     ];
 
     /**
@@ -86,7 +89,8 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static array $attributeMap = [
         'orderItemId' => 'orderItemId',
-        'quantity' => 'quantity'
+        'quantity' => 'quantity',
+        'attributeList' => 'attributeList'
     ];
 
     /**
@@ -94,7 +98,8 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static array $setters = [
         'orderItemId' => 'setOrderItemId',
-        'quantity' => 'setQuantity'
+        'quantity' => 'setQuantity',
+        'attributeList' => 'setAttributeList'
     ];
 
     /**
@@ -102,7 +107,8 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
      */
     protected static array $getters = [
         'orderItemId' => 'getOrderItemId',
-        'quantity' => 'getQuantity'
+        'quantity' => 'getQuantity',
+        'attributeList' => 'getAttributeList'
     ];
 
     /**
@@ -155,6 +161,7 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
     {
         $this->container['orderItemId'] = $data['orderItemId'] ?? null;
         $this->container['quantity'] = $data['quantity'] ?? null;
+        $this->container['attributeList'] = $data['attributeList'] ?? null;
     }
 
     /**
@@ -180,6 +187,10 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
         if ($this->container['quantity'] === null) {
             $invalidProperties[] = "'quantity' can't be null";
         }
+        if (!is_null($this->container['attributeList']) && (is_countable($this->container['attributeList']) && count($this->container['attributeList']) < 0)) {
+            $invalidProperties[] = "invalid value for 'attributeList', number of items must be greater than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -215,6 +226,18 @@ class OrderShippingPositionItem implements ModelInterface, ArrayAccess, \JsonSer
     public function setQuantity(int $quantity): OrderShippingPositionItem
     {
         $this->container['quantity'] = $quantity;
+        return $this;
+    }
+
+
+    public function getAttributeList(): ?array
+    {
+        return $this->container['attributeList'];
+    }
+
+    public function setAttributeList(?array $attributeList): OrderShippingPositionItem
+    {
+        $this->container['attributeList'] = $attributeList;
         return $this;
     }
 

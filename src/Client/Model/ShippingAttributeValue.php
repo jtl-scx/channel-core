@@ -1,6 +1,6 @@
 <?php
 /**
- * ShippingRules
+ * ShippingAttributeValue
  *
  * PHP version 8.4
  *
@@ -22,10 +22,10 @@ use ArrayAccess;
 use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
 
 /**
- * ShippingRules Class Doc Comment
+ * ShippingAttributeValue Class Doc Comment
  *
  * @category Class
- * @description Shipping rules supported by the channel — list of carriers and the regions they cover.
+ * @description A shipping attribute value submitted for a shipment or an order item (see &#x60;SellerOrderShipping&#x60;). This is a plain &#x60;attributeId&#x60;/&#x60;value&#x60; pair, not validated against the discovered/provisioned shipping attribute catalog (see &#x60;ResolvedShippingAttribute&#x60;).
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -33,24 +33,23 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class ShippingRules implements ModelInterface, ArrayAccess, \JsonSerializable
+class ShippingAttributeValue implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       */
-    protected static string $openAPIModelName = 'ShippingRules';
+    protected static string $openAPIModelName = 'ShippingAttributeValue';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
       *
-      * @param SupportedCarrier
       *
       */
     protected static array $openAPITypes = [
-        'supportedCarrierList' => '\JTL\SCX\Lib\Channel\Client\Model\SupportedCarrier[]',
-        'channelSpecificAttributeList' => '\JTL\SCX\Lib\Channel\Client\Model\ChannelSpecificShippingAttribute[]'
+        'attributeId' => 'string',
+        'value' => 'string'
     ];
 
     /**
@@ -60,8 +59,8 @@ class ShippingRules implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static array $openAPIFormats = [
-        'supportedCarrierList' => null,
-        'channelSpecificAttributeList' => null
+        'attributeId' => null,
+        'value' => null
     ];
 
     /**
@@ -87,24 +86,24 @@ class ShippingRules implements ModelInterface, ArrayAccess, \JsonSerializable
      * and the value is the original name
      */
     protected static array $attributeMap = [
-        'supportedCarrierList' => 'supportedCarrierList',
-        'channelSpecificAttributeList' => 'channelSpecificAttributeList'
+        'attributeId' => 'attributeId',
+        'value' => 'value'
     ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
      */
     protected static array $setters = [
-        'supportedCarrierList' => 'setSupportedCarrierList',
-        'channelSpecificAttributeList' => 'setChannelSpecificAttributeList'
+        'attributeId' => 'setAttributeId',
+        'value' => 'setValue'
     ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
      */
     protected static array $getters = [
-        'supportedCarrierList' => 'getSupportedCarrierList',
-        'channelSpecificAttributeList' => 'getChannelSpecificAttributeList'
+        'attributeId' => 'getAttributeId',
+        'value' => 'getValue'
     ];
 
     /**
@@ -155,8 +154,8 @@ class ShippingRules implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public function __construct(array|null $data = null)
     {
-        $this->container['supportedCarrierList'] = $data['supportedCarrierList'] ?? null;
-        $this->container['channelSpecificAttributeList'] = $data['channelSpecificAttributeList'] ?? null;
+        $this->container['attributeId'] = $data['attributeId'] ?? null;
+        $this->container['value'] = $data['value'] ?? null;
     }
 
     /**
@@ -168,12 +167,26 @@ class ShippingRules implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['supportedCarrierList']) && (is_countable($this->container['supportedCarrierList']) && count($this->container['supportedCarrierList']) < 0)) {
-            $invalidProperties[] = "invalid value for 'supportedCarrierList', number of items must be greater than or equal to 0.";
+        if ($this->container['attributeId'] === null) {
+            $invalidProperties[] = "'attributeId' can't be null";
+        }
+        if ((mb_strlen($this->container['attributeId']) > 150)) {
+            $invalidProperties[] = "invalid value for 'attributeId', the character length must be smaller than or equal to 150.";
         }
 
-        if (!is_null($this->container['channelSpecificAttributeList']) && (is_countable($this->container['channelSpecificAttributeList']) && count($this->container['channelSpecificAttributeList']) > 8)) {
-            $invalidProperties[] = "invalid value for 'channelSpecificAttributeList', number of items must be less than or equal to 8.";
+        if ((mb_strlen($this->container['attributeId']) < 1)) {
+            $invalidProperties[] = "invalid value for 'attributeId', the character length must be bigger than or equal to 1.";
+        }
+
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
+        }
+        if ((mb_strlen($this->container['value']) > 1024)) {
+            $invalidProperties[] = "invalid value for 'value', the character length must be smaller than or equal to 1024.";
+        }
+
+        if ((mb_strlen($this->container['value']) < 1)) {
+            $invalidProperties[] = "invalid value for 'value', the character length must be bigger than or equal to 1.";
         }
 
         return $invalidProperties;
@@ -191,25 +204,26 @@ class ShippingRules implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    public function getSupportedCarrierList(): ?array
+    public function getAttributeId(): string
     {
-        return $this->container['supportedCarrierList'];
+        return $this->container['attributeId'];
     }
 
-    public function setSupportedCarrierList(?array $supportedCarrierList): ShippingRules
+    public function setAttributeId(string $attributeId): ShippingAttributeValue
     {
-        $this->container['supportedCarrierList'] = $supportedCarrierList;
+        $this->container['attributeId'] = $attributeId;
         return $this;
     }
 
-    public function getChannelSpecificAttributeList(): ?array
+
+    public function getValue(): string
     {
-        return $this->container['channelSpecificAttributeList'];
+        return $this->container['value'];
     }
 
-    public function setChannelSpecificAttributeList(?array $channelSpecificAttributeList): ShippingRules
+    public function setValue(string $value): ShippingAttributeValue
     {
-        $this->container['channelSpecificAttributeList'] = $channelSpecificAttributeList;
+        $this->container['value'] = $value;
         return $this;
     }
 
