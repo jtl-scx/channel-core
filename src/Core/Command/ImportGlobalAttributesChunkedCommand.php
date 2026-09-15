@@ -49,12 +49,17 @@ class ImportGlobalAttributesChunkedCommand extends AbstractCommand
         foreach ($this->globalAttributeLoader->loadChunked() as $chunk) {
             $this->globalAttributeSender->send($chunk);
 
-            $total += $chunk->count();
-            $output->writeln("Sent {$chunk->count()} global Attributes ({$total} in total)");
+            $count = $chunk->count();
+            $total += $count;
+            $output->writeln("Sent {$count} global Attributes ({$total} in total)");
+
+            // Drop the reference before the generator resolves the next chunk, otherwise two
+            // chunks are alive at the same time and the memory bound is twice what it should be.
+            unset($chunk);
         }
 
         $output->writeln("Successfully sent {$total} global Attributes to SCX");
 
-        return 0;
+        return self::SUCCESS;
     }
 }
