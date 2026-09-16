@@ -7,7 +7,7 @@
         "php": "8.3.* || 8.4.*",
         "ext-curl": "*",
         "ext-json": "*",
-        "guzzlehttp/guzzle": "^7.14.1",
+        "guzzlehttp/guzzle": "^7.15.5",
         "jtl-scx/api-base-client": "^1.7.0",
         "jtl-software/opsgenie-client": "^2.1",
         "jtl/go-prometrics-client": "^3.2",
