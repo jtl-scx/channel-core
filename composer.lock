@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b59ed5b4d8ae067e0af5577a6621626a",
+    "content-hash": "4b02a3c6ad6b7600c008da3fe0f501e7",
     "packages": [
         {
             "name": "brick/math",
@@ -484,30 +484,28 @@
         },
         {
             "name": "jtl-scx/api-base-client",
-            "version": "1.7.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-scx/api-base-client.git",
-                "reference": "c472526153be950ccb47c5f2b7bf322f567f1241"
+                "reference": "f82c7ce0b5dc86a0a0d03cdb3f415c6a171d6643"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-scx/api-base-client/zipball/c472526153be950ccb47c5f2b7bf322f567f1241",
-                "reference": "c472526153be950ccb47c5f2b7bf322f567f1241",
+                "url": "https://api.github.com/repos/jtl-scx/api-base-client/zipball/f82c7ce0b5dc86a0a0d03cdb3f415c6a171d6643",
+                "reference": "f82c7ce0b5dc86a0a0d03cdb3f415c6a171d6643",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "guzzlehttp/guzzle": "^7.2",
-                "guzzlehttp/uri-template": "^0.2.0 || ^1.0.0",
-                "php": "8.1.* || 8.2.* || 8.3.* || 8.4.*"
+                "guzzlehttp/guzzle": "^7.9 || ^8.0",
+                "guzzlehttp/uri-template": "^1.0",
+                "php": "8.3.* || 8.4.* || 8.5.*"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": " ^3.50.0",
-                "mockery/mockery": "^1.2",
-                "phpspec/prophecy": "^1.22.0",
-                "phpunit/phpunit": " ^9.5.11",
-                "psalm/phar": "^4.17"
+                "friendsofphp/php-cs-fixer": "^3.75",
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^12.5"
             },
             "type": "library",
             "autoload": {
@@ -522,9 +520,9 @@
             "description": "SCX-API Base Client",
             "support": {
                 "issues": "https://github.com/jtl-scx/api-base-client/issues",
-                "source": "https://github.com/jtl-scx/api-base-client/tree/1.7.0"
+                "source": "https://github.com/jtl-scx/api-base-client/tree/2.1.0"
             },
-            "time": "2025-09-03T11:22:22+00:00"
+            "time": "2026-09-11T08:56:56+00:00"
         },
         {
             "name": "jtl-software/opsgenie-client",
@@ -6765,7 +6763,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "8.3.* || 8.4.*",
+        "php": "8.3.* || 8.4.* || 8.5.*",
         "ext-curl": "*",
         "ext-json": "*"
     },
