@@ -66,6 +66,15 @@ class ToArrayTraitTest extends TestCase
     }
 
 
+    #[Test]
+    public function it_ignores_traversable_items_that_are_not_objects(): void
+    {
+        $collection = new MyStringCollection();
+        $collection->add(MyTestClass::class);
+
+        self::assertSame([], $collection->toArray());
+    }
+
 }
 
 class MyTestClass
@@ -97,6 +106,16 @@ class My2ndTestClass
     public function __construct(string $a)
     {
         $this->a = $a;
+    }
+}
+
+class MyStringCollection extends GenericCollection
+{
+    use ToArrayTrait;
+
+    public function __construct()
+    {
+        parent::__construct('string');
     }
 }
 

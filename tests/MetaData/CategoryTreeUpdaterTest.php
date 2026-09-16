@@ -15,6 +15,7 @@ use Exception;
 use JTL\SCX\Lib\Channel\Client\Api\Category\CategoryApi;
 use JTL\SCX\Lib\Channel\Client\Api\Category\Response\UpdateCategoryTreeResponse;
 use JTL\SCX\Lib\Channel\Client\Model\CategoryTreeVersion;
+use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -66,5 +67,17 @@ class CategoryTreeUpdaterTest extends TestCase
             '3'
         );
         return $categoryList;
+    }
+    public function testFailsWhenTheApiReturnsNoCategoryTreeVersion(): void
+    {
+        $response = new UpdateCategoryTreeResponse(201, new CategoryTreeVersion([]));
+
+        $clientMock = $this->createMock(CategoryApi::class);
+        $clientMock->expects($this->once())->method('updateCategoryTree')->willReturn($response);
+
+        $updater = new CategoryTreeUpdater($clientMock, new CategoryMapper());
+
+        $this->expectException(UnexpectedStatusException::class);
+        $updater->update(new CategoryList());
     }
 }

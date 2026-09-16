@@ -77,4 +77,19 @@ class AttributeUpdateRequestListenerTest extends TestCase
         $this->sut->processAttributes($event);
     }
 
+    #[Test]
+    public function it_skips_the_update_when_the_event_carries_no_sellerId(): void
+    {
+        $event = new AttributesUpdateRequestEvent(
+            id: 'any_id',
+            clientVersion: 'any_client_version',
+            createdAt: new DateTimeImmutable(),
+            event: new SellerEventSellerAttributesUpdateRequest([])
+        );
+
+        $this->loader->expects(self::never())->method('fetchAll');
+        $this->updater->expects(self::never())->method('update');
+
+        $this->sut->processAttributes($event);
+    }
 }

@@ -22,6 +22,7 @@ use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeDeleter;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeUpdater;
 use Symfony\Component\Console\Input\InputArgument;
+use RuntimeException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -126,8 +127,12 @@ class ImportCategoryAttributesCommand extends AbstractCommand
             $column = (int)$input->getOption('import-csv-categoryid-column');
 
             $file = fopen($importFile, "r");
+            if ($file === false) {
+                throw new RuntimeException("Could not open import file \"{$importFile}\"");
+            }
+
             while (($row = fgetcsv($file, 0, $delimiter, $enclosure)) !== false) {
-                $this->import(trim($row[$column]), $process, $io, $keepAttributes);
+                $this->import(trim((string)($row[$column] ?? '')), $process, $io, $keepAttributes);
             }
         } else {
             $this->import($categoryId, $process, $io, $keepAttributes);

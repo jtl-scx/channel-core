@@ -27,7 +27,7 @@ class TranslatorFactory
             );
         }
 
-        foreach (glob("{$path}/*.yaml") as $path) {
+        foreach (glob("{$path}/*.yaml") ?: [] as $path) {
             $filename = basename($path);
             $translator->addResource('yaml', $path, explode('.', $filename)[0]);
         }

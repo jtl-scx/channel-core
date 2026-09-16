@@ -12,7 +12,6 @@ namespace JTL\SCX\Lib\Channel\Core\Command;
 
 use DateTimeImmutable;
 use Exception;
-use JTL\Nachricht\Contract\Message\AmqpTransportableMessage;
 use JTL\Nachricht\Contract\Serializer\MessageSerializer;
 use JTL\Nachricht\Contract\Transport\Amqp\AmqpQueueLister;
 use JTL\Nachricht\Message\AbstractAmqpTransportableMessage;
@@ -261,7 +260,7 @@ class DeadLetterRetryCommand extends AbstractCommand
             if ($olderThan !== null) {
                 $olderThanDate = new DateTimeImmutable($olderThan);
 
-                if ($event instanceof AmqpTransportableMessage  && $event->getCreatedAt() > $olderThanDate) {
+                if ($event->getCreatedAt() > $olderThanDate) {
                     $skippedMessages++;
                     continue;
                 }
@@ -338,11 +337,11 @@ class DeadLetterRetryCommand extends AbstractCommand
      */
     private function requeue(AMQPMessage $message, bool $resetReceives): void
     {
-        $newRoutingKey = substr($message->getRoutingKey(), 4);
+        $newRoutingKey = substr((string)$message->getRoutingKey(), 4);
         $message->setDeliveryInfo(
             $message->getDeliveryTag(),
-            $message->isRedelivered(),
-            $message->getExchange(),
+            (bool)$message->isRedelivered(),
+            (string)$message->getExchange(),
             $newRoutingKey
         );
 
