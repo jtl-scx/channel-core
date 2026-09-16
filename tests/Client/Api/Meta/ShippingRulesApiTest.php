@@ -13,7 +13,9 @@ namespace JTL\SCX\Lib\Channel\Client\Api\Meta;
 use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Client\Api\AuthAwareApiClient;
 use JTL\SCX\Lib\Channel\Client\Api\Meta\Request\CreateShippingRulesRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Meta\Request\PutSellerShippingRulesRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Meta\Response\CreateShippingRulesResponse;
+use JTL\SCX\Lib\Channel\Client\Api\Meta\Response\PutSellerShippingRulesResponse;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 
@@ -31,5 +33,18 @@ class ShippingRulesApiTest extends TestCase
 
         $client = new ShippingRulesApi($apiClientMock);
         $this->assertInstanceOf(CreateShippingRulesResponse::class, $client->create($requestMock));
+    }
+
+    public function testCanPutSellerShippingRules(): void
+    {
+        $requestMock = $this->createMock(PutSellerShippingRulesRequest::class);
+
+        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock->method('getStatusCode')->willReturn(201);
+        $apiClientMock = $this->createMock(AuthAwareApiClient::class);
+        $apiClientMock->expects($this->once())->method('request')->with($requestMock)->willReturn($responseMock);
+
+        $client = new ShippingRulesApi($apiClientMock);
+        $this->assertInstanceOf(PutSellerShippingRulesResponse::class, $client->putSellerShippingRules($requestMock));
     }
 }

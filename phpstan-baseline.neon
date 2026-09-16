@@ -115,10 +115,22 @@ parameters:
 			path: src/Contract/Core/Message/ChannelOrderItemIdListRelatedMessage.php
 
 		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Contract\\MetaData\\GlobalShippingAttributeLoader\:\:load\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\ChannelSpecificShippingAttribute does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Contract/MetaData/GlobalShippingAttributeLoader.php
+
+		-
 			message: '#^Method JTL\\SCX\\Lib\\Channel\\Contract\\MetaData\\MetaDataCategoryAttributeLoader\:\:fetch\(\) has parameter \$categoryIdList with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Contract/MetaData/MetaDataCategoryAttributeLoader.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Contract\\MetaData\\SellerShippingAttributeLoader\:\:fetchAll\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\ChannelSpecificShippingAttribute does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Contract/MetaData/SellerShippingAttributeLoader.php
 
 		-
 			message: '#^Method JTL\\SCX\\Lib\\Channel\\Controller\\AbstractSignUpController\:\:renderTemplate\(\) has parameter \$params with no value type specified in iterable type array\.$#'
@@ -1487,6 +1499,30 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: src/MetaData/Price/PriceTypeLoader.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\ShippingAttribute\\DefaultGlobalShippingAttributeLoader\:\:load\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\ChannelSpecificShippingAttribute does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/MetaData/ShippingAttribute/DefaultGlobalShippingAttributeLoader.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\ShippingAttribute\\DefaultSellerShippingAttributeLoader\:\:fetchAll\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\ChannelSpecificShippingAttribute does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/MetaData/ShippingAttribute/DefaultSellerShippingAttributeLoader.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\ShippingAttribute\\SellerShippingAttributeUpdater\:\:guardAgainstInvalidAttributes\(\) has parameter \$attributeList with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\ChannelSpecificShippingAttribute but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/MetaData/ShippingAttribute/SellerShippingAttributeUpdater.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\ShippingAttribute\\SellerShippingAttributeUpdater\:\:update\(\) has parameter \$attributeList with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\ChannelSpecificShippingAttribute but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/MetaData/ShippingAttribute/SellerShippingAttributeUpdater.php
 
 		-
 			message: '#^Method JTL\\SCX\\Lib\\Channel\\Notification\\SendNotificationListener\:\:sendNotification\(\) has no return type specified\.$#'

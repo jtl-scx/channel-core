@@ -16,6 +16,7 @@ use JTL\SCX\Lib\Channel\Client\Api\Meta\ShippingRulesApi;
 use JTL\SCX\Lib\Channel\Client\Model\ShippingRules;
 use JTL\SCX\Lib\Channel\Client\Model\SupportedCarrier;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
+use JTL\SCX\Lib\Channel\Contract\MetaData\GlobalShippingAttributeLoader;
 use JTL\SCX\Lib\Channel\Helper\FileHandler;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -27,12 +28,18 @@ class PushShippingRulesCommand extends AbstractCommand
 {
     private ShippingRulesApi $client;
     private FileHandler $fileHandler;
+    private GlobalShippingAttributeLoader $shippingAttributeLoader;
 
-    public function __construct(ShippingRulesApi $client, FileHandler $fileHandler, ScxLogger $logger)
-    {
+    public function __construct(
+        ShippingRulesApi $client,
+        FileHandler $fileHandler,
+        ScxLogger $logger,
+        GlobalShippingAttributeLoader $shippingAttributeLoader
+    ) {
         parent::__construct($logger);
         $this->client = $client;
         $this->fileHandler = $fileHandler;
+        $this->shippingAttributeLoader = $shippingAttributeLoader;
     }
 
     protected function configure()
@@ -80,7 +87,15 @@ class PushShippingRulesCommand extends AbstractCommand
             return 2;
         }
 
+        // The channel-wide shipping attributes are pushed together with the carriers in a single PUT.
+        // SCX fully replaces supportedCarrierList on every PUT to /v1/channel/shipping-rules, so sending
+        // the attributes in a separate request would wipe the carriers (and vice versa).
+        $channelSpecificAttributeList = $this->shippingAttributeLoader->load();
+
         $shippingRules = new ShippingRules(['supportedCarrierList' => $supportedCarrierList]);
+        if ($channelSpecificAttributeList !== []) {
+            $shippingRules->setChannelSpecificAttributeList(array_values($channelSpecificAttributeList));
+        }
         $request = new CreateShippingRulesRequest($shippingRules);
 
         try {
@@ -94,7 +109,10 @@ class PushShippingRulesCommand extends AbstractCommand
         }
 
         if ($response->isSuccessful()) {
-            $output->writeln("Pushed '" . count($supportedCarrierList) . "' shipping rules successful to SCX.");
+            $output->writeln(
+                "Pushed '" . count($supportedCarrierList) . "' shipping rules and '"
+                . count($channelSpecificAttributeList) . "' channel specific shipping attributes successful to SCX."
+            );
         } else {
             $output->writeln("Error: Put shippung rules returned StatusCode '{$response->getStatusCode()}'.");
             return 4;
