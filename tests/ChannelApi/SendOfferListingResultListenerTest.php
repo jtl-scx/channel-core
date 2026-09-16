@@ -10,6 +10,9 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\ChannelApi;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\Ticket;
 use DateTime;
 use JTL\SCX\Lib\Channel\Client\Api\Offer\OfferApi;
 use JTL\SCX\Lib\Channel\Client\Api\Offer\Request\MarkListingAsFailedRequest;
@@ -19,9 +22,7 @@ use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingResultListener
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingResultListener::class)]
 class SendOfferListingResultListenerTest extends TestCase
 {
     public function testCanSendInFailed(): void
@@ -79,9 +80,7 @@ class SendOfferListingResultListenerTest extends TestCase
         $listener->sendInFailed($event);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_will_trim_relatedAttributId_to_512_characters_maximum(): void
     {
         $relatedAttributeId = str_repeat('A', 513);
@@ -109,9 +108,7 @@ class SendOfferListingResultListenerTest extends TestCase
         $listener->sendInFailed($event);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_will_trim_recommendedValue_to_1000_characters_maximum(): void
     {
         $recommendedValue = str_repeat('A', 1001);
@@ -159,10 +156,8 @@ class SendOfferListingResultListenerTest extends TestCase
         $listener->sendInFailed($event);
     }
 
-    /**
-     * @test
-     * @ticket EA-7272
-     */
+    #[Ticket('EA-7272')]
+    #[Test]
     public function it_will_handle_null_values_for_relatedAttributeId_and_recommendedValue(): void
     {
         $event = new SendOfferListingFailedMessage(

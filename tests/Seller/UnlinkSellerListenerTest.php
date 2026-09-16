@@ -2,15 +2,15 @@
 
 namespace JTL\SCX\Lib\Channel\Seller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use RuntimeException;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UnlinkSellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UnlinkSellerResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\SellerApi;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers  \JTL\SCX\Lib\Channel\Seller\UnlinkSellerListener
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Seller\UnlinkSellerListener::class)]
 class UnlinkSellerListenerTest extends TestCase
 {
     public function testCanUnlink(): void
@@ -53,7 +53,7 @@ class UnlinkSellerListenerTest extends TestCase
             }))->willReturn($unlinkSellerResponseMock);
         $sut = new UnlinkSellerListener($sellerApiMock, $this->createStub(ScxLogger::class));
 
-        $this->expectException(\RuntimeException::class);
+        $this->expectException(RuntimeException::class);
         $sut->unlink($message);
     }
 }

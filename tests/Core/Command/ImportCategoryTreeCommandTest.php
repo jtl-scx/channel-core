@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaCategoryLoader;
 use JTL\SCX\Lib\Channel\MetaData\Category;
@@ -21,9 +22,8 @@ use Symfony\Component\Console\Tester\CommandTester;
 /**
  * Class ImportCategoryTreeCommandTest
  * @package JTL\SCX\Lib\Channel\Core\Command
- *
- * @covers \JTL\SCX\Lib\Channel\Core\Command\ImportCategoryTreeCommand
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Command\ImportCategoryTreeCommand::class)]
 class ImportCategoryTreeCommandTest extends TestCase
 {
     public function testCanFetchAndUpdateCategoryTree(): void

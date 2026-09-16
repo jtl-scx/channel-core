@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\SellerAttributeLoader;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
@@ -20,9 +21,8 @@ use Symfony\Component\Console\Tester\CommandTester;
 /**
  * Class ImportSellerAttributesCommandTest
  * @package JTL\SCX\Lib\Channel\Core\Command
- *
- * @covers \JTL\SCX\Lib\Channel\Core\Command\ImportSellerAttributesCommand
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Command\ImportSellerAttributesCommand::class)]
 class ImportSellerAttributesCommandTest extends TestCase
 {
     public function testCanImportSellerAttributes(): void
@@ -30,7 +30,7 @@ class ImportSellerAttributesCommandTest extends TestCase
         $sellerId = uniqid('sellerId', true);
 
         $numAttr = random_int(5, 100);
-        $attrListMock = $this->createMock(AttributeList::class);
+        $attrListMock = $this->createStub(AttributeList::class);
         $attrListMock->method('count')->willReturn($numAttr);
 
         $attrLoaderMock = $this->createMock(SellerAttributeLoader::class);

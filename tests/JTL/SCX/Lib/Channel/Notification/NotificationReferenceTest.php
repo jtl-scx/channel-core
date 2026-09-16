@@ -10,13 +10,14 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Notification;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Model\ChannelNotificationReferenceType;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class NotificationReferenceTest
- * @covers \JTL\SCX\Lib\Channel\Notification\NotificationReference
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Notification\NotificationReference::class)]
 class NotificationReferenceTest extends TestCase
 {
     public function testCanCreateOfferReference()

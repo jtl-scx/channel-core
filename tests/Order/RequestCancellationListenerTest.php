@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Order;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use JTL\SCX\Lib\Channel\Client\Api\Order\OrderApi;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Request\RequestOrderCancellationRequest;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
@@ -21,14 +23,10 @@ use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\RequestCancellationListener
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\RequestCancellationListener::class)]
 class RequestCancellationListenerTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_send_a_orderCancellationRequest_to_Channel_API(): void
     {
         $apiMock = $this->createMock(OrderApi::class);
@@ -36,7 +34,7 @@ class RequestCancellationListenerTest extends TestCase
 
         $sut = new RequestCancellationListener($apiMock, $loggerStub);
 
-        $message = $this->createMock(RequestCancellationMessage::class);
+        $message = $this->createStub(RequestCancellationMessage::class);
         $message->method('getOrderCancellationRequestId')->willReturn('A_ID');
         $message->method('getSellerId')->willReturn(new ChannelSellerId('A_SELLER_ID'));
         $message->method('getChannelOrderId')->willReturn('A_ORDER_ID');

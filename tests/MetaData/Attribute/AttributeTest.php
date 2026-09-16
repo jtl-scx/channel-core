@@ -10,14 +10,14 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class AttributeTest
  * @package MetaData\Attribute
- *
- * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\Attribute
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\Attribute\Attribute::class)]
 class AttributeTest extends TestCase
 {
     public function testCanGetValues(): void

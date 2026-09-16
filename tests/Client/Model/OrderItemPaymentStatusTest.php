@@ -27,7 +27,9 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * OrderItemPaymentStatusTest Class Doc Comment
@@ -37,14 +39,14 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\OrderItemPaymentStatus
  */
-class OrderItemPaymentStatusTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\OrderItemPaymentStatus::class)]
+class OrderItemPaymentStatusTest extends AbstractApiModelTestCase
 {
     /**
      * Test Enum Value "PENDING"
-     * @test
      */
+    #[Test]
     public function is_a_const_PENDING(): void
     {
         self::assertEquals('PENDING', OrderItemPaymentStatus::PENDING);
@@ -54,8 +56,8 @@ class OrderItemPaymentStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "PENDING"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forPENDING(): void
     {
         $sut = OrderItemPaymentStatus::PENDING();
@@ -63,8 +65,8 @@ class OrderItemPaymentStatusTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "PAID"
-     * @test
      */
+    #[Test]
     public function is_a_const_PAID(): void
     {
         self::assertEquals('PAID', OrderItemPaymentStatus::PAID);
@@ -74,8 +76,8 @@ class OrderItemPaymentStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "PAID"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forPAID(): void
     {
         $sut = OrderItemPaymentStatus::PAID();
@@ -84,8 +86,8 @@ class OrderItemPaymentStatusTest extends AbstractApiModelTest
 
     /**
      * Test allowed values from Enum
-     * @test
      */
+    #[Test]
     public function it_has_correct_set_of_allowed_values(): void
     {
         $allowed = [

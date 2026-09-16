@@ -10,11 +10,10 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Attribute\Response;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Attribute\Response\AttributesDeletedResponse
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Attribute\Response\AttributesDeletedResponse::class)]
 class AttributesDeletedResponseTest extends TestCase
 {
     public function testCanCheckIfSuccessful()

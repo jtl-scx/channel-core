@@ -4,24 +4,23 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use DateTimeImmutable;
 use JTL\SCX\Lib\Channel\Client\Event\EventType;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderShipping;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Event\Seller\OrderShippingEvent
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Event\Seller\OrderShippingEvent::class)]
 class OrderShippingEventTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_be_constructed_correctly(): void
     {
         $sut = new OrderShippingEvent(
             id: $id = uniqid(),
             clientVersion: uniqid(),
-            createdAt: $createdAt = new \DateTimeImmutable(),
+            createdAt: $createdAt = new DateTimeImmutable(),
             event: $event = $this->createStub(SellerEventOrderShipping::class),
             internalEventId: $internalEventId = uniqid(),
             delay: $delay = random_int(1, 10000),

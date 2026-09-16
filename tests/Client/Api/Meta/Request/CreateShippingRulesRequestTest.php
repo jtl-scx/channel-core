@@ -10,12 +10,11 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Meta\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Model\ShippingRules;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Meta\Request\CreateShippingRulesRequest
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Meta\Request\CreateShippingRulesRequest::class)]
 class CreateShippingRulesRequestTest extends TestCase
 {
     public function testCanBeCreatedAndUsed(): void

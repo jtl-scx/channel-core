@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Event\Response;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use JTL\SCX\Lib\Channel\Client\Api\Event\Model\ErroneousEvent;
 use JTL\SCX\Lib\Channel\Client\Api\Event\Model\EventContainerList;
 use PHPUnit\Framework\TestCase;
@@ -17,10 +19,9 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class GetSellerEventListResponseTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Event\Response
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Event\Response\GetSellerEventListResponse
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Event\Model\EventContainerList
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Event\Response\GetSellerEventListResponse::class)]
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Event\Model\EventContainerList::class)]
 class GetSellerEventListResponseTest extends TestCase
 {
     public function testCanBeCreated(): void
@@ -34,9 +35,7 @@ class GetSellerEventListResponseTest extends TestCase
         $this->assertSame($statusCode, $response->getStatusCode());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_have_a_list_of_ErroneousEvents(): void
     {
         $errorEvents = [$this->createStub(ErroneousEvent::class)];

@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Order;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\ChannelOrderIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\SellerIdRelatedMessage;
 use JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\OrderCancellationItemList;
@@ -17,68 +19,52 @@ use JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\RequestCancellationMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\RequestCancellationMessage
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Order\Cancellation\Buyer\RequestCancellationMessage::class)]
 class RequestOrderCancellationMessageTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_is_sellerId_related_message(): void
     {
         $sut = $this->buildMessage();
         $this->assertInstanceOf(SellerIdRelatedMessage::class, $sut);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_is_channelOrderId_related_message(): void
     {
         $sut = $this->buildMessage();
         $this->assertInstanceOf(ChannelOrderIdRelatedMessage::class, $sut);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_a_orderCancellationRequestId(): void
     {
         $sut = $this->buildMessage();
         $this->assertEquals('A_ID', $sut->getOrderCancellationRequestId());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_a_sellerId(): void
     {
         $sut = $this->buildMessage();
         $this->assertInstanceOf(ChannelSellerId::class, $sut->getSellerId());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_a_orderId(): void
     {
         $sut = $this->buildMessage();
         $this->assertEquals('A_ORDER_ID', $sut->getChannelOrderId());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_a_OrderItemList(): void
     {
         $sut = $this->buildMessage();
         $this->assertInstanceOf(OrderCancellationItemList::class, $sut->getOrderCancellationItemList());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_has_a_cancelReason(): void
     {
         $reason = 'a_reason';
@@ -92,18 +78,14 @@ class RequestOrderCancellationMessageTest extends TestCase
         $this->assertEquals($reason, $sut->getCancelReason());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function cancelReason_can_be_null(): void
     {
         $sut = $this->buildMessage();
         $this->assertNull($sut->getCancelReason());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_may_has_a_massage(): void
     {
         $message = 'a_message';
@@ -118,9 +100,7 @@ class RequestOrderCancellationMessageTest extends TestCase
         $this->assertEquals($message, $sut->getMessage());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function message_can_be_null(): void
     {
         $sut = $this->buildMessage();

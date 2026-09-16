@@ -4,11 +4,11 @@
     "description": "SCX Channel Library",
     "license": "MIT",
     "require": {
-        "php": "8.3.* || 8.4.*",
+        "php": "8.3.* || 8.4.* || 8.5.*",
         "ext-curl": "*",
         "ext-json": "*",
-        "guzzlehttp/guzzle": "^7.14.1",
-        "jtl-scx/api-base-client": "^1.7.0",
+        "guzzlehttp/guzzle": "^7.15.5",
+        "jtl-scx/api-base-client": "^2.1",
         "jtl-software/opsgenie-client": "^2.1",
         "jtl/go-prometrics-client": "^3.2",
         "jtl/nachricht": "^1.0",
@@ -29,8 +29,9 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": " ^3.95.13",
-        "phpstan/phpstan": "^1.12.33",
-        "phpunit/phpunit": "^9.6.35",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^12.5",
+        "rector/rector": "^2.0",
         "symfony/dotenv": "^7.4",
         "twig/twig": "^2.0 || ^3.28.0"
     },
@@ -59,6 +60,9 @@
         ]
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": {
+            "php": "8.3.0"
+        }
     }
 }

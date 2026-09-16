@@ -10,15 +10,15 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Category\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use JTL\SCX\Lib\Channel\Client\Model\ChannelCategoryTree;
 
 /**
  * Class UpdateCategoryTreeRequestTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Category\Request
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Category\Request\UpdateCategoryTreeRequest
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Category\Request\UpdateCategoryTreeRequest::class)]
 class UpdateCategoryTreeRequestTest extends TestCase
 {
     public function testCanBeCreatedAndUsed(): void

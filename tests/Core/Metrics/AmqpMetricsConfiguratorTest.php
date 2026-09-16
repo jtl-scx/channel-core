@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Metrics;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use JTL\GoPrometrics\Client\Label;
 use JTL\GoPrometrics\Client\LabelList;
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
@@ -19,25 +21,23 @@ use PHPUnit\Framework\TestCase;
  * Class AmqpMetricsConfigurator
  *
  * @package JTL\SCX\Lib\Channel\Core\Metrics
- *
- * @covers \JTL\SCX\Lib\Channel\Core\Metrics\AmqpMetricsConfigurator
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Metrics\AmqpMetricsConfigurator::class)]
 class AmqpMetricsConfiguratorTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function canConfigureMetrics(): void
     {
         $channelName = uniqid('channelName', true);
         $labelList = new LabelList();
 
         $environment = $this->createMock(Environment::class);
-
         $environment->expects(self::exactly(2))
             ->method('get')
-            ->withConsecutive(['CHANNEL_NAME'], ['METRIC_COLLECTION_ENABLED'])
-            ->willReturnOnConsecutiveCalls($channelName, '1');
+            ->willReturnCallback(static fn (string $key): string => match ($key) {
+                'CHANNEL_NAME' => $channelName,
+                'METRIC_COLLECTION_ENABLED' => '1',
+            });
 
         $configurator = new AmqpMetricsConfigurator($environment);
         $newLabelList = $configurator->extendLabelList($labelList);
@@ -48,9 +48,7 @@ class AmqpMetricsConfiguratorTest extends TestCase
         self::assertTrue($configurator->isActive());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_will_not_extend_channel_label_when_already_exist(): void
     {
         $labelList = new LabelList();

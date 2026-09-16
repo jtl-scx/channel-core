@@ -10,15 +10,16 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Seller\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use JTL\SCX\Lib\Channel\Client\Model\CreateSeller;
 
 /**
  * Class CreateSellerRequestTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Seller\Request
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Seller\Request\CreateSellerRequest
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Seller\Request\CreateSellerRequest::class)]
 class CreateSellerRequestTest extends TestCase
 {
     public function testCanBeCreatedAndValidated(): void
@@ -33,9 +34,7 @@ class CreateSellerRequestTest extends TestCase
         $this->assertSame('POST', $request->getHttpMethod());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_be_build_from_sellerId_and_session(): void
     {
         $sellerId = 'A_SELLER_ID';

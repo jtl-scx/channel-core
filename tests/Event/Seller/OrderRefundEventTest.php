@@ -10,25 +10,25 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use DateTimeImmutable;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderRefund;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class OrderRefundEventTest
  * @package JTL\SCX\Lib\Channel\Event\Seller
- *
- * @covers \JTL\SCX\Lib\Channel\Event\Seller\OrderRefundEvent
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Event\Seller\OrderRefundEvent::class)]
 class OrderRefundEventTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_be_created()
     {
         $id = uniqid('id', true);
         $version = uniqid('version', true);
-        $createdAt = new \DateTimeImmutable();
+        $createdAt = new DateTimeImmutable();
         $sellerId = uniqid('sellerId', true);
         $refundId = uniqid('refundId', true);
         $orderId = uniqid('orderId', true);

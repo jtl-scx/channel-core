@@ -10,15 +10,15 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\Generic\GenericCollection;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class CategoryListTest
  * @package JTL\SCX\Lib\Channel\MetaData
- *
- * @covers \JTL\SCX\Lib\Channel\MetaData\CategoryList
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\CategoryList::class)]
 class CategoryListTest extends TestCase
 {
     public function testIsGenericCollection(): void

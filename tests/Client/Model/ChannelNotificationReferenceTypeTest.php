@@ -27,7 +27,9 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * ChannelNotificationReferenceTypeTest Class Doc Comment
@@ -37,14 +39,14 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\ChannelNotificationReferenceType
  */
-class ChannelNotificationReferenceTypeTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\ChannelNotificationReferenceType::class)]
+class ChannelNotificationReferenceTypeTest extends AbstractApiModelTestCase
 {
     /**
      * Test Enum Value "OFFER"
-     * @test
      */
+    #[Test]
     public function is_a_const_OFFER(): void
     {
         self::assertEquals('OFFER', ChannelNotificationReferenceType::OFFER);
@@ -54,8 +56,8 @@ class ChannelNotificationReferenceTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "OFFER"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forOFFER(): void
     {
         $sut = ChannelNotificationReferenceType::OFFER();
@@ -63,8 +65,8 @@ class ChannelNotificationReferenceTypeTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "CHANNELOFFER"
-     * @test
      */
+    #[Test]
     public function is_a_const_CHANNELOFFER(): void
     {
         self::assertEquals('CHANNELOFFER', ChannelNotificationReferenceType::CHANNELOFFER);
@@ -74,8 +76,8 @@ class ChannelNotificationReferenceTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "CHANNELOFFER"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forCHANNELOFFER(): void
     {
         $sut = ChannelNotificationReferenceType::CHANNELOFFER();
@@ -83,8 +85,8 @@ class ChannelNotificationReferenceTypeTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "ORDERITEMID"
-     * @test
      */
+    #[Test]
     public function is_a_const_ORDERITEMID(): void
     {
         self::assertEquals('ORDERITEMID', ChannelNotificationReferenceType::ORDERITEMID);
@@ -94,8 +96,8 @@ class ChannelNotificationReferenceTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "ORDERITEMID"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forORDERITEMID(): void
     {
         $sut = ChannelNotificationReferenceType::ORDERITEMID();
@@ -104,8 +106,8 @@ class ChannelNotificationReferenceTypeTest extends AbstractApiModelTest
 
     /**
      * Test allowed values from Enum
-     * @test
      */
+    #[Test]
     public function it_has_correct_set_of_allowed_values(): void
     {
         $allowed = [

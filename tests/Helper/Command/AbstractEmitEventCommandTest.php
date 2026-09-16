@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use InvalidArgumentException;
 use JTL\Nachricht\Emitter\AmqpEmitter;
 use JTL\SCX\Lib\Channel\Client\Api\ChannelApiResponseDeserializer;
@@ -22,9 +23,7 @@ use PHPUnit\Framework\TestCase;
 use RuntimeException;
 use Symfony\Component\Console\Tester\CommandTester;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Helper\Command\AbstractEmitEventCommand
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Helper\Command\AbstractEmitEventCommand::class)]
 class AbstractEmitEventCommandTest extends TestCase
 {
     private string $testJsonFile;

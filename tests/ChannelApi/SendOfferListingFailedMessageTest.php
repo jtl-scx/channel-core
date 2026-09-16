@@ -10,18 +10,18 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\ChannelApi;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Ticket;
+use PHPUnit\Framework\Attributes\Test;
+use DateTime;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingFailedMessage
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingFailedMessage::class)]
 class SendOfferListingFailedMessageTest extends TestCase
 {
-    /**
-     * @test
-     * @ticket EA-6714
-     */
+    #[Ticket('EA-6714')]
+    #[Test]
     public function it_create_a_multibyte_save_error_message(): void
     {
         $tooLong = <<<TXT
@@ -51,7 +51,7 @@ TXT;
         $sellerOfferId = random_int(1, 10000);
         $errorCode = uniqid('errorCode', true);
         $errorMsg = uniqid('errorMsg', true);
-        $failedAt = $this->createStub(\DateTime::class);
+        $failedAt = $this->createStub(DateTime::class);
         $msgId = uniqid('msgId', true);
         $msg = new SendOfferListingFailedMessage($sellerId, $sellerOfferId, $errorCode, $errorMsg, $failedAt, $msgId, 'related attribute', 'some recommended value');
 
@@ -72,7 +72,7 @@ TXT;
         $sellerOfferId = random_int(1, 10000);
         $errorCode = uniqid('errorCode', true);
         $errorMsg = uniqid('errorMsg', true);
-        $failedAt = $this->createStub(\DateTime::class);
+        $failedAt = $this->createStub(DateTime::class);
         $msgId = uniqid('msgId', true);
         $msg = new SendOfferListingFailedMessage($sellerId, $sellerOfferId, $errorCode, $errorMsg, $failedAt, $msgId);
 
@@ -89,9 +89,7 @@ TXT;
         self::assertSame($errorLongMsg2, $msg->getErrorList()->offsetGet(1)->getLongMessage());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_use_longMessage_when_errorMessage_exceed_maximum_length_on_construct(): void
     {
         $sut = new SendOfferListingFailedMessage(
@@ -108,9 +106,7 @@ TXT;
         self::assertEquals(251, strlen($err[0]->getLongMessage()));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_use_longMessage_when_errorMessage_exceed_maximum_length_on_add_error(): void
     {
         $errorMessage = str_repeat('A', 251);
@@ -131,9 +127,7 @@ TXT;
         self::assertStringContainsString($errorMessage, $err[1]->getLongMessage());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_add_relatedAttributeId_in_constructor(): void
     {
         $relatedAttributeId = uniqid('relatedAttributeId', true);
@@ -151,9 +145,7 @@ TXT;
         self::assertEquals($relatedAttributeId, $err[0]->getRelatedAttributeId());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_add_recommendedValue_in_constructor(): void
     {
         $recommendedValue = uniqid('recommendedValue', true);
@@ -171,9 +163,7 @@ TXT;
         self::assertEquals($recommendedValue, $err[0]->getRecommendedValue());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_add_relatedAttributeId_when_add_a_error(): void
     {
         $relatedAttributeId = uniqid('relatedAttributeId', true);
@@ -191,9 +181,7 @@ TXT;
         self::assertEquals($relatedAttributeId, $err[1]->getRelatedAttributeId());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_add_recommendedValue_when_add_a_error(): void
     {
         $recommendedValue = uniqid('recommendedValue', true);
@@ -211,10 +199,8 @@ TXT;
         self::assertEquals($recommendedValue, $err[1]->getRecommendedValue());
     }
 
-    /**
-     * @test
-     * @ticket EA-6902
-     */
+    #[Ticket('EA-6902')]
+    #[Test]
     public function it_can_add_errorLongMessage_in_constructor(): void
     {
         $errorLongMessage = uniqid('errorLongMessage', true);
@@ -233,10 +219,8 @@ TXT;
         self::assertSame($errorLongMessage, $err[0]->getLongMessage());
     }
 
-    /**
-     * @test
-     * @ticket EA-6902
-     */
+    #[Ticket('EA-6902')]
+    #[Test]
     public function it_keeps_longMessage_null_when_errorLongMessage_is_not_given(): void
     {
         $sut = new SendOfferListingFailedMessage(
@@ -252,10 +236,8 @@ TXT;
         self::assertNull($err[0]->getLongMessage());
     }
 
-    /**
-     * @test
-     * @ticket EA-6902
-     */
+    #[Ticket('EA-6902')]
+    #[Test]
     public function it_keeps_both_texts_when_errorLongMessage_meets_an_oversized_errorMessage(): void
     {
         $errorMessage = str_repeat('A', 251);
@@ -280,14 +262,13 @@ TXT;
      * The new parameter must be appended at the very end of the signature. Every earlier position
      * would shift $failedAt/$messageId/$relatedAttributeId/$recommendedValue and break positional
      * callers like this one. See EA-6902.
-     *
-     * @test
-     * @ticket EA-6902
      */
+    #[Ticket('EA-6902')]
+    #[Test]
     public function it_stays_backwards_compatible_for_positional_callers(): void
     {
         $sellerId = $this->createStub(ChannelSellerId::class);
-        $failedAt = $this->createStub(\DateTime::class);
+        $failedAt = $this->createStub(DateTime::class);
 
         $sut = new SendOfferListingFailedMessage(
             $sellerId,

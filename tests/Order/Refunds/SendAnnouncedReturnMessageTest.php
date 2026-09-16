@@ -2,13 +2,13 @@
 
 namespace JTL\SCX\Lib\Channel\Order\Refunds;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Model\ReturnAnnouncement;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers  \JTL\SCX\Lib\Channel\Order\Refunds\SendAnnouncedReturnMessage
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Order\Refunds\SendAnnouncedReturnMessage::class)]
 class SendAnnouncedReturnMessageTest extends TestCase
 {
     private SendAnnouncedReturnMessage $sut;
@@ -23,6 +23,7 @@ class SendAnnouncedReturnMessageTest extends TestCase
         $this->sut = new SendAnnouncedReturnMessage($this->returnAnnouncement);
     }
 
+    #[AllowMockObjectsWithoutExpectations]
     public function testCanGetReturnAnnouncement(): void
     {
         self::assertSame($this->returnAnnouncement, $this->sut->getReturnAnnouncement());

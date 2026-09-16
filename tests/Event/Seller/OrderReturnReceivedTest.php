@@ -2,18 +2,16 @@
 
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use DateTimeImmutable;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderReturnReceived;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Event\Seller\OrderReturnReceived
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Event\Seller\OrderReturnReceived::class)]
 class OrderReturnReceivedTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_deliver_a_SellerEventOrderReturnReceived(): void
     {
         $sut = new OrderReturnReceived(
@@ -25,9 +23,7 @@ class OrderReturnReceivedTest extends TestCase
         self::assertSame($expectedEvent, $sut->getEvent());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_implement_SellerIdRelatedMessage(): void
     {
         $sut = new OrderReturnReceived(
@@ -42,9 +38,7 @@ class OrderReturnReceivedTest extends TestCase
         self::assertSame($expectedSellerId, $sut->getSellerId()->getId());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_implement_ChannelOrderIdRelatedMessage(): void
     {
         $sut = new OrderReturnReceived(

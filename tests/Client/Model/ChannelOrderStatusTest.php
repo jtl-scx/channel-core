@@ -27,7 +27,9 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * ChannelOrderStatusTest Class Doc Comment
@@ -37,14 +39,14 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\ChannelOrderStatus
  */
-class ChannelOrderStatusTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\ChannelOrderStatus::class)]
+class ChannelOrderStatusTest extends AbstractApiModelTestCase
 {
     /**
      * Test Enum Value "UNACKED"
-     * @test
      */
+    #[Test]
     public function is_a_const_UNACKED(): void
     {
         self::assertEquals('UNACKED', ChannelOrderStatus::UNACKED);
@@ -54,8 +56,8 @@ class ChannelOrderStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "UNACKED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forUNACKED(): void
     {
         $sut = ChannelOrderStatus::UNACKED();
@@ -63,8 +65,8 @@ class ChannelOrderStatusTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "CREATED"
-     * @test
      */
+    #[Test]
     public function is_a_const_CREATED(): void
     {
         self::assertEquals('CREATED', ChannelOrderStatus::CREATED);
@@ -74,8 +76,8 @@ class ChannelOrderStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "CREATED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forCREATED(): void
     {
         $sut = ChannelOrderStatus::CREATED();
@@ -83,8 +85,8 @@ class ChannelOrderStatusTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "ACCEPTED"
-     * @test
      */
+    #[Test]
     public function is_a_const_ACCEPTED(): void
     {
         self::assertEquals('ACCEPTED', ChannelOrderStatus::ACCEPTED);
@@ -94,8 +96,8 @@ class ChannelOrderStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "ACCEPTED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forACCEPTED(): void
     {
         $sut = ChannelOrderStatus::ACCEPTED();
@@ -103,8 +105,8 @@ class ChannelOrderStatusTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SHIPPED"
-     * @test
      */
+    #[Test]
     public function is_a_const_SHIPPED(): void
     {
         self::assertEquals('SHIPPED', ChannelOrderStatus::SHIPPED);
@@ -114,8 +116,8 @@ class ChannelOrderStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SHIPPED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSHIPPED(): void
     {
         $sut = ChannelOrderStatus::SHIPPED();
@@ -123,8 +125,8 @@ class ChannelOrderStatusTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "PARTIALLY_SHIPPED"
-     * @test
      */
+    #[Test]
     public function is_a_const_PARTIALLY_SHIPPED(): void
     {
         self::assertEquals('PARTIALLY_SHIPPED', ChannelOrderStatus::PARTIALLY_SHIPPED);
@@ -134,8 +136,8 @@ class ChannelOrderStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "PARTIALLY_SHIPPED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forPARTIALLY_SHIPPED(): void
     {
         $sut = ChannelOrderStatus::PARTIALLY_SHIPPED();
@@ -143,8 +145,8 @@ class ChannelOrderStatusTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "CANCELED_BY_SELLER"
-     * @test
      */
+    #[Test]
     public function is_a_const_CANCELED_BY_SELLER(): void
     {
         self::assertEquals('CANCELED_BY_SELLER', ChannelOrderStatus::CANCELED_BY_SELLER);
@@ -154,8 +156,8 @@ class ChannelOrderStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "CANCELED_BY_SELLER"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forCANCELED_BY_SELLER(): void
     {
         $sut = ChannelOrderStatus::CANCELED_BY_SELLER();
@@ -163,8 +165,8 @@ class ChannelOrderStatusTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "CANCELED_BY_BUYER"
-     * @test
      */
+    #[Test]
     public function is_a_const_CANCELED_BY_BUYER(): void
     {
         self::assertEquals('CANCELED_BY_BUYER', ChannelOrderStatus::CANCELED_BY_BUYER);
@@ -174,8 +176,8 @@ class ChannelOrderStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "CANCELED_BY_BUYER"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forCANCELED_BY_BUYER(): void
     {
         $sut = ChannelOrderStatus::CANCELED_BY_BUYER();
@@ -184,8 +186,8 @@ class ChannelOrderStatusTest extends AbstractApiModelTest
 
     /**
      * Test allowed values from Enum
-     * @test
      */
+    #[Test]
     public function it_has_correct_set_of_allowed_values(): void
     {
         $allowed = [

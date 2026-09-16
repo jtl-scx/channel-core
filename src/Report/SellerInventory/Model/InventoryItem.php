@@ -25,7 +25,7 @@ class InventoryItem
     private ?string $title;
     private ?string $channelCategoryId;
     private ?ItemAttributeList $channelAttributeList;
-    private ?\DateTimeImmutable $createdAt;
+    private \DateTimeImmutable $createdAt;
 
     public function __construct(
         ?int $sellerOfferId,
@@ -96,7 +96,7 @@ class InventoryItem
         return $this->channelAttributeList;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
     }

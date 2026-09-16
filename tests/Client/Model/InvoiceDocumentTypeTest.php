@@ -27,7 +27,9 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * InvoiceDocumentTypeTest Class Doc Comment
@@ -37,14 +39,14 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\InvoiceDocumentType
  */
-class InvoiceDocumentTypeTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\InvoiceDocumentType::class)]
+class InvoiceDocumentTypeTest extends AbstractApiModelTestCase
 {
     /**
      * Test Enum Value "INVOICE"
-     * @test
      */
+    #[Test]
     public function is_a_const_INVOICE(): void
     {
         self::assertEquals('INVOICE', InvoiceDocumentType::INVOICE);
@@ -54,8 +56,8 @@ class InvoiceDocumentTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "INVOICE"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forINVOICE(): void
     {
         $sut = InvoiceDocumentType::INVOICE();
@@ -63,8 +65,8 @@ class InvoiceDocumentTypeTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "CREDITNOTE"
-     * @test
      */
+    #[Test]
     public function is_a_const_CREDITNOTE(): void
     {
         self::assertEquals('CREDITNOTE', InvoiceDocumentType::CREDITNOTE);
@@ -74,8 +76,8 @@ class InvoiceDocumentTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "CREDITNOTE"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forCREDITNOTE(): void
     {
         $sut = InvoiceDocumentType::CREDITNOTE();
@@ -84,8 +86,8 @@ class InvoiceDocumentTypeTest extends AbstractApiModelTest
 
     /**
      * Test allowed values from Enum
-     * @test
      */
+    #[Test]
     public function it_has_correct_set_of_allowed_values(): void
     {
         $allowed = [

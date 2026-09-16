@@ -10,15 +10,18 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Helper;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use DateTime;
+use DateTimeImmutable;
+use stdClass;
 use JTL\SCX\Lib\Channel\Helper\Typifier;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Helper\Typifier
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Helper\Typifier::class)]
 class TypifierTest extends TestCase
 {
-    public function stringDataProvider(): array
+    public static function stringDataProvider(): array
     {
         return [
             ['test', 'test'],
@@ -29,15 +32,13 @@ class TypifierTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider stringDataProvider
-     */
+    #[DataProvider('stringDataProvider')]
     public function testCanConvertToStringOrNull($value, $expected): void
     {
         self::assertSame($expected, Typifier::toStringOrNull($value));
     }
 
-    public function intDataProvider(): array
+    public static function intDataProvider(): array
     {
         return [
             ['test', 0],
@@ -50,15 +51,13 @@ class TypifierTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider intDataProvider
-     */
+    #[DataProvider('intDataProvider')]
     public function testCanConvertToIntOrNull($value, $expected): void
     {
         self::assertSame($expected, Typifier::toIntOrNull($value));
     }
 
-    public function boolDataProvider(): array
+    public static function boolDataProvider(): array
     {
         return [
             ['test', true],
@@ -73,15 +72,13 @@ class TypifierTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider boolDataProvider
-     */
+    #[DataProvider('boolDataProvider')]
     public function testCanConvertToBoolOrNull($value, $expected): void
     {
         self::assertSame($expected, Typifier::toBoolOrNull($value));
     }
 
-    public function dateTimeDataProvider(): array
+    public static function dateTimeDataProvider(): array
     {
         return [
             ['test', true],
@@ -91,33 +88,29 @@ class TypifierTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider dateTimeDataProvider
-     */
+    #[DataProvider('dateTimeDataProvider')]
     public function testCanConvertToDateTimeOrNull($value, $isNull): void
     {
         if ($isNull) {
             self::assertNull(Typifier::toDateTimeOrNull($value));
         } else {
-            self::assertInstanceOf(\DateTime::class, Typifier::toDateTimeOrNull($value));
+            self::assertInstanceOf(DateTime::class, Typifier::toDateTimeOrNull($value));
         }
     }
 
-    /**
-     * @dataProvider dateTimeDataProvider
-     */
+    #[DataProvider('dateTimeDataProvider')]
     public function testCanConvertToDateTimeImmutableOrNull($value, $isNull): void
     {
         if ($isNull) {
             self::assertNull(Typifier::toDateTimeImmutableOrNull($value));
         } else {
-            self::assertInstanceOf(\DateTimeImmutable::class, Typifier::toDateTimeImmutableOrNull($value));
+            self::assertInstanceOf(DateTimeImmutable::class, Typifier::toDateTimeImmutableOrNull($value));
         }
     }
 
-    public function arrayDataProvider(): array
+    public static function arrayDataProvider(): array
     {
-        $stdClass = new \stdClass();
+        $stdClass = new stdClass();
         $stdClass->foo = 'bar';
         return [
             ['test', ['test']],
@@ -131,9 +124,7 @@ class TypifierTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider arrayDataProvider
-     */
+    #[DataProvider('arrayDataProvider')]
     public function testCanConvertToArrayOrNull($value, $expected): void
     {
         self::assertSame($expected, Typifier::toArrayOrNull($value));

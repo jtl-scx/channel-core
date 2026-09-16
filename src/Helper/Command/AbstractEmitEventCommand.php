@@ -98,7 +98,7 @@ abstract class AbstractEmitEventCommand extends AbstractCommand
             $eventType->getEventModelClass()
         );
 
-        if ($model instanceof ModelInterface && method_exists($model, 'valid') && !$model->valid()) {
+        if ($model instanceof ModelInterface && !$model->valid()) {
             throw new InvalidArgumentException(
                 "Invalid event schema \n" . print_r($model->listInvalidProperties(), true)
             );

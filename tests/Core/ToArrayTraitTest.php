@@ -10,20 +10,21 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core;
 
+use PHPUnit\Framework\Attributes\CoversTrait;
+use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\Test;
 use JTL\Generic\GenericCollection;
 use JTL\SCX\Lib\Channel\Core\ToArrayTrait;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Core\ToArrayTrait
- */
+#[CoversTrait(\JTL\SCX\Lib\Channel\Core\ToArrayTrait::class)]
 class ToArrayTraitTest extends TestCase
 {
     public function testCanConvertCollectionToArray(): void
     {
         $a = uniqid();
         $b = random_int(1, 99999999);
-        $c = new \DateTimeImmutable();
+        $c = new DateTimeImmutable();
         $d = ['foo' => 'bar'];
         $e = new My2ndTestClass($a);
         $collection = new MyTestClassCollection();
@@ -38,7 +39,7 @@ class ToArrayTraitTest extends TestCase
     {
         $a = uniqid();
         $b = random_int(1, 99999999);
-        $c = new \DateTimeImmutable();
+        $c = new DateTimeImmutable();
         $d = ['foo' => 'bar'];
         $e = new My2ndTestClass($a);
         $obj = new MyTestClass($a, $b, $c, $d, $e);
@@ -49,9 +50,7 @@ class ToArrayTraitTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_use_value_from_backedEnums(): void
     {
         $sut = new class (Foo::Bar) {
@@ -67,6 +66,15 @@ class ToArrayTraitTest extends TestCase
     }
 
 
+    #[Test]
+    public function it_ignores_traversable_items_that_are_not_objects(): void
+    {
+        $collection = new MyStringCollection();
+        $collection->add(MyTestClass::class);
+
+        self::assertSame([], $collection->toArray());
+    }
+
 }
 
 class MyTestClass
@@ -75,11 +83,11 @@ class MyTestClass
 
     private string $a;
     private int $b;
-    private \DateTimeImmutable $c;
+    private DateTimeImmutable $c;
     private array $d;
     private My2ndTestClass $e;
 
-    public function __construct(string $a, int $b, \DateTimeImmutable $c, array $d, My2ndTestClass $e)
+    public function __construct(string $a, int $b, DateTimeImmutable $c, array $d, My2ndTestClass $e)
     {
         $this->a = $a;
         $this->b = $b;
@@ -98,6 +106,16 @@ class My2ndTestClass
     public function __construct(string $a)
     {
         $this->a = $a;
+    }
+}
+
+class MyStringCollection extends GenericCollection
+{
+    use ToArrayTrait;
+
+    public function __construct()
+    {
+        parent::__construct('string');
     }
 }
 

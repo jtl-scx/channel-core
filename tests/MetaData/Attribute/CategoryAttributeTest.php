@@ -10,11 +10,10 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttribute
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttribute::class)]
 class CategoryAttributeTest extends TestCase
 {
     public function testCanBeUsed(): void

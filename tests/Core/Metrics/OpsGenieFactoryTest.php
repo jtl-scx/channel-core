@@ -2,13 +2,14 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Metrics;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use JTL\OpsGenie\Client\AlertApiClient;
+use JTL\OpsGenie\Client\HeartbeatApiClient;
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers  \JTL\SCX\Lib\Channel\Core\Metrics\OpsGenieFactory
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Metrics\OpsGenieFactory::class)]
 class OpsGenieFactoryTest extends TestCase
 {
     private Environment|MockObject $env;
@@ -23,12 +24,12 @@ class OpsGenieFactoryTest extends TestCase
     public function testCanCreateAlertClient(): void
     {
         $this->env->expects(self::once())->method('get')->with('OPSGENIE_TOKEN')->willReturn(uniqid());
-        self::assertInstanceOf(\JTL\OpsGenie\Client\AlertApiClient::class, $this->sut->createAlertClient());
+        self::assertInstanceOf(AlertApiClient::class, $this->sut->createAlertClient());
     }
 
     public function testCanCreateHeartbeatClient(): void
     {
         $this->env->expects(self::once())->method('get')->with('OPSGENIE_TOKEN')->willReturn(uniqid());
-        self::assertInstanceOf(\JTL\OpsGenie\Client\HeartbeatApiClient::class, $this->sut->createHeartbeatClient());
+        self::assertInstanceOf(HeartbeatApiClient::class, $this->sut->createHeartbeatClient());
     }
 }

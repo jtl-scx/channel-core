@@ -10,20 +10,20 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Order\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use JTL\SCX\Lib\Channel\Client\Model\OrderList;
 
 /**
  * Class CreateOrdersRequestTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Order\Request
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Order\Request\CreateOrderRequest
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Order\Request\CreateOrderRequest::class)]
 class CreateOrdersRequestTest extends TestCase
 {
     public function testCanBeCreatedAndUsed(): void
     {
-        $orderList = $this->createMock(OrderList::class);
+        $orderList = $this->createStub(OrderList::class);
 
         $request = new CreateOrderRequest($orderList);
 

@@ -10,15 +10,15 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Channel\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Model\ChannelUpdate;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class UpdateChannelRequestTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Channel\Request
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Channel\Request\UpdateChannelRequest
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Channel\Request\UpdateChannelRequest::class)]
 class UpdateChannelRequestTest extends TestCase
 {
     public function testCanBeCreatedAndUsed(): void

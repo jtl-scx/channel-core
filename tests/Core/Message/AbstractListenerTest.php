@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Message;
 
-use JTL\Nachricht\Contract\Message\AmqpTransportableMessage;
-use JTL\Nachricht\Contract\Message\Message;
+use PHPUnit\Framework\Attributes\CoversClass;
+use Exception;
 use JTL\Nachricht\Message\AbstractAmqpTransportableMessage;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\Core\Message\ChannelOfferIdRelatedMessage;
@@ -26,24 +26,35 @@ use JTL\SCX\Lib\Channel\Core\Log\MessageIdContext;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Core\Message\AbstractListener
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Message\AbstractListener::class)]
 class AbstractListenerTest extends TestCase
 {
     public function testCanSetup(): void
     {
-        $message = $this->createMock(TestMessage::class);
+        $message = $this->createStub(TestMessage::class);
         $logger = $this->createMock(ScxLogger::class);
         $logger->expects(self::once())->method('reset');
-        $logger->expects(self::exactly(6))->method('replaceContext')->withConsecutive(
-            [self::isInstanceOf(MessageFQNContext::class)],
-            [self::isInstanceOf(MessageIdContext::class)],
-            [self::isInstanceOf(ChannelSellerId::class)],
-            [self::isInstanceOf(ChannelOfferIdContext::class)],
-            [self::isInstanceOf(SellerOfferIdContext::class)],
-            [self::isInstanceOf(SellerReportIdContext::class)],
-        );
+        $matcher = self::exactly(6);
+        $logger->expects($matcher)->method('replaceContext')->willReturnCallback(function (...$parameters) use ($matcher) {
+            if ($matcher->numberOfInvocations() === 1) {
+                $this->assertInstanceOf(MessageFQNContext::class, $parameters[0]);
+            }
+            if ($matcher->numberOfInvocations() === 2) {
+                $this->assertInstanceOf(MessageIdContext::class, $parameters[0]);
+            }
+            if ($matcher->numberOfInvocations() === 3) {
+                $this->assertInstanceOf(ChannelSellerId::class, $parameters[0]);
+            }
+            if ($matcher->numberOfInvocations() === 4) {
+                $this->assertInstanceOf(ChannelOfferIdContext::class, $parameters[0]);
+            }
+            if ($matcher->numberOfInvocations() === 5) {
+                $this->assertInstanceOf(SellerOfferIdContext::class, $parameters[0]);
+            }
+            if ($matcher->numberOfInvocations() === 6) {
+                $this->assertInstanceOf(SellerReportIdContext::class, $parameters[0]);
+            }
+        });
         $listener = new TestListener($logger);
 
         $listener->setup($message);
@@ -51,7 +62,7 @@ class AbstractListenerTest extends TestCase
 
     public function testCanOnError(): void
     {
-        $error = $this->createStub(\Exception::class);
+        $error = $this->createStub(Exception::class);
         $message = $this->createStub(TestMessage::class);
         $logger = $this->createMock(ScxLogger::class);
         $logger->expects(self::once())->method('error')->with(self::callback(

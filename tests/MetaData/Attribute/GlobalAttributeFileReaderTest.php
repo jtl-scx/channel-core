@@ -2,19 +2,17 @@
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use InvalidArgumentException;
 use JsonException;
 use JTL\SCX\Lib\Channel\Helper\FileHandler;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\GlobalAttributeFileReader
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\Attribute\GlobalAttributeFileReader::class)]
 class GlobalAttributeFileReaderTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_load_attributes_from_file(): void
     {
         $random = static fn () => random_int(0, 1) === 0 ? 'false' : 'true';
@@ -80,9 +78,7 @@ JSON
         self::assertNull($attribute->isRecommended());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_values_when_type_is_ENUM(): void
     {
         $sut = $this->setupGlobalAttributeFileReader(
@@ -134,9 +130,7 @@ JSON
         self::assertCount(0, $values);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_ignores_legacy_enumValues_input_key(): void
     {
         $sut = $this->setupGlobalAttributeFileReader(
@@ -164,9 +158,7 @@ JSON
     }
 
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_use_smalltext_as_default_type(): void
     {
         $sut = $this->setupGlobalAttributeFileReader(
@@ -196,9 +188,7 @@ JSON
         self::assertEquals(AttributeType::BOOLEAN(), $attribute->getType());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_fail_when_attributeId_is_missing(): void
     {
         $sut = $this->setupGlobalAttributeFileReader(
@@ -220,9 +210,7 @@ JSON
         $sut->read('foo.json');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_fail_when_displayName_is_missing(): void
     {
         $sut = $this->setupGlobalAttributeFileReader(
@@ -244,9 +232,7 @@ JSON
         $sut->read('foo.json');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_fail_when_json_is_invalid(): void
     {
         $sut = $this->setupGlobalAttributeFileReader("INVALID");

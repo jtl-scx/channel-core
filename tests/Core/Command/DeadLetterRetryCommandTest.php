@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
+use PHPUnit\Framework\Attributes\CoversClass;
 use DateTimeImmutable;
 use JTL\Nachricht\Contract\Serializer\MessageSerializer;
 use JTL\Nachricht\Contract\Transport\Amqp\AmqpQueueLister;
@@ -25,9 +27,8 @@ use Symfony\Component\Console\Tester\CommandTester;
  * Class DeadLetterRetryCommand
  *
  * @package JTL\SCX\Lib\Channel\Core\Command
- *
- * @covers \JTL\SCX\Lib\Channel\Core\Command\DeadLetterRetryCommand
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Command\DeadLetterRetryCommand::class)]
 class DeadLetterRetryCommandTest extends TestCase
 {
     /**
@@ -55,7 +56,7 @@ class DeadLetterRetryCommandTest extends TestCase
         $this->transport = $this->createMock(AmqpTransport::class);
         $this->queueLister = $this->createMock(AmqpQueueLister::class);
         $this->messageSerializer = $this->createMock(MessageSerializer::class);
-        $this->logger = $this->createMock(ScxLogger::class);
+        $this->logger = $this->createStub(ScxLogger::class);
     }
 
     public function testListAndAskQueuesWithoutOptions(): void
@@ -67,7 +68,7 @@ class DeadLetterRetryCommandTest extends TestCase
         $exchange = uniqid('exchange', true);
 
         $message = $this->createMock(AMQPMessage::class);
-        $event = $this->createMock(AbstractEvent::class);
+        $event = $this->createStub(AbstractEvent::class);
 
         $this->transport->expects(self::once())
             ->method('connect');
@@ -140,7 +141,7 @@ class DeadLetterRetryCommandTest extends TestCase
         $queueName = AmqpTransport::DEAD_LETTER_QUEUE_PREFIX . uniqid('queueName', true);
 
         $message = $this->createMock(AMQPMessage::class);
-        $event = $this->createMock(AbstractEvent::class);
+        $event = $this->createStub(AbstractEvent::class);
 
         $this->transport->expects(self::once())
             ->method('connect');
@@ -202,7 +203,7 @@ class DeadLetterRetryCommandTest extends TestCase
         $queueName4 = AmqpTransport::DEAD_LETTER_QUEUE_PREFIX . uniqid('queueName', true) . 'specifictestqueue';
 
         $message = $this->createMock(AMQPMessage::class);
-        $event = $this->createMock(AbstractEvent::class);
+        $event = $this->createStub(AbstractEvent::class);
 
         $this->transport->expects(self::once())
             ->method('connect');
@@ -264,7 +265,7 @@ class DeadLetterRetryCommandTest extends TestCase
         $queueName4 = AmqpTransport::DEAD_LETTER_QUEUE_PREFIX . uniqid('queueName', true) . 'specifictestqueue';
 
         $message = $this->createMock(AMQPMessage::class);
-        $event = $this->createMock(AbstractEvent::class);
+        $event = $this->createStub(AbstractEvent::class);
 
         $this->transport->expects(self::once())
             ->method('connect');
@@ -319,6 +320,7 @@ class DeadLetterRetryCommandTest extends TestCase
         );
     }
 
+    #[AllowMockObjectsWithoutExpectations]
     public function testCanRetryMessagesWithDefaultActionDeleteAndMessageTypeWhereNoQueuesAreFound(): void
     {
         $queueName1 = AmqpTransport::DEAD_LETTER_QUEUE_PREFIX . uniqid('queueName', true);
@@ -408,10 +410,17 @@ class DeadLetterRetryCommandTest extends TestCase
         $event3->expects(self::once())
             ->method('getCreatedAt')
             ->willReturn(new DateTimeImmutable('2021-07-30T00:00:00Z'));
+        $matcher = self::exactly(2);
 
-        $this->transport->expects(self::exactly(2))
-            ->method('ack')
-            ->withConsecutive([$message1], [$message2]);
+        $this->transport->expects($matcher)
+            ->method('ack')->willReturnCallback(function (...$parameters) use ($matcher, $message1, $message2) {
+                if ($matcher->numberOfInvocations() === 1) {
+                    $this->assertSame($message1, $parameters[0]);
+                }
+                if ($matcher->numberOfInvocations() === 2) {
+                    $this->assertSame($message2, $parameters[0]);
+                }
+            });
 
         $command = new DeadLetterRetryCommand(
             $this->transport,
@@ -687,7 +696,7 @@ class DeadLetterRetryCommandTest extends TestCase
         $exchange = uniqid('exchange', true);
 
         $message = $this->createMock(AMQPMessage::class);
-        $event = $this->createMock(AbstractEvent::class);
+        $event = $this->createStub(AbstractEvent::class);
 
         $this->transport->expects(self::once())
             ->method('connect');
@@ -696,11 +705,18 @@ class DeadLetterRetryCommandTest extends TestCase
             ->method('listQueues')
             ->with(AmqpTransport::DEAD_LETTER_QUEUE_PREFIX)
             ->willReturn([$queueName1, $queueName2]);
+        $matcher = self::exactly(2);
 
-        $this->transport->expects(self::exactly(2))
-            ->method('countMessagesInQueue')
-            ->withConsecutive([$queueName1], [$queueName2])
-            ->willReturn(1);
+        $this->transport->expects($matcher)
+            ->method('countMessagesInQueue')->willReturnCallback(function (...$parameters) use ($matcher, $queueName1, $queueName2) {
+                if ($matcher->numberOfInvocations() === 1) {
+                    $this->assertSame($queueName1, $parameters[0]);
+                }
+                if ($matcher->numberOfInvocations() === 2) {
+                    $this->assertSame($queueName2, $parameters[0]);
+                }
+                return 1;
+            });
 
         $this->transport->expects(self::once())
             ->method('getMessageFromQueue')
@@ -767,7 +783,7 @@ class DeadLetterRetryCommandTest extends TestCase
         $exchange = uniqid('exchange', true);
 
         $message = $this->createMock(AMQPMessage::class);
-        $event = $this->createMock(AbstractEvent::class);
+        $event = $this->createStub(AbstractEvent::class);
 
         $this->transport->expects(self::once())
             ->method('connect');

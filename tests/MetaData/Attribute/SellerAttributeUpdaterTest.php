@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Api\Attribute\AttributesApi;
 use JTL\SCX\Lib\Channel\Client\Api\Attribute\Request\CreateSellerAttributesRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Attribute\Response\AttributesCreatedResponse;
@@ -18,19 +19,18 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class SellerAttributeUpdaterTest
  * @package JTL\SCX\Lib\Channel\MetaData\Attribute
- *
- * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\SellerAttributeUpdater
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\Attribute\SellerAttributeUpdater::class)]
 class SellerAttributeUpdaterTest extends TestCase
 {
     public function testCanUpdate(): void
     {
         $sellerId = uniqid('sellerId', true);
 
-        $attrListMock = $this->createMock(AttributeList::class);
+        $attrListMock = $this->createStub(AttributeList::class);
         $clientAttrList = [];
 
-        $createSellerResponse = $this->createMock(AttributesCreatedResponse::class);
+        $createSellerResponse = $this->createStub(AttributesCreatedResponse::class);
         $createSellerResponse->method('getStatusCode')->willReturn(201);
         $apiClientMock = $this->createMock(AttributesApi::class);
         $apiClientMock->expects($this->once())

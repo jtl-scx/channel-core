@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Seller\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Client\Request\ScxApiRequest;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Seller\Request\GetSellerListRequest
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Seller\Request\GetSellerListRequest::class)]
 class GetSellerListRequestTest extends TestCase
 {
     public function testCanBeCreatedAndValidated(): void

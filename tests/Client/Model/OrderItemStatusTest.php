@@ -27,7 +27,9 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * OrderItemStatusTest Class Doc Comment
@@ -37,14 +39,14 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\OrderItemStatus
  */
-class OrderItemStatusTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\OrderItemStatus::class)]
+class OrderItemStatusTest extends AbstractApiModelTestCase
 {
     /**
      * Test Enum Value "UNSHIPPED"
-     * @test
      */
+    #[Test]
     public function is_a_const_UNSHIPPED(): void
     {
         self::assertEquals('UNSHIPPED', OrderItemStatus::UNSHIPPED);
@@ -54,8 +56,8 @@ class OrderItemStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "UNSHIPPED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forUNSHIPPED(): void
     {
         $sut = OrderItemStatus::UNSHIPPED();
@@ -63,8 +65,8 @@ class OrderItemStatusTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SHIPPED"
-     * @test
      */
+    #[Test]
     public function is_a_const_SHIPPED(): void
     {
         self::assertEquals('SHIPPED', OrderItemStatus::SHIPPED);
@@ -74,8 +76,8 @@ class OrderItemStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SHIPPED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSHIPPED(): void
     {
         $sut = OrderItemStatus::SHIPPED();
@@ -83,8 +85,8 @@ class OrderItemStatusTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "CANCELED_BY_SELLER"
-     * @test
      */
+    #[Test]
     public function is_a_const_CANCELED_BY_SELLER(): void
     {
         self::assertEquals('CANCELED_BY_SELLER', OrderItemStatus::CANCELED_BY_SELLER);
@@ -94,8 +96,8 @@ class OrderItemStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "CANCELED_BY_SELLER"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forCANCELED_BY_SELLER(): void
     {
         $sut = OrderItemStatus::CANCELED_BY_SELLER();
@@ -103,8 +105,8 @@ class OrderItemStatusTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "CANCELED_BY_BUYER"
-     * @test
      */
+    #[Test]
     public function is_a_const_CANCELED_BY_BUYER(): void
     {
         self::assertEquals('CANCELED_BY_BUYER', OrderItemStatus::CANCELED_BY_BUYER);
@@ -114,8 +116,8 @@ class OrderItemStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "CANCELED_BY_BUYER"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forCANCELED_BY_BUYER(): void
     {
         $sut = OrderItemStatus::CANCELED_BY_BUYER();
@@ -123,8 +125,8 @@ class OrderItemStatusTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "RETURNED"
-     * @test
      */
+    #[Test]
     public function is_a_const_RETURNED(): void
     {
         self::assertEquals('RETURNED', OrderItemStatus::RETURNED);
@@ -134,8 +136,8 @@ class OrderItemStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "RETURNED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forRETURNED(): void
     {
         $sut = OrderItemStatus::RETURNED();
@@ -143,8 +145,8 @@ class OrderItemStatusTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "REFUNDED"
-     * @test
      */
+    #[Test]
     public function is_a_const_REFUNDED(): void
     {
         self::assertEquals('REFUNDED', OrderItemStatus::REFUNDED);
@@ -154,8 +156,8 @@ class OrderItemStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "REFUNDED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forREFUNDED(): void
     {
         $sut = OrderItemStatus::REFUNDED();
@@ -164,8 +166,8 @@ class OrderItemStatusTest extends AbstractApiModelTest
 
     /**
      * Test allowed values from Enum
-     * @test
      */
+    #[Test]
     public function it_has_correct_set_of_allowed_values(): void
     {
         $allowed = [

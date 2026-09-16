@@ -8,6 +8,8 @@
 
 namespace JTL\SCX\Lib\Channel\Helper;
 
+use RuntimeException;
+
 class FileHandler
 {
     /**
@@ -17,7 +19,12 @@ class FileHandler
      */
     public function open(string $fileName, string $mode)
     {
-        return fopen($fileName, $mode);
+        $resource = @fopen($fileName, $mode);
+        if ($resource === false) {
+            throw new RuntimeException("Could not open file '{$fileName}' in mode '{$mode}'");
+        }
+
+        return $resource;
     }
 
     /**
@@ -72,6 +79,11 @@ class FileHandler
      */
     public function readContent(string $filename): string
     {
-        return file_get_contents($filename);
+        $content = @file_get_contents($filename);
+        if ($content === false) {
+            throw new RuntimeException("Could not read file '{$filename}'");
+        }
+
+        return $content;
     }
 }

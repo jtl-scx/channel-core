@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\ChannelApi\Merger;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingFailedMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\ChannelApi\Merger\SendOfferListingFailedMerger
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\ChannelApi\Merger\SendOfferListingFailedMerger::class)]
 class SendOfferListingFailedMergerTest extends TestCase
 {
     public function test_can_check_and_merge_errors(): void

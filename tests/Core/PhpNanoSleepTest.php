@@ -2,16 +2,14 @@
 
 namespace JTL\SCX\Lib\Channel\Core;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Core\PhpNanoSleep
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\PhpNanoSleep::class)]
 class PhpNanoSleepTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_sleep(): void
     {
         $sut = new PhpNanoSleep();

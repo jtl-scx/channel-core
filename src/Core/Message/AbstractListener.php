@@ -58,8 +58,11 @@ abstract class AbstractListener implements Listener, BeforeMessageHook, AfterMes
         }
         if ($message instanceof SellerIdRelatedMessage) {
             $this->logger->replaceContext($message->getSellerId());
-        } elseif (method_exists($message, 'getEvent') && method_exists($message->getEvent(), 'getSellerId')) {
-            $this->logger->replaceContext(new ChannelSellerId((string)$message->getEvent()->getSellerId()));
+        } elseif (method_exists($message, 'getEvent')) {
+            $event = $message->getEvent();
+            if (is_object($event) && method_exists($event, 'getSellerId')) {
+                $this->logger->replaceContext(new ChannelSellerId((string)$event->getSellerId()));
+            }
         }
         if ($message instanceof ChannelOfferIdRelatedMessage) {
             $this->logger->replaceContext(new ChannelOfferIdContext($message->getChannelOfferId()));

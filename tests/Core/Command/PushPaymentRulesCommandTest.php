@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Api\Meta\PaymentRulesApi;
 use JTL\SCX\Lib\Channel\Client\Api\Meta\Request\CreatePaymentRulesRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Meta\Response\CreatePaymentRulesResponse;
@@ -19,9 +20,7 @@ use JTL\SCX\Lib\Channel\Helper\FileHandler;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Core\Command\PushPaymentRulesCommand
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Command\PushPaymentRulesCommand::class)]
 class PushPaymentRulesCommandTest extends TestCase
 {
     public function testCanPushDataToScx(): void

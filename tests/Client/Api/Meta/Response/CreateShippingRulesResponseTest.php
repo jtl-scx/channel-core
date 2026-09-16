@@ -10,11 +10,11 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Meta\Response;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Meta\Response\CreateShippingRulesResponse
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Meta\Response\CreateShippingRulesResponse::class)]
 class CreateShippingRulesResponseTest extends TestCase
 {
     public function testIsSuccessful(): void
@@ -23,7 +23,7 @@ class CreateShippingRulesResponseTest extends TestCase
         $this->assertTrue($response->isSuccessful());
     }
 
-    public function responsCodeProvider(): array
+    public static function responsCodeProvider(): array
     {
         return [
             [200],
@@ -35,9 +35,7 @@ class CreateShippingRulesResponseTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider responsCodeProvider
-     */
+    #[DataProvider('responsCodeProvider')]
     public function testIsNotSuccessful($responseCode): void
     {
         $response = new CreateShippingRulesResponse($responseCode);

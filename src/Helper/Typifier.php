@@ -41,6 +41,10 @@ class Typifier
 
     public static function toDateTimeOrNull(?string $value): ?\DateTime
     {
+        if ($value === null) {
+            return null;
+        }
+
         try {
             return new \DateTime($value);
         } catch (\Throwable $e) {
@@ -50,6 +54,10 @@ class Typifier
 
     public static function toDateTimeImmutableOrNull(?string $value): ?\DateTimeImmutable
     {
+        if ($value === null) {
+            return null;
+        }
+
         try {
             return new \DateTimeImmutable($value);
         } catch (\Throwable $e) {

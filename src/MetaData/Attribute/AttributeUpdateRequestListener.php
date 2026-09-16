@@ -44,6 +44,11 @@ class AttributeUpdateRequestListener extends AbstractListener
     public function processAttributes(AttributesUpdateRequestEvent $event): void
     {
         $sellerId = $event->getEvent()->getSellerId();
+        if ($sellerId === null) {
+            $this->logger->notice('Attribute update request without seller ID - skipping');
+            return;
+        }
+
         $attributeList = $this->attributeLoader->fetchAll($sellerId);
         if ($attributeList->count() > 0) {
             $this->attributeUpdater->update($sellerId, $attributeList);

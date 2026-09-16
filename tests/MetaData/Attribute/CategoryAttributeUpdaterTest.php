@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Api\Attribute\AttributesApi;
 use JTL\SCX\Lib\Channel\Client\Api\Attribute\Request\CreateCategoryAttributesRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Attribute\Response\AttributesCreatedResponse;
@@ -19,9 +21,8 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class CategoryAttributeUpdaterTest
  * @package MetaData\Attribute
- *
- * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeUpdater
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeUpdater::class)]
 class CategoryAttributeUpdaterTest extends TestCase
 {
     public function testCanUpdate(): void
@@ -30,7 +31,7 @@ class CategoryAttributeUpdaterTest extends TestCase
 
         $clientMock = $this->createMock(AttributesApi::class);
         $mapperMock = $this->createMock(AttributeMapper::class);
-        $attributeList = $this->createMock(AttributeList::class);
+        $attributeList = $this->createStub(AttributeList::class);
         $responseMock = $this->createMock(AttributesCreatedResponse::class);
 
         $mapperMock->expects($this->once())->method('map')->with($attributeList)->willReturn([]);
@@ -46,13 +47,14 @@ class CategoryAttributeUpdaterTest extends TestCase
         $updater->update($catAttr);
     }
 
+    #[AllowMockObjectsWithoutExpectations]
     public function testFailUpdate(): void
     {
         $categoryId = uniqid('categoryId', true);
 
         $clientMock = $this->createMock(AttributesApi::class);
         $mapperMock = $this->createMock(AttributeMapper::class);
-        $attributeList = $this->createMock(AttributeList::class);
+        $attributeList = $this->createStub(AttributeList::class);
         $responseMock = $this->createMock(AttributesCreatedResponse::class);
 
         $mapperMock->expects($this->once())->method('map')->with($attributeList)->willReturn([]);

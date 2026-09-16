@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Event;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\Test;
 use JTL\SCX\Lib\Channel\Client\Event\EventType;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers  \JTL\SCX\Lib\Channel\Event\AbstractEvent
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Event\AbstractEvent::class)]
 class AbstractEventTest extends TestCase
 {
     public function test_it_can_be_constructed_correctly(): void
@@ -17,7 +18,7 @@ class AbstractEventTest extends TestCase
         $sut = new class (
             id: $id = uniqid(),
             clientVersion: uniqid(),
-            createdAt:  $createdAt = new \DateTimeImmutable(),
+            createdAt:  $createdAt = new DateTimeImmutable(),
             type: $type = $this->createStub(EventType::class),
             internalEventId: $internalEventId = uniqid(),
             delay: $delay = random_int(1, 10000),
@@ -35,13 +36,13 @@ class AbstractEventTest extends TestCase
         self::assertEquals($retryCount, $sut->getRetryCount());
     }
 
-    /** @test */
+    #[Test]
     public function it_uses_default_delay_and_retry_delay_when_not_provided(): void
     {
         $sut = new class (
             id: uniqid(),
             clientVersion: uniqid(),
-            createdAt: new \DateTimeImmutable(),
+            createdAt: new DateTimeImmutable(),
             type: $this->createStub(EventType::class),
         ) extends AbstractEvent {
         };
@@ -50,13 +51,13 @@ class AbstractEventTest extends TestCase
         self::assertSame(120, $sut->getRetryDelay(), 'Default retry delay should be 120 seconds as defined by AbstractEvent');
     }
 
-    /** @test */
+    #[Test]
     public function it_delegates_retry_count_to_parent_when_not_set(): void
     {
         $sut = new class (
             id: uniqid(),
             clientVersion: uniqid(),
-            createdAt: new \DateTimeImmutable(),
+            createdAt: new DateTimeImmutable(),
             type: $this->createStub(EventType::class),
             internalEventId: uniqid()
         ) extends AbstractEvent {
@@ -67,7 +68,7 @@ class AbstractEventTest extends TestCase
         $sut2 = new class (
             id: uniqid(),
             clientVersion: uniqid(),
-            createdAt: new \DateTimeImmutable(),
+            createdAt: new DateTimeImmutable(),
             type: $this->createStub(EventType::class),
             internalEventId: uniqid(),
             retryCount: 7

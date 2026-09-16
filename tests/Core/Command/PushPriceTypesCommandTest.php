@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Exception;
 use JTL\SCX\Lib\Channel\Client\Api\Price\PriceApi;
 use JTL\SCX\Lib\Channel\Client\Api\Price\Response\CreatePriceTypeResponse;
@@ -23,9 +24,8 @@ use Symfony\Component\Console\Tester\CommandTester;
 /**
  * Class PushPriceTypesCommandTest
  * @package JTL\SCX\Lib\Channel\Core\Command
- *
- * @covers \JTL\SCX\Lib\Channel\Core\Command\PushPriceTypesCommand
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Command\PushPriceTypesCommand::class)]
 class PushPriceTypesCommandTest extends TestCase
 {
     public function testCanPushDataToScx()
@@ -102,7 +102,7 @@ class PushPriceTypesCommandTest extends TestCase
      */
     private function createPriceList(string $priceId)
     {
-        $priceMock = $this->createMock(PriceType::class);
+        $priceMock = $this->createStub(PriceType::class);
         $priceMock->method('getPriceTypeId')->willReturn($priceId);
         $priceList = new PriceTypeList();
         $priceList[] = $priceMock;

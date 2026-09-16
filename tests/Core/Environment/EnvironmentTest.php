@@ -10,12 +10,12 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Environment;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Core\Environment\Environment
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Environment\Environment::class)]
 class EnvironmentTest extends TestCase
 {
     public function tearDown(): void
@@ -23,9 +23,7 @@ class EnvironmentTest extends TestCase
         $_ENV = [];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_will_handle_environment_variables_as_immutable_list()
     {
         $_ENV['foo'] = 'should-not-change';
@@ -35,18 +33,14 @@ class EnvironmentTest extends TestCase
         $this->assertEquals('should-not-change', $env->get('foo'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_build_with_a_own_set_of_environment_variables()
     {
         $env = new Environment(['any-env' => 'any-value']);
         $this->assertEquals('any-value', $env->get('any-env'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_will_ignore_ENV_superglobals_when_using_a_own_set_of_environment_variables()
     {
         $_ENV['any-env'] = 'with-any-value';
@@ -54,9 +48,7 @@ class EnvironmentTest extends TestCase
         $this->assertEquals('any-value', $env->get('any-env'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_read_existing_key()
     {
         $_ENV['foo'] = 'bar';
@@ -64,18 +56,14 @@ class EnvironmentTest extends TestCase
         $this->assertEquals($_ENV['foo'], $env->get('foo'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_return_null_when_key_not_exists()
     {
         $env = new Environment();
         $this->assertNull($env->get('should-no-exists'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_check_if_current_environment_is_considered_as_development()
     {
         $_ENV['IS_DEVELOPMENT'] = 'true';
@@ -83,9 +71,7 @@ class EnvironmentTest extends TestCase
         $this->assertTrue($env->isDevelopment());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_check_a_environment_variable_exists()
     {
         $_ENV['should-exist'] = 'yeah!';
@@ -93,9 +79,7 @@ class EnvironmentTest extends TestCase
         $this->assertTrue($env->exists('should-exist'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_read_environment_value_as_integer()
     {
         $_ENV['it-is-an-int'] = '1337';
@@ -103,9 +87,7 @@ class EnvironmentTest extends TestCase
         $this->assertIsInt($env->getInt('it-is-an-int'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_read_environment_value_as_string()
     {
         $_ENV['it-is-an-string'] = '1337';
@@ -113,9 +95,7 @@ class EnvironmentTest extends TestCase
         $this->assertIsString($env->getString('it-is-an-string'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_read_environment_value_as_boolean()
     {
         $_ENV['it-is-an-boolean'] = '1';

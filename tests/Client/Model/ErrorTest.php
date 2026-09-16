@@ -27,7 +27,10 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\DataProvider;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * ErrorTest Class Doc Comment
@@ -37,14 +40,14 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\Error
  */
-class ErrorTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\Error::class)]
+class ErrorTest extends AbstractApiModelTestCase
 {
     /**
      * Test allowed values for severity
-     * @test
      */
+    #[Test]
     public function it_has_correct_allowed_values_for_severity(): void
     {
         $allowed = [
@@ -57,9 +60,8 @@ class ErrorTest extends AbstractApiModelTest
     }
     /**
      * @return array
-     * @dataProvider
      */
-    public function expectedInterface(): array
+    public static function expectedInterface(): array
     {
         return [
             'assert property code' => [
@@ -93,10 +95,8 @@ class ErrorTest extends AbstractApiModelTest
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider expectedInterface
-     */
+    #[DataProvider('expectedInterface')]
+    #[Test]
     public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
     {
         $sample = $this->buildSampleForDataType($type);

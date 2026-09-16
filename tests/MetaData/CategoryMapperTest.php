@@ -10,14 +10,14 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class CategoryMapperTest
  * @package JTL\SCX\Lib\Channel\MetaData
- *
- * @covers \JTL\SCX\Lib\Channel\MetaData\CategoryMapper
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\CategoryMapper::class)]
 class CategoryMapperTest extends TestCase
 {
     public function testMap(): void

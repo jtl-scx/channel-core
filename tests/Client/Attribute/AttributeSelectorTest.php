@@ -10,12 +10,12 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Attribute;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use JTL\SCX\Lib\Channel\Client\Model\ChannelAttribute;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Attribute\AttributeSelector
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Attribute\AttributeSelector::class)]
 class AttributeSelectorTest extends TestCase
 {
     public function testGetValueListById(): void
@@ -89,9 +89,7 @@ class AttributeSelectorTest extends TestCase
         $this->assertNotEquals('second', $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_fetch_a_boolean_value_from_AttributeList(): void
     {
         $list = [

@@ -48,6 +48,11 @@ class CategoryTreeUpdater
         if ($response->getStatusCode() !== 201) {
             throw new UnexpectedStatusException("Could not update categoryTree. Request returned statuscode {$response->getStatusCode()}");
         }
-        return $response->getCategoryTreeVersion()->getCategoryTreeVersion();
+        $version = $response->getCategoryTreeVersion()->getCategoryTreeVersion();
+        if ($version === null) {
+            throw new UnexpectedStatusException('Could not update categoryTree. Response carried no categoryTreeVersion');
+        }
+
+        return $version;
     }
 }

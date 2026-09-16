@@ -1,0 +1,1759 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Class JTL\\SCX\\Lib\\Channel\\ChannelApi\\ListingFailedErrorList extends generic class JTL\\Generic\\GenericCollection but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/ChannelApi/ListingFailedErrorList.php
+
+		-
+			message: '#^Cannot call method getCode\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/ChannelApi/SendOfferListingResultListener.php
+
+		-
+			message: '#^Cannot call method getLongMessage\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/ChannelApi/SendOfferListingResultListener.php
+
+		-
+			message: '#^Cannot call method getMessage\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/ChannelApi/SendOfferListingResultListener.php
+
+		-
+			message: '#^Cannot call method getRecommendedValue\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/ChannelApi/SendOfferListingResultListener.php
+
+		-
+			message: '#^Cannot call method getRelatedAttributeId\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/ChannelApi/SendOfferListingResultListener.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Client\\Attribute\\AttributeSelector\:\:getBooleanById\(\) has parameter \$channelAttributeList with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\ChannelAttribute but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Client/Attribute/AttributeSelector.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Client\\Attribute\\AttributeSelector\:\:getValueById\(\) has parameter \$channelAttributeList with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\ChannelAttribute but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Client/Attribute/AttributeSelector.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Client\\Attribute\\AttributeSelector\:\:getValueListById\(\) has parameter \$channelAttributeList with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\ChannelAttribute but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Client/Attribute/AttributeSelector.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Client\\Attribute\\AttributeSelector\:\:getValueListById\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client/Attribute/AttributeSelector.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Client\\EnumInterface\:\:getValue\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Client/EnumInterface.php
+
+		-
+			message: '#^Class JTL\\SCX\\Lib\\Channel\\Client\\Event\\EventType extends generic class MyCLabs\\Enum\\Enum but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Client/Event/EventType.php
+
+		-
+			message: '#^Class JTL\\SCX\\Lib\\Channel\\Client\\Order\\OrderStatus extends generic class MyCLabs\\Enum\\Enum but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Client/Order/OrderStatus.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Client\\Price\\PriceSelector\:\:minimumQuantityPriceByType\(\) has parameter \$priceList with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client/Price/PriceSelector.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Client\\Price\\PriceSelector\:\:minimumQuantityPriceByType\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\QuantityPrice does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Client/Price/PriceSelector.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Client\\Price\\PriceSelector\:\:priceContainerByType\(\) has parameter \$priceList with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Client/Price/PriceSelector.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Client\\Price\\PriceSelector\:\:priceContainerByType\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\PriceContainer does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Client/Price/PriceSelector.php
+
+		-
+			message: '#^Class JTL\\SCX\\Lib\\Channel\\Client\\Price\\PriceType extends generic class MyCLabs\\Enum\\Enum but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Client/Price/PriceType.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Contract\\Core\\Message\\ChannelOrderItemIdListRelatedMessage\:\:getChannelOrderItemIdList\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Contract/Core/Message/ChannelOrderItemIdListRelatedMessage.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Contract\\MetaData\\MetaDataCategoryAttributeLoader\:\:fetch\(\) has parameter \$categoryIdList with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Contract/MetaData/MetaDataCategoryAttributeLoader.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Controller\\AbstractSignUpController\:\:renderTemplate\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Controller/AbstractSignUpController.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/Core/AbstractApplicationContext.php
+
+		-
+			message: '#^Parameter \#1 \$content of method Symfony\\Component\\Config\\ResourceCheckerConfigCache\:\:write\(\) expects string, array\|string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/AbstractApplicationContext.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 2
+			path: src/Core/Command/DeadLetterRetryCommand.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Command\\DeadLetterRetryCommand\:\:printAndProcessQueues\(\) has parameter \$queueList with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Command/DeadLetterRetryCommand.php
+
+		-
+			message: '#^Parameter \#1 \$queue of method JTL\\SCX\\Lib\\Channel\\Core\\Command\\DeadLetterRetryCommand\:\:processQueue\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/DeadLetterRetryCommand.php
+
+		-
+			message: '#^Parameter \#2 \$needle of function stripos expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/DeadLetterRetryCommand.php
+
+		-
+			message: '#^Part \$messageType \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: src/Core/Command/DeadLetterRetryCommand.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Core/Command/ImportCategoryAttributesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$categoryId of method JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryAttributesCommand\:\:import\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/ImportCategoryAttributesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function file_exists expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/ImportCategoryAttributesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function fopen expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/ImportCategoryAttributesCommand.php
+
+		-
+			message: '#^Parameter \#2 \$process of method JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryAttributesCommand\:\:import\(\) expects bool, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Core/Command/ImportCategoryAttributesCommand.php
+
+		-
+			message: '#^Parameter \#3 \$separator of function fgetcsv expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/ImportCategoryAttributesCommand.php
+
+		-
+			message: '#^Parameter \#4 \$enclosure of function fgetcsv expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/ImportCategoryAttributesCommand.php
+
+		-
+			message: '#^Parameter \#4 \$keepAttributes of method JTL\\SCX\\Lib\\Channel\\Core\\Command\\ImportCategoryAttributesCommand\:\:import\(\) expects bool, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/Core/Command/ImportCategoryAttributesCommand.php
+
+		-
+			message: '#^Part \$importFile \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 2
+			path: src/Core/Command/ImportCategoryAttributesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function fopen expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/ImportCategoryTreeCommand.php
+
+		-
+			message: '#^Parameter \#3 \$separator of function fputcsv expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/ImportCategoryTreeCommand.php
+
+		-
+			message: '#^Parameter \#4 \$enclosure of function fputcsv expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/ImportCategoryTreeCommand.php
+
+		-
+			message: '#^Parameter \#1 \$filename of method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\GlobalAttributeFileReader\:\:read\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/ImportGlobalAttributesFileCommand.php
+
+		-
+			message: '#^Parameter \#1 \$sellerId of method JTL\\SCX\\Lib\\Channel\\Contract\\MetaData\\SellerAttributeLoader\:\:fetchAll\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/ImportSellerAttributesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$sellerId of method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\SellerAttributeUpdater\:\:update\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/ImportSellerAttributesCommand.php
+
+		-
+			message: '#^Part \$sellerId \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: src/Core/Command/ImportSellerAttributesCommand.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Core/Command/MessageConsumeCommand.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Core/Command/MessageConsumeCommand.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/Core/Command/PushPaymentRulesCommand.php
+
+		-
+			message: '#^Cannot access offset ''displayName'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Core/Command/PushPaymentRulesCommand.php
+
+		-
+			message: '#^Cannot access offset ''paymentMethodId'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Core/Command/PushPaymentRulesCommand.php
+
+		-
+			message: '#^Cannot access offset ''supportedPaymentMethodList'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Core/Command/PushPaymentRulesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$fileName of method JTL\\SCX\\Lib\\Channel\\Helper\\FileHandler\:\:isFile\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/PushPaymentRulesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$filename of method JTL\\SCX\\Lib\\Channel\\Helper\\FileHandler\:\:readContent\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/PushPaymentRulesCommand.php
+
+		-
+			message: '#^Part \$filename \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: src/Core/Command/PushPaymentRulesCommand.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Command\\PushPriceTypesCommand\:\:pushPrice\(\) has parameter \$priceType with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\PriceType but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Core/Command/PushPriceTypesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$filename of method JTL\\SCX\\Lib\\Channel\\MetaData\\Price\\PriceTypeLoader\:\:load\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/PushPriceTypesCommand.php
+
+		-
+			message: '#^Parameter \#2 \$priceType of method JTL\\SCX\\Lib\\Channel\\Core\\Command\\PushPriceTypesCommand\:\:pushPrice\(\) expects JTL\\SCX\\Lib\\Channel\\Client\\Model\\PriceType, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/PushPriceTypesCommand.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/Core/Command/PushShippingRulesCommand.php
+
+		-
+			message: '#^Cannot access offset ''carrierId'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Core/Command/PushShippingRulesCommand.php
+
+		-
+			message: '#^Cannot access offset ''displayName'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Core/Command/PushShippingRulesCommand.php
+
+		-
+			message: '#^Cannot access offset ''supportedCarrierList'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/Core/Command/PushShippingRulesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$fileName of method JTL\\SCX\\Lib\\Channel\\Helper\\FileHandler\:\:isFile\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/PushShippingRulesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$filename of method JTL\\SCX\\Lib\\Channel\\Helper\\FileHandler\:\:readContent\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Command/PushShippingRulesCommand.php
+
+		-
+			message: '#^Part \$filename \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: src/Core/Command/PushShippingRulesCommand.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Environment\\Environment\:\:__construct\(\) has parameter \$env with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Environment/Environment.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Environment\\Environment\:\:get\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Core/Environment/Environment.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Core\\Environment\\Environment\:\:\$env type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Environment/Environment.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\I18n\\Translator\:\:trans\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/I18n/Translator.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\Context\\CancellationRequestIdContext\:\:getLogContext\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/Context/CancellationRequestIdContext.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\Context\\ChannelOfferIdContext\:\:getLogContext\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/Context/ChannelOfferIdContext.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\Context\\ChannelOrderIdContext\:\:getLogContext\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/Context/ChannelOrderIdContext.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\Context\\ChannelOrderItemIdListContext\:\:__construct\(\) has parameter \$channelOrderIdList with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/Context/ChannelOrderItemIdListContext.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\Context\\ChannelOrderItemIdListContext\:\:getLogContext\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/Context/ChannelOrderItemIdListContext.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Core\\Log\\Context\\ChannelOrderItemIdListContext\:\:\$channelOrderIdList type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/Context/ChannelOrderItemIdListContext.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\Context\\InvoiceNumberContext\:\:getLogContext\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/Context/InvoiceNumberContext.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\Context\\LabeledContextAware\:\:__invoke\(\) has parameter \$record with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/Context/LabeledContextAware.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\Context\\LabeledContextAware\:\:__invoke\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/Context/LabeledContextAware.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\Context\\LabeledContextAware\:\:attachLabel\(\) has parameter \$labels with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/Context/LabeledContextAware.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\Context\\LabeledContextAware\:\:attachLabel\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/Context/LabeledContextAware.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\Context\\LabeledContextAware\:\:getLogContext\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/Context/LabeledContextAware.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\Context\\MessageFQNContext\:\:__invoke\(\) has parameter \$record with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/Context/MessageFQNContext.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\Context\\MessageFQNContext\:\:__invoke\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/Context/MessageFQNContext.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\Context\\RefundIdContext\:\:getLogContext\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/Context/RefundIdContext.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\Context\\SellerOfferIdContext\:\:getLogContext\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/Context/SellerOfferIdContext.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\Context\\SellerReportIdContext\:\:getLogContext\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/Context/SellerReportIdContext.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\ContextLogger\:\:setup\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Core/Log/ContextLogger.php
+
+		-
+			message: '#^Parameter \#1 \$level of method Monolog\\Logger\:\:log\(\) expects 100\|200\|250\|300\|400\|500\|550\|600\|''ALERT''\|''alert''\|''CRITICAL''\|''critical''\|''DEBUG''\|''debug''\|''EMERGENCY''\|''emergency''\|''ERROR''\|''error''\|''INFO''\|''info''\|''NOTICE''\|''notice''\|''WARNING''\|''warning'', mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/Log/ContextLogger.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\EntityIdContext\:\:__invoke\(\) has parameter \$record with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/EntityIdContext.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\EntityIdContext\:\:__invoke\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/EntityIdContext.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\MessageIdContext\:\:__invoke\(\) has parameter \$record with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/MessageIdContext.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Core\\Log\\MessageIdContext\:\:__invoke\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Core/Log/MessageIdContext.php
+
+		-
+			message: '#^Parameter \#1 \$callback of function array_map expects \(callable\(mixed\)\: mixed\)\|null, Closure\(array\)\: mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/RabbitMqManagementApi/RabbitMqQueueLister.php
+
+		-
+			message: '#^Parameter \#2 \$array of function array_map expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Core/RabbitMqManagementApi/RabbitMqQueueLister.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: src/Event/Command/ScxApiEventConsumeCommand.php
+
+		-
+			message: '#^Cannot call method getId\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: src/Event/Emitter/SellerEventEmitter.php
+
+		-
+			message: '#^Cannot call method getType\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: src/Event/Emitter/SellerEventEmitter.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Emitter\\SellerEventEmitter\:\:emit\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Event/Emitter/SellerEventEmitter.php
+
+		-
+			message: '#^Parameter \#1 \$eventContainer of method JTL\\SCX\\Lib\\Channel\\Event\\EventFactory\:\:createFromEventContainer\(\) expects JTL\\SCX\\Lib\\Channel\\Client\\Api\\Event\\Model\\EventContainer, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Event/Emitter/SellerEventEmitter.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\AttributesUpdateRequestEvent\:\:__construct\(\) has parameter \$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventSellerAttributesUpdateRequest but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/AttributesUpdateRequestEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\AttributesUpdateRequestEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventSellerAttributesUpdateRequest does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/AttributesUpdateRequestEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\AttributesUpdateRequestEvent\:\:seller\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Event/Seller/AttributesUpdateRequestEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\AttributesUpdateRequestEvent\:\:\$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventSellerAttributesUpdateRequest does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/AttributesUpdateRequestEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\ChannelUnlinkedEvent\:\:__construct\(\) has parameter \$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventChannelUnlinked but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/ChannelUnlinkedEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\ChannelUnlinkedEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventChannelUnlinked does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/ChannelUnlinkedEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\ChannelUnlinkedEvent\:\:\$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventChannelUnlinked does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/ChannelUnlinkedEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OfferEndEvent\:\:__construct\(\) has parameter \$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOfferEnd but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OfferEndEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OfferEndEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOfferEnd does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OfferEndEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OfferEndEvent\:\:\$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOfferEnd does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OfferEndEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OfferNewEvent\:\:__construct\(\) has parameter \$eventOfferNew with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOfferNew but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OfferNewEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OfferNewEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOfferNew does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OfferNewEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OfferNewEvent\:\:\$eventOfferNew with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOfferNew does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OfferNewEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OfferPriceUpdateEvent\:\:__construct\(\) has parameter \$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOfferPriceUpdate but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OfferPriceUpdateEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OfferPriceUpdateEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOfferPriceUpdate does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OfferPriceUpdateEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OfferPriceUpdateEvent\:\:\$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOfferPriceUpdate does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OfferPriceUpdateEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OfferStockUpdateEvent\:\:__construct\(\) has parameter \$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOfferStockUpdate but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OfferStockUpdateEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OfferStockUpdateEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOfferStockUpdate does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OfferStockUpdateEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OfferStockUpdateEvent\:\:\$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOfferStockUpdate does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OfferStockUpdateEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OfferUpdateEvent\:\:__construct\(\) has parameter \$eventOfferUpdate with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOfferUpdate but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OfferUpdateEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OfferUpdateEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOfferUpdate does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OfferUpdateEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OfferUpdateEvent\:\:\$eventOfferUpdate with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOfferUpdate does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OfferUpdateEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderCancellationAcceptedEvent\:\:__construct\(\) has parameter \$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderCancellationAccepted but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderCancellationAcceptedEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderCancellationAcceptedEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderCancellationAccepted does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderCancellationAcceptedEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderCancellationAcceptedEvent\:\:\$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderCancellationAccepted does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderCancellationAcceptedEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderCancellationDeniedEvent\:\:__construct\(\) has parameter \$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderCancellationDenied but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderCancellationDeniedEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderCancellationDeniedEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderCancellationDenied does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderCancellationDeniedEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderCancellationDeniedEvent\:\:\$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderCancellationDenied does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderCancellationDeniedEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderCancellationRequestEvent\:\:__construct\(\) has parameter \$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderCancellationRequest but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderCancellationRequestEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderCancellationRequestEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderCancellationRequest does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderCancellationRequestEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderCancellationRequestEvent\:\:\$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderCancellationRequest does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderCancellationRequestEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderConfirmedEvent\:\:__construct\(\) has parameter \$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderConfirmed but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderConfirmedEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderConfirmedEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderConfirmed does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderConfirmedEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderConfirmedEvent\:\:\$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderConfirmed does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderConfirmedEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderInvoiceEvent\:\:__construct\(\) has parameter \$eventOrderInvoice with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderInvoice but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderInvoiceEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderInvoiceEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderInvoice does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderInvoiceEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderInvoiceEvent\:\:\$eventOrderInvoice with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderInvoice does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderInvoiceEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderPaymentEvent\:\:__construct\(\) has parameter \$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderPayment but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderPaymentEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderPaymentEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderPayment does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderPaymentEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderPaymentEvent\:\:\$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderPayment does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderPaymentEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderRefundEvent\:\:__construct\(\) has parameter \$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderRefund but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderRefundEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderRefundEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderRefund does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderRefundEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderRefundEvent\:\:\$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderRefund does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderRefundEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderReturnReceived\:\:__construct\(\) has parameter \$type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderReturnReceived but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderReturnReceived.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderReturnReceived\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderReturnReceived does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderReturnReceived.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderReturnReceived\:\:\$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderReturnReceived does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderReturnReceived.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderShippingEvent\:\:__construct\(\) has parameter \$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderShipping but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderShippingEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderShippingEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderShipping does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderShippingEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\OrderShippingEvent\:\:\$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventOrderShipping does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/OrderShippingEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\ReportRequestEvent\:\:__construct\(\) has parameter \$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventReportRequest but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/ReportRequestEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\ReportRequestEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventReportRequest does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/ReportRequestEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\ReportRequestEvent\:\:\$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventReportRequest does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/ReportRequestEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\SystemNotificationEvent\:\:__construct\(\) has parameter \$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SystemEventNotification but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/SystemNotificationEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\SystemNotificationEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SystemEventNotification does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/SystemNotificationEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\SystemNotificationEvent\:\:\$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SystemEventNotification does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/SystemNotificationEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\SystemTestEvent\:\:__construct\(\) has parameter \$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventTest but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/SystemTestEvent.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Event\\Seller\\SystemTestEvent\:\:getEvent\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventTest does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/SystemTestEvent.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Event\\Seller\\SystemTestEvent\:\:\$event with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\SellerEventTest does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Event/Seller/SystemTestEvent.php
+
+		-
+			message: '#^Binary operation "\." between ''/'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/Helper/Command/AbstractEmitEventCommand.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: src/Helper/Command/AbstractEmitEventCommand.php
+
+		-
+			message: '#^Cannot access offset ''sellerId'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/Helper/Command/AbstractEmitEventCommand.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Helper\\Command\\AbstractEmitEventCommand\:\:buildEventContainer\(\) has parameter \$event with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Helper/Command/AbstractEmitEventCommand.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Helper\\Command\\AbstractEmitEventCommand\:\:prepareEventData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Helper/Command/AbstractEmitEventCommand.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Helper\\Command\\AbstractEmitEventCommand\:\:printEventData\(\) has parameter \$event with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Helper/Command/AbstractEmitEventCommand.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Helper\\Command\\AbstractEmitEventCommand\:\:replaceWithArguments\(\) has parameter \$arguments with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Helper/Command/AbstractEmitEventCommand.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Helper\\Command\\AbstractEmitEventCommand\:\:replaceWithArguments\(\) has parameter \$event with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Helper/Command/AbstractEmitEventCommand.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Helper\\Command\\AbstractEmitEventCommand\:\:replaceWithArguments\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Helper/Command/AbstractEmitEventCommand.php
+
+		-
+			message: '#^Parameter \#1 \$event of method JTL\\SCX\\Lib\\Channel\\Helper\\Command\\AbstractEmitEventCommand\:\:replaceWithArguments\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Helper/Command/AbstractEmitEventCommand.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function strpos expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Helper/Command/AbstractEmitEventCommand.php
+
+		-
+			message: '#^Parameter \#1 \$id of static method JTL\\SCX\\Lib\\Channel\\Notification\\NotificationReference\:\:offer\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Helper/Command/EmitChannelNotificationCommand.php
+
+		-
+			message: '#^Parameter \#1 \$orderItemId of static method JTL\\SCX\\Lib\\Channel\\Notification\\NotificationReference\:\:orderItemId\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Helper/Command/EmitChannelNotificationCommand.php
+
+		-
+			message: '#^Parameter \#1 \$sellerId of class JTL\\SCX\\Lib\\Channel\\Notification\\SendNotificationMessage constructor expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Helper/Command/EmitChannelNotificationCommand.php
+
+		-
+			message: '#^Parameter \#2 \$message of class JTL\\SCX\\Lib\\Channel\\Notification\\SendNotificationMessage constructor expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Helper/Command/EmitChannelNotificationCommand.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Helper\\Typifier\:\:toArrayOrNull\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Helper/Typifier.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Helper\\Typifier\:\:toArrayOrNull\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Helper/Typifier.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Helper\\Typifier\:\:toBoolOrNull\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Helper/Typifier.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Helper\\Typifier\:\:toIntOrNull\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Helper/Typifier.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Helper\\Typifier\:\:toStringOrNull\(\) has parameter \$value with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Helper/Typifier.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeEnumValue\:\:createArray\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/Attribute/AttributeEnumValue.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeEnumValue\:\:createArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/Attribute/AttributeEnumValue.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeEnumValue\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/Attribute/AttributeEnumValue.php
+
+		-
+			message: '#^PHPDoc tag @var for variable \$traversableObject has no value type specified in iterable type Traversable\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/Attribute/AttributeEnumValue.php
+
+		-
+			message: '#^Class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeEnumValueList extends generic class JTL\\Generic\\GenericCollection but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/MetaData/Attribute/AttributeEnumValueList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeEnumValueList\:\:createArray\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/Attribute/AttributeEnumValueList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeEnumValueList\:\:createArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/Attribute/AttributeEnumValueList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeEnumValueList\:\:fromArray\(\) has parameter \$array with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/Attribute/AttributeEnumValueList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeEnumValueList\:\:fromScalarArray\(\) has parameter \$valueList with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/Attribute/AttributeEnumValueList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeEnumValueList\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/Attribute/AttributeEnumValueList.php
+
+		-
+			message: '#^PHPDoc tag @var for variable \$traversableObject has no value type specified in iterable type Traversable\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/Attribute/AttributeEnumValueList.php
+
+		-
+			message: '#^Class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeList extends generic class JTL\\Generic\\GenericCollection but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/MetaData/Attribute/AttributeList.php
+
+		-
+			message: '#^Cannot call method getAttributeId\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/MetaData/Attribute/AttributeMapper.php
+
+		-
+			message: '#^Cannot call method getAttributeValues\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/MetaData/Attribute/AttributeMapper.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeMapper\:\:map\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/Attribute/AttributeMapper.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeMapper\:\:mapConditional\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/Attribute/AttributeMapper.php
+
+		-
+			message: '#^Class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\CategoryAttributeList extends generic class JTL\\Generic\\GenericCollection but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/MetaData/Attribute/CategoryAttributeList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\CategoryAttributeList\:\:addAttributeList\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/MetaData/Attribute/CategoryAttributeList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\ConditionalAttribute\:\:__construct\(\) has parameter \$attributeValues with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/Attribute/ConditionalAttribute.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\ConditionalAttribute\:\:getAttributeValues\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/Attribute/ConditionalAttribute.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\ConditionalAttribute\:\:\$attributeValues type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/Attribute/ConditionalAttribute.php
+
+		-
+			message: '#^Class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\ConditionalAttributeCollection extends generic class JTL\\Generic\\GenericCollection but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/MetaData/Attribute/ConditionalAttributeCollection.php
+
+		-
+			message: '#^Class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\ConditionalAttributeList extends generic class JTL\\Generic\\GenericCollection but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/MetaData/Attribute/ConditionalAttributeList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\DefaultMetaDataCategoryAttributeLoader\:\:fetch\(\) has parameter \$categoryIdList with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/Attribute/DefaultMetaDataCategoryAttributeLoader.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Cannot access offset ''attributeId'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Cannot access offset ''attributeValueValidation'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Cannot access offset ''conditionalMandatoryBy'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Cannot access offset ''conditionalOptionalBy'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Cannot access offset ''description'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Cannot access offset ''displayName'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Cannot access offset ''isMultipleAllowed'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Cannot access offset ''isRepeatableSubSection'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Cannot access offset ''isVariationDimension'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Cannot access offset ''recommended'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Cannot access offset ''required'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Cannot access offset ''section'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Cannot access offset ''sectionPosition'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Cannot access offset ''subSection'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Cannot access offset ''subSectionPosition'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Cannot access offset ''type'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Cannot access offset ''values'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\GlobalAttributeFileReader\:\:createConditionalAttributeCollection\(\) has parameter \$conditionalByList with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Parameter \#1 \$array of static method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\AttributeEnumValueList\:\:fromArray\(\) expects array\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Parameter \#1 \$conditionalByList of method JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\GlobalAttributeFileReader\:\:createConditionalAttributeCollection\(\) expects array\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Parameter \$attributeId of class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\Attribute constructor expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Parameter \$attributeValueValidation of class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\Attribute constructor expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Parameter \$description of class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\Attribute constructor expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Parameter \$displayName of class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\Attribute constructor expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Parameter \$isMultipleAllowed of class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\Attribute constructor expects bool, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Parameter \$isRepeatableSubSection of class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\Attribute constructor expects bool, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Parameter \$isVariationDimension of class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\Attribute constructor expects bool\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Parameter \$recommended of class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\Attribute constructor expects bool\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Parameter \$required of class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\Attribute constructor expects bool, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Parameter \$section of class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\Attribute constructor expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Parameter \$sectionPosition of class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\Attribute constructor expects int\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Parameter \$subSection of class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\Attribute constructor expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Parameter \$subSectionPosition of class JTL\\SCX\\Lib\\Channel\\MetaData\\Attribute\\Attribute constructor expects int\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/MetaData/Attribute/GlobalAttributeFileReader.php
+
+		-
+			message: '#^Class JTL\\SCX\\Lib\\Channel\\MetaData\\CategoryList extends generic class JTL\\Generic\\GenericCollection but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/MetaData/CategoryList.php
+
+		-
+			message: '#^Cannot call method getCategoryId\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/MetaData/CategoryMapper.php
+
+		-
+			message: '#^Cannot call method getCategoryName\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/MetaData/CategoryMapper.php
+
+		-
+			message: '#^Cannot call method getParentCategoryId\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/MetaData/CategoryMapper.php
+
+		-
+			message: '#^Cannot call method isListingAllowed\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/MetaData/CategoryMapper.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\CategoryMapper\:\:map\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/MetaData/CategoryMapper.php
+
+		-
+			message: '#^Class JTL\\SCX\\Lib\\Channel\\MetaData\\Price\\PriceTypeList extends generic class JTL\\Generic\\GenericCollection but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/MetaData/Price/PriceTypeList.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/MetaData/Price/PriceTypeLoader.php
+
+		-
+			message: '#^Cannot access offset ''description'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/MetaData/Price/PriceTypeLoader.php
+
+		-
+			message: '#^Cannot access offset ''displayName'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/MetaData/Price/PriceTypeLoader.php
+
+		-
+			message: '#^Cannot access offset ''priceId'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/MetaData/Price/PriceTypeLoader.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\MetaData\\Price\\PriceTypeLoader\:\:validateDataList\(\) has parameter \$priceDataList with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/MetaData/Price/PriceTypeLoader.php
+
+		-
+			message: '#^Parameter \#1 \$description of method JTL\\SCX\\Lib\\Channel\\Client\\Model\\PriceType\<mixed,mixed\>\:\:setDescription\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/MetaData/Price/PriceTypeLoader.php
+
+		-
+			message: '#^Parameter \#1 \$displayName of method JTL\\SCX\\Lib\\Channel\\Client\\Model\\PriceType\<mixed,mixed\>\:\:setDisplayName\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/MetaData/Price/PriceTypeLoader.php
+
+		-
+			message: '#^Parameter \#1 \$priceTypeId of method JTL\\SCX\\Lib\\Channel\\Client\\Model\\PriceType\<mixed,mixed\>\:\:setPriceTypeId\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/MetaData/Price/PriceTypeLoader.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Notification\\SendNotificationListener\:\:sendNotification\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Notification/SendNotificationListener.php
+
+		-
+			message: '#^Class JTL\\SCX\\Lib\\Channel\\Notification\\Severity extends generic class MyCLabs\\Enum\\Enum but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Notification/Severity.php
+
+		-
+			message: '#^Class JTL\\SCX\\Lib\\Channel\\Order\\Cancellation\\Buyer\\OrderCancellationItemList extends generic class JTL\\Generic\\GenericCollection but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Order/Cancellation/Buyer/OrderCancellationItemList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Order\\Cancellation\\Buyer\\RequestCancellationListener\:\:buildOrderCancellationRequest\(\) has parameter \$orderItemList with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Order/Cancellation/Buyer/RequestCancellationListener.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Order\\Cancellation\\Buyer\\RequestCancellationListener\:\:buildOrderCancellationRequest\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\OrderCancellationRequest does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Order/Cancellation/Buyer/RequestCancellationListener.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Order\\Refunds\\SendAnnouncedReturnMessage\:\:__construct\(\) has parameter \$returnAnnouncement with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\ReturnAnnouncement but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Order/Refunds/SendAnnouncedReturnMessage.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Order\\Refunds\\SendAnnouncedReturnMessage\:\:getReturnAnnouncement\(\) return type with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\ReturnAnnouncement does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Order/Refunds/SendAnnouncedReturnMessage.php
+
+		-
+			message: '#^Property JTL\\SCX\\Lib\\Channel\\Order\\Refunds\\SendAnnouncedReturnMessage\:\:\$returnAnnouncement with generic class JTL\\SCX\\Lib\\Channel\\Client\\Model\\ReturnAnnouncement does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Order/Refunds/SendAnnouncedReturnMessage.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Client\\SendInventoryReportClient\:\:completeReport\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Report/SellerInventory/Client/SendInventoryReportClient.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Client\\SendInventoryReportClient\:\:sendReport\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Report/SellerInventory/Client/SendInventoryReportClient.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Client\\SendInventoryReportClient\:\:sendReportData\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Report/SellerInventory/Client/SendInventoryReportClient.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\InventoryItem\:\:createArray\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/InventoryItem.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\InventoryItem\:\:createArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/InventoryItem.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\InventoryItem\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/InventoryItem.php
+
+		-
+			message: '#^PHPDoc tag @var for variable \$traversableObject has no value type specified in iterable type Traversable\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/InventoryItem.php
+
+		-
+			message: '#^Class JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\InventoryItemList extends generic class JTL\\Generic\\GenericCollection but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Report/SellerInventory/Model/InventoryItemList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\InventoryItemList\:\:createArray\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/InventoryItemList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\InventoryItemList\:\:createArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/InventoryItemList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\InventoryItemList\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/InventoryItemList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\ItemAttribute\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/ItemAttribute.php
+
+		-
+			message: '#^Class JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\ItemAttributeList extends generic class JTL\\Generic\\GenericCollection but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Report/SellerInventory/Model/ItemAttributeList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\ItemAttributeList\:\:createArray\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/ItemAttributeList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\ItemAttributeList\:\:createArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/ItemAttributeList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\ItemAttributeList\:\:fromArray\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Report/SellerInventory/Model/ItemAttributeList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\ItemAttributeList\:\:fromArray\(\) has parameter \$itemDataList with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/ItemAttributeList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\ItemAttributeList\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/ItemAttributeList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\Price\:\:createArray\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/Price.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\Price\:\:createArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/Price.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\Price\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/Price.php
+
+		-
+			message: '#^PHPDoc tag @var for variable \$traversableObject has no value type specified in iterable type Traversable\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/Price.php
+
+		-
+			message: '#^Class JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\PriceList extends generic class JTL\\Generic\\GenericCollection but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Report/SellerInventory/Model/PriceList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\PriceList\:\:createArray\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/PriceList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\PriceList\:\:createArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/PriceList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\PriceList\:\:fromArray\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/PriceList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\PriceList\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/PriceList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\QuantityPrice\:\:createArray\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/QuantityPrice.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\QuantityPrice\:\:createArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/QuantityPrice.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\QuantityPrice\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/QuantityPrice.php
+
+		-
+			message: '#^PHPDoc tag @var for variable \$traversableObject has no value type specified in iterable type Traversable\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/QuantityPrice.php
+
+		-
+			message: '#^Class JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\QuantityPriceList extends generic class JTL\\Generic\\GenericCollection but does not specify its types\: T$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Report/SellerInventory/Model/QuantityPriceList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\QuantityPriceList\:\:createArray\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/QuantityPriceList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\QuantityPriceList\:\:createArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/QuantityPriceList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Report\\SellerInventory\\Model\\QuantityPriceList\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Report/SellerInventory/Model/QuantityPriceList.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Seller\\ChannelSellerId\:\:getLogContext\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Seller/ChannelSellerId.php
+
+		-
+			message: '#^Method JTL\\SCX\\Lib\\Channel\\Seller\\UnlinkSellerListener\:\:unlink\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: src/Seller/UnlinkSellerListener.php

@@ -2,16 +2,20 @@
 
 namespace JTL\SCX\Lib\Channel\Client;
 
+use ReflectionClass;
+use ReflectionException;
+use SplFileObject;
+use Exception;
 use JTL\SCX\Lib\Channel\Client\Model\ModelInterface;
 use PHPUnit\Framework\TestCase;
 
-abstract class AbstractApiModelTest extends TestCase
+abstract class AbstractApiModelTestCase extends TestCase
 {
     protected function assertMethodExists(ModelInterface $sut, string $methodName): void
     {
         try {
-            (new \ReflectionClass($sut))->getMethod($methodName);
-        } catch (\ReflectionException $e) {
+            (new ReflectionClass($sut))->getMethod($methodName);
+        } catch (ReflectionException $e) {
             self::fail("No public method {$methodName} found in " . get_class($sut));
         }
         $this->assertTrue(true);
@@ -20,7 +24,7 @@ abstract class AbstractApiModelTest extends TestCase
     /**
      * @param string $dataType
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     protected function buildSampleForDataType(string $dataType)
     {
@@ -38,7 +42,7 @@ abstract class AbstractApiModelTest extends TestCase
 
         switch ($dataType) {
             case '\SplFileObject':
-                $sampleData = new \SplFileObject('php://memory');
+                $sampleData = new SplFileObject('php://memory');
                 break;
             case 'object':
                 $sampleData = $this->createStub('\stdClass');

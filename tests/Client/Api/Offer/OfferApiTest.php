@@ -10,6 +10,9 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Offer;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
+use PHPUnit\Framework\Attributes\CoversClass;
+use DateTime;
 use JTL\SCX\Client\Api\AuthAwareApiClient;
 use JTL\SCX\Lib\Channel\Client\Api\ChannelApiResponseDeserializer;
 use JTL\SCX\Lib\Channel\Client\Api\Offer\Request\GetAllStockUpdatesRequest;
@@ -17,7 +20,6 @@ use JTL\SCX\Lib\Channel\Client\Api\Offer\Request\GetStockUpdatesBySellerRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Offer\Request\MarkListingAsFailedRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Offer\Request\MarkListingInProgressRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Offer\Request\MarkListingSuccessfulRequest;
-use JTL\SCX\Lib\Channel\Client\Api\Offer\Response\GetStockUpdatesResponse;
 use JTL\SCX\Lib\Channel\Client\Model\Stock;
 use JTL\SCX\Lib\Channel\Client\Model\StockList;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -26,9 +28,8 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class OfferApiTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Offer
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Offer\OfferApi
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Offer\OfferApi::class)]
 class OfferApiTest extends TestCase
 {
     private ChannelApiResponseDeserializer&MockObject $deserializer;
@@ -38,9 +39,10 @@ class OfferApiTest extends TestCase
         parent::setUp();
     }
 
+    #[AllowMockObjectsWithoutExpectations]
     public function testCanMarkInProgress(): void
     {
-        $requestMock = $this->createMock(MarkListingInProgressRequest::class);
+        $requestMock = $this->createStub(MarkListingInProgressRequest::class);
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
         $apiClientMock->expects($this->once())->method('request')->with($requestMock);
 
@@ -48,9 +50,10 @@ class OfferApiTest extends TestCase
         $api->markInProgress($requestMock);
     }
 
+    #[AllowMockObjectsWithoutExpectations]
     public function testMarkListingFailed(): void
     {
-        $requestMock = $this->createMock(MarkListingAsFailedRequest::class);
+        $requestMock = $this->createStub(MarkListingAsFailedRequest::class);
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
         $apiClientMock->expects($this->once())->method('request')->with($requestMock);
 
@@ -58,9 +61,10 @@ class OfferApiTest extends TestCase
         $api->markListingFailed($requestMock);
     }
 
+    #[AllowMockObjectsWithoutExpectations]
     public function testMarkListed(): void
     {
-        $requestMock = $this->createMock(MarkListingSuccessfulRequest::class);
+        $requestMock = $this->createStub(MarkListingSuccessfulRequest::class);
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
         $apiClientMock->expects($this->once())->method('request')->with($requestMock);
 
@@ -70,8 +74,8 @@ class OfferApiTest extends TestCase
 
     public function testCanGetAllStockUpdates(): void
     {
-        $dateTime = new \DateTime();
-        $requestMock = $this->createMock(GetAllStockUpdatesRequest::class);
+        $dateTime = new DateTime();
+        $requestMock = $this->createStub(GetAllStockUpdatesRequest::class);
         $stockList = new StockList([
             'lastUpdatedAt' => $dateTime,
             'stockUpdateList' => [new Stock([
@@ -100,8 +104,8 @@ class OfferApiTest extends TestCase
 
     public function testCanGetStockUpdatesBySeller(): void
     {
-        $dateTime = new \DateTime();
-        $requestMock = $this->createMock(GetStockUpdatesBySellerRequest::class);
+        $dateTime = new DateTime();
+        $requestMock = $this->createStub(GetStockUpdatesBySellerRequest::class);
         $stockList = new StockList([
             'lastUpdatedAt' => $dateTime,
             'stockUpdateList' => [new Stock([

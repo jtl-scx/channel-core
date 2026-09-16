@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Category\Response;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use JTL\SCX\Lib\Channel\Client\Model\CategoryTreeVersion;
 use JTL\SCX\Client\Response\AbstractResponse;
@@ -17,9 +18,8 @@ use JTL\SCX\Client\Response\AbstractResponse;
 /**
  * Class UpdateCategoryTreeResponseTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Category\Response
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Category\Response\UpdateCategoryTreeResponse
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Category\Response\UpdateCategoryTreeResponse::class)]
 class UpdateCategoryTreeResponseTest extends TestCase
 {
     public function testCanBeCreated(): void

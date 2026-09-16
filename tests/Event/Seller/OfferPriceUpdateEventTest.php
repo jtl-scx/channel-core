@@ -7,14 +7,13 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use DateTimeImmutable;
 use JTL\SCX\Lib\Channel\Client\Event\EventType;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferPriceUpdate;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Event\Seller\OfferPriceUpdateEvent
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Event\Seller\OfferPriceUpdateEvent::class)]
 class OfferPriceUpdateEventTest extends TestCase
 {
     public function test_can_receive_event_and_type()

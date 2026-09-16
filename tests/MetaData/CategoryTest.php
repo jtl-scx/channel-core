@@ -10,14 +10,14 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class CategoryTest
  * @package \JTL\SCX\Lib\Channel\MetaData
- *
- * @covers \JTL\SCX\Lib\Channel\MetaData\Category
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\Category::class)]
 class CategoryTest extends TestCase
 {
     /**

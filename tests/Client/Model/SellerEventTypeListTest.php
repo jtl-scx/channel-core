@@ -27,7 +27,9 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * SellerEventTypeListTest Class Doc Comment
@@ -37,14 +39,14 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\SellerEventTypeList
  */
-class SellerEventTypeListTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\SellerEventTypeList::class)]
+class SellerEventTypeListTest extends AbstractApiModelTestCase
 {
     /**
      * Test Enum Value "SYSTEM_TEST"
-     * @test
      */
+    #[Test]
     public function is_a_const_SYSTEM_TEST(): void
     {
         self::assertEquals('System:Test', SellerEventTypeList::SYSTEM_TEST);
@@ -54,8 +56,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SYSTEM_TEST"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSYSTEM_TEST(): void
     {
         $sut = SellerEventTypeList::SYSTEM_TEST();
@@ -63,8 +65,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SYSTEM_NOTIFICATION"
-     * @test
      */
+    #[Test]
     public function is_a_const_SYSTEM_NOTIFICATION(): void
     {
         self::assertEquals('System:Notification', SellerEventTypeList::SYSTEM_NOTIFICATION);
@@ -74,8 +76,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SYSTEM_NOTIFICATION"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSYSTEM_NOTIFICATION(): void
     {
         $sut = SellerEventTypeList::SYSTEM_NOTIFICATION();
@@ -83,8 +85,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_ORDER_CONFIRMED"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_ORDER_CONFIRMED(): void
     {
         self::assertEquals('Seller:Order.Confirmed', SellerEventTypeList::SELLER_ORDER_CONFIRMED);
@@ -94,8 +96,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_ORDER_CONFIRMED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_ORDER_CONFIRMED(): void
     {
         $sut = SellerEventTypeList::SELLER_ORDER_CONFIRMED();
@@ -103,8 +105,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_ORDER_SHIPPING"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_ORDER_SHIPPING(): void
     {
         self::assertEquals('Seller:Order.Shipping', SellerEventTypeList::SELLER_ORDER_SHIPPING);
@@ -114,8 +116,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_ORDER_SHIPPING"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_ORDER_SHIPPING(): void
     {
         $sut = SellerEventTypeList::SELLER_ORDER_SHIPPING();
@@ -123,8 +125,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_ORDER_PAYMENT"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_ORDER_PAYMENT(): void
     {
         self::assertEquals('Seller:Order.Payment', SellerEventTypeList::SELLER_ORDER_PAYMENT);
@@ -134,8 +136,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_ORDER_PAYMENT"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_ORDER_PAYMENT(): void
     {
         $sut = SellerEventTypeList::SELLER_ORDER_PAYMENT();
@@ -143,8 +145,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_ORDER_CANCELLATION_REQUEST"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_ORDER_CANCELLATION_REQUEST(): void
     {
         self::assertEquals('Seller:Order.Cancellation.Request', SellerEventTypeList::SELLER_ORDER_CANCELLATION_REQUEST);
@@ -154,8 +156,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_ORDER_CANCELLATION_REQUEST"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_ORDER_CANCELLATION_REQUEST(): void
     {
         $sut = SellerEventTypeList::SELLER_ORDER_CANCELLATION_REQUEST();
@@ -163,8 +165,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_ORDER_CANCELLATION_ACCEPTED"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_ORDER_CANCELLATION_ACCEPTED(): void
     {
         self::assertEquals('Seller:Order.Cancellation.Accepted', SellerEventTypeList::SELLER_ORDER_CANCELLATION_ACCEPTED);
@@ -174,8 +176,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_ORDER_CANCELLATION_ACCEPTED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_ORDER_CANCELLATION_ACCEPTED(): void
     {
         $sut = SellerEventTypeList::SELLER_ORDER_CANCELLATION_ACCEPTED();
@@ -183,8 +185,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_ORDER_CANCELLATION_DENIED"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_ORDER_CANCELLATION_DENIED(): void
     {
         self::assertEquals('Seller:Order.Cancellation.Denied', SellerEventTypeList::SELLER_ORDER_CANCELLATION_DENIED);
@@ -194,8 +196,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_ORDER_CANCELLATION_DENIED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_ORDER_CANCELLATION_DENIED(): void
     {
         $sut = SellerEventTypeList::SELLER_ORDER_CANCELLATION_DENIED();
@@ -203,8 +205,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_ORDER_REFUND"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_ORDER_REFUND(): void
     {
         self::assertEquals('Seller:Order.Refund', SellerEventTypeList::SELLER_ORDER_REFUND);
@@ -214,8 +216,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_ORDER_REFUND"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_ORDER_REFUND(): void
     {
         $sut = SellerEventTypeList::SELLER_ORDER_REFUND();
@@ -223,8 +225,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_ORDER_INVOICE"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_ORDER_INVOICE(): void
     {
         self::assertEquals('Seller:Order.Invoice', SellerEventTypeList::SELLER_ORDER_INVOICE);
@@ -234,8 +236,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_ORDER_INVOICE"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_ORDER_INVOICE(): void
     {
         $sut = SellerEventTypeList::SELLER_ORDER_INVOICE();
@@ -243,8 +245,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_ORDER_RETURN_RECEIVED"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_ORDER_RETURN_RECEIVED(): void
     {
         self::assertEquals('Seller:Order.ReturnReceived', SellerEventTypeList::SELLER_ORDER_RETURN_RECEIVED);
@@ -254,8 +256,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_ORDER_RETURN_RECEIVED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_ORDER_RETURN_RECEIVED(): void
     {
         $sut = SellerEventTypeList::SELLER_ORDER_RETURN_RECEIVED();
@@ -263,8 +265,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_OFFER_NEW"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_OFFER_NEW(): void
     {
         self::assertEquals('Seller:Offer.New', SellerEventTypeList::SELLER_OFFER_NEW);
@@ -274,8 +276,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_OFFER_NEW"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_OFFER_NEW(): void
     {
         $sut = SellerEventTypeList::SELLER_OFFER_NEW();
@@ -283,8 +285,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_OFFER_UPDATE"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_OFFER_UPDATE(): void
     {
         self::assertEquals('Seller:Offer.Update', SellerEventTypeList::SELLER_OFFER_UPDATE);
@@ -294,8 +296,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_OFFER_UPDATE"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_OFFER_UPDATE(): void
     {
         $sut = SellerEventTypeList::SELLER_OFFER_UPDATE();
@@ -303,8 +305,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_OFFER_END"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_OFFER_END(): void
     {
         self::assertEquals('Seller:Offer.End', SellerEventTypeList::SELLER_OFFER_END);
@@ -314,8 +316,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_OFFER_END"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_OFFER_END(): void
     {
         $sut = SellerEventTypeList::SELLER_OFFER_END();
@@ -323,8 +325,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_OFFER_STOCK_UPDATE"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_OFFER_STOCK_UPDATE(): void
     {
         self::assertEquals('Seller:Offer.StockUpdate', SellerEventTypeList::SELLER_OFFER_STOCK_UPDATE);
@@ -334,8 +336,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_OFFER_STOCK_UPDATE"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_OFFER_STOCK_UPDATE(): void
     {
         $sut = SellerEventTypeList::SELLER_OFFER_STOCK_UPDATE();
@@ -343,8 +345,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_OFFER_PRICE_UPDATE"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_OFFER_PRICE_UPDATE(): void
     {
         self::assertEquals('Seller:Offer.PriceUpdate', SellerEventTypeList::SELLER_OFFER_PRICE_UPDATE);
@@ -354,8 +356,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_OFFER_PRICE_UPDATE"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_OFFER_PRICE_UPDATE(): void
     {
         $sut = SellerEventTypeList::SELLER_OFFER_PRICE_UPDATE();
@@ -363,8 +365,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_REPORT_REQUEST"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_REPORT_REQUEST(): void
     {
         self::assertEquals('Seller:Report.Request', SellerEventTypeList::SELLER_REPORT_REQUEST);
@@ -374,8 +376,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_REPORT_REQUEST"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_REPORT_REQUEST(): void
     {
         $sut = SellerEventTypeList::SELLER_REPORT_REQUEST();
@@ -383,8 +385,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_CHANNEL_UNLINKED"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_CHANNEL_UNLINKED(): void
     {
         self::assertEquals('Seller:Channel.Unlinked', SellerEventTypeList::SELLER_CHANNEL_UNLINKED);
@@ -394,8 +396,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_CHANNEL_UNLINKED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_CHANNEL_UNLINKED(): void
     {
         $sut = SellerEventTypeList::SELLER_CHANNEL_UNLINKED();
@@ -403,8 +405,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_META_SELLER_ATTRIBUTES_UPDATE_REQUEST"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_META_SELLER_ATTRIBUTES_UPDATE_REQUEST(): void
     {
         self::assertEquals('Seller:Meta.SellerAttributesUpdateRequest', SellerEventTypeList::SELLER_META_SELLER_ATTRIBUTES_UPDATE_REQUEST);
@@ -414,8 +416,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_META_SELLER_ATTRIBUTES_UPDATE_REQUEST"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_META_SELLER_ATTRIBUTES_UPDATE_REQUEST(): void
     {
         $sut = SellerEventTypeList::SELLER_META_SELLER_ATTRIBUTES_UPDATE_REQUEST();
@@ -423,8 +425,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SELLER_TICKET_REPLY"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_TICKET_REPLY(): void
     {
         self::assertEquals('Seller:Ticket.Reply', SellerEventTypeList::SELLER_TICKET_REPLY);
@@ -434,8 +436,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_TICKET_REPLY"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_TICKET_REPLY(): void
     {
         $sut = SellerEventTypeList::SELLER_TICKET_REPLY();
@@ -444,8 +446,8 @@ class SellerEventTypeListTest extends AbstractApiModelTest
 
     /**
      * Test allowed values from Enum
-     * @test
      */
+    #[Test]
     public function it_has_correct_set_of_allowed_values(): void
     {
         $allowed = [

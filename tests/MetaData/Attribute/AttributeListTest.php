@@ -10,14 +10,14 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class AttributeListTest
  * @package MetaData\Attribute
- *
- * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList::class)]
 class AttributeListTest extends TestCase
 {
     public function testCanCreateInstance(): void

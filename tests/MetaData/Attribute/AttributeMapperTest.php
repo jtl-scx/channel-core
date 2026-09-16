@@ -10,15 +10,15 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Model\Attribute as ClientAttribute;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class AttributeMapperTest
  * @package MetaData\Attribute
- *
- * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeMapper
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeMapper::class)]
 class AttributeMapperTest extends TestCase
 {
     public function testCanMap(): void

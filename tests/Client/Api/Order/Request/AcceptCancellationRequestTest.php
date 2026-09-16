@@ -10,34 +10,28 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Order\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Order\Request\AcceptCancellationRequest
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Order\Request\AcceptCancellationRequest::class)]
 class AcceptCancellationRequestTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_correct_url(): void
     {
         $sut = new AcceptCancellationRequest('', '');
         $this->assertEquals('/v1/channel/order/cancellation-accept', $sut->getUrl());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_use_correct_http_method(): void
     {
         $sut = new AcceptCancellationRequest('', '');
         $this->assertEquals(DenyCancellationRequest::HTTP_METHOD_PUT, $sut->getHttpMethod());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_render_request_body(): void
     {
         $sut = new AcceptCancellationRequest('A_SELLER', 'A_ID');

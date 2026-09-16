@@ -10,12 +10,11 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\I18n;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Core\I18n\TranslatorFactory
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\I18n\TranslatorFactory::class)]
 class TranslatorFactoryTest extends TestCase
 {
     public function testItCanTranslateString()

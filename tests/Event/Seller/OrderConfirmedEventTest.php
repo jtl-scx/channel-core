@@ -10,18 +10,16 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use DateTimeImmutable;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderConfirmed;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Event\Seller\OrderConfirmedEvent
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Event\Seller\OrderConfirmedEvent::class)]
 class OrderConfirmedEventTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_provide_correct_event(): void
     {
         $event = new SellerEventOrderConfirmed();

@@ -10,13 +10,12 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Order;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Order\Cancellation\Seller\CancellationAcceptMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Order\Cancellation\Seller\CancellationAcceptMessage
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Order\Cancellation\Seller\CancellationAcceptMessage::class)]
 class CancellationAcceptMessageTest extends TestCase
 {
     private CancellationAcceptMessage $message;

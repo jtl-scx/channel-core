@@ -10,6 +10,9 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\RabbitMqManagementApi;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use JTL\Nachricht\Transport\Amqp\AmqpConnectionSettings;
@@ -22,9 +25,8 @@ use Psr\Http\Message\StreamInterface;
  * Class RabbitMqQueueLister
  *
  * @package JTL\SCX\Lib\Channel\Core\RabbitMqManagementApi
- *
- * @covers \JTL\SCX\Lib\Channel\Core\RabbitMqManagementApi\RabbitMqQueueLister
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\RabbitMqManagementApi\RabbitMqQueueLister::class)]
 class RabbitMqQueueListerTest extends TestCase
 {
     private AmqpTransport $transport;
@@ -40,9 +42,7 @@ class RabbitMqQueueListerTest extends TestCase
         $this->connectionSettings = $this->createMock(AmqpConnectionSettings::class);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function canListQueues(): void
     {
         $host = uniqid('host', true);
@@ -104,9 +104,8 @@ class RabbitMqQueueListerTest extends TestCase
         self::assertEquals(['queue1', 'queue2'], $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
+    #[AllowMockObjectsWithoutExpectations]
     public function vhostIsUrlEncodedInQueueListUrl(): void
     {
         $host = uniqid('host', true);
@@ -114,8 +113,8 @@ class RabbitMqQueueListerTest extends TestCase
         $vhost = '/';
         $responseString = '[{"name": "queue1"}]';
 
-        $response = $this->createMock(Response::class);
-        $responseBody = $this->createMock(StreamInterface::class);
+        $response = $this->createStub(Response::class);
+        $responseBody = $this->createStub(StreamInterface::class);
 
         $this->transport->expects(self::once())
             ->method('getConnectionSettings')
@@ -143,9 +142,7 @@ class RabbitMqQueueListerTest extends TestCase
         $this->lister->listQueues();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function failListQueuesIfStatusCodeIsNot200(): void
     {
         $host = uniqid('host', true);

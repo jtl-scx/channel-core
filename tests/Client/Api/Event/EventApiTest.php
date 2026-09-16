@@ -10,6 +10,12 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Event;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use stdClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
+use UnexpectedValueException;
+use Exception;
 use JTL\SCX\Client\Api\AuthAwareApiClient;
 use JTL\SCX\Lib\Channel\Client\Api\ChannelApiResponseDeserializer;
 use JTL\SCX\Lib\Channel\Client\Api\Event\Model\EventContainerList;
@@ -28,12 +34,10 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Event\EventApi
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Event\EventApi::class)]
 class EventApiTest extends TestCase
 {
-    public function eventProvider(): array
+    public static function eventProvider(): array
     {
         return [
             ['System:Notification', SystemEventNotification::class],
@@ -42,35 +46,33 @@ class EventApiTest extends TestCase
             ['Seller:Order.Payment', SellerEventOrderPayment::class],
             ['Seller:Offer.End', SellerEventOfferEnd::class],
             ['Seller:Offer.New', SellerEventOfferNew::class],
-            ['unknown', \stdClass::class, false],
+            ['unknown', stdClass::class, false],
         ];
     }
 
-    /**
-     * @dataProvider eventProvider
-     */
+    #[DataProvider('eventProvider')]
     public function testCanGetEventList(string $eventType, string $eventClass, bool $isEvent = true)
     {
         $status = 201;
-        $eventData = new \stdClass();
+        $eventData = new stdClass();
         $eventData->id = uniqid('eventId', true);
         $eventData->createdAt = 'now';
         $eventData->type = $eventType;
-        $eventData->event = new \stdClass();
-        $data = new \stdClass();
+        $eventData->event = new stdClass();
+        $data = new stdClass();
         $data->eventList = [
             $eventData
         ];
 
-        $requestMock = $this->createMock(GetEventListRequest::class);
+        $requestMock = $this->createStub(GetEventListRequest::class);
 
         $streamResponse = self::createStub(StreamInterface::class);
         $streamResponse->method('getContents')->willReturn(json_encode("SOME_JSON_CONTENT"));
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn($status);
         $responseMock->method('getBody')->willReturn($streamResponse);
 
-        $eventMock = $this->createMock($eventClass);
+        $eventMock = $this->createStub($eventClass);
 
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
         $apiClientMock->expects($this->once())->method('request')->with($requestMock)->willReturn($responseMock);
@@ -91,9 +93,7 @@ class EventApiTest extends TestCase
         $this->assertInstanceOf($eventClass, $eventList[0]->getEvent());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_will_throw_UnexpectedValueException_when_eventList_is_missing(): void
     {
         $sut = new EventApi(
@@ -103,13 +103,11 @@ class EventApiTest extends TestCase
         );
 
         $serializer->method('deserialize')->willReturn(['foo' => ['bar']]);
-        self::expectException(\UnexpectedValueException::class);
+        self::expectException(UnexpectedValueException::class);
         $sut->get();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_add_ErroneousEvent_when_properties_are_missing(): void
     {
         $sut = new EventApi(
@@ -128,13 +126,13 @@ class EventApiTest extends TestCase
                     (object)[
                         'id' => "1",
                         'type' => 'foo',
-                        'event' => new \stdClass(),
+                        'event' => new stdClass(),
                         'createdAt' => '2021-01-07'
                     ],
                     (object)[
                         'id' => 2,
                         'type' => 'foo',
-                        'event' => new \stdClass(),
+                        'event' => new stdClass(),
                     ],
                     (object)[
                         'id' => 3,
@@ -143,12 +141,12 @@ class EventApiTest extends TestCase
                     ],
                     (object)[
                         'id' => 4,
-                        'event' => new \stdClass(),
+                        'event' => new stdClass(),
                         'createdAt' => '2021-01-07'
                     ],
                     (object)[
                         'type' => 'foo',
-                        'event' => new \stdClass(),
+                        'event' => new stdClass(),
                         'createdAt' => '2021-01-07'
                     ],
                 ]
@@ -159,9 +157,7 @@ class EventApiTest extends TestCase
         self::assertCount(1, $response->getEventList());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_add_ErroneousEvent_when_deserialize_fail(): void
     {
         $sut = new EventApi(
@@ -180,14 +176,14 @@ class EventApiTest extends TestCase
                     (object)[
                         'id' => '1',
                         'type' => EventType::SellerOfferNew,
-                        'event' => new \stdClass(),
+                        'event' => new stdClass(),
                         'createdAt' => '2021-01-07'
                     ]
                 ]
             ]
         );
 
-        $e = new \Exception('boom');
+        $e = new Exception('boom');
         $responseDeserializer->method('deserializeObject')->willThrowException($e);
         $response = $sut->get();
         self::assertCount(1, $response->getErroneousEvents());
@@ -211,8 +207,8 @@ class EventApiTest extends TestCase
             ->with($request)
             ->willReturn($responseMock);
 
-        $jsonDeserializerMock = $this->createMock(JsonSerializer::class);
-        $serializerMock = $this->createMock(ChannelApiResponseDeserializer::class);
+        $jsonDeserializerMock = $this->createStub(JsonSerializer::class);
+        $serializerMock = $this->createStub(ChannelApiResponseDeserializer::class);
 
         $client = new EventApi($apiClientMock, $jsonDeserializerMock, $serializerMock);
 

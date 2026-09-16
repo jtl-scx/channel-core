@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use DateTimeImmutable;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderCancellationRequest;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationRequestEvent
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Event\Seller\OrderCancellationRequestEvent::class)]
 class OrderCancellationRequestEventTest extends TestCase
 {
     public function test_it_can_be_created(): void
@@ -19,7 +18,7 @@ class OrderCancellationRequestEventTest extends TestCase
         $version = '1.0.0';
         $createdAt = new DateTimeImmutable();
 
-        $event = $this->createMock(SellerEventOrderCancellationRequest::class);
+        $event = $this->createStub(SellerEventOrderCancellationRequest::class);
 
         $orderCancellationRequestEvent = new OrderCancellationRequestEvent(
             $id,

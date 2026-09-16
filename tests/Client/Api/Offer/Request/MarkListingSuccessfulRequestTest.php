@@ -10,15 +10,14 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Offer\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use DateTime;
 use JTL\SCX\Lib\Channel\Client\Model\OfferListingSuccessful;
 use JTL\SCX\Lib\Channel\Client\Model\OfferListingSuccessfulList;
 use JTL\SCX\Client\Request\ScxApiRequest;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Offer\Request\MarkListingSuccessfulRequest
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Offer\Request\MarkListingSuccessfulRequest::class)]
 class MarkListingSuccessfulRequestTest extends TestCase
 {
     public function testCanInitiateWithOfferListModel()

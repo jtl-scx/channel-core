@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Metrics;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\MockObject\MockObject;
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
@@ -11,25 +13,24 @@ use Psr\Log\LoggerInterface;
 /**
  * Class CounterTest
  * @package JTL\SCX\Lib\Channel\Core\Metrics
- *
- * @covers \JTL\SCX\Lib\Channel\Core\Metrics\Counter
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Metrics\Counter::class)]
 class CounterTest extends TestCase
 {
     private Counter $sut;
 
     /**
-     * @var \JTL\GoPrometrics\Client\Counter|\PHPUnit\Framework\MockObject\MockObject
+     * @var \JTL\GoPrometrics\Client\Counter|MockObject
      */
     private $counter;
 
     /**
-     * @var Environment|\PHPUnit\Framework\MockObject\MockObject
+     * @var Environment|MockObject
      */
     private $environment;
 
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|LoggerInterface
+     * @var MockObject|LoggerInterface
      */
     private $logger;
 
@@ -37,17 +38,25 @@ class CounterTest extends TestCase
     {
         $this->counter = $this->createMock(\JTL\GoPrometrics\Client\Counter::class);
         $this->environment = $this->createMock(Environment::class);
-        $this->logger = $this->createMock(LoggerInterface::class);
+        $this->logger = $this->createStub(LoggerInterface::class);
 
         $this->sut = new Counter($this->counter, $this->environment, $this->logger);
     }
 
     public function testItCanCountMetric()
     {
-        $this->environment->expects($this->exactly(2))
-            ->method('get')
-            ->withConsecutive(['METRIC_COLLECTION_ENABLED'], ['CHANNEL_NAME'])
-            ->willReturnOnConsecutiveCalls('1', 'FOO');
+        $matcher = $this->exactly(2);
+        $this->environment->expects($matcher)
+            ->method('get')->willReturnCallback(function (...$parameters) use ($matcher) {
+                if ($matcher->numberOfInvocations() === 1) {
+                    $this->assertSame('METRIC_COLLECTION_ENABLED', $parameters[0]);
+                    return '1';
+                }
+                if ($matcher->numberOfInvocations() === 2) {
+                    $this->assertSame('CHANNEL_NAME', $parameters[0]);
+                    return 'FOO';
+                }
+            });
 
 
         $this->counter->expects($this->once())

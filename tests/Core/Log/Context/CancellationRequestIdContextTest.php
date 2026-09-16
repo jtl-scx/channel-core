@@ -10,12 +10,11 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Log\Context;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Core\Log\Context\CancellationRequestIdContext;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Core\Log\Context\CancellationRequestIdContext
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Log\Context\CancellationRequestIdContext::class)]
 class CancellationRequestIdContextTest extends TestCase
 {
     public function testItWillAddOrderCancellationRequestIdToRecord(): void

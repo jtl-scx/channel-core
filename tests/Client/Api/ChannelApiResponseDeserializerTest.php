@@ -2,19 +2,18 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Api;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use stdClass;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventTest;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\ChannelApiResponseDeserializer
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\ChannelApiResponseDeserializer::class)]
 class ChannelApiResponseDeserializerTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_deserialize_a_ResponseInterface(): void
     {
         $sut = new ChannelApiResponseDeserializer();
@@ -40,14 +39,12 @@ JSON;
         self::assertEquals("foo", $expectation->getSellerId());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_deserialize_raw_data(): void
     {
         $sut = new ChannelApiResponseDeserializer();
 
-        $data = new \stdClass();
+        $data = new stdClass();
         $data->channel = "bar";
         $data->sellerId = "foo";
 

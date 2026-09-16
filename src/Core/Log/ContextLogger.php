@@ -91,7 +91,7 @@ class ContextLogger implements ScxLogger
         $this->removeProcessorsFromLogger();
 
         foreach ($existingProcessorList as $existingProcessor) {
-            if (!$contextProcessor instanceof $existingProcessor) {
+            if (!is_object($existingProcessor) || !$contextProcessor instanceof $existingProcessor) {
                 $this->logger->pushProcessor($existingProcessor);
             }
         }

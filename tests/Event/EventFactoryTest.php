@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Event;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use DateTimeImmutable;
 use Exception;
 use JTL\SCX\Lib\Channel\Client\Api\Event\Model\EventContainer;
@@ -20,7 +22,6 @@ use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferNew;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferPriceUpdate;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferStockUpdate;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferUpdate;
-use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderAccept;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderCancellationAccepted;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderCancellationDenied;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderCancellationRequest;
@@ -58,11 +59,11 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class EventFactoryTest
- * @covers \JTL\SCX\Lib\Channel\Event\EventFactory
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Event\EventFactory::class)]
 class EventFactoryTest extends TestCase
 {
-    public function eventTestCasesProvider(): array
+    public static function eventTestCasesProvider(): array
     {
         return [
             [SystemNotificationEvent::class, SystemEventNotification::class, EventType::SystemNotification()],
@@ -104,12 +105,12 @@ class EventFactoryTest extends TestCase
     }
 
     /**
-     * @dataProvider eventTestCasesProvider
      * @param $expectation
      * @param $eventModel
      * @param $eventTypeString
      * @throws Exception
      */
+    #[DataProvider('eventTestCasesProvider')]
     public function testCanCreateEventFromContainer($expectation, $eventModel, $eventTypeString)
     {
         $containerMock = $this->createMock(EventContainer::class);

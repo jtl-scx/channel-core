@@ -27,7 +27,9 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * TopicTest Class Doc Comment
@@ -37,14 +39,14 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\Topic
  */
-class TopicTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\Topic::class)]
+class TopicTest extends AbstractApiModelTestCase
 {
     /**
      * Test Enum Value "QUESTION"
-     * @test
      */
+    #[Test]
     public function is_a_const_QUESTION(): void
     {
         self::assertEquals('QUESTION', Topic::QUESTION);
@@ -54,8 +56,8 @@ class TopicTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "QUESTION"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forQUESTION(): void
     {
         $sut = Topic::QUESTION();
@@ -63,8 +65,8 @@ class TopicTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "FEEDBACK"
-     * @test
      */
+    #[Test]
     public function is_a_const_FEEDBACK(): void
     {
         self::assertEquals('FEEDBACK', Topic::FEEDBACK);
@@ -74,8 +76,8 @@ class TopicTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "FEEDBACK"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forFEEDBACK(): void
     {
         $sut = Topic::FEEDBACK();
@@ -83,8 +85,8 @@ class TopicTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "DELIVERY"
-     * @test
      */
+    #[Test]
     public function is_a_const_DELIVERY(): void
     {
         self::assertEquals('DELIVERY', Topic::DELIVERY);
@@ -94,8 +96,8 @@ class TopicTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "DELIVERY"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forDELIVERY(): void
     {
         $sut = Topic::DELIVERY();
@@ -103,8 +105,8 @@ class TopicTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "_RETURN"
-     * @test
      */
+    #[Test]
     public function is_a_const__RETURN(): void
     {
         self::assertEquals('RETURN', Topic::_RETURN);
@@ -114,8 +116,8 @@ class TopicTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "_RETURN"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_for_RETURN(): void
     {
         $sut = Topic::_RETURN();
@@ -123,8 +125,8 @@ class TopicTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "REFUND"
-     * @test
      */
+    #[Test]
     public function is_a_const_REFUND(): void
     {
         self::assertEquals('REFUND', Topic::REFUND);
@@ -134,8 +136,8 @@ class TopicTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "REFUND"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forREFUND(): void
     {
         $sut = Topic::REFUND();
@@ -143,8 +145,8 @@ class TopicTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "INCIDENT"
-     * @test
      */
+    #[Test]
     public function is_a_const_INCIDENT(): void
     {
         self::assertEquals('INCIDENT', Topic::INCIDENT);
@@ -154,8 +156,8 @@ class TopicTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "INCIDENT"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forINCIDENT(): void
     {
         $sut = Topic::INCIDENT();
@@ -164,8 +166,8 @@ class TopicTest extends AbstractApiModelTest
 
     /**
      * Test allowed values from Enum
-     * @test
      */
+    #[Test]
     public function it_has_correct_set_of_allowed_values(): void
     {
         $allowed = [

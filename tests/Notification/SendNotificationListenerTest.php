@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Notification;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Api\Notification\NotificationApi;
 use JTL\SCX\Lib\Channel\Client\Api\Notification\Request\NotificationRequest;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
@@ -17,8 +18,8 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class SendNotificationListenerTest
- * @covers \JTL\SCX\Lib\Channel\Notification\SendNotificationListener
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Notification\SendNotificationListener::class)]
 class SendNotificationListenerTest extends TestCase
 {
     public function testCanSendNotification()

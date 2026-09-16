@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Report;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Client\Api\AuthAwareApiClient;
 use JTL\SCX\Lib\Channel\Client\Api\Report\Request\CompleteReportRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Report\Request\SendReportDataRequest;
@@ -23,16 +24,15 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Class ReportApiTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Report
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Report\ReportApi
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Report\ReportApi::class)]
 class ReportApiTest extends TestCase
 {
     public function testSendReport(): void
     {
-        $requestMock = $this->createMock(SendReportRequest::class);
+        $requestMock = $this->createStub(SendReportRequest::class);
 
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
         $apiClientMock->expects($this->once())->method('request')->with($requestMock)->willReturn($responseMock);
@@ -43,9 +43,9 @@ class ReportApiTest extends TestCase
 
     public function testSendReportData(): void
     {
-        $requestMock = $this->createMock(SendReportDataRequest::class);
+        $requestMock = $this->createStub(SendReportDataRequest::class);
 
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
         $apiClientMock->expects($this->once())->method('request')->with($requestMock)->willReturn($responseMock);
@@ -56,9 +56,9 @@ class ReportApiTest extends TestCase
 
     public function testCompleteReport(): void
     {
-        $requestMock = $this->createMock(CompleteReportRequest::class);
+        $requestMock = $this->createStub(CompleteReportRequest::class);
 
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
         $apiClientMock->expects($this->once())->method('request')->with($requestMock)->willReturn($responseMock);

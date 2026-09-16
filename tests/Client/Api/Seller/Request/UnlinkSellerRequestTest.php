@@ -2,15 +2,14 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Seller\Request;
 
-use JTL\SCX\Lib\Channel\Client\Model\CreateSeller;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class UnlinkSellerRequestTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Seller\Request
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UnlinkSellerRequest
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UnlinkSellerRequest::class)]
 class UnlinkSellerRequestTest extends TestCase
 {
     public function testCanBeCreatedAndValidated(): void

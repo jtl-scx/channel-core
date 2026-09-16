@@ -2,20 +2,18 @@
 
 namespace JTL\SCX\Lib\Channel\Core\Log;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
 use Monolog\Formatter\JsonFormatter;
 use Monolog\Handler\RotatingFileHandler;
 use Monolog\Handler\StreamHandler;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Core\Log\MonologFactory
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Log\MonologFactory::class)]
 class MonologFactoryTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_create_a_log_instance(): void
     {
         $sut = new MonologFactory(self::createStub(Environment::class));
@@ -29,9 +27,7 @@ class MonologFactoryTest extends TestCase
         self::assertInstanceOf(RotatingFileHandler::class, $handlers[0]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_uses_a_stdout_stream_handler_when_log_stdout_is_enabled(): void
     {
         $sut = new MonologFactory(new Environment(['LOG_STDOUT' => '1']));
@@ -45,9 +41,7 @@ class MonologFactoryTest extends TestCase
         self::assertInstanceOf(JsonFormatter::class, $handlers[0]->getFormatter());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_uses_the_rotating_file_handler_when_log_stdout_is_the_string_false(): void
     {
         $sut = new MonologFactory(new Environment(['LOG_STDOUT' => 'false']));

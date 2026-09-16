@@ -2,16 +2,14 @@
 
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderReturnReceived;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Helper\Command\EmitOrderReturnReceivedCommand
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Helper\Command\EmitOrderReturnReceivedCommand::class)]
 class EmitOrderReturnReceivedCommandTest extends AbstractEmitterCommandTestCaseHelper
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_emit_return_received_event(): void
     {
         $testJsonFile = sys_get_temp_dir() . '/' . __CLASS__ . '.json';

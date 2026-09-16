@@ -10,19 +10,19 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use DateTimeImmutable;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventSellerAttributesUpdateRequest;
 use JTL\SCX\Lib\Channel\Event\Seller\AttributesUpdateRequestEvent;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Event\Seller\AttributesUpdateRequestEvent
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Event\Seller\AttributesUpdateRequestEvent::class)]
 class AttributesUpdateRequestEventTest extends TestCase
 {
     public function testCanReceiveEvent()
     {
         $apiEventModel = $this->createStub(SellerEventSellerAttributesUpdateRequest::class);
-        $event = new AttributesUpdateRequestEvent('id', 'version', new \DateTimeImmutable(), $apiEventModel);
+        $event = new AttributesUpdateRequestEvent('id', 'version', new DateTimeImmutable(), $apiEventModel);
         self::assertSame($apiEventModel, $event->getEvent());
     }
 

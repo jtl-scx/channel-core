@@ -2,17 +2,14 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Order\Response;
 
-use JTL\SCX\Client\Response\AbstractResponse;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Order\Response\ReturnOrderProcessingResultResponse
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Order\Response\ReturnOrderProcessingResultResponse::class)]
 class ReturnOrderProcessingResultResponseTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_is_successful_of_http_201(): void
     {
         $sut = new ReturnOrderProcessingResultResponse(201);

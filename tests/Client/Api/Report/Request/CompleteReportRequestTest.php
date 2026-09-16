@@ -2,11 +2,10 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Report\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers  \JTL\SCX\Lib\Channel\Client\Api\Report\Request\CompleteReportRequest
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Report\Request\CompleteReportRequest::class)]
 class CompleteReportRequestTest extends TestCase
 {
     public function testCanBeCreatedAndUsed(): void

@@ -10,11 +10,10 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Notification;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Notification\SendNotificationMessage
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Notification\SendNotificationMessage::class)]
 class SendNotificationMessageTest extends TestCase
 {
     public function testCanCreateWithSeverityLevelInfo()

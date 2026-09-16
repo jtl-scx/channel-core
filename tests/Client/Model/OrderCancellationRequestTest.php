@@ -27,7 +27,10 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * OrderCancellationRequestTest Class Doc Comment
@@ -37,15 +40,14 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\OrderCancellationRequest
  */
-class OrderCancellationRequestTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\OrderCancellationRequest::class)]
+class OrderCancellationRequestTest extends AbstractApiModelTestCase
 {
     /**
      * @return array
-     * @dataProvider
      */
-    public function expectedInterface(): array
+    public static function expectedInterface(): array
     {
         return [
             'assert property orderCancellationRequestId' => [
@@ -93,10 +95,8 @@ class OrderCancellationRequestTest extends AbstractApiModelTest
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider expectedInterface
-     */
+    #[DataProvider('expectedInterface')]
+    #[Test]
     public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
     {
         $sample = $this->buildSampleForDataType($type);

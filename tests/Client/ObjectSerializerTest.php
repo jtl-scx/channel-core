@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Model\Attribute;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class ObjectSerializerTest
  * @package JTL\SCX\Lib\Channel\Client
- *
- * @covers \JTL\SCX\Lib\Channel\Client\ObjectSerializer
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\ObjectSerializer::class)]
 class ObjectSerializerTest extends TestCase
 {
     /**

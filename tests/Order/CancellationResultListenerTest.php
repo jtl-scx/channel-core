@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Order;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Api\Order\OrderApi;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Request\AcceptCancellationRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Request\DenyCancellationRequest;
@@ -20,9 +21,7 @@ use JTL\SCX\Lib\Channel\Order\Cancellation\Seller\CancellationResultListener;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Order\Cancellation\Seller\CancellationResultListener
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Order\Cancellation\Seller\CancellationResultListener::class)]
 class CancellationResultListenerTest extends TestCase
 {
     public function testHandleDeny()
