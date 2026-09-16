@@ -12,14 +12,6 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-/**
- * Memory bounded variant of ImportGlobalAttributesCommand.
- *
- * Instead of loading every global attribute into one list and pushing it to SCX in a single
- * request, this command consumes the loader chunk by chunk and sends each chunk right away. The
- * SCX-API upserts attributes individually, so the result is the same while peak memory stays
- * bound to the largest single chunk.
- */
 #[AsCommand(name: 'scx-api:put.attributes-global-chunked')]
 class ImportGlobalAttributesChunkedCommand extends AbstractCommand
 {
@@ -53,9 +45,7 @@ class ImportGlobalAttributesChunkedCommand extends AbstractCommand
             $total += $count;
             $output->writeln("Sent {$count} global Attributes ({$total} in total)");
 
-            // Drop the reference before the generator resolves the next chunk, otherwise two
-            // chunks are alive at the same time and the memory bound is twice what it should be.
-            unset($chunk);
+            unset($chunk); // before the generator builds the next one
         }
 
         $output->writeln("Successfully sent {$total} global Attributes to SCX");
