@@ -10,14 +10,14 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core;
 
-use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\Test;
 use JTL\Generic\GenericCollection;
 use JTL\SCX\Lib\Channel\Core\ToArrayTrait;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(\JTL\SCX\Lib\Channel\Core\ToArrayTrait::class)]
+#[CoversTrait(\JTL\SCX\Lib\Channel\Core\ToArrayTrait::class)]
 class ToArrayTraitTest extends TestCase
 {
     public function testCanConvertCollectionToArray(): void
