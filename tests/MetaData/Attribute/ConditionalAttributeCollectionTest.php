@@ -10,14 +10,14 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class ConditionalAttributeCollectionTest
  * @package MetaData\Attribute
- *
- * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\ConditionalAttributeCollection
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\Attribute\ConditionalAttributeCollection::class)]
 class ConditionalAttributeCollectionTest extends TestCase
 {
     public function testCanCreateCollection(): void

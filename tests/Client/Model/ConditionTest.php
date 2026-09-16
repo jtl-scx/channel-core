@@ -27,7 +27,9 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * ConditionTest Class Doc Comment
@@ -37,14 +39,14 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\Condition
  */
-class ConditionTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\Condition::class)]
+class ConditionTest extends AbstractApiModelTestCase
 {
     /**
      * Test Enum Value "ORIGINAL_PACKAGING"
-     * @test
      */
+    #[Test]
     public function is_a_const_ORIGINAL_PACKAGING(): void
     {
         self::assertEquals('ORIGINAL_PACKAGING', Condition::ORIGINAL_PACKAGING);
@@ -54,8 +56,8 @@ class ConditionTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "ORIGINAL_PACKAGING"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forORIGINAL_PACKAGING(): void
     {
         $sut = Condition::ORIGINAL_PACKAGING();
@@ -63,8 +65,8 @@ class ConditionTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "MINT_CONDITION"
-     * @test
      */
+    #[Test]
     public function is_a_const_MINT_CONDITION(): void
     {
         self::assertEquals('MINT_CONDITION', Condition::MINT_CONDITION);
@@ -74,8 +76,8 @@ class ConditionTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "MINT_CONDITION"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forMINT_CONDITION(): void
     {
         $sut = Condition::MINT_CONDITION();
@@ -83,8 +85,8 @@ class ConditionTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SLIGHTLY_USED"
-     * @test
      */
+    #[Test]
     public function is_a_const_SLIGHTLY_USED(): void
     {
         self::assertEquals('SLIGHTLY_USED', Condition::SLIGHTLY_USED);
@@ -94,8 +96,8 @@ class ConditionTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SLIGHTLY_USED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSLIGHTLY_USED(): void
     {
         $sut = Condition::SLIGHTLY_USED();
@@ -103,8 +105,8 @@ class ConditionTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "HEAVILY_USED"
-     * @test
      */
+    #[Test]
     public function is_a_const_HEAVILY_USED(): void
     {
         self::assertEquals('HEAVILY_USED', Condition::HEAVILY_USED);
@@ -114,8 +116,8 @@ class ConditionTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "HEAVILY_USED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forHEAVILY_USED(): void
     {
         $sut = Condition::HEAVILY_USED();
@@ -123,8 +125,8 @@ class ConditionTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "DAMAGED"
-     * @test
      */
+    #[Test]
     public function is_a_const_DAMAGED(): void
     {
         self::assertEquals('DAMAGED', Condition::DAMAGED);
@@ -134,8 +136,8 @@ class ConditionTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "DAMAGED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forDAMAGED(): void
     {
         $sut = Condition::DAMAGED();
@@ -143,8 +145,8 @@ class ConditionTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "INCOMPLETE_DELIVERY"
-     * @test
      */
+    #[Test]
     public function is_a_const_INCOMPLETE_DELIVERY(): void
     {
         self::assertEquals('INCOMPLETE_DELIVERY', Condition::INCOMPLETE_DELIVERY);
@@ -154,8 +156,8 @@ class ConditionTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "INCOMPLETE_DELIVERY"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forINCOMPLETE_DELIVERY(): void
     {
         $sut = Condition::INCOMPLETE_DELIVERY();
@@ -163,8 +165,8 @@ class ConditionTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "FRAUD"
-     * @test
      */
+    #[Test]
     public function is_a_const_FRAUD(): void
     {
         self::assertEquals('FRAUD', Condition::FRAUD);
@@ -174,8 +176,8 @@ class ConditionTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "FRAUD"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forFRAUD(): void
     {
         $sut = Condition::FRAUD();
@@ -184,8 +186,8 @@ class ConditionTest extends AbstractApiModelTest
 
     /**
      * Test allowed values from Enum
-     * @test
      */
+    #[Test]
     public function it_has_correct_set_of_allowed_values(): void
     {
         $allowed = [

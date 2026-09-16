@@ -10,22 +10,21 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Meta;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Client\Api\AuthAwareApiClient;
 use JTL\SCX\Lib\Channel\Client\Api\Meta\Request\CreatePaymentRulesRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Meta\Response\CreatePaymentRulesResponse;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Meta\PaymentRulesApi
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Meta\PaymentRulesApi::class)]
 class PaymentRulesApiTest extends TestCase
 {
     public function testCanCreatePaymentRules(): void
     {
-        $requestMock = $this->createMock(CreatePaymentRulesRequest::class);
+        $requestMock = $this->createStub(CreatePaymentRulesRequest::class);
 
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(201);
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
         $apiClientMock->expects($this->once())->method('request')->with($requestMock)->willReturn($responseMock);

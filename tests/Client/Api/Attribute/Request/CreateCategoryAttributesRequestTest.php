@@ -10,15 +10,15 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Attribute\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use JTL\SCX\Lib\Channel\Client\Model\AttributeList;
 
 /**
  * Class CreateCategoryAttributesRequestTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Attribute\Request
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Attribute\Request\CreateCategoryAttributesRequest
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Attribute\Request\CreateCategoryAttributesRequest::class)]
 class CreateCategoryAttributesRequestTest extends TestCase
 {
     public function testCanBeCreatedAndValidated(): void

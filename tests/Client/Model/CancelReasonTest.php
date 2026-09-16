@@ -27,7 +27,9 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * CancelReasonTest Class Doc Comment
@@ -37,14 +39,14 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\CancelReason
  */
-class CancelReasonTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\CancelReason::class)]
+class CancelReasonTest extends AbstractApiModelTestCase
 {
     /**
      * Test Enum Value "BUYER_CANCELLED"
-     * @test
      */
+    #[Test]
     public function is_a_const_BUYER_CANCELLED(): void
     {
         self::assertEquals('BUYER_CANCELLED', CancelReason::BUYER_CANCELLED);
@@ -54,8 +56,8 @@ class CancelReasonTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "BUYER_CANCELLED"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forBUYER_CANCELLED(): void
     {
         $sut = CancelReason::BUYER_CANCELLED();
@@ -63,8 +65,8 @@ class CancelReasonTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "UNDELIVERABLE_TO_SHIPPING_ADDRESS"
-     * @test
      */
+    #[Test]
     public function is_a_const_UNDELIVERABLE_TO_SHIPPING_ADDRESS(): void
     {
         self::assertEquals('UNDELIVERABLE_TO_SHIPPING_ADDRESS', CancelReason::UNDELIVERABLE_TO_SHIPPING_ADDRESS);
@@ -74,8 +76,8 @@ class CancelReasonTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "UNDELIVERABLE_TO_SHIPPING_ADDRESS"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forUNDELIVERABLE_TO_SHIPPING_ADDRESS(): void
     {
         $sut = CancelReason::UNDELIVERABLE_TO_SHIPPING_ADDRESS();
@@ -83,8 +85,8 @@ class CancelReasonTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "UNDELIVERABLE_BY_CARRIER"
-     * @test
      */
+    #[Test]
     public function is_a_const_UNDELIVERABLE_BY_CARRIER(): void
     {
         self::assertEquals('UNDELIVERABLE_BY_CARRIER', CancelReason::UNDELIVERABLE_BY_CARRIER);
@@ -94,8 +96,8 @@ class CancelReasonTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "UNDELIVERABLE_BY_CARRIER"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forUNDELIVERABLE_BY_CARRIER(): void
     {
         $sut = CancelReason::UNDELIVERABLE_BY_CARRIER();
@@ -103,8 +105,8 @@ class CancelReasonTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "OUT_OF_STOCK"
-     * @test
      */
+    #[Test]
     public function is_a_const_OUT_OF_STOCK(): void
     {
         self::assertEquals('OUT_OF_STOCK', CancelReason::OUT_OF_STOCK);
@@ -114,8 +116,8 @@ class CancelReasonTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "OUT_OF_STOCK"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forOUT_OF_STOCK(): void
     {
         $sut = CancelReason::OUT_OF_STOCK();
@@ -123,8 +125,8 @@ class CancelReasonTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "DELAYED_INVENTORY"
-     * @test
      */
+    #[Test]
     public function is_a_const_DELAYED_INVENTORY(): void
     {
         self::assertEquals('DELAYED_INVENTORY', CancelReason::DELAYED_INVENTORY);
@@ -134,8 +136,8 @@ class CancelReasonTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "DELAYED_INVENTORY"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forDELAYED_INVENTORY(): void
     {
         $sut = CancelReason::DELAYED_INVENTORY();
@@ -143,8 +145,8 @@ class CancelReasonTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "PRICING_ERROR"
-     * @test
      */
+    #[Test]
     public function is_a_const_PRICING_ERROR(): void
     {
         self::assertEquals('PRICING_ERROR', CancelReason::PRICING_ERROR);
@@ -154,8 +156,8 @@ class CancelReasonTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "PRICING_ERROR"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forPRICING_ERROR(): void
     {
         $sut = CancelReason::PRICING_ERROR();
@@ -163,8 +165,8 @@ class CancelReasonTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "OTHER"
-     * @test
      */
+    #[Test]
     public function is_a_const_OTHER(): void
     {
         self::assertEquals('OTHER', CancelReason::OTHER);
@@ -174,8 +176,8 @@ class CancelReasonTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "OTHER"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forOTHER(): void
     {
         $sut = CancelReason::OTHER();
@@ -184,8 +186,8 @@ class CancelReasonTest extends AbstractApiModelTest
 
     /**
      * Test allowed values from Enum
-     * @test
      */
+    #[Test]
     public function it_has_correct_set_of_allowed_values(): void
     {
         $allowed = [

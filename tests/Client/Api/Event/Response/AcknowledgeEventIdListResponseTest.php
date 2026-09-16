@@ -10,25 +10,21 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Event\Response;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Event\Response\AcknowledgeEventIdListResponse
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Event\Response\AcknowledgeEventIdListResponse::class)]
 class AcknowledgeEventIdListResponseTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_is_considered_successful_on_http_status_code_204(): void
     {
         $sut = new AcknowledgeEventIdListResponse(204);
         $this->assertTrue($sut->isSuccessful());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_is_considered_failed_on_http_status_code_not_equals_204(): void
     {
         $sut = new AcknowledgeEventIdListResponse(200);

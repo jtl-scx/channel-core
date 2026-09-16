@@ -2,11 +2,10 @@
 
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderInvoiceEvent;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Helper\Command\EmitSellerOrderInvoiceCommand
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Helper\Command\EmitSellerOrderInvoiceCommand::class)]
 class EmitSellerOrderInvoiceCommandTest extends AbstractEmitterCommandTestCaseHelper
 {
     public function testCanEmitOrderInvoiceEvent(): void

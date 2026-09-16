@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use Exception;
 use JTL\SCX\Lib\Channel\Client\Api\Category\CategoryApi;
 use JTL\SCX\Lib\Channel\Client\Api\Category\Response\UpdateCategoryTreeResponse;
 use JTL\SCX\Lib\Channel\Client\Model\CategoryTreeVersion;
@@ -18,9 +20,8 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class CategoryTreeUpdaterTest
  * @package JTL\SCX\Lib\Channel\MetaData
- *
- * @covers \JTL\SCX\Lib\Channel\MetaData\CategoryTreeUpdater
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\CategoryTreeUpdater::class)]
 class CategoryTreeUpdaterTest extends TestCase
 {
     public function testCanUpdate(): void
@@ -52,7 +53,7 @@ class CategoryTreeUpdaterTest extends TestCase
 
         $updater = new CategoryTreeUpdater($clientMock, $mapper);
 
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $updater->update($this->createCategoryList());
     }
 

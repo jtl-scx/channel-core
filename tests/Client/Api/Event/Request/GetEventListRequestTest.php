@@ -10,14 +10,14 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Event\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class GetEventListRequestTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Event\Request
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Event\Request\GetEventListRequest
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Event\Request\GetEventListRequest::class)]
 class GetEventListRequestTest extends TestCase
 {
     public function testCanGetUrlAndHttpMethod()

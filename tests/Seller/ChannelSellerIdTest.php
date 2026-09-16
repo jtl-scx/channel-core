@@ -10,11 +10,10 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Seller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Seller\ChannelSellerId
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Seller\ChannelSellerId::class)]
 class ChannelSellerIdTest extends TestCase
 {
     public function testCanGetId(): void

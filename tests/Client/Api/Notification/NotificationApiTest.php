@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Notification;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Client\Api\AuthAwareApiClient;
 use JTL\SCX\Lib\Channel\Client\Api\Notification\Request\NotificationRequest;
 use PHPUnit\Framework\TestCase;
@@ -17,8 +18,8 @@ use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class NotificationApiTest
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Notification\NotificationApi
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Notification\NotificationApi::class)]
 class NotificationApiTest extends TestCase
 {
     public function testCanSendRequest()

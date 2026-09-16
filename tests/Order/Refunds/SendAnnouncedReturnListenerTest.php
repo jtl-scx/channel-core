@@ -2,15 +2,14 @@
 
 namespace JTL\SCX\Lib\Channel\Order\Refunds;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Api\Order\OrderApi;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Request\ReturnOrderRequest;
 use JTL\SCX\Lib\Channel\Client\Model\ReturnAnnouncement;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers  \JTL\SCX\Lib\Channel\Order\Refunds\SendAnnouncedReturnListener
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Order\Refunds\SendAnnouncedReturnListener::class)]
 class SendAnnouncedReturnListenerTest extends TestCase
 {
     public function testCanSendToChannelApi(): void

@@ -10,13 +10,12 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Order\Response;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Response\InvoiceResponse;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Order\Response\InvoiceResponse
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Order\Response\InvoiceResponse::class)]
 class InvoiceResponseTest extends TestCase
 {
     public function testResponseIsConsideredAsSuccessfulOnStatusCode200()

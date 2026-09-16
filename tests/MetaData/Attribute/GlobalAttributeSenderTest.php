@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Api\Attribute\AttributesApi;
 use PHPUnit\Framework\TestCase;
 use JTL\SCX\Lib\Channel\Client\Model\AttributeList as ClientAttributeList;
@@ -17,9 +18,8 @@ use JTL\SCX\Lib\Channel\Client\Model\AttributeList as ClientAttributeList;
 /**
  * Class GlobalAttributeSenderTest
  * @package JTL\SCX\Lib\Channel\MetaData\Attribute
- *
- * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\GlobalAttributeSender
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\Attribute\GlobalAttributeSender::class)]
 class GlobalAttributeSenderTest extends TestCase
 {
     public function testCanSendAttributes(): void

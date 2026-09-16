@@ -10,21 +10,20 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use DateTimeImmutable;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventTest;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Event\Seller\SystemTestEvent
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Event\Seller\SystemTestEvent::class)]
 class SystemTestEventTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_exposes_underlying_api_event_model()
     {
         $apiEventModel = $this->createStub(SellerEventTest::class);
-        $event = new SystemTestEvent('id', 'version', new \DateTimeImmutable(), $apiEventModel);
+        $event = new SystemTestEvent('id', 'version', new DateTimeImmutable(), $apiEventModel);
         $this->assertSame($apiEventModel, $event->getEvent());
     }
 }

@@ -10,12 +10,11 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Meta\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Model\PaymentRules;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Meta\Request\CreatePaymentRulesRequest
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Meta\Request\CreatePaymentRulesRequest::class)]
 class CreatePaymentRulesRequestTest extends TestCase
 {
     public function testCanBeCreatedAndUsed(): void

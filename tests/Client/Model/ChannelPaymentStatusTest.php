@@ -29,7 +29,9 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * ChannelPaymentStatusTest Class Doc Comment
@@ -39,14 +41,14 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\ChannelPaymentStatus
  */
-class ChannelPaymentStatusTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\ChannelPaymentStatus::class)]
+class ChannelPaymentStatusTest extends AbstractApiModelTestCase
 {
     /**
      * Test Enum Value "PENDING"
-     * @test
      */
+    #[Test]
     public function is_a_const_PENDING(): void
     {
         self::assertEquals('PENDING', ChannelPaymentStatus::PENDING);
@@ -56,8 +58,8 @@ class ChannelPaymentStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "PENDING"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forPENDING(): void
     {
         $sut = ChannelPaymentStatus::PENDING();
@@ -65,8 +67,8 @@ class ChannelPaymentStatusTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "PAID"
-     * @test
      */
+    #[Test]
     public function is_a_const_PAID(): void
     {
         self::assertEquals('PAID', ChannelPaymentStatus::PAID);
@@ -76,8 +78,8 @@ class ChannelPaymentStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "PAID"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forPAID(): void
     {
         $sut = ChannelPaymentStatus::PAID();
@@ -85,8 +87,8 @@ class ChannelPaymentStatusTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "PARTIALLY_PAID"
-     * @test
      */
+    #[Test]
     public function is_a_const_PARTIALLY_PAID(): void
     {
         self::assertEquals('PARTIALLY_PAID', ChannelPaymentStatus::PARTIALLY_PAID);
@@ -96,8 +98,8 @@ class ChannelPaymentStatusTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "PARTIALLY_PAID"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forPARTIALLY_PAID(): void
     {
         $sut = ChannelPaymentStatus::PARTIALLY_PAID();
@@ -106,8 +108,8 @@ class ChannelPaymentStatusTest extends AbstractApiModelTest
 
     /**
      * Test allowed values from Enum
-     * @test
      */
+    #[Test]
     public function it_has_correct_set_of_allowed_values(): void
     {
         $allowed = [

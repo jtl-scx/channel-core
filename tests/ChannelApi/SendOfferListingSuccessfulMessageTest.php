@@ -10,13 +10,13 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\ChannelApi;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use DateTime;
 use JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingSuccessfulMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingSuccessfulMessage
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingSuccessfulMessage::class)]
 class SendOfferListingSuccessfulMessageTest extends TestCase
 {
     public function testCanBeUsed(): void
@@ -25,7 +25,7 @@ class SendOfferListingSuccessfulMessageTest extends TestCase
         $sellerOfferId = random_int(1, 10000);
         $channelOfferId = uniqid('channelOfferId', true);
         $listingUrl = uniqid('listingUrl', true);
-        $listedAt = $this->createStub(\DateTime::class);
+        $listedAt = $this->createStub(DateTime::class);
         $msgId = uniqid('msgId', true);
         $msg = new SendOfferListingSuccessfulMessage($sellerId, $sellerOfferId, $channelOfferId, $listingUrl, $listedAt, $msgId);
 

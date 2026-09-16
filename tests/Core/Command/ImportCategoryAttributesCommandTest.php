@@ -10,10 +10,10 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\MetaDataCategoryAttributeLoader;
-use JTL\SCX\Lib\Channel\Core\Lock\Lock;
-use JTL\SCX\Lib\Channel\Core\Lock\LockFactory;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeDeleter;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeList;
@@ -24,9 +24,8 @@ use Symfony\Component\Console\Tester\CommandTester;
 /**
  * Class ImportCategoryAttributesCommandTest
  * @package Core\Command
- *
- * @covers \JTL\SCX\Lib\Channel\Core\Command\ImportCategoryAttributesCommand
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Command\ImportCategoryAttributesCommand::class)]
 class ImportCategoryAttributesCommandTest extends TestCase
 {
     public function testCanFetchAttributeForCategoryWithResults()
@@ -40,8 +39,8 @@ class ImportCategoryAttributesCommandTest extends TestCase
             ->with([$testCategoryId])
             ->willReturn($testAttributeList);
 
-        $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
-        $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
+        $updaterMock = $this->createStub(CategoryAttributeUpdater::class);
+        $deleterMock = $this->createStub(CategoryAttributeDeleter::class);
 
         $cmd = new ImportCategoryAttributesCommand(
             $loaderMock,
@@ -70,8 +69,8 @@ class ImportCategoryAttributesCommandTest extends TestCase
             ->with(null)
             ->willReturn($testAttributeList);
 
-        $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
-        $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
+        $updaterMock = $this->createStub(CategoryAttributeUpdater::class);
+        $deleterMock = $this->createStub(CategoryAttributeDeleter::class);
 
         $cmd = new ImportCategoryAttributesCommand(
             $loaderMock,
@@ -102,8 +101,8 @@ class ImportCategoryAttributesCommandTest extends TestCase
             ->with([$testCategoryId])
             ->willReturn($testAttributeList);
 
-        $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
-        $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
+        $updaterMock = $this->createStub(CategoryAttributeUpdater::class);
+        $deleterMock = $this->createStub(CategoryAttributeDeleter::class);
 
         $cmd = new ImportCategoryAttributesCommand(
             $loaderMock,
@@ -124,9 +123,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $this->assertStringContainsString("Update Category Id: {$testCategoryId} with 1 Attributes ... done", $output);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_will_delete_attribute_per_category_on_default(): void
     {
         $testCategoryId = uniqid('testCategoryId');
@@ -141,7 +138,7 @@ class ImportCategoryAttributesCommandTest extends TestCase
             ->with([$testCategoryId])
             ->willReturn($testAttributeList);
 
-        $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
+        $updaterMock = $this->createStub(CategoryAttributeUpdater::class);
         $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
         $deleterMock->expects(self::once())->method('delete')->with($testCategoryId);
 
@@ -179,8 +176,8 @@ class ImportCategoryAttributesCommandTest extends TestCase
             ->with([$testCategoryId])
             ->willReturn($testAttributeList);
 
-        $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
-        $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
+        $updaterMock = $this->createStub(CategoryAttributeUpdater::class);
+        $deleterMock = $this->createStub(CategoryAttributeDeleter::class);
 
         $cmd = new ImportCategoryAttributesCommand(
             $loaderMock,
@@ -215,12 +212,20 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $testAttributeList->addAttributeList($testCategoryId1, $attrList);
 
         $loaderMock = $this->createMock(MetaDataCategoryAttributeLoader::class);
-        $loaderMock->expects($this->exactly(2))->method('fetch')
-            ->withConsecutive([[$testCategoryId1]], [[$testCategoryId2]])
-            ->willReturnOnConsecutiveCalls($testAttributeList, null);
+        $matcher = $this->exactly(2);
+        $loaderMock->expects($matcher)->method('fetch')->willReturnCallback(function (...$parameters) use ($matcher, $testCategoryId1, $testCategoryId2, $testAttributeList) {
+            if ($matcher->numberOfInvocations() === 1) {
+                $this->assertSame([$testCategoryId1], $parameters[0]);
+                return $testAttributeList;
+            }
+            if ($matcher->numberOfInvocations() === 2) {
+                $this->assertSame([$testCategoryId2], $parameters[0]);
+                return null;
+            }
+        });
 
-        $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
-        $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
+        $updaterMock = $this->createStub(CategoryAttributeUpdater::class);
+        $deleterMock = $this->createStub(CategoryAttributeDeleter::class);
 
         $cmd = new ImportCategoryAttributesCommand(
             $loaderMock,
@@ -260,11 +265,19 @@ class ImportCategoryAttributesCommandTest extends TestCase
         $testAttributeList->addAttributeList($testCategoryId1, $attrList);
 
         $loaderMock = $this->createMock(MetaDataCategoryAttributeLoader::class);
-        $loaderMock->expects($this->exactly(2))->method('fetch')
-            ->withConsecutive([[$testCategoryId1]], [[$testCategoryId2]])
-            ->willReturnOnConsecutiveCalls($testAttributeList, null);
+        $matcher = $this->exactly(2);
+        $loaderMock->expects($matcher)->method('fetch')->willReturnCallback(function (...$parameters) use ($matcher, $testCategoryId1, $testCategoryId2, $testAttributeList) {
+            if ($matcher->numberOfInvocations() === 1) {
+                $this->assertSame([$testCategoryId1], $parameters[0]);
+                return $testAttributeList;
+            }
+            if ($matcher->numberOfInvocations() === 2) {
+                $this->assertSame([$testCategoryId2], $parameters[0]);
+                return null;
+            }
+        });
 
-        $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
+        $updaterMock = $this->createStub(CategoryAttributeUpdater::class);
         $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
 
         $deleterMock->expects(self::never())->method('delete');
@@ -296,9 +309,9 @@ class ImportCategoryAttributesCommandTest extends TestCase
     {
         $testCategoryId = uniqid('testCategoryId');
 
-        $loaderMock = $this->createMock(MetaDataCategoryAttributeLoader::class);
-        $updaterMock = $this->createMock(CategoryAttributeUpdater::class);
-        $deleterMock = $this->createMock(CategoryAttributeDeleter::class);
+        $loaderMock = $this->createStub(MetaDataCategoryAttributeLoader::class);
+        $updaterMock = $this->createStub(CategoryAttributeUpdater::class);
+        $deleterMock = $this->createStub(CategoryAttributeDeleter::class);
 
         $cmd = new ImportCategoryAttributesCommand(
             $loaderMock,

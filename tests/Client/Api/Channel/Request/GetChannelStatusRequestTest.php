@@ -10,11 +10,10 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Channel\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Channel\Request\GetChannelStatusRequest
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Channel\Request\GetChannelStatusRequest::class)]
 class GetChannelStatusRequestTest extends TestCase
 {
     public function testCanBeCreatedAndUsed()

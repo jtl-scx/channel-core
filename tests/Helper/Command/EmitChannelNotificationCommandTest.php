@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use InvalidArgumentException;
 use JTL\Nachricht\Contract\Emitter\Emitter;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
@@ -17,9 +18,7 @@ use JTL\SCX\Lib\Channel\Notification\SendNotificationMessage;
 use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Console\Tester\CommandTester;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Helper\Command\EmitChannelNotificationCommand
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Helper\Command\EmitChannelNotificationCommand::class)]
 class EmitChannelNotificationCommandTest extends AbstractEmitterCommandTestCaseHelper
 {
     public function testCanEmitChannelNotification()

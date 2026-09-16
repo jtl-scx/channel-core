@@ -10,20 +10,21 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\Test;
 use JTL\Generic\GenericCollection;
 use JTL\SCX\Lib\Channel\Core\ToArrayTrait;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Core\ToArrayTrait
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\ToArrayTrait::class)]
 class ToArrayTraitTest extends TestCase
 {
     public function testCanConvertCollectionToArray(): void
     {
         $a = uniqid();
         $b = random_int(1, 99999999);
-        $c = new \DateTimeImmutable();
+        $c = new DateTimeImmutable();
         $d = ['foo' => 'bar'];
         $e = new My2ndTestClass($a);
         $collection = new MyTestClassCollection();
@@ -38,7 +39,7 @@ class ToArrayTraitTest extends TestCase
     {
         $a = uniqid();
         $b = random_int(1, 99999999);
-        $c = new \DateTimeImmutable();
+        $c = new DateTimeImmutable();
         $d = ['foo' => 'bar'];
         $e = new My2ndTestClass($a);
         $obj = new MyTestClass($a, $b, $c, $d, $e);
@@ -49,9 +50,7 @@ class ToArrayTraitTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_use_value_from_backedEnums(): void
     {
         $sut = new class (Foo::Bar) {
@@ -75,11 +74,11 @@ class MyTestClass
 
     private string $a;
     private int $b;
-    private \DateTimeImmutable $c;
+    private DateTimeImmutable $c;
     private array $d;
     private My2ndTestClass $e;
 
-    public function __construct(string $a, int $b, \DateTimeImmutable $c, array $d, My2ndTestClass $e)
+    public function __construct(string $a, int $b, DateTimeImmutable $c, array $d, My2ndTestClass $e)
     {
         $this->a = $a;
         $this->b = $b;

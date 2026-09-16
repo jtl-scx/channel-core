@@ -10,6 +10,9 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Metrics;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use GuzzleHttp\Exception\GuzzleException;
 use JTL\GoPrometrics\Client\Counter;
 use JTL\GoPrometrics\Client\LabelList;
@@ -21,18 +24,15 @@ use Psr\Log\LoggerInterface;
  * Class AmqpMessageCounter
  *
  * @package JTL\SCX\Lib\Channel\Core\Metrics
- *
- * @covers \JTL\SCX\Lib\Channel\Core\Metrics\AmqpMessageCounter
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Metrics\AmqpMessageCounter::class)]
 class AmqpMessageCounterTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function canCountMessage(): void
     {
         $gpCounter = $this->createMock(Counter::class);
-        $logger = $this->createMock(LoggerInterface::class);
+        $logger = $this->createStub(LoggerInterface::class);
 
         $gpCounter->expects(self::once())
             ->method('count')
@@ -42,12 +42,11 @@ class AmqpMessageCounterTest extends TestCase
         $counter->countMessage(new AmqpTestMessage());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
+    #[AllowMockObjectsWithoutExpectations]
     public function logsErrorWhenCountingFails(): void
     {
-        $gpCounter = $this->createMock(Counter::class);
+        $gpCounter = $this->createStub(Counter::class);
         $logger = $this->createMock(LoggerInterface::class);
 
         $gpCounter->method('count')->willThrowException($this->createMock(GuzzleException::class));

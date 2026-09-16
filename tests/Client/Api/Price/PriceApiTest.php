@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Price;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Client\Api\AuthAwareApiClient;
 use PHPUnit\Framework\TestCase;
 use JTL\SCX\Lib\Channel\Client\Api\Price\Request\CreatePriceTypeRequest;
@@ -19,16 +20,15 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Class CreatePriceTypeApiTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Price
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Price\PriceApi
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Price\PriceApi::class)]
 class PriceApiTest extends TestCase
 {
     public function testCreatePriceType(): void
     {
-        $requestMock = $this->createMock(CreatePriceTypeRequest::class);
+        $requestMock = $this->createStub(CreatePriceTypeRequest::class);
 
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
         $apiClientMock->expects($this->once())->method('request')->with($requestMock)->willReturn($responseMock);

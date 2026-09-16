@@ -2,6 +2,9 @@
 
 namespace JTL\SCX\Lib\Channel\Event\Command;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\MockObject\Stub;
 use JTL\SCX\Lib\Channel\Client\Api\Event\EventApi;
 use JTL\SCX\Lib\Channel\Client\Api\Event\Model\ErroneousEvent;
 use JTL\SCX\Lib\Channel\Client\Api\Event\Model\EventContainerList;
@@ -12,18 +15,14 @@ use JTL\SCX\Lib\Channel\Event\Emitter\SellerEventEmitter;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Event\Command\ScxApiEventConsumeCommand
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Event\Command\ScxApiEventConsumeCommand::class)]
 class ScxApiEventConsumeCommandTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_will_emit_seller_event_to_message_queue(): void
     {
         $sut = new ScxApiEventConsumeCommand(
-            $api = $this->createMock(EventApi::class),
+            $api = $this->createStub(EventApi::class),
             $emitter = $this->createMock(SellerEventEmitter::class),
             $this->createStub(ScxLogger::class)
         );
@@ -48,9 +47,7 @@ class ScxApiEventConsumeCommandTest extends TestCase
         $tester->execute([]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_will_read_event_from_api_until_there_are_no_new_event_available(): void
     {
         $sut = new ScxApiEventConsumeCommand(
@@ -69,9 +66,7 @@ class ScxApiEventConsumeCommandTest extends TestCase
         $tester->execute([]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_will_acknowledge_each_successful_emitted_event(): void
     {
         $sut = new ScxApiEventConsumeCommand(
@@ -98,13 +93,11 @@ class ScxApiEventConsumeCommandTest extends TestCase
         $tester->execute([]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_will_log_erroneous_events(): void
     {
         $sut = new ScxApiEventConsumeCommand(
-            $api = $this->createMock(EventApi::class),
+            $api = $this->createStub(EventApi::class),
             $this->createStub(SellerEventEmitter::class),
             $logger = $this->createMock(ScxLogger::class)
         );
@@ -134,14 +127,12 @@ class ScxApiEventConsumeCommandTest extends TestCase
         $tester->execute([]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_will_not_ack_when_no_events_were_emitted(): void
     {
         $sut = new ScxApiEventConsumeCommand(
             $api = $this->createMock(EventApi::class),
-            $emitter = $this->createMock(SellerEventEmitter::class),
+            $emitter = $this->createStub(SellerEventEmitter::class),
             $this->createStub(ScxLogger::class)
         );
 
@@ -170,7 +161,7 @@ class ScxApiEventConsumeCommandTest extends TestCase
 
     /**
      * @param $testEvents
-     * @return \JTL\SCX\Lib\Channel\Client\Api\Event\Response\GetSellerEventListResponse|\PHPUnit\Framework\MockObject\Stub
+     * @return GetSellerEventListResponse|Stub
      */
     protected function buildEventApiResponse($testEvents = null)
     {

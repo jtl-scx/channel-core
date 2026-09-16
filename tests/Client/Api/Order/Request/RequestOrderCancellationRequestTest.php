@@ -10,17 +10,16 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Order\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Model\OrderCancellationRequest;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Order\Request\RequestOrderCancellationRequest
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Order\Request\RequestOrderCancellationRequest::class)]
 class RequestOrderCancellationRequestTest extends TestCase
 {
     public function testCanBeCreatedAndUsed(): void
     {
-        $cancellationRequest = $this->createMock(OrderCancellationRequest::class);
+        $cancellationRequest = $this->createStub(OrderCancellationRequest::class);
 
         $request = new RequestOrderCancellationRequest($cancellationRequest);
 

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use DateTimeImmutable;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventSellerAttributesUpdateRequest;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\SellerAttributeLoader;
@@ -11,9 +14,7 @@ use JTL\SCX\Lib\Channel\Event\Seller\AttributesUpdateRequestEvent;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeUpdateRequestListener
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeUpdateRequestListener::class)]
 class AttributeUpdateRequestListenerTest extends TestCase
 {
     private AttributeUpdateRequestListener $sut;
@@ -29,15 +30,13 @@ class AttributeUpdateRequestListenerTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_send_updated_attributeList_to_SCX(): void
     {
         $event = new AttributesUpdateRequestEvent(
             id: 'any_id',
             clientVersion: 'any_client_version',
-            createdAt: new \DateTimeImmutable(),
+            createdAt: new DateTimeImmutable(),
             event: new SellerEventSellerAttributesUpdateRequest(['sellerId' => 'any_seller_id'])
         );
 
@@ -57,15 +56,13 @@ class AttributeUpdateRequestListenerTest extends TestCase
     }
 
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_dont_send_update_when_attributes_are_empty(): void
     {
         $event = new AttributesUpdateRequestEvent(
             id: 'any_id',
             clientVersion: 'any_client_version',
-            createdAt: new \DateTimeImmutable(),
+            createdAt: new DateTimeImmutable(),
             event: new SellerEventSellerAttributesUpdateRequest(['sellerId' => 'any_seller_id'])
         );
 

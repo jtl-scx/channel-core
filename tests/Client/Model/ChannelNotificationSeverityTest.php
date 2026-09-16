@@ -27,7 +27,9 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * ChannelNotificationSeverityTest Class Doc Comment
@@ -37,14 +39,14 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\ChannelNotificationSeverity
  */
-class ChannelNotificationSeverityTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\ChannelNotificationSeverity::class)]
+class ChannelNotificationSeverityTest extends AbstractApiModelTestCase
 {
     /**
      * Test Enum Value "INFO"
-     * @test
      */
+    #[Test]
     public function is_a_const_INFO(): void
     {
         self::assertEquals('INFO', ChannelNotificationSeverity::INFO);
@@ -54,8 +56,8 @@ class ChannelNotificationSeverityTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "INFO"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forINFO(): void
     {
         $sut = ChannelNotificationSeverity::INFO();
@@ -63,8 +65,8 @@ class ChannelNotificationSeverityTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "WARNING"
-     * @test
      */
+    #[Test]
     public function is_a_const_WARNING(): void
     {
         self::assertEquals('WARNING', ChannelNotificationSeverity::WARNING);
@@ -74,8 +76,8 @@ class ChannelNotificationSeverityTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "WARNING"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forWARNING(): void
     {
         $sut = ChannelNotificationSeverity::WARNING();
@@ -83,8 +85,8 @@ class ChannelNotificationSeverityTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "ERROR"
-     * @test
      */
+    #[Test]
     public function is_a_const_ERROR(): void
     {
         self::assertEquals('ERROR', ChannelNotificationSeverity::ERROR);
@@ -94,8 +96,8 @@ class ChannelNotificationSeverityTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "ERROR"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forERROR(): void
     {
         $sut = ChannelNotificationSeverity::ERROR();
@@ -104,8 +106,8 @@ class ChannelNotificationSeverityTest extends AbstractApiModelTest
 
     /**
      * Test allowed values from Enum
-     * @test
      */
+    #[Test]
     public function it_has_correct_set_of_allowed_values(): void
     {
         $allowed = [

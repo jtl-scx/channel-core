@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use DateTimeImmutable;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferStockUpdate;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Event\Seller\OfferStockUpdateEvent
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Event\Seller\OfferStockUpdateEvent::class)]
 class OfferStockUpdateEventTest extends TestCase
 {
     public function test_it_can_be_created(): void
@@ -19,7 +18,7 @@ class OfferStockUpdateEventTest extends TestCase
         $version = '1.0.0';
         $createdAt = new DateTimeImmutable();
 
-        $event = $this->createMock(SellerEventOfferStockUpdate::class);
+        $event = $this->createStub(SellerEventOfferStockUpdate::class);
 
         $offerStockUpdateEvent = new OfferStockUpdateEvent(
             $id,

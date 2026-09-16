@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Seller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use JTL\SCX\Client\Api\AuthAwareApiClient;
 use JTL\SCX\Lib\Channel\Client\Api\ChannelApiResponseDeserializer;
 use JTL\SCX\Lib\Channel\Client\Api\Seller\Request\CreateSellerRequest;
@@ -34,18 +36,15 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Class CreateSellerApiTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Seller
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Seller\SellerApi
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Seller\SellerApi::class)]
 class SellerApiTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_send_a_seller_create_request(): void
     {
-        $requestMock = $this->createMock(CreateSellerRequest::class);
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $requestMock = $this->createStub(CreateSellerRequest::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
 
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
@@ -55,13 +54,11 @@ class SellerApiTest extends TestCase
         $this->assertInstanceOf(CreateSellerResponse::class, $client->create($requestMock));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_send_a_seller_unlink(): void
     {
-        $requestMock = $this->createMock(UnlinkSellerRequest::class);
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $requestMock = $this->createStub(UnlinkSellerRequest::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
 
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
@@ -71,9 +68,7 @@ class SellerApiTest extends TestCase
         $this->assertInstanceOf(UnlinkSellerResponse::class, $client->unlink($requestMock));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_request_SellerId_from_UpdateSession(): void
     {
         $sessionId = 'SESSION_ID';
@@ -102,16 +97,14 @@ class SellerApiTest extends TestCase
         self::assertEquals('A_SELLER_ID', $data->getSellerId());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_send_a_seller_update(): void
     {
         $client = new SellerApi(
             $apiClientMock = $this->createMock(AuthAwareApiClient::class)
         );
 
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
 
         $apiClientMock->expects($this->once())->method('request')
@@ -121,9 +114,7 @@ class SellerApiTest extends TestCase
         $client->update(self::createStub(UpdateSeller::class));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_read_signup_session_data(): void
     {
         $sessionId = 'SESSION_ID';
@@ -153,13 +144,11 @@ class SellerApiTest extends TestCase
         self::assertEquals($jtlAccountId, $data->getJtlAccountId());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_send_a_seller_upsert(): void
     {
-        $requestMock = $this->createMock(UpsertMarketplaceSellerRequest::class);
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $requestMock = $this->createStub(UpsertMarketplaceSellerRequest::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(201);
 
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
@@ -172,13 +161,11 @@ class SellerApiTest extends TestCase
         self::assertSame(201, $response->getStatusCode());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_get_a_seller_list(): void
     {
-        $requestMock = $this->createMock(GetSellerListRequest::class);
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $requestMock = $this->createStub(GetSellerListRequest::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
 
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);

@@ -10,11 +10,10 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\ChannelApi;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\ChannelApi\ListingFailedError
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\ChannelApi\ListingFailedError::class)]
 class ListingFailedErrorTest extends TestCase
 {
     public function testCanBeUsed(): void

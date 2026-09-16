@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Api\Meta\Request\CreateShippingRulesRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Meta\Response\CreateShippingRulesResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Meta\ShippingRulesApi;
@@ -19,9 +20,7 @@ use JTL\SCX\Lib\Channel\Helper\FileHandler;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Core\Command\PushShippingRulesCommand
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Command\PushShippingRulesCommand::class)]
 class PushShippingRulesCommandTest extends TestCase
 {
     public function testCanPushDataToScx(): void

@@ -10,14 +10,14 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData\Price;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use InvalidArgumentException;
 use JTL\SCX\Lib\Channel\Client\Model\PriceType;
 use JTL\SCX\Lib\Channel\Helper\FileHandler;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\MetaData\Price\PriceTypeLoader
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\Price\PriceTypeLoader::class)]
 class PriceTypeLoaderTest extends TestCase
 {
     public function testCanLoad(): void
@@ -62,9 +62,7 @@ class PriceTypeLoaderTest extends TestCase
         $loader->load($fileName);
     }
 
-    /**
-     * @dataProvider invalidDataProvider
-     */
+    #[DataProvider('invalidDataProvider')]
     public function testCanFailWithoutValidData($json): void
     {
         $fileName = uniqid('filename', true);
@@ -78,7 +76,7 @@ class PriceTypeLoaderTest extends TestCase
         $loader->load($fileName);
     }
 
-    public function invalidDataProvider(): array
+    public static function invalidDataProvider(): array
     {
         return [
             ['invalidJson'],

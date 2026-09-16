@@ -2,16 +2,14 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Seller\Response;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UpdateSellerResponse
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UpdateSellerResponse::class)]
 class UpdateSellerResponseTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_consider_http201_as_successful(): void
     {
         $sut = new UpdateSellerResponse(201);

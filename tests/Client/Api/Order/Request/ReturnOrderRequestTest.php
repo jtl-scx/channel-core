@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Order\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Model\ReturnAnnouncement;
 use JTL\SCX\Client\Request\ScxApiRequest;
 use PHPUnit\Framework\TestCase;
@@ -18,9 +19,8 @@ use PHPUnit\Framework\TestCase;
  * Class ReturnOrderRequest
  *
  * @package JTL\SCX\Lib\Channel\Client\Api\Order\Request
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Order\Request\ReturnOrderRequest
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Order\Request\ReturnOrderRequest::class)]
 class ReturnOrderRequestTest extends TestCase
 {
     public function testCanGetValues(): void

@@ -10,19 +10,18 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Order\Response;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class SendRefundProcessingResultResponseTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Order\Response
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Order\Response\SendRefundProcessingResultResponse
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Order\Response\SendRefundProcessingResultResponse::class)]
 class SendRefundProcessingResultResponseTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_be_created(): void
     {
         $response = new SendRefundProcessingResultResponse(200);

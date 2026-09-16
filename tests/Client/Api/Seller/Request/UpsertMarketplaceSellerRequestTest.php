@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Seller\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Model\UpsertMarketplaceSeller;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UpsertMarketplaceSellerRequest
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Seller\Request\UpsertMarketplaceSellerRequest::class)]
 class UpsertMarketplaceSellerRequestTest extends TestCase
 {
     private const JTL_ACCOUNT_ID = 12345;

@@ -27,7 +27,9 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * ReportTypeTest Class Doc Comment
@@ -37,14 +39,14 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\ReportType
  */
-class ReportTypeTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\ReportType::class)]
+class ReportTypeTest extends AbstractApiModelTestCase
 {
     /**
      * Test Enum Value "SELLER_INVENTORY"
-     * @test
      */
+    #[Test]
     public function is_a_const_SELLER_INVENTORY(): void
     {
         self::assertEquals('SELLER_INVENTORY', ReportType::SELLER_INVENTORY);
@@ -54,8 +56,8 @@ class ReportTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SELLER_INVENTORY"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSELLER_INVENTORY(): void
     {
         $sut = ReportType::SELLER_INVENTORY();
@@ -64,8 +66,8 @@ class ReportTypeTest extends AbstractApiModelTest
 
     /**
      * Test allowed values from Enum
-     * @test
      */
+    #[Test]
     public function it_has_correct_set_of_allowed_values(): void
     {
         $allowed = [

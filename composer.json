@@ -30,7 +30,8 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": " ^3.95.13",
         "phpstan/phpstan": "^1.12.33",
-        "phpunit/phpunit": "^9.6.35",
+        "phpunit/phpunit": "^12.5",
+        "rector/rector": "^1.2",
         "symfony/dotenv": "^7.4",
         "twig/twig": "^2.0 || ^3.28.0"
     },

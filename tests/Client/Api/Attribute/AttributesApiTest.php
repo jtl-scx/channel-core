@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Attribute;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Client\Api\AuthAwareApiClient;
 use JTL\SCX\Lib\Channel\Client\Api\Attribute\Request\CreateCategoryAttributesRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Attribute\Request\CreateGlobalAttributesRequest;
@@ -22,16 +23,15 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Class AttributesApiTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Attribute
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Attribute\AttributesApi
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Attribute\AttributesApi::class)]
 class AttributesApiTest extends TestCase
 {
     public function testCreateSellerAttributes()
     {
         $status = 201;
-        $requestMock = $this->createMock(CreateSellerAttributesRequest::class);
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $requestMock = $this->createStub(CreateSellerAttributesRequest::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn($status);
 
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
@@ -46,8 +46,8 @@ class AttributesApiTest extends TestCase
     public function testDeleteGlobalAttribute()
     {
         $status = 201;
-        $requestMock = $this->createMock(DeleteGlobalAttributeRequest::class);
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $requestMock = $this->createStub(DeleteGlobalAttributeRequest::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn($status);
 
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
@@ -62,8 +62,8 @@ class AttributesApiTest extends TestCase
     public function testCreateGlobalAttributes()
     {
         $status = 201;
-        $requestMock = $this->createMock(CreateGlobalAttributesRequest::class);
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $requestMock = $this->createStub(CreateGlobalAttributesRequest::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn($status);
 
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
@@ -78,8 +78,8 @@ class AttributesApiTest extends TestCase
     public function testCreateCategoryAttributes()
     {
         $status = 201;
-        $requestMock = $this->createMock(CreateCategoryAttributesRequest::class);
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $requestMock = $this->createStub(CreateCategoryAttributesRequest::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn($status);
 
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);
@@ -94,7 +94,7 @@ class AttributesApiTest extends TestCase
     public function testItSendCategoryAttributeDeleteCall(): void
     {
         $status = 201;
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn($status);
 
         $apiClientMock = $this->createMock(AuthAwareApiClient::class);

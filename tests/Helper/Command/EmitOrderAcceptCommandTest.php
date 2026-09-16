@@ -10,11 +10,10 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderConfirmedEvent;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Helper\Command\EmitOrderAcceptCommand
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Helper\Command\EmitOrderAcceptCommand::class)]
 class EmitOrderAcceptCommandTest extends AbstractEmitterCommandTestCaseHelper
 {
     public function testCanEmitOrderAcceptEvent(): void

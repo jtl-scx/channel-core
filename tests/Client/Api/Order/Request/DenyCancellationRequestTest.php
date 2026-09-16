@@ -10,34 +10,28 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Order\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Order\Request\DenyCancellationRequest
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Order\Request\DenyCancellationRequest::class)]
 class DenyCancellationRequestTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_correct_url(): void
     {
         $sut = new DenyCancellationRequest('', '', '');
         $this->assertEquals('/v1/channel/order/cancellation-denied', $sut->getUrl());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_use_correct_http_method(): void
     {
         $sut = new DenyCancellationRequest('', '', '');
         $this->assertEquals(DenyCancellationRequest::HTTP_METHOD_PUT, $sut->getHttpMethod());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_render_request_body(): void
     {
         $sut = new DenyCancellationRequest('A_SELLER', 'A_ID', 'A_REASON');

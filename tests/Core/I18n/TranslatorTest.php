@@ -10,12 +10,11 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\I18n;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Core\I18n\Translator
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\I18n\Translator::class)]
 class TranslatorTest extends TestCase
 {
     public function testItCanTranslateString()

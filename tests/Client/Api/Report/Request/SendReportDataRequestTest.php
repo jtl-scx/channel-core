@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Report\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Model\SellerInventoryItem;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class SendReportDataRequestTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Report\Request
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Report\Request\SendReportRequest
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Report\Request\SendReportRequest::class)]
 class SendReportDataRequestTest extends TestCase
 {
     public function testCanBeCreatedAndUsed(): void

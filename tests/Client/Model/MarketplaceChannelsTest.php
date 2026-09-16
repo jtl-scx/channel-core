@@ -27,7 +27,10 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * MarketplaceChannelsTest Class Doc Comment
@@ -37,47 +40,15 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\MarketplaceChannels
  */
-class MarketplaceChannelsTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\MarketplaceChannels::class)]
+class MarketplaceChannelsTest extends AbstractApiModelTestCase
 {
-    /**
-     * @return array
-     * @dataProvider
-     */
-    public function expectedInterface(): array
+    #[Test]
+    public function it_has_no_properties(): void
     {
-        return [
-        ];
-    }
-
-    /**
-     * @test
-     * @dataProvider expectedInterface
-     */
-    public function it_has_expected_interface(string $property, string $type, string $expectedGetter, string $expectedSetter, bool $isNullable): void
-    {
-        $sample = $this->buildSampleForDataType($type);
-        $sut = new MarketplaceChannels([$property => $sample]);
-
-        $this->assertMethodExists($sut, $expectedGetter);
-        $this->assertSame($sample, $sut->$expectedGetter());
-
-        $this->assertArrayHasKey($property, $sut);
-        $this->assertSame($sample, $sut[$property]);
-
-        $newSample = $this->buildSampleForDataType($type);
-        $this->assertMethodExists($sut, $expectedSetter);
-        $sut->$expectedSetter($newSample);
-        $this->assertSame($newSample, $sut[$property]);
-
-        if ($isNullable) {
-            $sut = new MarketplaceChannels([$property => null]);
-            $this->assertNull($sut->$expectedGetter());
-
-            $sut->$expectedSetter(null);
-            $this->assertNull($sut->$expectedGetter());
-        }
+        self::assertSame([], MarketplaceChannels::openAPITypes(), 'The generated model declares no properties');
+        self::assertInstanceOf(ModelInterface::class, new MarketplaceChannels());
     }
 
 }

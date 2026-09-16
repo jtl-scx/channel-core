@@ -10,12 +10,11 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Log\Context;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Core\Log\Context\SellerOfferIdContext;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Core\Log\Context\SellerOfferIdContext
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Log\Context\SellerOfferIdContext::class)]
 class SellerOfferIdContextTest extends TestCase
 {
     public function testCanBeUsed(): void

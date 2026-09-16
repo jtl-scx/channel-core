@@ -10,20 +10,20 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\ChannelApi;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use DateTime;
 use JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingInProgressMessage;
 use JTL\SCX\Lib\Channel\Seller\ChannelSellerId;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingInProgressMessage
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\ChannelApi\SendOfferListingInProgressMessage::class)]
 class SendOfferListingInProgressMessageTest extends TestCase
 {
     public function testCanBeUsed(): void
     {
         $sellerId = $this->createStub(ChannelSellerId::class);
         $sellerOfferId = random_int(1, 10000);
-        $startedAt = $this->createStub(\DateTime::class);
+        $startedAt = $this->createStub(DateTime::class);
         $msgId = uniqid('msgId', true);
         $msg = new SendOfferListingInProgressMessage($sellerId, $sellerOfferId, $startedAt, $msgId);
 

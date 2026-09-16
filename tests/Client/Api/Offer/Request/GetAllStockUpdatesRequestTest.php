@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Offer\Request;
 
+use DateTime;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers GetAllStockUpdatesRequest
- */
+#[CoversClass(GetAllStockUpdatesRequest::class)]
 class GetAllStockUpdatesRequestTest extends TestCase
 {
     public function testCanBeCreatedAndUsed(): void
     {
-        $dateTime = new \DateTime();
+        $dateTime = new DateTime();
         $request = new GetAllStockUpdatesRequest($dateTime);
 
         $this->assertSame('GET', $request->getHttpMethod());

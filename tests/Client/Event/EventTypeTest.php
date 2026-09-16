@@ -10,13 +10,15 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Event;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use stdClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventChannelUnlinked;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferEnd;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferNew;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferPriceUpdate;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferStockUpdate;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferUpdate;
-use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderAccept;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderCancellationAccepted;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderCancellationDenied;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderCancellationRequest;
@@ -32,12 +34,10 @@ use JTL\SCX\Lib\Channel\Client\Model\SellerEventTest;
 use JTL\SCX\Lib\Channel\Client\Model\SystemEventNotification;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Event\EventType
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Event\EventType::class)]
 class EventTypeTest extends TestCase
 {
-    public function mapProvider(): array
+    public static function mapProvider(): array
     {
         return [
             [SellerEventTest::class, EventType::SellerEventTest()],
@@ -59,13 +59,11 @@ class EventTypeTest extends TestCase
             [SellerEventOrderInvoice::class, EventType::SellerEventOrderInvoice()],
             [SellerEventOrderRefund::class, EventType::SellerEventOrderRefund()],
             [SellerEventOrderReturnReceived::class, EventType::SellerOrderReturnReceived()],
-            [\stdClass::class, new EventType('FooBarEvent')],
+            [stdClass::class, new EventType('FooBarEvent')],
         ];
     }
 
-    /**
-     * @dataProvider mapProvider
-     */
+    #[DataProvider('mapProvider')]
     public function testCanMapToCorrectModelClass(string $expectation, EventType $type)
     {
         $this->assertEquals($expectation, $type->getEventModelClass());

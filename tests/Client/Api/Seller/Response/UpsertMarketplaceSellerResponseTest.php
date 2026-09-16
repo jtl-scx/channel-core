@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Seller\Response;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UpsertMarketplaceSellerResponse
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Seller\Response\UpsertMarketplaceSellerResponse::class)]
 class UpsertMarketplaceSellerResponseTest extends TestCase
 {
     private const STATUS_OK = 200;

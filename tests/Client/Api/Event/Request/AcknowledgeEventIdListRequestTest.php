@@ -10,12 +10,11 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Event\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Model\EventIdList;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Event\Request\AcknowledgeEventIdListRequest
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Event\Request\AcknowledgeEventIdListRequest::class)]
 class AcknowledgeEventIdListRequestTest extends TestCase
 {
     public function testCanReceiveRequestModel()

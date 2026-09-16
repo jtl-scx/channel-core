@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Order;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Client\Api\AuthAwareApiClient;
 use JTL\SCX\Lib\Channel\Client\Api\ChannelApiResponseDeserializer;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Request\AcceptCancellationRequest;
@@ -41,17 +42,16 @@ use Psr\Http\Message\StreamInterface;
 /**
  * Class CreateOrdersApiTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Order
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Order\OrderApi
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Order\OrderApi::class)]
 class OrderApiTest extends TestCase
 {
     public function testCreate(): void
     {
-        $requestMock = $this->createMock(CreateOrderRequest::class);
-        $streamMock = $this->createMock(StreamInterface::class);
+        $requestMock = $this->createStub(CreateOrderRequest::class);
+        $streamMock = $this->createStub(StreamInterface::class);
         $streamMock->method('getContents')->willReturn('');
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
         $responseMock->method('getBody')->willReturn($streamMock);
 
@@ -64,10 +64,10 @@ class OrderApiTest extends TestCase
 
     public function testCanUpdateStatus(): void
     {
-        $requestMock = $this->createMock(UpdateOrderStatusRequest::class);
-        $streamMock = $this->createMock(StreamInterface::class);
+        $requestMock = $this->createStub(UpdateOrderStatusRequest::class);
+        $streamMock = $this->createStub(StreamInterface::class);
         $streamMock->method('getContents')->willReturn('');
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
         $responseMock->method('getBody')->willReturn($streamMock);
 
@@ -80,10 +80,10 @@ class OrderApiTest extends TestCase
 
     public function testCanUpdateAddress(): void
     {
-        $requestMock = $this->createMock(UpdateOrderAddressRequest::class);
-        $streamMock = $this->createMock(StreamInterface::class);
+        $requestMock = $this->createStub(UpdateOrderAddressRequest::class);
+        $streamMock = $this->createStub(StreamInterface::class);
         $streamMock->method('getContents')->willReturn('');
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
         $responseMock->method('getBody')->willReturn($streamMock);
 
@@ -97,9 +97,9 @@ class OrderApiTest extends TestCase
     public function testCanRequestOrderCancellation(): void
     {
         $request = $this->createStub(RequestOrderCancellationRequest::class);
-        $streamMock = $this->createMock(StreamInterface::class);
+        $streamMock = $this->createStub(StreamInterface::class);
         $streamMock->method('getContents')->willReturn('');
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
         $responseMock->method('getBody')->willReturn($streamMock);
 
@@ -114,10 +114,10 @@ class OrderApiTest extends TestCase
     {
         $errorJson = '{"foo": "bar"}';
 
-        $requestMock = $this->createMock(CreateOrderRequest::class);
-        $streamMock = $this->createMock(StreamInterface::class);
+        $requestMock = $this->createStub(CreateOrderRequest::class);
+        $streamMock = $this->createStub(StreamInterface::class);
         $streamMock->method('getContents')->willReturn($errorJson);
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
         $responseMock->method('getBody')->willReturn($streamMock);
 
@@ -143,7 +143,7 @@ class OrderApiTest extends TestCase
         $sut = new OrderApi($apiClientMock, $deserializerStub);
 
         $request = new AcceptCancellationRequest("A_SELLER", "A_ID");
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(201);
 
         $apiClientMock->expects($this->once())->method('request')
@@ -162,7 +162,7 @@ class OrderApiTest extends TestCase
         $sut = new OrderApi($apiClientMock, $deserializerStub);
 
         $request = new DenyCancellationRequest("A_SELLER", "A_ID", "Reason");
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(201);
 
         $apiClientMock->expects($this->once())->method('request')
@@ -182,9 +182,9 @@ class OrderApiTest extends TestCase
 
         $testDocument = $this->createStub(StreamInterface::class);
 
-        $request = $this->createMock(GetInvoiceRequest::class);
+        $request = $this->createStub(GetInvoiceRequest::class);
 
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(200);
         $responseMock->method('getBody')->willReturn($testDocument);
 
@@ -204,9 +204,9 @@ class OrderApiTest extends TestCase
 
         $client = new OrderApi($apiClientMock, $deserializerStub);
 
-        $request = $this->createMock(UploadInvoiceRequest::class);
+        $request = $this->createStub(UploadInvoiceRequest::class);
 
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(201);
 
         $apiClientMock->expects($this->once())->method('request')->with($request)->willReturn($responseMock);
@@ -224,9 +224,9 @@ class OrderApiTest extends TestCase
 
         $client = new OrderApi($apiClientMock, $deserializerStub);
 
-        $request = $this->createMock(SendRefundProcessingResultRequest::class);
+        $request = $this->createStub(SendRefundProcessingResultRequest::class);
 
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(201);
 
         $apiClientMock->expects($this->once())->method('request')->with($request)->willReturn($responseMock);
@@ -244,9 +244,9 @@ class OrderApiTest extends TestCase
 
         $client = new OrderApi($apiClientMock, $deserializerStub);
 
-        $request = $this->createMock(ReturnOrderRequest::class);
+        $request = $this->createStub(ReturnOrderRequest::class);
 
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(201);
 
         $apiClientMock->expects($this->once())->method('request')->with($request)->willReturn($responseMock);
@@ -264,9 +264,9 @@ class OrderApiTest extends TestCase
 
         $sut = new OrderApi($apiClientMock, $deserializerStub);
 
-        $request = $this->createMock(ReturnOrderProcessingResultRequest::class);
+        $request = $this->createStub(ReturnOrderProcessingResultRequest::class);
 
-        $responseMock = $this->createMock(ResponseInterface::class);
+        $responseMock = $this->createStub(ResponseInterface::class);
         $responseMock->method('getStatusCode')->willReturn(201);
 
         $apiClientMock->expects($this->once())->method('request')->with($request)->willReturn($responseMock);

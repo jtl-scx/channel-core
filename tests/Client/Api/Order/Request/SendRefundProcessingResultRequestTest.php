@@ -10,20 +10,20 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Order\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Model\RefundProcessingResult;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class SendRefundProcessingResultRequestTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Order\Request
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Order\Request\SendRefundProcessingResultRequest
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Order\Request\SendRefundProcessingResultRequest::class)]
 class SendRefundProcessingResultRequestTest extends TestCase
 {
     public function testCanBeCreatedAndUsed(): void
     {
-        $result = $this->createMock(RefundProcessingResult::class);
+        $result = $this->createStub(RefundProcessingResult::class);
 
         $request = new SendRefundProcessingResultRequest($result);
 

@@ -27,7 +27,9 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * ReturnReasonTest Class Doc Comment
@@ -37,14 +39,14 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\ReturnReason
  */
-class ReturnReasonTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\ReturnReason::class)]
+class ReturnReasonTest extends AbstractApiModelTestCase
 {
     /**
      * Test Enum Value "NO_REASON"
-     * @test
      */
+    #[Test]
     public function is_a_const_NO_REASON(): void
     {
         self::assertEquals('NO_REASON', ReturnReason::NO_REASON);
@@ -54,8 +56,8 @@ class ReturnReasonTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "NO_REASON"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forNO_REASON(): void
     {
         $sut = ReturnReason::NO_REASON();
@@ -63,8 +65,8 @@ class ReturnReasonTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "DEFECT"
-     * @test
      */
+    #[Test]
     public function is_a_const_DEFECT(): void
     {
         self::assertEquals('DEFECT', ReturnReason::DEFECT);
@@ -74,8 +76,8 @@ class ReturnReasonTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "DEFECT"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forDEFECT(): void
     {
         $sut = ReturnReason::DEFECT();
@@ -83,8 +85,8 @@ class ReturnReasonTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "WRONG_ITEM"
-     * @test
      */
+    #[Test]
     public function is_a_const_WRONG_ITEM(): void
     {
         self::assertEquals('WRONG_ITEM', ReturnReason::WRONG_ITEM);
@@ -94,8 +96,8 @@ class ReturnReasonTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "WRONG_ITEM"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forWRONG_ITEM(): void
     {
         $sut = ReturnReason::WRONG_ITEM();
@@ -103,8 +105,8 @@ class ReturnReasonTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "WRONG_SIZE"
-     * @test
      */
+    #[Test]
     public function is_a_const_WRONG_SIZE(): void
     {
         self::assertEquals('WRONG_SIZE', ReturnReason::WRONG_SIZE);
@@ -114,8 +116,8 @@ class ReturnReasonTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "WRONG_SIZE"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forWRONG_SIZE(): void
     {
         $sut = ReturnReason::WRONG_SIZE();
@@ -123,8 +125,8 @@ class ReturnReasonTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "TOO_LATE"
-     * @test
      */
+    #[Test]
     public function is_a_const_TOO_LATE(): void
     {
         self::assertEquals('TOO_LATE', ReturnReason::TOO_LATE);
@@ -134,8 +136,8 @@ class ReturnReasonTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "TOO_LATE"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forTOO_LATE(): void
     {
         $sut = ReturnReason::TOO_LATE();
@@ -143,8 +145,8 @@ class ReturnReasonTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "BAD_QUALITY"
-     * @test
      */
+    #[Test]
     public function is_a_const_BAD_QUALITY(): void
     {
         self::assertEquals('BAD_QUALITY', ReturnReason::BAD_QUALITY);
@@ -154,8 +156,8 @@ class ReturnReasonTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "BAD_QUALITY"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forBAD_QUALITY(): void
     {
         $sut = ReturnReason::BAD_QUALITY();
@@ -164,8 +166,8 @@ class ReturnReasonTest extends AbstractApiModelTest
 
     /**
      * Test allowed values from Enum
-     * @test
      */
+    #[Test]
     public function it_has_correct_set_of_allowed_values(): void
     {
         $allowed = [

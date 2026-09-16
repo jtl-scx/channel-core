@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Log\Context;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Core\Log\Context\InvoiceNumberContext
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Log\Context\InvoiceNumberContext::class)]
 class InvoiceNumberContextTest extends TestCase
 {
     public function testCanCreateContext(): void

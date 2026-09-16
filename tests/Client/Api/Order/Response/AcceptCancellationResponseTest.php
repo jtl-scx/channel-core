@@ -10,16 +10,14 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Order\Response;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Order\Response\AcceptCancellationResponse
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Order\Response\AcceptCancellationResponse::class)]
 class AcceptCancellationResponseTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_consider_request_as_successful_on_http_code_201(): void
     {
         $sut = new AcceptCancellationResponse(201);

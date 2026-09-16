@@ -10,15 +10,15 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Attribute\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use JTL\SCX\Lib\Channel\Client\Model\AttributeList;
 
 /**
  * Class CreateSellerAttributesRequestTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Attribute\Request
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Attribute\Request\CreateSellerAttributesRequest
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Attribute\Request\CreateSellerAttributesRequest::class)]
 class CreateSellerAttributesRequestTest extends TestCase
 {
     public function testCanBeCreatedAndValidated(): void

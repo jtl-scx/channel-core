@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Helper\Command;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use JTL\SCX\Lib\Channel\Event\Seller\SystemNotificationEvent;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Helper\Command\EmitSystemNotificationCommand
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Helper\Command\EmitSystemNotificationCommand::class)]
 class EmitSystemNotificationCommandTest extends AbstractEmitterCommandTestCaseHelper
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_emit_system_notification_event(): void
     {
         $testJsonFile = sys_get_temp_dir() . '/' . __CLASS__ . '.json';

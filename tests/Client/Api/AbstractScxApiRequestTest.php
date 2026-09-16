@@ -10,14 +10,14 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class AbstractScxApiRequestTest
  * @package JTL\SCX\Lib\Channel\Client\Api
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\AbstractScxApiRequest
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\AbstractScxApiRequest::class)]
 class AbstractScxApiRequestTest extends TestCase
 {
     public function testHasDefaults(): void

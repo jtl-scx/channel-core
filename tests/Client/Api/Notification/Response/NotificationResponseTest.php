@@ -10,12 +10,13 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Notification\Response;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class NotificationResponseTest
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Notification\Response\NotificationResponse
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Notification\Response\NotificationResponse::class)]
 class NotificationResponseTest extends TestCase
 {
     public function testStatusCode201IsSuccessful()

@@ -10,14 +10,14 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Offer\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use DateTime;
 use JTL\SCX\Lib\Channel\Client\Model\OfferListingFailed;
 use JTL\SCX\Lib\Channel\Client\Model\OfferListingFailedList;
 use JTL\SCX\Client\Request\ScxApiRequest;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Offer\Request\MarkListingAsFailedRequest
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Offer\Request\MarkListingAsFailedRequest::class)]
 class MarkListingAsFailedRequestTest extends TestCase
 {
     public function testCanInitiateWithOfferListModel()
@@ -39,9 +39,9 @@ class MarkListingAsFailedRequestTest extends TestCase
     {
         $request = new MarkListingAsFailedRequest();
 
-        $request->addOffer(new OfferListingFailed(['sellerId' => 'failedOffer1', 'offerId' => 1, 'errorList' => [], 'failedAt' => $this->createStub(\DateTime::class)]));
-        $request->addOffer(new OfferListingFailed(['sellerId' => 'failedOffer2', 'offerId' => 2, 'errorList' => [], 'failedAt' => $this->createStub(\DateTime::class)]));
-        $request->addOffer(new OfferListingFailed(['sellerId' => 'failedOffer3', 'offerId' => 3, 'errorList' => [], 'failedAt' => $this->createStub(\DateTime::class)]));
+        $request->addOffer(new OfferListingFailed(['sellerId' => 'failedOffer1', 'offerId' => 1, 'errorList' => [], 'failedAt' => $this->createStub(DateTime::class)]));
+        $request->addOffer(new OfferListingFailed(['sellerId' => 'failedOffer2', 'offerId' => 2, 'errorList' => [], 'failedAt' => $this->createStub(DateTime::class)]));
+        $request->addOffer(new OfferListingFailed(['sellerId' => 'failedOffer3', 'offerId' => 3, 'errorList' => [], 'failedAt' => $this->createStub(DateTime::class)]));
 
         $body = $request->getBody();
 

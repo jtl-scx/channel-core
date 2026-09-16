@@ -10,14 +10,15 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Notification\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Model\Notification;
 use JTL\SCX\Client\Request\ScxApiRequest;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class NotificationRequestTest
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Notification\Request\NotificationRequest
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Notification\Request\NotificationRequest::class)]
 class NotificationRequestTest extends TestCase
 {
     public function testGetUrlIsCorrect()

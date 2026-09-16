@@ -10,12 +10,11 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Log;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Core\Log\MessageIdContext;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Core\Log\MessageIdContext
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Log\MessageIdContext::class)]
 class MessageIdContextTest extends TestCase
 {
     public function testRecordContainMessageId()

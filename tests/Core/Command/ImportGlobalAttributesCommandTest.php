@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Core\Command;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\GlobalAttributeLoader;
 use JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeList;
@@ -20,16 +21,15 @@ use Symfony\Component\Console\Tester\CommandTester;
 /**
  * Class ImportGlobalAttributesCommandTest
  * @package JTL\SCX\Lib\Channel\Core\Command
- *
- * @covers \JTL\SCX\Lib\Channel\Core\Command\ImportGlobalAttributesCommand
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Core\Command\ImportGlobalAttributesCommand::class)]
 class ImportGlobalAttributesCommandTest extends TestCase
 {
     public function testCanLoadGlobalAttributes(): void
     {
         $globalAttributeLoader = $this->createMock(GlobalAttributeLoader::class);
         $globalAttributeSender = $this->createMock(GlobalAttributeSender::class);
-        $logger = $this->createMock(ScxLogger::class);
+        $logger = $this->createStub(ScxLogger::class);
 
         $attributeList = new AttributeList();
         $globalAttributeLoader->expects($this->once())->method('load')->willReturn($attributeList);

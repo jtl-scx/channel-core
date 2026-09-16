@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace JTL\SCX\Lib\Channel\Client\Api\Offer\Response;
 
 use JTL\SCX\Lib\Channel\Client\Model\StockList;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers GetStockUpdatesResponse
- */
+#[CoversClass(GetStockUpdatesResponse::class)]
 class GetStockUpdatesResponseTest extends TestCase
 {
     public function testCanGetData(): void

@@ -10,11 +10,11 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeEnumValueList
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\Attribute\AttributeEnumValueList::class)]
 class AttributeEnumValueListTest extends TestCase
 {
     public function testCanCreateFromScalarArray(): void
@@ -37,9 +37,7 @@ class AttributeEnumValueListTest extends TestCase
         self::assertNull($value->getDisplay());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_be_created_from_array(): void
     {
         $data = [

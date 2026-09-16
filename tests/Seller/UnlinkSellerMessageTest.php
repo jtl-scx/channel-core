@@ -2,11 +2,10 @@
 
 namespace JTL\SCX\Lib\Channel\Seller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers  \JTL\SCX\Lib\Channel\Seller\UnlinkSellerMessage
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Seller\UnlinkSellerMessage::class)]
 class UnlinkSellerMessageTest extends TestCase
 {
     public function testCanGetReason(): void

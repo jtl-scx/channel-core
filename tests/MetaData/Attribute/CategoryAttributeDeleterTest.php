@@ -10,8 +10,9 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\MetaData\Attribute;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use JTL\SCX\Lib\Channel\Client\Api\Attribute\AttributesApi;
-use JTL\SCX\Lib\Channel\Client\Api\Attribute\Request\DeleteCategoryAttributesRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Attribute\Response\AttributesDeletedResponse;
 use JTL\SCX\Lib\Channel\Core\Exception\UnexpectedStatusException;
 use PHPUnit\Framework\TestCase;
@@ -20,14 +21,11 @@ use PHPUnit\Framework\TestCase;
  * Class CategoryAttributeDeleter
  *
  * @package JTL\SCX\Lib\Channel\MetaData\Attribute
- *
- * @covers \JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeDeleter
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\Attribute\CategoryAttributeDeleter::class)]
 class CategoryAttributeDeleterTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function canDeleteAttributes(): void
     {
         $testCategoryId = 'A_CATEGORY_ID';
@@ -48,9 +46,7 @@ class CategoryAttributeDeleterTest extends TestCase
         $deleter->delete($testCategoryId);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function failIfApiDoesNotReturnHttp201(): void
     {
         $testCategoryId = 'A_CATEGORY_ID';

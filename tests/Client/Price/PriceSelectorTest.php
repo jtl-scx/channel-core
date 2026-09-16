@@ -10,14 +10,15 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Price;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Model\PriceContainer;
 use JTL\SCX\Lib\Channel\Client\Model\QuantityPrice;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class PriceSelectorTest
- * @covers \JTL\SCX\Lib\Channel\Client\Price\PriceSelector
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Price\PriceSelector::class)]
 class PriceSelectorTest extends TestCase
 {
     public function testCanSelectPriceContainerByType()

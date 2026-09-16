@@ -10,15 +10,15 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Channel\Response;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use JTL\SCX\Lib\Channel\Client\Model\SalesChannel;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class GetChannelStatusResponseTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Channel\Response
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Channel\Response\GetChannelStatusResponse
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Channel\Response\GetChannelStatusResponse::class)]
 class GetChannelStatusResponseTest extends TestCase
 {
     public function testCanGetData(): void

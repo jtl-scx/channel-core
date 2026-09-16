@@ -10,14 +10,14 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Attribute\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class DeleteGlobalAttributeRequestTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Attribute\Request
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Attribute\Request\DeleteGlobalAttributeRequest
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Attribute\Request\DeleteGlobalAttributeRequest::class)]
 class DeleteGlobalAttributeRequestTest extends TestCase
 {
     public function testCanBeCreatedAndValidated(): void

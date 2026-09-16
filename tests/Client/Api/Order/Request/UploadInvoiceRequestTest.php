@@ -10,35 +10,29 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Order\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use JTL\SCX\Lib\Channel\Client\Model\InvoiceMetaData;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Order\Request\UploadInvoiceRequest
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Order\Request\UploadInvoiceRequest::class)]
 class UploadInvoiceRequestTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_use_correct_url(): void
     {
         $sut = new UploadInvoiceRequest($this->createStub(InvoiceMetaData::class), 'document_data');
         $this->assertEquals('/v1/channel/order/invoice', $sut->getUrl());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_use_correct_http_method(): void
     {
         $sut = new UploadInvoiceRequest($this->createStub(InvoiceMetaData::class), 'document_data');
         $this->assertEquals(UploadInvoiceRequest::HTTP_METHOD_POST, $sut->getHttpMethod());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_has_meta_data_and_document_as_multipart_parameters(): void
     {
         $meta = $this->createStub(InvoiceMetaData::class);

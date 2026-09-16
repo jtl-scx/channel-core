@@ -10,14 +10,13 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use DateTimeImmutable;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOrderInvoice;
 use JTL\SCX\Lib\Channel\Event\Seller\OrderInvoiceEvent;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Event\Seller\OrderInvoiceEvent
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\Event\Seller\OrderInvoiceEvent::class)]
 class OrderInvoiceEventTest extends TestCase
 {
     public function testCanReceiveEvent()

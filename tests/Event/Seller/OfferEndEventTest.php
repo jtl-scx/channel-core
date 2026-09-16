@@ -10,19 +10,21 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Event\Seller;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use DateTimeImmutable;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferEnd;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class OfferUpdateEventTest
- * @covers \JTL\SCX\Lib\Channel\Event\Seller\OfferEndEvent
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Event\Seller\OfferEndEvent::class)]
 class OfferEndEventTest extends TestCase
 {
     public function testCanReceiveEvent()
     {
         $apiEventModel = $this->createStub(SellerEventOfferEnd::class);
-        $event = new OfferEndEvent('id', 'version', new \DateTimeImmutable(), $apiEventModel);
+        $event = new OfferEndEvent('id', 'version', new DateTimeImmutable(), $apiEventModel);
         $this->assertSame($apiEventModel, $event->getEvent());
     }
 }

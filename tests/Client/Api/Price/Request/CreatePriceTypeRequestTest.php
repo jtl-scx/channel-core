@@ -10,15 +10,15 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Price\Request;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use JTL\SCX\Lib\Channel\Client\Model\PriceType;
 
 /**
  * Class CreatePriceTypeRequestTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Price\Request
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Price\Request\CreatePriceTypeRequest
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Price\Request\CreatePriceTypeRequest::class)]
 class CreatePriceTypeRequestTest extends TestCase
 {
     public function testCanBeCreatedAndUsed(): void

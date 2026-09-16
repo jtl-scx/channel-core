@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Event\Model;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use JTL\SCX\Lib\Channel\Client\Event\EventType;
 use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferEnd;
@@ -17,16 +19,15 @@ use JTL\SCX\Lib\Channel\Client\Model\SellerEventOfferEnd;
 /**
  * Class EventContainerTest
  * @package JTL\SCX\Lib\Channel\Client\Api\Event\Model
- *
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Event\Model\EventContainer
  */
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Api\Event\Model\EventContainer::class)]
 class EventContainerTest extends TestCase
 {
     public function testCanBeCreated(): void
     {
         $id = uniqid('id', true);
         $clientVersion = uniqid('clientVersion', true);
-        $createdAt = new \DateTimeImmutable();
+        $createdAt = new DateTimeImmutable();
         $type = $this->createStub(EventType::class);
         $event = $this->createStub(SellerEventOfferEnd::class);
 
