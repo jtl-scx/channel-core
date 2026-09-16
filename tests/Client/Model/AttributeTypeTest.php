@@ -27,7 +27,9 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * AttributeTypeTest Class Doc Comment
@@ -37,14 +39,14 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\AttributeType
  */
-class AttributeTypeTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\AttributeType::class)]
+class AttributeTypeTest extends AbstractApiModelTestCase
 {
     /**
      * Test Enum Value "SMALLTEXT"
-     * @test
      */
+    #[Test]
     public function is_a_const_SMALLTEXT(): void
     {
         self::assertEquals('smalltext', AttributeType::SMALLTEXT);
@@ -54,8 +56,8 @@ class AttributeTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SMALLTEXT"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSMALLTEXT(): void
     {
         $sut = AttributeType::SMALLTEXT();
@@ -63,8 +65,8 @@ class AttributeTypeTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "HTMLTEXT"
-     * @test
      */
+    #[Test]
     public function is_a_const_HTMLTEXT(): void
     {
         self::assertEquals('htmltext', AttributeType::HTMLTEXT);
@@ -74,8 +76,8 @@ class AttributeTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "HTMLTEXT"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forHTMLTEXT(): void
     {
         $sut = AttributeType::HTMLTEXT();
@@ -83,8 +85,8 @@ class AttributeTypeTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "TEXT"
-     * @test
      */
+    #[Test]
     public function is_a_const_TEXT(): void
     {
         self::assertEquals('text', AttributeType::TEXT);
@@ -94,8 +96,8 @@ class AttributeTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "TEXT"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forTEXT(): void
     {
         $sut = AttributeType::TEXT();
@@ -103,8 +105,8 @@ class AttributeTypeTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "INTEGER"
-     * @test
      */
+    #[Test]
     public function is_a_const_INTEGER(): void
     {
         self::assertEquals('integer', AttributeType::INTEGER);
@@ -114,8 +116,8 @@ class AttributeTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "INTEGER"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forINTEGER(): void
     {
         $sut = AttributeType::INTEGER();
@@ -123,8 +125,8 @@ class AttributeTypeTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "DECIMAL"
-     * @test
      */
+    #[Test]
     public function is_a_const_DECIMAL(): void
     {
         self::assertEquals('decimal', AttributeType::DECIMAL);
@@ -134,8 +136,8 @@ class AttributeTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "DECIMAL"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forDECIMAL(): void
     {
         $sut = AttributeType::DECIMAL();
@@ -143,8 +145,8 @@ class AttributeTypeTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "ENUM"
-     * @test
      */
+    #[Test]
     public function is_a_const_ENUM(): void
     {
         self::assertEquals('enum', AttributeType::ENUM);
@@ -154,8 +156,8 @@ class AttributeTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "ENUM"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forENUM(): void
     {
         $sut = AttributeType::ENUM();
@@ -163,8 +165,8 @@ class AttributeTypeTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "DATE"
-     * @test
      */
+    #[Test]
     public function is_a_const_DATE(): void
     {
         self::assertEquals('date', AttributeType::DATE);
@@ -174,8 +176,8 @@ class AttributeTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "DATE"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forDATE(): void
     {
         $sut = AttributeType::DATE();
@@ -183,8 +185,8 @@ class AttributeTypeTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "BOOLEAN"
-     * @test
      */
+    #[Test]
     public function is_a_const_BOOLEAN(): void
     {
         self::assertEquals('boolean', AttributeType::BOOLEAN);
@@ -194,8 +196,8 @@ class AttributeTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "BOOLEAN"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forBOOLEAN(): void
     {
         $sut = AttributeType::BOOLEAN();
@@ -203,8 +205,8 @@ class AttributeTypeTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "IMAGE"
-     * @test
      */
+    #[Test]
     public function is_a_const_IMAGE(): void
     {
         self::assertEquals('image', AttributeType::IMAGE);
@@ -214,8 +216,8 @@ class AttributeTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "IMAGE"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forIMAGE(): void
     {
         $sut = AttributeType::IMAGE();
@@ -223,8 +225,8 @@ class AttributeTypeTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "DOCUMENT"
-     * @test
      */
+    #[Test]
     public function is_a_const_DOCUMENT(): void
     {
         self::assertEquals('document', AttributeType::DOCUMENT);
@@ -234,8 +236,8 @@ class AttributeTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "DOCUMENT"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forDOCUMENT(): void
     {
         $sut = AttributeType::DOCUMENT();
@@ -243,8 +245,8 @@ class AttributeTypeTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "URL"
-     * @test
      */
+    #[Test]
     public function is_a_const_URL(): void
     {
         self::assertEquals('url', AttributeType::URL);
@@ -254,8 +256,8 @@ class AttributeTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "URL"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forURL(): void
     {
         $sut = AttributeType::URL();
@@ -263,8 +265,8 @@ class AttributeTypeTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "LABEL"
-     * @test
      */
+    #[Test]
     public function is_a_const_LABEL(): void
     {
         self::assertEquals('label', AttributeType::LABEL);
@@ -274,8 +276,8 @@ class AttributeTypeTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "LABEL"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forLABEL(): void
     {
         $sut = AttributeType::LABEL();
@@ -284,8 +286,8 @@ class AttributeTypeTest extends AbstractApiModelTest
 
     /**
      * Test allowed values from Enum
-     * @test
      */
+    #[Test]
     public function it_has_correct_set_of_allowed_values(): void
     {
         $allowed = [

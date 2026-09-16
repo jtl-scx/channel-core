@@ -14,12 +14,12 @@ use JTL\SCX\Lib\Channel\Client\Model\ShippingAttributeLevel;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
 use JTL\SCX\Lib\Channel\Contract\MetaData\SellerShippingAttributeLoader;
 use JTL\SCX\Lib\Channel\Event\Seller\AttributesUpdateRequestEvent;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\MetaData\ShippingAttribute\SellerShippingAttributeUpdateRequestListener
- */
+#[CoversClass(\JTL\SCX\Lib\Channel\MetaData\ShippingAttribute\SellerShippingAttributeUpdateRequestListener::class)]
 class SellerShippingAttributeUpdateRequestListenerTest extends TestCase
 {
     private SellerShippingAttributeUpdateRequestListener $sut;
@@ -35,9 +35,7 @@ class SellerShippingAttributeUpdateRequestListenerTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_sends_shipping_attributes_to_SCX(): void
     {
         $event = $this->createEvent('any_seller_id');
@@ -60,9 +58,7 @@ class SellerShippingAttributeUpdateRequestListenerTest extends TestCase
         $this->sut->processShippingAttributes($event);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_does_not_send_update_when_attribute_list_is_empty(): void
     {
         $event = $this->createEvent('any_seller_id');

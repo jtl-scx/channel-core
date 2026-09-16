@@ -27,7 +27,9 @@
 
 namespace JTL\SCX\Lib\Channel\Client\Model;
 
-use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
+use JTL\SCX\Lib\Channel\Client\AbstractApiModelTestCase;
 
 /**
  * ShippingAttributeLevelTest Class Doc Comment
@@ -37,14 +39,14 @@ use JTL\SCX\Lib\Channel\Client\AbstractApiModelTest;
  * @package     JTL\SCX\Lib\Channel\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
- * @covers      \JTL\SCX\Lib\Channel\Client\Model\ShippingAttributeLevel
  */
-class ShippingAttributeLevelTest extends AbstractApiModelTest
+#[CoversClass(\JTL\SCX\Lib\Channel\Client\Model\ShippingAttributeLevel::class)]
+class ShippingAttributeLevelTest extends AbstractApiModelTestCase
 {
     /**
      * Test Enum Value "ORDER_ITEM"
-     * @test
      */
+    #[Test]
     public function is_a_const_ORDER_ITEM(): void
     {
         self::assertEquals('ORDER_ITEM', ShippingAttributeLevel::ORDER_ITEM);
@@ -54,8 +56,8 @@ class ShippingAttributeLevelTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "ORDER_ITEM"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forORDER_ITEM(): void
     {
         $sut = ShippingAttributeLevel::ORDER_ITEM();
@@ -63,8 +65,8 @@ class ShippingAttributeLevelTest extends AbstractApiModelTest
     }
     /**
      * Test Enum Value "SHIPMENT"
-     * @test
      */
+    #[Test]
     public function is_a_const_SHIPMENT(): void
     {
         self::assertEquals('SHIPMENT', ShippingAttributeLevel::SHIPMENT);
@@ -74,8 +76,8 @@ class ShippingAttributeLevelTest extends AbstractApiModelTest
 
     /**
      * Test Enum Value Named Constructor "SHIPMENT"
-     * @test
      */
+    #[Test]
     public function it_can_be_constructed_forSHIPMENT(): void
     {
         $sut = ShippingAttributeLevel::SHIPMENT();
@@ -84,8 +86,8 @@ class ShippingAttributeLevelTest extends AbstractApiModelTest
 
     /**
      * Test allowed values from Enum
-     * @test
      */
+    #[Test]
     public function it_has_correct_set_of_allowed_values(): void
     {
         $allowed = [

@@ -7,11 +7,11 @@ declare(strict_types=1);
 
 namespace JTL\SCX\Lib\Channel\Client\Api\Meta\Response;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JTL\SCX\Lib\Channel\Client\Api\Meta\Response\PutSellerShippingRulesResponse
- */
+#[CoversClass(PutSellerShippingRulesResponse::class)]
 class PutSellerShippingRulesResponseTest extends TestCase
 {
     public function testIsSuccessful(): void
@@ -20,7 +20,7 @@ class PutSellerShippingRulesResponseTest extends TestCase
         $this->assertTrue($response->isSuccessful());
     }
 
-    public function responseCodeProvider(): array
+    public static function responseCodeProvider(): array
     {
         return [
             [200],
@@ -32,9 +32,7 @@ class PutSellerShippingRulesResponseTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider responseCodeProvider
-     */
+    #[DataProvider('responseCodeProvider')]
     public function testIsNotSuccessful($responseCode): void
     {
         $response = new PutSellerShippingRulesResponse($responseCode);
