@@ -1033,48 +1033,6 @@ parameters:
 			path: src/Helper/Command/EmitChannelNotificationCommand.php
 
 		-
-			message: '#^Cannot access offset ''sellerId'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: src/Helper/Command/WorkEventCommand.php
-
-		-
-			message: '#^Cannot cast mixed to string\.$#'
-			identifier: cast.string
-			count: 2
-			path: src/Helper/Command/WorkEventCommand.php
-
-		-
-			message: '#^Method JTL\\SCX\\Lib\\Channel\\Helper\\Command\\WorkEventCommand\:\:buildMessage\(\) has parameter \$event with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Helper/Command/WorkEventCommand.php
-
-		-
-			message: '#^Method JTL\\SCX\\Lib\\Channel\\Helper\\Command\\WorkEventCommand\:\:loadEventData\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Helper/Command/WorkEventCommand.php
-
-		-
-			message: '#^Method JTL\\SCX\\Lib\\Channel\\Helper\\Command\\WorkEventCommand\:\:loadEventData\(\) should return array but returns mixed\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Helper/Command/WorkEventCommand.php
-
-		-
-			message: '#^Parameter \#1 \$callback of function call_user_func expects callable\(\)\: mixed, array\{''JTL\\\\SCX\\\\Lib\\\\Channel\\\\Client\\\\Event\\\\EventType'', string\} given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Helper/Command/WorkEventCommand.php
-
-		-
-			message: '#^Part \$eventType\-\>getValue\(\) \(mixed\) of encapsed string cannot be cast to string\.$#'
-			identifier: encapsedStringPart.nonString
-			count: 1
-			path: src/Helper/Command/WorkEventCommand.php
-
-		-
 			message: '#^Method JTL\\SCX\\Lib\\Channel\\Helper\\Typifier\:\:toArrayOrNull\(\) has parameter \$value with no type specified\.$#'
 			identifier: missingType.parameter
 			count: 1

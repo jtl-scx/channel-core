@@ -71,7 +71,8 @@ class WorkEventCommand extends AbstractCommand
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $eventType = $this->resolveEventType((string)$input->getOption('type'));
+        $typeOption = $input->getOption('type');
+        $eventType = $this->resolveEventType(is_string($typeOption) ? $typeOption : '');
         $event = $this->loadEventData($input);
         $message = $this->buildMessage($eventType, $event);
 
@@ -111,15 +112,16 @@ class WorkEventCommand extends AbstractCommand
             );
         }
 
-        /** @var EventType $eventType */
-        $eventType = call_user_func([EventType::class, $typeName]);
-
-        return $eventType;
+        return new EventType($constants[$typeName]);
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     private function loadEventData(InputInterface $input): array
     {
-        $jsonFile = (string)$input->getArgument('jsonFile');
+        $jsonFileArgument = $input->getArgument('jsonFile');
+        $jsonFile = is_string($jsonFileArgument) ? $jsonFileArgument : '';
         if (strpos($jsonFile, '/') !== 0) {
             $jsonFile = '/' . $jsonFile;
         }
@@ -132,7 +134,13 @@ class WorkEventCommand extends AbstractCommand
             throw new RuntimeException("Json File '{$absolutePath}' not found");
         }
 
-        $event = json_decode((string)file_get_contents($absolutePath), true, 512, JSON_THROW_ON_ERROR);
+        $decoded = json_decode((string)file_get_contents($absolutePath), true, 512, JSON_THROW_ON_ERROR);
+        if (!is_array($decoded)) {
+            throw new RuntimeException("Json File '{$absolutePath}' does not contain a JSON object");
+        }
+
+        /** @var array<string, mixed> $event */
+        $event = $decoded;
 
         $sellerId = $input->getArgument('sellerId');
         if ($sellerId !== null) {
@@ -142,6 +150,9 @@ class WorkEventCommand extends AbstractCommand
         return $event;
     }
 
+    /**
+     * @param array<string, mixed> $event
+     */
     private function buildMessage(EventType $eventType, array $event): object
     {
         $model = $this->responseDeserializer->deserializeObject(
@@ -166,8 +177,11 @@ class WorkEventCommand extends AbstractCommand
         // EventFactory returns null for EventTypes it has no event class for (e.g. Unknown),
         // which is a valid enum constant and therefore passes resolveEventType().
         if ($message === null) {
+            $rawValue = $eventType->getValue();
+            $typeValue = is_scalar($rawValue) ? (string)$rawValue : 'unknown';
+
             throw new InvalidArgumentException(
-                "EventType '{$eventType->getValue()}' has no event class, nothing to dispatch."
+                "EventType '{$typeValue}' has no event class, nothing to dispatch."
             );
         }
 
