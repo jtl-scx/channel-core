@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0731926d455b304b445ed3fdbf7e6ad6",
+    "content-hash": "2cc72a32d753732abbac697ca962cf5b",
     "packages": [
         {
             "name": "brick/math",
@@ -526,26 +526,27 @@
         },
         {
             "name": "jtl-software/opsgenie-client",
-            "version": "2.1.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jtl-software/php-api-client-opsgenie.git",
-                "reference": "65115bae3bc51777de545a8357ee6ea0b206e89f"
+                "reference": "c8c9bffdc03c471f090c08fa5f22bf1a410c5083"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jtl-software/php-api-client-opsgenie/zipball/65115bae3bc51777de545a8357ee6ea0b206e89f",
-                "reference": "65115bae3bc51777de545a8357ee6ea0b206e89f",
+                "url": "https://api.github.com/repos/jtl-software/php-api-client-opsgenie/zipball/c8c9bffdc03c471f090c08fa5f22bf1a410c5083",
+                "reference": "c8c9bffdc03c471f090c08fa5f22bf1a410c5083",
                 "shasum": ""
             },
             "require": {
-                "guzzlehttp/guzzle": "^7.2",
-                "php": ">=7.2"
+                "guzzlehttp/guzzle": "^7.8",
+                "php": "^8.2"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.12",
-                "phpstan/phpstan": "^0.10.5",
-                "phpunit/phpunit": "^9.0"
+                "friendsofphp/php-cs-fixer": "^3.40",
+                "phpstan/phpstan": "^1.10.46",
+                "phpunit/phpunit": "^10.4.2",
+                "rector/rector": "^0.18.11"
             },
             "type": "project",
             "autoload": {
@@ -559,9 +560,9 @@
             ],
             "support": {
                 "issues": "https://github.com/jtl-software/php-api-client-opsgenie/issues",
-                "source": "https://github.com/jtl-software/php-api-client-opsgenie/tree/2.1.0"
+                "source": "https://github.com/jtl-software/php-api-client-opsgenie/tree/3.0.0"
             },
-            "time": "2022-01-18T15:45:13+00:00"
+            "time": "2023-11-30T14:58:32+00:00"
         },
         {
             "name": "jtl/go-prometrics-client",
@@ -6752,5 +6753,5 @@
     "platform-overrides": {
         "php": "8.3.0"
     },
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }
