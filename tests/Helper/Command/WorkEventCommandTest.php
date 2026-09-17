@@ -359,7 +359,6 @@ class WorkEventCommandTest extends TestCase
 
     public function testBuildsACliConstructableMessageFromItsNamedConstructor(): void
     {
-        $received = null;
         $spyListener = new class () {
             public ?object $message = null;
 
@@ -435,5 +434,42 @@ class WorkEventCommandTest extends TestCase
         ]);
 
         self::assertSame('fromArgument', $spyListener->message->sellerId);
+    }
+
+    public function testBuildsAMessageWithoutAPayload(): void
+    {
+        $spyListener = new class () {
+            public ?object $message = null;
+
+            public function handle(object $message): void
+            {
+                $this->message = $message;
+            }
+        };
+
+        $messageCache = $this->createMock(MessageCache::class);
+        $messageCache->method('getListenerListForMessage')->willReturn([
+            ['listenerClass' => 'spy.listener', 'method' => 'handle'],
+        ]);
+
+        $container = $this->createMock(ContainerInterface::class);
+        $container->method('get')->with('spy.listener')->willReturn($spyListener);
+
+        $command = new WorkEventCommand(
+            $this->createMock(Environment::class),
+            new EventFactory(),
+            new ChannelApiResponseDeserializer(),
+            $messageCache,
+            $container,
+            $this->createStub(ScxLogger::class)
+        );
+
+        $tester = new CommandTester($command);
+        $exitCode = $tester->execute(['--type' => CliConstructableTestMessage::class]);
+
+        self::assertSame(WorkEventCommand::SUCCESS, $exitCode);
+        self::assertInstanceOf(CliConstructableTestMessage::class, $spyListener->message);
+        self::assertSame('', $spyListener->message->sellerId);
+        self::assertSame([], $spyListener->message->items);
     }
 }

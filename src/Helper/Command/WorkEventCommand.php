@@ -60,7 +60,12 @@ class WorkEventCommand extends AbstractCommand
                 InputOption::VALUE_REQUIRED,
                 'Which listener to run, as FQCN or FQCN::method. Required when a message has several'
             )
-            ->addArgument('payload', InputArgument::REQUIRED, 'Path to a JSON file, or a JSON object inline')
+            ->addArgument(
+                'payload',
+                InputArgument::OPTIONAL,
+                'Path to a JSON file, or a JSON object inline',
+                '{}'
+            )
             ->addArgument(
                 'sellerId',
                 InputArgument::OPTIONAL,
@@ -189,6 +194,11 @@ class WorkEventCommand extends AbstractCommand
     {
         $argument = $input->getArgument('payload');
         $raw = is_string($argument) ? trim($argument) : '';
+
+        // An empty argument means the event carries no data of its own.
+        if ($raw === '') {
+            $raw = '{}';
+        }
 
         // A path never starts with a brace, so this tells an inline object from a file name.
         $json = str_starts_with($raw, '{') ? $raw : $this->readPayloadFile($raw);
