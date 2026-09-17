@@ -101,14 +101,17 @@ class WorkEventCommandTest extends TestCase
             $this->createStub(ScxLogger::class)
         );
 
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("--listener='second.listener'");
-
         $tester = new CommandTester($command);
-        $tester->execute([
+        $exitCode = $tester->execute([
             '--type' => 'SellerMetaSellerAttributesUpdateRequest',
             'payload' => '/event.json',
         ]);
+
+        self::assertSame(WorkEventCommand::FAILURE, $exitCode);
+        self::assertStringContainsString('is consumed by 2 listeners', $tester->getDisplay());
+        // Each suggestion has to survive a copy-paste, so it must sit on one unbroken line.
+        self::assertStringContainsString("--listener='first.listener'", $tester->getDisplay());
+        self::assertStringContainsString("--listener='second.listener'", $tester->getDisplay());
     }
 
     public function testRunsOnlyTheSelectedListener(): void
@@ -185,15 +188,16 @@ class WorkEventCommandTest extends TestCase
             $this->createStub(ScxLogger::class)
         );
 
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("No listener 'nope.listener' is registered");
-
         $tester = new CommandTester($command);
-        $tester->execute([
+        $exitCode = $tester->execute([
             '--type' => 'SellerMetaSellerAttributesUpdateRequest',
             '--listener' => 'nope.listener',
             'payload' => '/event.json',
         ]);
+
+        self::assertSame(WorkEventCommand::FAILURE, $exitCode);
+        self::assertStringContainsString("No listener 'nope.listener' is registered", $tester->getDisplay());
+        self::assertStringContainsString("--listener='only.listener'", $tester->getDisplay());
     }
 
     public function testReportsAListenerThatThrows(): void

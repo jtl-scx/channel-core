@@ -79,8 +79,13 @@ class WorkEventCommand extends AbstractCommand
         $listeners = $this->selectListeners(
             $this->messageCache->getListenerListForMessage(get_class($message)),
             get_class($message),
-            is_string($listenerOption) ? $listenerOption : null
+            is_string($listenerOption) ? $listenerOption : null,
+            $output
         );
+
+        if ($listeners === null) {
+            return self::FAILURE;
+        }
 
         $invoked = [];
         $failures = [];
@@ -113,11 +118,18 @@ class WorkEventCommand extends AbstractCommand
      * Dispatching several listeners at once makes a failing assertion ambiguous — which of them
      * caused the call? So the choice has to be made explicit rather than guessed.
      *
+     * Written to the output rather than thrown: Symfony's error block wraps at terminal width,
+     * which would break a FQCN across lines and make the suggestions unusable to copy.
+     *
      * @param array<int, array{listenerClass: string, method: string}> $listeners
-     * @return array<int, array{listenerClass: string, method: string}>
+     * @return array<int, array{listenerClass: string, method: string}>|null null when ambiguous
      */
-    private function selectListeners(array $listeners, string $messageClass, ?string $wanted): array
-    {
+    private function selectListeners(
+        array $listeners,
+        string $messageClass,
+        ?string $wanted,
+        OutputInterface $output
+    ): ?array {
         if ($wanted !== null) {
             $matches = array_values(array_filter(
                 $listeners,
@@ -126,24 +138,24 @@ class WorkEventCommand extends AbstractCommand
             ));
 
             if ($matches === []) {
-                throw new InvalidArgumentException(
-                    "No listener '{$wanted}' is registered for {$messageClass}.\n"
-                    . $this->describeListeners($listeners)
-                );
+                $output->writeln("No listener '{$wanted}' is registered for {$messageClass}. Available:");
+                $output->writeln($this->describeListeners($listeners));
+
+                return null;
             }
 
             return $matches;
         }
 
         if (count($listeners) > 1) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "%s is consumed by %d listeners — pick one with --listener.\n%s",
-                    $messageClass,
-                    count($listeners),
-                    $this->describeListeners($listeners)
-                )
-            );
+            $output->writeln(sprintf(
+                '%s is consumed by %d listeners — pick one with --listener:',
+                $messageClass,
+                count($listeners)
+            ));
+            $output->writeln($this->describeListeners($listeners));
+
+            return null;
         }
 
         return $listeners;
