@@ -15,6 +15,7 @@ use JTL\SCX\Lib\Channel\Client\Api\Event\Model\EventContainer;
 use JTL\SCX\Lib\Channel\Client\Event\EventType;
 use JTL\SCX\Lib\Channel\Client\Model\ModelInterface;
 use JTL\SCX\Lib\Channel\Contract\Core\Log\ScxLogger;
+use JTL\SCX\Lib\Channel\Contract\Core\Message\CliConstructable;
 use JTL\SCX\Lib\Channel\Core\Command\AbstractCommand;
 use JTL\SCX\Lib\Channel\Core\Environment\Environment;
 use JTL\SCX\Lib\Channel\Event\EventFactory;
@@ -44,20 +45,20 @@ class WorkEventCommand extends AbstractCommand
     protected function configure(): void
     {
         $this->setDescription(
-            'Build any EventType from a JSON fixture and run it through its listener(s) '
+            'Build an event or message from a JSON payload and run it through its listener(s) '
             . 'synchronously, bypassing RabbitMQ entirely. For e2e testing only.'
         )
             ->addOption(
                 'type',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'EventType constant name, e.g. SellerMetaSellerAttributesUpdateRequest'
+                'EventType constant name, or the FQCN of a class implementing CliConstructable'
             )
-            ->addArgument('jsonFile', InputArgument::REQUIRED, 'Path to a JSON fixture for the event model')
+            ->addArgument('payload', InputArgument::REQUIRED, 'Path to a JSON file, or a JSON object inline')
             ->addArgument(
                 'sellerId',
                 InputArgument::OPTIONAL,
-                'Associated SellerId, overrides the JSON file value',
+                'Associated SellerId, overrides the payload value',
                 null
             );
     }
@@ -65,9 +66,8 @@ class WorkEventCommand extends AbstractCommand
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $typeOption = $input->getOption('type');
-        $eventType = $this->resolveEventType(is_string($typeOption) ? $typeOption : '');
-        $event = $this->loadEventData($input);
-        $message = $this->buildMessage($eventType, $event);
+        $payload = $this->loadPayload($input);
+        $message = $this->buildMessage(is_string($typeOption) ? $typeOption : '', $payload);
 
         $listeners = $this->messageCache->getListenerListForMessage(get_class($message));
 
@@ -96,57 +96,74 @@ class WorkEventCommand extends AbstractCommand
         return $failures === [] ? self::SUCCESS : self::FAILURE;
     }
 
-    private function resolveEventType(string $typeName): EventType
-    {
-        $constants = EventType::toArray();
-        if (!array_key_exists($typeName, $constants)) {
-            throw new InvalidArgumentException(
-                "Unknown EventType '{$typeName}'. Known: " . implode(', ', array_keys($constants))
-            );
-        }
-
-        return new EventType($constants[$typeName]);
-    }
-
     /**
      * @return array<string, mixed>
      */
-    private function loadEventData(InputInterface $input): array
+    private function loadPayload(InputInterface $input): array
     {
-        $jsonFileArgument = $input->getArgument('jsonFile');
-        $jsonFile = is_string($jsonFileArgument) ? $jsonFileArgument : '';
-        if (strpos($jsonFile, '/') !== 0) {
-            $jsonFile = '/' . $jsonFile;
+        $argument = $input->getArgument('payload');
+        $raw = is_string($argument) ? trim($argument) : '';
+
+        // A path never starts with a brace, so this tells an inline object from a file name.
+        $json = str_starts_with($raw, '{') ? $raw : $this->readPayloadFile($raw);
+
+        $decoded = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+        if (!is_array($decoded)) {
+            throw new RuntimeException('The payload is not a JSON object');
         }
 
-        $absolutePath = $this->environment->get('ROOT_DIRECTORY') . $jsonFile;
+        /** @var array<string, mixed> $payload */
+        $payload = $decoded;
+
+        $sellerId = $input->getArgument('sellerId');
+        if ($sellerId !== null) {
+            $payload['sellerId'] = $sellerId;
+        }
+
+        return $payload;
+    }
+
+    private function readPayloadFile(string $file): string
+    {
+        if (strpos($file, '/') !== 0) {
+            $file = '/' . $file;
+        }
+
+        $absolutePath = $this->environment->get('ROOT_DIRECTORY') . $file;
         if (!file_exists($absolutePath)) {
-            $absolutePath = $this->environment->get('ROOT_DIRECTORY') . '/source' . $jsonFile;
+            $absolutePath = $this->environment->get('ROOT_DIRECTORY') . '/source' . $file;
         }
         if (!file_exists($absolutePath)) {
             throw new RuntimeException("Json File '{$absolutePath}' not found");
         }
 
-        $decoded = json_decode((string)file_get_contents($absolutePath), true, 512, JSON_THROW_ON_ERROR);
-        if (!is_array($decoded)) {
-            throw new RuntimeException("Json File '{$absolutePath}' does not contain a JSON object");
+        return (string)file_get_contents($absolutePath);
+    }
+
+    /**
+     * @param array<string, mixed> $payload
+     */
+    private function buildMessage(string $type, array $payload): object
+    {
+        $constants = EventType::toArray();
+        if (array_key_exists($type, $constants)) {
+            return $this->buildScxEvent(new EventType($constants[$type]), $payload);
         }
 
-        /** @var array<string, mixed> $event */
-        $event = $decoded;
-
-        $sellerId = $input->getArgument('sellerId');
-        if ($sellerId !== null) {
-            $event['sellerId'] = $sellerId;
+        if (is_subclass_of($type, CliConstructable::class)) {
+            return $type::createFrom($payload);
         }
 
-        return $event;
+        throw new InvalidArgumentException(
+            "'{$type}' is neither an EventType nor a class implementing "
+            . CliConstructable::class . '. Known EventTypes: ' . implode(', ', array_keys($constants))
+        );
     }
 
     /**
      * @param array<string, mixed> $event
      */
-    private function buildMessage(EventType $eventType, array $event): object
+    private function buildScxEvent(EventType $eventType, array $event): object
     {
         $model = $this->responseDeserializer->deserializeObject(
             json_encode($event, JSON_THROW_ON_ERROR),

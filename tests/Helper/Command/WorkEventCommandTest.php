@@ -73,7 +73,7 @@ class WorkEventCommandTest extends TestCase
         $tester = new CommandTester($command);
         $exitCode = $tester->execute([
             '--type' => 'SellerMetaSellerAttributesUpdateRequest',
-            'jsonFile' => '/event.json',
+            'payload' => '/event.json',
         ]);
 
         self::assertSame(WorkEventCommand::SUCCESS, $exitCode);
@@ -113,14 +113,14 @@ class WorkEventCommandTest extends TestCase
         $tester = new CommandTester($command);
         $exitCode = $tester->execute([
             '--type' => 'SellerMetaSellerAttributesUpdateRequest',
-            'jsonFile' => '/event.json',
+            'payload' => '/event.json',
         ]);
 
         self::assertSame(WorkEventCommand::FAILURE, $exitCode);
         self::assertStringContainsString('boom', $tester->getDisplay());
     }
 
-    public function testRejectsUnknownEventType(): void
+    public function testRejectsATypeThatIsNeitherEventNorCliConstructable(): void
     {
         $environment = $this->createMock(Environment::class);
 
@@ -134,12 +134,130 @@ class WorkEventCommandTest extends TestCase
         );
 
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("Unknown EventType 'NotARealEventType'");
+        $this->expectExceptionMessage("'NotARealEventType' is neither an EventType nor a class");
 
         $tester = new CommandTester($command);
         $tester->execute([
             '--type' => 'NotARealEventType',
-            'jsonFile' => '/event.json',
+            'payload' => '{}',
         ]);
+    }
+
+    public function testAcceptsAnInlineJsonPayload(): void
+    {
+        $spyListener = new class () {
+            public int $calls = 0;
+
+            public function processShippingAttributes($message): void
+            {
+                $this->calls++;
+            }
+        };
+
+        $messageCache = $this->createMock(MessageCache::class);
+        $messageCache->method('getListenerListForMessage')->willReturn([
+            ['listenerClass' => 'spy.listener', 'method' => 'processShippingAttributes'],
+        ]);
+
+        $container = $this->createMock(ContainerInterface::class);
+        $container->method('get')->with('spy.listener')->willReturn($spyListener);
+
+        $command = new WorkEventCommand(
+            $this->createMock(Environment::class),
+            new EventFactory(),
+            new ChannelApiResponseDeserializer(),
+            $messageCache,
+            $container,
+            $this->createStub(ScxLogger::class)
+        );
+
+        $tester = new CommandTester($command);
+        $exitCode = $tester->execute([
+            '--type' => 'SellerMetaSellerAttributesUpdateRequest',
+            'payload' => '{"sellerId": "seller1"}',
+        ]);
+
+        self::assertSame(WorkEventCommand::SUCCESS, $exitCode);
+        self::assertSame(1, $spyListener->calls);
+    }
+
+    public function testBuildsACliConstructableMessageFromItsNamedConstructor(): void
+    {
+        $received = null;
+        $spyListener = new class () {
+            public ?object $message = null;
+
+            public function handle(object $message): void
+            {
+                $this->message = $message;
+            }
+        };
+
+        $messageCache = $this->createMock(MessageCache::class);
+        $messageCache->expects(self::once())
+            ->method('getListenerListForMessage')
+            ->with(CliConstructableTestMessage::class)
+            ->willReturn([['listenerClass' => 'spy.listener', 'method' => 'handle']]);
+
+        $container = $this->createMock(ContainerInterface::class);
+        $container->method('get')->with('spy.listener')->willReturn($spyListener);
+
+        $command = new WorkEventCommand(
+            $this->createMock(Environment::class),
+            new EventFactory(),
+            new ChannelApiResponseDeserializer(),
+            $messageCache,
+            $container,
+            $this->createStub(ScxLogger::class)
+        );
+
+        $tester = new CommandTester($command);
+        $exitCode = $tester->execute([
+            '--type' => CliConstructableTestMessage::class,
+            'payload' => '{"sellerId": "seller1", "items": ["a", "b"]}',
+        ]);
+
+        self::assertSame(WorkEventCommand::SUCCESS, $exitCode);
+        self::assertInstanceOf(CliConstructableTestMessage::class, $spyListener->message);
+        self::assertSame('seller1', $spyListener->message->sellerId);
+        self::assertSame(['a', 'b'], $spyListener->message->items);
+    }
+
+    public function testTheSellerIdArgumentOverridesThePayload(): void
+    {
+        $spyListener = new class () {
+            public ?object $message = null;
+
+            public function handle(object $message): void
+            {
+                $this->message = $message;
+            }
+        };
+
+        $messageCache = $this->createMock(MessageCache::class);
+        $messageCache->method('getListenerListForMessage')->willReturn([
+            ['listenerClass' => 'spy.listener', 'method' => 'handle'],
+        ]);
+
+        $container = $this->createMock(ContainerInterface::class);
+        $container->method('get')->with('spy.listener')->willReturn($spyListener);
+
+        $command = new WorkEventCommand(
+            $this->createMock(Environment::class),
+            new EventFactory(),
+            new ChannelApiResponseDeserializer(),
+            $messageCache,
+            $container,
+            $this->createStub(ScxLogger::class)
+        );
+
+        $tester = new CommandTester($command);
+        $tester->execute([
+            '--type' => CliConstructableTestMessage::class,
+            'payload' => '{"sellerId": "fromPayload"}',
+            'sellerId' => 'fromArgument',
+        ]);
+
+        self::assertSame('fromArgument', $spyListener->message->sellerId);
     }
 }
