@@ -41,7 +41,7 @@ class WorkEventCommandTest extends TestCase
 
     public function testInvokesEveryRegisteredListenerAndReturnsSuccess(): void
     {
-        $spyListener = new class {
+        $spyListener = new class () {
             public int $calls = 0;
 
             public function processShippingAttributes($message): void
@@ -83,7 +83,7 @@ class WorkEventCommandTest extends TestCase
 
     public function testReturnsNonZeroExitCodeWhenAListenerThrows(): void
     {
-        $throwingListener = new class {
+        $throwingListener = new class () {
             public function processShippingAttributes($message): void
             {
                 throw new \RuntimeException('boom');
