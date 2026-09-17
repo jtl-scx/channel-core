@@ -100,7 +100,7 @@ class WorkEventCommand extends AbstractCommand
             $listenerInstance = $this->container->get($listener['listenerClass']);
             $listenerInstance->{$listener['method']}($message);
         } catch (Throwable $e) {
-            $this->io->comment(print_r($e, true));
+            $this->io->comment($this->describeThrowable($e));
             $this->io->error("{$name} failed: {$e->getMessage()}");
 
             return self::FAILURE;
@@ -109,6 +109,41 @@ class WorkEventCommand extends AbstractCommand
         $this->io->success($name);
 
         return self::SUCCESS;
+    }
+
+    /**
+     * An HTTP client exception reaches print_r holding its request, its response, the client and
+     * the whole handler stack, and through the closures in it most of the container — six-digit
+     * line counts, which a CI log pays for by the line. So the full dump is behind -v and the
+     * default is the chain that actually locates the fault.
+     */
+    private function describeThrowable(Throwable $e): string
+    {
+        if ($this->io->isVerbose()) {
+            return print_r($e, true);
+        }
+
+        $lines = [];
+        $current = $e;
+        while ($current instanceof Throwable) {
+            $prefix = $lines === [] ? '' : 'caused by ';
+            $lines[] = sprintf(
+                '%s%s: %s (%d)',
+                $prefix,
+                get_class($current),
+                $current->getMessage(),
+                $current->getCode()
+            );
+            $lines[] = "  at {$current->getFile()}:{$current->getLine()}";
+            $current = $current->getPrevious();
+        }
+
+        $lines[] = '';
+        $lines[] = $e->getTraceAsString();
+        $lines[] = '';
+        $lines[] = 'Run again with -v for the full object dump.';
+
+        return implode("\n", $lines);
     }
 
     /**

@@ -16,6 +16,7 @@ use JTL\SCX\Lib\Channel\Event\EventFactory;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Tester\CommandTester;
 
 #[CoversClass(WorkEventCommand::class)]
@@ -239,8 +240,73 @@ class WorkEventCommandTest extends TestCase
         self::assertSame(WorkEventCommand::FAILURE, $exitCode);
         self::assertStringContainsString('[ERROR]', $tester->getDisplay());
         self::assertStringContainsString('boom', $tester->getDisplay());
-        // The dumped exception is what makes a failure debuggable without re-running.
+        // What locates the fault without re-running: where it was thrown, plus a trace.
+        self::assertStringContainsString('RuntimeException: boom (0)', $tester->getDisplay());
+        self::assertStringContainsString('#0', $tester->getDisplay());
+        self::assertStringNotContainsString('RuntimeException Object', $tester->getDisplay());
+    }
+
+    public function testDumpsTheWholeExceptionObjectWhenVerbose(): void
+    {
+        $tester = $this->runThrowingListener(new \RuntimeException('boom'), [
+            'verbosity' => OutputInterface::VERBOSITY_VERBOSE,
+        ]);
+
         self::assertStringContainsString('RuntimeException Object', $tester->getDisplay());
+    }
+
+    public function testNamesEveryExceptionInTheChain(): void
+    {
+        $tester = $this->runThrowingListener(
+            new \RuntimeException('outer', 0, new \LogicException('inner'))
+        );
+
+        self::assertStringContainsString('RuntimeException: outer', $tester->getDisplay());
+        self::assertStringContainsString('caused by LogicException: inner', $tester->getDisplay());
+    }
+
+    /**
+     * @param array<string, mixed> $options
+     */
+    private function runThrowingListener(\Throwable $thrown, array $options = []): CommandTester
+    {
+        $throwingListener = new class ($thrown) {
+            public function __construct(private readonly \Throwable $thrown)
+            {
+            }
+
+            public function handle(object $message): void
+            {
+                throw $this->thrown;
+            }
+        };
+
+        $environment = $this->createMock(Environment::class);
+        $environment->method('get')->with('ROOT_DIRECTORY')->willReturn($this->fixtureDir);
+
+        $messageCache = $this->createMock(MessageCache::class);
+        $messageCache->method('getListenerListForMessage')->willReturn([
+            ['listenerClass' => 'throwing.listener', 'method' => 'handle'],
+        ]);
+
+        $container = $this->createMock(ContainerInterface::class);
+        $container->method('get')->with('throwing.listener')->willReturn($throwingListener);
+
+        $tester = new CommandTester(new WorkEventCommand(
+            $environment,
+            new EventFactory(),
+            new ChannelApiResponseDeserializer(),
+            $messageCache,
+            $container,
+            $this->createStub(ScxLogger::class)
+        ));
+
+        $tester->execute(
+            ['--type' => 'SellerMetaSellerAttributesUpdateRequest', 'payload' => '/event.json'],
+            $options
+        );
+
+        return $tester;
     }
 
     public function testAListenerThatCannotBeResolvedIsReportedLikeAnyOtherFailure(): void
