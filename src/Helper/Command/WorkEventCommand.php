@@ -76,42 +76,34 @@ class WorkEventCommand extends AbstractCommand
         $message = $this->buildMessage(is_string($typeOption) ? $typeOption : '', $payload);
 
         $listenerOption = $input->getOption('listener');
-        $listeners = $this->selectListeners(
+        $listener = $this->selectListener(
             $this->messageCache->getListenerListForMessage(get_class($message)),
             get_class($message),
             is_string($listenerOption) ? $listenerOption : null,
             $output
         );
 
-        if ($listeners === null) {
+        if ($listener === null) {
             return self::FAILURE;
         }
 
-        $invoked = [];
-        $failures = [];
-        foreach ($listeners as $listener) {
-            $method = $listener['method'];
-            try {
-                // Resolving counts as part of the invocation: a listener whose dependencies
-                // cannot be built is a failure of that listener, not of the whole run.
-                $listenerInstance = $this->container->get($listener['listenerClass']);
-                $listenerInstance->{$method}($message);
-                $invoked[] = "{$listener['listenerClass']}::{$method}";
-            } catch (Throwable $e) {
-                $failures[] = [
-                    'listener' => "{$listener['listenerClass']}::{$method}",
-                    'exception' => get_class($e),
-                    'message' => $e->getMessage(),
-                ];
-            }
+        $name = "{$listener['listenerClass']}::{$listener['method']}";
+
+        try {
+            // Resolving counts as part of the invocation: a listener whose dependencies cannot
+            // be built fails the same way as one that throws.
+            $listenerInstance = $this->container->get($listener['listenerClass']);
+            $listenerInstance->{$listener['method']}($message);
+        } catch (Throwable $e) {
+            $this->io->comment(print_r($e, true));
+            $this->io->error("{$name} failed: {$e->getMessage()}");
+
+            return self::FAILURE;
         }
 
-        $output->writeln(json_encode(
-            ['listenersInvoked' => $invoked, 'failures' => $failures],
-            JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
-        ));
+        $this->io->success($name);
 
-        return $failures === [] ? self::SUCCESS : self::FAILURE;
+        return self::SUCCESS;
     }
 
     /**
@@ -122,43 +114,48 @@ class WorkEventCommand extends AbstractCommand
      * which would break a FQCN across lines and make the suggestions unusable to copy.
      *
      * @param array<int, array{listenerClass: string, method: string}> $listeners
-     * @return array<int, array{listenerClass: string, method: string}>|null null when ambiguous
+     * @return array{listenerClass: string, method: string}|null null when the choice is not unique
      */
-    private function selectListeners(
+    private function selectListener(
         array $listeners,
         string $messageClass,
         ?string $wanted,
         OutputInterface $output
     ): ?array {
+        if ($listeners === []) {
+            $output->writeln("No listener is registered for {$messageClass}.");
+
+            return null;
+        }
+
+        $candidates = $listeners;
         if ($wanted !== null) {
-            $matches = array_values(array_filter(
+            $candidates = array_values(array_filter(
                 $listeners,
                 static fn (array $l): bool => $wanted === $l['listenerClass']
                     || $wanted === "{$l['listenerClass']}::{$l['method']}"
             ));
 
-            if ($matches === []) {
+            if ($candidates === []) {
                 $output->writeln("No listener '{$wanted}' is registered for {$messageClass}. Available:");
                 $output->writeln($this->describeListeners($listeners));
 
                 return null;
             }
-
-            return $matches;
         }
 
-        if (count($listeners) > 1) {
-            $output->writeln(sprintf(
-                '%s is consumed by %d listeners — pick one with --listener:',
-                $messageClass,
-                count($listeners)
-            ));
-            $output->writeln($this->describeListeners($listeners));
-
-            return null;
+        if (count($candidates) === 1) {
+            return $candidates[0];
         }
 
-        return $listeners;
+        $output->writeln(sprintf(
+            '%s is consumed by %d listeners — pick one with --listener:',
+            $messageClass,
+            count($candidates)
+        ));
+        $output->writeln($this->describeListeners($candidates));
+
+        return null;
     }
 
     /**

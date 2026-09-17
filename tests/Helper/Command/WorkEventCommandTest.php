@@ -39,7 +39,7 @@ class WorkEventCommandTest extends TestCase
         @rmdir($this->fixtureDir);
     }
 
-    public function testInvokesEveryRegisteredListenerAndReturnsSuccess(): void
+    public function testRunsTheOnlyRegisteredListenerAndReportsSuccess(): void
     {
         $spyListener = new class () {
             public int $calls = 0;
@@ -78,6 +78,7 @@ class WorkEventCommandTest extends TestCase
 
         self::assertSame(WorkEventCommand::SUCCESS, $exitCode);
         self::assertSame(1, $spyListener->calls);
+        self::assertStringContainsString('[OK]', $tester->getDisplay());
         self::assertStringContainsString('spy.listener::processShippingAttributes', $tester->getDisplay());
     }
 
@@ -236,7 +237,10 @@ class WorkEventCommandTest extends TestCase
         ]);
 
         self::assertSame(WorkEventCommand::FAILURE, $exitCode);
+        self::assertStringContainsString('[ERROR]', $tester->getDisplay());
         self::assertStringContainsString('boom', $tester->getDisplay());
+        // The dumped exception is what makes a failure debuggable without re-running.
+        self::assertStringContainsString('RuntimeException Object', $tester->getDisplay());
     }
 
     public function testAListenerThatCannotBeResolvedIsReportedLikeAnyOtherFailure(): void
