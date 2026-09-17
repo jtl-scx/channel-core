@@ -27,13 +27,6 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Throwable;
 
-/**
- * EA-7972: e2e-test helper. Builds any EventType from a JSON fixture and runs it through every
- * registered listener synchronously, in-process — no RabbitMQ publish/consume round-trip.
- * Unlike the production AmqpDispatcher, a listener exception here is NOT swallowed: it is
- * reported in the JSON output and turns the process exit code non-zero, so a test runner can
- * react to both without parsing logs.
- */
 #[AsCommand(name: 'helper:work')]
 class WorkEventCommand extends AbstractCommand
 {
@@ -174,8 +167,7 @@ class WorkEventCommand extends AbstractCommand
             $model
         ));
 
-        // EventFactory returns null for EventTypes it has no event class for (e.g. Unknown),
-        // which is a valid enum constant and therefore passes resolveEventType().
+        // Not every EventType constant has an event class; EventFactory returns null for those.
         if ($message === null) {
             $rawValue = $eventType->getValue();
             $typeValue = is_scalar($rawValue) ? (string)$rawValue : 'unknown';
