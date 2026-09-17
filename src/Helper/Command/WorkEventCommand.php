@@ -54,6 +54,12 @@ class WorkEventCommand extends AbstractCommand
                 InputOption::VALUE_REQUIRED,
                 'EventType constant name, or the FQCN of a class implementing CliConstructable'
             )
+            ->addOption(
+                'listener',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Which listener to run, as FQCN or FQCN::method. Required when a message has several'
+            )
             ->addArgument('payload', InputArgument::REQUIRED, 'Path to a JSON file, or a JSON object inline')
             ->addArgument(
                 'sellerId',
@@ -69,14 +75,21 @@ class WorkEventCommand extends AbstractCommand
         $payload = $this->loadPayload($input);
         $message = $this->buildMessage(is_string($typeOption) ? $typeOption : '', $payload);
 
-        $listeners = $this->messageCache->getListenerListForMessage(get_class($message));
+        $listenerOption = $input->getOption('listener');
+        $listeners = $this->selectListeners(
+            $this->messageCache->getListenerListForMessage(get_class($message)),
+            get_class($message),
+            is_string($listenerOption) ? $listenerOption : null
+        );
 
         $invoked = [];
         $failures = [];
         foreach ($listeners as $listener) {
-            $listenerInstance = $this->container->get($listener['listenerClass']);
             $method = $listener['method'];
             try {
+                // Resolving counts as part of the invocation: a listener whose dependencies
+                // cannot be built is a failure of that listener, not of the whole run.
+                $listenerInstance = $this->container->get($listener['listenerClass']);
                 $listenerInstance->{$method}($message);
                 $invoked[] = "{$listener['listenerClass']}::{$method}";
             } catch (Throwable $e) {
@@ -94,6 +107,70 @@ class WorkEventCommand extends AbstractCommand
         ));
 
         return $failures === [] ? self::SUCCESS : self::FAILURE;
+    }
+
+    /**
+     * Dispatching several listeners at once makes a failing assertion ambiguous — which of them
+     * caused the call? So the choice has to be made explicit rather than guessed.
+     *
+     * @param array<int, array{listenerClass: string, method: string}> $listeners
+     * @return array<int, array{listenerClass: string, method: string}>
+     */
+    private function selectListeners(array $listeners, string $messageClass, ?string $wanted): array
+    {
+        if ($wanted !== null) {
+            $matches = array_values(array_filter(
+                $listeners,
+                static fn (array $l): bool => $wanted === $l['listenerClass']
+                    || $wanted === "{$l['listenerClass']}::{$l['method']}"
+            ));
+
+            if ($matches === []) {
+                throw new InvalidArgumentException(
+                    "No listener '{$wanted}' is registered for {$messageClass}.\n"
+                    . $this->describeListeners($listeners)
+                );
+            }
+
+            return $matches;
+        }
+
+        if (count($listeners) > 1) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    "%s is consumed by %d listeners — pick one with --listener.\n%s",
+                    $messageClass,
+                    count($listeners),
+                    $this->describeListeners($listeners)
+                )
+            );
+        }
+
+        return $listeners;
+    }
+
+    /**
+     * Each line is a ready-to-paste option. Single quotes because a FQCN's backslashes would
+     * otherwise be eaten by the shell.
+     *
+     * @param array<int, array{listenerClass: string, method: string}> $listeners
+     */
+    private function describeListeners(array $listeners): string
+    {
+        $classes = array_map(static fn (array $l): string => $l['listenerClass'], $listeners);
+        $counts = array_count_values($classes);
+
+        return implode("\n", array_map(
+            static function (array $l) use ($counts): string {
+                // The class alone is ambiguous when it handles the message with several methods.
+                $value = $counts[$l['listenerClass']] > 1
+                    ? "{$l['listenerClass']}::{$l['method']}"
+                    : $l['listenerClass'];
+
+                return "  --listener='{$value}'";
+            },
+            $listeners
+        ));
     }
 
     /**
@@ -165,6 +242,12 @@ class WorkEventCommand extends AbstractCommand
      */
     private function buildScxEvent(EventType $eventType, array $event): object
     {
+        // Unknown maps to stdClass, which ObjectSerializer cannot deserialize into — it reads
+        // a DISCRIMINATOR constant that only model classes have.
+        if ($eventType->isUnknownEventType()) {
+            throw new InvalidArgumentException("EventType 'Unknown' has no event model to build.");
+        }
+
         $model = $this->responseDeserializer->deserializeObject(
             json_encode($event, JSON_THROW_ON_ERROR),
             $eventType->getEventModelClass()
@@ -184,7 +267,7 @@ class WorkEventCommand extends AbstractCommand
             $model
         ));
 
-        // Not every EventType constant has an event class; EventFactory returns null for those.
+        // Guards an EventType that was added to the enum but not to EventFactory.
         if ($message === null) {
             $rawValue = $eventType->getValue();
             $typeValue = is_scalar($rawValue) ? (string)$rawValue : 'unknown';

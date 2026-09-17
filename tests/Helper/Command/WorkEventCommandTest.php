@@ -81,10 +81,125 @@ class WorkEventCommandTest extends TestCase
         self::assertStringContainsString('spy.listener::processShippingAttributes', $tester->getDisplay());
     }
 
-    public function testReturnsNonZeroExitCodeWhenAListenerThrows(): void
+    public function testRefusesToGuessWhenAMessageHasSeveralListeners(): void
+    {
+        $environment = $this->createMock(Environment::class);
+        $environment->method('get')->with('ROOT_DIRECTORY')->willReturn($this->fixtureDir);
+
+        $messageCache = $this->createMock(MessageCache::class);
+        $messageCache->method('getListenerListForMessage')->willReturn([
+            ['listenerClass' => 'first.listener', 'method' => 'handle'],
+            ['listenerClass' => 'second.listener', 'method' => 'handle'],
+        ]);
+
+        $command = new WorkEventCommand(
+            $environment,
+            new EventFactory(),
+            new ChannelApiResponseDeserializer(),
+            $messageCache,
+            $this->createMock(ContainerInterface::class),
+            $this->createStub(ScxLogger::class)
+        );
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("--listener='second.listener'");
+
+        $tester = new CommandTester($command);
+        $tester->execute([
+            '--type' => 'SellerMetaSellerAttributesUpdateRequest',
+            'payload' => '/event.json',
+        ]);
+    }
+
+    public function testRunsOnlyTheSelectedListener(): void
+    {
+        $selected = new class () {
+            public int $calls = 0;
+
+            public function handle($message): void
+            {
+                $this->calls++;
+            }
+        };
+        $other = new class () {
+            public int $calls = 0;
+
+            public function handle($message): void
+            {
+                $this->calls++;
+            }
+        };
+
+        $environment = $this->createMock(Environment::class);
+        $environment->method('get')->with('ROOT_DIRECTORY')->willReturn($this->fixtureDir);
+
+        $messageCache = $this->createMock(MessageCache::class);
+        $messageCache->method('getListenerListForMessage')->willReturn([
+            ['listenerClass' => 'selected.listener', 'method' => 'handle'],
+            ['listenerClass' => 'other.listener', 'method' => 'handle'],
+        ]);
+
+        $container = $this->createMock(ContainerInterface::class);
+        $container->method('get')->willReturnMap([
+            ['selected.listener', $selected],
+            ['other.listener', $other],
+        ]);
+
+        $command = new WorkEventCommand(
+            $environment,
+            new EventFactory(),
+            new ChannelApiResponseDeserializer(),
+            $messageCache,
+            $container,
+            $this->createStub(ScxLogger::class)
+        );
+
+        $tester = new CommandTester($command);
+        $exitCode = $tester->execute([
+            '--type' => 'SellerMetaSellerAttributesUpdateRequest',
+            '--listener' => 'selected.listener',
+            'payload' => '/event.json',
+        ]);
+
+        self::assertSame(WorkEventCommand::SUCCESS, $exitCode);
+        self::assertSame(1, $selected->calls);
+        self::assertSame(0, $other->calls);
+    }
+
+    public function testRejectsAListenerThatIsNotRegisteredForTheMessage(): void
+    {
+        $environment = $this->createMock(Environment::class);
+        $environment->method('get')->with('ROOT_DIRECTORY')->willReturn($this->fixtureDir);
+
+        $messageCache = $this->createMock(MessageCache::class);
+        $messageCache->method('getListenerListForMessage')->willReturn([
+            ['listenerClass' => 'only.listener', 'method' => 'handle'],
+        ]);
+
+        $command = new WorkEventCommand(
+            $environment,
+            new EventFactory(),
+            new ChannelApiResponseDeserializer(),
+            $messageCache,
+            $this->createMock(ContainerInterface::class),
+            $this->createStub(ScxLogger::class)
+        );
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("No listener 'nope.listener' is registered");
+
+        $tester = new CommandTester($command);
+        $tester->execute([
+            '--type' => 'SellerMetaSellerAttributesUpdateRequest',
+            '--listener' => 'nope.listener',
+            'payload' => '/event.json',
+        ]);
+    }
+
+    public function testReportsAListenerThatThrows(): void
     {
         $throwingListener = new class () {
-            public function processShippingAttributes($message): void
+            public function handle($message): void
             {
                 throw new \RuntimeException('boom');
             }
@@ -95,7 +210,7 @@ class WorkEventCommandTest extends TestCase
 
         $messageCache = $this->createMock(MessageCache::class);
         $messageCache->method('getListenerListForMessage')->willReturn([
-            ['listenerClass' => 'throwing.listener', 'method' => 'processShippingAttributes'],
+            ['listenerClass' => 'throwing.listener', 'method' => 'handle'],
         ]);
 
         $container = $this->createMock(ContainerInterface::class);
@@ -118,6 +233,59 @@ class WorkEventCommandTest extends TestCase
 
         self::assertSame(WorkEventCommand::FAILURE, $exitCode);
         self::assertStringContainsString('boom', $tester->getDisplay());
+    }
+
+    public function testAListenerThatCannotBeResolvedIsReportedLikeAnyOtherFailure(): void
+    {
+        $environment = $this->createMock(Environment::class);
+        $environment->method('get')->with('ROOT_DIRECTORY')->willReturn($this->fixtureDir);
+
+        $messageCache = $this->createMock(MessageCache::class);
+        $messageCache->method('getListenerListForMessage')->willReturn([
+            ['listenerClass' => 'unresolvable.listener', 'method' => 'handle'],
+        ]);
+
+        $container = $this->createMock(ContainerInterface::class);
+        $container->method('get')->willThrowException(new \RuntimeException('cannot autowire'));
+
+        $command = new WorkEventCommand(
+            $environment,
+            new EventFactory(),
+            new ChannelApiResponseDeserializer(),
+            $messageCache,
+            $container,
+            $this->createStub(ScxLogger::class)
+        );
+
+        $tester = new CommandTester($command);
+        $exitCode = $tester->execute([
+            '--type' => 'SellerMetaSellerAttributesUpdateRequest',
+            'payload' => '/event.json',
+        ]);
+
+        self::assertSame(WorkEventCommand::FAILURE, $exitCode);
+        self::assertStringContainsString('cannot autowire', $tester->getDisplay());
+    }
+
+    public function testRejectsTheUnknownEventType(): void
+    {
+        $command = new WorkEventCommand(
+            $this->createMock(Environment::class),
+            new EventFactory(),
+            new ChannelApiResponseDeserializer(),
+            $this->createMock(MessageCache::class),
+            $this->createMock(ContainerInterface::class),
+            $this->createStub(ScxLogger::class)
+        );
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("EventType 'Unknown' has no event model to build.");
+
+        $tester = new CommandTester($command);
+        $tester->execute([
+            '--type' => 'Unknown',
+            'payload' => '{}',
+        ]);
     }
 
     public function testRejectsATypeThatIsNeitherEventNorCliConstructable(): void
