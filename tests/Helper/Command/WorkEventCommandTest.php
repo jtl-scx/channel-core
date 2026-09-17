@@ -76,7 +76,7 @@ class WorkEventCommandTest extends TestCase
             'jsonFile' => '/event.json',
         ]);
 
-        self::assertSame(0, $exitCode);
+        self::assertSame(WorkEventCommand::SUCCESS, $exitCode);
         self::assertSame(1, $spyListener->calls);
         self::assertStringContainsString('spy.listener::processShippingAttributes', $tester->getDisplay());
     }
@@ -116,7 +116,7 @@ class WorkEventCommandTest extends TestCase
             'jsonFile' => '/event.json',
         ]);
 
-        self::assertSame(1, $exitCode);
+        self::assertSame(WorkEventCommand::FAILURE, $exitCode);
         self::assertStringContainsString('boom', $tester->getDisplay());
     }
 

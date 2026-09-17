@@ -93,7 +93,7 @@ class WorkEventCommand extends AbstractCommand
             JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR
         ));
 
-        return $failures === [] ? 0 : 1;
+        return $failures === [] ? self::SUCCESS : self::FAILURE;
     }
 
     private function resolveEventType(string $typeName): EventType
