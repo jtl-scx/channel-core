@@ -23,6 +23,7 @@ use JTL\SCX\Lib\Channel\Client\Api\Order\Request\ReturnOrderRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Request\SendRefundProcessingResultRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Request\UpdateOrderAddressRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Request\UpdateOrderStatusRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Order\Request\UploadInvoiceDataRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Request\UploadInvoiceRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Response\AbstractOrderResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Response\AcceptCancellationResponse;
@@ -35,6 +36,7 @@ use JTL\SCX\Lib\Channel\Client\Api\Order\Response\ReturnOrderResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Response\SendRefundProcessingResultResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Response\UpdateOrderAddressResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Response\UpdateOrderStatusResponse;
+use JTL\SCX\Lib\Channel\Client\Api\Order\Response\UploadInvoiceDataResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Response\UploadInvoiceResponse;
 use JTL\SCX\Lib\Channel\Client\Model\ErrorResponseList;
 use JTL\SCX\Client\Exception\RequestFailedException;
@@ -146,6 +148,21 @@ class OrderApi
     {
         $response = $this->client->request($request);
         return new UploadInvoiceResponse($response->getStatusCode());
+    }
+
+    /**
+     * Submits the invoice data for an order without a document. Requires invoiceDataTransfer to be
+     * from-channel for that order, otherwise the API answers 400 CHN706.
+     *
+     * @param UploadInvoiceDataRequest $request
+     * @return UploadInvoiceDataResponse
+     * @throws GuzzleException
+     * @throws RequestFailedException
+     */
+    public function uploadInvoiceData(UploadInvoiceDataRequest $request): UploadInvoiceDataResponse
+    {
+        $response = $this->client->request($request);
+        return new UploadInvoiceDataResponse($response->getStatusCode());
     }
 
     /**

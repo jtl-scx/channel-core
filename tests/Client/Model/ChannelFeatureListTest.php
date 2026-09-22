@@ -58,6 +58,18 @@ class ChannelFeatureListTest extends AbstractApiModelTestCase
         $this->assertMethodExists($sut, 'getInvoiceDocumentTransferAllowableValues');
         $this->assertEquals($allowed, $sut->getInvoiceDocumentTransferAllowableValues());
     }
+
+    #[Test]
+    public function it_has_correct_allowed_values_for_invoiceDataTransfer(): void
+    {
+        $allowed = [
+            'not-supported','from-channel','from-seller',
+        ];
+
+        $sut = new ChannelFeatureList();
+        $this->assertMethodExists($sut, 'getInvoiceDataTransferAllowableValues');
+        $this->assertEquals($allowed, $sut->getInvoiceDataTransferAllowableValues());
+    }
     /**
      * @return array
      */
@@ -69,6 +81,13 @@ class ChannelFeatureListTest extends AbstractApiModelTestCase
                 'string',
                 'getInvoiceDocumentTransfer',
                 'setInvoiceDocumentTransfer',
+                false
+            ],
+            'assert property invoiceDataTransfer' => [
+                'invoiceDataTransfer',
+                'string',
+                'getInvoiceDataTransfer',
+                'setInvoiceDataTransfer',
                 false
             ],
             'assert property priceUpdatesSupported' => [

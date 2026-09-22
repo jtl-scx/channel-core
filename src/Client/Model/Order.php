@@ -70,6 +70,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'weeePickup' => 'bool',
         'language' => 'string',
         'invoiceDocumentTransfer' => 'string',
+        'invoiceDataTransfer' => 'string',
         'additionalOrderData' => '\JTL\SCX\Lib\Channel\Client\Model\AdditionalOrderDataGroup[]',
         'fbc' => 'bool',
         'b2b' => 'bool',
@@ -100,6 +101,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'weeePickup' => null,
         'language' => null,
         'invoiceDocumentTransfer' => null,
+        'invoiceDataTransfer' => null,
         'additionalOrderData' => null,
         'fbc' => null,
         'b2b' => null,
@@ -146,6 +148,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'weeePickup' => 'weeePickup',
         'language' => 'language',
         'invoiceDocumentTransfer' => 'invoiceDocumentTransfer',
+        'invoiceDataTransfer' => 'invoiceDataTransfer',
         'additionalOrderData' => 'additionalOrderData',
         'fbc' => 'fbc',
         'b2b' => 'b2b',
@@ -173,6 +176,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'weeePickup' => 'setWeeePickup',
         'language' => 'setLanguage',
         'invoiceDocumentTransfer' => 'setInvoiceDocumentTransfer',
+        'invoiceDataTransfer' => 'setInvoiceDataTransfer',
         'additionalOrderData' => 'setAdditionalOrderData',
         'fbc' => 'setFbc',
         'b2b' => 'setB2b',
@@ -200,6 +204,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'weeePickup' => 'getWeeePickup',
         'language' => 'getLanguage',
         'invoiceDocumentTransfer' => 'getInvoiceDocumentTransfer',
+        'invoiceDataTransfer' => 'getInvoiceDataTransfer',
         'additionalOrderData' => 'getAdditionalOrderData',
         'fbc' => 'getFbc',
         'b2b' => 'getB2b',
@@ -246,6 +251,9 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     public const INVOICE_DOCUMENT_TRANSFER_NOT_SET = 'not-set';
     public const INVOICE_DOCUMENT_TRANSFER_FROM_SELLER = 'from-seller';
     public const INVOICE_DOCUMENT_TRANSFER_FROM_CHANNEL = 'from-channel';
+    public const INVOICE_DATA_TRANSFER_NOT_SET = 'not-set';
+    public const INVOICE_DATA_TRANSFER_FROM_SELLER = 'from-seller';
+    public const INVOICE_DATA_TRANSFER_FROM_CHANNEL = 'from-channel';
 
 
 
@@ -258,6 +266,18 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
             self::INVOICE_DOCUMENT_TRANSFER_NOT_SET,
             self::INVOICE_DOCUMENT_TRANSFER_FROM_SELLER,
             self::INVOICE_DOCUMENT_TRANSFER_FROM_CHANNEL,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getInvoiceDataTransferAllowableValues(): array
+    {
+        return [
+            self::INVOICE_DATA_TRANSFER_NOT_SET,
+            self::INVOICE_DATA_TRANSFER_FROM_SELLER,
+            self::INVOICE_DATA_TRANSFER_FROM_CHANNEL,
         ];
     }
 
@@ -286,6 +306,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['weeePickup'] = $data['weeePickup'] ?? null;
         $this->container['language'] = $data['language'] ?? null;
         $this->container['invoiceDocumentTransfer'] = $data['invoiceDocumentTransfer'] ?? 'not-set';
+        $this->container['invoiceDataTransfer'] = $data['invoiceDataTransfer'] ?? 'not-set';
         $this->container['additionalOrderData'] = $data['additionalOrderData'] ?? null;
         $this->container['fbc'] = $data['fbc'] ?? null;
         $this->container['b2b'] = $data['b2b'] ?? null;
@@ -351,6 +372,15 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'invoiceDocumentTransfer', must be one of '%s'",
                 $this->container['invoiceDocumentTransfer'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getInvoiceDataTransferAllowableValues();
+        if (!is_null($this->container['invoiceDataTransfer']) && !in_array($this->container['invoiceDataTransfer'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'invoiceDataTransfer', must be one of '%s'",
+                $this->container['invoiceDataTransfer'],
                 implode("', '", $allowedValues)
             );
         }
@@ -582,6 +612,18 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setInvoiceDocumentTransfer(?string $invoiceDocumentTransfer): Order
     {
         $this->container['invoiceDocumentTransfer'] = $invoiceDocumentTransfer;
+        return $this;
+    }
+
+
+    public function getInvoiceDataTransfer(): ?string
+    {
+        return $this->container['invoiceDataTransfer'];
+    }
+
+    public function setInvoiceDataTransfer(?string $invoiceDataTransfer): Order
+    {
+        $this->container['invoiceDataTransfer'] = $invoiceDataTransfer;
         return $this;
     }
 
