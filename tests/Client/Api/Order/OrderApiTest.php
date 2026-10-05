@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace JTL\SCX\Lib\Channel\Client\Api\Order;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use JTL\SCX\Client\Api\AuthAwareApiClient;
 use JTL\SCX\Lib\Channel\Client\Api\ChannelApiResponseDeserializer;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Request\AcceptCancellationRequest;
@@ -23,6 +24,7 @@ use JTL\SCX\Lib\Channel\Client\Api\Order\Request\ReturnOrderProcessingResultRequ
 use JTL\SCX\Lib\Channel\Client\Api\Order\Request\SendRefundProcessingResultRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Request\UpdateOrderAddressRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Request\UpdateOrderStatusRequest;
+use JTL\SCX\Lib\Channel\Client\Api\Order\Request\UploadInvoiceDataRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Request\UploadInvoiceRequest;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Response\AbstractOrderResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Response\CreateOrdersResponse;
@@ -33,6 +35,7 @@ use JTL\SCX\Lib\Channel\Client\Api\Order\Response\ReturnOrderProcessingResultRes
 use JTL\SCX\Lib\Channel\Client\Api\Order\Response\SendRefundProcessingResultResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Response\UpdateOrderAddressResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Response\UpdateOrderStatusResponse;
+use JTL\SCX\Lib\Channel\Client\Api\Order\Response\UploadInvoiceDataResponse;
 use JTL\SCX\Lib\Channel\Client\Api\Order\Response\UploadInvoiceResponse;
 use JTL\SCX\Lib\Channel\Client\Model\ErrorResponseList;
 use PHPUnit\Framework\TestCase;
@@ -214,6 +217,27 @@ class OrderApiTest extends TestCase
         $response = $client->uploadInvoice($request);
 
         $this->assertInstanceOf(UploadInvoiceResponse::class, $response);
+        $this->assertTrue($response->isSuccessful());
+    }
+
+    #[Test]
+    public function it_can_upload_invoice_data_successfully(): void
+    {
+        $apiClientMock = $this->createMock(AuthAwareApiClient::class);
+        $deserializerStub = $this->createStub(ChannelApiResponseDeserializer::class);
+
+        $client = new OrderApi($apiClientMock, $deserializerStub);
+
+        $request = $this->createStub(UploadInvoiceDataRequest::class);
+
+        $responseMock = $this->createStub(ResponseInterface::class);
+        $responseMock->method('getStatusCode')->willReturn(201);
+
+        $apiClientMock->expects($this->once())->method('request')->with($request)->willReturn($responseMock);
+
+        $response = $client->uploadInvoiceData($request);
+
+        $this->assertInstanceOf(UploadInvoiceDataResponse::class, $response);
         $this->assertTrue($response->isSuccessful());
     }
 

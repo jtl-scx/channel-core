@@ -48,6 +48,7 @@ class ChannelFeatureList implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static array $openAPITypes = [
         'invoiceDocumentTransfer' => 'string',
+        'invoiceDataTransfer' => 'string',
         'priceUpdatesSupported' => 'bool',
         'quantityPriceSupported' => 'bool',
         'remainingQuanitySupported' => 'bool',
@@ -65,6 +66,7 @@ class ChannelFeatureList implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static array $openAPIFormats = [
         'invoiceDocumentTransfer' => null,
+        'invoiceDataTransfer' => null,
         'priceUpdatesSupported' => null,
         'quantityPriceSupported' => null,
         'remainingQuanitySupported' => null,
@@ -98,6 +100,7 @@ class ChannelFeatureList implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     protected static array $attributeMap = [
         'invoiceDocumentTransfer' => 'invoiceDocumentTransfer',
+        'invoiceDataTransfer' => 'invoiceDataTransfer',
         'priceUpdatesSupported' => 'priceUpdatesSupported',
         'quantityPriceSupported' => 'quantityPriceSupported',
         'remainingQuanitySupported' => 'remainingQuanitySupported',
@@ -112,6 +115,7 @@ class ChannelFeatureList implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     protected static array $setters = [
         'invoiceDocumentTransfer' => 'setInvoiceDocumentTransfer',
+        'invoiceDataTransfer' => 'setInvoiceDataTransfer',
         'priceUpdatesSupported' => 'setPriceUpdatesSupported',
         'quantityPriceSupported' => 'setQuantityPriceSupported',
         'remainingQuanitySupported' => 'setRemainingQuanitySupported',
@@ -126,6 +130,7 @@ class ChannelFeatureList implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     protected static array $getters = [
         'invoiceDocumentTransfer' => 'getInvoiceDocumentTransfer',
+        'invoiceDataTransfer' => 'getInvoiceDataTransfer',
         'priceUpdatesSupported' => 'getPriceUpdatesSupported',
         'quantityPriceSupported' => 'getQuantityPriceSupported',
         'remainingQuanitySupported' => 'getRemainingQuanitySupported',
@@ -175,6 +180,9 @@ class ChannelFeatureList implements ModelInterface, ArrayAccess, \JsonSerializab
     public const INVOICE_DOCUMENT_TRANSFER_NOT_SUPPORTED = 'not-supported';
     public const INVOICE_DOCUMENT_TRANSFER_FROM_CHANNEL = 'from-channel';
     public const INVOICE_DOCUMENT_TRANSFER_FROM_SELLER = 'from-seller';
+    public const INVOICE_DATA_TRANSFER_NOT_SUPPORTED = 'not-supported';
+    public const INVOICE_DATA_TRANSFER_FROM_CHANNEL = 'from-channel';
+    public const INVOICE_DATA_TRANSFER_FROM_SELLER = 'from-seller';
 
 
 
@@ -190,6 +198,18 @@ class ChannelFeatureList implements ModelInterface, ArrayAccess, \JsonSerializab
         ];
     }
 
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getInvoiceDataTransferAllowableValues(): array
+    {
+        return [
+            self::INVOICE_DATA_TRANSFER_NOT_SUPPORTED,
+            self::INVOICE_DATA_TRANSFER_FROM_CHANNEL,
+            self::INVOICE_DATA_TRANSFER_FROM_SELLER,
+        ];
+    }
+
 
     /**
      * Associative array for storing property values
@@ -199,6 +219,7 @@ class ChannelFeatureList implements ModelInterface, ArrayAccess, \JsonSerializab
     public function __construct(array|null $data = null)
     {
         $this->container['invoiceDocumentTransfer'] = $data['invoiceDocumentTransfer'] ?? 'not-supported';
+        $this->container['invoiceDataTransfer'] = $data['invoiceDataTransfer'] ?? 'not-supported';
         $this->container['priceUpdatesSupported'] = $data['priceUpdatesSupported'] ?? false;
         $this->container['quantityPriceSupported'] = $data['quantityPriceSupported'] ?? false;
         $this->container['remainingQuanitySupported'] = $data['remainingQuanitySupported'] ?? false;
@@ -226,6 +247,15 @@ class ChannelFeatureList implements ModelInterface, ArrayAccess, \JsonSerializab
             );
         }
 
+        $allowedValues = $this->getInvoiceDataTransferAllowableValues();
+        if (!is_null($this->container['invoiceDataTransfer']) && !in_array($this->container['invoiceDataTransfer'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'invoiceDataTransfer', must be one of '%s'",
+                $this->container['invoiceDataTransfer'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -249,6 +279,18 @@ class ChannelFeatureList implements ModelInterface, ArrayAccess, \JsonSerializab
     public function setInvoiceDocumentTransfer(?string $invoiceDocumentTransfer): ChannelFeatureList
     {
         $this->container['invoiceDocumentTransfer'] = $invoiceDocumentTransfer;
+        return $this;
+    }
+
+
+    public function getInvoiceDataTransfer(): ?string
+    {
+        return $this->container['invoiceDataTransfer'];
+    }
+
+    public function setInvoiceDataTransfer(?string $invoiceDataTransfer): ChannelFeatureList
+    {
+        $this->container['invoiceDataTransfer'] = $invoiceDataTransfer;
         return $this;
     }
 
