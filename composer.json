@@ -10,7 +10,7 @@
         "guzzlehttp/guzzle": "^7.15.5",
         "jtl-scx/api-base-client": "^2.1",
         "jtl-software/opsgenie-client": "^2.1",
-        "jtl/go-prometrics-client": "^3.2",
+        "jtl/go-prometrics-client": "^3.2 || ^4.0",
         "jtl/nachricht": "^1.0",
         "jtl/php-generic-collection": "^1.0.1",
         "monolog/monolog": "^2.11.0",
