@@ -13,7 +13,7 @@
         "jtl/go-prometrics-client": "^3.2",
         "jtl/nachricht": "^1.0",
         "jtl/php-generic-collection": "^1.0.1",
-        "monolog/monolog": "^2.11.0",
+        "monolog/monolog": "^2.11.0 || ^3.0.0",
         "myclabs/php-enum": "^1.8.5",
         "php-amqplib/php-amqplib": "^3.7.4",
         "psr/clock": "^1.0",
