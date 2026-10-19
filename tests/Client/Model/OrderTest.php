@@ -146,6 +146,13 @@ class OrderTest extends AbstractApiModelTestCase
                 'setOrderItem',
                 false
             ],
+            'assert property shipments' => [
+                'shipments',
+                '\JTL\SCX\Lib\Channel\Client\Model\OrderShipment[]',
+                'getShipments',
+                'setShipments',
+                true
+            ],
             'assert property billingAddress' => [
                 'billingAddress',
                 '\JTL\SCX\Lib\Channel\Client\Model\Address',

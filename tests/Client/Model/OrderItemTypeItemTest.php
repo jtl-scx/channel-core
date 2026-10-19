@@ -169,13 +169,6 @@ class OrderItemTypeItemTest extends AbstractApiModelTestCase
                 'setAdditionalOrderItemData',
                 true
             ],
-            'assert property shipFromCountry' => [
-                'shipFromCountry',
-                'string',
-                'getShipFromCountry',
-                'setShipFromCountry',
-                true
-            ],
         ];
     }
 

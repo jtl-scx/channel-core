@@ -51,8 +51,7 @@ class OrderStatusOrderItemsInner implements ModelInterface, ArrayAccess, \JsonSe
     protected static array $openAPITypes = [
         'orderItemId' => 'string',
         'itemStatus' => '\JTL\SCX\Lib\Channel\Client\Model\OrderItemStatus',
-        'paymentStatus' => '\JTL\SCX\Lib\Channel\Client\Model\OrderItemPaymentStatus',
-        'shipFromCountry' => 'string'
+        'paymentStatus' => '\JTL\SCX\Lib\Channel\Client\Model\OrderItemPaymentStatus'
     ];
 
     /**
@@ -64,8 +63,7 @@ class OrderStatusOrderItemsInner implements ModelInterface, ArrayAccess, \JsonSe
     protected static array $openAPIFormats = [
         'orderItemId' => 'string',
         'itemStatus' => null,
-        'paymentStatus' => null,
-        'shipFromCountry' => null
+        'paymentStatus' => null
     ];
 
     /**
@@ -93,8 +91,7 @@ class OrderStatusOrderItemsInner implements ModelInterface, ArrayAccess, \JsonSe
     protected static array $attributeMap = [
         'orderItemId' => 'orderItemId',
         'itemStatus' => 'itemStatus',
-        'paymentStatus' => 'paymentStatus',
-        'shipFromCountry' => 'shipFromCountry'
+        'paymentStatus' => 'paymentStatus'
     ];
 
     /**
@@ -103,8 +100,7 @@ class OrderStatusOrderItemsInner implements ModelInterface, ArrayAccess, \JsonSe
     protected static array $setters = [
         'orderItemId' => 'setOrderItemId',
         'itemStatus' => 'setItemStatus',
-        'paymentStatus' => 'setPaymentStatus',
-        'shipFromCountry' => 'setShipFromCountry'
+        'paymentStatus' => 'setPaymentStatus'
     ];
 
     /**
@@ -113,8 +109,7 @@ class OrderStatusOrderItemsInner implements ModelInterface, ArrayAccess, \JsonSe
     protected static array $getters = [
         'orderItemId' => 'getOrderItemId',
         'itemStatus' => 'getItemStatus',
-        'paymentStatus' => 'getPaymentStatus',
-        'shipFromCountry' => 'getShipFromCountry'
+        'paymentStatus' => 'getPaymentStatus'
     ];
 
     /**
@@ -168,7 +163,6 @@ class OrderStatusOrderItemsInner implements ModelInterface, ArrayAccess, \JsonSe
         $this->container['orderItemId'] = $data['orderItemId'] ?? null;
         $this->container['itemStatus'] = $data['itemStatus'] ?? null;
         $this->container['paymentStatus'] = $data['paymentStatus'] ?? null;
-        $this->container['shipFromCountry'] = $data['shipFromCountry'] ?? null;
     }
 
     /**
@@ -197,10 +191,6 @@ class OrderStatusOrderItemsInner implements ModelInterface, ArrayAccess, \JsonSe
         if ($this->container['paymentStatus'] === null) {
             $invalidProperties[] = "'paymentStatus' can't be null";
         }
-        if (!is_null($this->container['shipFromCountry']) && !preg_match("/^[A-Z]{3}$/", $this->container['shipFromCountry'])) {
-            $invalidProperties[] = "invalid value for 'shipFromCountry', must be conform to the pattern /^[A-Z]{3}$/.";
-        }
-
         return $invalidProperties;
     }
 
@@ -248,18 +238,6 @@ class OrderStatusOrderItemsInner implements ModelInterface, ArrayAccess, \JsonSe
     public function setPaymentStatus(OrderItemPaymentStatus $paymentStatus): OrderStatusOrderItemsInner
     {
         $this->container['paymentStatus'] = $paymentStatus;
-        return $this;
-    }
-
-
-    public function getShipFromCountry(): ?string
-    {
-        return $this->container['shipFromCountry'];
-    }
-
-    public function setShipFromCountry(?string $shipFromCountry): OrderStatusOrderItemsInner
-    {
-        $this->container['shipFromCountry'] = $shipFromCountry;
         return $this;
     }
 

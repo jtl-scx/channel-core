@@ -46,13 +46,15 @@ class OrderStatus implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @param ChannelOrderStatus
       * @param OrderStatusOrderItemsInner
+      * @param OrderShipment
       *
       */
     protected static array $openAPITypes = [
         'sellerId' => 'string',
         'orderId' => 'string',
         'orderStatus' => '\JTL\SCX\Lib\Channel\Client\Model\ChannelOrderStatus',
-        'orderItems' => '\JTL\SCX\Lib\Channel\Client\Model\OrderStatusOrderItemsInner[]'
+        'orderItems' => '\JTL\SCX\Lib\Channel\Client\Model\OrderStatusOrderItemsInner[]',
+        'shipments' => '\JTL\SCX\Lib\Channel\Client\Model\OrderShipment[]'
     ];
 
     /**
@@ -65,7 +67,8 @@ class OrderStatus implements ModelInterface, ArrayAccess, \JsonSerializable
         'sellerId' => null,
         'orderId' => null,
         'orderStatus' => null,
-        'orderItems' => null
+        'orderItems' => null,
+        'shipments' => null
     ];
 
     /**
@@ -94,7 +97,8 @@ class OrderStatus implements ModelInterface, ArrayAccess, \JsonSerializable
         'sellerId' => 'sellerId',
         'orderId' => 'orderId',
         'orderStatus' => 'orderStatus',
-        'orderItems' => 'orderItems'
+        'orderItems' => 'orderItems',
+        'shipments' => 'shipments'
     ];
 
     /**
@@ -104,7 +108,8 @@ class OrderStatus implements ModelInterface, ArrayAccess, \JsonSerializable
         'sellerId' => 'setSellerId',
         'orderId' => 'setOrderId',
         'orderStatus' => 'setOrderStatus',
-        'orderItems' => 'setOrderItems'
+        'orderItems' => 'setOrderItems',
+        'shipments' => 'setShipments'
     ];
 
     /**
@@ -114,7 +119,8 @@ class OrderStatus implements ModelInterface, ArrayAccess, \JsonSerializable
         'sellerId' => 'getSellerId',
         'orderId' => 'getOrderId',
         'orderStatus' => 'getOrderStatus',
-        'orderItems' => 'getOrderItems'
+        'orderItems' => 'getOrderItems',
+        'shipments' => 'getShipments'
     ];
 
     /**
@@ -169,6 +175,7 @@ class OrderStatus implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['orderId'] = $data['orderId'] ?? null;
         $this->container['orderStatus'] = $data['orderStatus'] ?? null;
         $this->container['orderItems'] = $data['orderItems'] ?? null;
+        $this->container['shipments'] = $data['shipments'] ?? null;
     }
 
     /**
@@ -203,6 +210,10 @@ class OrderStatus implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if (!is_null($this->container['orderItems']) && (is_countable($this->container['orderItems']) && count($this->container['orderItems']) < 0)) {
             $invalidProperties[] = "invalid value for 'orderItems', number of items must be greater than or equal to 0.";
+        }
+
+        if (!is_null($this->container['shipments']) && (is_countable($this->container['shipments']) && count($this->container['shipments']) < 0)) {
+            $invalidProperties[] = "invalid value for 'shipments', number of items must be greater than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -264,6 +275,18 @@ class OrderStatus implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setOrderItems(?array $orderItems): OrderStatus
     {
         $this->container['orderItems'] = $orderItems;
+        return $this;
+    }
+
+
+    public function getShipments(): ?array
+    {
+        return $this->container['shipments'];
+    }
+
+    public function setShipments(?array $shipments): OrderStatus
+    {
+        $this->container['shipments'] = $shipments;
         return $this;
     }
 

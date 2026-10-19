@@ -71,13 +71,6 @@ class OrderStatusOrderItemsInnerTest extends AbstractApiModelTestCase
                 'setPaymentStatus',
                 false
             ],
-            'assert property shipFromCountry' => [
-                'shipFromCountry',
-                'string',
-                'getShipFromCountry',
-                'setShipFromCountry',
-                true
-            ],
         ];
     }
 
