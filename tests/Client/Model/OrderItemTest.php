@@ -169,13 +169,6 @@ class OrderItemTest extends AbstractApiModelTestCase
                 'setAdditionalOrderItemData',
                 true
             ],
-            'assert property shipFromCountry' => [
-                'shipFromCountry',
-                'string',
-                'getShipFromCountry',
-                'setShipFromCountry',
-                true
-            ],
             'assert property shippingGroup' => [
                 'shippingGroup',
                 'string',

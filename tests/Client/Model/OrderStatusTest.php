@@ -78,6 +78,13 @@ class OrderStatusTest extends AbstractApiModelTestCase
                 'setOrderItems',
                 true
             ],
+            'assert property shipments' => [
+                'shipments',
+                '\JTL\SCX\Lib\Channel\Client\Model\OrderShipment[]',
+                'getShipments',
+                'setShipments',
+                true
+            ],
         ];
     }
 

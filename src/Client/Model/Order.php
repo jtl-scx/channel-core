@@ -46,6 +46,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @param ChannelOrderStatus
       * @param OrderItem
+      * @param OrderShipment
       * @param Address
       * @param Address
       * @param OrderBuyer
@@ -63,6 +64,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'lastChangedAt' => '\DateTime',
         'currency' => 'string',
         'orderItem' => '\JTL\SCX\Lib\Channel\Client\Model\OrderItem[]',
+        'shipments' => '\JTL\SCX\Lib\Channel\Client\Model\OrderShipment[]',
         'billingAddress' => '\JTL\SCX\Lib\Channel\Client\Model\Address',
         'shippingAddress' => '\JTL\SCX\Lib\Channel\Client\Model\Address',
         'note' => 'string',
@@ -94,6 +96,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'lastChangedAt' => 'date-time',
         'currency' => null,
         'orderItem' => null,
+        'shipments' => null,
         'billingAddress' => null,
         'shippingAddress' => null,
         'note' => null,
@@ -141,6 +144,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'lastChangedAt' => 'lastChangedAt',
         'currency' => 'currency',
         'orderItem' => 'orderItem',
+        'shipments' => 'shipments',
         'billingAddress' => 'billingAddress',
         'shippingAddress' => 'shippingAddress',
         'note' => 'note',
@@ -169,6 +173,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'lastChangedAt' => 'setLastChangedAt',
         'currency' => 'setCurrency',
         'orderItem' => 'setOrderItem',
+        'shipments' => 'setShipments',
         'billingAddress' => 'setBillingAddress',
         'shippingAddress' => 'setShippingAddress',
         'note' => 'setNote',
@@ -197,6 +202,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'lastChangedAt' => 'getLastChangedAt',
         'currency' => 'getCurrency',
         'orderItem' => 'getOrderItem',
+        'shipments' => 'getShipments',
         'billingAddress' => 'getBillingAddress',
         'shippingAddress' => 'getShippingAddress',
         'note' => 'getNote',
@@ -299,6 +305,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['lastChangedAt'] = $data['lastChangedAt'] ?? null;
         $this->container['currency'] = $data['currency'] ?? null;
         $this->container['orderItem'] = $data['orderItem'] ?? null;
+        $this->container['shipments'] = $data['shipments'] ?? null;
         $this->container['billingAddress'] = $data['billingAddress'] ?? null;
         $this->container['shippingAddress'] = $data['shippingAddress'] ?? null;
         $this->container['note'] = $data['note'] ?? null;
@@ -365,6 +372,10 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ((is_countable($this->container['orderItem']) && count($this->container['orderItem']) < 1)) {
             $invalidProperties[] = "invalid value for 'orderItem', number of items must be greater than or equal to 1.";
+        }
+
+        if (!is_null($this->container['shipments']) && (is_countable($this->container['shipments']) && count($this->container['shipments']) < 0)) {
+            $invalidProperties[] = "invalid value for 'shipments', number of items must be greater than or equal to 0.";
         }
 
         $allowedValues = $this->getInvoiceDocumentTransferAllowableValues();
@@ -528,6 +539,18 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setOrderItem(array $orderItem): Order
     {
         $this->container['orderItem'] = $orderItem;
+        return $this;
+    }
+
+
+    public function getShipments(): ?array
+    {
+        return $this->container['shipments'];
+    }
+
+    public function setShipments(?array $shipments): Order
+    {
+        $this->container['shipments'] = $shipments;
         return $this;
     }
 

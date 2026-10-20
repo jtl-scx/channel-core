@@ -67,7 +67,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'estimatedDeliveryDate' => '\DateTime',
         'remainingQuantity' => 'string',
         'additionalOrderItemData' => '\JTL\SCX\Lib\Channel\Client\Model\AdditionalOrderDataGroup[]',
-        'shipFromCountry' => 'string',
         'shippingGroup' => 'string',
         'note' => 'string'
     ];
@@ -96,7 +95,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'estimatedDeliveryDate' => 'date-time',
         'remainingQuantity' => null,
         'additionalOrderItemData' => null,
-        'shipFromCountry' => null,
         'shippingGroup' => null,
         'note' => null
     ];
@@ -141,7 +139,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'estimatedDeliveryDate' => 'estimatedDeliveryDate',
         'remainingQuantity' => 'remainingQuantity',
         'additionalOrderItemData' => 'additionalOrderItemData',
-        'shipFromCountry' => 'shipFromCountry',
         'shippingGroup' => 'shippingGroup',
         'note' => 'note'
     ];
@@ -167,7 +164,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'estimatedDeliveryDate' => 'setEstimatedDeliveryDate',
         'remainingQuantity' => 'setRemainingQuantity',
         'additionalOrderItemData' => 'setAdditionalOrderItemData',
-        'shipFromCountry' => 'setShipFromCountry',
         'shippingGroup' => 'setShippingGroup',
         'note' => 'setNote'
     ];
@@ -193,7 +189,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'estimatedDeliveryDate' => 'getEstimatedDeliveryDate',
         'remainingQuantity' => 'getRemainingQuantity',
         'additionalOrderItemData' => 'getAdditionalOrderItemData',
-        'shipFromCountry' => 'getShipFromCountry',
         'shippingGroup' => 'getShippingGroup',
         'note' => 'getNote'
     ];
@@ -263,7 +258,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['estimatedDeliveryDate'] = $data['estimatedDeliveryDate'] ?? null;
         $this->container['remainingQuantity'] = $data['remainingQuantity'] ?? null;
         $this->container['additionalOrderItemData'] = $data['additionalOrderItemData'] ?? null;
-        $this->container['shipFromCountry'] = $data['shipFromCountry'] ?? null;
         $this->container['shippingGroup'] = $data['shippingGroup'] ?? null;
         $this->container['note'] = $data['note'] ?? null;
     }
@@ -323,10 +317,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if (!is_null($this->container['additionalOrderItemData']) && (is_countable($this->container['additionalOrderItemData']) && count($this->container['additionalOrderItemData']) < 0)) {
             $invalidProperties[] = "invalid value for 'additionalOrderItemData', number of items must be greater than or equal to 0.";
-        }
-
-        if (!is_null($this->container['shipFromCountry']) && !preg_match("/^[A-Z]{3}$/", $this->container['shipFromCountry'])) {
-            $invalidProperties[] = "invalid value for 'shipFromCountry', must be conform to the pattern /^[A-Z]{3}$/.";
         }
 
         if ($this->container['shippingGroup'] === null) {
@@ -550,18 +540,6 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAdditionalOrderItemData(?array $additionalOrderItemData): OrderItem
     {
         $this->container['additionalOrderItemData'] = $additionalOrderItemData;
-        return $this;
-    }
-
-
-    public function getShipFromCountry(): ?string
-    {
-        return $this->container['shipFromCountry'];
-    }
-
-    public function setShipFromCountry(?string $shipFromCountry): OrderItem
-    {
-        $this->container['shipFromCountry'] = $shipFromCountry;
         return $this;
     }
 

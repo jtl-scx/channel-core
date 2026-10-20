@@ -66,8 +66,7 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
         'estimatedShippingDate' => '\DateTime',
         'estimatedDeliveryDate' => '\DateTime',
         'remainingQuantity' => 'string',
-        'additionalOrderItemData' => '\JTL\SCX\Lib\Channel\Client\Model\AdditionalOrderDataGroup[]',
-        'shipFromCountry' => 'string'
+        'additionalOrderItemData' => '\JTL\SCX\Lib\Channel\Client\Model\AdditionalOrderDataGroup[]'
     ];
 
     /**
@@ -93,8 +92,7 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
         'estimatedShippingDate' => 'date-time',
         'estimatedDeliveryDate' => 'date-time',
         'remainingQuantity' => null,
-        'additionalOrderItemData' => null,
-        'shipFromCountry' => null
+        'additionalOrderItemData' => null
     ];
 
     /**
@@ -136,8 +134,7 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
         'estimatedShippingDate' => 'estimatedShippingDate',
         'estimatedDeliveryDate' => 'estimatedDeliveryDate',
         'remainingQuantity' => 'remainingQuantity',
-        'additionalOrderItemData' => 'additionalOrderItemData',
-        'shipFromCountry' => 'shipFromCountry'
+        'additionalOrderItemData' => 'additionalOrderItemData'
     ];
 
     /**
@@ -160,8 +157,7 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
         'estimatedShippingDate' => 'setEstimatedShippingDate',
         'estimatedDeliveryDate' => 'setEstimatedDeliveryDate',
         'remainingQuantity' => 'setRemainingQuantity',
-        'additionalOrderItemData' => 'setAdditionalOrderItemData',
-        'shipFromCountry' => 'setShipFromCountry'
+        'additionalOrderItemData' => 'setAdditionalOrderItemData'
     ];
 
     /**
@@ -184,8 +180,7 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
         'estimatedShippingDate' => 'getEstimatedShippingDate',
         'estimatedDeliveryDate' => 'getEstimatedDeliveryDate',
         'remainingQuantity' => 'getRemainingQuantity',
-        'additionalOrderItemData' => 'getAdditionalOrderItemData',
-        'shipFromCountry' => 'getShipFromCountry'
+        'additionalOrderItemData' => 'getAdditionalOrderItemData'
     ];
 
     /**
@@ -253,7 +248,6 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->container['estimatedDeliveryDate'] = $data['estimatedDeliveryDate'] ?? null;
         $this->container['remainingQuantity'] = $data['remainingQuantity'] ?? null;
         $this->container['additionalOrderItemData'] = $data['additionalOrderItemData'] ?? null;
-        $this->container['shipFromCountry'] = $data['shipFromCountry'] ?? null;
     }
 
     /**
@@ -311,10 +305,6 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
 
         if (!is_null($this->container['additionalOrderItemData']) && (is_countable($this->container['additionalOrderItemData']) && count($this->container['additionalOrderItemData']) < 0)) {
             $invalidProperties[] = "invalid value for 'additionalOrderItemData', number of items must be greater than or equal to 0.";
-        }
-
-        if (!is_null($this->container['shipFromCountry']) && !preg_match("/^[A-Z]{3}$/", $this->container['shipFromCountry'])) {
-            $invalidProperties[] = "invalid value for 'shipFromCountry', must be conform to the pattern /^[A-Z]{3}$/.";
         }
 
         return $invalidProperties;
@@ -532,18 +522,6 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function setAdditionalOrderItemData(?array $additionalOrderItemData): OrderItemTypeItem
     {
         $this->container['additionalOrderItemData'] = $additionalOrderItemData;
-        return $this;
-    }
-
-
-    public function getShipFromCountry(): ?string
-    {
-        return $this->container['shipFromCountry'];
-    }
-
-    public function setShipFromCountry(?string $shipFromCountry): OrderItemTypeItem
-    {
-        $this->container['shipFromCountry'] = $shipFromCountry;
         return $this;
     }
 
