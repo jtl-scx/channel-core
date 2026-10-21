@@ -50,6 +50,7 @@ class ChannelSeller implements ModelInterface, ArrayAccess, \JsonSerializable
         'sellerId' => 'string',
         'jtlAccountId' => 'int',
         'companyName' => 'string',
+        'externalSellerReference' => 'string',
         'isActiveByJTL' => 'bool',
         'isActiveByChannel' => 'bool',
         'createdAt' => '\DateTime',
@@ -66,6 +67,7 @@ class ChannelSeller implements ModelInterface, ArrayAccess, \JsonSerializable
         'sellerId' => null,
         'jtlAccountId' => null,
         'companyName' => null,
+        'externalSellerReference' => null,
         'isActiveByJTL' => null,
         'isActiveByChannel' => null,
         'createdAt' => 'date-time',
@@ -98,6 +100,7 @@ class ChannelSeller implements ModelInterface, ArrayAccess, \JsonSerializable
         'sellerId' => 'sellerId',
         'jtlAccountId' => 'jtlAccountId',
         'companyName' => 'companyName',
+        'externalSellerReference' => 'externalSellerReference',
         'isActiveByJTL' => 'isActiveByJTL',
         'isActiveByChannel' => 'isActiveByChannel',
         'createdAt' => 'createdAt',
@@ -111,6 +114,7 @@ class ChannelSeller implements ModelInterface, ArrayAccess, \JsonSerializable
         'sellerId' => 'setSellerId',
         'jtlAccountId' => 'setJtlAccountId',
         'companyName' => 'setCompanyName',
+        'externalSellerReference' => 'setExternalSellerReference',
         'isActiveByJTL' => 'setIsActiveByJTL',
         'isActiveByChannel' => 'setIsActiveByChannel',
         'createdAt' => 'setCreatedAt',
@@ -124,6 +128,7 @@ class ChannelSeller implements ModelInterface, ArrayAccess, \JsonSerializable
         'sellerId' => 'getSellerId',
         'jtlAccountId' => 'getJtlAccountId',
         'companyName' => 'getCompanyName',
+        'externalSellerReference' => 'getExternalSellerReference',
         'isActiveByJTL' => 'getIsActiveByJTL',
         'isActiveByChannel' => 'getIsActiveByChannel',
         'createdAt' => 'getCreatedAt',
@@ -181,6 +186,7 @@ class ChannelSeller implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['sellerId'] = $data['sellerId'] ?? null;
         $this->container['jtlAccountId'] = $data['jtlAccountId'] ?? null;
         $this->container['companyName'] = $data['companyName'] ?? null;
+        $this->container['externalSellerReference'] = $data['externalSellerReference'] ?? null;
         $this->container['isActiveByJTL'] = $data['isActiveByJTL'] ?? true;
         $this->container['isActiveByChannel'] = $data['isActiveByChannel'] ?? true;
         $this->container['createdAt'] = $data['createdAt'] ?? null;
@@ -247,6 +253,18 @@ class ChannelSeller implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCompanyName(?string $companyName): ChannelSeller
     {
         $this->container['companyName'] = $companyName;
+        return $this;
+    }
+
+
+    public function getExternalSellerReference(): ?string
+    {
+        return $this->container['externalSellerReference'];
+    }
+
+    public function setExternalSellerReference(?string $externalSellerReference): ChannelSeller
+    {
+        $this->container['externalSellerReference'] = $externalSellerReference;
         return $this;
     }
 

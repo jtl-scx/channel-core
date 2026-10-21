@@ -50,7 +50,8 @@ class UpdateSeller implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPITypes = [
         'session' => 'string',
         'isActive' => 'bool',
-        'companyName' => 'string'
+        'companyName' => 'string',
+        'externalSellerReference' => 'string'
     ];
 
     /**
@@ -62,7 +63,8 @@ class UpdateSeller implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPIFormats = [
         'session' => 'uuid',
         'isActive' => null,
-        'companyName' => null
+        'companyName' => null,
+        'externalSellerReference' => null
     ];
 
     /**
@@ -90,7 +92,8 @@ class UpdateSeller implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $attributeMap = [
         'session' => 'session',
         'isActive' => 'isActive',
-        'companyName' => 'companyName'
+        'companyName' => 'companyName',
+        'externalSellerReference' => 'externalSellerReference'
     ];
 
     /**
@@ -99,7 +102,8 @@ class UpdateSeller implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $setters = [
         'session' => 'setSession',
         'isActive' => 'setIsActive',
-        'companyName' => 'setCompanyName'
+        'companyName' => 'setCompanyName',
+        'externalSellerReference' => 'setExternalSellerReference'
     ];
 
     /**
@@ -108,7 +112,8 @@ class UpdateSeller implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $getters = [
         'session' => 'getSession',
         'isActive' => 'getIsActive',
-        'companyName' => 'getCompanyName'
+        'companyName' => 'getCompanyName',
+        'externalSellerReference' => 'getExternalSellerReference'
     ];
 
     /**
@@ -162,6 +167,7 @@ class UpdateSeller implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['session'] = $data['session'] ?? null;
         $this->container['isActive'] = $data['isActive'] ?? null;
         $this->container['companyName'] = $data['companyName'] ?? null;
+        $this->container['externalSellerReference'] = $data['externalSellerReference'] ?? null;
     }
 
     /**
@@ -179,6 +185,10 @@ class UpdateSeller implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['isActive'] === null) {
             $invalidProperties[] = "'isActive' can't be null";
         }
+        if (!is_null($this->container['externalSellerReference']) && (mb_strlen($this->container['externalSellerReference']) < 1)) {
+            $invalidProperties[] = "invalid value for 'externalSellerReference', the character length must be bigger than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -226,6 +236,18 @@ class UpdateSeller implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCompanyName(?string $companyName): UpdateSeller
     {
         $this->container['companyName'] = $companyName;
+        return $this;
+    }
+
+
+    public function getExternalSellerReference(): ?string
+    {
+        return $this->container['externalSellerReference'];
+    }
+
+    public function setExternalSellerReference(?string $externalSellerReference): UpdateSeller
+    {
+        $this->container['externalSellerReference'] = $externalSellerReference;
         return $this;
     }
 
