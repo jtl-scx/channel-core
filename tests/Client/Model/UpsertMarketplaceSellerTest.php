@@ -71,6 +71,13 @@ class UpsertMarketplaceSellerTest extends AbstractApiModelTestCase
                 'setCompanyName',
                 true
             ],
+            'assert property externalSellerReference' => [
+                'externalSellerReference',
+                'string',
+                'getExternalSellerReference',
+                'setExternalSellerReference',
+                true
+            ],
         ];
     }
 

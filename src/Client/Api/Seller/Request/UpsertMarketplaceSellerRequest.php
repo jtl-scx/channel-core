@@ -16,13 +16,23 @@ class UpsertMarketplaceSellerRequest extends AbstractScxApiRequest
     ) {
     }
 
-    public static function make(int $jtlAccountId, string $sellerId, bool $isActive = true, string $companyName = ''): UpsertMarketplaceSellerRequest
-    {
-        return new self($jtlAccountId, new UpsertMarketplaceSeller([
+    public static function make(
+        int $jtlAccountId,
+        string $sellerId,
+        bool $isActive = true,
+        string $companyName = '',
+        ?string $externalSellerReference = null
+    ): UpsertMarketplaceSellerRequest {
+        $data = [
             'sellerId' => $sellerId,
             'isActive' => $isActive,
             'companyName' => $companyName,
-        ]));
+        ];
+        if ($externalSellerReference !== null) {
+            $data['externalSellerReference'] = $externalSellerReference;
+        }
+
+        return new self($jtlAccountId, new UpsertMarketplaceSeller($data));
     }
 
     public function getUrl(): string

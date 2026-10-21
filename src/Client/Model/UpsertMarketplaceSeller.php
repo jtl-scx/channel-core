@@ -25,6 +25,7 @@ use JTL\SCX\Lib\Channel\Client\ObjectSerializer;
  * UpsertMarketplaceSeller Class Doc Comment
  *
  * @category Class
+ * @description Seller data a marketplace channel sends to add or update a seller of a sibling marketplace channel.
  * @package  JTL\SCX\Lib\Channel\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -49,7 +50,8 @@ class UpsertMarketplaceSeller implements ModelInterface, ArrayAccess, \JsonSeria
     protected static array $openAPITypes = [
         'sellerId' => 'string',
         'isActive' => 'bool',
-        'companyName' => 'string'
+        'companyName' => 'string',
+        'externalSellerReference' => 'string'
     ];
 
     /**
@@ -61,7 +63,8 @@ class UpsertMarketplaceSeller implements ModelInterface, ArrayAccess, \JsonSeria
     protected static array $openAPIFormats = [
         'sellerId' => null,
         'isActive' => null,
-        'companyName' => null
+        'companyName' => null,
+        'externalSellerReference' => null
     ];
 
     /**
@@ -89,7 +92,8 @@ class UpsertMarketplaceSeller implements ModelInterface, ArrayAccess, \JsonSeria
     protected static array $attributeMap = [
         'sellerId' => 'sellerId',
         'isActive' => 'isActive',
-        'companyName' => 'companyName'
+        'companyName' => 'companyName',
+        'externalSellerReference' => 'externalSellerReference'
     ];
 
     /**
@@ -98,7 +102,8 @@ class UpsertMarketplaceSeller implements ModelInterface, ArrayAccess, \JsonSeria
     protected static array $setters = [
         'sellerId' => 'setSellerId',
         'isActive' => 'setIsActive',
-        'companyName' => 'setCompanyName'
+        'companyName' => 'setCompanyName',
+        'externalSellerReference' => 'setExternalSellerReference'
     ];
 
     /**
@@ -107,7 +112,8 @@ class UpsertMarketplaceSeller implements ModelInterface, ArrayAccess, \JsonSeria
     protected static array $getters = [
         'sellerId' => 'getSellerId',
         'isActive' => 'getIsActive',
-        'companyName' => 'getCompanyName'
+        'companyName' => 'getCompanyName',
+        'externalSellerReference' => 'getExternalSellerReference'
     ];
 
     /**
@@ -147,6 +153,10 @@ class UpsertMarketplaceSeller implements ModelInterface, ArrayAccess, \JsonSeria
         return self::$openAPIModelName;
     }
 
+
+
+
+
     /**
      * Associative array for storing property values
      */
@@ -157,6 +167,7 @@ class UpsertMarketplaceSeller implements ModelInterface, ArrayAccess, \JsonSeria
         $this->container['sellerId'] = $data['sellerId'] ?? null;
         $this->container['isActive'] = $data['isActive'] ?? true;
         $this->container['companyName'] = $data['companyName'] ?? null;
+        $this->container['externalSellerReference'] = $data['externalSellerReference'] ?? null;
     }
 
     /**
@@ -173,6 +184,10 @@ class UpsertMarketplaceSeller implements ModelInterface, ArrayAccess, \JsonSeria
         }
         if (!preg_match("/^\\w{1,50}$/", $this->container['sellerId'])) {
             $invalidProperties[] = "invalid value for 'sellerId', must be conform to the pattern /^\\w{1,50}$/.";
+        }
+
+        if (!is_null($this->container['externalSellerReference']) && (mb_strlen($this->container['externalSellerReference']) < 1)) {
+            $invalidProperties[] = "invalid value for 'externalSellerReference', the character length must be bigger than or equal to 1.";
         }
 
         return $invalidProperties;
@@ -222,6 +237,18 @@ class UpsertMarketplaceSeller implements ModelInterface, ArrayAccess, \JsonSeria
     public function setCompanyName(?string $companyName): UpsertMarketplaceSeller
     {
         $this->container['companyName'] = $companyName;
+        return $this;
+    }
+
+
+    public function getExternalSellerReference(): ?string
+    {
+        return $this->container['externalSellerReference'];
+    }
+
+    public function setExternalSellerReference(?string $externalSellerReference): UpsertMarketplaceSeller
+    {
+        $this->container['externalSellerReference'] = $externalSellerReference;
         return $this;
     }
 
