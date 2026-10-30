@@ -57,6 +57,7 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         'totalNetPriceWithDiscounts' => 'float',
         'totalVatAmountWithDiscounts' => 'float',
         'vatRate' => 'float',
+        'taxCategory' => 'string',
         'discounts' => '\JTL\SCX\Lib\Channel\Client\Model\OrderInvoiceTransactionItemDiscounts[]'
     ];
 
@@ -76,6 +77,7 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         'totalNetPriceWithDiscounts' => 'float',
         'totalVatAmountWithDiscounts' => 'float',
         'vatRate' => 'float',
+        'taxCategory' => null,
         'discounts' => null
     ];
 
@@ -111,6 +113,7 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         'totalNetPriceWithDiscounts' => 'totalNetPriceWithDiscounts',
         'totalVatAmountWithDiscounts' => 'totalVatAmountWithDiscounts',
         'vatRate' => 'vatRate',
+        'taxCategory' => 'taxCategory',
         'discounts' => 'discounts'
     ];
 
@@ -127,6 +130,7 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         'totalNetPriceWithDiscounts' => 'setTotalNetPriceWithDiscounts',
         'totalVatAmountWithDiscounts' => 'setTotalVatAmountWithDiscounts',
         'vatRate' => 'setVatRate',
+        'taxCategory' => 'setTaxCategory',
         'discounts' => 'setDiscounts'
     ];
 
@@ -143,6 +147,7 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         'totalNetPriceWithDiscounts' => 'getTotalNetPriceWithDiscounts',
         'totalVatAmountWithDiscounts' => 'getTotalVatAmountWithDiscounts',
         'vatRate' => 'getVatRate',
+        'taxCategory' => 'getTaxCategory',
         'discounts' => 'getDiscounts'
     ];
 
@@ -186,6 +191,10 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
     public const ORDER_ITEM_TYPE_ITEM = 'ITEM';
     public const ORDER_ITEM_TYPE_SHIPPING = 'SHIPPING';
     public const ORDER_ITEM_TYPE_PAYMENT = 'PAYMENT';
+    public const TAX_CATEGORY_TAXABLE = 'TAXABLE';
+    public const TAX_CATEGORY_INTRA_COMMUNITY_SUPPLY = 'INTRA_COMMUNITY_SUPPLY';
+    public const TAX_CATEGORY_REVERSE_CHARGE = 'REVERSE_CHARGE';
+    public const TAX_CATEGORY_EXPORT = 'EXPORT';
 
 
 
@@ -198,6 +207,19 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
             self::ORDER_ITEM_TYPE_ITEM,
             self::ORDER_ITEM_TYPE_SHIPPING,
             self::ORDER_ITEM_TYPE_PAYMENT,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     */
+    public function getTaxCategoryAllowableValues(): array
+    {
+        return [
+            self::TAX_CATEGORY_TAXABLE,
+            self::TAX_CATEGORY_INTRA_COMMUNITY_SUPPLY,
+            self::TAX_CATEGORY_REVERSE_CHARGE,
+            self::TAX_CATEGORY_EXPORT,
         ];
     }
 
@@ -218,6 +240,7 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         $this->container['totalNetPriceWithDiscounts'] = $data['totalNetPriceWithDiscounts'] ?? null;
         $this->container['totalVatAmountWithDiscounts'] = $data['totalVatAmountWithDiscounts'] ?? null;
         $this->container['vatRate'] = $data['vatRate'] ?? null;
+        $this->container['taxCategory'] = $data['taxCategory'] ?? null;
         $this->container['discounts'] = $data['discounts'] ?? null;
     }
 
@@ -275,6 +298,15 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
         }
         if (($this->container['vatRate'] < 0.0)) {
             $invalidProperties[] = "invalid value for 'vatRate', must be bigger than or equal to 0.0.";
+        }
+
+        $allowedValues = $this->getTaxCategoryAllowableValues();
+        if (!is_null($this->container['taxCategory']) && !in_array($this->container['taxCategory'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'taxCategory', must be one of '%s'",
+                $this->container['taxCategory'],
+                implode("', '", $allowedValues)
+            );
         }
 
         if (!is_null($this->container['discounts']) && (is_countable($this->container['discounts']) && count($this->container['discounts']) < 0)) {
@@ -400,6 +432,18 @@ class OrderInvoiceTransactionItem implements ModelInterface, ArrayAccess, \JsonS
     public function setVatRate(float $vatRate): OrderInvoiceTransactionItem
     {
         $this->container['vatRate'] = $vatRate;
+        return $this;
+    }
+
+
+    public function getTaxCategory(): ?string
+    {
+        return $this->container['taxCategory'];
+    }
+
+    public function setTaxCategory(?string $taxCategory): OrderInvoiceTransactionItem
+    {
+        $this->container['taxCategory'] = $taxCategory;
         return $this;
     }
 

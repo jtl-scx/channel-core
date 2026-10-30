@@ -61,6 +61,7 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         'shipmentDate' => '\DateTime',
         'taxAddressRole' => 'string',
         'exportOutsideEu' => 'bool',
+        'shipFromCountry' => 'string',
         'currency' => 'string',
         'billingAddress' => '\JTL\SCX\Lib\Channel\Client\Model\Address',
         'sellerVatNumber' => 'string',
@@ -86,6 +87,7 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         'shipmentDate' => 'date-time',
         'taxAddressRole' => null,
         'exportOutsideEu' => null,
+        'shipFromCountry' => null,
         'currency' => null,
         'billingAddress' => null,
         'sellerVatNumber' => null,
@@ -127,6 +129,7 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         'shipmentDate' => 'shipmentDate',
         'taxAddressRole' => 'taxAddressRole',
         'exportOutsideEu' => 'exportOutsideEu',
+        'shipFromCountry' => 'shipFromCountry',
         'currency' => 'currency',
         'billingAddress' => 'billingAddress',
         'sellerVatNumber' => 'sellerVatNumber',
@@ -149,6 +152,7 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         'shipmentDate' => 'setShipmentDate',
         'taxAddressRole' => 'setTaxAddressRole',
         'exportOutsideEu' => 'setExportOutsideEu',
+        'shipFromCountry' => 'setShipFromCountry',
         'currency' => 'setCurrency',
         'billingAddress' => 'setBillingAddress',
         'sellerVatNumber' => 'setSellerVatNumber',
@@ -171,6 +175,7 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         'shipmentDate' => 'getShipmentDate',
         'taxAddressRole' => 'getTaxAddressRole',
         'exportOutsideEu' => 'getExportOutsideEu',
+        'shipFromCountry' => 'getShipFromCountry',
         'currency' => 'getCurrency',
         'billingAddress' => 'getBillingAddress',
         'sellerVatNumber' => 'getSellerVatNumber',
@@ -250,6 +255,7 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['shipmentDate'] = $data['shipmentDate'] ?? null;
         $this->container['taxAddressRole'] = $data['taxAddressRole'] ?? null;
         $this->container['exportOutsideEu'] = $data['exportOutsideEu'] ?? null;
+        $this->container['shipFromCountry'] = $data['shipFromCountry'] ?? null;
         $this->container['currency'] = $data['currency'] ?? null;
         $this->container['billingAddress'] = $data['billingAddress'] ?? null;
         $this->container['sellerVatNumber'] = $data['sellerVatNumber'] ?? null;
@@ -311,6 +317,10 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
                 $this->container['taxAddressRole'],
                 implode("', '", $allowedValues)
             );
+        }
+
+        if (!is_null($this->container['shipFromCountry']) && !preg_match("/^[A-Z]{2}$/", $this->container['shipFromCountry'])) {
+            $invalidProperties[] = "invalid value for 'shipFromCountry', must be conform to the pattern /^[A-Z]{2}$/.";
         }
 
         if ($this->container['currency'] === null) {
@@ -466,6 +476,18 @@ class InvoiceMetaData implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setExportOutsideEu(?bool $exportOutsideEu): InvoiceMetaData
     {
         $this->container['exportOutsideEu'] = $exportOutsideEu;
+        return $this;
+    }
+
+
+    public function getShipFromCountry(): ?string
+    {
+        return $this->container['shipFromCountry'];
+    }
+
+    public function setShipFromCountry(?string $shipFromCountry): InvoiceMetaData
+    {
+        $this->container['shipFromCountry'] = $shipFromCountry;
         return $this;
     }
 

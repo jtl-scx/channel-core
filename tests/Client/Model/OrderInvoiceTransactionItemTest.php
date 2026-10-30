@@ -58,6 +58,18 @@ class OrderInvoiceTransactionItemTest extends AbstractApiModelTestCase
         $this->assertMethodExists($sut, 'getOrderItemTypeAllowableValues');
         $this->assertEquals($allowed, $sut->getOrderItemTypeAllowableValues());
     }
+
+    #[Test]
+    public function it_has_correct_allowed_values_for_taxCategory(): void
+    {
+        $allowed = [
+            'TAXABLE','INTRA_COMMUNITY_SUPPLY','REVERSE_CHARGE','EXPORT',
+        ];
+
+        $sut = new OrderInvoiceTransactionItem();
+        $this->assertMethodExists($sut, 'getTaxCategoryAllowableValues');
+        $this->assertEquals($allowed, $sut->getTaxCategoryAllowableValues());
+    }
     /**
      * @return array
      */
@@ -126,6 +138,13 @@ class OrderInvoiceTransactionItemTest extends AbstractApiModelTestCase
                 'getVatRate',
                 'setVatRate',
                 false
+            ],
+            'assert property taxCategory' => [
+                'taxCategory',
+                'string',
+                'getTaxCategory',
+                'setTaxCategory',
+                true
             ],
             'assert property discounts' => [
                 'discounts',

@@ -141,6 +141,13 @@ class InvoiceMetaDataTest extends AbstractApiModelTestCase
                 'setExportOutsideEu',
                 true
             ],
+            'assert property shipFromCountry' => [
+                'shipFromCountry',
+                'string',
+                'getShipFromCountry',
+                'setShipFromCountry',
+                true
+            ],
             'assert property currency' => [
                 'currency',
                 'string',
