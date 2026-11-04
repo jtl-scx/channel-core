@@ -341,20 +341,8 @@ class SellerEventOfferNew implements ModelInterface, ArrayAccess, \JsonSerializa
             $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 50000.";
         }
 
-        if (!is_null($this->container['pictureList']) && (is_countable($this->container['pictureList']) && ($this->container['pictureList']) > 50)) {
-            $invalidProperties[] = "invalid value for 'pictureList', number of items must be less than or equal to 50.";
-        }
-
-        if (!is_null($this->container['channelAttributeList']) && (is_countable($this->container['channelAttributeList']) && ($this->container['channelAttributeList']) > 250)) {
-            $invalidProperties[] = "invalid value for 'channelAttributeList', number of items must be less than or equal to 250.";
-        }
-
         if (!is_null($this->container['channelAttributeList']) && (is_countable($this->container['channelAttributeList']) && count($this->container['channelAttributeList']) < 0)) {
             $invalidProperties[] = "invalid value for 'channelAttributeList', number of items must be greater than or equal to 0.";
-        }
-
-        if (!is_null($this->container['variationList']) && (is_countable($this->container['variationList']) && ($this->container['variationList']) > 500)) {
-            $invalidProperties[] = "invalid value for 'variationList', number of items must be less than or equal to 500.";
         }
 
         if (!is_null($this->container['variationList']) && (is_countable($this->container['variationList']) && count($this->container['variationList']) < 0)) {

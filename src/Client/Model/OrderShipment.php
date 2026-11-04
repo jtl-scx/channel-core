@@ -211,10 +211,6 @@ class OrderShipment implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'items', number of items must be greater than or equal to 1.";
         }
 
-        if (!is_null($this->container['additionalShipmentData']) && (is_countable($this->container['additionalShipmentData']) && ($this->container['additionalShipmentData']) > 10)) {
-            $invalidProperties[] = "invalid value for 'additionalShipmentData', number of items must be less than or equal to 10.";
-        }
-
         if (!is_null($this->container['additionalShipmentData']) && (is_countable($this->container['additionalShipmentData']) && count($this->container['additionalShipmentData']) < 0)) {
             $invalidProperties[] = "invalid value for 'additionalShipmentData', number of items must be greater than or equal to 0.";
         }

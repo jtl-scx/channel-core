@@ -129,4 +129,23 @@ class SellerEventTicketReplyTest extends AbstractApiModelTestCase
         }
     }
 
+    #[Test]
+    public function it_does_not_report_an_attachment_list_with_items_as_too_long(): void
+    {
+        $sut = new SellerEventTicketReply(['attachment' => [new TicketAttachment()]]);
+
+        $this->assertSame([], $this->tooManyItemsMessages($sut));
+    }
+
+    /**
+     * @return string[]
+     */
+    private function tooManyItemsMessages(SellerEventTicketReply $sut): array
+    {
+        return array_values(array_filter(
+            $sut->listInvalidProperties(),
+            static fn (string $message): bool => str_contains($message, 'number of items must be less than')
+        ));
+    }
+
 }

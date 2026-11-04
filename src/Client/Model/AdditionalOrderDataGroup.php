@@ -176,10 +176,6 @@ class AdditionalOrderDataGroup implements ModelInterface, ArrayAccess, \JsonSeri
             $invalidProperties[] = "invalid value for 'group', the character length must be bigger than or equal to 1.";
         }
 
-        if (!is_null($this->container['values']) && (is_countable($this->container['values']) && ($this->container['values']) > 50)) {
-            $invalidProperties[] = "invalid value for 'values', number of items must be less than or equal to 50.";
-        }
-
         if (!is_null($this->container['values']) && (is_countable($this->container['values']) && count($this->container['values']) < 1)) {
             $invalidProperties[] = "invalid value for 'values', number of items must be greater than or equal to 1.";
         }
