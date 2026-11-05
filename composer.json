@@ -9,7 +9,7 @@
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.15.5",
         "jtl-scx/api-base-client": "^2.1",
-        "jtl-software/opsgenie-client": "^2.1",
+        "jtl-software/opsgenie-client": "^2.1 || ^3.0",
         "jtl/go-prometrics-client": "^3.2",
         "jtl/nachricht": "^1.0",
         "jtl/php-generic-collection": "^1.0.1",
