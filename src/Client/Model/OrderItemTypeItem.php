@@ -299,10 +299,6 @@ class OrderItemTypeItem implements ModelInterface, ArrayAccess, \JsonSerializabl
             $invalidProperties[] = "invalid value for 'sku', the character length must be bigger than or equal to 1.";
         }
 
-        if (!is_null($this->container['additionalOrderItemData']) && (is_countable($this->container['additionalOrderItemData']) && ($this->container['additionalOrderItemData']) > 10)) {
-            $invalidProperties[] = "invalid value for 'additionalOrderItemData', number of items must be less than or equal to 10.";
-        }
-
         if (!is_null($this->container['additionalOrderItemData']) && (is_countable($this->container['additionalOrderItemData']) && count($this->container['additionalOrderItemData']) < 0)) {
             $invalidProperties[] = "invalid value for 'additionalOrderItemData', number of items must be greater than or equal to 0.";
         }

@@ -87,4 +87,24 @@ class SellerEventListTest extends AbstractApiModelTestCase
         }
     }
 
+    #[Test]
+    public function it_is_valid_with_one_event(): void
+    {
+        $sut = new SellerEventList(['eventList' => [new SellerEventListEventListInner()]]);
+
+        $this->assertSame([], $sut->listInvalidProperties());
+        $this->assertTrue($sut->valid());
+    }
+
+    #[Test]
+    public function it_reports_an_empty_event_list_as_too_short(): void
+    {
+        $sut = new SellerEventList(['eventList' => []]);
+
+        $this->assertSame(
+            ["invalid value for 'eventList', number of items must be greater than or equal to 1."],
+            $sut->listInvalidProperties()
+        );
+    }
+
 }

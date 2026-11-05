@@ -396,10 +396,6 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
-        if (!is_null($this->container['additionalOrderData']) && (is_countable($this->container['additionalOrderData']) && ($this->container['additionalOrderData']) > 10)) {
-            $invalidProperties[] = "invalid value for 'additionalOrderData', number of items must be less than or equal to 10.";
-        }
-
         if (!is_null($this->container['additionalOrderData']) && (is_countable($this->container['additionalOrderData']) && count($this->container['additionalOrderData']) < 0)) {
             $invalidProperties[] = "invalid value for 'additionalOrderData', number of items must be greater than or equal to 0.";
         }

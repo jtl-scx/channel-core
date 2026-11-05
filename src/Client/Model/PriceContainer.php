@@ -173,10 +173,6 @@ class PriceContainer implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['quantityPriceList'] === null) {
             $invalidProperties[] = "'quantityPriceList' can't be null";
         }
-        if ((is_countable($this->container['quantityPriceList']) && ($this->container['quantityPriceList']) > 50)) {
-            $invalidProperties[] = "invalid value for 'quantityPriceList', number of items must be less than or equal to 50.";
-        }
-
         if ((is_countable($this->container['quantityPriceList']) && count($this->container['quantityPriceList']) < 1)) {
             $invalidProperties[] = "invalid value for 'quantityPriceList', number of items must be greater than or equal to 1.";
         }

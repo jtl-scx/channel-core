@@ -87,4 +87,15 @@ class ShippingRulesTest extends AbstractApiModelTestCase
         }
     }
 
+    #[Test]
+    public function it_reports_more_than_eight_channel_specific_attributes_as_too_many(): void
+    {
+        $sut = new ShippingRules(['channelSpecificAttributeList' => array_fill(0, 9, null)]);
+
+        $this->assertContains(
+            "invalid value for 'channelSpecificAttributeList', number of items must be less than or equal to 8.",
+            $sut->listInvalidProperties()
+        );
+    }
+
 }

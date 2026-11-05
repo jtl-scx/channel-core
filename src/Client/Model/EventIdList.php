@@ -160,10 +160,6 @@ class EventIdList implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['eventIdList']) && (is_countable($this->container['eventIdList']) && ($this->container['eventIdList']) > 100)) {
-            $invalidProperties[] = "invalid value for 'eventIdList', number of items must be less than or equal to 100.";
-        }
-
         if (!is_null($this->container['eventIdList']) && (is_countable($this->container['eventIdList']) && count($this->container['eventIdList']) < 1)) {
             $invalidProperties[] = "invalid value for 'eventIdList', number of items must be greater than or equal to 1.";
         }
