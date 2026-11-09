@@ -70,4 +70,22 @@ class UpsertMarketplaceSellerRequestTest extends TestCase
         self::assertTrue($model->getIsActive());
         self::assertSame('', $model->getCompanyName());
     }
+
+    public function testMakeSetsExternalSellerReference(): void
+    {
+        $request = UpsertMarketplaceSellerRequest::make(self::JTL_ACCOUNT_ID, self::SELLER_ID, false, '', 'A1B2C3');
+        $model = $request->getUpsertMarketplaceSellerModel();
+
+        self::assertSame('A1B2C3', $model->getExternalSellerReference());
+        self::assertFalse($model->getIsActive());
+    }
+
+    public function testMakeOmitsExternalSellerReferenceByDefault(): void
+    {
+        $model = UpsertMarketplaceSellerRequest::make(self::JTL_ACCOUNT_ID, self::SELLER_ID)
+            ->getUpsertMarketplaceSellerModel();
+
+        self::assertNull($model->getExternalSellerReference());
+        self::assertArrayNotHasKey('externalSellerReference', json_decode((string)$model, true));
+    }
 }

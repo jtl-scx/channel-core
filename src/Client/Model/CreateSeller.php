@@ -50,7 +50,8 @@ class CreateSeller implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPITypes = [
         'session' => 'string',
         'sellerId' => 'string',
-        'companyName' => 'string'
+        'companyName' => 'string',
+        'externalSellerReference' => 'string'
     ];
 
     /**
@@ -62,7 +63,8 @@ class CreateSeller implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPIFormats = [
         'session' => 'uuid',
         'sellerId' => null,
-        'companyName' => null
+        'companyName' => null,
+        'externalSellerReference' => null
     ];
 
     /**
@@ -90,7 +92,8 @@ class CreateSeller implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $attributeMap = [
         'session' => 'session',
         'sellerId' => 'sellerId',
-        'companyName' => 'companyName'
+        'companyName' => 'companyName',
+        'externalSellerReference' => 'externalSellerReference'
     ];
 
     /**
@@ -99,7 +102,8 @@ class CreateSeller implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $setters = [
         'session' => 'setSession',
         'sellerId' => 'setSellerId',
-        'companyName' => 'setCompanyName'
+        'companyName' => 'setCompanyName',
+        'externalSellerReference' => 'setExternalSellerReference'
     ];
 
     /**
@@ -108,7 +112,8 @@ class CreateSeller implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $getters = [
         'session' => 'getSession',
         'sellerId' => 'getSellerId',
-        'companyName' => 'getCompanyName'
+        'companyName' => 'getCompanyName',
+        'externalSellerReference' => 'getExternalSellerReference'
     ];
 
     /**
@@ -162,6 +167,7 @@ class CreateSeller implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['session'] = $data['session'] ?? null;
         $this->container['sellerId'] = $data['sellerId'] ?? null;
         $this->container['companyName'] = $data['companyName'] ?? null;
+        $this->container['externalSellerReference'] = $data['externalSellerReference'] ?? null;
     }
 
     /**
@@ -181,6 +187,10 @@ class CreateSeller implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if (!preg_match("/^\\w{1,50}$/", $this->container['sellerId'])) {
             $invalidProperties[] = "invalid value for 'sellerId', must be conform to the pattern /^\\w{1,50}$/.";
+        }
+
+        if (!is_null($this->container['externalSellerReference']) && (mb_strlen($this->container['externalSellerReference']) < 1)) {
+            $invalidProperties[] = "invalid value for 'externalSellerReference', the character length must be bigger than or equal to 1.";
         }
 
         return $invalidProperties;
@@ -230,6 +240,18 @@ class CreateSeller implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setCompanyName(?string $companyName): CreateSeller
     {
         $this->container['companyName'] = $companyName;
+        return $this;
+    }
+
+
+    public function getExternalSellerReference(): ?string
+    {
+        return $this->container['externalSellerReference'];
+    }
+
+    public function setExternalSellerReference(?string $externalSellerReference): CreateSeller
+    {
+        $this->container['externalSellerReference'] = $externalSellerReference;
         return $this;
     }
 

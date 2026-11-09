@@ -99,6 +99,13 @@ class ChannelSellerTest extends AbstractApiModelTestCase
                 'setUpdatedAt',
                 true
             ],
+            'assert property externalSellerReference' => [
+                'externalSellerReference',
+                'string',
+                'getExternalSellerReference',
+                'setExternalSellerReference',
+                true
+            ],
         ];
     }
 
