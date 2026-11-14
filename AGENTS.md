@@ -99,8 +99,9 @@ Nothing in this repository is generated. Module with its own rules:
 
 ## Commands
 
-Run all commands in the repository root. They need a PHP CLI (8.3 to 8.5) with Composer and the
-extensions `curl`, `json`, `mbstring`, `pcntl` and `sockets`. The dependencies are public.
+Run all commands in the repository root. They need a PHP CLI (8.3 to 8.5) with Composer and every
+extension that `composer.json` and the packages in `composer.lock` require (`ext-*`), among them
+`curl`, `json`, `mbstring`, `pcntl` and `sockets`. The dependencies are public.
 
 ```bash
 composer install
@@ -152,9 +153,6 @@ To try a command by hand:
 - Log through `Contract\Core\Log\ScxLogger`.
 - New code outside `src/Client/Model/` declares `strict_types`. A few existing files do not; do
   not convert them in passing.
-- Commit subjects follow Conventional Commits with a gitmoji:
-  `<gitmoji> <type>(<scope>): <subject>`. The maintainers prefix a tracker key. Contributors use
-  the form without a key.
 
 ## Boundaries
 
