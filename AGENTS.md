@@ -1,152 +1,202 @@
 # channel-core
 
-PHP library with the shared code of the SCX channel integrations. This file is the rule set for
-writing the Channel API models in `src/Client/Model/` by hand.
+PHP library (`jtl-scx/channel-core` on Packagist) with the shared code of the JTL-SCX channel
+integrations: the client for the SCX Channel API, the event loop, the console commands and the meta
+data handling. A channel integration connects one marketplace to that API and uses this library
+through Composer. It needs PHP 8.3, 8.4 or 8.5 and builds on Symfony 7.4, Guzzle, RabbitMQ with
+`jtl/nachricht`, and `jtl-scx/api-base-client` for authentication.
 
-## Source of truth
+> The maintainers develop this repository inside a private workspace that holds their general
+> rules for code style, tests and commits. This file contains only what is specific to this
+> repository. If a rule you need is not written here, follow the existing code and ask in the pull
+> request.
 
-The Channel API spec is `spec/api/api_channel.openapi.yaml` in `scx-api`. Nothing generates code
-from it. A model is written by hand and follows the spec.
+## Where things happen
 
-A schema usually sits in a split file in `spec/api/spec/` that the main spec reaches by `$ref`.
-The seller and admin specs use these files too. Search that folder for the schema name.
+The only autoload root is `JTL\SCX\Lib\Channel\` in `src/`. The tests use the same namespace in
+`tests/`.
 
-[MUST] change the spec in `scx-api` first. Then change the model here.
-[MUST NOT] add a property, a type or an allowed value here that the spec does not have.
+| Namespace (below `JTL\SCX\Lib\Channel`) | Path | What happens there |
+|---|---|---|
+| `Client\Api\<Topic>` | `src/Client/Api/` | The API classes with their `Request/` and `Response/` classes. A request class holds the URL and the HTTP method. |
+| `Client\Model` | `src/Client/Model/` | The data models of the Channel API. Own rules, see below. |
+| `Client` | `src/Client/` | `ObjectSerializer` (JSON to model and back) and `Event\EventType` (the seller event types). |
+| `Event` | `src/Event/` | The event loop: the command that gets the seller events, `EventFactory`, the message classes in `Seller\`, the emitter. |
+| `Core` | `src/Core/` | `AbstractApplicationContext` (builds the container), `Command\`, `Message\AbstractListener`, `Log\`, `Metrics\`, `I18n\`. |
+| `Contract` | `src/Contract/` | Interfaces that a channel implements or uses: the `MetaData\*Loader` interfaces, `Core\Log\ScxLogger`, `Core\Message\*RelatedMessage`. |
+| `ChannelApi`, `Notification`, `Order`, `Seller` | `src/ChannelApi/`, `src/Notification/`, `src/Order/`, `src/Seller/` | Messages that a channel emits to report a result, each with a listener that calls the API. |
+| `MetaData` | `src/MetaData/` | Category tree, attributes, shipping attributes, price types: mappers, updaters, `Default*Loader` placeholders. |
+| `Report\SellerInventory` | `src/Report/` | Sends the seller inventory report. |
+| `Helper\Command` | `src/Helper/Command/` | Commands to try things by hand: `helper:emit.*` and `helper:work`. |
+| `Controller`, `Template` | `src/Controller/`, `src/Template/` | Base class and Twig renderer for the sign-up page of a channel. |
+
+Most API classes are named `<Topic>Api` (`OrderApi`, `OfferApi`, `EventApi`). The exceptions are
+`Attribute\AttributesApi`, `Meta\PaymentRulesApi` and `Meta\ShippingRulesApi`.
+
+Entry points:
+
+- Console commands. Every class that extends `Core\Command\AbstractCommand` is a command. The name
+  is in its `#[AsCommand]` attribute. `config/core-service.yaml` registers all classes in `src/`
+  as services and tags the commands.
+- `bin/Core.php` is the development CLI of this repository. A channel has its own entry script
+  that extends `AbstractApplicationContext` in the same way.
+- Message listeners. `jtl/nachricht` finds every class that implements its `Listener` interface in
+  `src/` of the channel and in `src/` of this library (without `src/Client/`). A listener method is
+  a public method with the message class as parameter type. There is no listener registry.
+- This library has no HTTP routes, no cron definitions and no database code.
+
+Main flows:
+
+- Seller event, incoming: `scx-api:get.events` (`Event\Command\ScxApiEventConsumeCommand`) ->
+  `Client\Api\Event\EventApi::get()` -> `EventType` selects the model class -> `ObjectSerializer`
+  builds the model -> `EventContainer` -> `EventFactory` builds the message from `Event\Seller\`
+  -> `SellerEventEmitter` -> RabbitMQ -> `EventApi::ack()` for the emitted ids. Then
+  `chn:message.consume` (`Core\Command\MessageConsumeCommand`) gives each message to its listener
+  methods.
+  - An event without `type`, `id`, `event` or `createdAt`, or one that throws while its model is
+    built, becomes an `ErroneousEvent`. It is logged as "Erroneous Event ignored". It is not
+    emitted and not acknowledged.
+  - The event is acknowledged as soon as it is on the queue. When a listener throws,
+    `AbstractListener::onError()` logs and throws again, and `jtl/nachricht` puts the message back
+    with its retry delay (120 seconds for a seller event, see `Event\AbstractEvent`). When the
+    retries are used up, the message goes to a dead letter queue. `queue:dead-letter.retry` moves
+    it back.
+- Call to the API, outgoing: the channel builds a model from `Client\Model` -> a request from
+  `Client\Api\<Topic>\Request` -> the API class -> `AuthAwareApiClient::request()` from
+  `jtl-scx/api-base-client` -> a response from `Client\Api\<Topic>\Response`. Example:
+  `Order` -> `OrderList` -> `CreateOrderRequest` -> `OrderApi::create()` -> `CreateOrdersResponse`.
+- Result message, outgoing through the queue: the channel emits for example
+  `ChannelApi\SendOfferListingSuccessfulMessage` -> `ChannelApi\SendOfferListingResultListener`
+  -> `Client\Api\Offer\OfferApi::markListed()`.
+- Meta data: `scx-api:put.category-tree` (`Core\Command\ImportCategoryTreeCommand`) ->
+  `Contract\MetaData\MetaCategoryLoader` of the channel -> `MetaData\CategoryTreeUpdater` ->
+  `Client\Api\Category\CategoryApi`. The attribute commands work in the same way.
+
+What a channel implements: a subclass of `AbstractApplicationContext`, listeners that extend
+`Core\Message\AbstractListener` for the messages in `Event\Seller\`, and the loader interfaces in
+`Contract\MetaData\` that its commands need. It overrides the loader services in its own service
+file. The library itself listens to `AttributesUpdateRequestEvent`
+(`MetaData\Attribute\AttributeUpdateRequestListener`,
+`MetaData\ShippingAttribute\SellerShippingAttributeUpdateRequestListener`).
+
+Wiring a seller event. The event loop knows a seller event only when all of these exist:
+
+1. The model `SellerEvent<Name>` in `src/Client/Model/`, and the value of the event type in the
+   enum class `SellerEventTypeList` there.
+2. In `src/Client/Event/EventType.php`: a constant with that value, the `@method` line, and a
+   `case` in `getEventModelClass()` that returns the model class.
+3. A message class in `src/Event/Seller/` that extends `AbstractEvent`. Its constructor takes
+   `$id`, `$clientVersion`, `$createdAt` and the model, in this order, because `EventFactory`
+   calls it with these four arguments. It has `getEvent()`. Copy `OfferNewEvent.php`.
+4. A `case` in `src/Event/EventFactory.php` that selects the message class.
+5. The model in the `@return` type of `getEvent()` in
+   `src/Client/Api/Event/Model/EventContainer.php`. This is documentation only.
+6. The cases in `tests/Client/Event/EventTypeTest.php` and `tests/Event/EventFactoryTest.php`, and
+   a test for the message class in `tests/Event/Seller/`.
+
+Nothing in this repository is generated. Module with its own rules:
+[`src/Client/Model/AGENTS.md`](src/Client/Model/AGENTS.md), for the models and their tests.
 
 ## Commands
 
-The CI runs these checks (`.github/workflows/ci.yml`):
+Run all commands in the repository root. They need a PHP CLI (8.3 to 8.5) with Composer and every
+extension that `composer.json` and the packages in `composer.lock` require (`ext-*`), among them
+`curl`, `json`, `mbstring`, `pcntl` and `sockets`. The dependencies are public.
 
 ```bash
 composer install
-composer phpstan
-composer phpcs-dry
-vendor/bin/phpunit
+
+vendor/bin/phpunit --no-coverage                                     # all tests, some seconds
+vendor/bin/phpunit --no-coverage tests/Event/EventFactoryTest.php    # one class
+vendor/bin/phpunit --no-coverage tests/Client/Model/AllowedValueTest.php --filter it_has_expected_interface
+
+composer phpstan      # static analysis, level 9, with phpstan-baseline.neon
+composer phpcs-dry    # code style, check only
+composer phpcs        # code style, fix
+
+php bin/Core.php list                                                # all console commands
+php bin/Core.php helper:work --type=SellerOfferNew "$(cat example/OfferNew.json)"
 ```
 
-Fix style with `composer phpcs`.
+The tests need no service, no database and no environment variable.
 
-## Models
+The CI (`.github/workflows/ci.yml`) runs on every push. It runs `composer phpstan` and
+`composer phpcs-dry` on PHP 8.4, and `vendor/bin/phpunit --coverage-clover=coverage.xml` on PHP
+8.3, 8.4 and 8.5. The local commands differ only in `--no-coverage`.
 
-- Namespace `JTL\SCX\Lib\Channel\Client\Model`. One class per file in `src/Client/Model/`.
-- The class name is the schema name in the spec. The file name is the class name. Two cases have
-  no schema name, see [allOf and inline objects](#allof-and-inline-objects).
-- A model does not declare `strict_types`, like the existing ones. With `strict_types`,
-  `mb_strlen(null)` on a required property that is not set throws a `TypeError`, so `valid()`
-  throws instead of returning `false`. `WorkEventCommand` calls `valid()` at runtime.
-- A model implements `ModelInterface`, `ArrayAccess` and `\JsonSerializable`.
-- Copy the structure of an existing model. `AllowedValue.php` is a small example, `Attribute.php`
-  has an enum property and lists of models.
-- Every property has an entry in each of these static arrays, in the same order as the spec:
-  `$openAPITypes`, `$openAPIFormats`, `$attributeMap`, `$setters` and `$getters`. Keep the
-  accessor methods (`openAPITypes()`, `openAPIFormats()`, `attributeMap()`, `setters()`,
-  `getters()`, `getModelName()`) and `DISCRIMINATOR`, `$openAPIModelName` and `$container`.
-- A type is a PHP scalar (`string`, `int`, `float`, `bool`), a `\DateTime`, a fully qualified
-  model class, or one of these with `[]` for a list, for example
-  `\JTL\SCX\Lib\Channel\Client\Model\AllowedValue[]`. Put the spec `format` in `$openAPIFormats`,
-  or `null`. More cases:
-  - A binary file (`format: binary`) has the type `\SplFileObject` and the format `binary`
-    (`InvoiceUpload.php`, property `document`).
-  - A `$ref` to an enum schema has the enum class as type (`Order.php`, property `orderStatus`).
-  - A `oneOf` has a type that is not a class. Copy the type string of an existing `oneOf`
-    (`SellerEventListEventList.php`, property `event`).
-  - Key and value in `$attributeMap` can differ. Copy the spec name exactly
-    (`ReportRequestOptions.php`, `'resultsAsChannelEvent' => 'ResultsAsChannelEvent'`).
-- The constructor reads each property with `$data['name'] ?? null`. Use the spec default instead
-  of `null` when the spec has one.
-- A required property has a non-nullable getter and setter type. An optional property has a
-  nullable type (`?string`). The setter returns `$this` and its return type is the class.
-- A list property has the getter and setter type `?array` (or `array` when required). The
-  `Model[]` type goes in `$openAPITypes` only.
-- The model keeps its values in `$container` only. Do not add other state.
-- A model that is not a seller event needs no registration. `ObjectSerializer` reads
-  `$openAPITypes`.
-- A seller event model is also wired in four places. Without them the channel gets the event as
-  `Unknown`:
-  - `EventType::getEventModelClass()` in `src/Client/Event/EventType.php`
-  - `src/Event/EventFactory.php`
-  - `src/Client/Api/Event/Model/EventContainer.php`
-  - one event class in `src/Event/Seller/`
-- Do not add business logic. A model holds data and validates it.
+To try a command by hand:
 
-### allOf and inline objects
+- `helper:work` builds a seller event from a payload, validates it against its model and calls
+  the listener directly, without the queue. It takes the payload as inline JSON, as above, or as an
+  absolute path to a JSON file. `--type` is the name of a constant in `EventType`. In this
+  repository the command above ends with exit code 1 and "No listener is registered", because the
+  listeners for offer and order events are in the channels.
+- `bin/Core.php` reads `.env` when it exists and `.env.dist` when it does not, then `.env.local`.
+  Put your own values in `.env.local`.
+- The `scx-api:*` commands call the Channel API. They need `SCX_CHANNEL_API_HOST` and
+  `SCX_CHANNEL_API_REFRESH_TOKEN`. The host in `.env.dist` is the sandbox.
+- `chn:message.consume`, `queue:dead-letter.retry` and `helper:emit.*` need a RabbitMQ with the
+  delayed message exchange plugin, set by the `RABBITMQ_*` variables. Without a broker at
+  `RABBITMQ_HOST`, `chn:message.consume` ends with a connection error.
 
-- `allOf` becomes one flat class. It has the properties and the required lists of all parts, in
-  `allOf` order. [MUST NOT] use `extends` and [MUST NOT] write a class for a part. The nine parts
-  that have no class on purpose are `ReportIdRelated`, `EventSellerRelated`, `SalesChannelOffer`,
-  `Product`, `OfferIdRelated`, `SalesChannelBase`, `ReportRequest`, `ReportSellerInventory` and
-  `TicketReply`.
-- An inline object has no name in the spec. Its class name is the name of the parent schema plus
-  the property name in PascalCase, and `Inner` at the end when it is the item of a list. Examples:
-  `AttributeConditionalMandatoryByInner`, `OrderStatusOrderItemsInner`,
-  `SellerEventListEventList`. [MUST NOT] invent another form.
+## Conventions
 
-### Validation
+- A test class needs `#[CoversClass]`. `phpunit.xml` sets `requireCoverageMetadata`, and a test
+  without it is reported as risky.
+- phpstan skips `src/Client/Api`, `src/Client/Model`, `src/Client/ObjectSerializer.php` and two
+  more files (`phpstan.neon`). Only the tests and php-cs-fixer check this code.
+- A command extends `Core\Command\AbstractCommand` and gets its name from `#[AsCommand]`. The
+  existing prefixes are `scx-api:` (calls the Channel API), `chn:`, `queue:` and `helper:`.
+- A listener extends `Core\Message\AbstractListener`. A message that implements an interface from
+  `Contract\Core\Message\` (for example `SellerIdRelatedMessage`) gets that id into the log
+  context of every log line.
+- Log through `Contract\Core\Log\ScxLogger`.
+- New code outside `src/Client/Model/` declares `strict_types`. A few existing files do not; do
+  not convert them in passing.
 
-Validation lives in `listInvalidProperties()`. `valid()` returns `count(listInvalidProperties()) === 0`.
+## Boundaries
 
-For every constraint in the spec, add a check with a message that says what is wrong:
+- Channel integrations in other repositories install this package from Packagist. No class in
+  `src/` is marked as internal, so a channel can use every public and protected class, method,
+  constructor and constant. Ask before you rename or remove one, change its signature, or add a
+  required constructor parameter to a service.
+- Channels call the console commands by name, override the services of `config/core-service.yaml`
+  and set the variables of `.env.dist`. Ask before you rename one of them.
+- The queue name of a message is its class name. Ask before you rename or move a message class:
+  messages in the old queue are then not consumed.
+- `config/core-service.yaml` loads the whole of `src/`, so a new class becomes a service in every
+  channel. A command, a listener and every class they use stay in the container. Give them
+  constructors that can be autowired, or the container of the channel does not build.
+- A dependency in `require` of `composer.json` is a dependency of every channel. Ask before you
+  add one or move one to a new major version. `twig/twig` is in `require-dev` only: a channel
+  that uses `Template\TwigTemplateRenderer` requires it itself.
+- A release is a tag `MAJOR.MINOR.PATCH` without prefix on `master`, published as a GitHub release
+  with generated notes. Packagist takes the version from the tag. There is no release workflow and
+  no changelog file. The branches `1.x` and `2.x` hold the old major versions. Do not create a tag
+  or a release yourself.
+- The scripts in `client_example/` call the production API (`Configuration::HOST_PRODUCTION`),
+  and `GetEvents.php` acknowledges the events it reads. Do not run them.
 
-- Required property: `'name' can't be null`.
-- `minLength` and `maxLength`: `mb_strlen()`.
-- `pattern`: `preg_match()`. The spec stores the pattern without delimiters
-  (`'^\w{1,50}$'`). Wrap it in `/.../`, escape each `/` inside it and double the backslashes in
-  the double-quoted string: `"/^\\w{1,50}$/"`. Without the delimiters PHP warns and returns
-  `false`, so `valid()` rejects every value. Copy `AttachmentData.php` (`sellerId`).
-- `minimum` and `maximum`: a comparison.
-- `minItems`: `is_countable()` and `count()`. Never compare the array itself with a number. Copy the
-  form and the message from `OfferListingFailed.php` (`errorList`):
-  `if (!is_null($this->container['x']) && (is_countable($this->container['x']) && count($this->container['x']) < 1))`
-  with the message `invalid value for 'x', number of items must be greater than or equal to 1.`
-- `maxItems`: [MUST NOT] write a check (EA-8533). The upstream API enforces the limits. Only two
-  checks stay: `channelSpecificAttributeList` in `ShippingRules` and `SellerShippingRules`.
-- Optional property: guard every check with `!is_null($this->container['name'])`.
-- Allowed values: a `public const` for each value, a `get<Name>AllowableValues()` method, and an
-  `in_array(..., true)` check.
+## Pitfalls
 
-Copy the message texts from an existing model, so reviews stay simple.
+- An event that `EventFactory` does not know is logged as "could not be mapped". It is not put on
+  the queue and it is not acknowledged. A new seller event works only when it is wired in all
+  places, see "Wiring a seller event".
+- The API classes do not call `valid()` on a model before they send it. Only the `helper:`
+  commands validate. Call `valid()` yourself when you need the check.
+- Most `Default*Loader` classes in `src/MetaData/` throw "Please implement ...". This is the
+  intended signal for a channel that did not register its own loader.
+- `helper:emit.ChannelNotification` is different from the other `helper:emit.*` commands. It
+  builds a notification message from its arguments, not a seller event from a JSON file.
 
-## Enums
+## Where to find more
 
-An enum schema is a class that implements `EnumInterface`. Copy `OrderItemPaymentStatus.php`:
-
-- a `public const` for each value
-- `getAllowableEnumValues()`
-- a static factory for each value, named like the value
-- a constructor that takes the value, and `getValue()`
-
-## Tests
-
-Every model has a test in `tests/Client/Model/<Name>Test.php`.
-
-- The test extends `AbstractApiModelTestCase` and has `#[CoversClass(<Name>::class)]`.
-- `expectedInterface()` lists every property with its name, type, getter, setter and a flag for
-  nullable. `it_has_expected_interface` is the test that uses it. Copy `AllowedValueTest.php`.
-- Add a test for each validation rule you add. Name it by the behaviour, in snake_case.
-- The flag is `true` when the property keeps `null` after a round trip, and `false` when it does
-  not. A property with a non-null default is `false`, because the constructor replaces `null` with
-  the default. `AllowedValue::getSort()` returns `?int`, yet `sort` is `false` in
-  `AllowedValueTest.php`. Do not take the flag from the PHP type.
-- A binary property (`\SplFileObject`) needs the type `\SplFileObject` in `expectedInterface()`
-  (`InvoiceUploadTest.php`).
-- Every enum has a test. Copy `OrderItemPaymentStatusTest.php`: `is_a_const_<VALUE>` and
-  `it_can_be_constructed_for<VALUE>` for each value, and `it_has_correct_set_of_allowed_values`.
-- A model with an inline enum has `it_has_correct_allowed_values_for_<property>`
-  (`AttributeTest.php`).
-
-## Checklist for a new model
-
-1. The schema exists in the spec in `scx-api`.
-2. The class has the spec name, in `src/Client/Model/<Name>.php`.
-3. Every property is in all five static arrays and has a getter and a setter.
-4. Required and optional types match the spec.
-5. Every spec constraint has a check in `listInvalidProperties()`.
-6. The test exists and lists every property.
-7. PHPUnit, phpstan and php-cs-fixer pass (see [Commands](#commands)).
-
-## Old files
-
-Most models and tests still carry the header "auto generated by OpenAPI Generator". That is
-history. [MUST NOT] copy the header into a new file. [SHOULD] replace it in a file you change for
-another reason.
+- Channel API reference: <https://developer.jtl-software.com/marketplace-channels/api-reference/channel>
+- Channel API specification (OpenAPI, one JSON file):
+  <https://developer.jtl-software.com/openapi/marketplace-channels/channel.json>
+- Guides for events, offers and orders:
+  <https://developer.jtl-software.com/marketplace-channels/guides/channel-api-overview>
+- The skeleton for a new channel: <https://github.com/jtl-scx/channel>
+- `README.md` for the purpose of the library, `.env.dist` for every setting with its comment.
+- Example payloads of seller events: `example/*.json`.
+- The messaging library: <https://github.com/jtl-software/nachricht>
